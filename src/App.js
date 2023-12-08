@@ -1,10 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import Sidebar from "./components/sidebar"
+import Sidebar from "./components/sidebar";
+import PolicyReceipts from "../src/module/Receipts/PolicyReceipts";
 function App() {
   return (
-    <div>v
+    <div>
       <Sidebar/>
+      {/* <PolicyReceipts/> */}
+      
+
     </div>
   );
 }

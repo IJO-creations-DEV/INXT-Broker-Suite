@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+
 import Sidebar from "./components/sidebar";
 import PolicyReceipts from "../src/module/Receipts/PolicyReceipts";
 function App() {
@@ -7,8 +8,6 @@ function App() {
     <div>
       <Sidebar/>
       
-      
-
     </div>
   );
 }

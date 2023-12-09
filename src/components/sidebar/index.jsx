@@ -17,6 +17,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import PolicyReceipts from "../../module/Receipts/PolicyReceipts";
+import OtherReceipts from "../../module/Receipts/OtherReceipts"
+
 
 const drawerWidth = 240;
 
@@ -86,7 +88,7 @@ function ResponsiveDrawer(props) {
         //   backgroundColor:"red",
         }}
       >
-        <Toolbar>
+        {/* <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -94,12 +96,12 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            {/* <MenuIcon /> */}
+          
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Responsive drawer
           </Typography>
-        </Toolbar>
+        </Toolbar> */}
       </AppBar>
       <Box
         component="nav"
@@ -154,6 +156,8 @@ function ResponsiveDrawer(props) {
         {/* <Toolbar /> */}
       
         <PolicyReceipts/>
+        {/* <OtherReceipts/> */}
+
 
       </Box>
 

@@ -14,27 +14,24 @@
   display:flex;
 }
 .svgicondiv{
-  background-color:#6366F1;
-  border-radius: 30px;
-  width: 40px;
-  height:40px;
-  align-items: center;
+   align-items: center;
   display:flex;
   justify-content:center;
-  margin-right:10px
+  margin-right:20px
+  
 }
-.filter{
-  width:26px;
-   height:24px
-}
+
 .add {
   background-color:#6366F1;
   border-radius:60px;
-  width:80px;
+  width:100px !important;
   height:38px;
   display:flex;
   justify-content:center;
   align-items:center;
+}
+.addicon {
+margin-right: 10px;
 }
 .addtext {
   color:#FFFFFF
@@ -55,36 +52,14 @@
   padding-bottom: 20px;
 }
 .columnHeaderTitles {
-  color: #000;
-  font-weight: 400;
-  font-size: 14px;
+  color: #000 !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
 }
 .search{
-  /* background-color: red; */
   width: 80% !important;
-  /* border-style:groove; */
   border-color: #0000001A;
   border-radius: 10px;
 border: 1px solid rgba(0, 0, 0, 0.10);
 margin-bottom: 20px;
 }
-/* .search.css-1776fzg-MuiInputBase-root {
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  letter-spacing: 0.00938em;
-  color: rgba(0, 0, 0, 0.87);
-  box-sizing: border-box;
-  position: relative;
-  cursor: text;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: inherit;
-   width: 40% !important;
-} */

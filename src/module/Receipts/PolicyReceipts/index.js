@@ -9,9 +9,12 @@ import Tabs from "@mui/material/Tabs";
 import InputBase from "@mui/material/InputBase";
 import Tab from "@mui/material/Tab";
 import SvgAdd from "../../../Assets/Icons/SvgAdd";
-import SvgFilter from "../../../Assets/Icons/SvgFilter";
+import SvgFilters from "../../../Assets/Icons/SvgFilters";
 import Styless from "./style.module.css";
 import SearchIcon from "@mui/icons-material/Search";
+import SvgArrow from "../../../Assets/Icons/SvgArrow";
+import SvgDot from "../../../Assets/Icons/SvgDot";
+import OtherReceipts from "../../../module/Receipts/OtherReceipts"
 
 export default function DataTable() {
   const Search = styled("div")(({ theme }) => ({
@@ -66,24 +69,41 @@ export default function DataTable() {
     { field: "receiptNo", headerName: "Receipt No", width: 130 },
     { field: "receiptDate", headerName: "Receipt Date", width: 130 },
     { field: "paymentType", headerName: "Payment type", width: 130 },
-    { field: "eWT", headerName: "EWT", width: 130 },
     { field: "amount", headerName: "Amount", width: 130 },
-    { field: "view", headerName: "View", width: 130 },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 100,
+      renderCell: (params) => (
+        <SvgArrow
+          color="primary"
+          onClick={() => handleEditClick(params.row.id)}
+        ></SvgArrow>
+      ),
+    },
   ];
+
+  const handleEditClick = (id) => {
+    console.log(`Edit clicked for row with ID ${id}`);
+  };
 
   return (
     <div className={Styless.mainstyle}>
       <div className={Styless.title}>Receipts</div>
       <div className={Styless.icon}>
         <div className={Styless.svgicondiv}>
-          <SvgFilter className={Styless.filter} />
+          <SvgFilters className={Styless.filter} />
         </div>
         <div className={Styless.add}>
-          <SvgAdd />
+          <SvgAdd className={Styless.addicon} />
           <p className={Styless.addtext}>Add</p>
         </div>
       </div>
-      <Breadcrumbs aria-label="breadcrumb" className={Styless.breadcrumbss}>
+      <Breadcrumbs
+        aria-label="breadcrumb"
+        separator={<SvgDot />}
+        className={Styless.breadcrumbss}
+      >
         <Link
           underline="hover"
           href="/"
@@ -117,12 +137,10 @@ export default function DataTable() {
         <Tabs
           value={value}
           onChange={handleChange}
-          // className={Styless.tabs}
           sx={{ marginBottom: "30px", color: "#6366F1" }}
         >
           <Tab
             label="Policy Receipt"
-            // className={Styless.policytext}
             sx={{ fontSize: "16px", fontWeight: 500 }}
           />
           <Tab
@@ -130,7 +148,8 @@ export default function DataTable() {
             sx={{ fontSize: "16px", fontWeight: 500 }}
           />
         </Tabs>
-
+        {value === 0 ? ( 
+        <>
         <Search>
           <SearchIconWrapper>
             <SearchIcon style={{ marginBottom: "20px" }} />
@@ -141,18 +160,23 @@ export default function DataTable() {
             inputProps={{ "aria-label": "search" }}
           />
         </Search>
+        {/* </>
+      ) : (
+        
+        <OtherReceipts />
+      )} */}
         <DataGrid
           className={Styless.columnHeaderTitles}
           rows={data}
           columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
           pageSizeOptions={[5, 10]}
           checkboxSelection
         />
+          </>
+      ) : (
+        
+        <OtherReceipts />
+      )}
       </Card>
     </div>
   );

@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Sidebar/>
-      {/* <PolicyReceipts/> */}
+      
       
 
     </div>

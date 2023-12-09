@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Sidebar from "./components/sidebar"
-import Paymentvoucher from "./module/PaymentVoucher/index"
+
+import Sidebar from "./components/sidebar";
+import PolicyReceipts from "../src/module/Receipts/PolicyReceipts";
 function App() {
   return (
     <div>
-      {/* <Sidebar/> */}
-<Paymentvoucher/>
+      <Sidebar/>
+      
     </div>
   );
 }

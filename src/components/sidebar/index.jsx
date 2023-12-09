@@ -18,59 +18,79 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import PolicyReceipts from "../../module/Receipts/PolicyReceipts";
 import OtherReceipts from "../../module/Receipts/OtherReceipts"
+import OtherReceiptsView from '../../module/Receipts/ReceiptsView/OtherReceiptsView';
+import PolicyReceiptsView from '../../module/Receipts/ReceiptsView/PolicyReceiptsView';
+import AddOtherReceipts from '../../module/Receipts/AddReceipts/AddOtherReceipts'
 
-
+import { Collapse, ListSubheader } from "@mui/material";
+import { menuList } from "./list";
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
 
   const drawer = (
-    <div>
-      <Toolbar />
-     
-      <List>
-        {["Accounts","Masters","Reports"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              {/* <ListItemIcon> */}
-                {/* {index % 2 === 0 ? 
-                // <InboxIcon /> 
-                <h1>H</h1>
-                :<h1>O</h1>
-                //  <MailIcon />
-                 } */}
-              {/* </ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      
-      <List>
-        {[].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                {/* {index % 2 === 0 ? 
-                // <InboxIcon /> 
-                <h1>H</h1>
-                :<h1>O</h1>
-                //  <MailIcon />
-                 } */}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
+    <List
+      sx={{ width: '100%', maxWidth: 360, bgcolor: '#1C2536' }}
+      component="nav"
+      aria-labelledby="nested-list-subheader"
+      subheader={
+        <ListSubheader component="div" id="nested-list-subheader">
+          Nested List Items
+        </ListSubheader>
+      }
+    >
+      {
+        menuList.map((data) => (
+          <ListItemButton>
+            <ListItemIcon>
+              {data.icons}
+            </ListItemIcon>
+            <ListItemText key={data.name} primary={data.name} />
+          </ListItemButton>
+        ))
+      }
+
+
+      <ListItemButton>
+        <ListItemIcon>
+          DraftsIcon
+        </ListItemIcon>
+        <ListItemText primary="Drafts" />
+      </ListItemButton>
+      <ListItemButton onClick={handleClick}>
+        <ListItemIcon>
+          InboxIcon
+        </ListItemIcon>
+        <ListItemText primary="Inbox" />
+        <div>
+          {open ? <div> ExpandLess</div> : <div>ExpandMore
+          </div>}
+
+        </div>
+      </ListItemButton>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl: 4 }}>
+            <ListItemIcon>
+              StarBorder
+            </ListItemIcon>
+            <ListItemText primary="Starred" />
+          </ListItemButton>
+        </List>
+      </Collapse>
+    </List>
+
   );
 
   // Remove this const when copying and pasting into your project.
@@ -85,7 +105,7 @@ function ResponsiveDrawer(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-        //   backgroundColor:"red",
+          //   backgroundColor:"red",
         }}
       >
         {/* <Toolbar>
@@ -105,7 +125,7 @@ function ResponsiveDrawer(props) {
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } ,backgroundColor:"blue",}}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }, backgroundColor: "blue", }}
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -122,7 +142,7 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor:"#1C2536"
+              backgroundColor: "#1C2536"
             },
           }}
         >
@@ -135,8 +155,8 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor:"#1C2536",
-              color:"white"
+              backgroundColor: "#1C2536",
+              color: "white"
             },
           }}
           open
@@ -148,14 +168,16 @@ function ResponsiveDrawer(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          
+
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
+        <AddOtherReceipts />
+        {/* <OtherReceiptsView /> */}
         {/* <Toolbar /> */}
-      
-        <PolicyReceipts/>
+
+        {/* <PolicyReceipts/> */}
         {/* <OtherReceipts/> */}
 
 

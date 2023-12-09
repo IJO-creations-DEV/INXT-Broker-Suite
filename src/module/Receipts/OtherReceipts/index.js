@@ -80,7 +80,7 @@ export default function DataTable() {
     <div>
       <Search>
         <SearchIconWrapper>
-          <SearchIcon style={{ marginBottom: "20px" }} />
+          <SearchIcon style={{ marginBottom: 20 }} />
         </SearchIconWrapper>
         <StyledInputBase
           className={Styless.search}
@@ -89,7 +89,9 @@ export default function DataTable() {
         />
       </Search>
 
-      <DataGrid
+      <DataGrid style={{
+        margin: 20
+      }}
         className={Styless.columnHeaderTitles}
         rows={data}
         columns={columns}

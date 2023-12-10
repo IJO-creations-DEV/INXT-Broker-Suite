@@ -5,8 +5,8 @@ import Modal from "@mui/material/Modal";
 import Grid from "@mui/material/Unstable_Grid2";
 import Textarea from "@mui/joy/Textarea";
 import Textfield from "../../../components/Textfield";
-import SvgClose from "../../../assets/icons/SvgClose";
 import IconButton from "@mui/material/IconButton";
+import SvgClose from "../../../assets/Icons/SvgClose";
 
 const style = {
   position: "absolute",

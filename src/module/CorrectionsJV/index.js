@@ -23,7 +23,7 @@ import dayjs from 'dayjs';
 import styles from "./styles.module.css";
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import SuccessIcon from "../../assets/icons/SuccessIcon"
+import SuccessIcon from "../../assets/Icons/SuccessIcon"
 import SelectOptionComponent from '../../components/SelectOption';
 import Inputfield from '../../components/Inputfield';
 import CalendarField from '../../components/DateComponent';

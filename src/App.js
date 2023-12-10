@@ -13,7 +13,7 @@ import Paymentvoucher from '../src/module/PaymentVoucher/index'
 function App() {
   return (
     <div>
-      <Sidebar/>
+      {/* <Sidebar/> */}
       <BrowserRouter>
       <Routes>
 

@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Checkbox from "@mui/material/Checkbox";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
-import SvgView from "../../../assets/Icons/SvgView";
+import SvgView from "../../../assets/icons/SvgView";
 
 function createData(
   id,

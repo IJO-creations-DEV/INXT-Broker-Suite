@@ -99,7 +99,7 @@ export default function CustomizedInputsStyleOverrides() {
       }}
     >
       <ThemeProvider theme={customTheme(outerTheme)}>
-        <TextField label="Outlined" />
+        <TextField style={{fontSize:13}} label="Outlined" />
       </ThemeProvider>
     </Box>
   );

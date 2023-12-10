@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Checkbox from "@mui/material/Checkbox";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
-import SvgEdit from "../../../assets/Icons/SvgEditIcon";
+import SvgEdit from "../../../assets/icons/SvgEditIcon";
 import BasicModal from "../DisbursementModule";
 import { useState } from "react";
 

@@ -62,7 +62,7 @@ export default function SelectOptionComponent() {
       }}
     >
       <ThemeProvider theme={customTheme(outerTheme)}>
-        <Select value={"select"}>
+        <Select style={{fontSize:13 ,}} value={"option1"}>
           <MenuItem value="option1">Option 1</MenuItem>
           <MenuItem value="option2">Option 2</MenuItem>
           <MenuItem value="option3">Option 3</MenuItem>

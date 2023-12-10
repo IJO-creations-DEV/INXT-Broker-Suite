@@ -5,7 +5,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Styless from "./style.module.css";
 import SearchIcon from "@mui/icons-material/Search";
-import SvgArrow from "../../../assets/Icons/SvgArrow";
+import SvgArrow from "../../../assets/icons/SvgArrow";
 
 
 export default function DataTable() {

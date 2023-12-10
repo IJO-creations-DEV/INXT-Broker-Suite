@@ -27,7 +27,7 @@ import { menuList } from "./list";
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
-  const { window } = props;
+  const { window, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [open, setOpen] = React.useState(true);
 
@@ -173,13 +173,7 @@ function ResponsiveDrawer(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <AddOtherReceipts />
-        {/* <OtherReceiptsView /> */}
-        {/* <Toolbar /> */}
-
-        {/* <PolicyReceipts/> */}
-        {/* <OtherReceipts/> */}
-
+        {children}
 
       </Box>
 

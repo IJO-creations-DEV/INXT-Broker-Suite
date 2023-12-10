@@ -9,48 +9,54 @@ import Reversalsjv from '../src/module/Reversals/index'
 import Pettycashmanagement from '../src/module/PettyCashManagement/index'
 import Journalvoucher from '../src/module/JournalVoucher/index'
 import Paymentvoucher from '../src/module/PaymentVoucher/index'
-
+import PolicyReceiptsView from '../src/module/Receipts/ReceiptsView/PolicyReceiptsView'
+import OtherReceiptsView from '../src/module/Receipts/ReceiptsView/OtherReceiptsView'
+import AddOtherReceipts from '../src/module/Receipts/AddReceipts/AddOtherReceipts/index'
+import AddPolicyReceipts from '../src/module/Receipts/AddReceipts/AddPolicyReceipts'
+import CreateVoucher from '../src/module/PaymentVoucher/createVoucher';
+import VoucherBankDetails from '../src/module/PaymentVoucher/BankDetails';
 function App() {
   return (
     <div>
-      {/* <Sidebar/> */}
-      <BrowserRouter>
-      <Routes>
+      <Sidebar>
+        <BrowserRouter>
+          <Routes>
 
-        {/* Receipts */}
-        <Route path="/policyreceipts" element={<PolicyReceipts />}/>
-        <Route path="/otherreceipts" element={<OtherReceipts />}/>
-        <Route path="/policyreceiptsview" element={<div></div>}/>
-        <Route path="/otherreceiptsview" element={<div></div>}/>
-        <Route path="/addpolicyreceipt" element={<div></div>}/>
-        <Route path="/addotherreceipt" element={<div></div>}/>
-        <Route path="/otherreceipts" element={<div></div>}/>
+            {/* Receipts */}
+            <Route path="/policyreceipts" element={<PolicyReceipts />} />
+            <Route path="/otherreceipts" element={<OtherReceipts />} />
+            <Route path="/policyreceiptsview" element={<PolicyReceiptsView />} />
+            <Route path="/otherreceiptsview" element={<OtherReceiptsView />} />
+            <Route path="/addpolicyreceipt" element={<AddPolicyReceipts />} />
+            <Route path="/addotherreceipt" element={<AddOtherReceipts />} />
+            <Route path="/otherreceipts" element={<OtherReceipts />} />
 
-        {/* Payment Vouchers */}
-        
-        <Route path="/paymentvoucher" element={<Paymentvoucher />}/>
-        <Route path="/createvoucher" element={<div></div>}/>
-        <Route path="/voucherbankdetails" element={<div></div>}/>
-       
+            {/* Payment Vouchers */}
 
-       {/* Journal voucher */}
+            <Route path="/paymentvoucher" element={<Paymentvoucher />} />
+            <Route path="/createvoucher" element={<CreateVoucher />} />
+            <Route path="/voucherbankdetails" element={<VoucherBankDetails />} />
 
-       <Route path="/journalvoucher" element={<Journalvoucher />}/>
 
-       {/* Corrections JV */}
+            {/* Journal voucher */}
 
-       <Route path="/correctionsjv" element={<Correctionsjv />}/>
+            <Route path="/journalvoucher" element={<Journalvoucher />} />
 
-        {/* Reversals JV */}
+            {/* Corrections JV */}
 
-        <Route path="/reversaljv" element={<Reversalsjv />}/>
+            <Route path="/correctionsjv" element={<Correctionsjv />} />
 
-        {/* Petty Cash Management */}
+            {/* Reversals JV */}
 
-        <Route path="/pettycashmanagement" element={<Pettycashmanagement />}/>
+            <Route path="/reversaljv" element={<Reversalsjv />} />
 
-      </Routes>
-      </BrowserRouter>
+            {/* Petty Cash Management */}
+
+            <Route path="/pettycashmanagement" element={<Pettycashmanagement />} />
+
+          </Routes>
+        </BrowserRouter>
+      </Sidebar>
     </div>
   );
 }

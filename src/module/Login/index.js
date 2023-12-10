@@ -2,11 +2,11 @@ import React from 'react'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import styles from "./styles.module.css";
-import SvgLogoIcon from '../../assets/Icons/SvgLogoIcon';
+import SvgLogoIcon from '../../assets/icons/SvgLogoIcon';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
 import { Button, FormControl } from '@mui/base';
-import SvgWhiteLogo from '../../assets/Icons/SvgWhiteLogo';
+import SvgWhiteLogo from '../../assets/icons/SvgWhiteLogo';
 
 const Login = () => {
     return (

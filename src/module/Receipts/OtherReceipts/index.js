@@ -67,7 +67,7 @@ export default function DataTable() {
         <SvgArrow
           color="primary"
           onClick={() => handleEditClick(params.row.id)}
-        ></SvgArrow>
+        />
       ),
     },
   ];

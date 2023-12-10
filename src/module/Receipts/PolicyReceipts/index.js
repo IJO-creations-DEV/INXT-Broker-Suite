@@ -8,12 +8,12 @@ import { styled, alpha } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import InputBase from "@mui/material/InputBase";
 import Tab from "@mui/material/Tab";
-import SvgAdd from "../../../assets/Icons/SvgAdd";
-import SvgFilters from "../../../assets/Icons/SvgFilters";
+import SvgAdd from "../../../assets/icons/SvgAdd";
+import SvgFilters from "../../../assets/icons/SvgFilters";
 import Styless from "./style.module.css";
 import SearchIcon from "@mui/icons-material/Search";
-import SvgArrow from "../../../assets/Icons/SvgArrow";
-import SvgDot from "../../../assets/Icons/SvgDot";
+import SvgArrow from "../../../assets/icons/SvgArrow";
+import SvgDot from "../../../assets/icons/SvgDot";
 import OtherReceipts from "../../../module/Receipts/OtherReceipts"
 
 export default function DataTable() {

@@ -1,0 +1,228 @@
+/* import { makeStyles } from "@mui/styles"; */
+
+/* export const styles = makeStyles({
+  // container__header: {
+  //   background: '#f6f6f6'
+  // }, */
+/* .root{
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  };
+  .title{
+    fontSize: '30px',
+    fontWeight: 600,
+    // lineHeight: '36px',
+    // letterSpacing:' 0em',
+    textAlign: 'left',
+    color: '#000'
+
+  },
+  input__label: {
+    color: 'black',
+  },
+  headerText: {
+    fontSize: '16px',
+    fontWeight: 400,
+    textAlign: 'left',
+    color: '#000'
+  },
+  hideSeparator: {
+    display: 'none',
+    fontSize: '16px',
+    fontWeight: 500,
+    textAlign: 'left',
+    color: '#000'
+
+  },
+  box__header:{
+    background:'#fff',
+  },
+  labelStyle: {
+    color: '#000',
+    fontSize: '16px',
+    fontWeight: 400,
+   
+    
+  },
+  date:{
+    color: '#000',
+    fontSize: '16px',
+    fontWeight: 400,
+    paddingTop:'15px !important'
+   
+  }
+
+
+  //   .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  //     text-align: left;
+  //     position: absolute;
+  //     bottom: 0;
+  //     right: 0;
+  //     top: -5px;
+  //     left: 0;
+  //     margin: 0;
+  //     padding: 0 8px;
+  //     pointer-events: none;
+  //     border-radius: inherit;
+  //     border-style: solid;
+  //     border-width: 1px;
+  //     overflow: hidden;
+  //     min-width: 0%;
+  //     border-color: white;
+  // }
+}); */
+
+.container__header {
+  background-color: #f6f6f6 !important;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: left;
+  color: #000
+}
+
+.input__label {
+  color: #000;
+}
+
+
+.headerText {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  color: #000
+}
+
+.hideSeparator {
+  display: none;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  color: #000;
+
+}
+
+.tabel__header {
+  background-color: #B1B1B1 !important
+}
+.tabel__titles{
+  font-size: 16px !important;
+  font-weight: 500;
+  color: #000;
+}
+
+
+.box__header {
+  background: #fff !important;
+  /* padding: 15px 0 0 0; */
+  
+  border-radius: 10px;
+  margin: 0;
+}
+
+.input__header {
+  background: #fff !important;
+  border-radius: 10px;
+}
+
+.css-12q4f6r {
+  margin-top: 16px;
+  min-width: 120px;
+  background-color: white !important;
+}
+
+.labelStyle {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
+
+.date {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  /* padding-top: 15px !important */
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+
+.css-q8hpuo-MuiFormControl-root {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100%;
+  background: #fff !important;
+}
+
+.bottom__view {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end
+}
+
+.buttons {
+  margin: 5px !important;
+  background: #6366F1;
+  border-radius: 30px !important;
+  height: 50px;
+  width: 173px
+}
+
+.tabel__cell {
+  border: none !important;
+  outline: none;
+  width: 12%
+}
+
+.form__view {
+  border-bottom: none !important;
+  border-color: red;
+}
+
+.button__print {
+  margin: 5px !important;
+  /* background:#6366F1; */
+  border-radius: 30px !important;
+  height: 50px;
+  width: 173px
+}
+
+.option__view {
+  font-size: 10px !important;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.popup__view{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 422px;
+  box-shadow: 24;
+  padding: 20px;
+  border-radius:10px;
+  text-align:center;
+}

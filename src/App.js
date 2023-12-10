@@ -12,9 +12,11 @@ import Paymentvoucher from '../src/module/PaymentVoucher/index'
 import PolicyReceiptsView from '../src/module/Receipts/ReceiptsView/PolicyReceiptsView'
 import OtherReceiptsView from '../src/module/Receipts/ReceiptsView/OtherReceiptsView'
 import AddOtherReceipts from '../src/module/Receipts/AddReceipts/AddOtherReceipts/index'
-import AddPolicyReceipts from '../src/module/Receipts/AddReceipts/AddPolicyReceipts'
+import AddPolicyReceipts from '../src/module/Receipts/AddPolicyReceipts'
 import CreateVoucher from '../src/module/PaymentVoucher/createVoucher';
 import VoucherBankDetails from '../src/module/PaymentVoucher/BankDetails';
+import Login from './module/Login';
+
 function App() {
   return (
     <div>
@@ -23,13 +25,14 @@ function App() {
           <Routes>
 
             {/* Receipts */}
+           
             <Route path="/policyreceipts" element={<PolicyReceipts />} />
             <Route path="/otherreceipts" element={<OtherReceipts />} />
             <Route path="/policyreceiptsview" element={<PolicyReceiptsView />} />
             <Route path="/otherreceiptsview" element={<OtherReceiptsView />} />
-            <Route path="/addpolicyreceipt" element={<AddPolicyReceipts />} />
             <Route path="/addotherreceipt" element={<AddOtherReceipts />} />
             <Route path="/otherreceipts" element={<OtherReceipts />} />
+            <Route path='/addpolicyreceipt' element={<AddPolicyReceipts/>}/>
 
             {/* Payment Vouchers */}
 

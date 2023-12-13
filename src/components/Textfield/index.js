@@ -87,7 +87,11 @@ const customTheme = (outerTheme) =>
     },
   });
 
+<<<<<<< Updated upstream
 export default function CustomizedInputsStyleOverrides() {
+=======
+export default function CustomizedInputsStyleOverrides({disabled,defaultvalue}) {
+>>>>>>> Stashed changes
   const outerTheme = useTheme();
 
   return (
@@ -99,7 +103,11 @@ export default function CustomizedInputsStyleOverrides() {
       }}
     >
       <ThemeProvider theme={customTheme(outerTheme)}>
+<<<<<<< Updated upstream
         <TextField style={{fontSize:13}} label="Outlined" />
+=======
+        <TextField  disabled={disabled} defaultValue={defaultvalue} placeholder='Enter'/>
+>>>>>>> Stashed changes
       </ThemeProvider>
     </Box>
   );

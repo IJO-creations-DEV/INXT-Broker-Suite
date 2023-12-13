@@ -57,7 +57,12 @@ export default function SelectComponent() {
             }}
         >
             <ThemeProvider theme={customTheme(outerTheme)}>
+<<<<<<< Updated upstream
                 <Select value={"select"}>
+=======
+                <Select value={"select"} label="Enter" >
+                    
+>>>>>>> Stashed changes
                     <MenuItem value="option1">Option 1</MenuItem>
                     <MenuItem value="option2">Option 2</MenuItem>
                     <MenuItem value="option3">Option 3</MenuItem>

@@ -6,6 +6,14 @@ import Inputfield from "../../../components/Inputfield";
 import SelectOptionComponent from "../../../components/SelectOption";
 import style from "../style.module.css";
 import Button from "@mui/material/Button";
+<<<<<<< Updated upstream
+=======
+import { useState } from "react";
+import InitiateModal from "../InitiateModal/index";
+// import DropDown from "../../../components/Dropdown"
+
+import SelectComponent from "../../../components/Dropdown";
+>>>>>>> Stashed changes
 
 const Initiate = () => {
   return (

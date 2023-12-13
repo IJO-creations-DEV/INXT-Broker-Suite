@@ -26,7 +26,9 @@ const index = () => {
           {Auth() ?
             <Outlet />
             :
-            <Navigate to='login' replace />
+            <Outlet />
+
+            // <Navigate to='login' replace />
           }
 
           {/* <Outlet /> */}

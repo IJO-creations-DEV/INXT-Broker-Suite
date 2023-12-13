@@ -11,7 +11,9 @@ const Maincomponent = () => {
 
       <AuthRoute />
       <Routes>
-        <Route element={<ProtectedLayout />}/>
+        <Route element={<ProtectedLayout />}>
+          <Route path="/" element={<div>shh</div>}/>
+        </Route>
       </Routes>
     </div>
   );

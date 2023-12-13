@@ -1,0 +1,30 @@
+@import "../../Color.scss";
+.protected__layout__container {
+  .protected__layout__header {
+    width: 100%;
+  }
+  .protected__layout__content__space {
+    display: flex;
+    .protected__layout__Footer__container {
+      height: 100%;
+      // overflow-x: scroll;
+      //   min-width: max-content;
+    }
+    .main__content {
+      background-color: $pale-light-blue;
+      // padding: 23px 34px 27px 27px;
+      overflow-y: auto;
+      // max-height: 100vh;
+      max-height: 87.5vh;
+      width: 100%;
+      height: calc(100vh - 55px);
+      // overflow:scroll;
+      overflow-y: visible;
+    }
+    .page__container {
+      background-color: white;
+      width: 100%;
+      padding: 34px 41px 48px 25px;
+    }
+  }
+}

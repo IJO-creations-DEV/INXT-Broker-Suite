@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import reducers from "./mainreducers";
+import reducers from "./mainReducer";
 // import logger from 'redux-logger';
 
 const resetStoreActionType = "main/resetStore";

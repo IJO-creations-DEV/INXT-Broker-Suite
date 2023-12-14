@@ -7,28 +7,34 @@ export const menuList = [
         icons: <SvgAccountIcon/>,
             submenu: [
             {
+                id:1,
                 name: 'Receipts',
                 path: '/policyreceipts',
             },
             {
+                id:2,
                 name: 'Payment Voucher',
                 path: '/paymentvoucher',
             },
             {
+                id:3,
                 name: 'Petty Cash',
                 path: '/pettycashmanagement',
             },
             {
+                id:4,
                 name: 'Journal Voucher',
                 path: '/journalvoucher',
             },
             {
+                id:5,
                 name: 'Correction Journal Voucher',
-                path: '/correctionsjv',
+                path: '/correctionjv',
             },
             {
+                id:6,
                 name: 'Reversal Journal Voucher',
-                path: '/reversaljv',
+                path: '/correctionjv',
             }
         ]
     },

@@ -434,11 +434,13 @@
 // export default ResponsiveDrawer;
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import SvgLogo from '../../assets/icons/SvgLogo';
 import SvgDot from '../../assets/icons/SvgDot';
 import { menuList } from './list';
+import "../SideBar/index.scss"
+import { Link } from 'react-router-dom';
 
 const ResponsiveDrawer = () => {
     const [findPath, setPath] = useState(null);
@@ -454,16 +456,31 @@ const ResponsiveDrawer = () => {
         setOpenSubMenu(openSubMenu === name ? '' : name);
     };
 
+    useEffect(() => {
+        const handleResize = () => {
+            setVisible(window.innerWidth > 768); // Set visibility based on the screen width
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
         <Sidebar
             visible={visible}
-            
             style={{
-                backgroundColor: '#1C2536'
+                backgroundColor: '#1C2536 !important',
+                display: visible ? 'block' : 'none',
+            }}
+            rootStyles={{
+                backgroundColor: '#1C2536 !important',
             }}
             onHide={() => setVisible(false)}
         >
-            <div style={{ padding: '20px' }}>
+            <div style={{ padding: '10px' }}>
                 <div style={{ marginBottom: '20px' }}>
                     <SvgLogo />
                 </div>
@@ -471,16 +488,14 @@ const ResponsiveDrawer = () => {
                     {menuList.map((data, index) => (
                         <React.Fragment key={data.name}>
                             <SubMenu
-                              color='#fff'
+                            style={{color:'#fff'}}
+                                color="#fff"
                                 label={data.name}
-                                icon={<SvgDot color={data.name === openSubMenu ? '#6366F1' : '#1C2536'} />}
+                                icon={<SvgDot color={data.name === openSubMenu ? '#6366F1' : '#Fff'} />}
                                 onClick={() => handleClick(data.name)}
                             >
                                 {data.submenu.map((subItem, subIndex) => (
-                                    <MenuItem
-                                        key={subIndex}
-                                        onClick={() => handleNavigation(subItem.path)}
-                                    >
+                                    <MenuItem  key={subIndex} component={<Link to={subItem.path}/>} onClick={() => handleNavigation(subItem.path)}>
                                         {subItem.name}
                                     </MenuItem>
                                 ))}
@@ -490,11 +505,11 @@ const ResponsiveDrawer = () => {
                 </Menu>
             </div>
         </Sidebar>
-
     );
-}
+};
 
 export default ResponsiveDrawer;
+
 
 
 

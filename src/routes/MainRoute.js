@@ -6,6 +6,26 @@ import ResponsiveDrawer from "../components/SideBar";
 import CorrectionJV from "../module/CorrectionJV";
 // import PendingEndorsementScreen from "../module/EndorsementModule/EndorsementPendingScreen/index";
 
+// import PolicyReceipts from "../module/";
+// import OtherReceipts from "../src/module/Receipts/OtherReceipts/index";
+// import Correctionsjv from "../src/module/CorrectionsJV/index";
+// import PolicyReceiptsView from "../src/module/Receipts/ReceiptsView/PolicyReceiptsView";
+// import OtherReceiptsView from "../src/module/Receipts/ReceiptsView/OtherReceiptsView";
+// import AddOtherReceipts from "../src/module/Receipts/AddReceipts/AddOtherReceipts/index";
+// import AddPolicyReceipts from "../src/module/Receipts/AddPolicyReceipts";
+// import AddPolicyReceipts1 from "../src/module/Receipts/AddReceipts/AddPolicyReceipts1";
+// import AddReceiptsEntry from "../src/module/Receipts/AddReceiptsEntry"
+import Receipts from "../module/Receipts";
+import Reversalsjv from "../module/Reversals/index";
+import Pettycashmanagement from "../module/PettyCashManagement/index";
+import Journalvoucher from "../module/JournalVoucher/index";
+
+import Paymentvoucher from "../module/PaymentVoucher/index";
+import CreateVoucher from "../module/PaymentVoucher/CreateVoucher/index";
+import VoucherBankDetails from "../module/PaymentVoucher/VoucherBankDetails/index";
+
+
+
 const Maincomponent = () => {
 
   return (
@@ -20,6 +40,51 @@ const Maincomponent = () => {
           <Route element={<ProtectedLayout />}>
             {/* <Route path="/" element={<div>shh</div>} /> */}
             <Route path="/correctionjv" element={<CorrectionJV/>}/>
+
+              {/* Receipts */}
+
+              <Route path="/Receipts" element={<Receipts />} />
+            {/* <Route path="/otherreceipts" element={<OtherReceipts />} />
+            <Route
+              path="/policyreceiptsview"
+              element={<PolicyReceiptsView />}
+            />
+            <Route path="/otherreceiptsview" element={<OtherReceiptsView />} />
+            <Route path="/addotherreceipt" element={<AddOtherReceipts />} />
+            <Route path="/otherreceipts" element={<OtherReceipts />} />
+            <Route path="/addpolicyreceipt" element={<AddPolicyReceipts />} />
+            <Route path="/addpolicyreceipts1" element={<AddPolicyReceipts1 />} />
+            <Route path="/addreceiptsentry" element={<AddReceiptsEntry />} /> */}
+            
+            {/* Payment Vouchers */}
+
+            <Route path="/paymentvoucher" element={<Paymentvoucher />} />
+            <Route path="/createvoucher" element={<CreateVoucher />} />
+            <Route
+              path="/voucherbankdetails"
+              element={<VoucherBankDetails />}
+            />
+
+            {/* <Route path="/payallvoucher" element={<Payallvoucher />} />
+            <Route path="/SpecificVoucher" element={<SpecificVoucher />} /> */}
+
+{/* Journal voucher */}
+
+<Route path="/journalvoucher" element={<Journalvoucher />} />
+
+{/* Corrections JV */}
+
+
+{/* Reversals JV */}
+
+<Route path="/reversaljv" element={<Reversalsjv />} />
+
+{/* Petty Cash Management */}
+
+<Route
+  path="/pettycashmanagement"
+  element={<Pettycashmanagement />}
+/>
 
           </Route>
         </Routes>

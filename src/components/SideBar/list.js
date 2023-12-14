@@ -9,7 +9,7 @@ export const menuList = [
             {
                 id:1,
                 name: 'Receipts',
-                path: '/policyreceipts',
+                path: '/Receipts',
             },
             {
                 id:2,
@@ -34,7 +34,7 @@ export const menuList = [
             {
                 id:6,
                 name: 'Reversal Journal Voucher',
-                path: '/correctionjv',
+                path: '/reversaljv',
             }
         ]
     },

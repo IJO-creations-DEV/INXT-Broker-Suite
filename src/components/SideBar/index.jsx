@@ -458,7 +458,7 @@ const ResponsiveDrawer = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            setVisible(window.innerWidth > 768); // Set visibility based on the screen width
+            setVisible(window.innerWidth > 768); 
         };
 
         window.addEventListener('resize', handleResize);

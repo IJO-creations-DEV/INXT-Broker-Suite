@@ -1,0 +1,72 @@
+ @import "../../Color.scss";
+
+ .block__noti__conatiner {
+     justify-content: center;
+
+     .block__heading h1 {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: 50px;
+         font-weight: 500;
+         line-height: 75px;
+     }
+
+     .noti__date {
+         font-family: Poppins;
+         font-size: 16px;
+         font-weight: 400;
+
+
+     }
+
+     .noti__card {
+         .notification__card {
+             box-shadow: none !important;
+             border: 1px solid $gray;
+
+
+             .status__time__view {
+                 display: flex;
+                 justify-content: space-between;
+                 align-items: center;
+             }
+
+             .noti__name {
+                 font-size: 14px;
+                 font-weight: 400;
+                 line-height: 21px;
+                 letter-spacing: 0em;
+                 text-align: left;
+
+             }
+
+             .noti__card__content {
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+
+             }
+
+
+             .noti__policy {
+                 font-size: 10px;
+                 font-weight: 300;
+                 line-height: 15px;
+                 letter-spacing: 0em;
+                 text-align: left;
+
+             }
+
+             .noti__status {
+                 font-size: 14px;
+                 font-weight: 300;
+                 line-height: 21px;
+                 letter-spacing: 0em;
+                 text-align: left;
+
+             }
+         }
+     }
+
+ }

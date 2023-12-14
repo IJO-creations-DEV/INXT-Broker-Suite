@@ -1,0 +1,39 @@
+// @import "../../Color.scss";
+// .dropdown__component__container {
+//   display: grid;
+//     .p-dropdown {
+//       // height: 32px;
+//     }
+//     .p-inputtext {
+//       font-size: 14px;
+//       text-align: start;
+//     }
+//     .label {
+//       display: block;
+//       font-size: 14px;
+//       font-weight: 500;
+//       color: $grey;
+//       margin-bottom: 8px;
+//     }
+//   }
+
+//   .required__label {
+//     color: $red;
+//     margin-left: 4px;
+//   }
+//   .formik__error {
+//     color: $red;
+//     font-size: 10px;
+//     display: flex;
+//     justify-content: flex-start;
+//     margin-left: 12px;
+//     margin-top: 5px;
+//   }
+.formik__error {
+  color: red;
+  font-size: 10px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 12px;
+  margin-top: 5px;
+}

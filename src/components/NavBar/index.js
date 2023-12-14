@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
 import { Menubar } from "primereact/menubar";
-import SvgLogo from "../../assets/Icon/SvgLogo";
+import SvgLogo from "../../assets/icons/SvgLogo";
 import { Button } from "primereact/button";
 import Cookies from "js-cookie";
 import { TOKEN } from "../../utility/constant";

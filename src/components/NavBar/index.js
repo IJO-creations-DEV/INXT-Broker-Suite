@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 import { TOKEN } from "../../utility/constant";
 import { useNavigate } from "react-router-dom";
 import { resetStore } from "../../redux/store";
+import { Badge } from 'primereact/badge';
+import { Avatar } from 'primereact/avatar';
 
 const NavBar = ({ Logout }) => {
   const navigate = useNavigate();
@@ -60,7 +62,7 @@ const NavBar = ({ Logout }) => {
   );
   return (
     <div className="nav__block">
-      {token === undefined ? (
+      {/* {token === undefined ? (
         <Menubar
           model={Navdata}
           start={start}
@@ -72,7 +74,17 @@ const NavBar = ({ Logout }) => {
           start={start}
           end={Logout === "true" ? end : ""}
         />
-      )}
+      )} */}
+
+
+
+            <i className="pi pi-bell p-overlay-badge" style={{ height:32,width:32,display:"contents" }}>
+                {/* <Badge value="2"></Badge> */}
+            </i>
+
+            <Avatar image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png" className="profile_container" size="xlarge" shape="circle" />
+            
+        
     </div>
   );
 };

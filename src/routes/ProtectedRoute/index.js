@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 // import Footer from "../../components/Footer";
 import "./index.scss";
 import { TOKEN } from "../../utility/constant";
+import ResponsiveDrawer from "../../components/SideBar";
 
 const index = () => {
   const Auth = () => {
@@ -21,7 +22,9 @@ const index = () => {
         <NavBar />
       </div>
       <div className="protected__layout__content__space">
-        <div className="protected__layout__Footer__container"></div>
+        <div className="protected__layout__Footer__container">
+          {/* <ResponsiveDrawer/> */}
+        </div>
         <div className="main__content">
           {Auth() ?
             <Outlet />

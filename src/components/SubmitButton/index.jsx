@@ -36,7 +36,7 @@ const SubmitButton = ({
         label={label}
         className="submit_button p-0"
         rounded
-        onClick={handleSubmit}
+        handleSubmit={handleSubmit}
       />
       
 

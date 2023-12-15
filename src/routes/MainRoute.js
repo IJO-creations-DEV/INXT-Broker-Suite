@@ -19,7 +19,8 @@ import Receipts from "../module/Receipts";
 import Reversalsjv from "../module/Reversals/index";
 import Pettycashmanagement from "../module/PettyCashManagement/index";
 import Journalvoucher from "../module/JournalVoucher/index";
-
+import SpecificVoucher from "../module/PaymentVoucher/SpecificVoucher";
+import Payallvoucher   from "../module/PaymentVoucher/PayAll"
 import Paymentvoucher from "../module/PaymentVoucher/index";
 import CreateVoucher from "../module/PaymentVoucher/CreateVoucher/index";
 import VoucherBankDetails from "../module/PaymentVoucher/VoucherBankDetails/index";
@@ -65,8 +66,8 @@ const Maincomponent = () => {
               element={<VoucherBankDetails />}
             />
 
-            {/* <Route path="/payallvoucher" element={<Payallvoucher />} />
-            <Route path="/SpecificVoucher" element={<SpecificVoucher />} /> */}
+            <Route path="/payallvoucher" element={<Payallvoucher />} />
+            <Route path="/SpecificVoucher" element={<SpecificVoucher />} />
 
 {/* Journal voucher */}
 

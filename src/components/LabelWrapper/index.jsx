@@ -11,10 +11,10 @@ const LabelWrapper = ({
   textWeight,
 }) => {
   const labelStyle = {
-    fontSize: textSize ? textSize : "20px",
+    fontSize: textSize ? textSize : "16px",
     color: textColor ? textColor : "black",
-    fontFamily: "Poppins",
-    fontWeight: textWeight ? textWeight : 300,
+    fontFamily: "Inter var",
+    fontWeight: textWeight ? textWeight : 500,
   };
 
   return (

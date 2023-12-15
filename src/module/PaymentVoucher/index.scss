@@ -1,0 +1,66 @@
+
+.overall__payment__container{
+    // background-color: green;
+    .label_header{
+       
+color: #111927;
+// font-family: Inter;
+font-size: 30px;
+// font-style: normal;
+font-weight: 600;
+// line-height: normal;
+    }
+    .p-breadcrumb {
+    // background: #e04848;
+     border: 1px solid #fff !important; 
+    border-radius: 6px;
+    padding: 1rem;
+}
+.breadcrumbs_container{
+    margin-bottom: 60px;
+}
+.inputrows__container{
+    // justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
+    background-color: antiquewhite;
+}
+.field__container{
+    width:100%;
+    height:44px;
+   
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+// .disable_container :disabled{
+
+    
+// }
+.lg-col-2-5 {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+.submit_button{
+    width: 173px;
+    height: 50px;
+    border-radius: 30px;
+background: #6366F1;
+font-size: 18px;
+font-weight: 500;
+}
+.next_container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+}
+@media (min-width: 576px) {
+    .md-col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}

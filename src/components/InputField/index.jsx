@@ -28,6 +28,7 @@ const InputField = ({
         textColor={textColor}
         classNames={className}
         label={label}
+        
       >
         {required && <span className="required__label">*</span>}
 

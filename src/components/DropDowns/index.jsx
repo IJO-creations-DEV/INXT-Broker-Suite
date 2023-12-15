@@ -19,7 +19,8 @@ function DropDowns({
   classNames,
   overallstyle,
   textWeight,
-  disabled
+  disabled,
+  dropdownIcon
 }) {
   return (
     <div className={overallstyle}>
@@ -41,6 +42,7 @@ function DropDowns({
           optionValue={optionValue}
           disabled={disabled}
           filter
+          dropdownIcon={dropdownIcon}
         />
         {error && <div className="formik__error">{error}</div>}
       </LabelWrapper>

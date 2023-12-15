@@ -10,21 +10,13 @@ import { Column } from 'primereact/column';
 import { ProductService } from './mock';
 import SvgDot from '../../../assets/icons/SvgDot';
 import { Paginator } from 'primereact/paginator';
-import Dropdown from '../../../components/DropDowns';
-import SvgDropdown from '../../../assets/icons/SvgDropdown';
-function VoucherBankDetails() {
+
+function SpecificVoucher() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     ProductService.getProductsMini().then(data => setProducts(data));
 }, []);
-const [selectedItem, setSelectedItem] = useState(null);
-    const item = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
+
   const items = [
     { label: 'Accounts'},
     { label: 'Payment Voucher' },
@@ -35,7 +27,7 @@ const [selectedItem, setSelectedItem] = useState(null);
   
 
   return (
-    <div className='overall__bankvoucher__container'>
+    <div className='overall__specific__container'>
       <label className='label_header'>Payment Voucher</label>
       
  <BreadCrumb
@@ -50,8 +42,7 @@ const [selectedItem, setSelectedItem] = useState(null);
 <div class="grid">
     <div class="sm-col-12 col-12 md:col-3 lg-col-2-5">
         <div >
-        <InputField classNames="field__container" label="Branch"
-        className="labeltext_container" />
+        <InputField classNames="field__container" label="Branch" />
         </div>
     </div>
     <div class="sm-col-12  md:col-3 lg-col-2-5">
@@ -75,54 +66,32 @@ const [selectedItem, setSelectedItem] = useState(null);
     <div class="col-12 md:col-3 lg-col-2-5">
         <div >
         <InputField classNames="field__container" 
-            label="Customer Code" />
+            label="Criteria" />
         </div>
     </div>
 
     <div class="col-12 md:col-3 lg-col-2-5">
         <div >
-        <Dropdown className="dropdown__container" label="Bank code" value={selectedItem} onChange={(e) => setSelectedItem(e.value)} options={item} optionLabel="name" 
-                placeholder="Select"
-        dropdownIcon={<SvgDropdown color={"#000"}/>}
-            />
-        </div>
-    </div>
-    <div class="col-12 md:col-3 lg-col-2-5">
-        <div >
-       
-        <Dropdown className="dropdown__container" label="Select Instrument Currency"
-        dropdownIcon={<SvgDropdown color={"#000"}/>} 
-        value={selectedItem} onChange={(e) => setSelectedItem(e.value)} options={item} optionLabel="name" 
-                placeholder="Select"
-            />
-        </div>
-    </div>
-    <div class="col-12 md:col-3 lg-col-2-5">
-        <div >
-        <Dropdown className="dropdown__container"
-            label="Select Bank A/c Number" dropdownIcon={<SvgDropdown color={"#000"}  
-            />  
-            } value={selectedItem} onChange={(e) => setSelectedItem(e.value)} options={item} optionLabel="name" 
-            placeholder="Select"/>
-        </div>
-    </div>
-    <div class="col-12 md:col-3 lg-col-2-5">
-        <div >
-        <Dropdown className="dropdown__container" 
-            label="Select Payment Type" dropdownIcon={<SvgDropdown color={"#000"}/>}  value={selectedItem} onChange={(e) => setSelectedItem(e.value)} options={item} optionLabel="name" 
-            placeholder="Select"/>
+        <InputField classNames="field__container" 
+            label="Criteria" />
         </div>
     </div>
     <div class="col-12 md:col-3 lg-col-2-5">
         <div >
         <InputField classNames="field__container" 
-            label="Total O/s Amount" />
+            label="Criteria" />
         </div>
     </div>
     <div class="col-12 md:col-3 lg-col-2-5">
         <div >
         <InputField classNames="field__container" 
-            label="Remarks" />
+            label="Criteria" />
+        </div>
+    </div>
+    <div class="col-12 md:col-3 lg-col-2-5">
+        <div >
+        <InputField classNames="field__container" 
+            label="Criteria" />
         </div>
     </div>
     
@@ -131,8 +100,8 @@ const [selectedItem, setSelectedItem] = useState(null);
 
 <div  className="next_container">
 
-
-<Button label="Approvel" icon={<SvgEdit/>} className="submit_button"/>
+<label className='label_subheader'>Payment Voucher History</label>
+<Button label="Edit" icon={<SvgEdit/>} className="submit_button"/>
 
 </div>
 
@@ -144,16 +113,20 @@ const [selectedItem, setSelectedItem] = useState(null);
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             >
                <Column selectionMode="multiple" headerStyle={{ width: '3rem' }}></Column>
-                <Column field="code" header="Main A/c"></Column>
-                <Column field="name" header="Cheque Book ID"></Column>
-                <Column field="category" header="Cheque No"></Column>
-                <Column field="quantity" header="Date" ></Column>
-                <Column field="code" header="Original Amount"></Column>
-                <Column field="name" header="Expense Amount"></Column>
-                <Column field="category" header="Discount Amount"></Column>
-                <Column field="quantity" header="Total Amount"></Column>
-                <Column field="code" header="Status"></Column>
-                
+                <Column field="code" header="Trans.code"></Column>
+                <Column field="name" header="Document No"></Column>
+                <Column field="category" header="O/s Amount"></Column>
+                <Column field="quantity" header="Payment Adjusted
+FC Amount" ></Column>
+                <Column field="code" header="Payment Adjusted
+LC Amount"></Column>
+                <Column field="name" header="Advance Adjusted
+Amount"></Column>
+                <Column field="category" header="Balance Adjusted
+Amount"></Column>
+                <Column field="quantity" header="VAT%"></Column>
+                <Column field="code" header="WHT%"></Column>
+                <Column field="name" header="Exp Amount"></Column>
                 
             </DataTable>
 
@@ -171,4 +144,4 @@ const [selectedItem, setSelectedItem] = useState(null);
   );
 }
 
-export default VoucherBankDetails;
+export default SpecificVoucher;

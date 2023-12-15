@@ -1,0 +1,161 @@
+.overall_receipts_container{
+.receipts_title {
+    color: #000;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+  }
+ 
+  .icon {
+    align-items: flex-end;
+    justify-content: flex-end;
+    display: flex;
+    margin-bottom: -10px;
+    padding-bottom: 10px;
+  }
+.p-inputtext {
+  font-family: var(--font-family);
+  font-feature-settings: var(--font-feature-settings, normal);
+  font-size: 1rem;
+  color: #4b5563;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  border-radius: 6px;
+  width: 616px;
+}
+
+.p-breadcrumb {
+  background: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem;
+}
+.p-tabview .p-tabview-nav {
+  background: #ffffff;
+   border: none;
+  border-width: 0 0 2px 0;
+}
+
+
+.p-card .p-card-content {
+   padding:0; 
+}
+.p-card .p-card-body {
+  padding: 0;
+}
+
+.search_style{
+  margin-bottom: 30px;
+}
+.policy_card{
+  width: 100%;
+}
+.bread_crumb {
+  margin-bottom: 20px;
+}
+
+.p-paginator {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+  
+  .svgicondiv {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+  }
+  
+  .add {
+    background-color: #6366f1;
+    border-radius: 60px;
+    width: 100px !important;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .addicon {
+    margin-right: 10px;
+  }
+  
+  .addtext {
+    color: #ffffff;
+  }
+  
+  .tabs {
+    margin-bottom: 30px;
+    color: #6366f1;
+  }
+  
+  .policytext {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .breadcrumbss {
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 500;
+    padding-bottom: 20px;
+  }
+  
+  .columnHeaderTitles {
+    color: #000 !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+  }
+  
+  .search {
+    width: 80% !important;
+    border-color: #0000001a;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+}
+  
+  @media only screen and (max-width: 450px) {
+    .icon {
+      align-items: flex-end;
+      justify-content: flex-end;
+      display: flex;
+      margin-top: -40px;
+      margin-bottom: 42px;
+    }
+  
+    .svgicondiv {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin-right: 10px;
+    }
+  
+    .add {
+      background-color: #6366f1;
+      border-radius: 60px;
+      width: 80px !important;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+  
+    .addicon {
+      margin-right: 10px;
+    }
+  
+    .addtext {
+      color: #ffffff;
+      margin-right: 10px !important;
+    }
+  }
+  

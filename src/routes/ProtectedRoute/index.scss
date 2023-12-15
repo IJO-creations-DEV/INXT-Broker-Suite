@@ -1,5 +1,4 @@
 
-// @import "../../variable.scss";
  
 .protected__layout__container {
   .protected__layout__header {
@@ -9,7 +8,7 @@
     display: flex;
     // background-color: #0b1b6e;
     .protected__layout__sidebar__container {
-      min-height: 100vh;
+      // min-height: 100vh;
       overflow-x: scroll;
       min-width: max-content;
       background-color: #0b1b6e;
@@ -19,7 +18,7 @@
       display: flex;
       background-color: #0b1b6e;
       .protected__layout__sidebar__container {
-        min-height: 90vh;
+        // min-height: 90vh;
         overflow-x: scroll;
         min-width: max-content;
         background-color: #0b1b6e;
@@ -41,9 +40,9 @@
       // background-color: $default-background-grey;
       padding: 23px 34px 27px 27px;
       overflow-y: auto;
-      max-height: 100vh;
+      // max-height: 100vh;
       width: 100%;
-      height: 100vh;
+      // height: 100vh;
     }
   }
 }

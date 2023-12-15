@@ -1,3 +1,47 @@
 body .css-dip3t8 {
     background-color:#1C2536;
+    .menu{
+        background-color:#1C2536 !important;
+        // color: red !important;
+
+    }
+    .css-1tqrhto >.ps-menu-button:hover {
+        background-color: #1C2536;
+    }
+    .menu__list{
+        
+    }
+    .menu__text{
+       text-align: center !important;
+       margin-left: 10px;
+    }
+    .css-z5rm24 {
+        background-color: #1C2536;
+    }
+    /* ResponsiveDrawer.css */
+
+/* ResponsiveDrawer.css */
+
+.hamburger-icon {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .bar {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 6px 0;
+  }
+  
+  /* Media query for screens with a maximum width of 768px */
+ 
+  
+  
 }
+@media (max-width: 768px) {
+    .hamburger-icon {
+      display: block;
+    }
+  }

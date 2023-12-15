@@ -441,6 +441,9 @@ import SvgDot from '../../assets/icons/SvgDot';
 import { menuList } from './list';
 import "../SideBar/index.scss"
 import { Link } from 'react-router-dom';
+import SvgAccountIcon from '../../assets/icons/SvgAccountIcon';
+import SvgMassterIcon from '../../assets/icons/SvgMassterIcon';
+import SvgReportsIcon from '../../assets/icons/SvgReportsIcon';
 
 const ResponsiveDrawer = () => {
     const [findPath, setPath] = useState(null);
@@ -458,7 +461,7 @@ const ResponsiveDrawer = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            setVisible(window.innerWidth > 768); 
+            setVisible(window.innerWidth > 768);
         };
 
         window.addEventListener('resize', handleResize);
@@ -474,29 +477,43 @@ const ResponsiveDrawer = () => {
             style={{
                 backgroundColor: '#1C2536 !important',
                 display: visible ? 'block' : 'none',
+                height: '100vh'
             }}
             rootStyles={{
                 backgroundColor: '#1C2536 !important',
             }}
             onHide={() => setVisible(false)}
         >
-            <div style={{ padding: '10px' }}>
-                <div style={{ marginBottom: '20px' }}>
-                    <SvgLogo />
+            <div style={{ padding: '20px' }}>
+                <div style={{ marginBottom: '20px', marginTop: '20px' }}>
+                    <SvgLogo color={'#fff'} />
                 </div>
-                <Menu>
+                <Menu style={{ backgroundColor: '#1C2536 !important',border:'none' }}>
                     {menuList.map((data, index) => (
                         <React.Fragment key={data.name}>
                             <SubMenu
-                            style={{color:'#fff'}}
+                                style={{ color: '#fff', width: '100%',
+                                backgroundColor: data.name === openSubMenu || data.submenu.some(subItem => subItem.path === findPath) ? '#36435c' : '#1C2536',
+                    }}
                                 color="#fff"
                                 label={data.name}
-                                icon={<SvgDot color={data.name === openSubMenu ? '#6366F1' : '#Fff'} />}
+                                icon={data.name == 'Accounts' ? <SvgAccountIcon color={data.name === openSubMenu ? '#6366F1' : '#Fff'} /> : data.name == 'Master' ? <SvgMassterIcon color={data.name === openSubMenu ? '#6366F1' : '#Fff'} /> : data.name == 'Reports' ? <SvgReportsIcon color={data.name === openSubMenu ? '#6366F1' : '#Fff'} /> : undefined}
                                 onClick={() => handleClick(data.name)}
                             >
                                 {data.submenu.map((subItem, subIndex) => (
-                                    <MenuItem  key={subIndex} component={<Link to={subItem.path}/>} onClick={() => handleNavigation(subItem.path)}>
-                                        {subItem.name}
+                                    <MenuItem  className='menu' key={subIndex} component={<Link to={subItem.path} />} onClick={() => handleNavigation(subItem.path)}>
+                                        <div  className='menu__list'>
+                                        {/* <span > */}
+                                        <SvgDot
+                                            color={
+                                                subItem.path === findPath
+                                                    ? '#6366F1'
+                                                    : '#1C2536'
+                                            }
+                                        />
+                                        {/* </span> */}
+                                        <span style={{ color:subItem.path === findPath?'#fff':'#9DA4AE'}} className='menu__text'>{subItem.name}</span>
+                                        </div>
                                     </MenuItem>
                                 ))}
                             </SubMenu>

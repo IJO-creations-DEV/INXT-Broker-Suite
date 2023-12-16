@@ -1,0 +1,170 @@
+.container__reversal {
+    // justify-content: center;
+
+    .correction__title__reversal {
+        color: #111927;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        font-family: 'Inter var';
+    }
+
+    .breadCrums__view__reversal {
+        border: none;
+        padding: 0;
+
+
+
+    }
+
+    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        // color: #4b5563;
+        color: #000;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: 'Inter var';
+    }
+
+    .input__filed__reversal {
+        width: 100%;
+        margin: 12px 0;
+        border-radius: 10px;
+        font-family: 'Inter var';
+    }
+
+    .input__label__reversal {
+        color: #111927;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: 'Inter var';
+    }
+
+    .custom-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        z-index: 1;
+
+    }
+
+    .custom-modal {
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 20px 10px;
+        position: relative;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-family: 'Inter var';
+    }
+
+    .modal-body {
+        color: #fff;
+    }
+
+    .tabel__dropdown {
+        max-width: 100% !important;
+        border: none !important;
+        padding: 0;
+        margin: 0;
+        font-size: 10px !important;
+        font-family: 'Inter var';
+
+    }
+    .p-dropdown:hover {
+        background: none;
+        border: none;
+       
+        padding: 0;
+        padding: 0px !important;
+        /* margin: 0px !important; */
+    }
+    .p-datatable .p-datatable-tbody > tr > td {
+        text-align: left;
+        border: 1px solid #e5e7eb;
+        border-width: 0 0 1px 0;
+        padding: 0 0.6rem;
+    }
+
+    .button__view__corrections__reversal {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .correction__btn__reversal {
+            color: #FFF;
+            font-size: 15px;
+            font-weight: 500;
+            background-color: #6366F1;
+            border-radius: 30px;
+            height: 45px;
+            width: 153px;
+            margin: 10px;
+            font-family: 'Inter var';
+        }
+
+        .correction__print__btn__reversal {
+            color: #6366F1;
+            font-size: 18px;
+            font-weight: 500;
+            background-color: transparent;
+            border-radius: 30px;
+            height: 45px;
+            width: 153px;
+            margin: 10px;
+            font-family: 'Inter var';
+        }
+    }
+
+
+    .input__view__reversal {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .input__view__reversal .col-12 {
+        width: 100% !important;
+    }
+
+}
+
+@media screen and (min-width: 320px) {
+    .paginator__view__reversal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    .paginator__view__reversal {
+        display: flex;
+        justify-content: flex-end;
+        align-items: end;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .input__view__reversal.lg-col-2-5 {
+        width: 22%;
+    }
+
+}

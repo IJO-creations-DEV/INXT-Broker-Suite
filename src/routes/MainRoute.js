@@ -27,6 +27,7 @@ import Payallvoucher   from "../module/PaymentVoucher/PayAll"
 import Paymentvoucher from "../module/PaymentVoucher/index";
 import CreateVoucher from "../module/PaymentVoucher/CreateVoucher/index";
 import VoucherBankDetails from "../module/PaymentVoucher/VoucherBankDetails/index";
+import AddPolicyReceipts from "../module/Receipts/AddPolicyReceipts";
 
 
 
@@ -48,6 +49,11 @@ const Maincomponent = () => {
               {/* Receipts */}
 
               <Route path="/Receipts" element={<Receipts />} />
+
+              <Route path="/addpolicyreceipts" element={<AddPolicyReceipts/>}/>
+            {/* <Route path="/otherreceipts" element={<OtherReceipts />} />
+            <Route
+
              <Route path="/otherreceipts" element={<OtherReceipts />} />
              <Route
               path="/policyreceiptsview"
@@ -60,6 +66,7 @@ const Maincomponent = () => {
              <Route path="/addreceiptsentry" element={<AddReceiptsEntry />} /> 
             {/*
              <Route
+
               path="/policyreceiptsview"
               element={<PolicyReceiptsView />
             }

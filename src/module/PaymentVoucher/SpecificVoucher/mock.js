@@ -9,7 +9,7 @@ export const ProductService = {
                 image: 'bamboo-watch.jpg',
                 price: 65,
                 category: 'Accessories',
-                quantity: 24,
+                quantity: 1027,
                 inventoryStatus: 'INSTOCK',
                 rating: 5
             },
@@ -21,7 +21,7 @@ export const ProductService = {
                 image: 'black-watch.jpg',
                 price: 72,
                 category: 'Accessories',
-                quantity: 61,
+                quantity: 1027,
                 inventoryStatus: 'INSTOCK',
                 rating: 4
             },
@@ -33,7 +33,7 @@ export const ProductService = {
                 image: 'blue-band.jpg',
                 price: 79,
                 category: 'Fitness',
-                quantity: 2,
+                quantity: 1027,
                 inventoryStatus: 'LOWSTOCK',
                 rating: 3
             },
@@ -45,7 +45,7 @@ export const ProductService = {
                 image: 'blue-t-shirt.jpg',
                 price: 29,
                 category: 'Clothing',
-                quantity: 25,
+                quantity:1027,
                 inventoryStatus: 'INSTOCK',
                 rating: 5
             },
@@ -57,7 +57,7 @@ export const ProductService = {
                 image: 'bracelet.jpg',
                 price: 15,
                 category: 'Accessories',
-                quantity: 73,
+                quantity: 1027,
                 inventoryStatus: 'INSTOCK',
                 rating: 4
             },
@@ -67,7 +67,7 @@ export const ProductService = {
                 name: 'Brown Purse',
                 description: 'Product Description',
                 image: 'brown-purse.jpg',
-                price: 120,
+                price: 1027,
                 category: 'Accessories',
                 quantity: 0,
                 inventoryStatus: 'OUTOFSTOCK',
@@ -1144,7 +1144,7 @@ export const ProductService = {
                         productCode: 'acvx872gc',
                         date: '2020-01-29',
                         amount: 89,
-                        quantity: 1,
+                        quantity: 1027,
                         customer: 'Veronika Inouye',
                         status: 'DELIVERED'
                     },

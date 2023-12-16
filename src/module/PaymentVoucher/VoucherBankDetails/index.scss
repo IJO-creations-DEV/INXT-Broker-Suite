@@ -3,22 +3,13 @@
     // background-color: green;
 
     .label_header{
-       
-color: #111927;
-// font-family: Inter;
-font-size: 30px;
-// font-style: normal;
-font-weight: 600;
-// line-height: normal;
+        color: #111927;
+        font-family: Inter var;
+       font-size: 26px;
+       // font-style: normal;
+       font-weight: 600;
     }
-    .p-breadcrumb {
-    // background: #e04848;
-     border: 1px solid #fff !important; 
-    border-radius: 6px;
-    padding: 0rem !important;
-    margin: 16px 0px;
-    color: #000 !important;
-}
+   
 .p-paginator {
     display: flex;
     align-items: center;
@@ -27,16 +18,28 @@ font-weight: 600;
 }
 .label_subheader{
     color: #111927;
-// font-family: Inter;
-font-size: 28px;
-// font-style: normal;
-font-weight: 600;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: Inter var;
 }
-.breadcrumbs_container{
-    margin-bottom: 60px;
-    font-size: 16px;
-    color: #000;
+.dropdown__container{
+    width:100%;
+    height:44px;
+    border-radius: 11px;
+    overflow: hidden;
+    text-wrap: nowrap;
+    margin: 10px 0px;
+}
 
+.breadcrumbs_container{
+margin-bottom: 60px;
+
+font-size: 14px;
+font-weight: 500;
+font-family: Inter var;
+border: 1px solid #fff !important; 
+border-radius: 6px !important;
+padding: 1.5rem 0rem !important;
 }
 .inputrows__container{
     // justify-content: space-between;
@@ -55,49 +58,59 @@ font-weight: 600;
     overflow: hidden;
     text-wrap: nowrap;
     margin: 10px 0px;
+    color: #000;
 }
 .buttonheader_container{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     gap:20px;
-    margin: 28px;
+    margin: 34px 0px;
 }
 // .disable_container :disabled{
 
 // }
+.fieldvalue_container{
+    
+    font-size: 14px;
+    font-family: Inter var;
+    font-weight: 400;
+    // border:none
+}
 .Back_container{
     width: 103px;
-     height: 38px;
+    height: 38px;
     border-radius: 30px;
-
-font-size: 14px;
-font-weight: 500;
+    font-size: 16px;
+    font-weight: 500;
 }
 .lg-col-2-5 {
     flex: 0 0 20%;
     max-width: 20%;
 }
-.submit_button{
+.next_buttonconatiner{
     width: 103px;
     height: 38px;
     border-radius: 30px;
-background: #6366F1;
-font-size: 14px;
-font-weight: 500;
+    font-size: 16px;
+    font-weight: 500;
+    background: #6366F1 !important;
+}
+.submit_button{
+    border-radius: 30px;
+    background: #6366F1 !important;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    padding: 8px 20px;
+    /* flex-direction: column; */
+    align-items: center;
+    gap: 10px;
 }
 .labeltext_container{
     font-size: 12px;
     font-weight: 500;
     margin:20px 0px
-}
-.dropdown__container{
-    width:100%;
-    height:44px;
-    border-radius: 11px;
-    overflow: hidden;
-    text-wrap: nowrap;
-    margin: 10px 0px;
 }
 .next_container{
     display: flex;
@@ -105,6 +118,61 @@ font-weight: 500;
     align-items: center;
     margin: 38px 0px;
 }
+// .dropdown__container{
+//     width:100%;
+//     height:44px;
+//     border-radius: 11px;
+//     overflow: hidden;
+//     text-wrap: nowrap;
+//     margin: 10px 0px;
+// }
+// .next_container{
+//     display: flex;
+//     justify-content: flex-end;
+//     align-items: center;
+//     margin: 38px 0px;
+// }
+
+}
+.Approvel_container{
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    text-align: center;
+    color: #111927;
+    text-align: center;
+    font-family: 'Inter var';
+    font-size: 20px;
+    /* font-style: normal; */
+    font-weight: 400;
+}
+.comletedApprovel_container{
+    display:grid;
+    justify-content: center;
+    align-items: center;
+
+}
+.Backmodel_container{
+    width: 103px;
+    height: 38px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.nextmodle_buttonconatiner{
+    width: 103px;
+    height: 38px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    background: #6366F1 !important;
+}
+.buttonheadermodel_container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    margin: 34px 0px;
 }
 @media (min-width: 576px) {
     .md-col-6 {

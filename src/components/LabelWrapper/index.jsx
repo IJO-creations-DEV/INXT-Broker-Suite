@@ -11,7 +11,7 @@ const LabelWrapper = ({
   textWeight,
 }) => {
   const labelStyle = {
-    fontSize: textSize ? textSize : "16px",
+    fontSize: textSize ? textSize : "14px",
     color: textColor ? textColor : "black",
     fontFamily: "Inter var",
     fontWeight: textWeight ? textWeight : 500,

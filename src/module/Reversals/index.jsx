@@ -11,10 +11,14 @@ import { Paginator } from 'primereact/paginator';
 import SuccessIcon from "../../assets/icons/SuccessIcon"
 import SvgDeleteIcon from "../../assets/icons/SvgDeleteIcon"
 import SvgEditIcon from '../../assets/icons/SvgEditIcon';
+import { Calendar } from 'primereact/calendar';
+import LabelWrapper from '../../components/LabelWrapper';
+import SvgDropdown from '../../assets/icons/SvgDropdown';
 
 
 
 const Reversals = () => {
+  const [date, setDate] = useState();
   const items = [
     { label: 'Accounts', url: '/accounts' },
     { label: 'Reversals JV', url: '/reversaljv' }
@@ -72,13 +76,19 @@ const Reversals = () => {
         <BreadCrumb home={home} className='breadCrums__view__reversal' model={items} separatorIcon={<SvgDot color={"#000"} />} />
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
-        <DropDowns
-          className='input__filed__reversal'
-          label="Date"
-          textColor={'#111927'}
-          textSize={'16'}
+        <LabelWrapper
+          label={"Date"}
+          textSize={"16px"}
+          textColor={"#111927"}
           textWeight={500}
-        />
+        >
+          <Calendar
+            value={date}
+            onChange={(e) => setDate(e.value)}
+            className='input__filed__reversal'
+          />
+
+        </LabelWrapper>
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
         <DropDowns
@@ -88,6 +98,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          dropdownIcon={<SvgDropdown color={"#000"}/>}
         />
       </div>
       <div className="col-12 md:col-4 lg-col-4 input__view__reversal">
@@ -118,6 +129,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          dropdownIcon={<SvgDropdown color={"#000"}/>}
         />
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
@@ -127,6 +139,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          dropdownIcon={<SvgDropdown color={"#000"}/>}
         />
       </div>
       <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
@@ -152,6 +165,7 @@ const Reversals = () => {
                           // Add more options as needed
                         ]}
                         className='tabel__dropdown'
+                        dropdownIcon={<SvgDropdown color={"#000"}/>}
                       />
                       :
                       column.field === 'subAccount1' ?
@@ -165,6 +179,7 @@ const Reversals = () => {
                           ]}
 
                           className='tabel__dropdown'
+                          dropdownIcon={<SvgDropdown color={"#000"}/>}
                         /> :
                         column.field === 'description' ? '-' :
                           column.field === 'remarks' ? '-' :
@@ -190,6 +205,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          dropdownIcon={<SvgDropdown color={"#000"}/>}
         />
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
@@ -200,6 +216,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          dropdownIcon={<SvgDropdown color={"#000"}/>}
         />
       </div>
       <div className="col-12 md:col-4 lg-col-4 input__view__reversal">
@@ -230,6 +247,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          dropdownIcon={<SvgDropdown color={"#000"}/>}
         />
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
@@ -239,6 +257,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          dropdownIcon={<SvgDropdown color={"#000"}/>}
         />
       </div>
       <div className="col-12 md:col-12 lg-col-12 button__view__corrections__reversal">
@@ -255,10 +274,14 @@ const Reversals = () => {
         {visiblePopup && (
           <div className="grid custom-modal-overlay">
             <div className="col-10 md:col-2 lg:col-2 custom-modal">
-              <div >
-                Approved
+              <div className='popup__text'>
+              Approved
               </div>
-              <SuccessIcon />
+              <div className='popup__icon'>
+                <SuccessIcon
+
+                />
+              </div>
             </div>
           </div>
         )}

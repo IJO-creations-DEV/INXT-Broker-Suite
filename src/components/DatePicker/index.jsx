@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Calendar } from "primereact/calendar";
 import "./index.scss";
-import LabelWrapper from "../components/LabelWrapper";
+import LabelWrapper from "../LabelWrapper";
 
 const DatePicker = ({
   id,

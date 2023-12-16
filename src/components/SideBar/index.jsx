@@ -477,7 +477,7 @@ const ResponsiveDrawer = () => {
             style={{
                 backgroundColor: '#1C2536 !important',
                 display: visible ? 'block' : 'none',
-                height: '100vh'
+                // height: '120vh'
             }}
             rootStyles={{
                 backgroundColor: '#1C2536 !important',

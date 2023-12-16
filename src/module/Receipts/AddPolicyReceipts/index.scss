@@ -8,11 +8,13 @@
         font-weight: 600;
         line-height: normal;
         font-family: 'Inter var';
+        margin-bottom: 10px;
     }
 
     .breadCrums__view__addPolicy{
         border: none;
         padding: 0;
+        margin-bottom: 10px;
     }
     .field__container{
         // width:100%;
@@ -86,11 +88,17 @@
         max-height: 95%; /* Set a maximum height for your popup */
         overflow-y: auto; 
     }
-    .p-datatable .p-datatable-tbody > tr > td {
+    .p-datatable .p-datatable-tbody>tr>td {
         text-align: left;
         border: 1px solid #e5e7eb;
         border-width: 0 0 1px 0;
-        padding:  0.6rem;
+        padding: 1rem 0.6rem;
+    }
+
+    .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+        background: transparent;
+        border-color: transparent;
+        color: #111927;
     }
 
     .modal-header {

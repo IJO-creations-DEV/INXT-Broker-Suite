@@ -1,7 +1,7 @@
 import React from 'react';
 // Import SvgWhiteLogo from your SVG component
 import '../Register/index.scss'; // Import your custom styles
-import SvgWhiteLogo from '../../../assets/icons/SvgWhiteLogo';
+// import SvgWhiteLogo from '../../../assets/icons/SvgWhiteLogo';
 import InputField from '../../../components/InputField';
 import { Button } from 'primereact/button';
 import SvgLogo from '../../../assets/icons/SvgLogo';
@@ -16,7 +16,7 @@ const ResetPassward = () => {
                         <div className="p-mt-1 welcome__text">
                             Welcome to
                         </div>
-                        <SvgWhiteLogo />
+                        {/* <SvgWhiteLogo /> */}
                         <div className="logo__cover___white">
                             Cover
                         </div>

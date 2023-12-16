@@ -1,10 +1,10 @@
-import SvgAccountIcon from "../../assets/icons/SvgAccountIcon"
-import SvgMassterIcon from "../../assets/icons/SvgMassterIcon"
-import SvgReportsIcon from "../../assets/icons/SvgReportsIcon"
+// import SvgAccountIcon from "../../assets/icons/SvgAccountIcon"
+// import SvgMassterIcon from "../../assets/icons/SvgMassterIcon"
+// import SvgReportsIcon from "../../assets/icons/SvgReportsIcon"
 export const menuList = [
     {
         name: 'Accounts',
-        icons: <SvgAccountIcon/>,
+        // icons: <SvgAccountIcon/>,
             submenu: [
             {
                 id:1,
@@ -40,12 +40,12 @@ export const menuList = [
     },
     {
         name: 'Master',
-        icons: <SvgMassterIcon/>,
+        // icons: <SvgMassterIcon/>,
         submenu: []
     },
     {
         name: 'Reports',
-        icons: <SvgReportsIcon/>,
+        // icons: <SvgReportsIcon/>,
         submenu: []
     }
 ]

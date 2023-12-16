@@ -23,11 +23,12 @@ import Reversalsjv from "../module/Reversals/index";
 import Pettycashmanagement from "../module/PettyCashManagement/index";
 import Journalvoucher from "../module/JournalVoucher/index";
 import SpecificVoucher from "../module/PaymentVoucher/SpecificVoucher";
-import Payallvoucher   from "../module/PaymentVoucher/PayAll"
+import Payallvoucher from "../module/PaymentVoucher/PayAll"
 import Paymentvoucher from "../module/PaymentVoucher/index";
 import CreateVoucher from "../module/PaymentVoucher/CreateVoucher/index";
 import VoucherBankDetails from "../module/PaymentVoucher/VoucherBankDetails/index";
 import AddPolicyReceipts from "../module/Receipts/AddPolicyReceipts";
+import Register from "../module/AuthModule/Register";
 
 
 
@@ -44,15 +45,20 @@ const Maincomponent = () => {
         <Routes>
           <Route element={<ProtectedLayout />}>
             {/* <Route path="/" element={<div>shh</div>} /> */}
-            <Route path="/correctionjv" element={<CorrectionJV/>}/>
+            <Route path="/correctionjv" element={<CorrectionJV />} />
 
-              {/* Receipts */}
+            {/* Receipts */}
 
-              <Route path="/Receipts" element={<Receipts />} />
+            <Route path="/Receipts" element={<Receipts />} />
+
+
+            <Route path="/addpolicyreceipts" element={<AddPolicyReceipts />} />
+            {/* <Route path="/otherreceipts" element={<OtherReceipts />} />
 
               <Route path="/addpolicyreceipts" element={<AddPolicyReceipts/>}/>
               <Route path="/otherreceipts" element={<OtherReceipts />} />
              <Route path="/otherreceipts" element={<OtherReceipts />} />
+
             <Route
 
            
@@ -78,7 +84,7 @@ const Maincomponent = () => {
             
             <Route path="/addpolicyreceipts1" element={<AddPolicyReceipts1 />} />
             */}
-            
+
             {/* Payment Vouchers */}
 
             <Route path="/paymentvoucher" element={<Paymentvoucher />} />
@@ -91,23 +97,24 @@ const Maincomponent = () => {
             <Route path="/payallvoucher" element={<Payallvoucher />} />
             <Route path="/SpecificVoucher" element={<SpecificVoucher />} />
 
-{/* Journal voucher */}
 
-<Route path="/journalvoucher" element={<Journalvoucher />} />
+            {/* Journal voucher */}
 
-{/* Corrections JV */}
+            <Route path="/journalvoucher" element={<Journalvoucher />} />
+
+            {/* Corrections JV */}
 
 
-{/* Reversals JV */}
+            {/* Reversals JV */}
 
-<Route path="/reversaljv" element={<Reversalsjv />} />
+            <Route path="/reversaljv" element={<Reversalsjv />} />
 
-{/* Petty Cash Management */}
+            {/* Petty Cash Management */}
 
-<Route
-  path="/pettycashmanagement"
-  element={<Pettycashmanagement />}
-/>
+            <Route
+              path="/pettycashmanagement"
+              element={<Pettycashmanagement />}
+            />
 
           </Route>
         </Routes>
@@ -115,8 +122,8 @@ const Maincomponent = () => {
       <AuthRoute />
       <Routes>
         <Route element={<ProtectedLayout />}>
-          <Route path="/" element={<div>shh</div>}/>
-          <Route path="/policyreceipts" element={<PolicyReceipts/>}/>
+          <Route path="/" element={<div>shh</div>} />
+          <Route path="/policyreceipts" element={<PolicyReceipts />} />
         </Route>
       </Routes>
     </div>

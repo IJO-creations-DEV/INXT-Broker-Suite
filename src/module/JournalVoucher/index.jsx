@@ -12,10 +12,16 @@ import { Dropdown } from 'primereact/dropdown';
 import SvgEdit from '../../assets/icons/SvgEdit';
 import { dataa } from './data';
 import SuccessIcon from '../../assets/icons/SuccessIcon';
+import LabelWrapper from '../../components/LabelWrapper';
+import { Calendar } from 'primereact/calendar';
+import { Dialog } from 'primereact/dialog';
+import SvgDropdown from '../../assets/icons/SvgDropdown';
 
 
 
 const JournalVoucher = () => {
+  const [date, setDate] = useState();
+  const [visible, setVisible] = useState(false);
   const items = [
     // { label: 'Dashboard', url: '/dashboard' },
     { label: 'Accounts', url: '/accounts' },
@@ -83,13 +89,19 @@ const JournalVoucher = () => {
           separatorIcon={<SvgDot color={"#000"} />} />
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view ">
-        <InputField
-          classNames='input__filed'
-          label="Date"
-          textColor={'#111927'}
-          textSize={'16'}
+        <LabelWrapper
+          label={"Date"}
+          textSize={"16px"}
+          textColor={"#111927"}
           textWeight={500}
-        />
+        >
+          <Calendar
+            value={date}
+            onChange={(e) => setDate(e.value)}
+            className='input__filed'
+          />
+
+        </LabelWrapper>
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
         <DropDowns
@@ -99,6 +111,7 @@ const JournalVoucher = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          dropdownIcon={<SvgDropdown color={"#000"}/>}
         />
       </div>
       <div className="col-12 md:col-4 lg-col-4 input__view">
@@ -129,7 +142,7 @@ const JournalVoucher = () => {
         style={{ display: "flex", justifyContent: "flex-end" }}
         className='col-6'
       >
-        <Button onClick={() => setVisiblePopup(true)} className={'buttons__edit'}>
+        <Button onClick={() => setVisible(true)} className={'buttons__edit'}>
           <div className={'edit__icon'}>
             <SvgEdit />
           </div>
@@ -211,6 +224,9 @@ const JournalVoucher = () => {
           <Button
             label='Approve'
             className='correction__btn'
+            onClick={() => {
+              setVisiblePopup(true)
+            }}
           />
           <Button
             label='Print'
@@ -218,8 +234,135 @@ const JournalVoucher = () => {
           />
         </div>
       </div>
+
+      <div className="card flex justify-content-center">
+        {/* <Button label="Show" icon="pi pi-external-link"  /> */}
+        <Dialog header="Edit Data" visible={visible} className='dialog__view' onHide={() => setVisible(false)}>
+          <div className='popup__body'>
+            <div className="col-12 md:col-5 ">
+              Division :
+            </div>
+            <div className="col-12 md:col-7 input__view">
+              <DropDowns
+                classNames='input__filed'
+                // label="Net"
+                placeholder='10,000.00'
+                textColor={'#111927'}
+                textSize={'16'}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"}/>}
+              />
+            </div>
+          </div>
+          <div className='popup__body'>
+            <div className="col-12 md:col-5">
+              Department :
+            </div>
+            <div className="col-12 md:col-7 input__view ">
+              <DropDowns
+                classNames='input__filed'
+                // label="Net"
+                placeholder='10,000.00'
+                textColor={'#111927'}
+                textSize={'16'}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"}/>}
+              />
+            </div>
+          </div>
+          <div className='popup__body'>
+            <div className="col-12 md:col-5">
+              Main A/c :
+            </div>
+            <div className="col-12 md:col-7 input__view">
+              <DropDowns
+                classNames='input__filed'
+                // label="Net"
+                placeholder='10,000.00'
+                textColor={'#111927'}
+                textSize={'16'}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"}/>}
+              />
+            </div>
+          </div>
+          <div className='popup__body'>
+            <div className="col-12 md:col-5">
+              Sub A/c :
+            </div>
+            <div className="col-12 md:col-7 input__view">
+              <DropDowns
+                classNames='input__filed'
+                // label="Net"
+                placeholder='10,000.00'
+                textColor={'#111927'}
+                textSize={'16'}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"}/>}
+              />
+            </div>
+          </div>
+          <div className='popup__body'>
+            <div className="col-12 md:col-5">
+              Foreign Amount :
+            </div>
+            <div className="col-12 md:col-7 input__view">
+              <DropDowns
+                classNames='input__filed'
+                // label="Net"
+                placeholder='10,000.00'
+                textColor={'#111927'}
+                textSize={'16'}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"}/>}
+              />
+            </div>
+          </div>
+          <div className='popup__body'>
+            <div className="col-12 md:col-5">
+              Entry :
+            </div>
+            <div className="col-12 md:col-7 input__view">
+              <DropDowns
+                classNames='input__filed'
+                // label="Net"
+                placeholder='10,000.00'
+                textColor={'#111927'}
+                textSize={'16'}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"}/>}
+              />
+            </div>
+          </div>
+          <div className='popup__body'>
+            <div className="col-12 md:col-5">
+              Currency :
+            </div>
+            <div className="col-12 md:col-7 input__view">
+              <DropDowns
+                classNames='input__filed'
+                // label="Net"
+                placeholder='10,000.00'
+                textColor={'#111927'}
+                textSize={'16'}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"}/>}
+              />
+            </div>
+          </div>
+          <div className="col-12 save__btn__view">
+            <Button
+              label='Save'
+              className='save__button'
+              onClick={() => setVisiblePopup(false)}
+            />
+          </div>
+        </Dialog>
+      </div>
+
+
       {/* <div className=""> */}
-        {visiblePopup && (
+      {/* {visiblePopup && (
           <div className="col-12  custom-modal-overlay">
             <div className=" custom-modal">
              <div  className='popup__body'>
@@ -338,7 +481,23 @@ const JournalVoucher = () => {
               
             </div>
           </div>
+        )} */}
+      <div className="col-12">
+        {visiblePopup && (
+          <div className="grid custom-modal-overlay">
+            <div className="col-10 md:col-2 lg:col-2 custom-modal">
+              <div className='popup__text'>
+                Approved
+              </div>
+              <div className='popup__icon'>
+                <SuccessIcon
+
+                />
+              </div>
+            </div>
+          </div>
         )}
+      </div>
       {/* </div> */}
 
     </div>

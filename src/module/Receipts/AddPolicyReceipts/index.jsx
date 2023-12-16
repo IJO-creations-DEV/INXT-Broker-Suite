@@ -79,7 +79,7 @@ const AddPolicyReceipts = () => {
     return (
         <div className="grid container__addPolicy m-0">
             <div className="col-12">
-                <div className='correction__title__addPolicy'>Reversals JV</div>
+                <div className='correction__title__addPolicy'>Receipt Details</div>
             </div>
             <div className="col-12 ">
                 <BreadCrumb home={home} className='breadCrums__view__addPolicy' model={items} separatorIcon={<SvgDot color={"#000"} />} />
@@ -202,7 +202,6 @@ const AddPolicyReceipts = () => {
                     <Button
                         label='Approve'
                         className='correction__btn__addPolicy'
-                     
                     />
                 </div>
             </div>
@@ -342,6 +341,7 @@ const AddPolicyReceipts = () => {
                     </div>
                 )}
             </div>
+            
         </div>
     );
 }

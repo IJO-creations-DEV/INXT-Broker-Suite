@@ -1,0 +1,149 @@
+.pettycash__management {
+  justify-content: center;
+  max-width: 100% !important;
+  .pettycash__title {
+    color: #111927;
+    // font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    font-family: "Inter var";
+  }
+  .p-tabmenu .p-tabmenu-nav {
+    border: 5px solid transparent;
+    // border-width: 0 0 5px 0;
+  }
+  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+    border-width: 2;
+    color: #6366f1;
+  }
+  .sidebar {
+    width: 100%;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .breadCrums {
+    padding: 0;
+    border: none;
+    font-weight: 500;
+    color: #000;
+    font-size: 16px;
+  }
+  .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+    // color: #4b5563;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Inter var";
+  }
+
+  .input__filed {
+    width: 100%;
+    margin: 12px 0;
+    border-radius: 10px;
+    font-family: "Inter var";
+  }
+
+  .input__label {
+    color: #111927;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Inter var";
+    // margin: 12px 0;
+  }
+
+  .button__view__corrections {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    margin: 50px 0;
+
+    .correction__btn {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      background-color: #6366f1;
+      border-radius: 30px;
+      height: 45px;
+      width: 153px;
+      margin: 10px;
+      font-family: "Inter var";
+    }
+  }
+  .table__view {
+    width: 100%;
+  }
+  .tabel__Dropdown {
+    border: none;
+    border-color: #fff;
+    width: 100%;
+  }
+
+  .input__view {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 5px 10px;
+  }
+
+  .input__view .col-12 {
+    width: 100% !important;
+  }
+  .custom-modal-overlay_create {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    z-index: 1;
+  }
+
+  .custommodal_create {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px 10px;
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    height: 30%;
+  }
+}
+@media screen and (min-width: 320px) {
+  .pettycash__title {
+    color: #111927;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    font-family: "Inter var";
+  }
+
+}
+@media screen and (min-width: 767px) {
+  .pettycash__title {
+    color: #111927;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    font-family: "Inter var";
+  }
+}
+@media screen and (min-width: 1024px) {
+  .input__view.lg-col-2-5 {
+    width: 22%;
+  }
+  .pettycash__title {
+    color: #111927;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    font-family: "Inter var";
+  }
+}

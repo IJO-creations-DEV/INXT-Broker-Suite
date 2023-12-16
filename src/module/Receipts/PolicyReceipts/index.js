@@ -18,7 +18,7 @@ import OtherReceipts from "../../Receipts/OtherReceipts"
 
 const Index = () => {
   const items = [
-    { label: "Dashboard" },
+    
     { label: "Accounts " },
     { label: "Receipts" },
   ];

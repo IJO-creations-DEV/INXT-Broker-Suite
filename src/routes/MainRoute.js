@@ -51,11 +51,12 @@ const Maincomponent = () => {
               <Route path="/Receipts" element={<Receipts />} />
 
               <Route path="/addpolicyreceipts" element={<AddPolicyReceipts/>}/>
-            {/* <Route path="/otherreceipts" element={<OtherReceipts />} />
+              <Route path="/otherreceipts" element={<OtherReceipts />} />
+             <Route path="/otherreceipts" element={<OtherReceipts />} />
             <Route
 
-             <Route path="/otherreceipts" element={<OtherReceipts />} />
-             <Route
+           
+            
               path="/policyreceiptsview"
               element={<PolicyReceiptsView />
             }

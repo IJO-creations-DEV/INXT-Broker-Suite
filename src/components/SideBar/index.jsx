@@ -443,7 +443,7 @@ import "../SideBar/index.scss"
 import { Link } from 'react-router-dom';
 import SvgAccountIcon from '../../assets/icons/SvgAccountIcon';
 import SvgMassterIcon from '../../assets/icons/SvgMassterIcon';
-import SvgReportsIcon from '../../assets/icons/SvgReportsIcon';
+ import SvgReportsIcon from '../../assets/icons/SvgReportsIcon';
 
 const ResponsiveDrawer = () => {
     const [findPath, setPath] = useState(null);

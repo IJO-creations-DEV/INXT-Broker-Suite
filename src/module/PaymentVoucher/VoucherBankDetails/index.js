@@ -14,7 +14,7 @@ import Dropdown from '../../../components/DropDowns';
 import SvgDropdown from '../../../assets/icons/SvgDropdown';
 import NavBar from '../../../components/NavBar';
 import { Dialog } from 'primereact/dialog';
-// import SvgReportsIcon from '../../../assets/icons/SvgReportsIcon';
+//import SvgReportsIcon from '../../../assets/icons/SvgReportsIcon';
 import SvgDocument from '../../../assets/icons/SvgDocument';
 
 function VoucherBankDetails() {

@@ -67,8 +67,8 @@ const Maincomponent = () => {
             {/* <Route path="/otherreceipts" element={<OtherReceipts />} />
             <Route
 
-             <Route path="/otherreceipts" element={<OtherReceipts />} />
-             <Route
+           
+            
               path="/policyreceiptsview"
               element={<PolicyReceiptsView />
             }
@@ -77,7 +77,7 @@ const Maincomponent = () => {
              <Route path="/addpolicyreceipt1" element={<AddPolicyReceipts1 />} />
              <Route path="/addotherreceipt" element={<AddOtherReceipts />} />
              <Route path="/addreceiptsentry" element={<AddReceiptsEntry />} /> 
-            {/*
+            
              <Route
 
               path="/policyreceiptsview"

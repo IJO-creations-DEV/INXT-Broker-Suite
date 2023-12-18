@@ -15,7 +15,7 @@ function PolicyReceipts() {
 
   const handleReceipts = () => {
     if (select === "policyreceipts") {
-      navigate("/addpolicyreceipt");
+      navigate("/addpolicyreceipts");
     } else if (select === "otherreceipts") {
       navigate("/addotherreceipt");
     }

@@ -11,10 +11,17 @@ import { Paginator } from 'primereact/paginator';
 import { Dropdown } from 'primereact/dropdown';
 import SvgDeleteIcon from '../../assets/icons/SvgDeleteIcon';
 import SvgEditIcon from '../../assets/icons/SvgEditIcon';
+import DatePicker from '../../components/DatePicker';
+import LabelWrapper from '../../components/LabelWrapper';
+import { Calendar } from 'primereact/calendar';
+import SuccessIcon from '../../assets/icons/SuccessIcon';
+import SvgDropdown from '../../assets/icons/SvgDropdown';
 
 
 
 const CorrectionJV = () => {
+    const [date, setDate] = useState();
+    const [visiblePopup, setVisiblePopup] = useState(false);
     const items = [
         // { label: 'Dashboard', url: '/dashboard' },
         { label: 'Accounts', url: '/accounts' },
@@ -66,7 +73,7 @@ const CorrectionJV = () => {
             <div className="col-12">
                 <div className='correction__title'>Corrections JV</div>
             </div>
-            <div className="col-12 mb-3">
+            <div className="col-12 mb-3 ">
                 <BreadCrumb
                     model={items}
                     home={home}
@@ -74,13 +81,22 @@ const CorrectionJV = () => {
                     separatorIcon={<SvgDot color={"#000"} />} />
             </div>
             <div className="col-12 md:col-2-5 lg-col-2-5 input__view ">
-                <DropDowns
-                    className='input__filed'
-                    label="Date"
-                    textColor={'#111927'}
-                    textSize={'16'}
+
+                {/* <div class="calender_container_claim p-0"> */}
+                <LabelWrapper
+                    label={"Date"}
+                    textSize={"16px"}
+                    textColor={"#111927"}
                     textWeight={500}
-                />
+                >
+                    <Calendar
+                        value={date}
+                        onChange={(e) => setDate(e.value)}
+                        className='input__filed'
+                    />
+
+                </LabelWrapper>
+                {/* </div> */}
             </div>
             <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
                 <DropDowns
@@ -90,6 +106,7 @@ const CorrectionJV = () => {
                     textColor={'#111927'}
                     textSize={'16'}
                     textWeight={500}
+                    dropdownIcon={<SvgDropdown color={"#000"}/>}
                 />
             </div>
             <div className="col-12 md:col-4 lg-col-4 input__view">
@@ -120,6 +137,7 @@ const CorrectionJV = () => {
                     textColor={'#111927'}
                     textSize={'16'}
                     textWeight={500}
+                    dropdownIcon={<SvgDropdown color={"#000"}/>}
                 />
             </div>
             <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
@@ -129,6 +147,7 @@ const CorrectionJV = () => {
                     textColor={'#111927'}
                     textSize={'16'}
                     textWeight={500}
+                    dropdownIcon={<SvgDropdown color={"#000"}/>}
                 />
             </div>
             <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
@@ -162,6 +181,7 @@ const CorrectionJV = () => {
                                                     // Add more options as needed
                                                 ]}
                                                 className='tabel__dropdown'
+                                                dropdownIcon={<SvgDropdown color={"#000"}/>}
                                             />
                                             :
                                             column.field.startsWith('subAccount') ?
@@ -174,6 +194,7 @@ const CorrectionJV = () => {
                                                         // Add more options as needed
                                                     ]}
                                                     className='tabel__dropdown'
+                                                    dropdownIcon={<SvgDropdown color={"#000"}/>}
                                                 />
                                                 :
                                                 column.field === 'description' ? '-' :
@@ -228,12 +249,32 @@ const CorrectionJV = () => {
                     <Button
                         label='Approve'
                         className='correction__btn'
+                        onClick={() => {
+                            setVisiblePopup(true)
+                        }}
                     />
                     <Button
                         label='Print'
                         className='correction__print__btn'
                     />
                 </div>
+            </div>
+            <div className="col-12">
+                {visiblePopup && (
+                    <div className="grid custom-modal-overlay">
+                        <div className="col-10 md:col-2 lg:col-2 custom-modal">
+                            <div className='popup__text'>
+                                Transaction Number 12345
+                                is Approved
+                            </div>
+                            <div className='popup__icon'>
+                            <SuccessIcon
+                           
+                             />
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
         </div>

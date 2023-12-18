@@ -31,7 +31,7 @@ const VerfyCode = () => {
                 <div className="col-12 md:col-10 lg:col-10  "
                 >
                     <div className='logo__icon'>
-                        <SvgLogo />
+                        <SvgLogo color={"#000"} />
                     </div>
                 </div>
                 <div className="col-12 md:col-10 lg:col-10  "

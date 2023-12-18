@@ -6,10 +6,13 @@ import SvgDot from "../../../assets/icons/SvgDot";
 import { Button } from "primereact/button";
 import DropDowns from "../../../components/DropDowns";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
+import { Dialog } from 'primereact/dialog';
+        
 
 function PolicyReceipts() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showPaymentFields, setShowPaymentFields] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const handleNextButtonClick = () => {
     setShowPaymentFields(false);
@@ -190,9 +193,14 @@ function PolicyReceipts() {
 <div className="next_container">
   <div className="exit_print_buttons">
     <Button label="Exit" className="exit"  disabled={showPaymentFields}/>
-    <Button label="Print" className="print"  disabled={showPaymentFields}/>
+    <Button label="Print" className="print"  disabled={showPaymentFields} onClick={() => setVisible(true)} />
+    <Dialog visible={visible} style={{ width: '20vw',borderRadius:'30px' }} onHide={() => setVisible(false)}>
+                <p>Receipt Number 12345 is
+generated</p>
+            </Dialog>
   </div>
 </div>
+
 
     </div>
   );

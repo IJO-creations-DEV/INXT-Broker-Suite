@@ -49,72 +49,72 @@ export const menuList = [
                     {
                         id: 1,
                         name: 'Company',
-                        path: '/companymaster',
+                        path: 'master/finance/company',
                     },
                     {
                         id: 2,
                         name: 'Branch',
-                        path: '/bankmaster',
+                        path: 'master/finance/bank',
                     },
                     {
                         id: 3,
                         name: 'Department', 
-                        path: '/departmentmaster', 
+                        path: 'master/finance/department', 
                     },
                     {
                         id: 4,
                         name: 'Transaction code', 
-                        path: '/transactioncodemaster',
+                        path: 'master/finance/transactioncode',
                     },
                     {
                         id: 5,
                         name: 'Currency', 
-                        path: '/currencymaster',
+                        path: 'master/finance/currency',
                     },
                     {
                         id: 6,
                         name: 'Exchange Rate', 
-                        path: 'exchangeratemaster',
+                        path: 'master/finance/exchangerate',
                     },
                     {
                         id: 7,
                         name: 'Bank', 
-                        path: '/bankmaster',
+                        path: 'master/finance/bank',
                     },
                     {
                         id: 8,
                         name: 'Bank Account', 
-                        path: '/bankaccountmaster',
+                        path: 'master/finance/bankaccount',
                     },
                     {
                         id: 9,
                         name: 'Bank Cheque', 
-                        path: '/bankchequemaster',
+                        path: 'master/finance/bankcheque',
                     },
                     {
                         id: 10,
                         name: 'Account Category', 
-                        path: '/accountcategorymaster',
+                        path: '/master/finance/accountcate',
                     },
                     {
                         id: 11,
                         name: 'Main Account', 
-                        path: '/mainaccountmaster',
+                        path: 'master/finance/mainaccount',
                     },
                     {
                         id: 12,
                         name: 'Sub Account', 
-                        path: '/subaccountmaster',
+                        path: 'master/finance/subaccount',
                     },
                     {
                         id: 13,
                         name: 'Taxation', 
-                        path: '/taxationmaster',
+                        path: 'master/finance/taxation',
                     },
                     {
                         id: 14,
                         name: 'Petty cash', 
-                        path: '/pettycashmaster',
+                        path: 'master/finance/pettycash',
                     },
                 ]
             }

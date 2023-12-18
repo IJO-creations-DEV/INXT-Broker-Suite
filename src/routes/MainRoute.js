@@ -121,22 +121,22 @@ const Maincomponent = () => {
             />
             {/* Finacel Master Route*/}
             <Route
-              path="/accountcategorymaster"
+              path="master/finance/accountcate"
               element={<AccountCategoryMaster />}
             />
-            <Route path="/bankaccountmaster" element={<BankAccountMaster />} />
-            <Route path="/bankchequemaster" element={<BankChequeMaster />} />
-            <Route path="/bankmaster" element={<BankMaster />} />
-            <Route path="/companymaster" element={<CompanyMaster />} />
-            <Route path="/currencymaster" element={<CurrencyMaster />} />
-            <Route path="/departmentmaster" element={<DepartmentMaster />} />
-            <Route path="/exchangeratemaster" element={<ExchangeRateMaster />} />
-            <Route path="/mainaccountmaster" element={<MainAccountMaster />} />
-            <Route path="/pettycashmaster" element={<PettyCashMaster />} />
-            <Route path="/branchmaster" element={<BranchMaster />} />
-            <Route path="/subaccountmaster" element={<SubAccountMaster />} />
-            <Route path="/taxationmaster" element={<TaxationMaster />} />
-            <Route path="/transactioncodemaster" element={<TransactionCodeMaster />} />
+            <Route path="master/finance/bankaccount" element={<BankAccountMaster />} />
+            <Route path="master/finance/bankcheque" element={<BankChequeMaster />} />
+            <Route path="master/finance/bank" element={<BankMaster />} />
+            <Route path="master/finance/company" element={<CompanyMaster />} />
+            <Route path="master/finance/currency" element={<CurrencyMaster />} />
+            <Route path="master/finance/department" element={<DepartmentMaster />} />
+            <Route path="master/finance/exchangerate" element={<ExchangeRateMaster />} />
+            <Route path="master/finance/mainaccount" element={<MainAccountMaster />} />
+            <Route path="master/finance/pettycash" element={<PettyCashMaster />} />
+            <Route path="master/finance/branch" element={<BranchMaster />} />
+            <Route path="master/finance/subaccount" element={<SubAccountMaster />} />
+            <Route path="master/finance/taxation" element={<TaxationMaster />} />
+            <Route path="master/finance/transactioncode" element={<TransactionCodeMaster />} />
           </Route>
         </Routes>
       </div>

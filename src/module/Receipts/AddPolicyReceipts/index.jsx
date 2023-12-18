@@ -76,6 +76,22 @@ const AddPolicyReceipts = () => {
         };
     }, []);
     const colors = ["#FEF3F2", "#FCF5E9", "#F3FFEF", "#DDEEFF", "#F5E8FF"];
+    const initialState = {
+        branchValue: 'B012',
+        deptValue: 'Dep01',
+        receiptValue: 'Policy Receipt',
+        custValue: 'Cust001',
+        remarkValue: 'Fully Paid',
+    };
+
+    const [values, setValues] = useState(initialState);
+
+    const handleChange = (fieldName, value) => {
+        setValues((prevValues) => ({
+            ...prevValues,
+            [fieldName]: value,
+        }));
+    };
     return (
         <div className="grid container__addPolicy m-0">
             <div className="col-12">
@@ -84,18 +100,16 @@ const AddPolicyReceipts = () => {
             <div className="col-12 ">
                 <BreadCrumb home={home} className='breadCrums__view__addPolicy' model={items} separatorIcon={<SvgDot color={"#000"} />} />
             </div>
-   {/* <div class="sm-col-12 col-12 md:col-3 lg-col-2-5">
-                <div >
-                    <InputField classNames="field__container" label="Branch" />
-                </div>
-            </div> */}
             <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
                 <InputField
                     classNames='field__container'
                     label="Branch"
                     textColor={'#111927'}
-                    textSize={'16'}
+                    textSize={16}
                     textWeight={500}
+                    value={values.branchValue}
+                    onChange={(e) => handleChange('branchValue', e.value)}
+
                 />
             </div>
             <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
@@ -105,6 +119,9 @@ const AddPolicyReceipts = () => {
                     textColor={'#111927'}
                     textSize={'16'}
                     textWeight={500}
+                    value={values.deptValue}
+                    onChange={(e) => handleChange('deptValue', e.value)}
+
                 />
             </div>
             <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
@@ -114,6 +131,9 @@ const AddPolicyReceipts = () => {
                     textColor={'#111927'}
                     textSize={'16'}
                     textWeight={500}
+                    value={values.custValue}
+                    onChange={(e) => handleChange('custValue', e.value)}
+
                 />
             </div>
 
@@ -124,6 +144,9 @@ const AddPolicyReceipts = () => {
                     textColor={'#111927'}
                     textSize={'16'}
                     textWeight={500}
+                    value={values.receiptValue}
+                    onChange={(e) => handleChange('receiptValue', e.value)}
+
                 />
             </div>
             <div className="col-11 md:col-2-5 lg-col-2-5 input__view__reversal">
@@ -133,6 +156,9 @@ const AddPolicyReceipts = () => {
                     textColor={'#111927'}
                     textSize={'16'}
                     textWeight={500}
+                    value={values.remarkValue}
+                    onChange={(e) => handleChange('remarkValue', e.value)}
+
                 />
             </div>
             <div className="col-12"></div>
@@ -143,17 +169,17 @@ const AddPolicyReceipts = () => {
                 style={{ display: "flex", justifyContent: "flex-end" }}
                 className='col-6'
             >
-                <Button    onClick={() => setVisiblePopup(true)} className={'buttons__edit'}>
+                <Button onClick={() => setVisiblePopup(true)} className={'buttons__edit'}>
                     <div className={'edit__icon'}>
                         <SvgEdit />
                     </div>
-                    <div className={'exit__text'}>Exit</div>
+                    <div className={'exit__text'}>Edit</div>
                 </Button>
             </div>
             <div className="col-12 md:col-12 lg-col-12">
                 <div className="card">
                     <DataTable
-                    
+
                         value={dataa}
                         first={first}
                         rows={rowsPerPage}
@@ -162,8 +188,9 @@ const AddPolicyReceipts = () => {
                         selection={selectedRows}
                         onSelectionChange={onSelectionChange}
                         className='header__text'
+
                     >
-                        <Column selectionMode="multiple" style={{ width: '3em' }} />
+                        <Column bodyStyle={{ padding: 20 }} selectionMode="multiple" style={{ width: '3em' }} />
                         {columns.map((column) => (
                             <Column key={column.field} field={column.field} header={column.header} style={{ flex: column.flex }} />
                         ))}
@@ -341,7 +368,7 @@ const AddPolicyReceipts = () => {
                     </div>
                 )}
             </div>
-            
+
         </div>
     );
 }

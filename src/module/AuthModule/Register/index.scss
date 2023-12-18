@@ -30,22 +30,32 @@
         color: #6366F1;
 
     }
-    .logo__icon{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+
+    .logo__icon {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .cover__black {
+            color: #000;
+            font-size: 29.223px;
+            font-weight: 300;
+            margin: 0 5px 0 5px;
+        }
     }
-    .forget__text{
+
+    .forget__text {
         font-family: Inter;
-font-size: 14px;
-font-weight: 500;
-color: #6366F1;
-text-align: left;
+        font-size: 14px;
+        font-weight: 500;
+        color: #6366F1;
+        text-align: left;
 
     }
-    .check__icon{
+
+    .check__icon {
         background-color: #6366F1;
-       border-radius: 5px;
+        border-radius: 5px;
     }
 
     .dont__have__text {

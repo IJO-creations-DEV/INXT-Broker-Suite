@@ -6,8 +6,13 @@ import InputField from '../../../components/InputField';
 import { Button } from 'primereact/button';
 import SvgWhiteLogo from '../../../assets/icons/SvgWhiteLogo';
 import SvgLogo from '../../../assets/icons/SvgLogo';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate('register')
+  }
   return (
     <div className="grid m-0 container__login">
       <div className="col-12 md:col-8 left__side__login">
@@ -16,32 +21,32 @@ const Login = () => {
             <div className="p-mt-1 welcome__text">
               Welcome to
             </div>
-            <SvgWhiteLogo />
+            <SvgWhiteLogo  color={"#fff"}/>
             <div className="logo__cover___white">
               Cover
             </div>
           </div>
 
-          <div className="welcome__content">
+          <div className="welcome__content mt-2">
             A productive finance dashboard for all your needs
           </div>
         </div>
       </div>
-      <div className="col-12 md:col-4 login__side__screen" >
-      <div className="col-12 md:col-12 lg:col-12  "
-                >
-                    {/* <div className='logo__icon'> */}
-                        
-                    {/* </div> */}
-                </div>
+      <div className="col-12 md:col-4 login__side__screen p-5" >
+        <div className="col-12 md:col-12 lg:col-12  "
+        >
+          <div className='logo__icon'>
+          <SvgWhiteLogo  color={"#000"}/>
+          </div>
+        </div>
         <div className="col-12 md:col-12 lg:col-12  "
         >
           <div className='login__header'>Log in</div>
-           </div>
-           <div className="col-12 md:col-12 lg:col-12   ">
-           <div className='dont__have__text'>Don’t have an account?<span  className='register'>Register</span></div>
-     
-           </div>
+        </div>
+        <div className="col-12 md:col-12 lg:col-12   ">
+          <div className='dont__have__text' onClick={() => handleNavigate()}>Don’t have an account?<span className='register'>Register</span></div>
+
+        </div>
         <div className="col-12 md:col-12 lg:col-12  "
         >
           <InputField

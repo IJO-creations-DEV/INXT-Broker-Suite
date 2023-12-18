@@ -16,7 +16,7 @@ const ResetPassward = () => {
                         <div className="p-mt-1 welcome__text">
                             Welcome to
                         </div>
-                        <SvgWhiteLogo />
+                        <SvgWhiteLogo color={'#fff'} />
                         <div className="logo__cover___white">
                             Cover
                         </div>
@@ -27,26 +27,26 @@ const ResetPassward = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-12 md:col-4 ">
-                <div className="col-12 md:col-10 lg:col-10  "
+            <div className="col-12 md:col-4 p-5">
+                <div className="col-12 md:col-12 lg:col-12  "
                 >
                     <div className='logo__icon'>
-                        <SvgLogo />
+                        <SvgWhiteLogo color={'#000'} />
                     </div>
                 </div>
-                <div className="col-12 md:col-10 lg:col-10  "
+                <div className="col-12 md:col-12 lg:col-12  "
                 >
                     <div className='login__header'>Reset password</div>
                 </div>
                 
-                <div className="col-12 md:col-10 lg:col-10  "
+                <div className="col-12 md:col-12 lg:col-12  "
                 >
                     <InputField
                         classNames='input__filed'
                         placeholder="Passward"
                     />
                 </div>
-                <div className="col-12 md:col-10 lg:col-10  "
+                <div className="col-12 md:col-12 lg:col-12  "
                 >
                     <InputField
                         classNames='input__filed'
@@ -55,7 +55,7 @@ const ResetPassward = () => {
                 </div>
               
                
-                <div className="col-12 md:col-10 lg:col-10  "
+                <div className="col-12 md:col-12 lg:col-12  "
                 >
                     <Button
                         className='login__button'

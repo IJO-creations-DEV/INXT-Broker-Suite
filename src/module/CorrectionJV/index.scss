@@ -37,6 +37,11 @@
         border-radius: 10px;
         font-family: 'Inter var';
     }
+    .delete__edit__icon{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     .input__label {
         color: #111927;
@@ -44,6 +49,12 @@
         font-weight: 500;
         font-family: 'Inter var';
         // margin: 12px 0;
+    }
+
+    .save__popup__correction{
+       display: flex;
+       justify-content: flex-end;
+       align-items: flex-end;
     }
 
     .p-datatable .p-datatable-tbody>tr>td {

@@ -23,7 +23,7 @@ function VoucherBankDetails() {
     ProductService.getProductsMini().then(data => setProducts(data));
 }, []);
 const [visible, setVisible] = useState(false);
-const [selectedItem, setSelectedItem] = useState('New York');
+const [selectedItem, setSelectedItem] = useState({name: 'Rome', code: 'RM'});
     const item = [
         { name: 'New York', code: 'NY' },
         { name: 'Rome', code: 'RM' },

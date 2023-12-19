@@ -10,7 +10,7 @@ import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-// import  {data} from "../BranchMasterInitial/mock"
+import  {data} from "../CategoryMasterInitial/mock"
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
@@ -57,7 +57,7 @@ const Index = () => {
     border: "none",
   };
 
-  const items = [{ label: "Branch" }];
+  const items = [{ label: "Account Category" }];
   const home = { label: "Master" };
 
   const navigate = useNavigate();
@@ -84,11 +84,11 @@ const Index = () => {
     navigate("/otherreceiptsview");
   };
   return (
-    <div className="overall_branch_master_initial_container">
+    <div className="overall_category_master_initial_container">
       <NavBar />
       <div className="overallfilter_container">
         <div>
-          <label className="label_header">Branch Master</label>
+          <label className="label_header">Account Category Master</label>
           <BreadCrumb
             model={items}
             home={home}
@@ -126,10 +126,10 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="branch_text">Branch List</div>
+        <div className="branch_text">Account Category List</div>
         <div className="card">
           <DataTable
-            // value={data}
+            value={data}
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}
@@ -138,41 +138,31 @@ const Index = () => {
             paginatorTemplate={template2}
           >
             <Column
-              field="branchCode"
-              header="Branch Code"
+              field="accountCategoryCode"
+              header="Account Category Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="companyName"
-              header="Company Name"
+              field="accountCategoryName"
+              header="Account Category Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="manager"
-              header="Manager"
+              field="description"
+              header="Description"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
-            <Column
-              field="country"
-              header="Country"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              field="email"
-              header="Email"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
+          
+          <Column
               field="status"
               header="Status"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
+           
             <Column
               header="View"
               headerStyle={headerStyle}

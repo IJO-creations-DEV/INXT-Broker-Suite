@@ -158,8 +158,10 @@ import AddPolicyReceipts from "../module/Receipts/AddPolicyReceipts";
 import AccountCategoryMaster from "../module/FinanceMastersModule/AccountCategoryMaster";
 import BankAccountMaster from "../module/FinanceMastersModule/BankAccountMaster";
 import BankChequeMaster from "../module/FinanceMastersModule/BankChequeMaster";
-import BankMaster from "../module/FinanceMastersModule/BankMaster";
-import BranchMaster from "../module/FinanceMastersModule/BranchMaster";
+import BranchMasterInitial from "../module/FinanceMastersModule/BranchMaster/BranchMasterInitial";
+// import BranchMaster from "../module/FinanceMastersModule/BranchMaster/BranchAdding";
+import BranchAdding from "../module/FinanceMastersModule/BranchMaster/BranchAdding"
+import BranchDetailsView from "../module/FinanceMastersModule/BranchMaster/BranchDetailsView"
 import CompanyMaster from "../module/FinanceMastersModule/CompanyMaster";
 import CurrencyMaster from "../module/FinanceMastersModule/CurrencyMaster";
 import DepartmentMaster from "../module/FinanceMastersModule/DepartmentMaster";
@@ -193,6 +195,7 @@ const Maincomponent = () => {
 
             <Route path="/addpolicyreceipts" element={<AddPolicyReceipts />} />
              <Route path="/otherreceipts" element={<OtherReceipts />} />
+            <Route path="/otherreceipts" element={<OtherReceipts />} />
             <Route
 
               path="/policyreceiptsview"
@@ -203,6 +206,7 @@ const Maincomponent = () => {
              <Route path="/addpolicyreceipt1" element={<AddPolicyReceipts1 />} />
              <Route path="/addotherreceipt" element={<AddOtherReceipts />} />
              <Route path="/addreceiptsentry" element={<AddReceiptsEntry />} /> 
+             <Route path="/policyreceipts" element={<PolicyReceipts />} />
             
              <Route
 
@@ -216,6 +220,7 @@ const Maincomponent = () => {
             
             <Route path="/addpolicyreceipts1" element={<AddPolicyReceipts1 />} />
             <Route path="/policyreceipts" element={<PolicyReceipts />} />
+           
 
             {/* Payment Vouchers */}
 
@@ -252,14 +257,18 @@ const Maincomponent = () => {
             />
             <Route path="master/finance/bankaccount" element={<BankAccountMaster />} />
             <Route path="master/finance/bankcheque" element={<BankChequeMaster />} />
-            <Route path="master/finance/bank" element={<BankMaster />} />
+            {/* <Route path="master/finance/bank" element={<BankMaster />} /> */}
+            <Route path="master/finance/branchadding" element={<BranchAdding/>}/>
+            <Route path="master/finance/branchdetailsview" element={<BranchDetailsView/>}/>
+            <Route path="master/finance/branchmasterinitial" element={<BranchMasterInitial/>} />
+            <Route/>
             <Route path="master/finance/company" element={<CompanyMaster />} />
             <Route path="master/finance/currency" element={<CurrencyMaster />} />
             <Route path="master/finance/department" element={<DepartmentMaster />} />
             <Route path="master/finance/exchangerate" element={<ExchangeRateMaster />} />
             <Route path="master/finance/mainaccount" element={<MainAccountMaster />} />
             <Route path="master/finance/pettycash" element={<PettyCashMaster />} />
-            <Route path="master/finance/branch" element={<BranchMaster />} />
+            
             <Route path="master/finance/subaccount" element={<SubAccountMaster />} />
             <Route path="master/finance/taxation" element={<TaxationMaster />} />
             <Route path="master/finance/transactioncode" element={<TransactionCodeMaster />} />
@@ -268,6 +277,12 @@ const Maincomponent = () => {
       </div>
       <AuthRoute />
 
+      <Routes>
+        <Route element={<ProtectedLayout />}>
+          <Route path="/" element={<div>shh</div>} />
+        
+        </Route>
+      </Routes>
     </div>
   );
 };

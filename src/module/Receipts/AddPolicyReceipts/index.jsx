@@ -13,6 +13,7 @@ import { Checkbox } from 'primereact/checkbox';
 import { dataa } from './data';
 import { mock } from './mock';
 import SvgEdit from '../../../assets/icons/SvgEdit';
+import NavBar from '../../../components/NavBar';
 
 const AddPolicyReceipts = () => {
     const items = [
@@ -93,7 +94,9 @@ const AddPolicyReceipts = () => {
         }));
     };
     return (
+        <div><NavBar/>
         <div className="grid container__addPolicy m-0">
+            
             <div className="col-12">
                 <div className='correction__title__addPolicy'>Receipt Details</div>
             </div>
@@ -369,6 +372,7 @@ const AddPolicyReceipts = () => {
                 )}
             </div>
 
+        </div>
         </div>
     );
 }

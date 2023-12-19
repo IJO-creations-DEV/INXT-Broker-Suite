@@ -4,6 +4,7 @@ import { BreadCrumb } from "primereact/breadcrumb";
 import InputField from "../../../components/InputField";
 import SvgDot from "../../../assets/icons/SvgDot";
 import { Button } from "primereact/button";
+import NavBar from "../../../components/NavBar";
 
 function PolicyReceipts() {
   const items = [
@@ -16,6 +17,7 @@ function PolicyReceipts() {
 
   return (
     <div className="overall__policy_receipts_view__container">
+      <NavBar/>
       <label className="label_header">Receipt Details</label>
       <BreadCrumb
         model={items}

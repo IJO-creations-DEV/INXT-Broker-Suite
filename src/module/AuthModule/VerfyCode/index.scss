@@ -102,7 +102,9 @@
         // justify-content: center;
         // align-items: center;
     }
-
+    .col-1-5{
+        width: 5%;
+    }
     .code__text {
         color: #6C737F;
        
@@ -112,9 +114,14 @@
         
         /* 171.429% */
     }
-
+.input__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
     .input__filed {
         width: 100% !important;
+        text-align: center !important;
     }
 
     .login__button {

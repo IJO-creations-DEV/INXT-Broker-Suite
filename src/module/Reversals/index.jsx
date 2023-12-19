@@ -14,11 +14,12 @@ import SvgEditIcon from '../../assets/icons/SvgEditIcon';
 import { Calendar } from 'primereact/calendar';
 import LabelWrapper from '../../components/LabelWrapper';
 import SvgDropdown from '../../assets/icons/SvgDropdown';
+import NavBar from '../../components/NavBar';
 
 
 
 const Reversals = () => {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(new Date());
   const items = [
     { label: 'Accounts', url: '/accounts' },
     { label: 'Reversals JV', url: '/reversaljv' }
@@ -29,17 +30,17 @@ const Reversals = () => {
     { field: 'mainAccount1', headerName: 'Main A/c', flex: 1 },
     { field: 'subAccount1', headerName: 'Sub A/c', flex: 1 },
     { field: 'description', headerName: 'Description', flex: 1 },
-
+    { field: 'branch', headerName: 'Branch', flex: 1 },
     { field: 'remarks', headerName: 'Remarks', flex: 1 },
     { field: 'entry', headerName: 'Entry', flex: 1 },
-    { field: 'amount', headerName: 'Amount', flex: 1 },
+    { field: 'action', headerName: 'Action', flex: 1 },
   ];
 
   const rows = [
-    { id: 1, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', amount: '' },
-    { id: 2, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', amount: '' },
-    { id: 3, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', amount: '' },
-    { id: 4, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', amount: '' },
+    { id: 1, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', action: '' },
+    { id: 2, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', action: '' },
+    { id: 3, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', action: '' },
+    { id: 4, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', action: '' },
   ];
   const [mainAccount1Value, setMainAccount1Value] = useState('A001');
   const [subAccount1Value, setSubAccount1Value] = useState('B0123');
@@ -52,6 +53,7 @@ const Reversals = () => {
     setRowsPerPage(event.rows);
   };
   const [visiblePopup, setVisiblePopup] = useState(false);
+  const [visibleDeletePopup, setVisibleDeletePopup] = useState(false)
   const popupRef = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -67,9 +69,18 @@ const Reversals = () => {
       window.removeEventListener('click', handleClickOutside);
     };
   }, []);
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setVisiblePopup(false);
+    }, 2000);
+
+    return () => clearTimeout(timerId);
+  }, [visiblePopup]);
+
   return (
     <div className="grid container__reversal m-0"  >
       <div className="col-12">
+        <NavBar />
         <div className='correction__title__reversal'>Reversals JV</div>
       </div>
       <div className="col-12 mb-3">
@@ -86,6 +97,7 @@ const Reversals = () => {
             value={date}
             onChange={(e) => setDate(e.value)}
             className='input__filed__reversal'
+          // showIcon
           />
 
         </LabelWrapper>
@@ -98,7 +110,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
-          dropdownIcon={<SvgDropdown color={"#000"}/>}
+          dropdownIcon={<SvgDropdown color={"#000"} />}
         />
       </div>
       <div className="col-12 md:col-4 lg-col-4 input__view__reversal">
@@ -129,7 +141,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
-          dropdownIcon={<SvgDropdown color={"#000"}/>}
+          dropdownIcon={<SvgDropdown color={"#000"} />}
         />
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
@@ -139,7 +151,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
-          dropdownIcon={<SvgDropdown color={"#000"}/>}
+          dropdownIcon={<SvgDropdown color={"#000"} />}
         />
       </div>
       <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
@@ -151,39 +163,12 @@ const Reversals = () => {
                 key={column.field}
                 field={column.field}
                 header={column.headerName}
-                bodyStyle={{ fontSize: 14, height: 50 }}
+                bodyStyle={{ fontSize: 14, height: 50, padding: 18 }}
                 body={
-                  column.field === 'amount' ? <div > <SvgDeleteIcon /> <SvgEditIcon color={"#000"} /></div> :
-                    column.field === 'mainAccount1' ?
-                      <DropDowns
-                        value={mainAccount1Value}
-                        // defaultValue={mainAccount1Value}
-                        onChange={(e) => setMainAccount1Value(e.value)}
-                        options={[
-                          { label: 'Option 1', value: 'A001' },
-                          { label: 'Option 2', value: 'A002' },
-                          // Add more options as needed
-                        ]}
-                        className='tabel__dropdown'
-                        dropdownIcon={<SvgDropdown color={"#000"}/>}
-                      />
-                      :
-                      column.field === 'subAccount1' ?
-                        <DropDowns
-                          value={subAccount1Value}
-                          onChange={(e) => setSubAccount1Value(e.value)}
-                          options={[
-                            { label: 'Option A', value: 'B0123' },
-                            { label: 'Option B', value: 'B0456' },
-                            // Add more options as needed
-                          ]}
-
-                          className='tabel__dropdown'
-                          dropdownIcon={<SvgDropdown color={"#000"}/>}
-                        /> :
-                        column.field === 'description' ? '-' :
-                          column.field === 'remarks' ? '-' :
-                            column.field && 'Debit'
+                  column.field === 'action' ? <div onClick={() => setVisibleDeletePopup(true)} > <SvgDeleteIcon /> </div> :
+                    column.field === 'description' ? '-' :
+                      column.field === 'remarks' ? '-' :
+                        column.field && 'A012'
                 }
               />
             ))}
@@ -192,6 +177,7 @@ const Reversals = () => {
             className='paginator__view'
             first={first}
             rows={rowsPerPage}
+
             totalRecords={rows.length}
             onPageChange={onPageChange}
           />
@@ -199,14 +185,20 @@ const Reversals = () => {
       </div>
 
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
-        <DropDowns
-          className='input__filed__reversal'
-          label="Date"
-          textColor={'#111927'}
-          textSize={'16'}
+        <LabelWrapper
+          label={"Date"}
+          textSize={"16px"}
+          textColor={"#111927"}
           textWeight={500}
-          dropdownIcon={<SvgDropdown color={"#000"}/>}
-        />
+        >
+          <Calendar
+            value={date}
+            onChange={(e) => setDate(e.value)}
+            className='input__filed__reversal'
+          // showIcon
+          />
+
+        </LabelWrapper>
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
         <DropDowns
@@ -216,7 +208,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
-          dropdownIcon={<SvgDropdown color={"#000"}/>}
+          dropdownIcon={<SvgDropdown color={"#000"} />}
         />
       </div>
       <div className="col-12 md:col-4 lg-col-4 input__view__reversal">
@@ -247,7 +239,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
-          dropdownIcon={<SvgDropdown color={"#000"}/>}
+          dropdownIcon={<SvgDropdown color={"#000"} />}
         />
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view__reversal">
@@ -257,7 +249,7 @@ const Reversals = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
-          dropdownIcon={<SvgDropdown color={"#000"}/>}
+          dropdownIcon={<SvgDropdown color={"#000"} />}
         />
       </div>
       <div className="col-12 md:col-12 lg-col-12 button__view__corrections__reversal">
@@ -275,11 +267,32 @@ const Reversals = () => {
           <div className="grid custom-modal-overlay">
             <div className="col-10 md:col-2 lg:col-2 custom-modal">
               <div className='popup__text'>
-              Approved
+                Approved
               </div>
               <div className='popup__icon'>
                 <SuccessIcon
 
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="col-12">
+        {visibleDeletePopup && (
+          <div className="grid custom-modal-overlay__delete">
+            <div className="col-10 md:col-2 lg:col-2 custom-modal__delete">
+              <div className='delete__text'>Do you want to delete this entry?</div>
+              <div className='yes__no__view'>
+                <Button
+                  label='No'
+                  className='no__view'
+                  onClick={() => { setVisibleDeletePopup(false) }}
+                />
+                <Button
+                  label='Yes'
+                  className='yes__view'
+                  onClick={() => { setVisibleDeletePopup(false) }}
                 />
               </div>
             </div>

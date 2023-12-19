@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../JournalVoucher/index.scss";
 import { BreadCrumb } from 'primereact/breadcrumb';
 import SvgDot from '../../assets/icons/SvgDot';
@@ -16,12 +16,25 @@ import LabelWrapper from '../../components/LabelWrapper';
 import { Calendar } from 'primereact/calendar';
 import { Dialog } from 'primereact/dialog';
 import SvgDropdown from '../../assets/icons/SvgDropdown';
+import NavBar from '../../components/NavBar';
+import SvgEditIcon from '../../assets/icons/SvgEditIcon';
+import SvgDeleteIcon from '../../assets/icons/SvgDeleteIcon';
 
 
 
 const JournalVoucher = () => {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(new Date());
+  const item = [
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' }
+  ];
+
+  const [selectedCity, setSelectedCity] = useState(item[0]);
   const [visible, setVisible] = useState(false);
+  const [visibleEditData, setVisibleEditData] = useState(false);
   const items = [
     // { label: 'Dashboard', url: '/dashboard' },
     { label: 'Accounts', url: '/accounts' },
@@ -39,13 +52,6 @@ const JournalVoucher = () => {
     { field: 'action', headerName: 'Action', flex: '1 1 100px' },
   ];
 
-  const rows = [
-    { id: 1, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', amount: '' },
-    { id: 2, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', amount: '' },
-    { id: 3, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', amount: '' },
-    { id: 4, mainAccount1: '', subAccount1: '', entry1: '', mainAccount2: '', subAccount2: '', entry2: '', remarks: '', amount: '' },
-  ];
-
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -59,26 +65,33 @@ const JournalVoucher = () => {
   const onSelectionChange = (e) => {
     setSelectedRows(e.value);
   };
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
   const [visiblePopup, setVisiblePopup] = useState(false);
+  const [visibleDeletePopup, setVisibleDeletePopup] = useState(false)
+  const initialState = {
+    description: '123373',
+    TN: 2000
+  };
 
-  const data = [{
-    id: 1,
-    value: 'hdg'
-  },
-  {
-    id: 2,
-    value: 'hdsg'
-  }, {
-    id: 3,
-    value: 'hsdg'
-  }
-  ]
+  const [values, setValues] = useState(initialState);
+
+  const handleChange = (fieldName, value) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      [fieldName]: value,
+    }));
+  };
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setVisiblePopup(false);
+    }, 2000);
+
+    return () => clearTimeout(timerId);
+  }, [visiblePopup]);
 
   return (
     <div className="grid container__correction m-0">
       <div className="col-12">
+        <NavBar />
         <div className='correction__title'>Journal Voucher</div>
       </div>
       <div className="col-12 mb-3">
@@ -99,6 +112,7 @@ const JournalVoucher = () => {
             value={date}
             onChange={(e) => setDate(e.value)}
             className='input__filed'
+          // showIcon
           />
 
         </LabelWrapper>
@@ -107,11 +121,15 @@ const JournalVoucher = () => {
         <DropDowns
           className='input__filed'
           label="Transaction Code"
+          value={selectedCity}
+          onChange={(e) => setSelectedCity(e.value)}
+          options={item}
+          optionLabel="name"
           // classNames='input__label'
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
-          dropdownIcon={<SvgDropdown color={"#000"}/>}
+          dropdownIcon={<SvgDropdown color={"#000"} />}
         />
       </div>
       <div className="col-12 md:col-4 lg-col-4 input__view">
@@ -122,6 +140,9 @@ const JournalVoucher = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          value={values.description}
+          onChange={(e) => handleChange('description', e.value)}
+
         />
       </div>
       <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
@@ -132,6 +153,8 @@ const JournalVoucher = () => {
           textColor={'#111927'}
           textSize={'16'}
           textWeight={500}
+          value={values.TN}
+          onChange={(e) => handleChange('TN', e.value)}
         />
       </div>
 
@@ -146,7 +169,7 @@ const JournalVoucher = () => {
           <div className={'edit__icon'}>
             <SvgEdit />
           </div>
-          <div className={'exit__text'}>Exit</div>
+          <div className={'exit__text'}>Add</div>
         </Button>
       </div>
       <div className="col-12 md:col-12 lg-col-12">
@@ -167,10 +190,17 @@ const JournalVoucher = () => {
                 field={column.field}
                 header={column.headerName}
                 style={{ flex: column.flex }}
+                bodyStyle={{ padding: 18 }}
                 body={(rowData) =>
                   column.field === 'action' ? (
-                    <div>
-                      <SvgDot />
+                    <div className='delete__edit__icon'>
+                      <div onClick={()=>setVisibleDeletePopup(true)}>
+                        <SvgDeleteIcon />
+                      </div>
+                      <div onClick={() => setVisibleEditData(true)}>
+                        <SvgEditIcon
+                        />
+                      </div>
                     </div>
                   ) : (
                     <span>{rowData[column.field]}</span>
@@ -234,254 +264,300 @@ const JournalVoucher = () => {
           />
         </div>
       </div>
+      {/* <Dialog header="Add Data" visible={visible} className="model_container" style={{ width: '30vw' }} onHide={() => setVisible(false)}>
+        <div class="grid">
+          <div class="col-12">
+            <div className="detailvoucher__container">
+              <label className="labeltext__container">Division :</label>
+              <DropDowns
+                className="field__container"
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.value)}
+                options={item}
+                optionLabel="name"
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div className="detailvoucher__container">
+              <label className="labeltext__container">Department :</label>
+              <DropDowns className="field__container"
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.value)}
+                options={item}
+                optionLabel="name" />
+            </div>
+          </div>
 
-      <div className="card flex justify-content-center">
-        {/* <Button label="Show" icon="pi pi-external-link"  /> */}
-        <Dialog header="Edit Data" visible={visible} className='dialog__view' onHide={() => setVisible(false)}>
-          <div className='popup__body'>
-            <div className="col-12 md:col-5 ">
-              Division :
-            </div>
-            <div className="col-12 md:col-7 input__view">
-              <DropDowns
-                classNames='input__filed'
-                // label="Net"
-                placeholder='10,000.00'
-                textColor={'#111927'}
-                textSize={'16'}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"}/>}
+          <div class="col-12">
+            <div className="detailvoucher__container">
+              <label className="labeltext__container">Main A/c :</label>
+              <DropDowns className="field__container"
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.value)}
+                options={item}
+                optionLabel="name"
               />
             </div>
           </div>
-          <div className='popup__body'>
-            <div className="col-12 md:col-5">
-              Department :
+          <div class="col-12">
+            <div className="detailvoucher__container">
+              <label className="labeltext__container">Sub A/c :
+              </label>
+              <DropDowns className="field__container"
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.value)}
+                options={item}
+                optionLabel="name" />
             </div>
-            <div className="col-12 md:col-7 input__view ">
-              <DropDowns
-                classNames='input__filed'
-                // label="Net"
-                placeholder='10,000.00'
-                textColor={'#111927'}
-                textSize={'16'}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"}/>}
+          </div>
+          <div class="col">
+            <div className="detailvoucher__container">
+              <label className="labeltext__container">Foreign Amount :
+              </label>
+              <DropDowns classNames="field__container"
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.value)}
+                options={item}
+                optionLabel="name" />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div className="detailvoucher__container">
+              <label className="labeltext__container">Entry :</label>
+              <DropDowns className="field__container"
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.value)}
+                options={item}
+                optionLabel="name" />
+            </div>
+          </div>
+          <div class="col-12">
+            <div className="detailvoucher__container">
+              <label className="labeltext__container">Currency :</label>
+              <DropDowns className="field__container"
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.value)}
+                options={item}
+                optionLabel="name" />
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+        <div className="next_container">
+
+          <Button className="submit_button p-0" label="Add"
+          />
+        </div>
+
+
+      </Dialog> */}
+      <div className="col-12" >
+        <Dialog header="Add Data" visible={visible} style={{ width: '30vw', borderRadius: 30 }} onHide={() => setVisible(false)}>
+          {/* <div className=""> */}
+          <div className="grid m-0 p-0" style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <div className="col-4">
+            Division :
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Sub A/c
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+            Currency
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Branch
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Department
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Remarks
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+            Foreign Amount
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Entry
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-12 save__popup__correction" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+              <Button
+                onClick={() => {
+                  setVisible(false)
+                  setVisiblePopup(true)
+                }}
+                style={{ height: 40, width: 130, backgroundColor: '#6366F1', borderRadius: 31 }}
+                label='Add'
+
               />
             </div>
           </div>
-          <div className='popup__body'>
-            <div className="col-12 md:col-5">
-              Main A/c :
+
+          {/* </div> */}
+        </Dialog>
+      </div>
+      <div className="col-12" >
+        <Dialog header="Edit Data" visible={visibleEditData} style={{ width: '30vw', borderRadius: 30 }} onHide={() => setVisibleEditData(false)}>
+          {/* <div className=""> */}
+          <div className="grid m-0 p-0" style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <div className="col-4">
+            Division :
             </div>
-            <div className="col-12 md:col-7 input__view">
-              <DropDowns
-                classNames='input__filed'
-                // label="Net"
-                placeholder='10,000.00'
-                textColor={'#111927'}
-                textSize={'16'}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"}/>}
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Sub A/c
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+            Currency
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Branch
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Department
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Remarks
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+            Foreign Amount
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-4">
+              Entry
+            </div>
+            <div className="col-8">
+              <Dropdown
+                style={{ width: '100%' }}
+                className=''
+                dropdownIcon={<SvgDropdown />}
+              />
+            </div>
+            <div className="col-12 save__popup__correction" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+              <Button
+                onClick={() => {
+                  setVisible(false)
+                  setVisiblePopup(true)
+                }}
+                style={{ height: 40, width: 130, backgroundColor: '#6366F1', borderRadius: 31 }}
+                label='Save'
+
               />
             </div>
           </div>
-          <div className='popup__body'>
-            <div className="col-12 md:col-5">
-              Sub A/c :
-            </div>
-            <div className="col-12 md:col-7 input__view">
-              <DropDowns
-                classNames='input__filed'
-                // label="Net"
-                placeholder='10,000.00'
-                textColor={'#111927'}
-                textSize={'16'}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"}/>}
-              />
-            </div>
-          </div>
-          <div className='popup__body'>
-            <div className="col-12 md:col-5">
-              Foreign Amount :
-            </div>
-            <div className="col-12 md:col-7 input__view">
-              <DropDowns
-                classNames='input__filed'
-                // label="Net"
-                placeholder='10,000.00'
-                textColor={'#111927'}
-                textSize={'16'}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"}/>}
-              />
-            </div>
-          </div>
-          <div className='popup__body'>
-            <div className="col-12 md:col-5">
-              Entry :
-            </div>
-            <div className="col-12 md:col-7 input__view">
-              <DropDowns
-                classNames='input__filed'
-                // label="Net"
-                placeholder='10,000.00'
-                textColor={'#111927'}
-                textSize={'16'}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"}/>}
-              />
-            </div>
-          </div>
-          <div className='popup__body'>
-            <div className="col-12 md:col-5">
-              Currency :
-            </div>
-            <div className="col-12 md:col-7 input__view">
-              <DropDowns
-                classNames='input__filed'
-                // label="Net"
-                placeholder='10,000.00'
-                textColor={'#111927'}
-                textSize={'16'}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"}/>}
-              />
-            </div>
-          </div>
-          <div className="col-12 save__btn__view">
-            <Button
-              label='Save'
-              className='save__button'
-              onClick={() => setVisiblePopup(false)}
-            />
-          </div>
+
+          {/* </div> */}
         </Dialog>
       </div>
 
-
-      {/* <div className=""> */}
-      {/* {visiblePopup && (
-          <div className="col-12  custom-modal-overlay">
-            <div className=" custom-modal">
-             <div  className='popup__body'>
-             <div className="col-12 md:col-5 ">
-                Division :
-              </div>
-              <div className="col-12 md:col-7">
-                <DropDowns
-                  classNames='input__filed'
-                  // label="Net"
-                  placeholder='10,000.00'
-                  textColor={'#111927'}
-                  textSize={'16'}
-                  textWeight={500}
-                />
-              </div>
-             </div>
-             <div  className='popup__body'>
-             <div className="col-12 md:col-5">
-             Department :
-              </div>
-              <div className="col-12 md:col-7 ">
-                <DropDowns
-                  classNames='input__filed'
-                  // label="Net"
-                  placeholder='10,000.00'
-                  textColor={'#111927'}
-                  textSize={'16'}
-                  textWeight={500}
-                />
-              </div>
-             </div>
-             <div  className='popup__body'>
-             <div className="col-12 md:col-5">
-             Main A/c :
-              </div>
-              <div className="col-12 md:col-7 ">
-                <DropDowns
-                  classNames='input__filed'
-                  // label="Net"
-                  placeholder='10,000.00'
-                  textColor={'#111927'}
-                  textSize={'16'}
-                  textWeight={500}
-                />
-              </div>
-             </div>
-             <div  className='popup__body'>
-             <div className="col-12 md:col-5">
-             Sub A/c :
-              </div>
-              <div className="col-12 md:col-7">
-                <DropDowns
-                  classNames='input__filed'
-                  // label="Net"
-                  placeholder='10,000.00'
-                  textColor={'#111927'}
-                  textSize={'16'}
-                  textWeight={500}
-                />
-              </div>
-             </div>
-             <div  className='popup__body'>
-             <div className="col-12 md:col-5">
-             Foreign Amount :
-              </div>
-              <div className="col-12 md:col-7">
-                <DropDowns
-                  classNames='input__filed'
-                  // label="Net"
-                  placeholder='10,000.00'
-                  textColor={'#111927'}
-                  textSize={'16'}
-                  textWeight={500}
-                />
-              </div>
-             </div>
-             <div  className='popup__body'>
-             <div className="col-12 md:col-5">
-             Entry : 
-              </div>
-              <div className="col-12 md:col-7">
-                <DropDowns
-                  classNames='input__filed'
-                  // label="Net"
-                  placeholder='10,000.00'
-                  textColor={'#111927'}
-                  textSize={'16'}
-                  textWeight={500}
-                />
-              </div>
-             </div>
-             <div  className='popup__body'>
-             <div className="col-12 md:col-5">
-            Currency :
-              </div>
-              <div className="col-12 md:col-7">
-                <DropDowns
-                  classNames='input__filed'
-                  // label="Net"
-                  placeholder='10,000.00'
-                  textColor={'#111927'}
-                  textSize={'16'}
-                  textWeight={500}
-                />
-              </div>
-             </div>
-            <div className="col-12 save__btn__view">
-              <Button
-              label='Save'
-              className='save__button'
-              onClick={() => setVisiblePopup(false)}
-              />
-            </div>
-
-              
-            </div>
-          </div>
-        )} */}
       <div className="col-12">
         {visiblePopup && (
           <div className="grid custom-modal-overlay">
@@ -492,6 +568,27 @@ const JournalVoucher = () => {
               <div className='popup__icon'>
                 <SuccessIcon
 
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="col-12">
+        {visibleDeletePopup && (
+          <div className="grid custom-modal-overlay__delete">
+            <div className="col-10 md:col-2 lg:col-2 custom-modal__delete">
+              <div className='delete__text'>Do you want to delete this entry?</div>
+              <div className='yes__no__view'>
+                <Button
+                  label='No'
+                  className='no__view'
+                  onClick={() => { setVisibleDeletePopup(false) }}
+                />
+                <Button
+                  label='Yes'
+                  className='yes__view'
+                  onClick={() => { setVisibleDeletePopup(false) }}
                 />
               </div>
             </div>

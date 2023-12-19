@@ -17,7 +17,7 @@ const Register = () => {
                         <div className="p-mt-1 welcome__text">
                             Welcome to
                         </div>
-                        <SvgWhiteLogo />
+                        <SvgWhiteLogo color={'#fff'} />
                         <div className="logo__cover___white">
                             Cover
                         </div>
@@ -28,11 +28,11 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-12 md:col-4 ">
+            <div className="col-12 md:col-4 p-5">
                 <div className="col-12 md:col-12 lg:col-12  "
                 >
                     <div className='logo__icon'>
-                        <SvgLogo color={"#000"} />
+                        <span><SvgWhiteLogo color={"#000"} /> </span> <span className='cover__black'>Cover</span>
                     </div>
                 </div>
                 <div className="col-12 md:col-12 lg:col-12  "
@@ -67,10 +67,8 @@ const Register = () => {
                 <div className="col-12 md:col-12 lg:col-12  "
                 >
 
-                    <div className='dont__have__text'><span className='check__icon'><SvgCheckBox/></span> I have read the <span className='register'>Terms and Conditions</span></div>
-
-
-                    </div>
+                    <div className='dont__have__text'><span className='check__icon'><SvgCheckBox /></span> I have read the <span className='register'>Terms and Conditions</span></div>
+                </div>
                 <div className="col-12 md:col-12 lg:col-12  "
                 >
                     <Button

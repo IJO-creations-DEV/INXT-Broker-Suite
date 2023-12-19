@@ -64,11 +64,9 @@ const Maincomponent = () => {
             <Route path="/Receipts" element={<Receipts />} />
 
             <Route path="/addpolicyreceipts" element={<AddPolicyReceipts />} />
-            {/* <Route path="/otherreceipts" element={<OtherReceipts />} />
+             <Route path="/otherreceipts" element={<OtherReceipts />} />
             <Route
 
-           
-            
               path="/policyreceiptsview"
               element={<PolicyReceiptsView />
             }
@@ -89,7 +87,7 @@ const Maincomponent = () => {
             <Route path="/otherreceipts" element={<OtherReceipts />} />
             
             <Route path="/addpolicyreceipts1" element={<AddPolicyReceipts1 />} />
-            */}
+            <Route path="/policyreceipts" element={<PolicyReceipts />} />
 
             {/* Payment Vouchers */}
 
@@ -141,10 +139,12 @@ const Maincomponent = () => {
         </Routes>
       </div>
       <AuthRoute />
+
+
       <Routes>
         <Route element={<ProtectedLayout />}>
-          <Route path="/" element={<div>shh</div>} />
-          <Route path="/policyreceipts" element={<PolicyReceipts />} />
+          {/* <Route path="/" element={<div>shh</div>} />
+          <Route path="/policyreceipts" element={<PolicyReceipts />} /> */}
         </Route>
       </Routes>
     </div>

@@ -34,7 +34,7 @@ font-weight: 500;
     }
     
 .breadcrumbs_container{
-    margin-bottom: 60px;
+    // margin-bottom: 60px;
     
     font-size: 14px;
     font-weight: 500;
@@ -71,17 +71,39 @@ font-weight: 500;
    height:700px;
 }
 .searchinput_left{
-     width:100vh;
-     border-radius: 10px;
+     width:100%;
+     border-radius: 8px;
    }
 .searchiput_container{
     // background-color: red;
-    width: 848px;
+    width: 100%;
     margin-bottom: 20px;
+}
+.sorbyfilter_container{
+    flex-direction: row-reverse;
+    // gap:10px;
+    height: 46px;
+    border-color: #d1d5db;
+    width: 85%;
+    margin-left: 8px;
+    
+}
+.pagedropdown_container{
+    margin-right: 20%;
+    border-style: hidden;
+    background-color: #FAFAFA;
+}
+.header_search_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   margin-bottom: 16px;
+
 }
 .fieldvalue_container{
     font-size: 14px;
     font-family: Inter var;
     font-weight: 400;
+   
 }
 }

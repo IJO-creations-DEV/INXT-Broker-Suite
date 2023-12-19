@@ -11,7 +11,8 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from "primereact/inputtext";
 import { ProductService } from './mock';
-
+import { Button } from 'primereact/button';
+import { Dropdown } from 'primereact/dropdown';
 
 const Index = () => {
     const [products, setProducts] = useState([]);
@@ -19,10 +20,37 @@ const Index = () => {
         ProductService.getProductsMini().then(data => setProducts(data));
     }, []);
 
+
+    const template2 = {
+        layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+        RowsPerPageDropdown: (options) => {
+            const dropdownOptions = [
+                { label: 5, value: 5 },
+                { label: 10, value: 10 },
+                { label: 20, value: 20 },
+                { label: 120, value: 120 }
+            ];
+
+            return (
+                <React.Fragment >
+                    <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+                    Row count :{' '}
+                    </span>
+                    <Dropdown value={options.value} className="pagedropdown_container"options={dropdownOptions} onChange={options.onChange} />
+                </React.Fragment>
+            );
+        },
+       
+    };
+
+
+
+
+
     const headerStyle = {
-        width: '12rem',
+        width: '10rem',
         // backgroundColor: 'red',
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: 'Inter var',
         fontWeight: 500,
         padding: 6,
@@ -73,7 +101,7 @@ const Index = () => {
                 separatorIcon={<SvgDot color={"#000"} />} />
           </div>
           <div className="filterbutton_container">
-            <SvgFilters/>
+            {/* <SvgFilters/> */}
             
             <div className="addbutton_container" onClick={handlePolicy} >
           <SvgAdd className="addicon" />
@@ -86,18 +114,33 @@ const Index = () => {
           <Card 
         //   className="overallcard_container"
           >
-            <div className="searchiput_container">
-    <span className="p-input-icon-left">
+            {/* <div className="searchiput_container"> */}
+    
+
+<div  className="header_search_container">
+    <div class="col-12 md:col-6 lg:col-10">
+        {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
+        <span className="p-input-icon-left" style={{width:"100%"}}>
                 <i className="pi pi-search" />
-                <InputText placeholder="Search" className="searchinput_left"/>
+                <InputText placeholder="Search customers" className="searchinput_left"/>
             </span>
-            </div>
+        </div>
+    {/* </div> */}
+    <div class="col-12 md:col-6 lg:col-2">
+     
+    <Button label="Sort By" outlined icon={<SvgFilters/>} className="sorbyfilter_container" /></div>
+    
+    </div>
+
+
+            {/* </div> */}
 
     <div className="card">
                 <DataTable value={products} tableStyle={{ minWidth: '50rem',color:'#1C2536' }}
                     paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
-                    paginatorTemplate=" FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                    // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
+                    paginatorTemplate={template2}
                 >
                   
                     <Column field="name" header="Branch Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>

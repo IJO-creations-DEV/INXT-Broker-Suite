@@ -7,6 +7,7 @@ import { Button } from "primereact/button";
 import DropDowns from "../../../components/DropDowns";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import { Dialog } from 'primereact/dialog';
+import NavBar from "../../../components/NavBar";
         
 
 function PolicyReceipts() {
@@ -34,6 +35,7 @@ function PolicyReceipts() {
 
   return (
     <div className="overall__add_policy_receipts__container">
+      <NavBar/>
       <label className="label_header">Receipt Details</label>
       <BreadCrumb
         model={items}

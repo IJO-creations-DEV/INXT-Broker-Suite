@@ -8,19 +8,20 @@ import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import DropDowns from "../../../../components/DropDowns";
 import { Card } from "primereact/card";
 import SuccessIcon from "../../../../assets/icons/SuccessIcon";
+import SvgAdd from "../../../../assets/icons/SvgAdd";
+import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import NavBar from "../../../../components/NavBar";
-
-function BranchAdding() {
+function BankAccountdetails() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const showPopup = () => {
     setVisiblePopup(true);
-    setTimeout(() => {
-      setVisiblePopup(false);
-    }, 1000);
+    // setTimeout(() => {
+    //   setVisiblePopup(false);
+    // }, 1000);
   };
   
-  const items = [{ label: "Branch" }, { label: "Add Branch" }];
+  const items = [{ label: "Bank Account" }, { label: "Bank Account details" }];
   const item = [
     { name: "New York", code: "NY" },
     { name: "Rome", code: "RM" },
@@ -31,15 +32,25 @@ function BranchAdding() {
   const home = { label: "Master" };
 
   return (
-    <div className="overall_branch-adding_container">
+    <div className="overall_bankaccountdetail_container">
         <NavBar/>
-      <label className="label_header">Add Branch</label>
+        <div className="bankaccountedit_container">
+        <div>
+      <label className="label_header">Bank Account details</label>
       <BreadCrumb
         model={items}
         home={home}
         className="breadcrumbs_container"
         separatorIcon={<SvgDot color={"#000"} />}
       />
+</div>
+<div>
+<div className="addbutton_container"  >
+          <SvgEditicon className="addicon" />
+          <p className="addtext">Edit</p>
+             </div>
+</div>
+</div>
       <Card>
         <div class="grid">
           <div class="sm-col-12  md:col-3 lg-col-4 col-offset-9">
@@ -60,125 +71,85 @@ function BranchAdding() {
             <div>
               <InputField
                 classNames="field__container"
-                label="Branch Code"
+                label="Account Number"
                 placeholder={"Enter"}
               />
             </div>
           </div>
-          <div class="sm-col-12  md:col-3 lg-col-4">
+          <div class="sm-col-12  md:col-6 lg-col-4">
             <div>
               <InputField
                 classNames="field__container"
-                label="Email ID (Branch Email ID)"
+                label="Account Name"
                 placeholder={"Enter"}
               />
             </div>
-          </div>
-        </div>
-
-        <div class="grid">
-          <div class="col-6 md:col-6 lg-col-6">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Description"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-          <div class="col-6 md:col-6 lg-col-6">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Short Description"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="grid">
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="Company Name"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="Manager"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
           </div>
           <div class="sm-col-12 col-12 md:col-3 lg-col-4">
-            <InputField
-              classNames="field__container"
-              label="Address Line 1"
-              placeholder={"Enter"}
+            <div>
+            <DropDowns
+              className="dropdown__container"
+              label="Bank Name"
+              value={selectedItem}
+              onChange={(e) => setSelectedItem(e.value)}
+              options={item}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="grid">
+          <div class="col-3 md:col-3 lg-col-3">
+            <DropDowns
+              className="dropdown__container"
+              label="Account Type"
+              value={selectedItem}
+              onChange={(e) => setSelectedItem(e.value)}
+              options={item}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+          </div>
+          <div class="col-3 md:col-3 lg-col-3">
+          <InputField
+                classNames="field__container"
+                label="Account Type description"
+                placeholder={"Enter"}
+              />
+          </div>
+          <div class="sm-col-12 col-12 md:col-3 lg-col-4">
+          <DropDowns
+              className="dropdown__container"
+              label="Currency Code"
+              value={selectedItem}
+              onChange={(e) => setSelectedItem(e.value)}
+              options={item}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
           <div class="sm-col-12  md:col-3 lg-col-4">
             <InputField
               classNames="field__container"
-              label="Address Line 2"
+              label="Currency Description"
               placeholder={"Enter"}
             />
           </div>
         </div>
         <div class="grid">
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="City"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="State"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="Country"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Enter"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
+          
 
           <div class="sm-col-12  md:col-3 lg-col-4">
             <InputField
               classNames="field__container"
-              label="Phone Number"
+              label="Maximum Transaction Limit"
               placeholder={"Enter"}
             />
           </div>
@@ -187,25 +158,14 @@ function BranchAdding() {
 
       <div className="next_container">
         <div className="exit_print_buttons">
-          <Button label="Save" className="print" onClick={showPopup} />
+          <Button label="Save & Exit" className="print" />
         </div>
         <div>
-          {visiblePopup && (
-            <div className="grid custom-modal-overlay">
-              <div className="col-10 md:col-2 lg:col-2 custom-modal">
-                <div className="popup__text">
-                  Branch code Branch00123 is Successfully added
-                </div>
-                <div className="popup__icon">
-                  <SuccessIcon />
-                </div>
-              </div>
-            </div>
-          )}
+          
         </div>
       </div>
     </div>
   );
 }
 
-export default BranchAdding;
+export default BankAccountdetails;

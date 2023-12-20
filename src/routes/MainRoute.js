@@ -43,6 +43,31 @@ import PettyCashMaster from "../module/FinanceMastersModule/PettyCashMaster";
 import SubAccountMaster from "../module/FinanceMastersModule/SubAccountMaster";
 import TaxationMaster from "../module/FinanceMastersModule/TaxationMaster";
 import TransactionCodeMaster from "../module/FinanceMastersModule/TransactionCodeMaster";
+import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
+import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding"
+import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView"
+import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
+import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding"
+import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView"
+import SubAdd from "../module/FinanceMastersModule/SubAccountMaster/SubAdd";
+import SaveAndEdit from "../module/FinanceMastersModule/SubAccountMaster/SaveAndEdit";
+import AddCurrency from "../module/FinanceMastersModule/CurrencyMaster/AddCurrency";
+import SaveAndEditCurrency from "../module/FinanceMastersModule/CurrencyMaster/SaveAndEditCurrency";
+import AddTaxation from "../module/FinanceMastersModule/TaxationMaster/AddTaxation";
+import SaveAndEditTaxation from "../module/FinanceMastersModule/TaxationMaster/SaveAndEditTaxation";
+import AddExchange from "../module/FinanceMastersModule/ExchangeRateMaster/AddExchange";
+import SaveAndEditExchange from "../module/FinanceMastersModule/ExchangeRateMaster/SaveAndEditExchange";
+
+
+
+// import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
+
+import AddBankAccount from "../module/FinanceMastersModule/BankAccountMaster/AddBankAccount";
+import BankAccountdetails from "../module/FinanceMastersModule/BankAccountMaster/BankAccountdetails";
+import AddBankCheque from "../module/FinanceMastersModule/BankChequeMaster/AddBankCheque";
+import BankChequeDetails from "../module/FinanceMastersModule/BankChequeMaster/BankChequeDetails";
+import AddPettyCash from "../module/FinanceMastersModule/PettyCashMaster/AddPettyCash";
+import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/PettyCashdetails";
 
 import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
 import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
@@ -121,7 +146,6 @@ const Maincomponent = () => {
             <Route path="/reversaljv" element={<Reversalsjv />} />
 
             {/* Petty Cash Management */}
-
             <Route
               path="/pettycashmanagement"
               element={<Pettycashmanagement />}
@@ -185,6 +209,24 @@ const Maincomponent = () => {
               path="master/finance/bankcheque"
               element={<BankChequeMaster />}
             />
+          
+            
+            {/* bankacountmaster */}
+            <Route path="master/finance/bankaccount" element={<BankAccountMaster />} />
+            <Route path="master/finance/bankaccount/addbankaccount" element={<AddBankAccount />} />
+            <Route path="master/finance/bankaccount/bankaccountdetails" element={<BankAccountdetails />} />
+
+{/* bankchequemaster */}
+            <Route path="master/finance/bankcheque" element={<BankChequeMaster />} />
+            <Route path="master/finance/bankcheque/addbankcheque" element={<AddBankCheque />} />
+            <Route path="master/finance/bankcheque/bankchequedetails" element={<BankChequeDetails />} />
+
+{/* pettycash */}
+<Route path="master/finance/pettycash" element={<PettyCashMaster />} />
+<Route path="master/finance/pettycash/addpettycash" element={<AddPettyCash />} />
+<Route path="master/finance/pettycash/pettycashdetail" element={<PettyCashdetails />} />
+
+
             {/* <Route path="master/finance/bank" element={<BankMaster />} /> */}
 
             <Route />

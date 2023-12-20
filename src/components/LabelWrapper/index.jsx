@@ -15,6 +15,8 @@ const LabelWrapper = ({
     color: textColor ? textColor : "black",
     fontFamily: "Inter var",
     fontWeight: textWeight ? textWeight : 500,
+    margin:0,
+    padding:0
   };
 
   return (

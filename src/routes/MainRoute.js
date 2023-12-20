@@ -72,10 +72,10 @@
 //               element={<PolicyReceiptsView />
 //             }
 //             />
-           
-            
+
+
 //             <Route path="/otherreceipts" element={<OtherReceipts />} />
-            
+
 //             <Route path="/addpolicyreceipts1" element={<AddPolicyReceipts1 />} />
 //             */}
 
@@ -176,6 +176,15 @@ import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMast
 import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
 import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding"
 import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView"
+import SubAdd from "../module/FinanceMastersModule/SubAccountMaster/SubAdd";
+import SaveAndEdit from "../module/FinanceMastersModule/SubAccountMaster/SaveAndEdit";
+import AddCurrency from "../module/FinanceMastersModule/CurrencyMaster/AddCurrency";
+import SaveAndEditCurrency from "../module/FinanceMastersModule/CurrencyMaster/SaveAndEditCurrency";
+import AddTaxation from "../module/FinanceMastersModule/TaxationMaster/AddTaxation";
+import SaveAndEditTaxation from "../module/FinanceMastersModule/TaxationMaster/SaveAndEditTaxation";
+import AddExchange from "../module/FinanceMastersModule/ExchangeRateMaster/AddExchange";
+import SaveAndEditExchange from "../module/FinanceMastersModule/ExchangeRateMaster/SaveAndEditExchange";
+
 
 
 const Maincomponent = () => {
@@ -290,12 +299,20 @@ const Maincomponent = () => {
             <Route path="master/finance/currency" element={<CurrencyMaster />} />
             
             <Route path="master/finance/exchangerate" element={<ExchangeRateMaster />} />
+            <Route path="master/finance/exchangerate/addexchange" element={<AddExchange />} />
+            <Route path="master/finance/exchangerate/saveandeditexchange" element={<SaveAndEditExchange />} />
             <Route path="master/finance/mainaccount" element={<MainAccountMaster />} />
             <Route path="master/finance/pettycash" element={<PettyCashMaster />} />
             
             <Route path="master/finance/subaccount" element={<SubAccountMaster />} />
             <Route path="master/finance/taxation" element={<TaxationMaster />} />
+            <Route path="master/finance/taxation/addtaxation" element={<AddTaxation />} />
+            <Route path="master/finance/taxation/saveandedittaxation" element={<SaveAndEditTaxation />} />
             <Route path="master/finance/transactioncode" element={<TransactionCodeMaster />} />
+            <Route path="master/finance/subaccount/subadd" element={<SubAdd />} />
+            <Route path="master/finance/subaccount/saveandedit" element={<SaveAndEdit/>}/>
+            <Route path="master/finance/company/addcurrency" element={<AddCurrency />} />
+            <Route path="master/finance/company/saveandeditcurrency" element={<SaveAndEditCurrency />} />
           </Route>
         </Routes>
       </div>

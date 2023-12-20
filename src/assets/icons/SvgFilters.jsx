@@ -7,7 +7,6 @@ const SvgFilters = (props) => (
     fill="none"
     {...props}
   >
-    <path fill="#1E1E1E" d="M0 0h40v40H0z" />
     <g clipPath="url(#filters_svg__a)">
       <path fill="#fff" d="M-1613-150H307V930h-1920z" />
       <path

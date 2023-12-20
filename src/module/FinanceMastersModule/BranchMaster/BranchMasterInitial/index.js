@@ -75,14 +75,9 @@ const Index = () => {
   };
 
   const handlePolicy = () => {
-    navigate("/createvoucher");
+    navigate("/master/finance/branch/branchadding");
   };
-  const handleArrowClick = () => {
-    navigate("/policyreceiptsview");
-  };
-  const handleEditClick = () => {
-    navigate("/otherreceiptsview");
-  };
+
   return (
     <div className="overall_branch_master_initial_container">
       <NavBar />

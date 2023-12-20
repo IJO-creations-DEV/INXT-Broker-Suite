@@ -54,12 +54,12 @@ export const menuList = [
                     {
                         id: 2,
                         name: 'Branch',
-                        path: 'master/finance/bank',
+                        path: 'master/finance/branch/branchmasterinitial',
                     },
                     {
                         id: 3,
                         name: 'Department', 
-                        path: 'master/finance/department', 
+                        path: 'master/finance/department/departmentmasterinitial', 
                     },
                     {
                         id: 4,
@@ -94,7 +94,7 @@ export const menuList = [
                     {
                         id: 10,
                         name: 'Account Category', 
-                        path: '/master/finance/accountcate',
+                        path: 'master/finance/category/categorymasterinitial',
                     },
                     {
                         id: 11,

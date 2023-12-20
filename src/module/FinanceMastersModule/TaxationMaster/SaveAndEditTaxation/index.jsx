@@ -118,6 +118,7 @@ const SaveAndEditTaxation = () => {
                                 textSize={"14px"}
                                 textColor={"#000"}
                                 textWeight={"500"}
+                                classNames="label__sub__add"
                             >
                                 <Calendar
                                  

@@ -15,6 +15,9 @@
         font-weight: 600;
 
     }
+    .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+        color: #B1B1B1;
+    }
     .edit__btn__view{
         display: flex;
         justify-content:space-evenly;
@@ -43,10 +46,8 @@
 
         .label__sub__add {
             font-family: Inter var;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 19px;
-            letter-spacing: 0em;
+            font-size: 16px !important;
+            font-weight: 500 !important;
             text-align: left;
 
         }
@@ -109,7 +110,7 @@
         padding: 0;
         margin: 0 !important;
         .p-inputtext {
-        //   margin: 1rem 0 0 0;
+          margin: 6px 0 0 0;
           border-radius: 5px;
           height: 3.125rem;
         //   border-style: none;

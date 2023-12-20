@@ -16,8 +16,11 @@
         color: #111927;
         font-size: 14px;
         font-weight: 600;
+       
 
-
+    }
+    .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+        color: #B1B1B1;
     }
 
     .item__color {

@@ -11,6 +11,17 @@ import SvgDropdown from '../../../../assets/icons/SvgDropdown';
 
 const SubAdd = () => {
     const [visiblePopup, setVisiblePopup] = useState(false);
+    const [selectedItem, setSelectedItem] = useState({ name: 'Active', code: "AC" });
+    const [selectedCode, setSelectedCode] = useState({ name: 'AC', code: "AC" });
+    const item = [
+        { name: "Active", code: "AC" },
+        { name: "Ac", code: "AC" },
+        { name: "Design", code: "DS" },
+        { name: "John doe", code: "JD" },
+        { name: "Madurai", code: "MD" },
+        { name: "Tamil Nadu", code: "TN" },
+        { name: "India", code: "IN" },
+    ];
     const items = [
         { label: 'Sub Account', url: '/subaccount' },
         { label: 'Add Sub Account', url: '/subadd' },
@@ -43,10 +54,10 @@ const SubAdd = () => {
                             className="dropdown__add__sub"
                             label="Status"
                             classNames='label__sub__add'
-                            // value={selectedItem}
-                            // onChange={(e) => setSelectedItem(e.value)}
-                            // options={item}
-                            // optionLabel="name"
+                            value={selectedItem}
+                            onChange={(e) => setSelectedItem(e.value)}
+                            options={item}
+                            optionLabel="name"
                             placeholder={"Select"}
                             dropdownIcon={<SvgDropdown color={"#000"} />}
                         />
@@ -64,6 +75,10 @@ const SubAdd = () => {
                             label="Main Account Code"
                             className='dropdown__add__sub'
                             classNames='label__sub__add'
+                            value={selectedCode}
+                            onChange={(e) => setSelectedCode(e.value)}
+                            options={item}
+                            optionLabel="name"
                             placeholder={"Select"}
                             dropdownIcon={<SvgDropdown color={"#000"} />}
                         />

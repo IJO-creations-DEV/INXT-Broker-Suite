@@ -65,7 +65,7 @@ const ExchangeRateMaster = () => {
 
       return (
         <React.Fragment>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',width:'40%' }}>
             <span
 
               className="mx-1"
@@ -89,13 +89,13 @@ const ExchangeRateMaster = () => {
       <div className='col-12'>
         <NavBar />
       </div>
-      <div className='col-12 md:col-6 lg:col-6'>
+      <div className='col-12 md:col-6 lg:col-6 mb-1'>
         <div className='add__icon__title'>Exchange Rate Master</div>
         <div className='mt-3'>
           <BreadCrumb home={home} className='breadCrums__view__reversal' model={items} separatorIcon={<SvgDot color={"#000"} />} />
         </div>
       </div>
-      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn'>
+      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn mb-1'>
         <div className='add__icon__view' onClick={handleNavigate}>
           <div className='add__icon' >
             <SvgAdd />

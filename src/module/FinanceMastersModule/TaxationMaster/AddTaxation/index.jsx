@@ -16,8 +16,8 @@ const AddTaxation = () => {
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [date, setDate] = useState(new Date());
     const items = [
-        { label: 'Sub Account', url: '/subaccount' },
-        { label: 'Add Sub Account', url: '/subadd' },
+        { label: 'Taxation', url: '/addtaxation' },
+        { label: 'Add Taxation', url: '/saveandedittaxation' },
 
     ];
     const home = { label: "Master" };
@@ -35,7 +35,7 @@ const AddTaxation = () => {
                 <NavBar />
             </div>
             <div className='col-12 mb-2'>
-                <div className='add__sub__title'>Add Sub Account</div>
+                <div className='add__sub__title'>Add Taxation</div>
                 <div className='mt-3'>
                     <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
                 </div>
@@ -102,6 +102,7 @@ const AddTaxation = () => {
                                 textSize={"16px"}
                                 textColor={"#000"}
                                 textWeight={"300"}
+                                classNames="label__sub__add"
                             >
                                 <Calendar
                                     value={date}
@@ -123,6 +124,7 @@ const AddTaxation = () => {
                                 textSize={"16px"}
                                 textColor={"#000"}
                                 textWeight={"300"}
+                                classNames="label__sub__add"
                             >
                                 <Calendar
                                     value={date}

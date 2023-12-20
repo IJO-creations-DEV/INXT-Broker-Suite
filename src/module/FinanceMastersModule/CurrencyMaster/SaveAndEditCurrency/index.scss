@@ -15,6 +15,9 @@
         font-weight: 600;
 
     }
+    .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+        color: #B1B1B1;
+    }
     .edit__btn__view{
         display: flex;
         justify-content:space-evenly;

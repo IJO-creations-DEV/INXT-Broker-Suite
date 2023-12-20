@@ -15,8 +15,6 @@ import SvgArrow from '../../../assets/icons/SvgArrow'
 import { Dropdown } from 'primereact/dropdown'
 import { useNavigate } from 'react-router-dom'
 import { InputText } from 'primereact/inputtext'
-import { ProductService } from './data'
-// import { useNavigation } from '';
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
@@ -88,9 +86,9 @@ const SubAccountMaster = () => {
       <div className='col-12'>
         <NavBar />
       </div>
-      <div className='col-12 md:col-6 lg:col-6'>
+      <div className='col-12 md:col-6 lg:col-6 mb-1'>
         <div className='add__icon__title'>Sub Account Master</div>
-        <div className='mt-3'>
+        {/* <div className='mt-3'>
           <BreadCrumb
             home={home}
             className={items.map((val) => {
@@ -114,9 +112,35 @@ const SubAccountMaster = () => {
               </span>
             )}
             separatorIcon={<SvgDot color={"#000"} />} />
+        </div> */}
+        <div className='mt-3'>
+          <BreadCrumb
+            home={home}
+            className={items.map((val) => {
+              return val.label === '/subaccount' ? 'breadCrums__view__reversal' : 'item__color';
+            })}
+            model={items}
+            itemTemplate={(item, index, items) => (
+              <span
+                key={index}
+                style={{
+                  color: index === items.length - 1 ? 'lightgray' : 'black', // Change color based on index
+                  cursor: 'pointer',
+                }}
+                onClick={() => {
+                  if (item.url) {
+                    navigate(item.url);
+                  }
+                }}
+              >
+                {item.label}
+              </span>
+            )}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
       </div>
-      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn'>
+      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn mb-1'>
         <div className='add__icon__view' onClick={handleNavigate}>
           <div className='add__icon' >
             <SvgAdd />

@@ -2,9 +2,7 @@ import React from 'react'
 
 const CompanyMaster = () => {
   return (
-    <div style={{color:"black"}}>
-      CompanyMaster
-    </div>
+    <div>CompanyMaster</div>
   )
 }
 

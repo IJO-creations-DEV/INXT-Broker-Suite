@@ -15,7 +15,6 @@ import SvgArrow from '../../../assets/icons/SvgArrow'
 import { Dropdown } from 'primereact/dropdown'
 import { useNavigate } from 'react-router-dom'
 import { InputText } from 'primereact/inputtext'
-// import { useNavigation } from '';
 
 const TaxationMaster = () => {
   const navigate = useNavigate();
@@ -84,42 +83,42 @@ const TaxationMaster = () => {
     },
   };
   return (
-    <div className='grid  container__sub__account__master'>
+    <div className='grid  container__taxation'>
       <div className='col-12'>
         <NavBar />
       </div>
-      <div className='col-12 md:col-6 lg:col-6'>
-        <div className='add__icon__title'>Taxation Master</div>
+      <div className='col-12 md:col-6 lg:col-6 mb-1'>
+        <div className='add__icon__title__taxation'>Taxation Master</div>
         <div className='mt-3'>
-          <BreadCrumb home={home} className='breadCrums__view__reversal' model={items} separatorIcon={<SvgDot color={"#000"} />} />
+          <BreadCrumb home={home} className='breadCrums__view__reversal__taxation' model={items} separatorIcon={<SvgDot color={"#000"} />} />
         </div>
       </div>
-      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn'>
-        <div className='add__icon__view' onClick={handleNavigate}>
-          <div className='add__icon' >
+      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__taxation mb-1'>
+        <div className='add__icon__view__taxation' onClick={handleNavigate}>
+          <div className='add__icon__taxation' >
             <SvgAdd />
           </div>
-          <div className='add__text'>
+          <div className='add__text__taxation'>
             Add
           </div>
           
         </div>
       </div>
       <div className='col-12 m-0 '>
-        <div className='sub__account__sub__container'>
-        <div className='col-12 search__filter__view'>
+        <div className='sub__account__sub__container__taxation'>
+        <div className='col-12 search__filter__view__taxation'>
             <div className='col-12 md:col-10 lg:col-10'>
-              <div className='searchIcon__view__input'>
+              <div className='searchIcon__view__input__taxation'>
                 <span className='p-1'> <SvgSearchIcon /></span>
                 <InputText
-                  classNames='input__sub__account'
+                  classNames='input__sub__account__taxation'
                   placeholder='Search By Sub Account Code'
                 />
               </div>
             </div>
             <div className='col-12 md:col-2 lg:col-2'>
-              <div className='sort__filter__view'>
-                <div className='sort__by__text'>Sort By</div>
+              <div className='sort__filter__view__taxation'>
+                <div className='sort__by__text__taxation'>Sort By</div>
                 <div>
                   <SvgFilters />
                 </div>
@@ -127,7 +126,7 @@ const TaxationMaster = () => {
             </div>
           </div>
           <div className='col-12 '>
-            <div className='main__tabel__title p-2'>Taxation List</div>
+            <div className='main__tabel__title__taxation p-2'>Taxation List</div>
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
@@ -135,7 +134,7 @@ const TaxationMaster = () => {
               value={rows}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
-                className='table__view'
+                className='table__view__taxation'
                 paginator
                 paginatorLeft
                 rows={5}

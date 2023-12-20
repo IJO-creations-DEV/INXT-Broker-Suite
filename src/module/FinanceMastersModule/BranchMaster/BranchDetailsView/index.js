@@ -9,6 +9,7 @@ import DropDowns from "../../../../components/DropDowns";
 import { Card } from "primereact/card";
 import SuccessIcon from "../../../../assets/icons/SuccessIcon";
 import SvgEdit from '../../../../assets/icons/SvgEdit';
+import NavBar from "../../../../components/NavBar";
 
 function BranchDetailsView() {
   const [selectedItem, setSelectedItem] = useState({name:'Active',code: "AC"});
@@ -37,6 +38,7 @@ function BranchDetailsView() {
 
   return (
     <div className="overall_branch_details_view_container">
+      <NavBar/>
       <label className="label_header">Branch Details</label>
       <div className="next_container">
         <div className="exit_print_buttons">

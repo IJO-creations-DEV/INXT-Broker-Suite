@@ -155,7 +155,7 @@ import Paymentvoucher from "../module/PaymentVoucher/index";
 import CreateVoucher from "../module/PaymentVoucher/CreateVoucher/index";
 import VoucherBankDetails from "../module/PaymentVoucher/VoucherBankDetails/index";
 import AddPolicyReceipts from "../module/Receipts/AddPolicyReceipts";
-import AccountCategoryMaster from "../module/FinanceMastersModule/AccountCategoryMaster";
+// import AccountCategoryMaster from "../module/FinanceMastersModule/AccountCategoryMaster";
 import BankAccountMaster from "../module/FinanceMastersModule/BankAccountMaster";
 import BankChequeMaster from "../module/FinanceMastersModule/BankChequeMaster";
 import BranchMasterInitial from "../module/FinanceMastersModule/BranchMaster/BranchMasterInitial";
@@ -164,13 +164,18 @@ import BranchAdding from "../module/FinanceMastersModule/BranchMaster/BranchAddi
 import BranchDetailsView from "../module/FinanceMastersModule/BranchMaster/BranchDetailsView"
 import CompanyMaster from "../module/FinanceMastersModule/CompanyMaster";
 import CurrencyMaster from "../module/FinanceMastersModule/CurrencyMaster";
-import DepartmentMaster from "../module/FinanceMastersModule/DepartmentMaster";
 import ExchangeRateMaster from "../module/FinanceMastersModule/ExchangeRateMaster";
 import MainAccountMaster from "../module/FinanceMastersModule/MainAccountMaster";
 import PettyCashMaster from "../module/FinanceMastersModule/PettyCashMaster";
 import SubAccountMaster from "../module/FinanceMastersModule/SubAccountMaster";
 import TaxationMaster from "../module/FinanceMastersModule/TaxationMaster";
 import TransactionCodeMaster from "../module/FinanceMastersModule/TransactionCodeMaster";
+import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
+import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding"
+import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView"
+import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
+import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding"
+import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView"
 
 
 const Maincomponent = () => {
@@ -251,20 +256,39 @@ const Maincomponent = () => {
               element={<Pettycashmanagement />}
             />
             {/* Finacel Master Route*/}
-            <Route
+            {/* <Route
               path="master/finance/accountcate"
               element={<AccountCategoryMaster />}
-            />
+            /> */}
+
+            {/* Branch Master Module */}
+            <Route path="master/finance/branch/branchadding" element={<BranchAdding/>}/>
+            <Route path="master/finance/branch/branchdetailsview" element={<BranchDetailsView/>}/>
+            <Route path="master/finance/branch/branchmasterinitial" element={<BranchMasterInitial/>} />
+
+             {/* Department Master Module */}
+             <Route path="master/finance/department/departmentadding" element={<DepartmentAdding/>}/>
+            <Route path="master/finance/department/departmentdetailsview" element={<DepartmentDetailsView/>}/>
+            <Route path="master/finance/department/departmentmasterinitial" element={<DepartmentMasterInitial/>} />
+            
+            {/* Main Account Master */}
+             
+
+
+           {/* Account Category Master */}
+
+           <Route path="master/finance/category/categoryadding" element={<CategoryAdding/>}/>
+            <Route path="master/finance/category/categorydetailsview" element={<CategoryDetailsView/>}/>
+            <Route path="master/finance/category/categorymasterinitial" element={<CategoryMasterInitial/>} />
+
             <Route path="master/finance/bankaccount" element={<BankAccountMaster />} />
             <Route path="master/finance/bankcheque" element={<BankChequeMaster />} />
             {/* <Route path="master/finance/bank" element={<BankMaster />} /> */}
-            <Route path="master/finance/branchadding" element={<BranchAdding/>}/>
-            <Route path="master/finance/branchdetailsview" element={<BranchDetailsView/>}/>
-            <Route path="master/finance/branchmasterinitial" element={<BranchMasterInitial/>} />
+           
             <Route/>
             <Route path="master/finance/company" element={<CompanyMaster />} />
             <Route path="master/finance/currency" element={<CurrencyMaster />} />
-            <Route path="master/finance/department" element={<DepartmentMaster />} />
+            
             <Route path="master/finance/exchangerate" element={<ExchangeRateMaster />} />
             <Route path="master/finance/mainaccount" element={<MainAccountMaster />} />
             <Route path="master/finance/pettycash" element={<PettyCashMaster />} />

@@ -10,7 +10,7 @@ import { Card } from "primereact/card";
 import SuccessIcon from "../../../../assets/icons/SuccessIcon";
 import NavBar from "../../../../components/NavBar";
 
-function BranchAdding() {
+function DepartmentAdding() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const showPopup = () => {
@@ -19,7 +19,7 @@ function BranchAdding() {
       setVisiblePopup(false);
     }, 1000);
   };
-  const items = [{ label: "Branch" }, { label: "Add Branch" }];
+  const items = [{ label: "Department" }, { label: "Add Department" }];
   const item = [
     { name: "New York", code: "NY" },
     { name: "Rome", code: "RM" },
@@ -30,9 +30,9 @@ function BranchAdding() {
   const home = { label: "Master" };
 
   return (
-    <div className="overall_branch-adding_container">
-        <NavBar/>
-      <label className="label_header">Add Branch</label>
+    <div className="overall_department-adding_container">
+      <NavBar />
+      <label className="label_header">Add Department</label>
       <BreadCrumb
         model={items}
         home={home}
@@ -59,16 +59,7 @@ function BranchAdding() {
             <div>
               <InputField
                 classNames="field__container"
-                label="Branch Code"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-          <div class="sm-col-12  md:col-3 lg-col-4">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Email ID (Branch Email ID)"
+                label="Department Code"
                 placeholder={"Enter"}
               />
             </div>
@@ -100,84 +91,42 @@ function BranchAdding() {
           <div class="col-3 md:col-3 lg-col-3">
             <DropDowns
               className="dropdown__container"
-              label="Company Name"
+              label="Company Code"
               value={selectedItem}
               onChange={(e) => setSelectedItem(e.value)}
               options={item}
               optionLabel="name"
               placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="Manager"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="sm-col-12 col-12 md:col-3 lg-col-4">
-            <InputField
-              classNames="field__container"
-              label="Address Line 1"
-              placeholder={"Enter"}
-            />
-          </div>
-          <div class="sm-col-12  md:col-3 lg-col-4">
-            <InputField
-              classNames="field__container"
-              label="Address Line 2"
-              placeholder={"Enter"}
-            />
-          </div>
-        </div>
-        <div class="grid">
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="City"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="State"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="Country"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Enter"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
 
-          <div class="sm-col-12  md:col-3 lg-col-4">
+          <div class="col-3 md:col-3 lg-col-3">
+            <div>
+              <InputField
+                classNames="field__container"
+                label="Company Description"
+                placeholder={"Enter"}
+              />
+            </div>
+          </div>
+
+          <div class="col-3 md:col-3 lg-col-3">
+            <DropDowns
+              className="dropdown__container"
+              label="Branch Code"
+              value={selectedItem}
+              onChange={(e) => setSelectedItem(e.value)}
+              options={item}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+          </div>
+          <div class="col-3 md:col-3 lg-col-3">
             <InputField
               classNames="field__container"
-              label="Phone Number"
+              label="Branch Description"
               placeholder={"Enter"}
             />
           </div>
@@ -193,7 +142,7 @@ function BranchAdding() {
             <div className="grid custom-modal-overlay">
               <div className="col-10 md:col-2 lg:col-2 custom-modal">
                 <div className="popup__text">
-                  Branch code Branch00123 is Successfully added
+                  Department code Depart00123 is Successfully added
                 </div>
                 <div className="popup__icon">
                   <SuccessIcon />
@@ -207,4 +156,4 @@ function BranchAdding() {
   );
 }
 
-export default BranchAdding;
+export default DepartmentAdding;

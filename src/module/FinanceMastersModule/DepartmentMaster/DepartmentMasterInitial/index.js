@@ -57,7 +57,7 @@ const Index = () => {
     border: "none",
   };
 
-  const items = [{ label: "Branch" }];
+  const items = [{ label: "Department" }];
   const home = { label: "Master" };
 
   const navigate = useNavigate();
@@ -84,11 +84,11 @@ const Index = () => {
     navigate("/otherreceiptsview");
   };
   return (
-    <div className="overall_branch_master_initial_container">
+    <div className="overall_department_master_initial_container">
       <NavBar />
       <div className="overallfilter_container">
         <div>
-          <label className="label_header">Branch Master</label>
+          <label className="label_header">Department Master</label>
           <BreadCrumb
             model={items}
             home={home}
@@ -126,7 +126,7 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="branch_text">Branch List</div>
+        <div className="branch_text">Department List</div>
         <div className="card">
           <DataTable
             // value={data}
@@ -138,45 +138,45 @@ const Index = () => {
             paginatorTemplate={template2}
           >
             <Column
+              field="departmentCode"
+              header="Department Code"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="companyCode"
+              header="Company Code"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="description"
+              header="Description"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="shortDescription"
+              header="Short Description"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
               field="branchCode"
               header="Branch Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="companyName"
-              header="Company Name"
+              field="date"
+              header="Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="manager"
-              header="Manager"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              field="country"
-              header="Country"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              field="email"
-              header="Email"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              field="status"
               header="Status"
               headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              header="View"
-              headerStyle={headerStyle}
-              field="view"
+              field="status"
               className="fieldvalue_container"
               body={() => <SvgArrow />}
             />

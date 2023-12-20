@@ -60,7 +60,16 @@ import AddExchange from "../module/FinanceMastersModule/ExchangeRateMaster/AddEx
 import SaveAndEditExchange from "../module/FinanceMastersModule/ExchangeRateMaster/SaveAndEditExchange";
 
 
+
 // import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
+
+import AddBankAccount from "../module/FinanceMastersModule/BankAccountMaster/AddBankAccount";
+import BankAccountdetails from "../module/FinanceMastersModule/BankAccountMaster/BankAccountdetails";
+import AddBankCheque from "../module/FinanceMastersModule/BankChequeMaster/AddBankCheque";
+import BankChequeDetails from "../module/FinanceMastersModule/BankChequeMaster/BankChequeDetails";
+import AddPettyCash from "../module/FinanceMastersModule/PettyCashMaster/AddPettyCash";
+import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/PettyCashdetails";
+
 
 const Maincomponent = () => {
   return (
@@ -134,7 +143,6 @@ const Maincomponent = () => {
             <Route path="/reversaljv" element={<Reversalsjv />} />
 
             {/* Petty Cash Management */}
-
             <Route
               path="/pettycashmanagement"
               element={<Pettycashmanagement />}
@@ -143,30 +151,24 @@ const Maincomponent = () => {
             {/* <Route
               path="master/finance/accountcate"
               element={<AccountCategoryMaster />}
-            /> */}
-
-            {/* Branch Master Module */}
-            <Route path="master/finance/branch/branchadding" element={<BranchAdding/>}/>
-            <Route path="master/finance/branch/branchdetailsview" element={<BranchDetailsView/>}/>
-            <Route path="master/finance/branch/branchmasterinitial" element={<BranchMasterInitial/>} />
-
-             {/* Department Master Module */}
-             <Route path="master/finance/department/departmentadding" element={<DepartmentAdding/>}/>
-            <Route path="master/finance/department/departmentdetailsview" element={<DepartmentDetailsView/>}/>
-            <Route path="master/finance/department/departmentmasterinitial" element={<DepartmentMasterInitial/>} />
+            />
             
-            {/* Main Account Master */}
-             
-
-
-           {/* Account Category Master */}
-
-           <Route path="master/finance/category/categoryadding" element={<CategoryAdding/>}/>
-            <Route path="master/finance/category/categorydetailsview" element={<CategoryDetailsView/>}/>
-            <Route path="master/finance/category/categorymasterinitial" element={<CategoryMasterInitial/>} />
-
+            {/* bankacountmaster */}
             <Route path="master/finance/bankaccount" element={<BankAccountMaster />} />
+            <Route path="master/finance/bankaccount/addbankaccount" element={<AddBankAccount />} />
+            <Route path="master/finance/bankaccount/bankaccountdetails" element={<BankAccountdetails />} />
+
+{/* bankchequemaster */}
             <Route path="master/finance/bankcheque" element={<BankChequeMaster />} />
+            <Route path="master/finance/bankcheque/addbankcheque" element={<AddBankCheque />} />
+            <Route path="master/finance/bankcheque/bankchequedetails" element={<BankChequeDetails />} />
+
+{/* pettycash */}
+<Route path="master/finance/pettycash" element={<PettyCashMaster />} />
+<Route path="master/finance/pettycash/addpettycash" element={<AddPettyCash />} />
+<Route path="master/finance/pettycash/pettycashdetail" element={<PettyCashdetails />} />
+
+
             {/* <Route path="master/finance/bank" element={<BankMaster />} /> */}
            
             <Route/>
@@ -177,7 +179,7 @@ const Maincomponent = () => {
             <Route path="master/finance/exchangerate/addexchange" element={<AddExchange />} />
             <Route path="master/finance/exchangerate/saveandeditexchange" element={<SaveAndEditExchange />} />
             <Route path="master/finance/mainaccount" element={<MainAccountMaster />} />
-            <Route path="master/finance/pettycash" element={<PettyCashMaster />} />
+         
             
             <Route path="master/finance/subaccount" element={<SubAccountMaster />} />
             <Route path="master/finance/taxation" element={<TaxationMaster />} />

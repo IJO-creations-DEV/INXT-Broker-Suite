@@ -10,17 +10,17 @@ import { Card } from "primereact/card";
 import SuccessIcon from "../../../../assets/icons/SuccessIcon";
 import NavBar from "../../../../components/NavBar";
 
-function BranchAdding() {
+function AddBankCheque() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const showPopup = () => {
     setVisiblePopup(true);
     setTimeout(() => {
       setVisiblePopup(false);
-    }, 1000);
+    }, 4000);
   };
   
-  const items = [{ label: "Branch" }, { label: "Add Branch" }];
+  const items = [{ label: "Bank Cheque" }, { label: "Add Bank Cheque" }];
   const item = [
     { name: "New York", code: "NY" },
     { name: "Rome", code: "RM" },
@@ -31,9 +31,9 @@ function BranchAdding() {
   const home = { label: "Master" };
 
   return (
-    <div className="overall_branch-adding_container">
-        <NavBar/>
-      <label className="label_header">Add Branch</label>
+    <div className="overall_addbankcheque_container">
+      <NavBar/>
+      <label className="label_header">Add Bank Cheque</label>
       <BreadCrumb
         model={items}
         home={home}
@@ -56,64 +56,18 @@ function BranchAdding() {
           </div>
         </div>
         <div class="grid">
-          <div class="sm-col-12 col-12 md:col-3 lg-col-4">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Branch Code"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-          <div class="sm-col-12  md:col-3 lg-col-4">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Email ID (Branch Email ID)"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="grid">
-          <div class="col-6 md:col-6 lg-col-6">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Description"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-          <div class="col-6 md:col-6 lg-col-6">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Short Description"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="grid">
           <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="Company Name"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
+          <InputField
+                classNames="field__container"
+                label="Cheque Book Number"
+                placeholder={"Enter"}
+              />
+            
           </div>
           <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
+          <DropDowns
               className="dropdown__container"
-              label="Manager"
+              label="Bank Name"
               value={selectedItem}
               onChange={(e) => setSelectedItem(e.value)}
               options={item}
@@ -123,62 +77,32 @@ function BranchAdding() {
             />
           </div>
           <div class="sm-col-12 col-12 md:col-3 lg-col-4">
-            <InputField
-              classNames="field__container"
-              label="Address Line 1"
-              placeholder={"Enter"}
+          <DropDowns
+              className="dropdown__container"
+              label="Account Number"
+              value={selectedItem}
+              onChange={(e) => setSelectedItem(e.value)}
+              options={item}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
           <div class="sm-col-12  md:col-3 lg-col-4">
             <InputField
               classNames="field__container"
-              label="Address Line 2"
+              label="Cheque Leaf Begin"
               placeholder={"Enter"}
             />
           </div>
         </div>
         <div class="grid">
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="City"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="State"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="Country"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Enter"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
+          
 
           <div class="sm-col-12  md:col-3 lg-col-4">
             <InputField
               classNames="field__container"
-              label="Phone Number"
+              label="Cheque Leaf End"
               placeholder={"Enter"}
             />
           </div>
@@ -194,7 +118,12 @@ function BranchAdding() {
             <div className="grid custom-modal-overlay">
               <div className="col-10 md:col-2 lg:col-2 custom-modal">
                 <div className="popup__text">
-                  Branch code Branch00123 is Successfully added
+                Cheque Book Number 
+                <div className="accountnum_text">
+                     265478932107 
+                    </div>
+                    
+is Successfully added
                 </div>
                 <div className="popup__icon">
                   <SuccessIcon />
@@ -208,4 +137,4 @@ function BranchAdding() {
   );
 }
 
-export default BranchAdding;
+export default AddBankCheque;

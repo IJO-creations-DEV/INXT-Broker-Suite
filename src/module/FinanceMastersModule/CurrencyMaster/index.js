@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'primereact/button'
 import SvgAdd from '../../../assets/icons/SvgAdd'
-import "../SubAccountMaster/index.scss"
+import "../CurrencyMaster/index.scss"
 import { BreadCrumb } from 'primereact/breadcrumb'
 import SvgDot from '../../../assets/icons/SvgDot'
 import NavBar from "../../../components/NavBar"
@@ -86,7 +86,7 @@ const CurrencyMaster = () => {
     },
   };
   return (
-    <div className='grid  container__sub__account__master'>
+    <div className='grid  container__currency'>
       <div className='col-12'>
         <NavBar />
       </div>
@@ -113,6 +113,7 @@ const CurrencyMaster = () => {
           <div className='searchIcon__view__input'>
                <span className='p-1'> <SvgSearchIcon /></span>
                 <InputText
+                   style={{width:'100%'}}
                   classNames='input__sub__account'
                   placeholder='Search By Sub Account Code'
                 />

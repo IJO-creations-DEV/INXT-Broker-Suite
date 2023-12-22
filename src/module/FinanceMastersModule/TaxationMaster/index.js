@@ -111,6 +111,7 @@ const TaxationMaster = () => {
               <div className='searchIcon__view__input__taxation'>
                 <span className='p-1'> <SvgSearchIcon /></span>
                 <InputText
+                 style={{width:'100%'}}
                   classNames='input__sub__account__taxation'
                   placeholder='Search By Sub Account Code'
                 />

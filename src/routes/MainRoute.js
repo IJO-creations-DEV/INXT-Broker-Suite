@@ -69,14 +69,14 @@ import BankChequeDetails from "../module/FinanceMastersModule/BankChequeMaster/B
 import AddPettyCash from "../module/FinanceMastersModule/PettyCashMaster/AddPettyCash";
 import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/PettyCashdetails";
 
-import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
-import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
-import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView";
-import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
-import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding";
-import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
-import CompanyDetailsView from "../module/FinanceMastersModule/CompanyMaster/CompanyDetailsView"
-import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
+// import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
+// import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
+// import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView";
+// import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
+// import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding";
+// import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
+// import CompanyDetailsView from "../module/FinanceMastersModule/CompanyMaster/CompanyDetailsView"
+// import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
 
 const Maincomponent = () => {
   return (
@@ -261,11 +261,11 @@ const Maincomponent = () => {
               path="master/finance/transactioncode"
               element={<TransactionCodeMaster />}
             />
-            <Route
+            {/* <Route
               path="master/finance/company/addcompany"
               element={<AddCompany />}
-            />
-            <Route path="master/finance/comapny/companydetailsview" element={<CompanyDetailsView/>}/>
+            /> */}
+            {/* <Route path="master/finance/comapny/companydetailsview" element={<CompanyDetailsView/>}/> */}
           </Route>
         </Routes>
       </div>

@@ -1,4 +1,4 @@
-.container__sub__account__master {
+.container__currency {
 
     // justify-content: center;
     .add__icon__title {
@@ -65,17 +65,6 @@
         border-radius: 10px;
 
 
-
-        .sort__filter__view {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #B1B1B1;
-            // border-color: #6366F1 !important;
-            border-radius: 2px;
-            // height: 45px;
-            // width: 120px;
-        }
 
         .input__sub__account {
             width: 100% !important;
@@ -166,12 +155,21 @@
         margin-left: 10px;
         
     }
+    
+    .sort__filter__view {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #d1d5db !important;
+        border-radius: 2px;
+    }
+
     .sort__by__text {
         font-family: Inter var;
         font-size: 14px;
         font-weight: 500;
         text-align: left;
-        color: #6366F1;
+        color: #6366F1 !important;
 
     }
     .sorbyfilter_container {

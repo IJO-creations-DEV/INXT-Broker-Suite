@@ -77,6 +77,12 @@ import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/Pet
 // import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
 // import CompanyDetailsView from "../module/FinanceMastersModule/CompanyMaster/CompanyDetailsView"
 // import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
+// import AddBankAccount from "../module/FinanceMastersModule/BankAccountMaster/AddBankAccount";
+// import BankAccountdetails from "../module/FinanceMastersModule/BankAccountMaster/BankAccountdetails";
+// import AddBankCheque from "../module/FinanceMastersModule/BankChequeMaster/AddBankCheque";
+// import BankChequeDetails from "../module/FinanceMastersModule/BankChequeMaster/BankChequeDetails";
+// import AddPettyCash from "../module/FinanceMastersModule/PettyCashMaster/AddPettyCash";
+// import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/PettyCashdetails";
 
 const Maincomponent = () => {
   return (
@@ -231,41 +237,24 @@ const Maincomponent = () => {
 
             <Route />
             <Route path="master/finance/company" element={<CompanyMaster />} />
-            <Route
-              path="master/finance/currency"
-              element={<CurrencyMaster />}
-            />
-
-            <Route
-              path="master/finance/exchangerate"
-              element={<ExchangeRateMaster />}
-            />
-            <Route
-              path="master/finance/mainaccount"
-              element={<MainAccountMaster />}
-            />
-            <Route
-              path="master/finance/pettycash"
-              element={<PettyCashMaster />}
-            />
-
-            <Route
-              path="master/finance/subaccount"
-              element={<SubAccountMaster />}
-            />
-            <Route
-              path="master/finance/taxation"
-              element={<TaxationMaster />}
-            />
-            <Route
-              path="master/finance/transactioncode"
-              element={<TransactionCodeMaster />}
-            />
-            {/* <Route
-              path="master/finance/company/addcompany"
-              element={<AddCompany />}
-            /> */}
-            {/* <Route path="master/finance/comapny/companydetailsview" element={<CompanyDetailsView/>}/> */}
+            <Route path="master/finance/currency" element={<CurrencyMaster />} />
+            
+            <Route path="master/finance/exchangerate" element={<ExchangeRateMaster />} />
+            <Route path="master/finance/exchangerate/addexchange" element={<AddExchange />} />
+            <Route path="master/finance/exchangerate/saveandeditexchange" element={<SaveAndEditExchange />} />
+            <Route path="master/finance/mainaccount" element={<MainAccountMaster />} />
+         
+            
+            <Route path="master/finance/subaccount" element={<SubAccountMaster />} />
+            <Route path="master/finance/taxation" element={<TaxationMaster />} />
+            <Route path="master/finance/taxation/addtaxation" element={<AddTaxation />} />
+            <Route path="master/finance/taxation/saveandedittaxation" element={<SaveAndEditTaxation />} />
+            <Route path="master/finance/transactioncode" element={<TransactionCodeMaster />} />
+            <Route path="master/finance/subaccount/subadd" element={<SubAdd />} />
+            <Route path="master/finance/subaccount/saveandedit" element={<SaveAndEdit/>}/>
+            <Route path="master/finance/company/addcurrency" element={<AddCurrency />} />
+            <Route path="master/finance/company/saveandeditcurrency" element={<SaveAndEditCurrency />} />
+            {/* <Route path="master/finance/company/addcompany" element={<AddCompany />} /> */}
           </Route>
         </Routes>
       </div>

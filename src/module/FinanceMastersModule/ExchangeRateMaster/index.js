@@ -85,7 +85,7 @@ const ExchangeRateMaster = () => {
     },
   };
   return (
-    <div className='grid  container__sub__account__master'>
+    <div className='grid  container__Exchange'>
       <div className='col-12'>
         <NavBar />
       </div>
@@ -113,6 +113,7 @@ const ExchangeRateMaster = () => {
               <div className='searchIcon__view__input'>
                 <span className='p-1'> <SvgSearchIcon /></span>
                 <InputText
+                  style={{width:'100%'}}
                   classNames='input__sub__account'
                   placeholder='Search By Sub Account Code'
                 />

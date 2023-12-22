@@ -21,6 +21,7 @@ function BranchAdding() {
   };
   
   const items = [{ label: "Branch" }, { label: "Add Branch" }];
+  const home = { label: "Master" };
   const item = [
     { name: "New York", code: "NY" },
     { name: "Rome", code: "RM" },
@@ -28,7 +29,7 @@ function BranchAdding() {
     { name: "Istanbul", code: "IST" },
     { name: "Paris", code: "PRS" },
   ];
-  const home = { label: "Master" };
+ 
 
   return (
     <div className="overall_branch-adding_container">

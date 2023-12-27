@@ -23,7 +23,7 @@ import SpecificVoucher from "../module/PaymentVoucher/SpecificVoucher";
 import Payallvoucher from "../module/PaymentVoucher/PayAll";
 import Paymentvoucher from "../module/PaymentVoucher/index";
 import CreateVoucher from "../module/PaymentVoucher/CreateVoucher/index";
-import VoucherBankDetails from "../module/PaymentVoucher/VoucherBankDetails/index";
+import Detailview from "../module/PaymentVoucher/DetailView/index";
 import AddPolicyReceipts from "../module/Receipts/AddPolicyReceipts";
 // import AccountCategoryMaster from "../module/FinanceMastersModule/AccountCategoryMaster";
 import BankAccountMaster from "../module/FinanceMastersModule/BankAccountMaster";
@@ -66,7 +66,10 @@ import AddBankCheque from "../module/FinanceMastersModule/BankChequeMaster/AddBa
 import BankChequeDetails from "../module/FinanceMastersModule/BankChequeMaster/BankChequeDetails";
 import AddPettyCash from "../module/FinanceMastersModule/PettyCashMaster/AddPettyCash";
 import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/PettyCashdetails";
+import AddJournalVoucture from "../module/JournalVoucher/AddJournalVoucture";
+import DetailsJournalVocture from "../module/JournalVoucher/DetailsJournalVocture";
 
+import Bankdetailselection from "../module/PaymentVoucher/Bankdetailselection";
 // import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
 // import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
 // import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView";
@@ -75,6 +78,16 @@ import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/Pet
 // import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
 // import CompanyDetailsView from "../module/FinanceMastersModule/CompanyMaster/CompanyDetailsView"
 // import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
+import Initiate from "../module/PettyCashManagement/Initiate";
+import Disbursement from "../module/PettyCashManagement/Disbursement";
+import Request from "../module/PettyCashManagement/Request";
+import PettyCashReceipts from "../module/PettyCashManagement/Receipts/PettyCashReceipts";
+import PettyCashReplenish from "../module/PettyCashManagement/Replenish/PettyCashReplenish";
+import InitiateForm from "../module/PettyCashManagement/Initiate/InitiateForm"
+import PettyCashCodeDetails from "../module/PettyCashManagement/Initiate/PettyCashCodeDetails";
+import PettyCashRequest from "../module/PettyCashManagement/Request";
+import RequestForm from "../module/PettyCashManagement/Request/RequestForm";
+import AddRequestTable from "../module/PettyCashManagement/Request/AddRequestTable";
 
 const Maincomponent = () => {
   return (
@@ -124,16 +137,22 @@ const Maincomponent = () => {
             <Route path="/paymentvoucher" element={<Paymentvoucher />} />
             <Route path="/createvoucher" element={<CreateVoucher />} />
             <Route
-              path="/voucherbankdetails"
-              element={<VoucherBankDetails />}
+              path="/detailview"
+              element={<Detailview />}
+            />
+            <Route
+              path="/bankdetailselection"
+              element={<Bankdetailselection />}
             />
 
-            <Route path="/payallvoucher" element={<Payallvoucher />} />
+            {/* <Route path="/payallvoucher" element={<Payallvoucher />} /> */}
             <Route path="/SpecificVoucher" element={<SpecificVoucher />} />
 
             {/* Journal voucher */}
 
             <Route path="/journalvoucher" element={<Journalvoucher />} />
+            <Route path="journalvoucher/addjournalvoucture" element={<AddJournalVoucture/>}/>
+            <Route path="journalvoucher/detailsjournalvocture" element={<DetailsJournalVocture/>}/>
 
             {/* Corrections JV */}
 
@@ -142,10 +161,20 @@ const Maincomponent = () => {
             <Route path="/reversaljv" element={<Reversalsjv />} />
 
             {/* Petty Cash Management */}
-            <Route
+            <Route path="accounts/pettycash/pettycashcodeinitiate" element={<Initiate />} />
+            <Route path="accounts/pettycash/pettycashcodeinitiate/initiate" element={<InitiateForm />} />
+            <Route path="accounts/pettycash/PettyCashCodeDetails" element={<PettyCashCodeDetails />} />
+            <Route path="accounts/pettycash/pettycashrequest" element={<PettyCashRequest />} />
+            <Route path="accounts/pettycash/addrequest" element={<RequestForm />} />
+            <Route path="accounts/pettycash/addrequesttable" element={<AddRequestTable />} />
+            <Route path="accounts/pettycash/disbursement" element={<Disbursement />} />
+            <Route path="accounts/pettycash/request" element={<Request />} />
+            <Route path="accounts/pettycash/pettycashreceipts" element={<PettyCashReceipts />} />
+            <Route path="accounts/pettycash/pettycashreplenish" element={<PettyCashReplenish />} />
+            {/* <Route
               path="/pettycashmanagement"
               element={<Pettycashmanagement />}
-            />
+            /> */}
             {/* Finacel Master Route*/}
             {/* <Route
               path="master/finance/accountcate"
@@ -227,41 +256,24 @@ const Maincomponent = () => {
 
             <Route />
             <Route path="master/finance/company" element={<CompanyMaster />} />
-            <Route
-              path="master/finance/currency"
-              element={<CurrencyMaster />}
-            />
-
-            <Route
-              path="master/finance/exchangerate"
-              element={<ExchangeRateMaster />}
-            />
-            <Route
-              path="master/finance/mainaccount"
-              element={<MainAccountMaster />}
-            />
-            <Route
-              path="master/finance/pettycash"
-              element={<PettyCashMaster />}
-            />
-
-            <Route
-              path="master/finance/subaccount"
-              element={<SubAccountMaster />}
-            />
-            <Route
-              path="master/finance/taxation"
-              element={<TaxationMaster />}
-            />
-            <Route
-              path="master/finance/transactioncode"
-              element={<TransactionCodeMaster />}
-            />
-            {/* <Route
-              path="master/finance/company/addcompany"
-              element={<AddCompany />}
-            /> */}
-            {/* <Route path="master/finance/comapny/companydetailsview" element={<CompanyDetailsView/>}/> */}
+            <Route path="master/finance/currency" element={<CurrencyMaster />} />
+            
+            <Route path="master/finance/exchangerate" element={<ExchangeRateMaster />} />
+            <Route path="master/finance/exchangerate/addexchange" element={<AddExchange />} />
+            <Route path="master/finance/exchangerate/saveandeditexchange" element={<SaveAndEditExchange />} />
+            <Route path="master/finance/mainaccount" element={<MainAccountMaster />} />
+         
+            
+            <Route path="master/finance/subaccount" element={<SubAccountMaster />} />
+            <Route path="master/finance/taxation" element={<TaxationMaster />} />
+            <Route path="master/finance/taxation/addtaxation" element={<AddTaxation />} />
+            <Route path="master/finance/taxation/saveandedittaxation" element={<SaveAndEditTaxation />} />
+            <Route path="master/finance/transactioncode" element={<TransactionCodeMaster />} />
+            <Route path="master/finance/subaccount/subadd" element={<SubAdd />} />
+            <Route path="master/finance/subaccount/saveandedit" element={<SaveAndEdit/>}/>
+            <Route path="master/finance/company/addcurrency" element={<AddCurrency />} />
+            <Route path="master/finance/company/saveandeditcurrency" element={<SaveAndEditCurrency />} />
+            {/* <Route path="master/finance/company/addcompany" element={<AddCompany />} /> */}
           </Route>
         </Routes>
       </div>

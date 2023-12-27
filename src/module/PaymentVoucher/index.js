@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from "react";
+import React, { useState,useEffect,useRef} from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import NavBar from "../../components/NavBar";
@@ -10,16 +10,18 @@ import { Card } from 'primereact/card';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from "primereact/inputtext";
-import { ProductService } from './mock';
+import Productdata from './mock';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
+import { TieredMenu } from 'primereact/tieredmenu';
+import SvgIconeye from "../../assets/icons/SvgIconeye";
 
 const Index = () => {
     const [products, setProducts] = useState([]);
-    useEffect(() => {
-        ProductService.getProductsMini().then(data => setProducts(data));
-    }, []);
-
+    
+const handleView=()=>{
+  navigate('/detailview')
+}
 
     const template2 = {
         layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
@@ -44,13 +46,24 @@ const Index = () => {
     };
 
 
-
+    const menu = useRef(null);
+    const menuitems = [
+      {
+        label: 'Name',
+      },
+      {
+        label: 'Date',
+      },
+      {
+        label: 'Voucher Number',
+      },
+    ];
 
 
     const headerStyle = {
-        width: '10rem',
+        width: '19%',
         // backgroundColor: 'red',
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: 'Inter var',
         fontWeight: 500,
         padding: 6,
@@ -59,11 +72,10 @@ const Index = () => {
     };
 
   const items = [
-    { label: "Dashboard" },
-    { label: "Accounts " },
-    { label: "Receipts" },
+    { label: "Payment Voucher" },
+    
   ];
-  const home = { label: "Dashboard" };
+  const home = { label: "Accounts" };
  
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
@@ -112,11 +124,12 @@ const Index = () => {
 
 
           <Card 
+          
         //   className="overallcard_container"
           >
             {/* <div className="searchiput_container"> */}
     
-
+            <TieredMenu model={menuitems} popup ref={menu} breakpoint="67px" />
 <div  className="header_search_container">
     <div class="col-12 md:col-6 lg:col-10">
         {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
@@ -128,30 +141,42 @@ const Index = () => {
     {/* </div> */}
     <div class="col-12 md:col-6 lg:col-2">
      
-    <Button label="Sort By" outlined icon={<SvgFilters/>} className="sorbyfilter_container" /></div>
+    <Button label="Search by" outlined icon={<SvgFilters/>} 
+    className="sorbyfilter_container"
+    onClick={(e) => menu.current.toggle(e)}
+     /></div>
     
     </div>
-
+<div className="headlist_lable">Payment voucher history</div>
 
             {/* </div> */}
 
-    <div className="card">
-                <DataTable value={products} tableStyle={{ minWidth: '50rem',color:'#1C2536' }}
+    <div >
+                <DataTable value={Productdata} tableStyle={{ minWidth: '50rem',color:'#1C2536' }}
                     paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
                     // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                    paginatorTemplate={template2}
+                    paginatorTemplate={template2} scrollable={true} 
+                    scrollHeight="40vh"
                 >
                   
-                    <Column field="name" header="Branch Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="name" header="Department" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="Document Date" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="quantity" header="Document No"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="name" header="Customer Code" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="name" header="Instrument No" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="VoucherNumber" header="Voucher Number" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="TransactionNumber" header="Transaction Number" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="CustomerCode" header="Customer Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="VoucheDate" header="Voucher Date"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="Amount" header="Amount" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="code" header="Action" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
+                    {/* <Column field="action" header="Action" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
+                    <Column
+                        body={(params) => (
+                            <SvgIconeye onClick={() => handleView()}/>
+                        )}
+                        header="Action"
+                        headerStyle={headerStyle}
+                        className="fieldvalue_container"
+                    ></Column>
              
                 </DataTable>
 

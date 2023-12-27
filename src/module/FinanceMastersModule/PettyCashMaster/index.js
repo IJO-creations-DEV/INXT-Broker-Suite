@@ -14,11 +14,13 @@ import { ProductService } from './mock';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import SvgArrow from "../../../assets/icons/SvgArrow";
-
+import { InputSwitch } from 'primereact/inputswitch'
 
 const PettyCashMaster = () => {
+  const [checked, setChecked] = useState(false);
     const [products, setProducts] = useState([]);
-
+    const [SelectedProducts, setSelectedProducts] = useState(false);
+    console.log("first1",SelectedProducts)
     useEffect(() => {
         ProductService.getProductsMini().then(data => setProducts(data));
     }, []);
@@ -140,6 +142,21 @@ const PettyCashMaster = () => {
 
             </div>
 
+
+            {/* <div
+      className="card flex justify-content-center"
+      style={{ position: 'relative', top: '0' }}
+    >
+      <div style={{position:"absolute",color:"red",zIndex:'1'}}>hello</div>
+      <InputSwitch
+    style={{width:'100%'}}
+        checked={checked}
+        id="ii"
+        onChange={(e) => setChecked(e.value)}
+      />
+    </div> */}
+
+
     <div className="card">
                 <DataTable value={products} tableStyle={{ minWidth: '50rem',color:'#1C2536',maxHeight:'50vh',overflowy:"auto" }}
                     paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
@@ -147,6 +164,9 @@ const PettyCashMaster = () => {
                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
                     paginatorTemplate={template2}
                     className="datatable_container"
+                    selection={SelectedProducts}
+          onSelectionChange={(e) => setSelectedProducts(e.value)}
+          selectionMode="checkbox"
                 >
                   
                     <Column field="name" header="Petty Cash Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>

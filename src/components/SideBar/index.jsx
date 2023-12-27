@@ -634,7 +634,13 @@ const ResponsiveDrawer = () => {
                     <SvgAccountIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />
-                  ) : data.name === "Master" ? (
+                  ) : 
+                  data.name === "Petty Cash" ? (
+                    <SvgAccountIcon
+                      color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
+                    />
+                  ) :
+                  data.name === "Master" ? (
                     <SvgMassterIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />

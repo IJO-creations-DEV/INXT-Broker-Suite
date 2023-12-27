@@ -15,6 +15,7 @@ import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import SvgArrow from "../../../assets/icons/SvgArrow";
 
+
 const BankChequeMaster = () => {
     const [products, setProducts] = useState([]);
 
@@ -86,7 +87,8 @@ const BankChequeMaster = () => {
   const handlePolicy =()=>{
     navigate('/master/finance/bankcheque/addbankcheque')
   }
-  const handleArrowClick=()=>{
+  const handleArrowClick=(data)=>{
+    console.log("first",data)
     navigate('/master/finance/bankcheque/bankchequedetails')
   }
   const handleEditClick = () => {
@@ -101,6 +103,7 @@ const BankChequeMaster = () => {
             <BreadCrumb
                 model={items}
                 home={home}
+                activeItem={items[0]}
                 className='breadcrumbs_container'
                 separatorIcon={<SvgDot color={"#000"} />} />
           </div>
@@ -126,7 +129,7 @@ const BankChequeMaster = () => {
         {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
         <span className="p-input-icon-left" style={{width:"100%"}}>
                 <i className="pi pi-search" />
-                <InputText placeholder="Search customers" className="searchinput_left"/>
+                <InputText placeholder="Search By Bank Name" className="searchinput_left"/>
             </span>
         </div>
     {/* </div> */}

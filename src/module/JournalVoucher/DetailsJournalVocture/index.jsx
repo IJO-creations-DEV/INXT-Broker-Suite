@@ -1,0 +1,331 @@
+
+import { BreadCrumb } from 'primereact/breadcrumb'
+import React, { useEffect, useState, useRef } from 'react'
+import NavBar from '../../../components/NavBar';
+import DropDowns from '../../../components/DropDowns';
+import SvgDropdown from '../../../assets/icons/SvgDropdown';
+import InputField from '../../../components/InputField';
+import { Calendar } from 'primereact/calendar';
+import LabelWrapper from '../../../components/LabelWrapper';
+import SvgDatePicker from '../../../assets/icons/SvgDatePicker';
+import SvgDot from '../../../assets/icons/SvgDot';
+import "../DetailsJournalVocture/index.scss"
+import ArrowLeftIcon from "../../../assets/icons/ArrowLeftIcon"
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import SvgArrow from '../../../assets/icons/SvgArrow';
+import { useNavigate } from 'react-router-dom';
+import { Dropdown } from 'primereact/dropdown';
+import { Toast } from 'primereact/toast';
+import { data } from './data';
+import { useFormik } from 'formik';
+
+
+const DetailsJournalVocture = () => {
+    const navigate = useNavigate()
+    const [visiblePopup, setVisiblePopup] = useState(false);
+    const [date, setDate] = useState(new Date());
+    const items = [
+        { label: 'Journal Voucher', url: '/journalvoucher' },
+        { id: 1, label: 'Journal Voucher Details', url: '/journalvoucher/detailsjournalvocture' },
+
+    ];
+    const home = { label: "Account" };
+    const handleNavigateedit = () => {
+        // navigate('/master/finance/taxation/saveandedittaxation')
+    }
+
+
+    const columns = [
+        { field: 'main', headerName: 'Main A/c', flex: 1 },
+        { field: 'sub', headerName: 'Sub A/c', flex: 1 },
+        { field: 'remarks', headerName: 'Remarks', flex: 1 },
+        { field: 'currency', headerName: 'Currency', flex: 1 },
+        { field: 'foreign', headerName: 'Foreign Amount', flex: 1 },
+        { field: 'local', headerName: 'Local Amount', flex: 1 },
+        { field: 'entry', headerName: 'Entry', flex: 1 },
+    ];
+
+    const [first, setFirst] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const onPageChange = (event) => {
+        setFirst(event.first);
+        setRowsPerPage(event.rows);
+    };
+    const handleNavigate = () => {
+
+    }
+
+    const rows = [
+        { id: 1, main: '', sub: '', remarks: '', currency: '', foreign: '', local: '', entry: '' },
+        { id: 2, main: '', sub: '', remarks: '', currency: '', foreign: '', local: '', entry: '' },
+    ];
+    const toast = useRef(null);
+
+    const showSuccess = () => {
+        toast.current.show({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Message Content',
+            life: 3000,
+            icon: 'pi pi-check-circle',
+        });
+    };
+    const mainAccountOptions = [
+        { label: 'Option 1', value: 'option1' },
+        { label: 'Option 2', value: 'option2' },
+        // Add more options as needed
+    ];
+    const customValidation = (values) => {
+        const errors = {};
+
+        if (!values.transactioncode) {
+            errors.transactioncode = 'Main Account is required';
+        }
+
+
+        return errors;
+    };
+
+    const handleFormSubmit = () => {
+
+        showSuccess();
+    };
+    const handleSubmit = (values) => {
+        // Handle form submission
+        console.log(values);
+        // setVisible(false);
+        // setVisiblePopup(true);
+    }
+    const formik = useFormik({
+        initialValues: {
+            transactioncode: 'label',
+            transactionDescription: 'code',
+            transactionNumber:'22'
+         
+        },
+        validate: customValidation,
+        onSubmit: handleSubmit
+    });
+
+
+
+    useEffect(() => {
+        const timerId = setTimeout(() => {
+            setVisiblePopup(false);
+        }, 2000);
+
+        return () => clearTimeout(timerId);
+    }, [visiblePopup]);
+
+    const template2 = {
+        layout: "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+        RowsPerPageDropdown: (options) => {
+            const dropdownOptions = [
+                { label: 5, value: 5 },
+                { label: 10, value: 10 },
+                { label: 20, value: 20 },
+                { label: 120, value: 120 },
+            ];
+
+            return (
+                <React.Fragment>
+                    <div className='row__count__view'>
+                        <span
+
+                            className="mx-1"
+                            style={{ color: "var(--text-color)", userSelect: "none" }}
+                        >
+                            Row count :{" "}
+                        </span>
+                        <Dropdown
+                            value={options.value}
+                            className="pagedropdown_container"
+                            options={dropdownOptions}
+                            onChange={options.onChange}
+                        />
+                    </div>
+                </React.Fragment>
+            );
+        },
+    };
+
+
+    return (
+
+        <div className='grid sub__add__container'>
+            <div className='col-12'>
+                <NavBar />
+
+            </div>
+            <Toast ref={toast} />
+
+            <div className='col-12 mb-2'>
+                <div className='add__sub__title'><ArrowLeftIcon />Journal Voucher Details</div>
+                <div className='mt-3'>
+                    <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
+                </div>
+            </div>
+            <form onSubmit={formik.handleSubmit}>
+                <div className='col-12 m-0 '>
+                    <div className='grid add__journal__vocture p-3 m-1'>
+                        <div class="sm-col-12  md:col-3 lg-col-4 ">
+                            <DropDowns
+                                className="dropdown__add__sub"
+                                label="Transaction Code"
+                                classNames='label__sub__add'
+                                value={formik.values.transactioncode}
+                                onChange={(e) => formik.setFieldValue('transactioncode', e.target.value)}
+                                options={mainAccountOptions}
+                                optionLabel='label'
+                                defaultValue={formik.values.transactioncode}
+                                // placeholder={"Select"}
+                                dropdownIcon={<SvgDropdown color={"#000"} />}
+                            />
+                        </div>
+                        <div className='col-12 md:col-6 lg:col-6'>
+                            <InputField
+                                label="Transaction Description"
+                                classNames='dropdown__add__sub'
+                                className='label__sub__add'
+                                placeholder="Enter"
+                                value={formik.values.transactionDescription}
+
+                                onChange={(e) => formik.setFieldValue('transactionDescription', e.target.value)}
+
+                            />
+                        </div>
+                        <div className='col-12 md:col-3 lg:col-3'>
+                            <InputField
+                                label="Transaction Number"
+                                classNames='dropdown__add__sub'
+                                className='label__sub__add'
+                                // placeholder="Enter"
+                                value={formik.values.transactionNumber}
+
+                                onChange={(e) => formik.setFieldValue('transactionNumber', e.target.value)}
+
+                            />
+                        </div>
+                        <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
+                            <div class="calender_container_claim p-0">
+                                <LabelWrapper
+                                    label="Date"
+                                    textSize={"16px"}
+                                    textColor={"#000"}
+                                    textWeight={"300"}
+                                    classNames="label__sub__add"
+                                >
+                                    <Calendar
+                                        value={date}
+                                        onChange={(e) => setDate(e.value)}
+                                        showIcon
+                                        className="calender_field_claim"
+                                    />
+                                    <div className="calender_icon_claim">
+                                        <SvgDatePicker />
+                                    </div>
+                                </LabelWrapper>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='col-12 m-0 '>
+                    <div className='sub__account__details__jV'>
+                        <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
+                            <div className="card">
+                                <DataTable
+                                    value={data}
+                                    style={{ overflowY: 'auto', maxWidth: '100%' }}
+                                    responsive={true}
+                                    className='table__view__taxation'
+                                    paginator
+                                    paginatorLeft
+                                    rows={5}
+                                    rowsPerPageOptions={[5, 10, 25, 50]}
+                                    currentPageReportTemplate="{first} - {last} of {totalRecords}"
+                                    paginatorTemplate={template2}
+                                    onPage={onPageChange}
+                                    onPageChange={onPageChange}
+                                >
+                                    {columns.map((column) => (
+                                        <Column
+                                            key={column.field}
+                                            field={column.field}
+                                            header={column.headerName}
+                                            style={{
+                                                width: `${100 / columns.length}%`,
+                                                boxSizing: 'border-box',
+                                                fontSize: 16,
+                                                fontWeight: 500,
+                                                color: '#111927'
+                                            }}
+                                            paginator
+                                            rows={5}
+                                            rowsPerPageOptions={[5, 10, 25, 50]}
+                                            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+                                            paginatorTemplate={template2}
+                                            bodyStyle={{
+                                                fontSize: 14,
+                                                height: 50,
+                                                fontWeight: 400,
+                                                color: '#111927',
+                                                padding: 18,
+                                                ...(column.field === 'status' && { color: 'green' }),
+                                            }}
+                                        // body={
+                                        //     column.field === 'view' ? (
+                                        //         <div onClick={() => handleNavigateedit()}><SvgArrow /></div>
+
+                                        //     ) : (
+                                        //         column.field 
+                                        //     )
+                                        // }
+                                        />
+                                    ))}
+                                </DataTable>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className='col-12 m-0 '>
+                        <div className='grid add__journal__vocture__view p-3'>
+                            <div class="sm-col-12  md:col-3 lg-col-4 ">
+                                <InputField
+                                    label="Total credit"
+                                    classNames='dropdown__add__sub'
+                                    className='label__sub__add'
+                                    placeholder="Enter"
+                                />
+                            </div>
+                            <div className='col-12 md:col-3 lg:col-3'>
+                                <InputField
+                                    label="Total Debit"
+                                    classNames='dropdown__add__sub'
+                                    className='label__sub__add'
+                                    placeholder="Enter"
+                                />
+                            </div>
+                            <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
+                                <InputField
+                                    label="Net"
+                                    classNames='dropdown__add__sub'
+                                    className='label__sub__add'
+                                    placeholder="Enter"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </form>
+        </div>
+
+    )
+
+}
+export default DetailsJournalVocture

@@ -15,6 +15,7 @@ import SvgArrow from '../../../assets/icons/SvgArrow'
 import { Dropdown } from 'primereact/dropdown'
 import { useNavigate } from 'react-router-dom'
 import { InputText } from 'primereact/inputtext'
+import { InputSwitch } from 'primereact/inputswitch'
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const SubAccountMaster = () => {
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [checked, setChecked] = useState(true);
 
   const onPageChange = (event) => {
     setFirst(event.first);
@@ -221,7 +223,19 @@ const SubAccountMaster = () => {
                       padding: 18,
                       ...(column.field === 'status' && { color: 'green' }),
                     }}
-                    body={column.field === 'view' ? <div onClick={() => handleNavigateedit()}><SvgArrow /></div> : column.field == 'status' ? 'Active' : column.field && 'A012'}
+                    body={column.field === 'view' ? <div onClick={() => handleNavigateedit()}><SvgArrow /></div> : column.field == 'status' ? 
+                    <InputSwitch
+                      checked={checked}
+                      onChange={(e) => setChecked(e.value)}
+                      content='jsjhjs'
+                      // falseValue={true}
+                      list='jd'
+                      name='hfghf'
+                      placeholder='jhhf'
+                      value="dggsd"
+                      
+                    />
+                     : column.field && 'A012'}
                   />
                 ))}
               </DataTable>

@@ -68,6 +68,8 @@ import AddBankCheque from "../module/FinanceMastersModule/BankChequeMaster/AddBa
 import BankChequeDetails from "../module/FinanceMastersModule/BankChequeMaster/BankChequeDetails";
 import AddPettyCash from "../module/FinanceMastersModule/PettyCashMaster/AddPettyCash";
 import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/PettyCashdetails";
+import AddJournalVoucture from "../module/JournalVoucher/AddJournalVoucture";
+import DetailsJournalVocture from "../module/JournalVoucher/DetailsJournalVocture";
 
 // import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
 // import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
@@ -144,6 +146,8 @@ const Maincomponent = () => {
             {/* Journal voucher */}
 
             <Route path="/journalvoucher" element={<Journalvoucher />} />
+            <Route path="journalvoucher/addjournalvoucture" element={<AddJournalVoucture/>}/>
+            <Route path="journalvoucher/detailsjournalvocture" element={<DetailsJournalVocture/>}/>
 
             {/* Corrections JV */}
 

@@ -1,248 +1,51 @@
-import React, { useState } from "react";
-import InputField from "../../../components/InputField";
-import DropDowns from "../../../components/DropDowns";
-import SuccessIcon from "../../../assets/icons/SuccessIcon";
-import SvgDropdown from "../../../assets/icons/SvgDropdown";
+import React from "react";
+import "../../PettyCashManagement/index.scss";
+import { BreadCrumb } from "primereact/breadcrumb";
+import SvgDot from "../../../assets/icons/SvgDot";
+import InitiateTable from "./InitiateTable";
 import { Button } from "primereact/button";
-import "../index.scss";
+import SvgAdd from "../../../assets/icons/SvgAdd";
+import { useNavigate } from "react-router";
 
 const Initiate = () => {
-  const [visiblePopup, setVisiblePopup] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const item = [
-    { label: "Initiate" },
-    { label: "Request" },
-    { label: "Disbursement" },
-    { label: "Disbursement" },
-    { label: "Replenish" },
+  const navigate = useNavigate();
+  const items = [
+    { label: "Petty Cash", url: "Petty Cash Management" },
+    { label: "Petty Cash Code Initiate", url: "/accounts/pettycash/pettycashcodeinitiate" },
   ];
+  const Initiate = { label: "Accounts" };
+
+  const handleClick =()=>{
+    navigate('/accounts/pettycash/pettycashcodeinitiate/initiate')
+  }
+
   return (
-    <div>
-      <div className="grid mt-3">
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Date "
-            placeholder="11/12/2023"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <DropDowns
-            className="input__filed"
-            label="Transaction Code"
-            placeholder="JV123"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-            value={selectedItem}
-            onChange={(e) => setSelectedItem(e.value)}
-            options={item}
-            optionLabel="name"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-          />
-        </div>
-
-        <div className="col-12 md:col-5 lg-col-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Description"
-            placeholder="Description here"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Transaction Number"
-            placeholder="Enter"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-      </div>
-      <div className="grid mt-3">
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <DropDowns
-            className="input__filed"
-            label="Branch Code"
-            placeholder="0102"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-            value={selectedItem}
-            onChange={(e) => setSelectedItem(e.value)}
-            options={item}
-            optionLabel="name"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-          />
-        </div>
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <DropDowns
-            className="input__filed"
-            label="Department Code"
-            placeholder="0102"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-            value={selectedItem}
-            onChange={(e) => setSelectedItem(e.value)}
-            options={item}
-            optionLabel="name"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-          />
-        </div>
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <DropDowns
-            className="input__filed"
-            label="Petty Cash Code"
-            placeholder="Ho"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-            value={selectedItem}
-            onChange={(e) => setSelectedItem(e.value)}
-            options={item}
-            optionLabel="name"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-          />
-        </div>
-        <div className="col-12 md:col-5 lg-col-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Description"
-            placeholder="Description here"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-      </div>
-      <div className="grid mt-3">
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <DropDowns
-            className="input__filed"
-            label="Currency"
-            placeholder="PHP"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-            value={selectedItem}
-            onChange={(e) => setSelectedItem(e.value)}
-            options={item}
-            optionLabel="name"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-          />
-        </div>
-        <div className="col-12 md:col-5 lg-col-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Description"
-            placeholder="Description here"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <DropDowns
-            className="input__filed"
-            label="Bank A/c"
-            placeholder="ABC-23023-562"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-            value={selectedItem}
-            onChange={(e) => setSelectedItem(e.value)}
-            options={item}
-            optionLabel="name"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-          />
-        </div>
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <DropDowns
-            className="input__filed"
-            label="Sub A/c"
-            placeholder="ABC-23023-562"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-            value={selectedItem}
-            onChange={(e) => setSelectedItem(e.value)}
-            options={item}
-            optionLabel="name"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-          />
-        </div>
-      </div>
-      <div className="grid mt-3">
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Petty Cash Size"
-            placeholder="Enter"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Minimum Cash Box"
-            placeholder="Enter"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Available Cash"
-            placeholder="Enter"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-        <div className="col-12 md:col-2-5 lg-col-2-5 input__view">
-          <InputField
-            classNames="input__filed"
-            label="Transaction Limit"
-            placeholder="Enter"
-            textColor={"#111927"}
-            textSize={"16"}
-            textWeight={400}
-          />
-        </div>
-        </div>
-      <div className="col-12 md:col-12 lg-col-12 button__view__corrections">
-        <div>
-          <Button
-            label="Approve"
-            className="correction__btn"
-            onClick={() => setVisiblePopup(true)}
-          />
-        </div>
-      </div>
-      <div className="col-12">
-        {visiblePopup && (
-          <div className="grid custom-modal-overlay_create">
-            <div className="col-10 md:col-2 lg:col-2 custommodal_create">
-              <div>Approved</div>
-              <div style={{ marginLeft: 15 }}>
-                <SuccessIcon />
-              </div>
-            </div>
+    <div className="pettycash__management">
+      <div className="grid  m-0">
+        <div className="col-12 md:col-6 lg:col-6">
+          <div className="pettycash__title">Petty Cash Code Initiate</div>
+          <div>
+            <BreadCrumb
+              model={items}
+              home={Initiate}
+              className="breadCrums"
+              separatorIcon={<SvgDot color={"#000"} />}
+            />
           </div>
-        )}
+        </div>
+        <div className="col-12 md:col-6 lg:col-6">
+          <div className="btn__container">
+            <Button
+              label="Initiate"
+              icon={<SvgAdd />}
+              className="add__btn"
+              onClick={() => {handleClick()}}
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <InitiateTable/>
       </div>
     </div>
   );

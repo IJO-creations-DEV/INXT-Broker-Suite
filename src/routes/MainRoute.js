@@ -77,12 +77,16 @@ import Bankdetailselection from "../module/PaymentVoucher/Bankdetailselection";
 // import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
 // import CompanyDetailsView from "../module/FinanceMastersModule/CompanyMaster/CompanyDetailsView"
 // import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
-// import AddBankAccount from "../module/FinanceMastersModule/BankAccountMaster/AddBankAccount";
-// import BankAccountdetails from "../module/FinanceMastersModule/BankAccountMaster/BankAccountdetails";
-// import AddBankCheque from "../module/FinanceMastersModule/BankChequeMaster/AddBankCheque";
-// import BankChequeDetails from "../module/FinanceMastersModule/BankChequeMaster/BankChequeDetails";
-// import AddPettyCash from "../module/FinanceMastersModule/PettyCashMaster/AddPettyCash";
-// import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/PettyCashdetails";
+import Initiate from "../module/PettyCashManagement/Initiate";
+import Disbursement from "../module/PettyCashManagement/Disbursement";
+import Request from "../module/PettyCashManagement/Request";
+import PettyCashReceipts from "../module/PettyCashManagement/Receipts/PettyCashReceipts";
+import PettyCashReplenish from "../module/PettyCashManagement/Replenish/PettyCashReplenish";
+import InitiateForm from "../module/PettyCashManagement/Initiate/InitiateForm"
+import PettyCashCodeDetails from "../module/PettyCashManagement/Initiate/PettyCashCodeDetails";
+import PettyCashRequest from "../module/PettyCashManagement/Request";
+import RequestForm from "../module/PettyCashManagement/Request/RequestForm";
+import AddRequestTable from "../module/PettyCashManagement/Request/AddRequestTable";
 
 const Maincomponent = () => {
   return (
@@ -156,10 +160,20 @@ const Maincomponent = () => {
             <Route path="/reversaljv" element={<Reversalsjv />} />
 
             {/* Petty Cash Management */}
-            <Route
+            <Route path="accounts/pettycash/pettycashcodeinitiate" element={<Initiate />} />
+            <Route path="accounts/pettycash/pettycashcodeinitiate/initiate" element={<InitiateForm />} />
+            <Route path="accounts/pettycash/PettyCashCodeDetails" element={<PettyCashCodeDetails />} />
+            <Route path="accounts/pettycash/pettycashrequest" element={<PettyCashRequest />} />
+            <Route path="accounts/pettycash/addrequest" element={<RequestForm />} />
+            <Route path="accounts/pettycash/addrequesttable" element={<AddRequestTable />} />
+            <Route path="accounts/pettycash/disbursement" element={<Disbursement />} />
+            <Route path="accounts/pettycash/request" element={<Request />} />
+            <Route path="accounts/pettycash/pettycashreceipts" element={<PettyCashReceipts />} />
+            <Route path="accounts/pettycash/pettycashreplenish" element={<PettyCashReplenish />} />
+            {/* <Route
               path="/pettycashmanagement"
               element={<Pettycashmanagement />}
-            />
+            /> */}
             {/* Finacel Master Route*/}
             {/* <Route
               path="master/finance/accountcate"

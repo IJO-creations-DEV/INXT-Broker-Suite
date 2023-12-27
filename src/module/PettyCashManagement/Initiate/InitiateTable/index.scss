@@ -1,75 +1,13 @@
-.company__container {
-  .company__title {
-    color: #111927;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 600;
-    font-family: "Inter var";
-  }
-  .breadCrums {
-    padding: 0;
-    border: none !important;
-    font-weight: 500;
-    color: #000;
-    font-size: 16px;
-  }
-  .p-breadcrumb {
-    background: #ffffff;
-    border: none !important;
-    border-radius: 6px;
-    padding: 0rem;
-    margin-top: 1rem;
-  }
-  .add__btn {
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    background-color: #6366f1;
-    border-radius: 60px !important;
-    padding-right: 1.8rem;
-    padding-left: 1.8rem;
-    margin: 10px;
-    font-family: "Inter var";
-    column-gap: 0.4rem;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-  }
-  .next_container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-  }
-  .edit__icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-  }
-  .buttons__edit {
-    color: #ffffff;
-background: #6366f1;
-border: 1px solid #6366f1;
-padding: 0.75rem 1.25rem;
-font-size: 1rem;
-transition: background-color 0.2s, color 0.2s, border-color 0.2s,
-box-shadow 0.2s;
-border-radius: 30px;
-margin-right: 10px;
-width: 120px;
-height: 38px;
-  }
-  .btn__container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
+.initiate__table {
   .header_search_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
   }
+//   .p-card .p-card-content {
+//     padding: 0rem 0;
+// }
   .searchinput_left {
     width: 100%;
     border-radius: 8px;
@@ -141,30 +79,67 @@ height: 38px;
     font-size: 1rem;
   }
   // .upload__btn{
-    .p-button {
-      color: #ffffff;
-      background: #6366F1 !important;
-      border: 1px solid #6366F1 !important;
-      padding: 0.55rem 1.75rem !important;
-      font-size: 1rem !important;
-      transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-      border-radius: 20px !important;
-  }
-  .sorbyfilter_container{
-    background: #fff !important;
-    color: #6366F1 !important;
-  }
-  .save__btn{
+  .p-button {
     color: #ffffff;
-    background: #6366F1 !important;
-    border: 1px solid #6366F1 !important;
+    background: #6366f1 !important;
+    border: 1px solid #d1d5db !important;
+    padding: 0.25rem 0.75rem !important;
+    font-size: 1rem !important;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
+    border-radius: 10px !important;
+  }
+  .sorbyfilter_container {
+    background: #fff !important;
+    color: #6366f1 !important;
+  }
+  .save__btn {
+    color: #ffffff;
+    background: #6366f1 !important;
+    border: 1px solid #6366f1 !important;
     padding: 0.75rem 2.75rem !important;
     font-size: 1rem !important;
-    
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
     border-radius: 20px !important;
   }
   // }
+  .empty-table-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  .sub__title {
+    color: #111927;
+    font-family:  Inter var;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 10px;
+  }
+//   .pagedropdown_container{
+//     margin-right: 20%;
+//     border-style: hidden;
+//     background-color: #FAFAFA;
+// }
+.eye__btn{
+    color: #ffffff ;
+     background: #ffff !important; 
+    border: 1px solid #fff !important;
+    padding: 0.25rem 0.75rem !important;
+    font-size: 1rem !important;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 10px !important;
+}
+.fieldvalue_container.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media screen and (min-width: 1024px) {
   .input__view.lg-col-2-5 {

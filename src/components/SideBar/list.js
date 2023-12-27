@@ -16,7 +16,33 @@ export const menuList = [
             {
                 id:3,
                 name: 'Petty Cash',
-                path: '/pettycashmanagement',
+                submenu: [
+                    {
+                        id: 1,
+                        name: 'Initiate',
+                        path: 'accounts/pettycash/pettycashcodeinitiate',
+                    },
+                    {
+                        id: 2,
+                        name: 'Request',
+                        path: 'accounts/pettycash/request',
+                    },
+                    {
+                        id: 3,
+                        name: 'Disbursement', 
+                        path: 'accounts/pettycash/disbursement', 
+                    },
+                    {
+                        id: 4,
+                        name: 'Receipts', 
+                        path: 'accounts/pettycash/receipts',
+                    },
+                    {
+                        id: 5,
+                        name: 'Replenish', 
+                        path: 'accounts/pettycash/replenish',
+                    },
+                ]
             },
             {
                 id:4,

@@ -6,20 +6,25 @@ import SvgDot from "../../../assets/icons/SvgDot";
 import { Button } from "primereact/button";
 import NavBar from "../../../components/NavBar";
 import { DataTable } from "primereact/datatable";
+import { useNavigate } from "react-router-dom";
 import { Column } from "primereact/column";
-import { data } from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import { Card } from "primereact/card";
 import SvgBack from "../../../assets/icons/SvgBack";
+import SvgDropdown from "../../../assets/icons/SvgDropdown";
+import DropDowns from "../../../components/DropDowns";
 
 function PolicyReceipts() {
   const [products, setProducts] = useState([]);
+  const [selectedItem,setSelectedItem]=useState(null)
+  const [selectedItem1,setSelectedItem1]=useState(null)
+  const [selectedItem2,setSelectedItem2]=useState(null)
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    setProducts(data);
-  }, []);
-
-  const items = [{ label: "Receipts" }, { label: "Receipt Detail View" }];
+const handlePaymentClick =()=>{
+    navigate("/")
+}
+  const items = [{ label: "Receipts" }, { label: "Add Receipts" }];
 
   const home = { label: "Accounts " };
   const template2 = {
@@ -32,6 +37,8 @@ function PolicyReceipts() {
         { label: 20, value: 20 },
         { label: 120, value: 120 },
       ];
+
+      
 
       return (
         <React.Fragment>
@@ -51,6 +58,22 @@ function PolicyReceipts() {
       );
     },
   };
+  const data =[
+    { name: "Bank00123", code: "B1" },
+    { name: "Bank00256", code: "B2" },
+    { name: "Bank00134", code: "B3"},
+  ]
+  const data1 = [
+    { name: "678945678902", code: "01" },
+    { name: "678934562345", code: "02" },
+    { name: "987645345672", code: "03"},
+  ]
+  const data2 = [
+    { name: "Card", code: "C1" },
+    { name: "Card1", code: "C2" },
+    { name: "Card2", code: "C3"},
+  ]
+  
 
   const headerStyle = {
     fontSize: 16,
@@ -62,10 +85,10 @@ function PolicyReceipts() {
   };
 
   return (
-    <div className="overall__policy_receipts_view__container">
+    <div className="overall__payment_details_container">
       <NavBar />
       <SvgBack/>
-      <label className="label_header">Receipt Detail View</label>
+      <label className="label_header">Payment Details</label>
       <BreadCrumb
         model={items}
         home={home}
@@ -73,92 +96,8 @@ function PolicyReceipts() {
         separatorIcon={<SvgDot color={"#000"} />}
       />
 
-      <div className="listlable_textcontainer">
-        <label className="listlable_text">Receipts List</label>
-      </div>
 
-      <div className="card">
-        <DataTable
-          value={products}
-          tableStyle={{
-            minWidth: "50rem",
-            color: "#1C2536",
-            maxHeight: "50vh",
-            overflowy: "auto",
-          }}
-          className="datatable_container"
-        >
-          <Column
-            field="policies"
-            header="Policies"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-          <Column
-            field="netPremium"
-            header="Net Premium"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-          <Column
-            field="paid"
-            header="Paid"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-          <Column
-            field="unPaid"
-            header="UnPaid"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-          <Column
-            field="discounts"
-            header="Discounts"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-          <Column
-            field="dst"
-            header="DST"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-          <Column
-            field="lgt"
-            header="LGT"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-
-          <Column
-            field="vat"
-            header="VAT"
-            headerStyle={headerStyle}
-            className="fieldvalue_containers"
-          ></Column>
-          <Column
-            field="ewt"
-            header="EWT"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-          <Column
-            field="fcAmount"
-            header="FC Amount"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-          <Column
-            field="lcAmount"
-            header="LC Amount"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-          ></Column>
-        </DataTable>
-      </div>
-
-      <div className="label_payments">Payment Details</div>
+     
       <Card>
         <div class="grid">
           <div class="col-4 md:col-4 lg-col-4">
@@ -175,11 +114,17 @@ function PolicyReceipts() {
         <div class="grid">
           <div class="col-4 md:col-4 lg-col-4">
             <div>
-              <InputField
-                classNames="field__policy "
-                label="Bank code"
-                value={"Bank00123"}
-              />
+                 <DropDowns
+              className="dropdown__container"
+              label="Bank code"
+              value={selectedItem}
+              onChange={(e) => setSelectedItem(e.value)}
+              options={data}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+             
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
@@ -195,11 +140,17 @@ function PolicyReceipts() {
         <div class="grid">
           <div class="col-4 md:col-4 lg-col-4">
             <div>
-              <InputField
-                classNames="field__policy "
-                label="Bank Account"
-                value={"265478932107"}
-              />
+            <DropDowns
+              className="dropdown__container"
+              label="Bank Account"
+              value={selectedItem1}
+              onChange={(e) => setSelectedItem1(e.value)}
+              options={data1}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+             
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
@@ -215,11 +166,17 @@ function PolicyReceipts() {
         <div class="grid">
           <div class="col-4 md:col-4 lg-col-4">
             <div>
-              <InputField
-                classNames="field__policy"
-                label="Payment Type"
-                value={"Card"}
-              />
+            <DropDowns
+              className="dropdown__container"
+              label="Payment Type"
+              value={selectedItem2}
+              onChange={(e) => setSelectedItem2(e.value)}
+              options={data2}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+             
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
@@ -231,8 +188,12 @@ function PolicyReceipts() {
               />
             </div>
           </div>
+         
         </div>
       </Card>
+      <div className="exit_print_buttons">
+          <Button label="Approve" className="print" onClick={handlePaymentClick} />
+        </div>
     </div>
   );
 }

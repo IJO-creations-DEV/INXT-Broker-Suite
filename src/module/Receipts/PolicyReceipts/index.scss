@@ -1,92 +1,131 @@
-.overall__policyrecepts__container{
-  // background-color: green;
-  .label_header{
-     
-color: #111927;
-font-family: Inter var;
-font-size: 26px;
-// font-style: normal;
-font-weight: 600;
-// line-height: normal;
+.overall__policyreceipts__container {
+ 
+  .label_header {
+    color: #111927;
+    font-family: Inter var;
+    font-size: 30px;
+    font-weight: 600;
   }
   .p-paginator {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end !important;
-      flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end !important;
+    flex-wrap: wrap;
+  }
+  .datatable_container {
+    height: 100%;
+    width: 100%;
   }
 
-  .addtext{
-      color: #FFF;
+  .addtext {
+    color: #fff;
 
-font-family: Inter var;
-font-size: 16px;
-font-weight: 500;
+    font-family: Inter var;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .dropdown__container {
+    width: 100%;
+    height: 44px;
+    border-radius: 11px;
+    overflow: hidden;
+    text-wrap: nowrap;
+    margin: 10px 0px;
+  }
 
+  .breadcrumbs_container {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Inter var;
+    border: 1px solid #fff !important;
+    border-radius: 6px !important;
+    padding: 1rem 0rem !important;
   }
-  .dropdown__container{
-      width:100%;
-      height:44px;
-      border-radius: 11px;
-      overflow: hidden;
-      text-wrap: nowrap;
-      margin: 10px 0px;
+  .addbutton_container {
+    background-color: #6366f1;
+    border-radius: 60px;
+    width: 100px !important;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
   }
+  .listlable_textcontainer {
+    margin: 10px 0px;
+  }
+  .listlable_text {
+    color: #111927;
+    margin-bottom: 40px;
+    font-family: Inter var;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .filterbutton_container {
+    display: flex;
+    align-items: center;
+    margin: 16px 0px;
+    gap: 20px;
+  }
+  .overallfilter_container {
+    display: flex;
+    align-items: self-start;
+    justify-content: space-between;
+  }
+  .overallcard_container {
+    width: 1236px;
+    height: 700px;
+  }
+  .searchinput_left {
+    width: 100%;
+    border-radius: 8px;
+  }
+  .searchiput_container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .sorbyfilter_container {
+    flex-direction: row-reverse;
+    padding: 0px 3px;
+    width: 128px;
+    height: 46px;
+    border-color: #d1d5db;
+  }
+  .pagedropdown_container {
+    margin-right: 20%;
+    border-style: hidden;
+    background-color: #fafafa;
+  }
+  .header_search_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
   
-.breadcrumbs_container{
+  }
+  .p-card .p-card-content {
+     padding:0; 
+}
+  .fieldvalue_container {
+    font-size: 16px;
+    font-family: Inter var;
+    font-weight: 400;
   
-  
-  font-size: 14px;
-  font-weight: 500;
-  font-family: Inter var;
-  border: 1px solid #fff !important; 
-  border-radius: 6px !important;
-  padding: 2rem 0rem !important;
-}
-.addbutton_container{
-  background-color: #6366f1;
-  border-radius: 60px;
-  width: 90px !important;
-  height: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: #fff;
-}
-.filterbutton_container{
-  display: flex;
-  // justify-content:center;
-  align-items: center;
-  margin: 16px 0px;
-  gap:20px
-}
-.overallfilter_container{
-  display: flex;
-  align-items: self-start;
-  justify-content: space-between;
-}
-.overallcard_container{
- width:1236px;
- height:700px;
-}
-.searchinput_left{
-   width:294%;
-   border-radius: 10px;
- }
-.searchiput_container{
-  // background-color: red;
-  width: 100%;
-  margin-bottom: 20px;
-}
-.fieldvalue_container{
-  font-size: 14px;
-  font-family: Inter var;
-  font-weight: 400;
-}
-.p-tabview .p-tabview-nav {
-  background: #ffffff;
-   border: none;
-  border-width: 0 0 2px 0;
-}
+  }
+  .fieldvalue_containers {
+    font-size: 16px;
+    font-family: Inter var;
+    font-weight: 400;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .p-datatable .p-datatable-tbody > tr > td {
+    text-align: left;
+    border: 1px solid #e5e7eb;
+    border-width: 0 0 1px 0;
+    padding: 1rem 0rem;
+  }
 }

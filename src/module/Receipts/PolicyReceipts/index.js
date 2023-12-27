@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import NavBar from "../../../components/NavBar";
@@ -10,45 +10,121 @@ import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-import { TabView, TabPanel } from "primereact/tabview";
 import { data } from "./mock";
-import { data1 } from "./mock1";
-import SvgArrow from "../../../assets/icons/SvgArrow";
+import { Button } from "primereact/button";
+import { Dropdown } from "primereact/dropdown";
+import SvgEye from "../../../assets/icons/SvgEye";
+import { TieredMenu } from 'primereact/tieredmenu';
 
-const Index = () => {
+const PolicyReceipts = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setProducts(data);
+  }, []);
+  const menu = useRef(null);
+  const items = [
+  
+    {
+      label: 'Receipts',
+    },
+   
+  ];
+
+  const template2 = {
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    RowsPerPageDropdown: (options) => {
+      const dropdownOptions = [
+        { label: 5, value: 5 },
+        { label: 10, value: 10 },
+        { label: 20, value: 20 },
+        { label: 120, value: 120 },
+      ];
+
+      return (
+        <React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Row count :{" "}
+          </span>
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
+        </React.Fragment>
+      );
+    },
+  };
 
   const headerStyle = {
-    width: "12rem",
     fontSize: 16,
     fontFamily: "Inter var",
     fontWeight: 500,
-    padding: 6,
+    padding: "10px 0",
     color: "#000",
     border: "none",
+    textalign: "center",
+    
+  };
+  const headerStyle1 = {
+    width: "10%",
+
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: "10px 0",
+    color: "#000",
+    border: "none",
+    textalign: "center",
+  };
+  const headerStyle2 = {
+    width: "14%",
+
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: "10px 0",
+    color: "#000",
+    border: "none",
+    textalign: "center",
+  };
+  const headerStyle3 = {
+    width: "8%",
+
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: "10px 0",
+    color: "#000",
+    border: "none",
+    textalign: "center",
   };
 
-  const items = [
-    
-    { label: "Accounts " },
-    { label: "Receipts" },
-  ];
-  const home = { label: "Dashboard" };
+  const itemss = [{ label: "Name" },{ label: "Date" },{ label: "Transaction Number" },{ label: "Receipt Number" }];
+  const home = { label: "Accounts " };
 
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
- 
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
   };
 
+  const onGlobalFilterChange = (event) => {
+    setGlobalFilter(event.target.value);
+  };
 
-
-  const handlePolicy =()=>{
-    navigate('/addpolicyreceipt1')
-  }
+  const handlePolicy = () => {
+    navigate("/addpolicyreceipts1");
+  };
   const handleArrowClick = () => {
     navigate("/policyreceiptsview");
   };
@@ -56,7 +132,7 @@ const Index = () => {
     navigate("/otherreceiptsview");
   };
   return (
-    <div className="overall__policyrecepts__container">
+    <div className="overall__policyreceipts__container">
       <NavBar />
       <div className="overallfilter_container">
         <div>
@@ -68,10 +144,7 @@ const Index = () => {
             separatorIcon={<SvgDot color={"#000"} />}
           />
         </div>
-
         <div className="filterbutton_container">
-          <SvgFilters />
-
           <div className="addbutton_container" onClick={handlePolicy}>
             <SvgAdd className="addicon" />
             <p className="addtext">Add</p>
@@ -79,156 +152,106 @@ const Index = () => {
         </div>
       </div>
 
-      <TabView>
-        <TabPanel header="Policy Receipt">
-          <Card
-        
+      <Card>
+        <div className="header_search_container">
+          <div class="col-12 md:col-6 lg:col-10">
+            <span className="p-input-icon-left" style={{ width: "100%" }}>
+              <i className="pi pi-search" />
+              <InputText
+                placeholder="Search by Customer Code"
+                className="searchinput_left"
+              />
+            </span>
+          </div>
+          {/* </div> */}
+          <div class="col-12 md:col-3 lg:col-2">
+          <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" />
+            <Button 
+              label="Search by"
+              outlined
+              icon={<SvgFilters />}
+              className="sorbyfilter_container"
+              onClick={(e) => menu.current.toggle(e)}
+            />
+          </div>
+        </div>
+        <div className="listlable_textcontainer">
+          <label className="listlable_text">Receipts history</label>
+        </div>
+
+        <div className="card">
+          <DataTable
+            value={products}
+            tableStyle={{
+              minWidth: "50rem",
+              color: "#1C2536",
+              maxHeight: "50vh",
+              overflowy: "auto",
+            
+            }}
+            scrollable={true}
+            scrollHeight="40vh"
+            paginator
+            rows={5}
+            rowsPerPageOptions={[5, 10, 25, 50]}
+            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+            paginatorTemplate={template2}
+            className="datatable_container"
           >
-            <div className="searchiput_container">
-              <span className="p-input-icon-left">
-                <i className="pi pi-search" />
-                <InputText placeholder="Search" className="searchinput_left" />
-              </span>
-            </div>
+            <Column
+              field="receiptNumber"
+              header="Receipt Number"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="transactionCode"
+              header="Transaction Code"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="transactionNumber"
+              header="Transaction Number"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="name"
+              header="Name"
+              headerStyle={headerStyle1}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="customerCode"
+              header="Customer Code"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="date"
+              header="Date"
+              headerStyle={headerStyle2}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="amount"
+              header="Amount"
+              headerStyle={headerStyle3}
+              className="fieldvalue_container"
+            ></Column>
 
-            <div className="card">
-              <DataTable
-                value={data}
-                tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
-                paginator
-                rows={5}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                paginatorTemplate=" FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                currentPageReportTemplate="{first} - {last} of {totalRecords}"
-              >
-                <Column
-                  field="customerName"
-                  header="customerName"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="branchCode"
-                  header="branchCode"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="departmentCode"
-                  header="departmentCode"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="receiptNo"
-                  header="receiptNo"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="receiptDate"
-                  header="receiptDate"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="paymentType"
-                  header="paymentType"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="amount"
-                  header="amount"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  body={(params) => (
-                    <SvgArrow onClick={() => handleArrowClick()} />
-                  )}
-                  header="Action"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-              </DataTable>
-            </div>
-          </Card>
-        </TabPanel>
-
-        <TabPanel header="Other Receipt">
-          <Card
-          
-          >
-            <div className="searchiput_container">
-              <span className="p-input-icon-left">
-                <i className="pi pi-search" />
-                <InputText placeholder="Search" className="searchinput_left" />
-              </span>
-            </div>
-
-            <div className="card">
-              <DataTable
-                value={data1}
-                tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
-                paginator
-                rows={5}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                paginatorTemplate=" FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                currentPageReportTemplate="{first} - {last} of {totalRecords}"
-              >
-                <Column
-                  field="branchCode"
-                  header="Branch Code"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="departmentCode"
-                  header="Department Code"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="receiptNo"
-                  header="Receipt No"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="receiptDate"
-                  header="Receipt Date"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="paymentType"
-                  header="Payment Type"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-                <Column
-                  field="amount"
-                  header="Amount"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-          
-                <Column
-                  body={() => (
-                    <SvgArrow onClick={() => handleEditClick()} />
-                  )}
-                  header="Action"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-              </DataTable>
-            </div>
-          </Card>
-        </TabPanel>
-      </TabView>
+            <Column
+              body={() => <SvgEye onClick={() => handleArrowClick()} />}
+              header="Action"
+              headerStyle={headerStyle}
+              className="fieldvalue_containers"
+            ></Column>
+          </DataTable>
+        </div>
+      </Card>
     </div>
   );
 };
 
-export default Index;
+export default PolicyReceipts;

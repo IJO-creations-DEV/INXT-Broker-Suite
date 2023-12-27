@@ -5,7 +5,6 @@ import ProtectedLayout from "./ProtectedRoute";
 import ResponsiveDrawer from "../components/SideBar";
 import CorrectionJV from "../module/CorrectionJV";
 import PolicyReceipts from "../module/Receipts/PolicyReceipts";
-import OtherReceipts from "../module/Receipts/OtherReceipts";
 import { DataTable } from "primereact/datatable";
 // import PendingEndorsementScreen from "../module/EndorsementModule/EndorsementPendingScreen/index";
 
@@ -13,11 +12,9 @@ import { DataTable } from "primereact/datatable";
 // import OtherReceipts from "../src/module/Receipts/OtherReceipts/index";
 // import Correctionsjv from "../src/module/CorrectionsJV/index";
 import PolicyReceiptsView from "../module/Receipts/PolicyReceiptsView";
-import OtherReceiptsView from "../module/Receipts/OtherReceiptsView";
-import AddOtherReceipts from "../module/Receipts/AddOtherReceipts";
 import AddPolicyReceipts1 from "../module/Receipts/AddPolicyReceipts1";
 // import AddPolicyReceipts1 from "../src/module/Receipts/AddReceipts/AddPolicyReceipts1";
-import AddReceiptsEntry from "../module/Receipts/AddReceiptsEntry";
+import AddPolicyEdit from "../module/Receipts/AddPolicyReceiptEdit"
 import Receipts from "../module/Receipts";
 import Reversalsjv from "../module/Reversals/index";
 import Pettycashmanagement from "../module/PettyCashManagement/index";
@@ -40,6 +37,7 @@ import CurrencyMaster from "../module/FinanceMastersModule/CurrencyMaster";
 import ExchangeRateMaster from "../module/FinanceMastersModule/ExchangeRateMaster";
 import MainAccountMaster from "../module/FinanceMastersModule/MainAccountMaster";
 import PettyCashMaster from "../module/FinanceMastersModule/PettyCashMaster";
+import PaymentDetails from "../module/Receipts/PaymentDetails"
 import SubAccountMaster from "../module/FinanceMastersModule/SubAccountMaster";
 import TaxationMaster from "../module/FinanceMastersModule/TaxationMaster";
 import TransactionCodeMaster from "../module/FinanceMastersModule/TransactionCodeMaster";
@@ -111,24 +109,22 @@ const Maincomponent = () => {
             <Route path="/Receipts" element={<Receipts />} />
 
             <Route path="/addpolicyreceipts" element={<AddPolicyReceipts />} />
-            <Route path="/otherreceipts" element={<OtherReceipts />} />
-            <Route path="/otherreceipts" element={<OtherReceipts />} />
+           
             <Route
               path="/policyreceiptsview"
               element={<PolicyReceiptsView />}
             />
-            <Route path="/otherreceiptsview" element={<OtherReceiptsView />} />
+           
             <Route path="/addpolicyreceipt1" element={<AddPolicyReceipts1 />} />
-            <Route path="/addotherreceipt" element={<AddOtherReceipts />} />
-            <Route path="/addreceiptsentry" element={<AddReceiptsEntry />} />
+           
             <Route path="/policyreceipts" element={<PolicyReceipts />} />
-
+            <Route path="/addpolicyedit" element={<AddPolicyEdit/>}/>
             <Route
               path="/policyreceiptsview"
               element={<PolicyReceiptsView />}
             />
-
-            <Route path="/otherreceipts" element={<OtherReceipts />} />
+         <Route path="paymentdetails" element={<PaymentDetails/>}/>
+           
 
             <Route
               path="/addpolicyreceipts1"

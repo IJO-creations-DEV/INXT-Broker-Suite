@@ -4,135 +4,216 @@ import { BreadCrumb } from "primereact/breadcrumb";
 import InputField from "../../../components/InputField";
 import SvgDot from "../../../assets/icons/SvgDot";
 import { Button } from "primereact/button";
-import DropDowns from "../../../components/DropDowns";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
+import DropDowns from "../../../components/DropDowns";
+import { Card } from "primereact/card";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
+import SvgBack from "../../../assets/icons/SvgBack";
 
-function PolicyReceipts() {
+
+function BranchAdding() {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [select, setSelect] = React.useState("");
+  const [selectedItem1, setSelectedItem1] = useState(null);
+  const [selectedItem2, setSelectedItem2] = useState(null);
+  const [selectedItem3, setSelectedItem3] = useState(null);
+  const [selectedItem4, setSelectedItem4] = useState(null);
+  const [selectedItem5, setSelectedItem5] = useState(null);
+  const [visiblePopup, setVisiblePopup] = useState(false);
+
+  const handleClick =()=>{
+    navigate("/addpolicyedit")
+  }
+  
   const navigate = useNavigate();
-
-  const handleReceipts = () => {
-    if (select === "policyreceipts") {
-      navigate("/addpolicyreceipts");
-    } else if (select === "otherreceipts") {
-      navigate("/addotherreceipt");
-    }
-  };
-  const handleChange = (event) => {
-    const selectedValue = event.target.value;
-    console.log(event, "event==>");
-    setSelect(selectedValue);
-  };
-
+  const items = [{ label: "Receipts" }, { label: "Add Receipts" }];
+  const home = { label: "Accounts " };
   const item = [
-    { name: "New York", code: "NY" },
-    { name: "Rome", code: "RM" },
-    { name: "London", code: "LDN" },
-    { name: "Istanbul", code: "IST" },
-    { name: "Paris", code: "PRS" },
+    { name: "Policy", code: "PL" },
+    { name: "Policy1", code: "P1" },
+    { name: "Policy2", code: "P2"},
+   
   ];
-  const data = [
-    { name: "Policy Receipts", code: "PR",value:"policyreceipts"},
-    { name: "Other Receipts", code: "OR",value:'otherreceipts' },
+  const item1 = [
+    { name: "Branch00123", code: "BH" },
+    { name: "Branch00345", code: "B1" },
+    { name: "Branch00678", code: "B2"},
+   
   ];
-  const items = [
-    { label: "Accounts " },
-    { label: "Receipts" },
-    { label: "Add Receipt" },
+  const item2 = [
+    { name: "Depart00123", code: "DP" },
+    { name: "Depart00345", code: "D1" },
+    { name: "Depart00678", code: "D2"},
+   
   ];
-
-  const home = { label: "Dashboard" };
+  const item3 = [
+    { name: "00123", code: "C1" },
+    { name: "00345", code: "C2" },
+    { name: "00678", code: "C3"},
+   
+  ];
+  const item4 = [
+    { name: "INR", code: "IR" },
+    { name: "INR1", code: "IR1" },
+    { name: "INR2", code: "IR2"},
+   
+  ];
+  const item5 = [
+    { name: "Trans0123", code: "TR1" },
+    { name: "Trans345", code: "TR2" },
+    { name: "Trans456", code: "TR3"},
+   
+  ];
+ 
 
   return (
-    <div className="overall__add_policy_receipts__container">
-      <NavBar/>
-      <label className="label_header">Receipt Details</label>
+    <div className="overall_add_policy_receipts_container">
+        <NavBar/>
+        <div>
+        <SvgBack/>
+      <label className="label_header">Add Receipts</label>
+      </div>
       <BreadCrumb
         model={items}
         home={home}
         className="breadcrumbs_container"
         separatorIcon={<SvgDot color={"#000"} />}
       />
-
-      <div class="grid">
-        <div class="sm-col-12 col-12 md:col-3 lg-col-2-5">
-          <div>
+      <Card>
+        <div class="grid">
+          <div class="sm-col-12  md:col-3 lg-col-4 col-offset-9">
             <DropDowns
               className="dropdown__container"
-              label="Branch"
+              label="Receipt Date"
               value={selectedItem}
               onChange={(e) => setSelectedItem(e.value)}
               options={item}
               optionLabel="name"
-              placeholder="Select"
+              placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
         </div>
-        <div class="sm-col-12  md:col-3 lg-col-2-5">
-          <div>
-            <DropDowns
-              className="dropdown__container"
-              label="Department"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder="Select"
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
+        <div class="grid">
+          <div class="sm-col-12 col-12 md:col-3 lg-col-4">
+            <div>
+              <InputField
+                classNames="field__container"
+                label="Receipt Number"
+                placeholder={"Enter"}
+              />
+            </div>
           </div>
-        </div>
-        <div class="sm-col-12  md:col-3 lg-col-2-5">
-          <div>
+          <div class="sm-col-12  md:col-3 lg-col-4">
+            <div>
             <DropDowns
               className="dropdown__container"
               label="Receipt Type"
-              value={select}
-              onChange={handleChange}
-              options={data}
-              optionLabel="name"
-              placeholder="Select"
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-        </div>
-        <div class="col-12 md:col-3 lg-col-2-5">
-          <div>
-            <DropDowns
-              className="dropdown__container"
-              label="Customer Code"
               value={selectedItem}
               onChange={(e) => setSelectedItem(e.value)}
               options={item}
               optionLabel="name"
-              placeholder="Select"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+            </div>
+          </div>
+          <div class="sm-col-12  md:col-3 lg-col-4">
+            <div>
+            <DropDowns
+              className="dropdown__container"
+              label="Branch Code"
+              value={selectedItem1}
+              onChange={(e) => setSelectedItem1(e.value)}
+              options={item1}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+            </div>
+          </div>
+          <div class="sm-col-12  md:col-3 lg-col-4">
+            <div>
+            <DropDowns
+              className="dropdown__container"
+              label="Department Code"
+              
+              value={selectedItem2}
+              onChange={(e) => setSelectedItem2(e.value)}
+              options={item2}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+            </div>
+          </div>
+        </div>
+
+      
+        <div class="grid">
+          <div class="col-3 md:col-3 lg-col-3">
+            <DropDowns
+              className="dropdown__container"
+              label="Customer Code"
+              value={selectedItem3}
+              onChange={(e) => setSelectedItem3(e.value)}
+              options={item3}
+              optionLabel="name"
+              placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
-        </div>
-        <div class="col-12 md:col-3 lg-col-2-5">
-          <div>
-            <InputField
-              classNames="field__container"
-              label="Remarks"
-              placeholder={"Enter"}
+          <div class="col-3 md:col-3 lg-col-3">
+            <DropDowns
+              className="dropdown__container"
+              label="Currency Code"
+              value={selectedItem4}
+              onChange={(e) => setSelectedItem4(e.value)}
+              options={item4}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
+          <div class="sm-col-12 col-12 md:col-3 lg-col-4">
+          <DropDowns
+              className="dropdown__container"
+              label="Transaction Code"
+              value={selectedItem5}
+              onChange={(e) => setSelectedItem5(e.value)}
+              options={item5}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+           
+          </div>
+      
         </div>
-      </div>
+     <div class="grid">
+          <div class="col-6 md:col-6 lg-col-6">
+            <div>
+            <InputField
+                classNames="field__container"
+                label="Remarks (Optional)"
+                placeholder={"Enter"}
+              />
+           
+            </div>
+          </div>
+      
+        </div> 
+
+      </Card>
 
       <div className="next_container">
         <div className="exit_print_buttons">
-          <Button label="Next" className="print" onClick={handleReceipts}
-          ></Button>
+          <Button label="Next" className="print" onClick={handleClick} />
         </div>
+     
       </div>
     </div>
   );
 }
 
-export default PolicyReceipts;
+export default BranchAdding;

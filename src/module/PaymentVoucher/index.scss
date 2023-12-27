@@ -4,7 +4,7 @@
        
 color: #111927;
  font-family: Inter var;
-font-size: 26px;
+font-size: 30px;
 // font-style: normal;
 font-weight: 600;
 // line-height: normal;header_search_container
@@ -20,9 +20,9 @@ font-weight: 600;
         color: #FFF;
 
 font-family: Inter var;
-font-size: 16px;
+font-size: 20px;
 font-weight: 500;
-
+gap:10px
     }
     .dropdown__container{
         width:100%;
@@ -32,16 +32,25 @@ font-weight: 500;
         text-wrap: nowrap;
         margin: 10px 0px;
     }
+    .headlist_lable{
+        color: #111927;
+
+        font-family: Inter var;
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: 600;
+         
+    }
     
 .breadcrumbs_container{
     // margin-bottom: 60px;
     
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 400;
     font-family: Inter var;
     border: 1px solid #fff !important; 
     border-radius: 6px !important;
-    padding: 2rem 0rem !important;
+    padding: 2rem 0.5rem !important;
 }
 .addbutton_container{
     background-color: #6366f1;
@@ -53,13 +62,15 @@ font-weight: 500;
     align-items: center;
     cursor: pointer;
     color: #fff;
+    gap: 4px;
   }
   .filterbutton_container{
     display: flex;
     // justify-content:center;
     align-items: center;
     margin: 16px 0px;
-    gap:20px
+    
+    padding: 8px 20px;
 }
   .overallfilter_container{
     display: flex;
@@ -81,11 +92,15 @@ font-weight: 500;
 }
 .sorbyfilter_container{
     flex-direction: row-reverse;
-    // gap:10px;
+    gap:10px;
     height: 46px;
     border-color: #d1d5db;
-    width: 85%;
+    // width: 85%;
     margin-left: 8px;
+    font-family: Inter var;
+font-size: 16px;
+padding: 10px;
+font-weight: 500;
     
 }
 .pagedropdown_container{
@@ -100,10 +115,14 @@ font-weight: 500;
    margin-bottom: 16px;
 
 }
+.p-card .p-card-content {
+    padding: 0rem;
+}
 .fieldvalue_container{
-    font-size: 14px;
+    font-size: 16px;
     font-family: Inter var;
     font-weight: 400;
-   
+    padding: 1rem 0.5rem;
+
 }
 }

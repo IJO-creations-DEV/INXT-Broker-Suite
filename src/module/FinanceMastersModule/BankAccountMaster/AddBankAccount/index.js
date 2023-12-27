@@ -12,6 +12,10 @@ import NavBar from "../../../../components/NavBar";
 
 function AddBankAccount() {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [accounttype, setAccountType] = useState(null);
+  const [currencycode, setCurrencyCode] = useState(null);
+
+
   const [visiblePopup, setVisiblePopup] = useState(false);
   const showPopup = () => {
     setVisiblePopup(true);
@@ -21,13 +25,21 @@ function AddBankAccount() {
   };
   
   const items = [{ label: "Bank Account" }, { label: "Add Bank Account" }];
-  const item = [
-    { name: "New York", code: "NY" },
-    { name: "Rome", code: "RM" },
-    { name: "London", code: "LDN" },
-    { name: "Istanbul", code: "IST" },
-    { name: "Paris", code: "PRS" },
+  const status = [
+    { name: "Active", code: "NY" },
+    { name: "Deactive", code: "RM" },
   ];
+
+  const acctype = [
+    { name: "Savings Account", code: "NY" },
+    { name: "Profite Account", code: "RM" },
+  ];
+
+  const code = [
+    { name: "INR", code: "NY" },
+    // { name: "Rome", code: "RM" },
+  ];
+
   const home = { label: "Master" };
 
   return (
@@ -48,7 +60,7 @@ function AddBankAccount() {
               label="Status"
               value={selectedItem}
               onChange={(e) => setSelectedItem(e.value)}
-              options={item}
+              options={status}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -76,16 +88,11 @@ function AddBankAccount() {
           </div>
           <div class="sm-col-12 col-12 md:col-3 lg-col-4">
             <div>
-            <DropDowns
-              className="dropdown__container"
-              label="Bank Name"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
+            <InputField
+                classNames="field__container"
+                label="Bank Name"
+                placeholder={"Enter"}
+              />
             </div>
           </div>
         </div>
@@ -97,9 +104,9 @@ function AddBankAccount() {
             <DropDowns
               className="dropdown__container"
               label="Account Type"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
+              value={accounttype}
+              onChange={(e) => setAccountType(e.value)}
+              options={acctype}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -116,9 +123,9 @@ function AddBankAccount() {
           <DropDowns
               className="dropdown__container"
               label="Currency Code"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
+              value={currencycode}
+              onChange={(e) => setCurrencyCode(e.value)}
+              options={code}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}

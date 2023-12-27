@@ -9,12 +9,14 @@ font-size: 26px;
 font-weight: 600;
 // line-height: normal;
     }
+    
     .p-paginator {
         display: flex;
         align-items: center;
         justify-content: flex-end !important;
         flex-wrap: wrap;
     }
+    
     .datatable_container{
         // background-color: red;
         height:100%;

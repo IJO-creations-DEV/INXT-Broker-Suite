@@ -1,5 +1,5 @@
 
-.overall__createvoucher__container{
+.overall__bankdetailview__container{
     // background-color: green;
     .label_header{
        
@@ -10,6 +10,12 @@ font-size: 30px;
 font-weight: 600;
 margin-left: 10px;
 // line-height: normal;
+    }
+    .p-paginator {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end !important;
+        flex-wrap: wrap;
     }
     .dropdown__container{
         width:100%;
@@ -24,7 +30,7 @@ margin-left: 10px;
     // margin-bottom: 60px;
     
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     font-family: Inter var;
     border: 1px solid #fff !important; 
     border-radius: 6px !important;
@@ -102,6 +108,38 @@ font-weight: 500;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-color: #d1d5db;
+}
+.headlist_lable{
+    color: #111927;
+
+font-family: Inter var;
+font-size: 20px;
+
+font-weight: 600;
+margin:10px 0px
+}
+.tablegap_container{
+    margin-top: 20px;
+}
+.cardstyle_container{
+    margin:20px 0px
+}
+.p-card .p-card-content {
+    padding: 0rem 0;
+}
+.pagedropdown_container {
+    margin-right: 20%;
+    border-style: hidden;
+    background-color: #FAFAFA;
+}
+.header_cardcontainer{
+    color: #111927;
+
+font-family: Inter var;
+font-size: 20px;
+
+font-weight: 600;
+margin-bottom: 14px;
 }
 }
 @media (min-width: 576px) {

@@ -12,7 +12,14 @@ import NavBar from "../../../../components/NavBar";
 
 function AddBankCheque() {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [accountype, setAccountype] = useState(null);
+  const [bankname, setBankname] = useState(null);
+ 
   const [visiblePopup, setVisiblePopup] = useState(false);
+  
+  
+  
+  
   const showPopup = () => {
     setVisiblePopup(true);
     setTimeout(() => {
@@ -21,12 +28,17 @@ function AddBankCheque() {
   };
   
   const items = [{ label: "Bank Cheque" }, { label: "Add Bank Cheque" }];
-  const item = [
-    { name: "New York", code: "NY" },
-    { name: "Rome", code: "RM" },
-    { name: "London", code: "LDN" },
-    { name: "Istanbul", code: "IST" },
-    { name: "Paris", code: "PRS" },
+  const status = [
+    { name: "Active", code: "NY" },
+    { name: "Deactive", code: "RM" },
+  ];
+  const bank = [
+    { name: "MoneyBank", code: "MB" },
+    { name: "loanBank", code: "LB" },
+  ];
+  const account = [
+    { name: "265432107", code: "MB" },
+    { name: "2654789", code: "LB" },
   ];
   const home = { label: "Master" };
 
@@ -48,7 +60,7 @@ function AddBankCheque() {
               label="Status"
               value={selectedItem}
               onChange={(e) => setSelectedItem(e.value)}
-              options={item}
+              options={status}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -68,9 +80,9 @@ function AddBankCheque() {
           <DropDowns
               className="dropdown__container"
               label="Bank Name"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
+              value={bankname}
+              onChange={(e) => setBankname(e.value)}
+              options={bank}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -80,9 +92,9 @@ function AddBankCheque() {
           <DropDowns
               className="dropdown__container"
               label="Account Number"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
+              value={accountype}
+              onChange={(e) => setAccountype(e.value)}
+              options={account}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}

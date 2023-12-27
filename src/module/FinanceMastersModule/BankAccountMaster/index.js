@@ -69,6 +69,7 @@ const BankAccountMaster = () => {
   ];
   const home = { label: "Master" };
  
+  
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
@@ -126,7 +127,7 @@ const BankAccountMaster = () => {
         {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
         <span className="p-input-icon-left" style={{width:"100%"}}>
                 <i className="pi pi-search" />
-                <InputText placeholder="Search customers" className="searchinput_left"/>
+                <InputText placeholder="Search By Bank Name" className="searchinput_left"/>
             </span>
         </div>
     {/* </div> */}
@@ -137,7 +138,6 @@ const BankAccountMaster = () => {
     </div>
     <div className="listlable_textcontainer">
 <label className="listlable_text">Bank Account List</label>
-
             </div>
 
     <div className="card">
@@ -148,7 +148,6 @@ const BankAccountMaster = () => {
                     paginatorTemplate={template2}
                     className="datatable_container"
                 >
-                  
                     <Column field="name" header="Account Number" headerStyle={headerStyle} className='fieldvalue_container'></Column>
                     <Column field="name" header="Account Name" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="category" header="Bank Name" headerStyle={headerStyle} className='fieldvalue_container'></Column>
@@ -156,7 +155,6 @@ const BankAccountMaster = () => {
                     <Column field="name" header="Currency Code" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="name" header="Transaction Limit" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="category" header="Status"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                  
                     <Column
                   body={(params) => (
                     <SvgArrow onClick={() => handleArrowClick()} />

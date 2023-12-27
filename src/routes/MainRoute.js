@@ -26,7 +26,7 @@ import SpecificVoucher from "../module/PaymentVoucher/SpecificVoucher";
 import Payallvoucher from "../module/PaymentVoucher/PayAll";
 import Paymentvoucher from "../module/PaymentVoucher/index";
 import CreateVoucher from "../module/PaymentVoucher/CreateVoucher/index";
-import VoucherBankDetails from "../module/PaymentVoucher/VoucherBankDetails/index";
+import Detailview from "../module/PaymentVoucher/DetailView/index";
 import AddPolicyReceipts from "../module/Receipts/AddPolicyReceipts";
 // import AccountCategoryMaster from "../module/FinanceMastersModule/AccountCategoryMaster";
 import BankAccountMaster from "../module/FinanceMastersModule/BankAccountMaster";
@@ -68,7 +68,7 @@ import AddBankCheque from "../module/FinanceMastersModule/BankChequeMaster/AddBa
 import BankChequeDetails from "../module/FinanceMastersModule/BankChequeMaster/BankChequeDetails";
 import AddPettyCash from "../module/FinanceMastersModule/PettyCashMaster/AddPettyCash";
 import PettyCashdetails from "../module/FinanceMastersModule/PettyCashMaster/PettyCashdetails";
-
+import Bankdetailselection from "../module/PaymentVoucher/Bankdetailselection";
 // import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
 // import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
 // import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView";
@@ -134,11 +134,15 @@ const Maincomponent = () => {
             <Route path="/paymentvoucher" element={<Paymentvoucher />} />
             <Route path="/createvoucher" element={<CreateVoucher />} />
             <Route
-              path="/voucherbankdetails"
-              element={<VoucherBankDetails />}
+              path="/detailview"
+              element={<Detailview />}
+            />
+            <Route
+              path="/bankdetailselection"
+              element={<Bankdetailselection />}
             />
 
-            <Route path="/payallvoucher" element={<Payallvoucher />} />
+            {/* <Route path="/payallvoucher" element={<Payallvoucher />} /> */}
             <Route path="/SpecificVoucher" element={<SpecificVoucher />} />
 
             {/* Journal voucher */}

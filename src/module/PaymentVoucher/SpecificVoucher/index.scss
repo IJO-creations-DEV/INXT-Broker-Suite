@@ -5,10 +5,11 @@
        
         color: #111927;
          font-family: Inter var;
-        font-size: 26px;
+        font-size: 30px;
         // font-style: normal;
         font-weight: 600;
         // line-height: normal;
+        margin-left:10px
             }
 
 .p-paginator {
@@ -36,8 +37,8 @@
 .breadcrumbs_container{
 // margin-bottom: 60px;
 
-font-size: 14px;
-font-weight: 500;
+font-size: 16px;
+font-weight: 400;
 font-family: Inter var;
 border: 1px solid #fff !important; 
 border-radius: 6px !important;
@@ -109,32 +110,12 @@ padding: 1.5rem 0rem !important;
     align-items: center;
     gap: 10px;
 }
-.next_container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 38px 0px;
-}
-.card_continer{
-    display: flex;
-    justify-content: flex-end;
+.eye__btn{
+    background-color: #fff !important;
+    border-style: none !important;
 }
 
-}
-
-.labeltext__container{
-    font-size: 14px;
-    font-weight: 400;
-    font-family: Inter var;
-    
-}
-
-.detailvoucher__container{
-    display: flex;
-    justify-content: space-between;
-    align-items:center ;
-}
-.submit_button{
+.submitbutton_container{
     width: 110px;
     height: 42px;
     border-radius: 30px;
@@ -146,8 +127,82 @@ padding: 1.5rem 0rem !important;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    margin: 10px 0px;
+    margin: 38px 0px;
+    height:20%
 }
+.pagedropdown_container {
+    margin-right: 20%;
+    border-style: hidden;
+    background-color: #FAFAFA;
+}
+.card_continer{
+    display: flex;
+    justify-content: flex-end;
+}
+.headlist_lable{
+    color: #111927;
+
+font-family: Inter var;
+font-size: 18px;
+
+font-weight: 600;
+margin:10px 0px
+}
+.fieldvalue_container{
+    font-size: 16px;
+    font-family: Inter var;
+    font-weight: 400;
+    padding: 1rem 0.5rem;
+
+}
+.tablegap_container{
+    margin-top: 20px;
+}
+
+}
+.update_btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    .update_btnlabel{
+        border-radius: 30px;
+        background-color: #6366F1;
+        color: #FFF;
+
+font-family: Inter var;
+font-size: 18px;
+
+font-weight: 500;
+
+    }
+}
+
+// .labeltext__container{
+//     font-size: 14px;
+//     font-weight: 400;
+//     font-family: Inter var;
+    
+// }
+
+// .detailvoucher__container{
+//     display: flex;
+//     justify-content: space-between;
+//     align-items:center ;
+// }
+// .submit_button{
+//     width: 110px;
+//     height: 42px;
+//     border-radius: 30px;
+//     background: #6366F1;
+//     font-size: 16px;
+//     font-weight: 500;
+// }
+// .next_container{
+//     display: flex;
+//     justify-content: flex-end;
+//     align-items: flex-end;
+//     margin: 10px 0px;
+// }
 
 @media (min-width: 576px) {
     .md-col-6 {

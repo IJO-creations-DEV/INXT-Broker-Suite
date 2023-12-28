@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../Reversals/index.scss";
+import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../assets/icons/SvgDot";
 import InputField from "../../components/InputField";
@@ -9,9 +9,25 @@ import SvgDropdown from "../../assets/icons/SvgDropdown";
 import NavBar from "../../components/NavBar";
 import TableData from "./TableData/TableData";
 import { useFormik } from "formik";
-
+import ModalData from "./EditData/ModalData";
+import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
+import CustomToast from "../../components/Toast";
 const Reversals = () => {
+  const toastRef = useRef(null);
+  const handleApproval = () => {
+    toastRef.current.showToast();
+    {
+      setTimeout(() => {
+        setStep(2);
+      }, 3000);
+    }
+  };
   const [step, setStep] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [creditTotal, setCreditTotal] = useState(2600);
+  const [debitTotal, setDebitTotal] = useState(2500);
+  const [netTotal, setNetTotal] = useState(100);
+
   const items = [
     { label: "Corrections JV", url: "/correctionjv" },
     { label: "Corrections JV Details", url: "/reversaljv" },
@@ -60,15 +76,25 @@ const Reversals = () => {
       setStep(1);
     },
   });
+  const handleEdit = () => {
+    console.log("handleEdit success");
+    setVisible(true);
+  };
+  const handleUpdate = () => {
+    setNetTotal(0);
+    setDebitTotal(2600);
+  };
+
   return (
-    <div className="container__reversal">
+    <div className="container__corrections__jv">
+      <CustomToast ref={toastRef} props="Transaction Number 1234 is created" />
       <div className="grid m-0 top__container">
         <div className="col-12 p-0">
           <NavBar />
         </div>
         <div className="col-12 p-0">
           <div className="correction__title__reversal">
-            Corrections JV Details
+            {step !== 0 && <ArrowLeftIcon />} Corrections JV Details
           </div>
         </div>
         <div className="col-12 p-0">
@@ -185,6 +211,7 @@ const Reversals = () => {
               }
               options={codeOptions}
               optionLabel="label"
+              placeholder="Select Data"
             />
             {formik.errors.reversalJVTransactionCode && (
               <div
@@ -228,8 +255,13 @@ const Reversals = () => {
           <>
             <div className="grid m-0 table__container">
               <div className="col-12 p-0">
-                <TableData />
+                <TableData handleEdit={handleEdit} />
               </div>
+              <ModalData
+                visible={visible}
+                setVisible={setVisible}
+                handleUpdate={handleUpdate}
+              />
             </div>
 
             <div className="grid m-0">
@@ -239,7 +271,7 @@ const Reversals = () => {
                   className="input__label__reversal"
                   label="Total credit"
                   placeholder="Enter"
-                  textWeight={500}
+                  value={creditTotal}
                 />
               </div>
               <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -248,7 +280,7 @@ const Reversals = () => {
                   className="input__label__reversal"
                   label="Total Debit"
                   placeholder="Enter"
-                  textWeight={500}
+                  value={debitTotal}
                 />
               </div>
               <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -257,7 +289,7 @@ const Reversals = () => {
                   className="input__label__reversal"
                   label="Net"
                   placeholder="Enter"
-                  textWeight={500}
+                  value={netTotal}
                 />
               </div>
             </div>
@@ -277,7 +309,8 @@ const Reversals = () => {
               <Button
                 label="Approve"
                 className="correction__btn__reversal"
-                onClick={() => setStep(2)}
+                onClick={handleApproval}
+                disabled={netTotal === 0 ? false : true}
               />
             )}
 

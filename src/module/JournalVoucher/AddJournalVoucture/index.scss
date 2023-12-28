@@ -13,7 +13,7 @@
         padding: 0;
         font-family: Inter var;
         color: #111927;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
 
     }
@@ -28,7 +28,8 @@
         align-items: center;
         background-color: #6366F1;
         height: 40px;
-        width: 110px;
+        // width: 110px;
+        padding: 0 20px;
         border-radius: 30px;
         color: #fff;
 
@@ -90,11 +91,13 @@
             border: 1px solid #6366F1;
             border-color: #6366F1 !important;
             // background-color: #6366F1;
-            height: 40px;
-            width: 150px;
+            height: 45px;
+            // width: 140px;
+            padding: 0 18px;
             border-radius: 30px;
             color: #fff;
             font-family: Inter var;
+            cursor: pointer;
 
             .add__icon__Journal__Voture__JV {
                 display: flex;
@@ -106,7 +109,7 @@
 
             .add__text__Journal__Voture__JV {
                 color: #6366F1 !important;
-                font-size: 16px;
+                font-size: 18px;
                 font-weight: 500;
                 background-color: transparent;
                 border-color: transparent;
@@ -190,12 +193,25 @@
 
         .save__add__btn__JV {
             height: 45px;
-            width: 140px;
+            // width: 140px;
+            padding: 0 30px;
             background-color: #6366F1;
             border-radius: 30px;
-            font-size: 14px;
+            font-size: 18px;
             font-family: 500;
             color: #fff;
+            cursor: pointer;
+        }
+        .save__add__btn__print{
+            height: 45px;
+            // width: 140px;
+            padding: 0 40px;
+            background-color: #6366F1;
+            border-radius: 30px;
+            font-size: 18px;
+            font-family: 500;
+            color: #fff;
+            cursor: pointer;
         }
     }
 
@@ -213,6 +229,13 @@
         }
     }
 
+    .empty-table-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 2%;
+        padding-bottom: 2%;
+      }
     .calender_field_claim__JV {
 
         width: 100% !important;
@@ -222,7 +245,7 @@
 
         .p-inputtext {
             margin: 6px 0 0 0;
-            border-radius: 5px;
+            border-radius: 10px;
             height: 3.125rem;
             //   border-style: none;
         }
@@ -284,5 +307,63 @@
     //     color: #fff;
     // }
 
+    .custom-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        z-index: 1;
+    }
 
+    .custom-modal {
+        background-color: #fff;
+        overflow-y: auto;
+        position: relative;
+        width: 22%;
+        border-radius: 20px;
+        height: 200px;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+
+    .popup__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup__text {
+        color: #111927;
+        text-align: center;
+        font-size: 17px;
+        font-weight: 500;
+        font-family: 'Inter var';
+    }
+    .popup__token__text{
+        color: #29CE00;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-family: 'Inter var';
+    }
+
+    .modal-body {
+        color: #fff;
+    }
 }

@@ -4,10 +4,9 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
-
-const TableData = () => {
-  const [products, setProducts] = useState([]);
-
+import SvgEditIcon from "../../../assets/icons/SvgEditIcon";
+import { Button } from "primereact/button";
+const TableData = ({ handleEdit }) => {
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -36,6 +35,17 @@ const TableData = () => {
       );
     },
   };
+  const renderEditButton = (rowData) => {
+    return (
+      <div className="center-content">
+        <Button
+          icon={<SvgEditIcon />}
+          onClick={handleEdit}
+          className="action__button"
+        />
+      </div>
+    );
+  };
 
   return (
     <div className="reversal__table__container">
@@ -59,19 +69,35 @@ const TableData = () => {
           header="Sub A/c"
           className="fieldvalue_container"
         ></Column>
-        <Column
-          field="Department"
-          header="Department"
-          className="fieldvalue_container"
-        ></Column>
+
         <Column
           field="Remarks"
           header="Remarks"
           className="fieldvalue_container"
         ></Column>
         <Column
+          field="Currency"
+          header="Currency"
+          className="fieldvalue_container"
+        ></Column>
+        <Column
+          field="foreignAmount"
+          header="Foreign Amount"
+          className="fieldvalue_container"
+        ></Column>
+        <Column
+          field="localAmount"
+          header="Local Amount"
+          className="fieldvalue_container"
+        ></Column>
+        <Column
           field="Entry"
           header="Entry"
+          className="fieldvalue_container"
+        ></Column>
+        <Column
+          body={renderEditButton}
+          header="Edit"
           className="fieldvalue_container"
         ></Column>
       </DataTable>

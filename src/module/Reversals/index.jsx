@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../Reversals/index.scss";
+import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../assets/icons/SvgDot";
 import InputField from "../../components/InputField";
@@ -9,8 +9,18 @@ import SvgDropdown from "../../assets/icons/SvgDropdown";
 import NavBar from "../../components/NavBar";
 import TableData from "./TableData/TableData";
 import { useFormik } from "formik";
-
+import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
+import CustomToast from "../../components/Toast";
 const Reversals = () => {
+  const toastRef = useRef(null);
+  const handleApproval = () => {
+    toastRef.current.showToast();
+    {
+      setTimeout(() => {
+        setStep(2);
+      }, 3000);
+    }
+  };
   const [step, setStep] = useState(0);
   const items = [
     { label: "Reversal JV", url: "/reversaljv" },
@@ -62,12 +72,15 @@ const Reversals = () => {
   });
   return (
     <div className="container__reversal">
+      <CustomToast ref={toastRef} props="Transaction Number 1234 is created" />
       <div className="grid m-0 top__container">
         <div className="col-12 p-0">
           <NavBar />
         </div>
         <div className="col-12 p-0">
-          <div className="correction__title__reversal">Reversal JV Details</div>
+          <div className="correction__title__reversal">
+            {step !== 0 && <ArrowLeftIcon />}Reversal JV Details
+          </div>
         </div>
         <div className="col-12 p-0">
           <BreadCrumb
@@ -183,6 +196,7 @@ const Reversals = () => {
               }
               options={codeOptions}
               optionLabel="label"
+              placeholder={"Select Data"}
             />
             {formik.errors.reversalJVTransactionCode && (
               <div
@@ -244,7 +258,7 @@ const Reversals = () => {
               <Button
                 label="Approve"
                 className="correction__btn__reversal"
-                onClick={() => setStep(2)}
+                onClick={handleApproval}
               />
             )}
 

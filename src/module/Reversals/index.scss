@@ -1,5 +1,7 @@
 .container__reversal {
   .correction__title__reversal {
+    display: flex;
+    align-items: center;
     color: #111927;
     font-size: 30px;
     font-style: normal;
@@ -40,6 +42,12 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    .p-dropdown-label {
+      color: #111927;
+      font-family: "Inter var";
+      font-size: 14px;
+      font-weight: 400;
+    }
   }
   .input__field__reversal__inactive {
     color: #b1b1b1;
@@ -223,7 +231,7 @@
 
     .correction__btn__reversal {
       color: #fff;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 500;
       background-color: #6366f1;
       border-radius: 30px;
@@ -264,6 +272,9 @@
     }
     .input__field__reversal {
       font-size: 12px;
+      .p-dropdown-label {
+        font-size: 12px;
+      }
     }
     .input__field__reversal__inactive {
       font-size: 12px;
@@ -285,6 +296,9 @@
     }
     .input__field__reversal {
       font-size: 14px;
+      .p-dropdown-label {
+        font-size: 14px;
+      }
     }
     .input__field__reversal__inactive {
       font-size: 14px;

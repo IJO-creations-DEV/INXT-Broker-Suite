@@ -1,0 +1,43 @@
+.corrections__jv__Edit__modal__container {
+  .input__label__corrections {
+    color: #111927 !important;
+    font-family: "Inter var";
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+  }
+  .select__label__corrections {
+    color: #111927 !important;
+    font-family: "Inter var";
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: normal !important;
+  }
+  .input__field__corrections {
+    color: #111927;
+    font-family: "Inter var";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    .p-dropdown-label {
+      color: #111927;
+      font-family: "Inter var";
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+  .correction__btn__reversal {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #6366f1;
+    border-radius: 30px;
+    height: 50px;
+    width: 173px;
+    font-family: "Inter var";
+  }
+}

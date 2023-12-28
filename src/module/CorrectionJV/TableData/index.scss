@@ -1,5 +1,8 @@
 .reversal__table__container {
-  //   padding: 20px 0;
+  .action__button {
+    background: transparent;
+    border: none;
+  }
   .reversal__table__main {
     tr {
       height: 50px;
@@ -94,30 +97,30 @@
       }
     }
     @media only screen and (min-width: 992px) and (max-width: 1440px) {
-        thead {
-          tr {
-            th {
-              padding: 0.5rem 0.5rem;
-            }
-            .p-column-header-content {
-              .p-column-title {
-                font-size: 14px;
-              }
-            }
+      thead {
+        tr {
+          th {
+            padding: 0.5rem 0.5rem;
           }
-        }
-        tbody {
-          tr {
-            td {
+          .p-column-header-content {
+            .p-column-title {
               font-size: 14px;
             }
           }
         }
-        .p-paginator-bottom {
-          span {
+      }
+      tbody {
+        tr {
+          td {
             font-size: 14px;
           }
         }
       }
+      .p-paginator-bottom {
+        span {
+          font-size: 14px;
+        }
+      }
+    }
   }
 }

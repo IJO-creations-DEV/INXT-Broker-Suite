@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -6,7 +6,29 @@ import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import SvgEditIcon from "../../../assets/icons/SvgEditIcon";
 import { Button } from "primereact/button";
-const TableData = ({ handleEdit }) => {
+const TableData = ({ handleEdit, newDataTable }) => {
+  console.log(newDataTable, "find newDataTable");
+  let newProduct;
+  let updatedProductData;
+
+  if (newDataTable.length > 0) {
+    updatedProductData = [
+      ...Productdata,
+      (newProduct = {
+        id: 11,
+        mainAC: newDataTable[0].mainAccount,
+        subAC: newDataTable[0].subAccount,
+        Currency: newDataTable[0].currencyCode,
+        foreignAmount: newDataTable[0].foreignAmount,
+        localAmount: "500.00",
+        Remarks: "New credit voucher",
+        Entry: newDataTable[0].entryType,
+      }),
+    ];
+  } else {
+    updatedProductData = Productdata;
+  }
+
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -50,7 +72,7 @@ const TableData = ({ handleEdit }) => {
   return (
     <div className="reversal__table__container">
       <DataTable
-        value={Productdata}
+        value={updatedProductData}
         //   tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
         paginator
         rows={5}

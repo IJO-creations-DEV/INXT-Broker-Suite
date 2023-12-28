@@ -6,56 +6,73 @@ import DropDowns from "../../../components/DropDowns";
 import InputField from "../../../components/InputField";
 import { Button } from "primereact/button";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
+import SvgModalClose from "../../../assets/icons/SvgNodalClose";
 const ModalData = ({ visible, setVisible, handleUpdate }) => {
-  const mainAccountOptions = [
-    { label: "Option 1", value: "option1" },
-    { label: "Option 2", value: "option2" },
+  const codeOptions = [
+    { label: "Option 1", value: "00123" },
+    { label: "Option 2", value: "00124" },
   ];
+  const codeOptionsMain = [
+    { label: "Option 1", value: "Main00123" },
+    { label: "Option 2", value: "Main00124" },
+  ];
+  const codeOptionsSub = [
+    { label: "Option 1", value: "Sub00123" },
+    { label: "Option 2", value: "Sub00124" },
+  ];
+  const codeOptionsDept = [
+    { label: "Option 1", value: "Dep00123" },
+    { label: "Option 2", value: "Dep00124" },
+  ];
+  const codeOptionsBranch = [
+    { label: "Option 1", value: "Branch00123" },
+    { label: "Option 2", value: "Branch00124" },
+  ];
+  
+  const codeOptionsType = [
+    { label: "Option 1", value: "Credit" },
+    { label: "Option 2", value: "Debit" },
+  ];
+  const codeCurrencyType = [
+    { label: "Option 1", value: "INR" },
+    { label: "Option 2", value: "EURO" },
+  ];
+
   const customValidation = (values) => {
     const errors = {};
 
     if (!values.mainAccount) {
-      errors.mainAccount = "Main Account is required";
+      errors.mainAccount = "This field is required";
     }
-    if (!values.mainAccountDescription) {
-      errors.mainAccountDescription = "Main Account Description is required";
-    }
+
     if (!values.entryType) {
-      errors.entryType = "Main Account Description is required";
+      errors.entryType = "This field is required";
     }
     if (!values.subAccount) {
-      errors.subAccount = "Main Account Description is required";
+      errors.subAccount = "This field is required";
     }
-    if (!values.subAccountDescription) {
-      errors.subAccountDescription = "Main Account Description is required";
-    }
+
     if (!values.branchCode) {
-      errors.branchCode = "Main Account Description is required";
+      errors.branchCode = "This field is required";
     }
-    if (!values.branchCodeDescription) {
-      errors.branchCodeDescription = "Main Account Description is required";
-    }
+
     if (!values.departmentCode) {
-      errors.departmentCode = "Main Account Description is required";
+      errors.departmentCode = "This field is required";
     }
-    if (!values.departmentDescription) {
-      errors.departmentDescription = "Main Account Description is required";
-    }
+
     if (!values.currencyCode) {
-      errors.currencyCode = "Currency Code is required";
+      errors.currencyCode = "This field is required";
     }
-    if (!values.currencyDescription) {
-      errors.currencyDescription = "Currency Description is required";
-    }
+
     if (!values.foreignAmount) {
-      errors.foreignAmount = "Foreign Amount is required";
+      errors.foreignAmount = "This field  is required";
     }
 
     return errors;
   };
   const handleSubmit = (values) => {
     // Handle form submission
-    console.log(values);
+    console.log(values, "find values");
   };
   const formik = useFormik({
     initialValues: {
@@ -76,7 +93,8 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
     onSubmit: (values) => {
       // Handle form submission
       handleSubmit(values);
-      handleUpdate();
+      formik.resetForm();
+      handleUpdate(values);
       setVisible(false);
     },
   });
@@ -84,25 +102,25 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
     <Dialog
       header="Edit Data"
       visible={visible}
-      style={{ width: "80vw", borderRadius: 30 }}
-      onHide={() => setVisible(false)}
       className="corrections__jv__Edit__modal__container"
+      onHide={() => setVisible(false)}
+      dismissableMask={true}
     >
-      <form onSubmit={formik.handleSubmit}>
+      <div className="form__container">
         <div className="grid m-0">
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__corrections"
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              placeholder="Select Data"
+              placeholder="Select "
               classNames="select__label__corrections"
-              optionLabel="label"
+              optionLabel="value"
               label="Main Account"
               value={formik.values.mainAccount}
               onChange={(e) => formik.setFieldValue("mainAccount", e.value)}
-              options={mainAccountOptions}
+              options={codeOptionsMain}
             />
-            {formik.errors.mainAccount && (
+            {formik.touched.mainAccount && formik.errors.mainAccount && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
@@ -111,40 +129,32 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
               classNames="input__field__corrections"
               className="input__label__corrections"
-              label="Main Account description"
-              value={formik.values.mainAccountDescription}
-              onChange={(e) =>
-                formik.setFieldValue("mainAccountDescription", e.target.value)
+              label="Main Account Description"
+              value={
+                formik.values.mainAccount
+                  ? `Main Account Description ${formik.values.mainAccount}`
+                  : ""
               }
-              placeholder="Enter"
             />
-            {formik.errors.mainAccountDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.mainAccountDescription}
-              </div>
-            )}
           </div>
 
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__corrections"
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              placeholder="Select Data"
+              placeholder="Select "
               classNames="select__label__corrections"
-              optionLabel="label"
+              optionLabel="value"
               label="Entry Type"
               value={formik.values.entryType}
               onChange={(e) => formik.setFieldValue("entryType", e.value)}
-              options={mainAccountOptions}
+              options={codeOptionsType}
             />
-            {formik.errors.entryType && (
+            {formik.touched.entryType && formik.errors.entryType && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
@@ -158,19 +168,19 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
           className="grid m-0 p-0 add__journal__vocture__add__JV"
           style={{ alignItems: "center" }}
         >
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__corrections"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               classNames="select__label__corrections"
-              optionLabel="label"
+              optionLabel="value"
               label="Sub Account"
               value={formik.values.subAccount}
               onChange={(e) => formik.setFieldValue("subAccount", e.value)}
-              options={mainAccountOptions}
-              placeholder="Select Data"
+              options={codeOptionsSub}
+              placeholder="Select "
             />
-            {formik.errors.subAccount && (
+            {formik.touched.subAccount && formik.errors.subAccount && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
@@ -179,44 +189,36 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6 ">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
             <InputField
               classNames="input__field__corrections"
               className="input__label__corrections"
-              label="Sub Account description"
-              value={formik.values.subAccountDescription}
-              onChange={(e) =>
-                formik.setFieldValue("subAccountDescription", e.target.value)
+              label="Sub Account Description"
+              value={
+                formik.values.subAccount
+                  ? `Sub Account Description ${formik.values.subAccount}`
+                  : ""
               }
-              placeholder="Enter"
             />
-            {formik.errors.subAccountDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.subAccountDescription}
-              </div>
-            )}
           </div>
         </div>
         <div
           className="grid m-0 p-0 add__journal__vocture__add__JV"
           style={{ alignItems: "center" }}
         >
-          <div className="col-12 md:col-3 ">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
             <DropDowns
               className="input__field__corrections"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               classNames="select__label__corrections"
-              optionLabel="label"
-              label="Department Code"
+              optionLabel="value"
+              label="Branch Code"
               value={formik.values.branchCode}
               onChange={(e) => formik.setFieldValue("branchCode", e.value)}
-              options={mainAccountOptions}
-              placeholder="Select Data"
+              options={codeOptionsBranch}
+              placeholder="Select "
             />
-            {formik.errors.branchCode && (
+            {formik.touched.branchCode && formik.errors.branchCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
@@ -225,44 +227,45 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
               classNames="input__field__corrections"
               className="input__label__corrections"
-              label="Branch Code description"
-              value={formik.values.branchCodeDescription}
-              onChange={(e) =>
-                formik.setFieldValue("branchCodeDescription", e.target.value)
+              label="Branch Code Description"
+              value={
+                formik.values.branchCode
+                  ? `Branch Code Description ${formik.values.branchCode}`
+                  : ""
               }
-              placeholder="Enter"
             />
-            {formik.errors.branchCodeDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.branchCodeDescription}
-              </div>
-            )}
+            {formik.touched.branchCodeDescription &&
+              formik.errors.branchCodeDescription && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+                  className="formik__errror__JV"
+                >
+                  {formik.errors.branchCodeDescription}
+                </div>
+              )}
           </div>
         </div>
         <div
           className="grid m-0 p-0 add__journal__vocture__add__JV"
           style={{ alignItems: "center" }}
         >
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__corrections"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               classNames="select__label__corrections"
-              optionLabel="label"
+              optionLabel="value"
               label="Department Code"
               value={formik.values.departmentCode}
               onChange={(e) => formik.setFieldValue("departmentCode", e.value)}
-              options={mainAccountOptions}
-              placeholder="Select Data"
+              options={codeOptionsDept}
+              placeholder="Select "
             />
-            {formik.errors.departmentCode && (
+            {formik.touched.departmentCode && formik.errors.departmentCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
@@ -271,44 +274,45 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
               classNames="input__field__corrections"
               className="input__label__corrections"
-              label="Department description"
-              value={formik.values.departmentDescription}
-              onChange={(e) =>
-                formik.setFieldValue("departmentDescription", e.target.value)
+              label="Department Description"
+              value={
+                formik.values.departmentCode
+                  ? `Department Description ${formik.values.departmentCode}`
+                  : ""
               }
-              placeholder="Enter"
             />
-            {formik.errors.departmentDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.departmentDescription}
-              </div>
-            )}
+            {formik.touched.departmentDescription &&
+              formik.errors.departmentDescription && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+                  className="formik__errror__JV"
+                >
+                  {formik.errors.departmentDescription}
+                </div>
+              )}
           </div>
         </div>
         <div
           className="grid m-0 p-0 add__journal__vocture__add__JV"
           style={{ alignItems: "center" }}
         >
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__corrections"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               classNames="select__label__corrections"
-              optionLabel="label"
+              optionLabel="value"
               label="Currency Code"
               value={formik.values.currencyCode}
               onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
-              options={mainAccountOptions}
-              placeholder="Select Data"
+              options={codeCurrencyType}
+              placeholder="Select "
             />
-            {formik.errors.currencyCode && (
+            {formik.touched.currencyCode && formik.errors.currencyCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
@@ -317,27 +321,28 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
               classNames="input__field__corrections"
               className="input__label__corrections"
-              label="Currency description"
-              value={formik.values.currencyDescription}
-              onChange={(e) =>
-                formik.setFieldValue("currencyDescription", e.target.value)
+              label="Currency Description"
+              value={
+                formik.values.currencyCode
+                  ? `Currency Description ${formik.values.currencyCode}`
+                  : ""
               }
-              placeholder="Enter"
             />
-            {formik.errors.currencyDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.currencyDescription}
-              </div>
-            )}
+            {formik.touched.currencyDescription &&
+              formik.errors.currencyDescription && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+                  className="formik__errror__JV"
+                >
+                  {formik.errors.currencyDescription}
+                </div>
+              )}
           </div>
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <InputField
               classNames="input__field__corrections"
               className="select__label__corrections"
@@ -348,7 +353,7 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
               }
               placeholder="Enter"
             />
-            {formik.errors.foreignAmount && (
+            {formik.touched.foreignAmount && formik.errors.foreignAmount && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
@@ -370,10 +375,11 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
               label="Update"
               className="correction__btn__reversal"
               disabled={!formik.isValid}
+              onClick={formik.handleSubmit}
             />
           </div>
         </div>
-      </form>
+      </div>
     </Dialog>
   );
 };

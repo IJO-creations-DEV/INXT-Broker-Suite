@@ -102,8 +102,11 @@ const DetailsJournalVocture = () => {
         initialValues: {
             transactioncode: 'label',
             transactionDescription: 'code',
-            transactionNumber:'22'
-         
+            transactionNumber: '22',
+            totalCredit: '500',
+            totalDebit: '500',
+            net: '00.00'
+
         },
         validate: customValidation,
         onSubmit: handleSubmit
@@ -162,8 +165,8 @@ const DetailsJournalVocture = () => {
             <Toast ref={toast} />
 
             <div className='col-12 mb-2'>
-                <div className='add__sub__title'><ArrowLeftIcon />Journal Voucher Details</div>
-                <div className='mt-3'>
+                <div className='add__sub__title'><span className='mr-2'><ArrowLeftIcon /></span> Journal Voucher Details</div>
+                <div className='mt-4'>
                     <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
                 </div>
             </div>
@@ -175,14 +178,15 @@ const DetailsJournalVocture = () => {
                                 className="dropdown__add__sub"
                                 label="Transaction Code"
                                 classNames='label__sub__add'
-                                value={formik.values.transactioncode}
+                                value={formik.values.transactioncode} 
                                 onChange={(e) => formik.setFieldValue('transactioncode', e.target.value)}
                                 options={mainAccountOptions}
                                 optionLabel='label'
                                 defaultValue={formik.values.transactioncode}
-                                // placeholder={"Select"}
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                                disabled={true}
                             />
+
                         </div>
                         <div className='col-12 md:col-6 lg:col-6'>
                             <InputField
@@ -191,6 +195,7 @@ const DetailsJournalVocture = () => {
                                 className='label__sub__add'
                                 placeholder="Enter"
                                 value={formik.values.transactionDescription}
+                                disabled={true}
 
                                 onChange={(e) => formik.setFieldValue('transactionDescription', e.target.value)}
 
@@ -205,7 +210,7 @@ const DetailsJournalVocture = () => {
                                 value={formik.values.transactionNumber}
 
                                 onChange={(e) => formik.setFieldValue('transactionNumber', e.target.value)}
-
+                                disabled={true}
                             />
                         </div>
                         <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
@@ -222,6 +227,7 @@ const DetailsJournalVocture = () => {
                                         onChange={(e) => setDate(e.value)}
                                         showIcon
                                         className="calender_field_claim"
+                                        disabled={true}
                                     />
                                     <div className="calender_icon_claim">
                                         <SvgDatePicker />
@@ -267,7 +273,7 @@ const DetailsJournalVocture = () => {
                                             currentPageReportTemplate="{first} - {last} of {totalRecords}"
                                             paginatorTemplate={template2}
                                             bodyStyle={{
-                                                fontSize: 14,
+                                                fontSize: 16,
                                                 height: 50,
                                                 fontWeight: 400,
                                                 color: '#111927',
@@ -297,6 +303,10 @@ const DetailsJournalVocture = () => {
                                     classNames='dropdown__add__sub'
                                     className='label__sub__add'
                                     placeholder="Enter"
+                                    value={formik.values.totalCredit}
+                                    disabled={true}
+                                    onChange={(e) => formik.setFieldValue('totalCredit', e.target.value)}
+
                                 />
                             </div>
                             <div className='col-12 md:col-3 lg:col-3'>
@@ -305,6 +315,10 @@ const DetailsJournalVocture = () => {
                                     classNames='dropdown__add__sub'
                                     className='label__sub__add'
                                     placeholder="Enter"
+                                    value={formik.values.totalDebit}
+                                    disabled={true}
+                                    onChange={(e) => formik.setFieldValue('totalDebit', e.target.value)}
+
                                 />
                             </div>
                             <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
@@ -313,6 +327,10 @@ const DetailsJournalVocture = () => {
                                     classNames='dropdown__add__sub'
                                     className='label__sub__add'
                                     placeholder="Enter"
+                                    value={formik.values.net}
+                                    disabled={true}
+                                    onChange={(e) => formik.setFieldValue('net', e.target.value)}
+
                                 />
                             </div>
                         </div>

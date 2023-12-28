@@ -11,24 +11,45 @@ import SvgDatePicker from '../../../assets/icons/SvgDatePicker';
 import SvgDot from '../../../assets/icons/SvgDot';
 import "../AddJournalVoucture/index.scss"
 import ArrowLeftIcon from "../../../assets/icons/ArrowLeftIcon"
+import SvgAddBlue from "../../../assets/icons/SvgAddBlue"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import SvgArrow from '../../../assets/icons/SvgArrow';
 import { useNavigate } from 'react-router-dom';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
-import SvgAdd from '../../../assets/icons/SvgAdd';
-import { Dialog } from 'primereact/dialog';
 import SvgDeleteIcon from '../../../assets/icons/SvgDeleteIcon';
 import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
-import { Toast } from 'primereact/toast';
-import { InputText } from 'primereact/inputtext';
+// import { Toast } from 'primereact/toast';
 import { useFormik } from 'formik';
+import AddData from './AddData/AddData';
+import SvgTable from '../../../assets/icons/SvgTable';
+import CustomToast from "../../../components/Toast";
+import SuccessIcon from '../../../assets/icons/SuccessIcon';
 
 
 const AddJournalVocture = () => {
-    const [buttonshow, setButtonShow]=useState(0)
-    const navigate = useNavigate()
+    const [buttonshow, setButtonShow] = useState(0)
+    const [products, setProducts] = useState([]);
+    const [visibleSuccess, setVisibleSuccess] = useState(false);
+    const isEmpty = products.length === 0;
+
+    const emptyTableIcon = (
+        <div className="empty-table-icon">
+            <SvgTable />
+        </div>
+    );
+    const toastRef = useRef(null);
+    const navigate = useNavigate();
+    const handleSub = () => {
+        toastRef.current.showToast();
+        // {
+        //     setTimeout(() => {
+        //         navigate("/accounts/pettycash/pettycashcodeinitiate");
+        //     }, 3000);
+        // }
+    };
+
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [visible, setVisible] = useState(false);
     const [date, setDate] = useState(new Date());
@@ -41,6 +62,13 @@ const AddJournalVocture = () => {
     const handleNavigateedit = () => {
         // navigate('/master/finance/taxation/saveandedittaxation')
     }
+    useEffect(() => {
+        const timerId = setTimeout(() => {
+            setVisibleSuccess(false);
+        }, 2000);
+
+        return () => clearTimeout(timerId);
+    }, [visibleSuccess]);
 
 
     const columns = [
@@ -70,75 +98,41 @@ const AddJournalVocture = () => {
     ];
     const toast = useRef(null);
 
-    const showSuccess = () => {
-        toast.current.show({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Message Content',
-            life: 3000,
-            icon: 'pi pi-check-circle',
-        });
-    };
-    const mainAccountOptions = [
-        { label: 'Option 1', value: 'option1' },
-        { label: 'Option 2', value: 'option2' },
-        // Add more options as needed
-    ];
+   
 
     const customValidation = (values) => {
         const errors = {};
 
-        if (!values.mainAccount) {
-            errors.mainAccount = 'Main Account is required';
+        if (!values.transationCode) {
+            errors.transationCode = 'TransationCode is required';
         }
-        if (!values.mainAccountDescription) {
-            errors.mainAccountDescription = 'Main Account Description is required';
+        if (!values.transationDescription) {
+            errors.transationDescription = 'Transation Description is required';
         }
-        if (!values.entryType) {
-            errors.entryType = 'Main Account Description is required';
+        if (!values.totalCredit) {
+            errors.totalCredit = 'TotalCredit is required';
         }
-        if (!values.subAccount) {
-            errors.subAccount = 'Main Account Description is required';
+        if (!values.totalDebit) {
+            errors.totalDebit = 'TotalDebit is required';
         }
-        if (!values.subAccountDescription) {
-            errors.subAccountDescription = 'Main Account Description is required';
+        if (!values.net) {
+            errors.net = 'Net is required';
         }
-        if (!values.branchCode) {
-            errors.branchCode = 'Main Account Description is required';
-        }
-        if (!values.branchCodeDescription) {
-            errors.branchCodeDescription = 'Main Account Description is required';
-        }
-        if (!values.departmentCode) {
-            errors.departmentCode = 'Main Account Description is required';
-        }
-        if (!values.departmentDescription) {
-            errors.departmentDescription = 'Main Account Description is required';
-        }
-        if (!values.currencyCode) {
-            errors.currencyCode = 'Currency Code is required';
-        }
-        if (!values.currencyDescription) {
-            errors.currencyDescription = 'Currency Description is required';
-        }
-        if (!values.foreignAmount) {
-            errors.foreignAmount = 'Foreign Amount is required';
-        }
-        // if (!values.remarks) {
-        //     errors.remarks = 'Remarks is required';
-        // }
+
+
 
         return errors;
     };
     const handleFormSubmit = () => {
-
-        showSuccess();
-        setButtonShow(1);
+        formik.handleSubmit()
+        // showSuccess();
+        // setButtonShow(1);
+        // handleSub()
         // setButtonShow({
         //     buttonshow:2,
         // })
     };
-    const handleSubmit=(values) => {
+    const handleSubmit = (values) => {
         // Handle form submission
         console.log(values);
         setVisible(false);
@@ -146,19 +140,12 @@ const AddJournalVocture = () => {
     }
     const formik = useFormik({
         initialValues: {
-            mainAccount: '',
-            mainAccountDescription: '',
-            entryType: '',
-            subAccount: '',
-            subAccountDescription: '',
-            branchCode: '',
-            branchCodeDescription: '',
-            departmentCode: '',
-            departmentDescription: '',
-            currencyCode: '',
-            currencyDescription: '',
-            foreignAmount: '',
-            remarks: '',
+            transationCode: '',
+            transationDescription: '',
+            totalCredit: '',
+            totalDebit: '',
+            net: '',
+
         },
         validate: customValidation,
         onSubmit: handleSubmit
@@ -203,44 +190,126 @@ const AddJournalVocture = () => {
             );
         },
     };
+    const [creditTotal, setCreditTotal] = useState(500);
+    const [debitTotal, setDebitTotal] = useState(500);
+    const [netTotal, setNetTotal] = useState(100);
+    const handleApproval = () => {
+        toastRef.current.showToast();
+        {
+            setTimeout(() => {
+                setButtonShow(1);
+            }, 3000);
+        }
+    };
 
+    const handleUpdate = () => {
+        setNetTotal(0);
+        setDebitTotal(2600);
+    };
+
+    const [selectedTransactionCode, setSelectedTransactionCode] = useState('');
+
+    const mainAccountOptions = [
+        { label: 'Trans00123', value: 'Trans00123' },
+        { label: 'Trans00124', value: 'Trans00124' },
+
+    ];
+
+    const handleTransactionCodeChange = (e) => {
+        const selectedValue = e.value;
+        formik.setFieldValue('transationCode', selectedValue);
+        let value = '';
+        switch (selectedValue) {
+          case 'Trans00123':
+            value = 'Transaction code Description';
+            break;
+          case 'Trans00124':
+            value = 'Transaction code 123';
+            break;
+          default:
+            value = 'Enter';
+        }
+        formik.setFieldValue('transationDescription', value);
+      };
 
     return (
         <div className='grid add__JV__container'>
+            <CustomToast ref={toastRef} />
             <div className='col-12'>
                 <NavBar />
-
             </div>
-            <Toast ref={toast} />
-
             <div className='col-12 mb-2'>
-                <div className='add__sub__title__JV'><ArrowLeftIcon /> Add Journal Voucher</div>
-                <div className='mt-3'>
+                <div className='add__sub__title__JV'><span className='mr-2'><ArrowLeftIcon /></span> Add Journal Voucher</div>
+                <div className='mt-4'>
                     <BreadCrumb home={home} className='breadCrums__view__add__screen__JV' model={items} separatorIcon={<SvgDot color={"#000"} />} />
                 </div>
             </div>
             <div className='col-12 m-0 '>
                 <div className='grid add__journal__vocture__add__JV p-3'>
                     <div class="sm-col-12  md:col-3 lg-col-4 ">
-                        <DropDowns
+                        {/* <DropDowns
                             className="dropdown__add__sub__JV"
                             label="Transaction Code"
                             classNames='label__sub__add__JV'
-                            // value={selectedItem}
-                            // onChange={(e) => setSelectedItem(e.value)}
-                            // options={item}
-                            // optionLabel="name"
+                            value={formik.values.transationCode}
+                            onChange={(e) => {
+                                formik.setFieldValue('transationCode', e.value)
+                                handleTransactionCodeChange()
+                            }}
+                            options={mainAccountOptions}
+
+                            optionLabel='label'
+                            placeholder={"Select"}
+                            dropdownIcon={<SvgDropdown color={"#000"} />}
+                        /> */}
+                        <DropDowns
+                            className="dropdown__add__sub__JV"
+                            label="Transaction Code"
+                            value={formik.values.transationCode}
+                            options={mainAccountOptions}
+                            optionLabel='label'
+                            onChange={handleTransactionCodeChange}
                             placeholder={"Select"}
                             dropdownIcon={<SvgDropdown color={"#000"} />}
                         />
+                        {formik.touched.transationCode && formik.errors.transationCode && (
+                            <div
+                                style={{ fontSize: 12, color: "red" }}
+                                className="formik__errror__JV"
+                            >
+                                {formik.errors.transationCode}
+                            </div>
+                        )}
                     </div>
                     <div className='col-12 md:col-6 lg:col-6'>
+
                         <InputField
                             label="Transaction Description"
                             classNames='dropdown__add__sub__JV'
                             className='label__sub__add__JV'
-                            placeholder="Enter"
+                            // placeholder={formik.values.transationDescriptionPlaceholder }
+                             value={formik.values.transationDescription}
+                             disabled={true}
+                             onChange={(e) =>
+                                formik.setFieldValue('transationDescription', e.value)
+                              }
                         />
+                        {/* <InputField
+                            label="Transaction Description"
+                            classNames='dropdown__add__sub__JV'
+                            className='label__sub__add__JV'
+                            placeholder="Enter"
+                            value={formik.values.transationDescription}
+                            onChange={(e) => formik.setFieldValue('transationDescription', e.value)}
+                        /> */}
+                        {formik.touched.transationDescription && formik.errors.transationDescription && (
+                            <div
+                                style={{ fontSize: 12, color: "red" }}
+                                className="formik__errror__JV"
+                            >
+                                {formik.errors.transationDescription}
+                            </div>
+                        )}
                     </div>
                     <div className="col-12 md:col-3 lg-col-3 input__view__reversal__JV">
                         <div class="calender_container_claim__JV p-0">
@@ -256,7 +325,6 @@ const AddJournalVocture = () => {
                                     onChange={(e) => setDate(e.value)}
                                     showIcon
                                     className="calender_field_claim__JV"
-                                // placeholder={translate("claimstatus")["Choose Date"]}
                                 />
                                 <div className="calender_icon_claim__JV">
                                     <SvgDatePicker />
@@ -269,55 +337,9 @@ const AddJournalVocture = () => {
             <div className='col-12 m-0 '>
                 <div className='sub__account__sub__container__JV'>
                     <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
-                        {/* <div className="card">
-                            <DataTable
-                                value={rows}
-                                style={{ overflowY: 'auto', maxWidth: '100%' }}
-                                responsive={true}
-                                className='table__view__taxation'
-                                paginator
-                                paginatorLeft
-                                rows={5}
-                                rowsPerPageOptions={[5, 10, 25, 50]}
-                                // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                                currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                                paginatorTemplate={template2}
-                                onPage={onPageChange}
-                                onPageChange={onPageChange}
-                            >
-                                {columns.map((column) => (
-                                    <Column
-                                        style={{
-                                            width: `${100 / columns.length}%`,
-                                            // width: column.field === 'rowcount' ? '10%' : `${100 / (columns.length - 1)}%`, // Set width for the dropdown column
-                                            boxSizing: 'border-box',
-                                            fontSize: 14,
-                                            fontWeight: 500,
-                                        }}
-                                        key={column.field}
-                                        field={column.field}
-                                        header={column.headerName}
-                                        paginator
-                                        rows={5}
-                                        rowsPerPageOptions={[5, 10, 25, 50]}
-                                        currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                                        paginatorTemplate={template2}
-                                        bodyStyle={{
-                                            fontSize: 14,
-                                            height: 50,
-                                            padding: 18,
-                                            ...(column.field === 'status' && { color: 'green' }),
-                                        }}
-                                        body={column.field === 'view' ? <div onClick={() => handleNavigateedit()}><SvgArrow /></div> : column.field == 'action' ? <div style={{ display: 'flex', justifyContent: 'center' }}><SvgDeleteIcon /> <SvgEditIcon /></div> : column.field && 'A012'}
-                                    />
-                                ))}
-                            </DataTable>
-
-
-                        </div> */}
                         <div className="card">
                             <DataTable
-                                value={rows}
+                                value={products}
                                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                                 responsive={true}
                                 className='table__view__JV'
@@ -329,6 +351,7 @@ const AddJournalVocture = () => {
                                 paginatorTemplate={template2}
                                 onPage={onPageChange}
                                 onPageChange={onPageChange}
+                                emptyMessage={isEmpty ? emptyTableIcon : null}
                             >
                                 {columns.map((column) => (
                                     <Column
@@ -338,7 +361,7 @@ const AddJournalVocture = () => {
                                         style={{
                                             width: `${100 / columns.length}%`, // Equal width for all columns
                                             boxSizing: 'border-box',
-                                            fontSize: 15,
+                                            fontSize: 16,
                                             fontWeight: 500,
                                             color: '#111927'
                                         }}
@@ -348,9 +371,9 @@ const AddJournalVocture = () => {
                                         currentPageReportTemplate="{first} - {last} of {totalRecords}"
                                         paginatorTemplate={template2}
                                         bodyStyle={{
-                                            fontSize: 14,
+                                            fontSize: 16,
                                             fontWeight: 400,
-                                            color:'#111927',
+                                            color: '#111927',
                                             height: 50,
                                             padding: 18,
                                             ...(column.field === 'status' && { color: 'green' }),
@@ -360,7 +383,7 @@ const AddJournalVocture = () => {
                                                 <div onClick={() => handleNavigateedit()}><SvgArrow /></div>
                                             ) : column.field === 'action' ? (
                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                    <SvgEditIcon /> <SvgDeleteIcon />
+                                                    <div onClick={() => setVisible(true)}> <SvgEditIcon /></div> <div><SvgDeleteIcon /></div>
                                                 </div>
                                             ) : (
                                                 column.field && 'A012'
@@ -375,7 +398,7 @@ const AddJournalVocture = () => {
                     <div className="col-12 add__icon__alighn__Journal__Voture__JV pb-3">
                         <div className='add__icon__view__Journal__Voture__JV' onClick={() => setVisible(true)}>
                             <div className='add__icon__Journal__Voture__JV' >
-                                <SvgAdd color={'#6366F1'} />
+                                <SvgAddBlue />
                             </div>
                             <div className='add__text__Journal__Voture__JV'>
                                 Add Data
@@ -384,6 +407,7 @@ const AddJournalVocture = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className='col-12 m-0 '>
                     <div className='grid add__journal__vocture__add__JV p-3'>
                         <div class="sm-col-12  md:col-3 lg-col-4 ">
@@ -392,7 +416,21 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
+                                value={creditTotal}
+                            // value={formik.values.totalCredit}
+                            // onChange={(e) => {
+                            //     formik.setFieldValue('totalCredit', e.value)
+                            //     calculateNet();
+                            // }}
                             />
+                            {formik.touched.totalCredit && formik.errors.totalCredit && (
+                                <div
+                                    style={{ fontSize: 12, color: "red" }}
+                                    className="formik__errror__JV"
+                                >
+                                    {formik.errors.totalCredit}
+                                </div>
+                            )}
                         </div>
                         <div className='col-12 md:col-3 lg:col-3'>
                             <InputField
@@ -400,7 +438,21 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
+                                value={debitTotal}
+                            // value={formik.values.totalDebit}
+                            // onChange={(e) => {
+                            //     formik.setFieldValue('totalDebit', e.value)
+                            //     calculateNet();
+                            // }}
                             />
+                            {formik.touched.totalDebit && formik.errors.totalDebit && (
+                                <div
+                                    style={{ fontSize: 12, color: "red" }}
+                                    className="formik__errror__JV"
+                                >
+                                    {formik.errors.totalDebit}
+                                </div>
+                            )}
                         </div>
                         <div className="col-12 md:col-3 lg-col-3 input__view__reversal__JV">
                             <InputField
@@ -408,7 +460,19 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
+                                value={netTotal}
+                            // value={formik.values.net}
+                            // onChange={formik.handleChange}
+                            // readOnly
                             />
+                            {formik.touched.net && formik.errors.net && (
+                                <div
+                                    style={{ fontSize: 12, color: "red" }}
+                                    className="formik__errror__JV"
+                                >
+                                    {formik.errors.net}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -416,246 +480,41 @@ const AddJournalVocture = () => {
 
             </div>
             {buttonshow === 0 && (
-        <div className='col-12 btn__view__Add__JV mt-2'>
-          <Button
-            label='Approve'
-            className='save__add__btn__JV'
-            onClick={handleFormSubmit}
-          />
-        </div>
-      )}
+                <div className='col-12 btn__view__Add__JV mt-2'>
+                    <Button
+                        label="Approve"
+                        className='save__add__btn__JV'
+                        onClick={handleApproval}
+                        disabled={netTotal === 0 ? false : true}
+                    />
+                </div>
+            )}
+            {/* {buttonshow === 0 && (
+                <div className='col-12 btn__view__Add__JV mt-2'>
+                    <Button
+                        label='Approve'
+                        className='save__add__btn__JV'
+                        onClick={handleFormSubmit}
+                    />
+                </div>
+            )} */}
 
-      {buttonshow === 1 && (
-        <div className='col-12 btn__view__Add__JV mt-2'>
-          <Button
-            label='Print'
-            className='save__add__btn__JV'
-            // onClick={handlePrint}
-          />
-        </div>
-      )}
+            {buttonshow === 1 && (
+                <div className='col-12 btn__view__Add__JV mt-2'>
+                    <Button
+                        label='Print'
+                        className='save__add__btn__print'
+                    // onClick={handlePrint}
+                    onClick={()=>setVisibleSuccess(true)}
+                    />
+                </div>
+            )}
             <div className="col-12" >
-                <Dialog header="Add Journal Voucher" visible={visible} style={{ width: '80vw', borderRadius: 30 }} onHide={() => setVisible(false)}>
-                    {/* <div className=""> */}
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className="grid m-0 p-0 add__journal__vocture__add__JV" style={{ alignItems: 'center' }}>
-                            <div className="col-12 md:col-3">
-                                <div className='label__sub__add__JV'>Main Account</div>
-                                <Dropdown
-                                    style={{ width: '100%' }}
-                                    className="dropdown__add__sub__JV"
-                                    dropdownIcon={<SvgDropdown />}
-                                    value={formik.values.mainAccount}
-                                    onChange={(e) => formik.setFieldValue('mainAccount', e.value)}
-                                    options={mainAccountOptions}
-                                    placeholder='Select Data'
-                                />
-                                {formik.errors.mainAccount && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.mainAccount}</div>
-                                )}
-                            </div>
-                            <div className="col-12 md:col-6">
-                                <div className='label__sub__add__JV'>Main Account description</div>
-                                <InputText
-                                    style={{ width: '100%', marginTop: 8 }}
-                                    className='dropdown__add__sub__JV'
-                                    value={formik.values.mainAccountDescription}
-                                    onChange={(e) => formik.setFieldValue('mainAccountDescription', e.target.value)}
-                                    placeholder='Enter'
 
-                                />
-                                {formik.errors.mainAccountDescription && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.mainAccountDescription}</div>
-                                )}
-                            </div>
+                <AddData visible={visible} setVisible={setVisible} handleUpdate={handleUpdate} setCreditTotal={setCreditTotal} setDebitTotal={setCreditTotal} setNetTotal={setNetTotal} />
 
-                            <div className="col-12 md:col-3">
-                                <div className='label__sub__add__JV'>Entry Type</div>
-                                <Dropdown
-                                    style={{ width: '100%', }}
-                                    className="dropdown__add__sub__JV"
-                                    dropdownIcon={<SvgDropdown />}
-                                    value={formik.values.entryType}
-                                    onChange={(e) => formik.setFieldValue('entryType', e.value)}
-                                    options={mainAccountOptions}
-                                    placeholder='Select Data'
-                                />
-                                {formik.errors.entryType && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.entryType}</div>
-                                )}
-                            </div>
-                        </div>
-                        <div className="grid m-0 p-0 add__journal__vocture__add__JV" style={{ alignItems: 'center' }}>
-                            <div className="col-12 md:col-3">
-                                <div className='label__sub__add__JV'>Sub  Account</div>
-                                <Dropdown
-                                    style={{ width: '100%' }}
-                                    className="dropdown__add__sub__JV"
-                                    dropdownIcon={<SvgDropdown />}
-                                    value={formik.values.subAccount}
-                                    onChange={(e) => formik.setFieldValue('subAccount', e.value)}
-                                    options={mainAccountOptions}
-                                    placeholder='Select Data'
-                                />
-                                {formik.errors.subAccount && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.subAccount}</div>
-                                )}
-                            </div>
-                            <div className="col-12 md:col-6 ">
-                                <div className='label__sub__add__JV'>Sub Account description</div>
-                                <InputText
-                                    style={{ width: '100%', marginTop: 8 }}
-                                    className='dropdown__add__sub__JV'
-                                    value={formik.values.subAccountDescription}
-                                    onChange={(e) => formik.setFieldValue('subAccountDescription', e.target.value)}
-                                    placeholder='Enter'
-                                />
-                                {formik.errors.subAccountDescription && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.subAccountDescription}</div>
-                                )}
-                            </div>
-
-
-                        </div>
-                        <div className="grid m-0 p-0 add__journal__vocture__add__JV" style={{ alignItems: 'center' }}>
-                            <div className="col-12 md:col-3 ">
-                                <div className='label__sub__add__JV'>Branch Code</div>
-                                <Dropdown
-                                    style={{ width: '100%' }}
-                                    className="dropdown__add__sub__JV"
-                                    dropdownIcon={<SvgDropdown />}
-                                    value={formik.values.branchCode}
-                                    onChange={(e) => formik.setFieldValue('branchCode', e.value)}
-                                    options={mainAccountOptions}
-                                    placeholder='Select Data'
-                                />
-                                {formik.errors.branchCode && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.branchCode}</div>
-                                )}
-                            </div>
-                            <div className="col-12 md:col-6">
-                                <div className='label__sub__add__JV'>Branch Code description</div>
-                                <InputText
-                                    style={{ width: '100%', marginTop: 8 }}
-                                    className='dropdown__add__sub__JV'
-                                    value={formik.values.branchCodeDescription}
-                                    onChange={(e) => formik.setFieldValue('branchCodeDescription', e.target.value)}
-                                    placeholder='Enter'
-                                />
-                                {formik.errors.branchCodeDescription && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.branchCodeDescription}</div>
-                                )}
-                            </div>
-                        </div>
-                        <div className="grid m-0 p-0 add__journal__vocture__add__JV" style={{ alignItems: 'center' }}>
-
-                            <div className="col-12 md:col-3">
-                                <div className='label__sub__add__JV'>Department Code</div>
-                                <Dropdown
-                                    style={{ width: '100%' }}
-                                    className="dropdown__add__sub__JV"
-                                    dropdownIcon={<SvgDropdown />}
-                                    value={formik.values.departmentCode}
-                                    onChange={(e) => formik.setFieldValue('departmentCode', e.value)}
-                                    options={mainAccountOptions}
-                                    placeholder='Select Data'
-                                />
-                                {formik.errors.departmentCode && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.departmentCode}</div>
-                                )}
-                            </div>
-                            <div className="col-12 md:col-6">
-                                <div className='label__sub__add__JV'>Department description</div>
-                                <InputText
-                                    style={{ width: '100%', marginTop: 8 }}
-                                    className='dropdown__add__sub__JV'
-                                    value={formik.values.departmentDescription}
-                                    onChange={(e) => formik.setFieldValue('departmentDescription', e.target.value)}
-                                    placeholder='Enter'
-                                />
-                                {formik.errors.departmentDescription && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.departmentDescription}</div>
-                                )}
-                            </div>
-
-
-                        </div>
-                        <div className="grid m-0 p-0 add__journal__vocture__add__JV" style={{ alignItems: 'center' }}>
-                            <div className="col-12 md:col-3">
-                                <div className='label__sub__add__JV'>Currency Code</div>
-                                <Dropdown
-                                    style={{ width: '100%' }}
-                                    className="dropdown__add__sub__JV"
-                                    dropdownIcon={<SvgDropdown />}
-                                    value={formik.values.currencyCode}
-                                    onChange={(e) => formik.setFieldValue('currencyCode', e.value)}
-                                    options={mainAccountOptions}
-                                    placeholder='Select Data'
-                                />
-                                {formik.errors.currencyCode && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.currencyCode}</div>
-                                )}
-                            </div>
-                            <div className="col-12 md:col-6">
-                                <div className='label__sub__add__JV'>Currency description </div>
-                                <InputText
-                                    style={{ width: '100%', marginTop: 8 }}
-                                    className='dropdown__add__sub__JV'
-                                    value={formik.values.currencyDescription}
-                                    onChange={(e) => formik.setFieldValue('currencyDescription', e.target.value)}
-                                    placeholder='Enter'
-                                />
-                                {formik.errors.currencyDescription && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.currencyDescription}</div>
-                                )}
-                            </div>
-                            <div className="col-12 md:col-3">
-                                <div className='label__sub__add__JV'>Foreign Amount</div>
-                                <InputText
-                                    style={{ width: '100%', marginTop: 8 }}
-                                    className='dropdown__add__sub__JV'
-                                    value={formik.values.foreignAmount}
-                                    onChange={(e) => formik.setFieldValue('foreignAmount', e.target.value)}
-                                    placeholder='Enter'
-                                />
-                                {formik.errors.foreignAmount && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.foreignAmount}</div>
-                                )}
-                            </div>
-                            <div className=" col-12 md:col-6 ">
-                                <div className='label__sub__add__JV'>Remarks (Optional)</div>
-                                <InputText
-                                    style={{ width: '100%', marginTop: 8 }}
-                                    className='dropdown__add__sub__JV'
-                                    value={formik.values.remarks}
-                                    onChange={(e) => formik.setFieldValue('remarks', e.target.value)}
-                                    placeholder='Enter'
-                                />
-                                {formik.errors.remarks && (
-                                    <div style={{ fontSize: 12, color: 'red' }} className='formik__errror__JV'>{formik.errors.remarks}</div>
-                                )}
-                            </div>
-
-                            <div className="col-12 save__popup__correction" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                                <Button
-                                    disabled={!formik.isValid}
-                                    onClick={() => {
-                                        {
-                                            !formik.isValid && setVisible(false)
-                                            setVisiblePopup(true)
-                                        }
-                                    }}
-                                    style={{ height: 45, width: 140, backgroundColor: '#6366F1', borderRadius: 31 }}
-                                    label='Save'
-
-                                />
-                            </div>
-                        </div>
-                    </form>
-
-                
-                </Dialog>
             </div>
+            
 
         </div>
     )

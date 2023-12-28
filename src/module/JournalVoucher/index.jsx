@@ -1,5 +1,5 @@
 import { BreadCrumb } from 'primereact/breadcrumb';
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import NavBar from '../../components/NavBar';
 import SvgDot from '../../assets/icons/SvgDot';
 import "../JournalVoucher/index.scss"
@@ -17,8 +17,11 @@ import { sassFalse } from 'sass';
 import ArrowLeftIcon from '../../assets/icons/ArrowLeftIcon';
 import SvgEye from '../../assets/icons/SvgEye';
 import { dataa } from './data';
+import { TieredMenu } from 'primereact/tieredmenu';
+import SvgTable from '../../assets/icons/SvgTable';
 
 const JournalVoucher = () => {
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate()
   const items = [
     { id: 1, label: 'Journal Voucher', url: '/subaccount' },
@@ -30,10 +33,18 @@ const JournalVoucher = () => {
   const handleNavigateedit = () => {
     navigate('/journalvoucher/detailsjournalvocture')
   }
+  
+  const isEmpty = products.length === 0;
+
+  const emptyTableIcon = (
+    <div className="empty-table-icon">
+      <SvgTable />
+    </div>
+  );
   const columns = [
-    { field: 'subAccount', headerName: 'Transaction Code', flex: 1 },
-    { field: 'shorDesc', headerName: 'Transaction Number', flex: 1 },
-    { field: 'desc', headerName: 'Date', flex: 1 },
+    { field: 'tc', headerName: 'Transaction Code', flex: 1 },
+    { field: 'tn', headerName: 'Transaction Number', flex: 1 },
+    { field: 'date', headerName: 'Date', flex: 1 },
     // { field: 'status', headerName: 'Status', flex: 1 },
     { field: 'view', headerName: 'View', flex: 1 },
   ];
@@ -51,6 +62,19 @@ const JournalVoucher = () => {
 
   const rows = [
     { id: 1, subAccount: '', shorDesc: '', desc: '', view: '' },
+  ];
+  
+  const menu = useRef(null);
+  const menuitems = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Date',
+    },
+    {
+      label: 'Voucher Number',
+    },
   ];
 
   const template2 = {
@@ -104,13 +128,16 @@ const JournalVoucher = () => {
           />
         </div>
       </div>
+      <div className="menu-container">
+      <TieredMenu className='mt-2' model={menuitems} popup ref={menu} breakpoint="767px"  />
+      </div>
       <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__Journal__Voture mb-3'>
         <div className='add__icon__view__Journal__Voture' onClick={handleNavigate}>
           <div className='add__icon__Journal__Voture' >
             <SvgAdd color={'#fff'} />
           </div>
           <div className='add__text__Journal__Voture'>
-            Add Voucher
+            Voucher
           </div>
 
         </div>
@@ -124,28 +151,18 @@ const JournalVoucher = () => {
                 <InputText
                   style={{ width: '100%' }}
                   classNames='input__sub__account__Journal__Voture'
-                  placeholder='Search By Sub Account Code'
+                  placeholder='Search by Transaction Code'
                 />
               </div>
             </div>
             <div className='col-12 md:col-2 lg:col-2'>
-              <div className='sort__filter__view__Journal__Voture' onClick={() => setSort(!sort)}>
-                <div className='sort__by__text__Journal__Voture'>Sort By</div>
+              <div className='sort__filter__view__Journal__Voture' onClick={(e) => menu.current.toggle(e)}>
+                <div className='sort__by__text__Journal__Voture'>Search By</div>
                 <div>
                   <SvgFilters />
                 </div>
               </div>
-              {
-                sort &&
-                <div className='sort__by__data'  >
-                  <div className="sort__title">
-                    Name
-                  </div>
-                  <div className="sort__title mt-3">
-                    Date
-                  </div>
-                </div>
-              }
+             
             </div>
           </div>
           <div className='col-12 '>
@@ -155,7 +172,7 @@ const JournalVoucher = () => {
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
               <DataTable
-                value={tableData}
+                value={products}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -167,14 +184,16 @@ const JournalVoucher = () => {
                 paginatorTemplate={template2}
                 onPage={onPageChange}
                 onPageChange={onPageChange}
+                emptyMessage={isEmpty ? emptyTableIcon : null}
               >
                 {columns.map((column) => (
                   <Column
                     style={{
                       width: column.field === 'rowcount' ? '10%' : `${90 / (columns.length - 1)}%`,
                       boxSizing: 'border-box',
-                      fontSize: 14,
+                      fontSize: 16,
                       fontWeight: 500,
+                      color: '#111927'
                     }}
                     key={column.field}
                     field={column.field}
@@ -185,13 +204,14 @@ const JournalVoucher = () => {
                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
                     paginatorTemplate={template2}
                     bodyStyle={{
-                      fontSize: 14,
+                      fontSize: 16,
                       height: 50,
                       padding: 18,
+                      fontWeight:400,
                       ...(column.field === 'status' && { color: 'green' }),
                     }}
-                    body={column.field === 'view' ? <div onClick={() => handleNavigateedit()}> <SvgEye/></div> : 
-                  column.field && 'Trans00123'}
+                    body={column.field === 'view' && <div onClick={() => handleNavigateedit()}> <SvgEye/></div> 
+                }
                   />
                 ))}
               </DataTable>

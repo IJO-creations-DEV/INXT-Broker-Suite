@@ -7,6 +7,46 @@
     font-family: Inter var;
     margin-left: 10px;
   }
+  .calender__container{
+    border-radius: 30px;
+    background-color: #fff !important;
+    margin-top: 10px;
+}
+.calenderlable__container{
+    color: #000;
+    margin-bottom: 8px;
+font-family: Inter var;
+font-size: 16px;
+ 
+font-weight: 500;
+ 
+}
+.p-card {
+  background: #ffffff;
+  color: #4b5563;
+ 
+  border-radius: 6px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !important;
+}
+.p-calendar .p-inputtext {
+  flex: 1 1 auto;
+  width: 1%;
+  border-right-style: hidden;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-color: #d1d5db;
+}
+.p-button.p-button-icon-only {
+  width: 3rem;
+  padding: 0.75rem 0;
+  color: #6366F1;
+  background: #fff;
+  border-left-style: hidden;
+  border-color: #d1d5db;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+}
   .p-breadcrumb {
     border: 1px solid #fff !important;
     border-radius: 6px;
@@ -16,6 +56,9 @@
     display: flex;
     justify-content: space-between;
   }
+  .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+    color: #B1B1B1;
+}
 
   .custom-modal-overlay {
           position: fixed;

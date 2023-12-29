@@ -21,7 +21,7 @@
     color: #fff;
 
     font-family: Inter var;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
   }
   .dropdown__container {
@@ -44,30 +44,41 @@
   .addbutton_container {
     background-color: #6366f1;
     border-radius: 60px;
-    width: 100px !important;
+    // width: 100px !important;
     height: 38px;
+    gap:10px;
     display: flex;
+    padding: 0px 25px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     color: #fff;
   }
   .listlable_textcontainer {
-    margin: 10px 0px;
+    margin: 20px 0px;
   }
   .listlable_text {
     color: #111927;
     margin-bottom: 40px;
     font-family: Inter var;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
   }
+  .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+    color: #B1B1B1;
+}
   .filterbutton_container {
     display: flex;
     align-items: center;
     margin: 16px 0px;
     gap: 20px;
+   
   }
+  // .addicon{
+  //   gap:30px;
+  //   background-color: red;
+  //   padding-left: 30px;
+  // }
   .overallfilter_container {
     display: flex;
     align-items: self-start;
@@ -87,8 +98,8 @@
   }
   .sorbyfilter_container {
     flex-direction: row-reverse;
-    padding: 0px 3px;
-    width: 128px;
+    padding: 0px 10px;
+    width: 100%;
     height: 46px;
     border-color: #d1d5db;
   }

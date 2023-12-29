@@ -13,18 +13,56 @@ import { Card } from "primereact/card";
 import SvgBack from "../../../assets/icons/SvgBack";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import DropDowns from "../../../components/DropDowns";
+import { useFormik } from "formik";
 
 function PolicyReceipts() {
-  const [products, setProducts] = useState([]);
-  const [selectedItem,setSelectedItem]=useState(null)
-  const [selectedItem1,setSelectedItem1]=useState(null)
-  const [selectedItem2,setSelectedItem2]=useState(null)
+  const [selectedProducts, setSelectedProducts] = useState(false);
   const navigate = useNavigate();
+  const [errors,setErrors] =useState("")
 
-const handlePaymentClick =()=>{
-    navigate("/")
-}
-  const items = [{ label: "Receipts" }, { label: "Add Receipts" }];
+
+const initialValue = {
+        
+  totalPayment: "",
+  bankcode: "",
+  bankName: "",
+  bankAccount: "",
+  bankAccountName: "",
+  paymentType: "",
+  cardNumber: "",
+ 
+};
+const validate = (values) => {
+  console.log(values, "sss");
+  const errors = {};
+ 
+  if (!values.bankcode) {
+    errors.bankcode = "Bank code is required";
+  }
+  if (!values.bankAccount) {
+    errors.bankAccount = "Account number is required";
+  }
+  if (!values.paymentType) {
+    errors.paymentType = "Payment type is required";
+  }
+ 
+  return errors;
+};
+const minDate = new Date();
+minDate.setDate(minDate.getDate() + 1);
+const handleSubmit = () => {
+  const formErrors = validate(formik.values);
+  setErrors(formErrors);
+  console.log(formErrors, "iiiii");
+  // navigate("/addpolicyedit");
+};
+
+const formik = useFormik({
+  initialValues: initialValue,
+  validate,
+  onSubmit: handleSubmit,
+});
+  const items = [{ label: "Receipts",url:'policyreceipts' }, { label: "Add Receipts" }];
 
   const home = { label: "Accounts " };
   const template2 = {
@@ -38,7 +76,7 @@ const handlePaymentClick =()=>{
         { label: 120, value: 120 },
       ];
 
-      
+    
 
       return (
         <React.Fragment>
@@ -83,7 +121,7 @@ const handlePaymentClick =()=>{
     border: "none",
     textalign: "center",
   };
-
+ 
   return (
     <div className="overall__payment_details_container">
       <NavBar />
@@ -103,9 +141,12 @@ const handlePaymentClick =()=>{
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
+                value={formik.values.totalPayment}
+                onChange={formik.handleChange("totalPayment")}
+                error={formik.errors.totalPayment}
                 classNames="field__policy "
                 label="Total Payment"
-                value={"16000.00"}
+                // value={"16000.00"}
               />
             </div>
           </div>
@@ -115,10 +156,13 @@ const handlePaymentClick =()=>{
           <div class="col-4 md:col-4 lg-col-4">
             <div>
                  <DropDowns
+                  value={formik.values.bankcode}
+                  onChange={formik.handleChange("bankcode")}
+                  error={formik.errors.bankcode}
               className="dropdown__container"
               label="Bank code"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
+              
+              
               options={data}
               optionLabel="name"
               placeholder={"Select"}
@@ -130,9 +174,12 @@ const handlePaymentClick =()=>{
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
+              value={formik.values.bankName}
+              onChange={formik.handleChange("bankName")}
+              error={formik.errors.bankName}
                 classNames="field__policy "
                 label="Bank Name"
-                value={"Money bank"}
+                // value={"Money bank"}
               />
             </div>
           </div>
@@ -141,10 +188,13 @@ const handlePaymentClick =()=>{
           <div class="col-4 md:col-4 lg-col-4">
             <div>
             <DropDowns
+             value={formik.values.bankAccount}
+             onChange={formik.handleChange("bankAccount")}
+             error={formik.errors.bankAccount}
               className="dropdown__container"
               label="Bank Account"
-              value={selectedItem1}
-              onChange={(e) => setSelectedItem1(e.value)}
+             
+              
               options={data1}
               optionLabel="name"
               placeholder={"Select"}
@@ -156,9 +206,12 @@ const handlePaymentClick =()=>{
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
+              value={formik.values.bankAccountName}
+              onChange={formik.handleChange("bankAccountName")}
+              error={formik.errors.bankAccountName}
                 classNames="field__policy"
                 label="Bank Account Name"
-                value={"Business Account"}
+                // value={"Business Account"}
               />
             </div>
           </div>
@@ -167,10 +220,13 @@ const handlePaymentClick =()=>{
           <div class="col-4 md:col-4 lg-col-4">
             <div>
             <DropDowns
+             value={formik.values.paymentType}
+             onChange={formik.handleChange("paymentType")}
+             error={formik.errors.paymentType}
               className="dropdown__container"
               label="Payment Type"
-              value={selectedItem2}
-              onChange={(e) => setSelectedItem2(e.value)}
+             
+             
               options={data2}
               optionLabel="name"
               placeholder={"Select"}
@@ -182,9 +238,13 @@ const handlePaymentClick =()=>{
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
+                value={formik.values.cardNumber}
+                onChange={formik.handleChange("cardNumber")}
+                error={formik.errors.cardNumber}
+              
                 classNames="field__policy "
                 label="Card Number"
-                value={"1234 5678 9874 5632"}
+                // value={"1234 5678 9874 5632"}
               />
             </div>
           </div>
@@ -192,7 +252,7 @@ const handlePaymentClick =()=>{
         </div>
       </Card>
       <div className="exit_print_buttons">
-          <Button label="Approve" className="print" onClick={handlePaymentClick} />
+          <Button  label={selectedProducts?.status === "Approved" ? "Print" :"Approve"} className="print" onClick={()=>{formik.handleSubmit();}} disabled={!formik.isValid} />
         </div>
     </div>
   );

@@ -118,6 +118,9 @@ const DetailsJournalVocture = () => {
 
         return () => clearTimeout(timerId);
     }, [visiblePopup]);
+    const handleGoback=()=>{
+        navigate('/accounts/journalvoucher')
+    }
 
     const template2 = {
         layout: "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -162,7 +165,7 @@ const DetailsJournalVocture = () => {
             <Toast ref={toast} />
 
             <div className='col-12 mb-2'>
-                <div className='add__sub__title'><span className='mr-2'><ArrowLeftIcon /></span> Journal Voucher Details</div>
+                <div className='add__sub__title' onClick={handleGoback}><span className='mr-2'><ArrowLeftIcon /></span> Journal Voucher Details</div>
                 <div className='mt-4'>
                     <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
                 </div>

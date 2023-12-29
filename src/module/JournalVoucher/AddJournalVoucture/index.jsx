@@ -27,9 +27,11 @@ import SvgTable from '../../../assets/icons/SvgTable';
 import CustomToast from "../../../components/Toast";
 import SuccessIcon from '../../../assets/icons/SuccessIcon';
 import AddDataTabel from './AddDataTabel';
+import EditData from './EditData';
 
 
 const AddJournalVocture = () => {
+    const navigate=useNavigate()
     const [buttonshow, setButtonShow] = useState(0)
     const [products, setProducts] = useState([]);
     const [visibleSuccess, setVisibleSuccess] = useState(false);
@@ -39,6 +41,7 @@ const AddJournalVocture = () => {
 
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [visibleEdit, setVisibleEdit]=useState(false)
     const [date, setDate] = useState(new Date());
     const items = [
         { label: 'Journal Voucher', url: '/accounts/journalvoucher' },
@@ -55,7 +58,9 @@ const AddJournalVocture = () => {
         return () => clearTimeout(timerId);
     }, [visibleSuccess]);
    
-    
+    const handleGoback=()=>{
+        navigate('/accounts/journalvoucher')
+    }
 
 
 
@@ -147,7 +152,7 @@ const AddJournalVocture = () => {
                 <NavBar />
             </div>
             <div className='col-12 mb-2'>
-                <div className='add__sub__title__JV'><span className='mr-2'><ArrowLeftIcon /></span> Add Journal Voucher</div>
+                <div className='add__sub__title__JV' onClick={handleGoback}><span className='mr-2'><ArrowLeftIcon /></span> Add Journal Voucher</div>
                 <div className='mt-4'>
                     <BreadCrumb home={home} className='breadCrums__view__add__screen__JV' model={items} separatorIcon={<SvgDot color={"#000"} />} />
                 </div>
@@ -228,13 +233,16 @@ const AddJournalVocture = () => {
                             </LabelWrapper>
                         </div>
                     </div>
+
+
+                    
                 </div>
             </div>
-            <div className='col-12 m-0 '>
+            <div className='col-12 m-0'>
                 <div className='sub__account__sub__container__JV'>
                     <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
                         <div className="card">
-                            <AddDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
+                            <AddDataTabel setVisibleEdit={setVisibleEdit} handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
                             
                         </div>
 
@@ -338,6 +346,11 @@ const AddJournalVocture = () => {
             <div className="col-12" >
 
                 <AddData visible={visible} setVisible={setVisible} handleUpdate={handleUpdate} setCreditTotal={setCreditTotal} setDebitTotal={setCreditTotal} setNetTotal={setNetTotal} />
+
+            </div>
+            <div className="col-12" >
+
+                <EditData visibleEdit={visibleEdit} setVisibleEdit={setVisibleEdit} handleUpdate={handleUpdate} setCreditTotal={setCreditTotal} setDebitTotal={setCreditTotal} setNetTotal={setNetTotal} />
 
             </div>
 

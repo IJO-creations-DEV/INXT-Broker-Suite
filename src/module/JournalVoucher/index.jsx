@@ -36,7 +36,7 @@ const JournalVoucher = () => {
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  
+
   const handleEdit = () => {
     console.log("handleEdit success");
     setVisible(true);
@@ -47,7 +47,7 @@ const JournalVoucher = () => {
     setRowsPerPage(event.rows);
   };
 
- 
+
 
   const menu = useRef(null);
   const menuitems = [
@@ -62,7 +62,7 @@ const JournalVoucher = () => {
     },
   ];
 
-  
+
   return (
     <div className='grid  container__Journal__Voture'>
       <div className='col-12'>
@@ -70,7 +70,6 @@ const JournalVoucher = () => {
       </div>
       <div className='col-12 md:col-6 lg:col-6 mb-1'>
         <div className='add__icon__title__Journal__Voture'>Journal Voucher</div>
-
         <div className='mt-4'>
           <BreadCrumb
             home={home}
@@ -94,7 +93,6 @@ const JournalVoucher = () => {
           <div className='add__text__Journal__Voture'>
             Voucher
           </div>
-
         </div>
       </div>
       <div className='col-12 m-0 '>
@@ -123,15 +121,12 @@ const JournalVoucher = () => {
           <div className='col-12 '>
             <div className='main__tabel__title__Journal__Voture p-2'>Journal Voucher history</div>
           </div>
-
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <DataTabelJV handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}/>
+              <DataTabelJV handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
   )

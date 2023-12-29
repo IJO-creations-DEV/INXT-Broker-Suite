@@ -7,7 +7,7 @@ import { Dropdown } from "primereact/dropdown";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgDeleteIcon from "../../../../assets/icons/SvgDeleteIcon";
-const AddDataTabel = ({ handleEdit, newDataTable }) => {
+const AddDataTabel = ({ handleEdit, newDataTable,setVisibleEdit }) => {
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     console.log(newDataTable, "find newDataTable");
@@ -75,8 +75,9 @@ const AddDataTabel = ({ handleEdit, newDataTable }) => {
     const renderEditButton = (rowData) => {
         return (
             <div className="centercontent">
-                <SvgEditIcon />
-                <SvgDeleteIcon />
+                <div onClick={()=>setVisibleEdit(true)}><SvgEditIcon /></div>
+                <div><SvgDeleteIcon /></div>
+                
             </div>
         );
     };
@@ -105,13 +106,13 @@ const AddDataTabel = ({ handleEdit, newDataTable }) => {
                     field="mainAC"
                     header="Main A/c"
                     className="fieldvalue_container"
-                    sortable
+                   
                 ></Column>
                 <Column
                     field="subAC"
                     header="Sub A/c"
                     className="fieldvalue_container"
-                    sortable
+                    
                 ></Column>
 
                 <Column
@@ -124,7 +125,7 @@ const AddDataTabel = ({ handleEdit, newDataTable }) => {
                     field="foreignAmount"
                     header="Foreign Amount"
                     className="fieldvalue_container"
-                    sortable
+                   
                 ></Column>
                 <Column
                     field="Currency"
@@ -137,7 +138,7 @@ const AddDataTabel = ({ handleEdit, newDataTable }) => {
                     field="localAmount"
                     header="Local Amount"
                     className="fieldvalue_container"
-                    sortable
+                  
                 ></Column>
                 <Column
                     field="Entry"

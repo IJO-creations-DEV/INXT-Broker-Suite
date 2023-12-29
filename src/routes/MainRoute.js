@@ -150,15 +150,9 @@ const Maincomponent = () => {
 
             {/* Journal voucher */}
 
-            <Route path="/journalvoucher" element={<Journalvoucher />} />
-            <Route
-              path="journalvoucher/addjournalvoucture"
-              element={<AddJournalVoucture />}
-            />
-            <Route
-              path="journalvoucher/detailsjournalvocture"
-              element={<DetailsJournalVocture />}
-            />
+            <Route path="/accounts/journalvoucher" element={<Journalvoucher />} />
+            <Route path="/accounts/journalvoucher/addjournalvoucture" element={<AddJournalVoucture/>}/>
+            <Route path="/accounts/journalvoucher/detailsjournalvocture" element={<DetailsJournalVocture/>}/>
 
             {/* Corrections JV */}
 

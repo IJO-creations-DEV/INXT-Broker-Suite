@@ -19,32 +19,25 @@ import { Dropdown } from 'primereact/dropdown';
 import { Toast } from 'primereact/toast';
 import { data } from './data';
 import { useFormik } from 'formik';
+import ViewDataTabel from './ViewDataTabel';
 
 
 const DetailsJournalVocture = () => {
     const navigate = useNavigate()
+    
     const [visiblePopup, setVisiblePopup] = useState(false);
+    const [sortField, setSortField] = useState(null);
+    const [sortOrder, setSortOrder] = useState(null);
+
     const [date, setDate] = useState(new Date());
     const items = [
-        { label: 'Journal Voucher', url: '/journalvoucher' },
-        { id: 1, label: 'Journal Voucher Details', url: '/journalvoucher/detailsjournalvocture' },
+        { label: 'Journal Voucher', url: '/accounts/journalvoucher' },
+        { id: 1, label: 'Journal Voucher Details', url: '/accounts/journalvoucher/detailsjournalvocture' },
 
     ];
     const home = { label: "Account" };
-    const handleNavigateedit = () => {
-        // navigate('/master/finance/taxation/saveandedittaxation')
-    }
+   
 
-
-    const columns = [
-        { field: 'main', headerName: 'Main A/c', flex: 1 },
-        { field: 'sub', headerName: 'Sub A/c', flex: 1 },
-        { field: 'remarks', headerName: 'Remarks', flex: 1 },
-        { field: 'currency', headerName: 'Currency', flex: 1 },
-        { field: 'foreign', headerName: 'Foreign Amount', flex: 1 },
-        { field: 'local', headerName: 'Local Amount', flex: 1 },
-        { field: 'entry', headerName: 'Entry', flex: 1 },
-    ];
 
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -53,15 +46,19 @@ const DetailsJournalVocture = () => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
     };
-    const handleNavigate = () => {
-
-    }
-
+    
     const rows = [
         { id: 1, main: '', sub: '', remarks: '', currency: '', foreign: '', local: '', entry: '' },
         { id: 2, main: '', sub: '', remarks: '', currency: '', foreign: '', local: '', entry: '' },
     ];
     const toast = useRef(null);
+    const [newDataTable, setnewDataTable] = useState([]);
+    const [visible, setVisible] = useState(false);
+    const handleEdit = () => {
+        console.log("handleEdit success");
+        setVisible(true);
+    };
+
 
     const showSuccess = () => {
         toast.current.show({
@@ -178,7 +175,7 @@ const DetailsJournalVocture = () => {
                                 className="dropdown__add__sub"
                                 label="Transaction Code"
                                 classNames='label__sub__add'
-                                value={formik.values.transactioncode} 
+                                value={formik.values.transactioncode}
                                 onChange={(e) => formik.setFieldValue('transactioncode', e.target.value)}
                                 options={mainAccountOptions}
                                 optionLabel='label'
@@ -241,59 +238,9 @@ const DetailsJournalVocture = () => {
                     <div className='sub__account__details__jV'>
                         <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
                             <div className="card">
-                                <DataTable
-                                    value={data}
-                                    style={{ overflowY: 'auto', maxWidth: '100%' }}
-                                    responsive={true}
-                                    className='table__view__taxation'
-                                    paginator
-                                    paginatorLeft
-                                    rows={5}
-                                    rowsPerPageOptions={[5, 10, 25, 50]}
-                                    currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                                    paginatorTemplate={template2}
-                                    onPage={onPageChange}
-                                    onPageChange={onPageChange}
-                                >
-                                    {columns.map((column) => (
-                                        <Column
-                                            key={column.field}
-                                            field={column.field}
-                                            header={column.headerName}
-                                            style={{
-                                                width: `${100 / columns.length}%`,
-                                                boxSizing: 'border-box',
-                                                fontSize: 16,
-                                                fontWeight: 500,
-                                                color: '#111927'
-                                            }}
-                                            paginator
-                                            rows={5}
-                                            rowsPerPageOptions={[5, 10, 25, 50]}
-                                            currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                                            paginatorTemplate={template2}
-                                            bodyStyle={{
-                                                fontSize: 16,
-                                                height: 50,
-                                                fontWeight: 400,
-                                                color: '#111927',
-                                                padding: 18,
-                                                ...(column.field === 'status' && { color: 'green' }),
-                                            }}
-                                        // body={
-                                        //     column.field === 'view' ? (
-                                        //         <div onClick={() => handleNavigateedit()}><SvgArrow /></div>
-
-                                        //     ) : (
-                                        //         column.field 
-                                        //     )
-                                        // }
-                                        />
-                                    ))}
-                                </DataTable>
+                                <ViewDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
                             </div>
                         </div>
-
                     </div>
                     <div className='col-12 m-0 '>
                         <div className='grid add__journal__vocture__view p-3'>

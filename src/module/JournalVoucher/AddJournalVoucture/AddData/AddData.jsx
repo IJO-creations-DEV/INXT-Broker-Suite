@@ -7,78 +7,73 @@ import DropDowns from "../../../../components/DropDowns";
 import InputField from "../../../../components/InputField";
 import { Button } from "primereact/button";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
+import SvgModalClose from "../../../../assets/icons/SvgNodalClose";
 const AddData = ({ visible, setVisible, handleUpdate }) => {
+  const codeOptions = [
+    { label: "Option 1", value: "00123" },
+    { label: "Option 2", value: "00124" },
+  ];
+  const codeOptionsMain = [
+    { label: "Option 1", value: "Main00123" },
+    { label: "Option 2", value: "Main00124" },
+  ];
+  const codeOptionsSub = [
+    { label: "Option 1", value: "Sub00123" },
+    { label: "Option 2", value: "Sub00124" },
+  ];
+  const codeOptionsDept = [
+    { label: "Option 1", value: "Dep00123" },
+    { label: "Option 2", value: "Dep00124" },
+  ];
+  const codeOptionsBranch = [
+    { label: "Option 1", value: "Branch00123" },
+    { label: "Option 2", value: "Branch00124" },
+  ];
 
-  const mainAccount = [
-    { label: "Main00012", value: "Main00012" },
-    // { label: "Main00013", value: "Main00013" },
+  const codeOptionsType = [
+    { label: "Option 1", value: "Credit" },
+    { label: "Option 2", value: "Debit" },
   ];
-  const entryType = [
-    { label: "Credit", value: "Credit" },
-    { label: "Debit", value: "Debit" },
+  const codeCurrencyType = [
+    { label: "Option 1", value: "INR" },
+    { label: "Option 2", value: "EURO" },
   ];
-  const subAccount = [
-    { label: "Sub0012", value: "Sub0012" },
-    { label: "Sub0013", value: "Sub0013" },
-  ];
-  const branchCode = [
-    { label: "Branch0012", value: "Branch0012" },
-    { label: "Branch0013", value: "Branch0013" },
-  ];
-  const departmentCode = [
-    { label: "Dept0012", value: "Dept0012" },
-    { label: "Dept0013", value: "Dept0013" },
-  ];
-  const currencyCode = [
-    { label: "Currency0012", value: "Currency0013" },
-    { label: "Currency0013", value: "Currency0013" },
-  ];
+
   const customValidation = (values) => {
     const errors = {};
 
     if (!values.mainAccount) {
-      errors.mainAccount = "main account is required";
+      errors.mainAccount = "This field is required";
     }
-    if (!values.mainAccountDescription) {
-      errors.mainAccountDescription = "main description is required";
-    }
+
     if (!values.entryType) {
-      errors.entryType = "entry type is required";
+      errors.entryType = "This field is required";
     }
     if (!values.subAccount) {
-      errors.subAccount = "sub account is required";
+      errors.subAccount = "This field is required";
     }
-    if (!values.subAccountDescription) {
-      errors.subAccountDescription = "sub description is required";
-    }
+
     if (!values.branchCode) {
-      errors.branchCode = "branch code is required";
+      errors.branchCode = "This field is required";
     }
-    if (!values.branchCodeDescription) {
-      errors.branchCodeDescription = "branch description is required";
-    }
+
     if (!values.departmentCode) {
-      errors.departmentCode = "department is required";
+      errors.departmentCode = "This field is required";
     }
-    if (!values.departmentDescription) {
-      errors.departmentDescription = "department decscription is required";
-    }
+
     if (!values.currencyCode) {
-      errors.currencyCode = "crrency code is required";
+      errors.currencyCode = "This field is required";
     }
-    if (!values.currencyDescription) {
-      errors.currencyDescription = "currency description is required";
-    }
+
     if (!values.foreignAmount) {
-      errors.foreignAmount = "foreign amount is required";
+      errors.foreignAmount = "This field  is required";
     }
 
     return errors;
   };
-
   const handleSubmit = (values) => {
     // Handle form submission
-    console.log(values);
+    console.log(values, "find values");
   };
   const formik = useFormik({
     initialValues: {
@@ -94,126 +89,37 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
       currencyCode: "",
       currencyDescription: "",
       foreignAmount: "",
-      remarks: ""
     },
     validate: customValidation,
     onSubmit: (values) => {
       // Handle form submission
       handleSubmit(values);
-      handleUpdate();
+      formik.resetForm();
+      handleUpdate(values);
       setVisible(false);
     },
   });
-  const handleMainAccount = (e) => {
-    const selectedValue = e.value;
-  formik.handleChange(e); // Manually trigger validation
-  formik.setFieldValue('mainAccount', selectedValue);
-  let value = '';
-  switch (selectedValue) {
-    case 'Main00012':
-      value = 'Main Account Description';
-      break;
-    // case 'Main00013':
-    //   value = 'Main Account code 123';
-    //   break;
-    default:
-      value = 'Enter';
-  }
-  formik.setFieldValue('mainAccountDescription', '');
-  formik.setFieldTouched('mainAccountDescription', false);
-  formik.setFieldValue('mainAccountDescription', value);
-    
-  }
-  const handleSubAccount = (e) => {
-    const selectedValue = e.value;
-    formik.setFieldValue('subAccount', selectedValue);
-    let value = '';
-    switch (selectedValue) {
-      case 'Sub0012':
-        value = 'Sub Account Description';
-        break;
-      // case 'Sub0013':
-      //   value = 'Sub Account code 123';
-      //   break;
-      default:
-        value = 'Enter';
-    }
-    formik.setFieldValue('subAccountDescription', value);
-  }
-  const handleBranchCode = (e) => {
-    const selectedValue = e.value;
-    formik.setFieldValue('branchCode', selectedValue);
-    let value = '';
-    switch (selectedValue) {
-      case 'Branch0012':
-        value = 'Branch Description';
-        break;
-      // case 'Branch0013':
-      //   value = 'Branch code 123';
-      //   break;
-      default:
-        value = 'Enter';
-    }
-    formik.setFieldValue('branchCodeDescription', value);
-   
-  }
-  const handleDepartment=(e)=>{
-    const selectedValue = e.value;
-    formik.setFieldValue('departmentCode', selectedValue);
-    let value = '';
-    switch (selectedValue) {
-      case 'Dept0012':
-        value = 'Department Description';
-        break;
-      // case 'Dept0013':
-      //   value = 'Department code 123';
-      //   break;
-      default:
-        value = 'Enter';
-    }
-    formik.setFieldValue('departmentDescription', value);
-  }
-  const handleCurrencyCode=(e)=>{
-    const selectedValue = e.value;
-    formik.setFieldValue('currencyCode', selectedValue);
-    let value = '';
-    switch (selectedValue) {
-      case 'Currency0012':
-        value = 'Currency Description';
-        break;
-      // case 'Currency0013':
-      //   value = 'Currency code 123';
-      //   break;
-      default:
-        value = 'Enter';
-    }
-    formik.setFieldValue('currencyDescription', value);
-  }
   return (
     <Dialog
       header="Add Journal Voucher"
       visible={visible}
-      style={{ width: "80vw", borderRadius: 30 }}
-      onHide={() => setVisible(false)}
       className="jv__Edit__modal__container"
+      onHide={() => setVisible(false)}
       dismissableMask={true}
     >
-      <form onSubmit={formik.handleSubmit}>
+      <div className="form__container">
         <div className="grid m-0">
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
-             label="Main Account"
               className="input__field__jv"
-              value={formik.values.mainAccount}
-              options={mainAccount}
-              optionLabel='label'
-              onChange={handleMainAccount}
-              placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-            // dropdownIcon={<SvgDropdown color={"#000"} />}
-            // placeholder="Select Data"
-            classNames="select__label__jv"
-          
+              placeholder="Select "
+              classNames="select__label__jv"
+              optionLabel="value"
+              label="Main Account"
+              value={formik.values.mainAccount}
+              onChange={(e) => formik.setFieldValue("mainAccount", e.value)}
+              options={codeOptionsMain}
             />
             {formik.touched.mainAccount && formik.errors.mainAccount && (
               <div
@@ -224,41 +130,30 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
               classNames="input__field__jv"
-              className='input__label__jv'
-              
+              className="input__label__jv"
               label="Main Account Description"
-              value={formik.values.mainAccountDescription}
-              onChange={(e) =>
-                formik.setFieldValue("mainAccountDescription", e.target.value)
+              value={
+                formik.values.mainAccount
+                  ? `Main Account Description ${formik.values.mainAccount}`
+                  : ""
               }
-              placeholder="Enter"
-              disabled={true}
-
             />
-            {formik.touched.mainAccountDescription && formik.errors.mainAccountDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.mainAccountDescription}
-              </div>
-            )}
           </div>
 
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__jv"
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              placeholder="Select Data"
+              placeholder="Select "
               classNames="select__label__jv"
-              optionLabel="label"
+              optionLabel="value"
               label="Entry Type"
               value={formik.values.entryType}
               onChange={(e) => formik.setFieldValue("entryType", e.value)}
-              options={entryType}
+              options={codeOptionsType}
             />
             {formik.touched.entryType && formik.errors.entryType && (
               <div
@@ -274,18 +169,17 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
           className="grid m-0 p-0 add__journal__vocture__add__JV"
           style={{ alignItems: "center" }}
         >
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__jv"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               classNames="select__label__jv"
-              optionLabel="label"
+              optionLabel="value"
               label="Sub Account"
               value={formik.values.subAccount}
-              // onChange={(e) => formik.setFieldValue("subAccount", e.value)}
-              onChange={handleSubAccount}
-              options={subAccount}
-              placeholder="Select Data"
+              onChange={(e) => formik.setFieldValue("subAccount", e.value)}
+              options={codeOptionsSub}
+              placeholder="Select "
             />
             {formik.touched.subAccount && formik.errors.subAccount && (
               <div
@@ -296,44 +190,34 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6 ">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
             <InputField
               classNames="input__field__jv"
               className="input__label__jv"
               label="Sub Account Description"
-              value={formik.values.subAccountDescription}
-
-              onChange={(e) =>
-                formik.setFieldValue("subAccountDescription", e.target.value)
+              value={
+                formik.values.subAccount
+                  ? `Sub Account Description ${formik.values.subAccount}`
+                  : ""
               }
-              placeholder="Enter"
-              disabled={true}
             />
-            {formik.touched.subAccountDescription && formik.errors.subAccountDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.subAccountDescription}
-              </div>
-            )}
           </div>
         </div>
         <div
           className="grid m-0 p-0 add__journal__vocture__add__JV"
           style={{ alignItems: "center" }}
         >
-          <div className="col-12 md:col-3 ">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
             <DropDowns
               className="input__field__jv"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               classNames="select__label__jv"
-              optionLabel="label"
+              optionLabel="value"
               label="Branch Code"
               value={formik.values.branchCode}
-              onChange={handleBranchCode}
-              options={branchCode}
-              placeholder="Select Data"
+              onChange={(e) => formik.setFieldValue("branchCode", e.value)}
+              options={codeOptionsBranch}
+              placeholder="Select "
             />
             {formik.touched.branchCode && formik.errors.branchCode && (
               <div
@@ -344,43 +228,43 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
               classNames="input__field__jv"
               className="input__label__jv"
               label="Branch Code Description"
-              value={formik.values.branchCodeDescription}
-              onChange={(e) =>
-                formik.setFieldValue("branchCodeDescription", e.target.value)
+              value={
+                formik.values.branchCode
+                  ? `Branch Code Description ${formik.values.branchCode}`
+                  : ""
               }
-              placeholder="Enter"
-              disabled={true}
             />
-            {formik.touched.branchCodeDescription && formik.errors.branchCodeDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.branchCodeDescription}
-              </div>
-            )}
+            {formik.touched.branchCodeDescription &&
+              formik.errors.branchCodeDescription && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+                  className="formik__errror__JV"
+                >
+                  {formik.errors.branchCodeDescription}
+                </div>
+              )}
           </div>
         </div>
         <div
           className="grid m-0 p-0 add__journal__vocture__add__JV"
           style={{ alignItems: "center" }}
         >
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__jv"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               classNames="select__label__jv"
-              optionLabel="label"
+              optionLabel="value"
               label="Department Code"
               value={formik.values.departmentCode}
-              onChange={handleDepartment}
-              options={departmentCode}
-              placeholder="Select Data"
+              onChange={(e) => formik.setFieldValue("departmentCode", e.value)}
+              options={codeOptionsDept}
+              placeholder="Select "
             />
             {formik.touched.departmentCode && formik.errors.departmentCode && (
               <div
@@ -391,43 +275,43 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
               classNames="input__field__jv"
               className="input__label__jv"
               label="Department Description"
-              value={formik.values.departmentDescription}
-              onChange={(e) =>
-                formik.setFieldValue("departmentDescription", e.target.value)
+              value={
+                formik.values.departmentCode
+                  ? `Department Description ${formik.values.departmentCode}`
+                  : ""
               }
-              placeholder="Enter"
-              disabled={true}
             />
-            {formik.touched.departmentDescription && formik.errors.departmentDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.departmentDescription}
-              </div>
-            )}
+            {formik.touched.departmentDescription &&
+              formik.errors.departmentDescription && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+                  className="formik__errror__JV"
+                >
+                  {formik.errors.departmentDescription}
+                </div>
+              )}
           </div>
         </div>
         <div
           className="grid m-0 p-0 add__journal__vocture__add__JV"
           style={{ alignItems: "center" }}
         >
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
               className="input__field__jv"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               classNames="select__label__jv"
-              optionLabel="label"
+              optionLabel="value"
               label="Currency Code"
               value={formik.values.currencyCode}
-              onChange={handleCurrencyCode}
-              options={currencyCode}
-              placeholder="Select Data"
+              onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
+              options={codeCurrencyType}
+              placeholder="Select "
             />
             {formik.touched.currencyCode && formik.errors.currencyCode && (
               <div
@@ -438,28 +322,28 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6">
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
               classNames="input__field__jv"
               className="input__label__jv"
               label="Currency Description"
-              value={formik.values.currencyDescription}
-              onChange={(e) =>
-                formik.setFieldValue("currencyDescription", e.target.value)
+              value={
+                formik.values.currencyCode
+                  ? `Currency Description ${formik.values.currencyCode}`
+                  : ""
               }
-              placeholder="Enter"
-              disabled={true}
             />
-            {formik.touched.currencyDescription && formik.errors.currencyDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
-              >
-                {formik.errors.currencyDescription}
-              </div>
-            )}
+            {formik.touched.currencyDescription &&
+              formik.errors.currencyDescription && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+                  className="formik__errror__JV"
+                >
+                  {formik.errors.currencyDescription}
+                </div>
+              )}
           </div>
-          <div className="col-12 md:col-3">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <InputField
               classNames="input__field__jv"
               className="select__label__jv"
@@ -490,7 +374,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
                 formik.setFieldValue("remarks", e.target.value)
               }
               placeholder="Enter"
-             
+
             />
             {formik.touched.remarks && formik.errors.remarks && (
               <div
@@ -503,7 +387,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
           </div>
 
           <div
-            className="col-12 save__popup__correction"
+            className="col-12 save__popup__jv"
             style={{
               display: "flex",
               justifyContent: "flex-end",
@@ -514,15 +398,15 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               label="Save"
               className="jv__btn__reversal"
               disabled={!formik.isValid}
+              onClick={formik.handleSubmit}
             />
           </div>
         </div>
-      </form>
+      </div>
     </Dialog>
-    
-  
   );
 };
 
 export default AddData;
+
 

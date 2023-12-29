@@ -120,7 +120,7 @@ padding: 1.5rem 0rem !important;
     height: 42px;
     border-radius: 30px;
     background: #6366F1;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
 }
 .next_container{
@@ -138,6 +138,9 @@ padding: 1.5rem 0rem !important;
 .card_continer{
     display: flex;
     justify-content: flex-end;
+}
+.p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+    color: #B1B1B1;
 }
 .headlist_lable{
     color: #111927;
@@ -160,11 +163,14 @@ margin:10px 0px
 }
 
 }
+.dialog_fields{
+    width:38rem;
 .update_btn{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     .update_btnlabel{
+        padding: 8px 24px;
         border-radius: 30px;
         background-color: #6366F1;
         color: #FFF;
@@ -175,6 +181,7 @@ font-size: 18px;
 font-weight: 500;
 
     }
+}
 }
 
 // .labeltext__container{
@@ -210,3 +217,66 @@ font-weight: 500;
         max-width: 50%;
     }
 }
+// @media only screen and (min-width: 1340px) {
+//     .dialog_fields{
+//         width:44%;
+//     .update_btn{
+//         display: flex;
+//         justify-content: flex-end;
+//         align-items: flex-end;
+//         .update_btnlabel{
+//             border-radius: 30px;
+//             background-color: #6366F1;
+//             color: #FFF;
+    
+//     font-family: Inter var;
+//     font-size: 18px;
+    
+//     font-weight: 500;
+    
+//         }
+//     }
+//     }
+// }
+// @media only screen and (min-width: 1400px) {
+//     .dialog_fields{
+//         width:40%;
+//     .update_btn{
+//         display: flex;
+//         justify-content: flex-end;
+//         align-items: flex-end;
+//         .update_btnlabel{
+//             border-radius: 30px;
+//             background-color: #6366F1;
+//             color: #FFF;
+    
+//     font-family: Inter var;
+//     font-size: 18px;
+    
+//     font-weight: 500;
+    
+//         }
+//     }
+//     }
+// }
+// @media only screen and (min-width:1000px ) and (max-width: 1690px){
+//     .dialog_fields{
+//         width:44%;
+//     .update_btn{
+//         display: flex;
+//         justify-content: flex-end;
+//         align-items: flex-end;
+//         .update_btnlabel{
+//             border-radius: 30px;
+//             background-color: #6366F1;
+//             color: #FFF;
+    
+//     font-family: Inter var;
+//     font-size: 18px;
+    
+//     font-weight: 500;
+    
+//         }
+//     }
+//     }
+// }

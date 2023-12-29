@@ -135,18 +135,18 @@ const Maincomponent = () => {
             {/* Payment Vouchers */}
 
             <Route path="/paymentvoucher" element={<Paymentvoucher />} />
-            <Route path="/createvoucher" element={<CreateVoucher />} />
+            <Route path="paymentvoucher/createvoucher" element={<CreateVoucher />} />
             <Route
-              path="/detailview"
+              path="paymentvoucher/detailview"
               element={<Detailview />}
             />
             <Route
-              path="/bankdetailselection"
+              path="paymentvoucher/bankdetailselection"
               element={<Bankdetailselection />}
             />
 
             {/* <Route path="/payallvoucher" element={<Payallvoucher />} /> */}
-            <Route path="/SpecificVoucher" element={<SpecificVoucher />} />
+            <Route path="paymentvoucher/SpecificVoucher" element={<SpecificVoucher />} />
 
             {/* Journal voucher */}
 

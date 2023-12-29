@@ -15,12 +15,14 @@ import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { TieredMenu } from 'primereact/tieredmenu';
 import SvgIconeye from "../../assets/icons/SvgIconeye";
+import SvgDropdown from "../../assets/icons/SvgDropdown";
+import SvgDropdownicon from "../../assets/icons/SvgDropdownicon";
 
 const Index = () => {
     const [products, setProducts] = useState([]);
     
 const handleView=()=>{
-  navigate('/detailview')
+  navigate('/paymentvoucher/detailview')
 }
 
     const template2 = {
@@ -72,7 +74,10 @@ const handleView=()=>{
     };
 
   const items = [
-    { label: "Payment Voucher" },
+    { id: 1,
+      label: "Payment Voucher",
+      url: '/paymentvoucher'
+     },
     
   ];
   const home = { label: "Accounts" };
@@ -92,14 +97,9 @@ const handleView=()=>{
   };
  
   const handlePolicy =()=>{
-    navigate('/createvoucher')
+    navigate('/paymentvoucher/createvoucher')
   }
-  const handleArrowClick=()=>{
-    navigate('/policyreceiptsview')
-  }
-  const handleEditClick = () => {
-    navigate("/otherreceiptsview");
-  };
+ 
   return (
     <div className='overall__paymentvoucher__container'>
          <NavBar/>
@@ -110,14 +110,15 @@ const handleView=()=>{
                 model={items}
                 home={home}
                 className='breadcrumbs_container'
+               
                 separatorIcon={<SvgDot color={"#000"} />} />
           </div>
           <div className="filterbutton_container">
             {/* <SvgFilters/> */}
             
             <div className="addbutton_container" onClick={handlePolicy} >
-          <SvgAdd className="addicon" />
-          <p className="addtext">Create Voucher</p>
+          <SvgAdd/>
+          <p className="addtext">Create</p>
              </div>
           </div>
           </div>
@@ -129,9 +130,9 @@ const handleView=()=>{
           >
             {/* <div className="searchiput_container"> */}
     
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="67px" />
+            
 <div  className="header_search_container">
-    <div class="col-12 md:col-6 lg:col-10">
+    <div class="col-12 md:col-6 lg:col-10" style={{paddingLeft:0}}>
         {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
         <span className="p-input-icon-left" style={{width:"100%"}}>
                 <i className="pi pi-search" />
@@ -140,8 +141,8 @@ const handleView=()=>{
         </div>
     {/* </div> */}
     <div class="col-12 md:col-6 lg:col-2">
-     
-    <Button label="Search by" outlined icon={<SvgFilters/>} 
+    <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
+    <Button label="Search by" outlined icon={<SvgDropdownicon/>} 
     className="sorbyfilter_container"
     onClick={(e) => menu.current.toggle(e)}
      /></div>

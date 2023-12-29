@@ -18,21 +18,24 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import Productdata from './mock'
 import { Dropdown } from 'primereact/dropdown';
-
+import { Tag } from 'primereact/tag';
 import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 function Bankdetailselection() {
     const [date, setDate] = useState(null);
-    
+    const [selectedProducts, setSelectedProducts] = useState(false);
     const [visible, setVisible] = useState(false);
-
+console.log("first",selectedProducts)
     const Navigate=useNavigate()
     const [selectedItem, setSelectedItem] = useState(null);
-    const items = [
-        { label: 'Payment Voucher Details' },
-        { label: 'Create Voucher' },
-    ];
+    const [bankaccountitem, setBankaccount] = useState(null);
 
+    const items = [
+        { label: 'Payment Voucher' ,url:'/paymentvoucher'},
+        { label: 'Create Voucher' ,url:'/paymentvoucher/createvoucher'},
+    ];
+    
     const template2 = {
         layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
         RowsPerPageDropdown: (options) => {
@@ -66,9 +69,13 @@ function Bankdetailselection() {
         border: 'none'
     };
     const status = [
-        { name: "Active", code: "NY" },
-        { name: "Deactive", code: "RM" },
+        { name: "bnk0123", code: "NY" },
+        { name: "bnk0124", code: "RM" },
       ];
+      const bankaccount=[
+        { name: "acc0123", code: "NY" },
+        { name: "acc0124", code: "RM" },
+      ]
     const item = [
         { name: 'New York', code: 'NY' },
         { name: 'Rome', code: 'RM' },
@@ -78,9 +85,25 @@ function Bankdetailselection() {
     ];
     const home = { label: "Accounts" };
 
+    const statusBodyTemplate = (rowData) => {
+        return (
+            <div 
+                style={{
+                    
+                    backgroundColor: rowData.status === 'Pending' ? "#FFE5B4" : "#E2F6EF", 
+                color:rowData.status === 'Pending' ? "#FFA800" : "#29CE00"
+                }}
+                    
+                    className='statuslable_container'
+            >
+                {rowData.status}
+            </div>
+        );
+    };
+    
 
 const handleNavigation=()=>{
-    Navigate("/SpecificVoucher")
+    // Navigate("/SpecificVoucher")
 }
 
     return (
@@ -131,9 +154,9 @@ const handleNavigation=()=>{
             <DropDowns
               className="dropdown__container"
               label="Bank Account"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={status}
+              value={bankaccountitem}
+              onChange={(e) => setBankaccount(e.value)}
+              options={bankaccount}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -160,9 +183,14 @@ const handleNavigation=()=>{
         currentPageReportTemplate="{first} - {last} of {totalRecords}"
         paginatorTemplate={template2} scrollable={true} 
         scrollHeight="40vh"
+
+        selection={selectedProducts}
+        onSelectionChange={(e) => setSelectedProducts(e.value)}
+        selectionMode="checkbox"
+        
     >
        {Productdata.length > 0 && (
-    <Column selectionMode="multiple" selectedItem headerStyle={{ width: '4rem' }}></Column>
+    <Column selectionMode="single" selectedItem headerStyle={{ width: '4rem' }}></Column>
 )}
         <Column field="VoucherNumber" header="Customer Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column field="TransactionNumber" header="Customer Name" headerStyle={headerStyle} className='fieldvalue_container'></Column>
@@ -172,21 +200,14 @@ const handleNavigation=()=>{
         <Column field="Amount" header="Instrument Date" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column field="Amount" header="Total Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column 
-    field = "status"
-    header="Status" 
-    headerStyle={headerStyle} 
+    field="status"
+    header="Status"
+    headerStyle={headerStyle}
     className='fieldvalue_container'
-    cellRenderer={(item) => (
-        <div
-            style={{
-                backgroundColor: item === "Printed" ? "green" : "orange"
-            }}
-            
-        >
-            {item}
-        </div>
-    )}
-></Column>
+    body={statusBodyTemplate}
+/>
+
+
 
 
         {/* <Column field="Amount" header="Total Amount" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
@@ -214,10 +235,12 @@ const handleNavigation=()=>{
 
 
             <div className="next_container">
-                
-                <Button className="submit_button p-0" label="Approve"
+            {/* {selectedProducts.length == 1 ? ( */}
+                <Button className="submit_button p-0" label={selectedProducts?.status === "Approved" ? "Print" :"Approve"}
                 onClick={handleNavigation}
+                disabled={!selectedProducts}
                 />
+                {/* // ): null} */}
             </div>
 
 

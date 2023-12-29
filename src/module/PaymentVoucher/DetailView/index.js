@@ -23,14 +23,29 @@ import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
 
 function Detailview() {
     const [date, setDate] = useState(null);
-    
+    const [selectedProducts, setSelectedProducts] = useState(false);
     const [visible, setVisible] = useState(false);
-
+console.log("first1",selectedProducts)
     const Navigate=useNavigate()
     const [selectedItem, setSelectedItem] = useState(null);
     const items = [
         { label: 'Payment Voucher Details' },
     ];
+    const statusBodyTemplate = (rowData) => {
+      return (
+          <div 
+              style={{
+                  
+                  backgroundColor: rowData.status === 'Pending' ? "#E2F6EF" : "#FFE5B4", 
+              color:rowData.status === 'Pending' ? "#29CE00" : "#FFA800"
+              }}
+                  
+                  className='statuslable_container'
+          >
+              {rowData.status}
+          </div>
+      );
+  };
 
     const template2 = {
         layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
@@ -164,7 +179,7 @@ const handleNavigation=()=>{
           <InputField
               classNames="field__container"
               label="Transaction Description"
-              placeholder={"Enter"}
+          
             />
           </div>
           {/* <div class="sm-col-12  md:col-3 lg-col-4">
@@ -206,9 +221,12 @@ const handleNavigation=()=>{
         currentPageReportTemplate="{first} - {last} of {totalRecords}"
         paginatorTemplate={template2} scrollable={true} 
         scrollHeight="40vh"
+        selection={selectedProducts}
+        onSelectionChange={(e) => setSelectedProducts(e.value)}
+        selectionMode="checkbox"
     >
        {Productdata.length > 0 && (
-    <Column selectionMode="multiple" selectedItem headerStyle={{ width: '4rem' }}></Column>
+    <Column selectionMode="single" selectedItem headerStyle={{ width: '4rem' }}></Column>
 )}
         <Column field="VoucherNumber" header="Customer Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column field="TransactionNumber" header="Customer Name" headerStyle={headerStyle} className='fieldvalue_container'></Column>
@@ -222,16 +240,7 @@ const handleNavigation=()=>{
     header="Status" 
     headerStyle={headerStyle} 
     className='fieldvalue_container'
-    cellRenderer={(item) => (
-        <div
-            style={{
-                backgroundColor: item === "Printed" ? "green" : "orange"
-            }}
-            
-        >
-            {item}
-        </div>
-    )}
+    body={statusBodyTemplate}
 ></Column>
 
 
@@ -261,8 +270,9 @@ const handleNavigation=()=>{
 
             <div className="next_container">
                 
-                <Button className="submit_button p-0" label="Approve"
+                <Button className="submit_button p-0" label={selectedProducts?.status === "Approved" ? "Print" :"Approve"}
                 onClick={handleNavigation}
+                disabled={!selectedProducts }
                 />
             </div>
 

@@ -9,7 +9,7 @@ import SvgEditIcon from "../../../assets/icons/SvgEditIcon";
       VoucheDate: "11/12/2023",
       Amount: "500.00",
       action: <SvgEditIcon/>,
-      status:"Printed"
+      status:"Approved"
     },
     {
       id: 2,

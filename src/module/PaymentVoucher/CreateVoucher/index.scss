@@ -30,6 +30,14 @@ margin-left: 10px;
     border-radius: 6px !important;
     padding: 1.5rem 0.5rem !important;
 }
+.p-calendar {
+    position: relative;
+    display: inline-flex;
+    width: 100% !important;
+}
+.p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+    color: #B1B1B1;
+}
 .inputrows__container{
     // justify-content: space-between;
     align-items: center;
@@ -57,7 +65,7 @@ margin-left: 10px;
     max-width: 20%;
 }
 .submit_button{
-    width: 110px;
+    padding: 0px 34px !important;
     height: 42px;
     border-radius: 30px;
     background: #6366F1;
@@ -76,7 +84,7 @@ margin-left: 10px;
     margin-top: 10px;
 }
 .calenderlable__container{
-    color: #111927;
+    color: #000;
     margin-bottom: 8px;
 font-family: Inter var;
 font-size: 16px;
@@ -88,11 +96,12 @@ font-weight: 500;
     width: 3rem;
     padding: 0.75rem 0;
     color: #6366F1;
-    background-color: #fff;
+    background: #fff;
     border-left-style: hidden;
     border-color:  #d1d5db;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    cursor: pointer;
     
 }
 .p-calendar .p-inputtext {

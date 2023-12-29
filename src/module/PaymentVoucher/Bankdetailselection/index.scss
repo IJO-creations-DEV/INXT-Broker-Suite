@@ -132,6 +132,35 @@ margin:10px 0px
     border-style: hidden;
     background-color: #FAFAFA;
 }
+.statuslable_container{
+    font-size: 12px;
+    font-weight: 400;
+    
+    color: #111927;
+    border-radius: 25px;
+    width: 78px;
+height: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.p-radiobutton .p-radiobutton-box {
+    
+    border-radius: 34% !important;
+    
+}
+.p-datatable .p-datatable-tbody > tr.p-highlight {
+    background: #EEF2FF;
+    color: #6366F1 !important;
+}
+.p-checkbox .p-checkbox-box.p-highlight {
+    border-color: #6366F1;
+    background: #6366F1 !important;
+}
+
+.p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+    color: #B1B1B1;
+}
 .header_cardcontainer{
     color: #111927;
 

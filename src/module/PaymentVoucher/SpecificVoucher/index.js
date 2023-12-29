@@ -20,42 +20,39 @@ import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
 
 function SpecificVoucher() {
     const Navigate = useNavigate()
-
+    const [selectedRowData, setSelectedRowData] = useState({});
     const [visible, setVisible] = useState(false);
     const [products, setProducts] = useState([]);
-
+    const [selectedProducts, setSelectedProducts] = useState(false);
 const handlebankdetail=()=>{
-    Navigate('/bankdetailselection')
+    Navigate('/paymentvoucher/bankdetailselection')
 }
     
-const renderViewButton = (rowData) => {
+const renderViewButton = (e) => {
     return (
-        <div >
-      <Button
-        icon={
+        <div onClick={() => handleView(e.value)}>
+     
         <SvgEditIcon />
-    }
-        className="eye__btn"
-        onClick={() => handleView(rowData)}
-      />
+    
       </div>
     );
   };
 
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
+    setSelectedRowData(rowData)
     // Navigate("/accounts/pettycash/PettyCashCodeDetails")
     setVisible(true)
   };
 
     const items = [
-        { label: 'Payment Voucher' },
-        { label: 'Create Voucher' },
+        { label: 'Payment Voucher' ,url:'/paymentvoucher'},
+        { label: 'Create Voucher' ,url:'/paymentvoucher/createvoucher'},
 
     ];
     const home = { label: "Accounts " };
     const handleNavigation = () => {
-        Navigate("/voucherbankdetails")
+        Navigate("/paymentvoucher/voucherbankdetails")
     }
     const template2 = {
         layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
@@ -82,7 +79,7 @@ const renderViewButton = (rowData) => {
     const headerStyle = {
         width: '12rem',
         // backgroundColor: 'red',
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: 'Inter var',
         fontWeight: 500,
         padding: 6,
@@ -113,6 +110,12 @@ const renderViewButton = (rowData) => {
                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
                     paginatorTemplate={template2} scrollable={true} 
                     scrollHeight="40vh"
+
+                    selection={selectedProducts}
+                    onSelectionChange={(e) => setSelectedProducts(e.value)}
+                    selectionMode="checkbox"
+
+
                 >
                     <Column selectionMode="multiple" headerStyle={{ width: '4rem' }}></Column>
                     <Column field="VoucherNumber" header="Payables" headerStyle={headerStyle} className='fieldvalue_container'></Column>
@@ -124,9 +127,7 @@ const renderViewButton = (rowData) => {
                     <Column field="Amount" header="VAT%" headerStyle={headerStyle} className='fieldvalue_container'></Column>
                     <Column field="Amount" header="WHT%" headerStyle={headerStyle} className='fieldvalue_container'></Column>
                     <Column field="Amount" header="Total Amount" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    {/* <Column field="action" header="Action" headerStyle={headerStyle} className='fieldvalue_container'
-                    onClick={() => setVisible(true)}
-                    ></Column> */}
+                   
 
                     <Column
                         // body={(params) => (
@@ -149,19 +150,21 @@ const renderViewButton = (rowData) => {
 
                 <Button label="Next"
                 className='submitbutton_container'
-                onClick={()=>handlebankdetail()}/>
+                onClick={()=>handlebankdetail()}
+                disabled={!selectedProducts.length}
+                />
             </div>
 
 
 
-            <Dialog header="Invoice Details" visible={visible} style={{ width: '38vw' }} onHide={() => setVisible(false)}>
+            <Dialog header="Invoice Details" visible={visible} className="dialog_fields" onHide={() => setVisible(false)}>
             <div class="grid">
             <div class="sm-col-12  md:col-6 lg-col-6">
             <InputField
               classNames="field__container"
               label="Policy"
               placeholder={"Enter"}
-            //   value={rowData.id}
+            //   value={selectedRowData.policy}
             />
           </div>
           <div class="sm-col-12  md:col-6 lg-col-6">
@@ -230,7 +233,9 @@ const renderViewButton = (rowData) => {
     </div>
     </div>
     <div className='update_btn'>
-    <Button label="Update" className='update_btnlabel' onClick={() => setVisible(false)}/>
+    <Button label="Update" className='update_btnlabel' onClick={() => setVisible(false)}
+    
+    />
     </div>
     
             </Dialog>

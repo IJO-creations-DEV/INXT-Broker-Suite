@@ -161,11 +161,11 @@ const handleView=()=>{
                     scrollHeight="40vh"
                 >
                   
-                    <Column field="VoucherNumber" header="Voucher Number" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="TransactionNumber" header="Transaction Number" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="CustomerCode" header="Customer Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="VoucheDate" header="Voucher Date"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="Amount" header="Amount" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="VoucherNumber" header="Voucher Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="TransactionNumber" header="Transaction Number" sortable headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="CustomerCode" header="Customer Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="VoucheDate" header="Voucher Date" sortable  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="Amount" header="Amount" sortable headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}

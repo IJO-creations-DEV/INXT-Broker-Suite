@@ -102,9 +102,9 @@ console.log("first",selectedProducts)
     };
     
 
-const handleNavigation=()=>{
-    // Navigate("/SpecificVoucher")
-}
+// const handleNavigation=()=>{
+//     // Navigate("/SpecificVoucher")
+// }
 
     return (
         <div className='overall__bankdetailview__container'>
@@ -237,7 +237,7 @@ const handleNavigation=()=>{
             <div className="next_container">
             {/* {selectedProducts.length == 1 ? ( */}
                 <Button className="submit_button p-0" label={selectedProducts?.status === "Approved" ? "Print" :"Approve"}
-                onClick={handleNavigation}
+                // onClick={handleNavigation}
                 disabled={!selectedProducts}
                 />
                 {/* // ): null} */}

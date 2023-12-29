@@ -1,4 +1,3 @@
-import SvgEdit from "../../../assets/icons/SvgEdit";
 const Productdata = [
   {
     id: 1,

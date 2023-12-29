@@ -15,15 +15,14 @@
     border: none;
     padding: 0;
   }
-  #pr_id_1_1 .p-menuitem-text {
-    color: #b1b1b1;
-  }
-
   .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
     color: #000;
     font-size: 16px;
     font-weight: 500;
     font-family: "Inter var";
+  }
+  .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+    color: #b1b1b1 !important;
   }
   .card__container {
     background: #fff;
@@ -236,21 +235,12 @@
       background-color: #6366f1;
       border-radius: 30px;
       height: 45px;
-      width: 153px;
+      padding: 0 40px;
       margin: 10px;
       font-family: "Inter var";
-    }
-
-    .correction__print__btn__reversal {
-      color: #6366f1;
-      font-size: 18px;
-      font-weight: 500;
-      background-color: transparent;
-      border-radius: 30px;
-      height: 45px;
-      width: 153px;
-      margin: 10px;
-      font-family: "Inter var";
+      .p-button-label {
+        font-weight: 500 !important;
+      }
     }
   }
 
@@ -286,6 +276,11 @@
     .input__label__reversal__inactive {
       font-size: 12px !important;
     }
+    .button__view__corrections__reversal {
+      .correction__btn__reversal {
+        font-size: 16px;
+      }
+    }
   }
   @media only screen and (min-width: 992px) and (max-width: 1440px) {
     .correction__title__reversal {
@@ -306,6 +301,11 @@
     }
     .input__label__reversal__inactive {
       font-size: 14px !important;
+    }
+    .button__view__corrections__reversal {
+      .correction__btn__reversal {
+        font-size: 16px;
+      }
     }
   }
 }

@@ -27,34 +27,30 @@ const Reversals = () => {
   const [creditTotal, setCreditTotal] = useState(2600);
   const [debitTotal, setDebitTotal] = useState(2500);
   const [netTotal, setNetTotal] = useState(100);
-
+  const [newDataTable, setnewDataTable] = useState([]);
   const items = [
     { label: "Corrections JV", url: "/correctionjv" },
     { label: "Corrections JV Details", url: "/reversaljv" },
   ];
-  const home = { label: "Accounts", url: "/accounts" };
+  const home = { label: "Accounts", url: "/reversaljv" };
   const codeOptions = [
-    { label: "Option 1", value: "option1" },
-    { label: "Option 2", value: "option2" },
+    { label: "Option 1", value: "Trans00123" },
+    { label: "Option 2", value: "Trans00124" },
   ];
   const customValidation = (values) => {
     const errors = {};
 
     if (!values.transactionCode) {
-      errors.transactionCode = "This field Code is required";
+      errors.transactionCode = "This field is required";
     }
-    if (!values.transactionDescription) {
-      errors.transactionDescription = "This field is required";
-    }
+
     if (!values.transactionNumber) {
       errors.transactionNumber = "This field is required";
     }
-    if (!values.reversalJVTransactionCode) {
-      errors.reversalJVTransactionCode = "This field is required";
+    if (!values.correctionJVTransactionCode) {
+      errors.correctionJVTransactionCode = "This field is required";
     }
-    if (!values.reversalDescription) {
-      errors.reversalDescription = "This field is required";
-    }
+
     return errors;
   };
   const handleSubmit = (values) => {
@@ -64,10 +60,8 @@ const Reversals = () => {
   const formik = useFormik({
     initialValues: {
       transactionCode: "",
-      transactionDescription: "",
       transactionNumber: "",
-      reversalJVTransactionCode: "",
-      reversalDescription: "",
+      correctionJVTransactionCode: "",
     },
     validate: customValidation,
     onSubmit: (values) => {
@@ -80,14 +74,27 @@ const Reversals = () => {
     console.log("handleEdit success");
     setVisible(true);
   };
-  const handleUpdate = () => {
+  const handleUpdate = (values) => {
+    setnewDataTable([values]);
     setNetTotal(0);
     setDebitTotal(2600);
+  };
+  const handlePrint = () => {
+    toastRef.current.showToast();
+    formik.resetForm();
+    setStep(0);
   };
 
   return (
     <div className="container__corrections__jv">
-      <CustomToast ref={toastRef} props="Transaction Number 1234 is created" />
+      {step === 1 ? (
+        <CustomToast
+          ref={toastRef}
+          props="Transaction Number 1234 is created"
+        />
+      ) : (
+        <CustomToast ref={toastRef} props="Successfully Printed" />
+      )}
       <div className="grid m-0 top__container">
         <div className="col-12 p-0">
           <NavBar />
@@ -106,224 +113,219 @@ const Reversals = () => {
           />
         </div>
       </div>
-      <form onSubmit={formik.handleSubmit}>
-        <div className="grid card__container">
-          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-            <InputField
-              disabled={step === 0 ? false : true}
-              classNames={
-                step === 0
-                  ? "input__field__reversal"
-                  : "input__field__reversal__inactive"
-              }
-              className={
-                step === 0
-                  ? "input__label__reversal"
-                  : "input__label__reversal__inactive"
-              }
-              label="Transaction Code "
-              placeholder="Enter"
-              textWeight={500}
-              value={formik.values.transactionCode}
-              onChange={(e) =>
-                formik.setFieldValue("transactionCode", e.target.value)
-              }
-            />
-            {formik.errors.transactionCode && (
-              <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.transactionCode}
-              </div>
-            )}
-          </div>
-          <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
-            <InputField
-              disabled={step === 0 ? false : true}
-              classNames={
-                step === 0
-                  ? "input__field__reversal"
-                  : "input__field__reversal__inactive"
-              }
-              className={
-                step === 0
-                  ? "input__label__reversal"
-                  : "input__label__reversal__inactive"
-              }
-              label="Transaction Description"
-              placeholder="Enter"
-              textWeight={500}
-              value={formik.values.transactionDescription}
-              onChange={(e) =>
-                formik.setFieldValue("transactionDescription", e.target.value)
-              }
-            />
-            {formik.errors.transactionDescription && (
-              <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.transactionDescription}
-              </div>
-            )}
-          </div>
-          <div className="col-12 md:col-12 lg:col-3 xl:col-3  input__view__reversal">
-            <InputField
-              disabled={step === 0 ? false : true}
-              classNames={
-                step === 0
-                  ? "input__field__reversal"
-                  : "input__field__reversal__inactive"
-              }
-              className={
-                step === 0
-                  ? "input__label__reversal"
-                  : "input__label__reversal__inactive"
-              }
-              label="Transaction Number"
-              placeholder="Enter"
-              textWeight={500}
-              value={formik.values.transactionNumber}
-              onChange={(e) =>
-                formik.setFieldValue("transactionNumber", e.target.value)
-              }
-            />
-            {formik.errors.transactionNumber && (
+      <div className="grid card__container">
+        <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+          <DropDowns
+            disabled={step === 0 ? false : true}
+            className={
+              step === 0
+                ? "input__field__reversal"
+                : "input__field__reversal__inactive"
+            }
+            classNames={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Transaction Code"
+            dropdownIcon={<SvgDropdown color={"#000"} />}
+            value={formik.values.transactionCode}
+            onChange={(e) =>
+              formik.setFieldValue("transactionCode", e.target.value)
+            }
+            options={codeOptions}
+            optionLabel="value"
+            placeholder="Select "
+          />
+
+          {formik.touched.transactionCode && formik.errors.transactionCode && (
+            <div style={{ fontSize: 12, color: "red" }}>
+              {formik.errors.transactionCode}
+            </div>
+          )}
+        </div>
+        <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
+          <InputField
+            disabled={step === 0 ? false : true}
+            classNames={
+              step === 0
+                ? "input__field__reversal"
+                : "input__field__reversal__inactive"
+            }
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Transaction Description"
+            value={
+              formik.values.transactionCode
+                ? `Transaction Description ${formik.values.transactionCode}`
+                : ""
+            }
+            onChange={(e) =>
+              formik.setFieldValue("transactionDescription", e.target.value)
+            }
+          />
+        </div>
+        <div className="col-12 md:col-12 lg:col-3 xl:col-3  input__view__reversal">
+          <InputField
+            disabled={step === 0 ? false : true}
+            classNames={
+              step === 0
+                ? "input__field__reversal"
+                : "input__field__reversal__inactive"
+            }
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Transaction Number"
+            placeholder="Enter"
+            textWeight={500}
+            value={formik.values.transactionNumber}
+            onChange={(e) =>
+              formik.setFieldValue("transactionNumber", e.target.value)
+            }
+          />
+          {formik.touched.transactionNumber &&
+            formik.errors.transactionNumber && (
               <div style={{ fontSize: 12, color: "red" }}>
                 {formik.errors.transactionNumber}
               </div>
             )}
-          </div>
-          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-            <DropDowns
-              disabled={step === 0 ? false : true}
-              className={
-                step === 0
-                  ? "input__field__reversal"
-                  : "input__field__reversal__inactive"
-              }
-              classNames={
-                step === 0
-                  ? "input__label__reversal"
-                  : "input__label__reversal__inactive"
-              }
-              label="Reversal JV Transaction Code"
-              textWeight={500}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.reversalJVTransactionCode}
-              onChange={(e) =>
-                formik.setFieldValue("reversalJVTransactionCode", e.value)
-              }
-              options={codeOptions}
-              optionLabel="label"
-              placeholder="Select Data"
-            />
-            {formik.errors.reversalJVTransactionCode && (
+        </div>
+        <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+          <DropDowns
+            disabled={step === 0 ? false : true}
+            className={
+              step === 0
+                ? "input__field__reversal"
+                : "input__field__reversal__inactive"
+            }
+            classNames={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Corrections JV Transaction Code"
+            textWeight={500}
+            dropdownIcon={<SvgDropdown color={"#000"} />}
+            value={formik.values.correctionJVTransactionCode}
+            onChange={(e) =>
+              formik.setFieldValue("correctionJVTransactionCode", e.value)
+            }
+            options={codeOptions}
+            optionLabel="value"
+            placeholder="Select "
+          />
+          {formik.touched.correctionJVTransactionCode &&
+            formik.errors.correctionJVTransactionCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
               >
-                {formik.errors.reversalJVTransactionCode}
+                {formik.errors.correctionJVTransactionCode}
               </div>
             )}
-          </div>
-          <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
-            <InputField
-              disabled={step === 0 ? false : true}
-              classNames={
-                step === 0
-                  ? "input__field__reversal"
-                  : "input__field__reversal__inactive"
-              }
-              className={
-                step === 0
-                  ? "input__label__reversal"
-                  : "input__label__reversal__inactive"
-              }
-              label="Reversal Description"
-              placeholder="Enter"
-              textWeight={500}
-              value={formik.values.reversalDescription}
-              onChange={(e) =>
-                formik.setFieldValue("reversalDescription", e.target.value)
-              }
+        </div>
+        <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
+          <InputField
+            disabled={step === 0 ? false : true}
+            classNames={
+              step === 0
+                ? "input__field__reversal"
+                : "input__field__reversal__inactive"
+            }
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Correction Description"
+            value={
+              formik.values.correctionJVTransactionCode
+                ? `Correction Description ${formik.values.correctionJVTransactionCode}`
+                : ""
+            }
+          />
+        </div>
+      </div>
+
+      {step !== 0 && (
+        <>
+          <div className="grid m-0 table__container">
+            <div className="col-12 p-0">
+              <TableData handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}/>
+            </div>
+            <ModalData
+              visible={visible}
+              setVisible={setVisible}
+              handleUpdate={handleUpdate}
             />
-            {formik.errors.reversalDescription && (
-              <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.reversalDescription}
-              </div>
-            )}
           </div>
-        </div>
 
-        {step !== 0 && (
-          <>
-            <div className="grid m-0 table__container">
-              <div className="col-12 p-0">
-                <TableData handleEdit={handleEdit} />
-              </div>
-              <ModalData
-                visible={visible}
-                setVisible={setVisible}
-                handleUpdate={handleUpdate}
+          <div className="grid m-0">
+            <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+              <InputField
+                classNames="input__field__reversal"
+                className="input__label__reversal"
+                label="Total credit"
+                placeholder="Enter"
+                value={creditTotal}
               />
             </div>
-
-            <div className="grid m-0">
-              <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-                <InputField
-                  classNames="input__field__reversal"
-                  className="input__label__reversal"
-                  label="Total credit"
-                  placeholder="Enter"
-                  value={creditTotal}
-                />
-              </div>
-              <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-                <InputField
-                  classNames="input__field__reversal"
-                  className="input__label__reversal"
-                  label="Total Debit"
-                  placeholder="Enter"
-                  value={debitTotal}
-                />
-              </div>
-              <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-                <InputField
-                  classNames="input__field__reversal"
-                  className="input__label__reversal"
-                  label="Net"
-                  placeholder="Enter"
-                  value={netTotal}
-                />
-              </div>
+            <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+              <InputField
+                classNames="input__field__reversal"
+                className="input__label__reversal"
+                label="Total Debit"
+                placeholder="Enter"
+                value={debitTotal}
+              />
             </div>
-          </>
-        )}
-        <div className="grid m-0 bottom__container">
-          <div className="col-12 button__view__corrections__reversal">
-            {step === 0 && (
-              <Button
-                label="Next"
-                className="correction__btn__reversal"
-                disabled={!formik.isValid}
+            <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+              <InputField
+                classNames="input__field__reversal"
+                className="input__label__reversal"
+                label="Net"
+                placeholder="Enter"
+                value={netTotal}
               />
-            )}
-
-            {step === 1 && (
-              <Button
-                label="Approve"
-                className="correction__btn__reversal"
-                onClick={handleApproval}
-                disabled={netTotal === 0 ? false : true}
-              />
-            )}
-
-            {step === 2 && (
-              <Button
-                label="Print"
-                className="correction__btn__reversal"
-                onClick={() => setStep(0)}
-              />
-            )}
+            </div>
           </div>
+        </>
+      )}
+      <div className="grid m-0 bottom__container">
+        <div className="col-12 button__view__corrections__reversal">
+          {step === 0 && (
+            <Button
+              label="Next"
+              className="correction__btn__reversal"
+              disabled={!formik.isValid}
+              onClick={formik.handleSubmit}
+            />
+          )}
+
+          {step === 1 && (
+            <Button
+              label="Approve"
+              className="correction__btn__reversal"
+              onClick={handleApproval}
+              disabled={netTotal === 0 ? false : true}
+            />
+          )}
+
+          {step === 2 && (
+            <Button
+              label="Print"
+              className="correction__btn__reversal"
+              onClick={handlePrint}
+            />
+          )}
         </div>
-      </form>
+      </div>
     </div>
   );
 };

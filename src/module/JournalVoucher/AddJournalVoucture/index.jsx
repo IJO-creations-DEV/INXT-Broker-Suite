@@ -26,42 +26,27 @@ import AddData from './AddData/AddData';
 import SvgTable from '../../../assets/icons/SvgTable';
 import CustomToast from "../../../components/Toast";
 import SuccessIcon from '../../../assets/icons/SuccessIcon';
+import AddDataTabel from './AddDataTabel';
 
 
 const AddJournalVocture = () => {
     const [buttonshow, setButtonShow] = useState(0)
     const [products, setProducts] = useState([]);
     const [visibleSuccess, setVisibleSuccess] = useState(false);
-    const isEmpty = products.length === 0;
-
-    const emptyTableIcon = (
-        <div className="empty-table-icon">
-            <SvgTable />
-        </div>
-    );
+  
     const toastRef = useRef(null);
-    const navigate = useNavigate();
-    const handleSub = () => {
-        toastRef.current.showToast();
-        // {
-        //     setTimeout(() => {
-        //         navigate("/accounts/pettycash/pettycashcodeinitiate");
-        //     }, 3000);
-        // }
-    };
+    
 
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [visible, setVisible] = useState(false);
     const [date, setDate] = useState(new Date());
     const items = [
-        { label: 'Journal Voucher', url: '/journalvoucher' },
-        { label: 'Add Journal Voucher', url: '/saveandedittaxation' },
+        { label: 'Journal Voucher', url: '/accounts/journalvoucher' },
+        { label: 'Add Journal Voucher', url: '/accounts/journalvoucher/addjournalvoucture' },
 
     ];
-    const home = { label: "Master" };
-    const handleNavigateedit = () => {
-        // navigate('/master/finance/taxation/saveandedittaxation')
-    }
+    const home = { label: "Accounts" };
+   
     useEffect(() => {
         const timerId = setTimeout(() => {
             setVisibleSuccess(false);
@@ -69,36 +54,11 @@ const AddJournalVocture = () => {
 
         return () => clearTimeout(timerId);
     }, [visibleSuccess]);
-
-
-    const columns = [
-        { field: 'main', headerName: 'Main A/c', flex: 1 },
-        { field: 'sub', headerName: 'Sub A/c', flex: 1 },
-        { field: 'remarks', headerName: 'Remarks', flex: 1 },
-        { field: 'foreign', headerName: 'Foreign Amount', flex: 1 },
-        { field: 'currency', headerName: 'Currency', flex: 1 },
-        { field: 'local', headerName: 'Local Amount', flex: 1 },
-        { field: 'entry', headerName: 'Entry', flex: 1 },
-        { field: 'action', headerName: 'Action', flex: 1 },
-    ];
-
-    const [first, setFirst] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-
-    const onPageChange = (event) => {
-        setFirst(event.first);
-        setRowsPerPage(event.rows);
-    };
-    const handleNavigate = () => {
-
-    }
-
-    const rows = [
-        { id: 1, main: '', sub: '', remarks: '', foreign: '', currency: '', local: '', entry: '', action: '' },
-    ];
-    const toast = useRef(null);
+   
+    
 
    
+
 
     const customValidation = (values) => {
         const errors = {};
@@ -123,15 +83,7 @@ const AddJournalVocture = () => {
 
         return errors;
     };
-    const handleFormSubmit = () => {
-        formik.handleSubmit()
-        // showSuccess();
-        // setButtonShow(1);
-        // handleSub()
-        // setButtonShow({
-        //     buttonshow:2,
-        // })
-    };
+    
     const handleSubmit = (values) => {
         // Handle form submission
         console.log(values);
@@ -159,37 +111,7 @@ const AddJournalVocture = () => {
         return () => clearTimeout(timerId);
     }, [visiblePopup]);
 
-    const template2 = {
-        layout: "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
-        RowsPerPageDropdown: (options) => {
-            const dropdownOptions = [
-                { label: 5, value: 5 },
-                { label: 10, value: 10 },
-                { label: 20, value: 20 },
-                { label: 120, value: 120 },
-            ];
-
-            return (
-                <React.Fragment>
-                    <div className='row__count__view__JV'>
-                        <span
-
-                            className="mx-1"
-                            style={{ color: "var(--text-color)", userSelect: "none" }}
-                        >
-                            Row count :{" "}
-                        </span>
-                        <Dropdown
-                            value={options.value}
-                            className="pagedropdown_container__JV"
-                            options={dropdownOptions}
-                            onChange={options.onChange}
-                        />
-                    </div>
-                </React.Fragment>
-            );
-        },
-    };
+   
     const [creditTotal, setCreditTotal] = useState(500);
     const [debitTotal, setDebitTotal] = useState(500);
     const [netTotal, setNetTotal] = useState(100);
@@ -206,31 +128,18 @@ const AddJournalVocture = () => {
         setNetTotal(0);
         setDebitTotal(2600);
     };
-
-    const [selectedTransactionCode, setSelectedTransactionCode] = useState('');
-
+    const [newDataTable, setnewDataTable] = useState([]);
+    const handleEdit = () => {
+        console.log("handleEdit success");
+        setVisible(true);
+    };
     const mainAccountOptions = [
         { label: 'Trans00123', value: 'Trans00123' },
         { label: 'Trans00124', value: 'Trans00124' },
 
     ];
 
-    const handleTransactionCodeChange = (e) => {
-        const selectedValue = e.value;
-        formik.setFieldValue('transationCode', selectedValue);
-        let value = '';
-        switch (selectedValue) {
-          case 'Trans00123':
-            value = 'Transaction code Description';
-            break;
-          case 'Trans00124':
-            value = 'Transaction code 123';
-            break;
-          default:
-            value = 'Enter';
-        }
-        formik.setFieldValue('transationDescription', value);
-      };
+    
 
     return (
         <div className='grid add__JV__container'>
@@ -247,31 +156,22 @@ const AddJournalVocture = () => {
             <div className='col-12 m-0 '>
                 <div className='grid add__journal__vocture__add__JV p-3'>
                     <div class="sm-col-12  md:col-3 lg-col-4 ">
-                        {/* <DropDowns
+                        <DropDowns
                             className="dropdown__add__sub__JV"
                             label="Transaction Code"
                             classNames='label__sub__add__JV'
                             value={formik.values.transationCode}
-                            onChange={(e) => {
-                                formik.setFieldValue('transationCode', e.value)
-                                handleTransactionCodeChange()
-                            }}
+                            onChange={(e) =>
+                                formik.setFieldValue("transationCode", e.target.value)
+                            }
+                          
                             options={mainAccountOptions}
 
                             optionLabel='label'
                             placeholder={"Select"}
                             dropdownIcon={<SvgDropdown color={"#000"} />}
-                        /> */}
-                        <DropDowns
-                            className="dropdown__add__sub__JV"
-                            label="Transaction Code"
-                            value={formik.values.transationCode}
-                            options={mainAccountOptions}
-                            optionLabel='label'
-                            onChange={handleTransactionCodeChange}
-                            placeholder={"Select"}
-                            dropdownIcon={<SvgDropdown color={"#000"} />}
                         />
+                      
                         {formik.touched.transationCode && formik.errors.transationCode && (
                             <div
                                 style={{ fontSize: 12, color: "red" }}
@@ -287,21 +187,18 @@ const AddJournalVocture = () => {
                             label="Transaction Description"
                             classNames='dropdown__add__sub__JV'
                             className='label__sub__add__JV'
-                            // placeholder={formik.values.transationDescriptionPlaceholder }
-                             value={formik.values.transationDescription}
-                             disabled={true}
-                             onChange={(e) =>
-                                formik.setFieldValue('transationDescription', e.value)
-                              }
+                            
+                            value={
+                                formik.values.transationCode
+                                    ? `Transaction Description ${formik.values.transationCode}`
+                                    : ""
+                            }
+                            disabled={true}
+                            onChange={(e) =>
+                                formik.setFieldValue("transactionDescription", e.target.value)
+                            }
                         />
-                        {/* <InputField
-                            label="Transaction Description"
-                            classNames='dropdown__add__sub__JV'
-                            className='label__sub__add__JV'
-                            placeholder="Enter"
-                            value={formik.values.transationDescription}
-                            onChange={(e) => formik.setFieldValue('transationDescription', e.value)}
-                        /> */}
+                       
                         {formik.touched.transationDescription && formik.errors.transationDescription && (
                             <div
                                 style={{ fontSize: 12, color: "red" }}
@@ -338,60 +235,8 @@ const AddJournalVocture = () => {
                 <div className='sub__account__sub__container__JV'>
                     <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
                         <div className="card">
-                            <DataTable
-                                value={products}
-                                style={{ overflowY: 'auto', maxWidth: '100%' }}
-                                responsive={true}
-                                className='table__view__JV'
-                                paginator
-                                paginatorLeft
-                                rows={5}
-                                rowsPerPageOptions={[5, 10, 25, 50]}
-                                currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                                paginatorTemplate={template2}
-                                onPage={onPageChange}
-                                onPageChange={onPageChange}
-                                emptyMessage={isEmpty ? emptyTableIcon : null}
-                            >
-                                {columns.map((column) => (
-                                    <Column
-                                        key={column.field}
-                                        field={column.field}
-                                        header={column.headerName}
-                                        style={{
-                                            width: `${100 / columns.length}%`, // Equal width for all columns
-                                            boxSizing: 'border-box',
-                                            fontSize: 16,
-                                            fontWeight: 500,
-                                            color: '#111927'
-                                        }}
-                                        paginator
-                                        rows={5}
-                                        rowsPerPageOptions={[5, 10, 25, 50]}
-                                        currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                                        paginatorTemplate={template2}
-                                        bodyStyle={{
-                                            fontSize: 16,
-                                            fontWeight: 400,
-                                            color: '#111927',
-                                            height: 50,
-                                            padding: 18,
-                                            ...(column.field === 'status' && { color: 'green' }),
-                                        }}
-                                        body={
-                                            column.field === 'view' ? (
-                                                <div onClick={() => handleNavigateedit()}><SvgArrow /></div>
-                                            ) : column.field === 'action' ? (
-                                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                    <div onClick={() => setVisible(true)}> <SvgEditIcon /></div> <div><SvgDeleteIcon /></div>
-                                                </div>
-                                            ) : (
-                                                column.field && 'A012'
-                                            )
-                                        }
-                                    />
-                                ))}
-                            </DataTable>
+                            <AddDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
+                            
                         </div>
 
                     </div>
@@ -417,11 +262,7 @@ const AddJournalVocture = () => {
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
                                 value={creditTotal}
-                            // value={formik.values.totalCredit}
-                            // onChange={(e) => {
-                            //     formik.setFieldValue('totalCredit', e.value)
-                            //     calculateNet();
-                            // }}
+                          
                             />
                             {formik.touched.totalCredit && formik.errors.totalCredit && (
                                 <div
@@ -439,11 +280,7 @@ const AddJournalVocture = () => {
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
                                 value={debitTotal}
-                            // value={formik.values.totalDebit}
-                            // onChange={(e) => {
-                            //     formik.setFieldValue('totalDebit', e.value)
-                            //     calculateNet();
-                            // }}
+                           
                             />
                             {formik.touched.totalDebit && formik.errors.totalDebit && (
                                 <div
@@ -461,9 +298,7 @@ const AddJournalVocture = () => {
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
                                 value={netTotal}
-                            // value={formik.values.net}
-                            // onChange={formik.handleChange}
-                            // readOnly
+                          
                             />
                             {formik.touched.net && formik.errors.net && (
                                 <div
@@ -489,23 +324,15 @@ const AddJournalVocture = () => {
                     />
                 </div>
             )}
-            {/* {buttonshow === 0 && (
-                <div className='col-12 btn__view__Add__JV mt-2'>
-                    <Button
-                        label='Approve'
-                        className='save__add__btn__JV'
-                        onClick={handleFormSubmit}
-                    />
-                </div>
-            )} */}
+        
 
             {buttonshow === 1 && (
                 <div className='col-12 btn__view__Add__JV mt-2'>
                     <Button
                         label='Print'
                         className='save__add__btn__print'
-                    // onClick={handlePrint}
-                    onClick={()=>setVisibleSuccess(true)}
+                        
+                        onClick={() => setVisibleSuccess(true)}
                     />
                 </div>
             )}
@@ -514,7 +341,7 @@ const AddJournalVocture = () => {
                 <AddData visible={visible} setVisible={setVisible} handleUpdate={handleUpdate} setCreditTotal={setCreditTotal} setDebitTotal={setCreditTotal} setNetTotal={setNetTotal} />
 
             </div>
-            
+
 
         </div>
     )

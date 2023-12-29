@@ -71,11 +71,13 @@ const TableData = ({ handleEdit, newDataTable, editID }) => {
           field="mainAC"
           header="Main A/c"
           className="fieldvalue_container"
+          sortable
         ></Column>
         <Column
           field="subAC"
           header="Sub A/c"
           className="fieldvalue_container"
+          sortable
         ></Column>
 
         <Column
@@ -92,11 +94,13 @@ const TableData = ({ handleEdit, newDataTable, editID }) => {
           field="foreignAmount"
           header="Foreign Amount"
           className="fieldvalue_container"
+          sortable
         ></Column>
         <Column
           field="localAmount"
           header="Local Amount"
           className="fieldvalue_container"
+          sortable
         ></Column>
         <Column
           field="Entry"

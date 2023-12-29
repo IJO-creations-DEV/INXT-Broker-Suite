@@ -83,7 +83,7 @@ const PolicyReceipts = () => {
     textalign: "center",
   };
   const headerStyle2 = {
-    width: "14%",
+   
 
     fontSize: 16,
     fontFamily: "Inter var",
@@ -147,14 +147,14 @@ const PolicyReceipts = () => {
         <div className="filterbutton_container">
           <div className="addbutton_container" onClick={handlePolicy}>
             <SvgAdd className="addicon" />
-            <p className="addtext">Add</p>
+            <p className="addtext">Receipt</p>
           </div>
         </div>
       </div>
 
       <Card>
         <div className="header_search_container">
-          <div class="col-12 md:col-6 lg:col-10">
+          <div class="col-12 md:col-6 lg:col-10" style={{paddingLeft:'0'}}>
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
@@ -163,7 +163,7 @@ const PolicyReceipts = () => {
               />
             </span>
           </div>
-          {/* </div> */}
+          
           <div class="col-12 md:col-3 lg:col-2">
           <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" />
             <Button 
@@ -199,42 +199,49 @@ const PolicyReceipts = () => {
             className="datatable_container"
           >
             <Column
+              sortable
               field="receiptNumber"
               header="Receipt Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
+            
               field="transactionCode"
               header="Transaction Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
+            sortable
               field="transactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
+            sortable
               field="name"
               header="Name"
               headerStyle={headerStyle1}
               className="fieldvalue_container"
             ></Column>
             <Column
+            sortable
               field="customerCode"
               header="Customer Code"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              field="date"
-              header="Date"
               headerStyle={headerStyle2}
               className="fieldvalue_container"
             ></Column>
             <Column
+            sortable
+              field="date"
+              header="Date"
+              headerStyle={headerStyle1}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+            
               field="amount"
               header="Amount"
               headerStyle={headerStyle3}
@@ -242,6 +249,7 @@ const PolicyReceipts = () => {
             ></Column>
 
             <Column
+            // sortable
               body={() => <SvgEye onClick={() => handleArrowClick()} />}
               header="Action"
               headerStyle={headerStyle}

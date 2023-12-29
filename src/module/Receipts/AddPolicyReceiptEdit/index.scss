@@ -1,4 +1,6 @@
 .overall__add_policy_edit__container {
+ 
+ 
     .label_header {
       color: #111927;
       font-family: Inter var;
@@ -20,7 +22,7 @@
       justify-content: space-between;
     }
     .listlable_textcontainer {
-      margin: 10px 0px;
+      margin: 20px 0px;
     }
     .listlable_text {
       color: #111927;
@@ -79,7 +81,9 @@
       margin-top: 50px;
       margin-bottom: 20px;
     }
-  
+    .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+      color: #B1B1B1;
+  }
     .inputrows__container {
       align-items: center;
       display: flex;

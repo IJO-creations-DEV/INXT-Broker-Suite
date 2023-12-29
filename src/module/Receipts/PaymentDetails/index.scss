@@ -11,6 +11,16 @@
       border-radius: 6px;
       padding: 1rem 0 !important;
     }
+    .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
+      color: #B1B1B1;
+  }
+  .p-card {
+    background: #ffffff;
+    color: #4b5563;
+   
+    border-radius: 6px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !important;
+}
     .exit_print_buttons {
       display: flex;
       justify-content: space-between;

@@ -48,6 +48,24 @@
         font-weight: 400;
       }
     }
+    .input__field__corrections__inactive {
+      color: #b1b1b1;
+      font-family: "Inter var";
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width: 100%;
+      .p-dropdown-label {
+        color: #b1b1b1;
+        font-family: "Inter var";
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .p-component:disabled {
+        opacity: 1 !important;
+      }
+    }
     .correction__btn__reversal {
       color: #fff;
       font-size: 18px;

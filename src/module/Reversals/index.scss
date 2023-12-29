@@ -58,6 +58,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    .p-component:disabled {
+      opacity: 1 !important;
+    }
   }
 
   .input__label__reversal {

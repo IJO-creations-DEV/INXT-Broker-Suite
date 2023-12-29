@@ -57,7 +57,6 @@ const AddJournalVocture = () => {
    
     
 
-   
 
 
     const customValidation = (values) => {
@@ -143,7 +142,7 @@ const AddJournalVocture = () => {
 
     return (
         <div className='grid add__JV__container'>
-            <CustomToast ref={toastRef} />
+            {/* <CustomToast ref={toastRef} /> */}
             <div className='col-12'>
                 <NavBar />
             </div>

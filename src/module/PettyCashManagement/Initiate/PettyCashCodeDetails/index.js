@@ -83,6 +83,7 @@ const PettyCashCodeDetails = () => {
                 className="input__filed"
                 label="Petty Cash Code"
                 placeholder="Select"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
@@ -94,7 +95,8 @@ const PettyCashCodeDetails = () => {
               <InputField
                 classNames="input__filed"
                 label="Petty Cash description"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
@@ -104,7 +106,8 @@ const PettyCashCodeDetails = () => {
               <InputField
                 classNames="input__filed"
                 label="Petty Cash Size"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
@@ -117,6 +120,7 @@ const PettyCashCodeDetails = () => {
                 className="input__filed"
                 label="Bank Account Code"
                 placeholder="Select"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
@@ -129,6 +133,7 @@ const PettyCashCodeDetails = () => {
                 className="input__filed"
                 label="Sub Account Code"
                 placeholder="Select"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
@@ -141,6 +146,7 @@ const PettyCashCodeDetails = () => {
                 className="input__filed"
                 label="Currency"
                 placeholder="Select"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
@@ -152,7 +158,8 @@ const PettyCashCodeDetails = () => {
               <InputField
                 classNames="input__filed"
                 label="Currency description"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
@@ -165,6 +172,7 @@ const PettyCashCodeDetails = () => {
                 className="input__filed"
                 label="Transaction Code"
                 placeholder="Select"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
@@ -176,7 +184,8 @@ const PettyCashCodeDetails = () => {
               <InputField
                 classNames="input__filed"
                 label="Transaction description"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
@@ -189,6 +198,7 @@ const PettyCashCodeDetails = () => {
                 className="input__filed"
                 label="Branch Code"
                 placeholder="Select"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
@@ -200,7 +210,8 @@ const PettyCashCodeDetails = () => {
               <InputField
                 classNames="input__filed"
                 label="Branch description"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
@@ -212,7 +223,8 @@ const PettyCashCodeDetails = () => {
               <DropDowns
                 className="input__filed"
                 label="Department Code"
-                placeholder="Select"
+                // placeholder="Select"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
@@ -224,7 +236,8 @@ const PettyCashCodeDetails = () => {
               <InputField
                 classNames="input__filed"
                 label="Department description"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
@@ -237,6 +250,7 @@ const PettyCashCodeDetails = () => {
                 className="input__filed"
                 label="Available Cash"
                 placeholder="Select"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
@@ -248,7 +262,8 @@ const PettyCashCodeDetails = () => {
               <InputField
                 classNames="input__filed"
                 label="Transaction Limit"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
@@ -258,7 +273,8 @@ const PettyCashCodeDetails = () => {
               <InputField
                 classNames="input__filed"
                 label="Minimum Cash box"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}

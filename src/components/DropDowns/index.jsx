@@ -23,6 +23,7 @@ function DropDowns({
   dropdownIcon,
   defaultValue
 }) {
+  console.log(error,"error")
   return (
     <div className={overallstyle}>
       <LabelWrapper

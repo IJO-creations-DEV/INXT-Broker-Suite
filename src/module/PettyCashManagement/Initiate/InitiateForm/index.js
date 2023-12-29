@@ -11,6 +11,15 @@ import DropDowns from "../../../../components/DropDowns";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import { Button } from "primereact/button";
 import CustomToast from "../../../../components/Toast";
+import {
+  PettyCashCode,
+  BankAccountCode,
+  SubAccount,
+  CurrencyType,
+  Transcode,
+  Branchcode,
+  Departcode,
+} from "../../mock";
 
 const initialValue = {
   PettyCashCode: "",
@@ -34,18 +43,47 @@ const initialValue = {
 const InitiateForm = () => {
   const toastRef = useRef(null);
   const navigate = useNavigate();
-  const validate = () => {};
-  const handleSubmit = () => {
-    toastRef.current.showToast();
-    {
-      setTimeout(() => {
-        navigate("/accounts/pettycash/pettycashcodeinitiate");
-      }, 3000);
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.PettyCashCode) {
+      errors.PettyCashCode = "Petty Cash Code is required";
     }
+
+    if (!values.BankAccountNumber) {
+      errors.BankAccountNumber = "Bank Account Number is required";
+    }
+
+    if (!values.SubAccountCode) {
+      errors.SubAccountCode = "Sub Account Code is required";
+    }
+
+    if (!values.Currency) {
+      errors.Currency = "Currency is required";
+    }
+
+    if (!values.TransactionCode) {
+      errors.TransactionCode = "Transaction Code is required";
+    }
+
+    if (!values.BranchCode) {
+      errors.BranchCode = "Branch Code is required";
+    }
+
+    if (!values.DepartmentCode) {
+      errors.DepartmentCode = "Department Code is required";
+    }
+    return errors;
   };
 
+  const handleSubmit = () => {
+    toastRef.current.showToast();
+    setTimeout(() => {
+      navigate("/accounts/pettycash/pettycashcodeinitiate");
+    }, 200000);
+  };
   const items = [
-    { label: "Petty Cash", url: "Petty Cash Management" },
+    { label: "Petty Cash", url: "/accounts/pettycash/pettycashcodeinitiate" },
     {
       label: "Petty Cash Code Initiate",
       url: "/accounts/pettycash/pettycashcodeinitiate",
@@ -64,12 +102,198 @@ const InitiateForm = () => {
   const formik = useFormik({
     initialValues: initialValue,
     validate,
-    handleSubmit: handleSubmit,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
   });
 
+  const handlePettyCashDescribtion = (value) => {
+    let description = "";
+    let pettycashsize = "";
+    switch (value.pettycashcode) {
+      case "PC0128":
+        description = "PC-1";
+        break;
+      case "PC0129":
+        description = "PC-2";
+        break;
+      case "PC0130":
+        description = "PC-3";
+        break;
+      case "PC0131":
+        description = "PC-4";
+        break;
+      default:
+        description = "Unknown";
+        break;
+    }
+    switch (value.pettycashcode) {
+      case "PC0128":
+        pettycashsize = "1000";
+        break;
+      case "PC0129":
+        pettycashsize = "2000";
+        break;
+      case "PC0130":
+        pettycashsize = "3000";
+        break;
+      case "PC0131":
+        pettycashsize = "4000";
+        break;
+      default:
+        pettycashsize = "Unknown";
+        break;
+    }
+    formik.setFieldValue("PettyCashSize", pettycashsize);
+    formik.setFieldValue("PettyCashdescription", description);
+  };
+  const handlecurrency = (value) => {
+    let currency = "";
+    switch (value.CurrencyType) {
+      case "INR":
+        currency = "Indian Currency";
+        break;
+      case "US":
+        currency = "United states Currency";
+        break;
+      case "USD":
+        currency = "United States Currency";
+        break;
+      case "AD":
+        currency = "Andorra Currency";
+        break;
+      default:
+        currency = "Unknown";
+        break;
+    }
+    formik.setFieldValue("Currencydescription", currency);
+  };
+
+  const handleTrans = (value) => {
+    let Trans = "";
+    switch (value.Transcode) {
+      case "Trans00322":
+        Trans = "Trans-1";
+        break;
+      case "Trans00123":
+        Trans = "Trans-2";
+        break;
+      case "Trans00923":
+        Trans = "Trans-3";
+        break;
+      case "Trans00123":
+        Trans = "Trans-4";
+        break;
+      default:
+        Trans = "Unknown";
+        break;
+    }
+    formik.setFieldValue("Transactiondescription", Trans);
+  };
+  const handleBranch = (value) => {
+    let Branch = "";
+    switch (value) {
+      case "Branch00322":
+        Branch = "Branch-1";
+        break;
+      case "Branch00123":
+        Branch = "Branch-2";
+        break;
+      case "Branch00923":
+        Branch = "Branch-3";
+        break;
+      case "Branch00123":
+        Branch = "Branch-4";
+        break;
+      default:
+        Branch = "Unknown";
+        break;
+    }
+    formik.setFieldValue("Branchdescription", Branch);
+  };
+  const handleDepart = (value) => {
+    let Depart = "";
+    switch (value) {
+      case "Depart00322":
+        Depart = "Depart-1";
+        break;
+      case "Depart00123":
+        Depart = "Depart-2";
+        break;
+      case "Depart00923":
+        Depart = "Depart-3";
+        break;
+      case "Depart00123":
+        Depart = "Depart-4";
+        break;
+      default:
+        Depart = "Unknown";
+        break;
+    }
+    formik.setFieldValue("Departmentdescription", Depart);
+  };
+  const handleAccountcode = (value) => {
+    let Availablecash = "";
+    let translimit = "";
+    let maxlimit = "";
+    switch (value) {
+      case "1929920128":
+        Availablecash = "10,000";
+        break;
+      case "8299201291":
+        Availablecash = "20,000";
+        break;
+      case "9920010130":
+        Availablecash = "30,000";
+        break;
+      case "1818810131":
+        Availablecash = "40,000";
+        break;
+      default:
+        Availablecash = "Unknown";
+        break;
+    }
+    switch (value) {
+      case "1929920128":
+        maxlimit = "1000";
+        break;
+      case "8299201291":
+        maxlimit = "2000";
+        break;
+      case "9920010130":
+        maxlimit = "3000";
+        break;
+      case "1818810131":
+        maxlimit = "4000";
+        break;
+      default:
+        maxlimit = "Unknown";
+        break;
+    }
+    switch (value) {
+      case "1929920128":
+        translimit = "10,000";
+        break;
+      case "8299201291":
+        translimit = "20,000";
+        break;
+      case "9920010130":
+        translimit = "30,000";
+        break;
+      case "1818810131":
+        translimit = "40,000";
+        break;
+      default:
+        translimit = "Unknown";
+        break;
+    }
+    formik.setFieldValue("AvailableCash", Availablecash);
+    formik.setFieldValue("TransactionLimit", translimit);
+    formik.setFieldValue("MinimumCashbox", maxlimit);
+  };
   return (
     <div className="pettycash__form">
-      <CustomToast ref={toastRef} />
+      <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully"/>
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div
@@ -91,9 +315,9 @@ const InitiateForm = () => {
           </div>
         </div>
       </div>
-      
+
       <form onSubmit={formik.handleSubmit}>
-      <Card className="mt-4">
+        <Card className="mt-4">
           <div className="grid mt-1">
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
@@ -102,29 +326,52 @@ const InitiateForm = () => {
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
-                optionLabel="name"
+                textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.PettyCashCode}
+                options={PettyCashCode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("PettyCashCode", e.value);
+                  handlePettyCashDescribtion(e.value);
+                }}
+                optionLabel="pettycashcode"
+                error={
+                  formik.touched.PettyCashCode && formik.errors.PettyCashCode
+                }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
               <InputField
                 classNames="input__filed"
-                label="Petty Cash description"
-                placeholder="Enter"
+                label="Petty Cash Description"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.PettyCashdescription}
+                onChange={formik.handleChange("PettyCashdescription")}
+                error={
+                  formik.touched.PettyCashdescription &&
+                  formik.errors.PettyCashdescription
+                }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <InputField
                 classNames="input__filed"
                 label="Petty Cash Size"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.PettyCashSize}
+                onChange={formik.handleChange("PettyCashSize")}
+                error={
+                  formik.touched.PettyCashSize && formik.errors.PettyCashSize
+                }
               />
             </div>
           </div>
@@ -132,13 +379,24 @@ const InitiateForm = () => {
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
-                label="Bank Account Code"
+                label="Bank Account Number"
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
-                optionLabel="name"
+                textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.BankAccountNumber}
+                options={BankAccountCode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("BankAccountNumber", e.value);
+                  handleAccountcode(e.value.BankAccountCode)
+                }}
+                optionLabel="BankAccountCode"
+                error={
+                  formik.touched.BankAccountNumber &&
+                  formik.errors.BankAccountNumber
+                }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
@@ -148,9 +406,18 @@ const InitiateForm = () => {
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
-                optionLabel="name"
+                textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.SubAccountCode}
+                options={SubAccount}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("SubAccountCode", e.value);
+                }}
+                optionLabel="SubAccount"
+                error={
+                  formik.touched.SubAccountCode && formik.errors.SubAccountCode
+                }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
@@ -160,19 +427,34 @@ const InitiateForm = () => {
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
-                optionLabel="name"
+                textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.Currency}
+                options={CurrencyType}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("Currency", e.value);
+                  handlecurrency(e.value);
+                }}
+                optionLabel="CurrencyType"
+                error={formik.touched.Currency && formik.errors.Currency}
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <InputField
                 classNames="input__filed"
-                label="Currency description"
-                placeholder="Enter"
+                label="Currency Description"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.Currencydescription}
+                onChange={formik.handleChange("Currencydescription")}
+                error={
+                  formik.touched.Currencydescription &&
+                  formik.errors.Currencydescription
+                }
               />
             </div>
           </div>
@@ -185,18 +467,36 @@ const InitiateForm = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={400}
-                optionLabel="name"
                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.TransactionCode}
+                options={Transcode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("TransactionCode", e.value);
+                  handleTrans(e.value);
+                }}
+                optionLabel="Transcode"
+                error={
+                  formik.touched.TransactionCode &&
+                  formik.errors.TransactionCode
+                }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
               <InputField
                 classNames="input__filed"
-                label="Transaction description"
-                placeholder="Enter"
+                label="Transaction Description"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.Transactiondescription}
+                onChange={formik.handleChange("Transactiondescription")}
+                error={
+                  formik.touched.Transactiondescription &&
+                  formik.errors.Transactiondescription
+                }
               />
             </div>
           </div>
@@ -208,19 +508,34 @@ const InitiateForm = () => {
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
-                optionLabel="name"
+                textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.BranchCode}
+                options={Branchcode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("BranchCode", e.value);
+                  handleBranch(e.value.Branchcode)
+                }}
+                optionLabel="Branchcode"
+                error={formik.touched.BranchCode && formik.errors.BranchCode}
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
               <InputField
                 classNames="input__filed"
-                label="Branch description"
-                placeholder="Enter"
+                label="Branch Description"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.Branchdescription}
+                onChange={formik.handleChange("Branchdescription")}
+                error={
+                  formik.touched.Branchdescription &&
+                  formik.errors.Branchdescription
+                }
               />
             </div>
           </div>
@@ -232,57 +547,91 @@ const InitiateForm = () => {
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
-                optionLabel="name"
+                textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.DepartmentCode}
+                options={Departcode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("DepartmentCode", e.value);
+                  handleDepart(e.value.Departcode)
+                }}
+                optionLabel="Departcode"
+                error={
+                  formik.touched.DepartmentCode && formik.errors.DepartmentCode
+                }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
               <InputField
                 classNames="input__filed"
-                label="Department description"
-                placeholder="Enter"
+                label="Department Description"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.Departmentdescription}
+                onChange={formik.handleChange("Departmentdescription")}
+                error={
+                  formik.touched.Departmentdescription &&
+                  formik.errors.Departmentdescription
+                }
               />
             </div>
           </div>
           <div className="grid mt-1">
             <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
+              <InputField
+                classNames="input__filed"
                 label="Available Cash"
-                placeholder="Select"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
-                optionLabel="name"
-                dropdownIcon={<SvgDropdown color={"#000"} />}
+                textWeight={500}
+                value={formik.values.AvailableCash}
+                onChange={formik.handleChange("AvailableCash")}
+                error={
+                  formik.touched.AvailableCash && formik.errors.AvailableCash
+                }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <InputField
                 classNames="input__filed"
                 label="Transaction Limit"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.TransactionLimit}
+                onChange={formik.handleChange("TransactionLimit")}
+                error={
+                  formik.touched.TransactionLimit &&
+                  formik.errors.TransactionLimit
+                }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <InputField
                 classNames="input__filed"
                 label="Minimum Cash box"
-                placeholder="Enter"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.MinimumCashbox}
+                onChange={formik.handleChange("MinimumCashbox")}
+                error={
+                  formik.touched.MinimumCashbox && formik.errors.MinimumCashbox
+                }
               />
             </div>
           </div>
-      </Card>
+        </Card>
       </form>
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">
@@ -291,7 +640,7 @@ const InitiateForm = () => {
               label="Approve"
               className="add__btn"
               onClick={() => {
-                handleSubmit();
+                formik.handleSubmit();
               }}
             />
           </div>

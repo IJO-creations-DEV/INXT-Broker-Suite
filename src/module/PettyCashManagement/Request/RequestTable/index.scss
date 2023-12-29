@@ -17,8 +17,8 @@
       width: 100%;
     }
     .fieldvalue_container {
-      font-size: 14px;
-      font-family: Inter var;
+      font-size: 16px;
+      font-family: "Inter var";
       font-weight: 400;
     }
     span.p-button-label.p-c {
@@ -134,9 +134,16 @@
   }
   .fieldvalue_container.centered {
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
     }
+    .paginator__container{
+      margin-right: 10%;
+    }
+    .p-paginator-bottom.p-paginator.p-component {
+      display: flex !important;
+      justify-content: flex-end !important;
+  }
   }
   @media screen and (min-width: 1024px) {
     .input__view.lg-col-2-5 {

@@ -14,17 +14,21 @@ import CustomToast from "../../components/Toast";
 const Reversals = () => {
   const toastRef = useRef(null);
   const handleApproval = () => {
-    toastRef.current.showToast();
-    {
-      setTimeout(() => {
-        setStep(2);
-      }, 3000);
-    }
+    setStep(2);
+    // toastRef.current.showToast();
+    // {
+    //   setTimeout(() => {
+    //     setStep(2);
+    //   }, 3000);
+    // }
   };
   const [step, setStep] = useState(0);
   const items = [
-    { label: "Reversal JV", url: "/reversaljv" },
-    { label: "Reversal JV Details", url: "/reversaljv" },
+    { label: "Reversal JV", url: "/accounts/reversaljv/reversaljvdetails" },
+    {
+      label: "Reversal JV Details",
+      url: "/accounts/reversaljv/reversaljvdetails",
+    },
   ];
   const home = { label: "Accounts", url: "/accounts" };
   const codeOptions = [
@@ -65,20 +69,20 @@ const Reversals = () => {
     },
   });
   const handlePrint = () => {
-    toastRef.current.showToast();
+    // toastRef.current.showToast();
     formik.resetForm();
     setStep(0);
   };
   return (
     <div className="container__reversal">
-      {step === 1 ? (
+      {/* {step === 1 ? (
         <CustomToast
           ref={toastRef}
           props="Transaction Number 1234 is created"
         />
       ) : (
         <CustomToast ref={toastRef} props="Successfully Printed" />
-      )}
+      )} */}
 
       <div className="grid m-0 top__container">
         <div className="col-12 p-0">

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Dialog } from "primereact/dialog";
 import "./index.scss";
 import { useFormik } from "formik";
@@ -7,7 +7,8 @@ import InputField from "../../../components/InputField";
 import { Button } from "primereact/button";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import SvgModalClose from "../../../assets/icons/SvgNodalClose";
-const ModalData = ({ visible, setVisible, handleUpdate }) => {
+const ModalData = ({ visible, setVisible, handleUpdate, setEditID }) => {
+
   const codeOptions = [
     { label: "Option 1", value: "00123" },
     { label: "Option 2", value: "00124" },
@@ -28,7 +29,7 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
     { label: "Option 1", value: "Branch00123" },
     { label: "Option 2", value: "Branch00124" },
   ];
-  
+
   const codeOptionsType = [
     { label: "Option 1", value: "Credit" },
     { label: "Option 2", value: "Debit" },
@@ -91,7 +92,7 @@ const ModalData = ({ visible, setVisible, handleUpdate }) => {
     },
     validate: customValidation,
     onSubmit: (values) => {
-      // Handle form submission
+
       handleSubmit(values);
       formik.resetForm();
       handleUpdate(values);

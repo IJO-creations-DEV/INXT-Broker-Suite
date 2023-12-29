@@ -30,7 +30,7 @@ const Reversals = () => {
       url: "/accounts/reversaljv/reversaljvdetails",
     },
   ];
-  const home = { label: "Accounts", url: "/accounts" };
+  const home = { label: "Accounts" };
   const codeOptions = [
     { label: "Option 1", value: "Trans00123" },
     { label: "Option 2", value: "Trans00124" },
@@ -90,7 +90,10 @@ const Reversals = () => {
         </div>
         <div className="col-12 p-0">
           <div className="correction__title__reversal">
-            {step !== 0 && <ArrowLeftIcon />}Reversal JV Details
+            <span onClick={() => setStep(step - 1)}>
+              {step !== 0 && <ArrowLeftIcon />}
+            </span>{" "}
+            Reversal JV Details
           </div>
         </div>
         <div className="col-12 p-0">
@@ -136,12 +139,8 @@ const Reversals = () => {
         </div>
         <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
           <InputField
-            disabled={step === 0 ? false : true}
-            classNames={
-              step === 0
-                ? "input__field__reversal"
-                : "input__field__reversal__inactive"
-            }
+            disabled={true}
+            classNames="input__field__reversal__inactive"
             className={
               step === 0
                 ? "input__label__reversal"
@@ -218,12 +217,8 @@ const Reversals = () => {
         </div>
         <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
           <InputField
-            disabled={step === 0 ? false : true}
-            classNames={
-              step === 0
-                ? "input__field__reversal"
-                : "input__field__reversal__inactive"
-            }
+            disabled={true}
+            classNames="input__field__reversal__inactive"
             className={
               step === 0
                 ? "input__label__reversal"

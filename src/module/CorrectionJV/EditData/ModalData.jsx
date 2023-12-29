@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Dialog } from "primereact/dialog";
 import "./index.scss";
 import { useFormik } from "formik";
@@ -8,7 +8,6 @@ import { Button } from "primereact/button";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import SvgModalClose from "../../../assets/icons/SvgNodalClose";
 const ModalData = ({ visible, setVisible, handleUpdate, setEditID }) => {
-
   const codeOptions = [
     { label: "Option 1", value: "00123" },
     { label: "Option 2", value: "00124" },
@@ -92,7 +91,6 @@ const ModalData = ({ visible, setVisible, handleUpdate, setEditID }) => {
     },
     validate: customValidation,
     onSubmit: (values) => {
-
       handleSubmit(values);
       formik.resetForm();
       handleUpdate(values);
@@ -132,7 +130,8 @@ const ModalData = ({ visible, setVisible, handleUpdate, setEditID }) => {
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
-              classNames="input__field__corrections"
+              classNames="input__field__corrections__inactive"
+              disabled={true}
               className="input__label__corrections"
               label="Main Account Description"
               value={
@@ -192,7 +191,8 @@ const ModalData = ({ visible, setVisible, handleUpdate, setEditID }) => {
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
             <InputField
-              classNames="input__field__corrections"
+              classNames="input__field__corrections__inactive"
+              disabled={true}
               className="input__label__corrections"
               label="Sub Account Description"
               value={
@@ -230,7 +230,8 @@ const ModalData = ({ visible, setVisible, handleUpdate, setEditID }) => {
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
-              classNames="input__field__corrections"
+              classNames="input__field__corrections__inactive"
+              disabled={true}
               className="input__label__corrections"
               label="Branch Code Description"
               value={
@@ -277,7 +278,8 @@ const ModalData = ({ visible, setVisible, handleUpdate, setEditID }) => {
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
-              classNames="input__field__corrections"
+              classNames="input__field__corrections__inactive"
+              disabled={true}
               className="input__label__corrections"
               label="Department Description"
               value={
@@ -324,7 +326,8 @@ const ModalData = ({ visible, setVisible, handleUpdate, setEditID }) => {
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6">
             <InputField
-              classNames="input__field__corrections"
+              classNames="input__field__corrections__inactive"
+              disabled={true}
               className="input__label__corrections"
               label="Currency Description"
               value={

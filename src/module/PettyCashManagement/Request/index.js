@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 const PettyCashRequest = () => {
   const navigate = useNavigate();
   const items = [
-    { label: "Petty Cash", url: "/" },
+    { label: "Petty Cash", url: "/accounts/pettycash/pettycashrequest" },
     {
       label: "Petty Cash Request",
       url: "/accounts/pettycash/pettycashrequest",
@@ -40,7 +40,7 @@ const PettyCashRequest = () => {
           <div className="btn__container">
             <Button
               label="Add"
-              icon={<SvgAdd />}
+              icon={<SvgAdd color={"#fff"}/>}
               className="add__btn"
               onClick={() => {
                 handleClick();

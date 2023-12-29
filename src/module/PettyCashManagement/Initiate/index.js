@@ -37,7 +37,7 @@ const Initiate = () => {
           <div className="btn__container">
             <Button
               label="Initiate"
-              icon={<SvgAdd />}
+              icon={<SvgAdd  color={"#fff"}/>}
               className="add__btn"
               onClick={() => {handleClick()}}
             />

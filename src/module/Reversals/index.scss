@@ -256,6 +256,7 @@
   .input__view__reversal .col-12 {
     width: 100% !important;
   }
+
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .correction__title__reversal {
       font-size: 26px;
@@ -310,4 +311,7 @@
       font-size: 16px;
     }
   }
+}
+.p-card.p-component.mt-1 {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }

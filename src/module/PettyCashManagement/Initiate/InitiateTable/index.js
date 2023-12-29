@@ -33,6 +33,7 @@ const InitiateTable = () => {
       ];
 
       return (
+        <div className="paginator__container">
         <React.Fragment>
           <span
             className="mx-1"
@@ -47,6 +48,7 @@ const InitiateTable = () => {
             onChange={options.onChange}
           />
         </React.Fragment>
+        </div>
       );
     },
   };
@@ -68,7 +70,7 @@ const InitiateTable = () => {
     navigate("/accounts/pettycash/PettyCashCodeDetails")
   };
   const headerStyle = {
-    width: "12rem",
+    // width: "12rem",
     fontSize: 16,
     fontFamily: "Inter var",
     fontWeight: 500,
@@ -77,8 +79,8 @@ const InitiateTable = () => {
     border: "none",
   };
   const ViewheaderStyle = {
-    width: "5rem",
-    fontSize: 14,
+    // width: "5rem",
+    fontSize: 16,
     fontFamily: "Inter var",
     fontWeight: 500,
     padding: 6,
@@ -126,51 +128,58 @@ const InitiateTable = () => {
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
             <Column
-              field="name"
+              field="Pettycashcode"
               header="Petty cash code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              
             ></Column>
             <Column
-              field="name"
+              field="Pettycashsize"
               header="Petty cash size"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              sortable
             ></Column>
             <Column
               field="Transaction Number"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              sortable
             ></Column>
             <Column
-              field="quantity"
+              field="TransactionLimit"
               header="Transaction Limit"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              
             ></Column>
             <Column
-              field="name"
+              field="Branchcode"
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              
             ></Column>
             <Column
-              field="name"
+              field="Departmentcode"
               header="Department code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              
             ></Column>
             <Column
               field="category"
               header="Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              sortable
             ></Column>
             <Column
               body={renderViewButton}
               header="View"
-              headerStyle={ViewheaderStyle}
+              headerStyle={{ ...headerStyle, }}
               className="fieldvalue_container centered"
             ></Column>
           </DataTable>

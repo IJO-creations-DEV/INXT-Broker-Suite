@@ -79,13 +79,22 @@ import Bankdetailselection from "../module/PaymentVoucher/Bankdetailselection";
 import Initiate from "../module/PettyCashManagement/Initiate";
 import Disbursement from "../module/PettyCashManagement/Disbursement";
 import Request from "../module/PettyCashManagement/Request";
-import PettyCashReceipts from "../module/PettyCashManagement/Receipts/PettyCashReceipts";
-import PettyCashReplenish from "../module/PettyCashManagement/Replenish/PettyCashReplenish";
+import PettyCashReceipts from "../module/PettyCashManagement/Receipts";
+import PettyCashReplenish from "../module/PettyCashManagement/Replenish";
 import InitiateForm from "../module/PettyCashManagement/Initiate/InitiateForm";
 import PettyCashCodeDetails from "../module/PettyCashManagement/Initiate/PettyCashCodeDetails";
 import PettyCashRequest from "../module/PettyCashManagement/Request";
 import RequestForm from "../module/PettyCashManagement/Request/RequestForm";
 import AddRequestTable from "../module/PettyCashManagement/Request/AddRequestTable";
+import AddDisbursement from "../module/PettyCashManagement/Disbursement/AddDisbursement";
+import AddDisbursementTable from "../module/PettyCashManagement/Disbursement/AddDisbursementTable";
+import DisbursementDetailview from "../module/PettyCashManagement/Disbursement/DisbursementDetailview";
+import AddReceipts from "../module/PettyCashManagement/Receipts/AddReceipt";
+import AddReceiptsTable from "../module/PettyCashManagement/Receipts/AddReceiptTable";
+import ReceiptList from "../module/PettyCashManagement/Receipts/ReceiptList";
+import AddReplenish from "../module/PettyCashManagement/Replenish/AddReplenish";
+import AddReplenishTable from "../module/PettyCashManagement/Replenish/AddReplenishTable";
+import ReplenishtDetailView from "../module/PettyCashManagement/Replenish/ReplenishDetailview";
 
 const Maincomponent = () => {
   return (
@@ -192,14 +201,50 @@ const Maincomponent = () => {
               path="accounts/pettycash/disbursement"
               element={<Disbursement />}
             />
+            <Route
+              path="accounts/pettycash/adddisbursement"
+              element={<AddDisbursement />}
+            />
+            <Route
+              path="accounts/pettycash/adddisbursementtable"
+              element={<AddDisbursementTable />}
+            />
+            <Route
+              path="accounts/pettycash/disbursementdetailview"
+              element={<DisbursementDetailview />}
+            />
             <Route path="accounts/pettycash/request" element={<Request />} />
             <Route
-              path="accounts/pettycash/pettycashreceipts"
+              path="accounts/pettycash/receipts"
               element={<PettyCashReceipts />}
             />
             <Route
-              path="accounts/pettycash/pettycashreplenish"
+              path="accounts/pettycash/addreceipts"
+              element={<AddReceipts />}
+            />
+            <Route
+              path="accounts/pettycash/addreceiptstable"
+              element={<AddReceiptsTable />}
+            />
+            <Route
+              path="accounts/pettycash/receiptlist"
+              element={<ReceiptList />}
+            />
+            <Route
+              path="accounts/pettycash/replenish"
               element={<PettyCashReplenish />}
+            />
+            <Route
+              path="accounts/pettycash/addreplenish"
+              element={<AddReplenish />}
+            />
+            <Route
+              path="accounts/pettycash/addreplenishtable"
+              element={<AddReplenishTable />}
+            />
+               <Route
+              path="accounts/pettycash/replenishtdetailview"
+              element={<ReplenishtDetailView />}
             />
             {/* <Route
               path="/pettycashmanagement"

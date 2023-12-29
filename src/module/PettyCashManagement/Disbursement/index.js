@@ -1,74 +1,59 @@
-import React, { useState } from "react";
-import InputField from '../../../components/InputField';
-import DropDowns from '../../../components/DropDowns';
-import SuccessIcon from '../../../assets/icons/SuccessIcon';
-import SvgDropdown from '../../../assets/icons/SvgDropdown';
+import React from "react";
+import "../../PettyCashManagement/index.scss";
+import { BreadCrumb } from "primereact/breadcrumb";
+import SvgDot from "../../../assets/icons/SvgDot";
+import { Button } from "primereact/button";
+import SvgAdd from "../../../assets/icons/SvgAdd";
+import { useNavigate } from "react-router";
+import DisbursementTable from "./DisbursemenTable";
 
-const Disbursement = () => {
-    const [visiblePopup, setVisiblePopup] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
-    const item = [
-        {label: 'Initiate'},
-        {label: 'Request'},
-        {label: 'Disbursement'},
-        {label: 'Disbursement'},
-        {label: 'Replenish'}
-    ];
+const PettyCashDisbursement = () => {
+  const navigate = useNavigate();
+  const items = [
+    { label: "Petty Cash", url: "/accounts/pettycash/disbursement" },
+    {
+      label: "Petty Cash Disbursement",
+      url: "/accounts/pettycash/disbursement",
+    },
+  ];
+  const Initiate = { label: "Accounts" };
+
+  const handleClick = () => {
+    navigate("/accounts/pettycash/adddisbursement");
+  };
 
   return (
-    <div className="grid">
-      <div className="col-12 md:col-2 lg-col-2 ">
-        <InputField
-          classNames="input__filed"
-          label="Date "
-          placeholder="11/12/2023"
-          textColor={"#111927"}
-          textSize={"16"}
-          textWeight={500}
-        />
+    <div className="pettycash__management">
+      <div className="grid  m-0">
+        <div className="col-12 md:col-6 lg:col-6">
+          <div className="pettycash__title">Petty Cash Disbursement</div>
+          <div>
+            <BreadCrumb
+              model={items}
+              home={Initiate}
+              className="breadCrums"
+              separatorIcon={<SvgDot color={"#000"} />}
+            />
+          </div>
+        </div>
+        <div className="col-12 md:col-6 lg:col-6">
+          <div className="btn__container">
+            <Button
+              label="Add"
+              icon={<SvgAdd color={"#fff"}/>}
+              className="add__btn"
+              onClick={() => {
+                handleClick();
+              }}
+            />
+          </div>
+        </div>
       </div>
-      <div className="col-12 md:col-2 lg-col-2 ">
-        <InputField
-          classNames="input__filed"
-          label="Date "
-          placeholder="11/12/2023"
-          textColor={"#111927"}
-          textSize={"16"}
-          textWeight={500}
-        />
-      </div>
-      <div className="col-12 md:col-2 lg-col-2 ">
-        <InputField
-          classNames="input__filed"
-          label="Date "
-          placeholder="11/12/2023"
-          textColor={"#111927"}
-          textSize={"16"}
-          textWeight={500}
-        />
-      </div>
-      <div className="col-12 md:col-2 lg-col-2 ">
-        <InputField
-          classNames="input__filed"
-          label="Date "
-          placeholder="11/12/2023"
-          textColor={"#111927"}
-          textSize={"16"}
-          textWeight={500}
-        />
-      </div>
-      <div className="col-12 md:col-2 lg-col-2 ">
-        <InputField
-          classNames="input__filed"
-          label="Date "
-          placeholder="11/12/2023"
-          textColor={"#111927"}
-          textSize={"16"}
-          textWeight={500}
-        />
+      <div>
+        <DisbursementTable/>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Disbursement
+export default PettyCashDisbursement;

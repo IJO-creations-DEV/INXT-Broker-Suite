@@ -33,6 +33,7 @@ const RequestTable = () => {
       ];
 
       return (
+        <div className="paginator__container">
         <React.Fragment>
           <span
             className="mx-1"
@@ -47,6 +48,7 @@ const RequestTable = () => {
             onChange={options.onChange}
           />
         </React.Fragment>
+        </div>
       );
     },
   };
@@ -68,7 +70,7 @@ const RequestTable = () => {
     navigate("/accounts/pettycash/PettyCashCodeDetails");
   };
   const headerStyle = {
-    width: "10rem",
+    // width: "10rem",
     fontSize: 16,
     fontFamily: "Inter var",
     fontWeight: 500,
@@ -121,42 +123,49 @@ const RequestTable = () => {
               header="Petty cash Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              
             ></Column>
             <Column
               field="Request Number"
               header="Request Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              sortable
             ></Column>
             <Column
               field="RequesterName"
               header="Requester Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              sortable
             ></Column>
             <Column
               field="Branchcode"
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              
             ></Column>
             <Column
               field="Departmentcode"
               header="Department code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              
             ></Column>
             <Column
               field="TotalAmount"
               header="Total Amount"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              sortable
             ></Column>
             <Column
               field="Date"
               header="Date"
               headerStyle={headerStyle}
               className="fieldvalue_container_date"
+              sortable
             ></Column>
           </DataTable>
         </div>

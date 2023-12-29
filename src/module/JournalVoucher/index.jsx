@@ -1,5 +1,5 @@
 import { BreadCrumb } from 'primereact/breadcrumb';
-import React, { useState,useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import NavBar from '../../components/NavBar';
 import SvgDot from '../../assets/icons/SvgDot';
 import "../JournalVoucher/index.scss"
@@ -19,9 +19,16 @@ import SvgEye from '../../assets/icons/SvgEye';
 import { dataa } from './data';
 import { TieredMenu } from 'primereact/tieredmenu';
 import SvgTable from '../../assets/icons/SvgTable';
+import { useSelector } from 'react-redux';
 
 const JournalVoucher = () => {
-  const [products, setProducts] = useState([]);
+  const { journalVoucherList, loading } = useSelector(({ journalVoucherReducers }) => {
+    return {
+      loading: journalVoucherReducers?.loading,
+      journalVoucherList: journalVoucherReducers?.journalVoucherList,
+
+    };
+  }); const [products, setProducts] = useState([]);
   const navigate = useNavigate()
   const items = [
     { id: 1, label: 'Journal Voucher', url: '/subaccount' },
@@ -33,7 +40,7 @@ const JournalVoucher = () => {
   const handleNavigateedit = () => {
     navigate('/journalvoucher/detailsjournalvocture')
   }
-  
+
   const isEmpty = products.length === 0;
 
   const emptyTableIcon = (
@@ -63,7 +70,7 @@ const JournalVoucher = () => {
   const rows = [
     { id: 1, subAccount: '', shorDesc: '', desc: '', view: '' },
   ];
-  
+
   const menu = useRef(null);
   const menuitems = [
     {
@@ -129,7 +136,7 @@ const JournalVoucher = () => {
         </div>
       </div>
       <div className="menu-container">
-      <TieredMenu className='mt-2' model={menuitems} popup ref={menu} breakpoint="767px"  />
+        <TieredMenu className='mt-2' model={menuitems} popup ref={menu} breakpoint="767px" />
       </div>
       <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__Journal__Voture mb-3'>
         <div className='add__icon__view__Journal__Voture' onClick={handleNavigate}>
@@ -162,7 +169,7 @@ const JournalVoucher = () => {
                   <SvgFilters />
                 </div>
               </div>
-             
+
             </div>
           </div>
           <div className='col-12 '>
@@ -172,7 +179,7 @@ const JournalVoucher = () => {
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
               <DataTable
-                value={products}
+                value={journalVoucherList}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -207,11 +214,11 @@ const JournalVoucher = () => {
                       fontSize: 16,
                       height: 50,
                       padding: 18,
-                      fontWeight:400,
+                      fontWeight: 400,
                       ...(column.field === 'status' && { color: 'green' }),
                     }}
-                    body={column.field === 'view' && <div onClick={() => handleNavigateedit()}> <SvgEye/></div> 
-                }
+                    body={column.field === 'view' && <div onClick={(rowData) => console.log(rowData, "dds")}> <SvgEye /></div>
+                    }
                   />
                 ))}
               </DataTable>

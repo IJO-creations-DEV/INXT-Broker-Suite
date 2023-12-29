@@ -1,6 +1,13 @@
-import journalVoucherReducers from '../module/JournalVoucher/store/journalVoucherReducer'
+import journalVoucherReducers from '../module/JournalVoucher/store/journalVoucherReducer';
+
+import paymentVoucherReducers from '../module/PaymentVoucher/store/paymentVoucherReducer';
+
+
+
 const reducers = {
-    journalVoucherReducers
+    journalVoucherReducers,
+    paymentVoucherReducers
+
 }
 
 

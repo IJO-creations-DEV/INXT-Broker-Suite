@@ -96,9 +96,9 @@ const AddJournalVocture = () => {
     const rows = [
         { id: 1, main: '', sub: '', remarks: '', foreign: '', currency: '', local: '', entry: '', action: '' },
     ];
-    const toast = useRef(null);
+    // const toast = useRef(null);
 
-   
+
 
     const customValidation = (values) => {
         const errors = {};
@@ -220,21 +220,21 @@ const AddJournalVocture = () => {
         formik.setFieldValue('transationCode', selectedValue);
         let value = '';
         switch (selectedValue) {
-          case 'Trans00123':
-            value = 'Transaction code Description';
-            break;
-          case 'Trans00124':
-            value = 'Transaction code 123';
-            break;
-          default:
-            value = 'Enter';
+            case 'Trans00123':
+                value = 'Transaction code Description';
+                break;
+            case 'Trans00124':
+                value = 'Transaction code 123';
+                break;
+            default:
+                value = 'Enter';
         }
         formik.setFieldValue('transationDescription', value);
-      };
+    };
 
     return (
         <div className='grid add__JV__container'>
-            <CustomToast ref={toastRef} />
+            {/* <CustomToast ref={toastRef} /> */}
             <div className='col-12'>
                 <NavBar />
             </div>
@@ -288,11 +288,11 @@ const AddJournalVocture = () => {
                             classNames='dropdown__add__sub__JV'
                             className='label__sub__add__JV'
                             // placeholder={formik.values.transationDescriptionPlaceholder }
-                             value={formik.values.transationDescription}
-                             disabled={true}
-                             onChange={(e) =>
+                            value={formik.values.transationDescription}
+                            disabled={true}
+                            onChange={(e) =>
                                 formik.setFieldValue('transationDescription', e.value)
-                              }
+                            }
                         />
                         {/* <InputField
                             label="Transaction Description"
@@ -504,8 +504,8 @@ const AddJournalVocture = () => {
                     <Button
                         label='Print'
                         className='save__add__btn__print'
-                    // onClick={handlePrint}
-                    onClick={()=>setVisibleSuccess(true)}
+                        // onClick={handlePrint}
+                        onClick={() => setVisibleSuccess(true)}
                     />
                 </div>
             )}
@@ -514,7 +514,7 @@ const AddJournalVocture = () => {
                 <AddData visible={visible} setVisible={setVisible} handleUpdate={handleUpdate} setCreditTotal={setCreditTotal} setDebitTotal={setCreditTotal} setNetTotal={setNetTotal} />
 
             </div>
-            
+
 
         </div>
     )

@@ -6,27 +6,13 @@ import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import SvgEditIcon from "../../../assets/icons/SvgEditIcon";
 import { Button } from "primereact/button";
-const TableData = ({ handleEdit, newDataTable }) => {
-  console.log(newDataTable, "find newDataTable");
-  let newProduct;
-  let updatedProductData;
+const TableData = ({ handleEdit, newDataTable, editID }) => {
+  const editId = editID;
 
-  if (newDataTable.length > 0) {
-    updatedProductData = [
-      ...Productdata,
-      (newProduct = {
-        id: 11,
-        mainAC: newDataTable[0].mainAccount,
-        subAC: newDataTable[0].subAccount,
-        Currency: newDataTable[0].currencyCode,
-        foreignAmount: newDataTable[0].foreignAmount,
-        localAmount: "500.00",
-        Remarks: "New credit voucher",
-        Entry: newDataTable[0].entryType,
-      }),
-    ];
-  } else {
-    updatedProductData = Productdata;
+  const newForeignAmount = newDataTable[0]?.foreignAmount;
+  const editedObject = Productdata.find((item) => item.id === editId);
+  if (editedObject && newForeignAmount != undefined) {
+    editedObject.foreignAmount = newForeignAmount;
   }
 
   const template2 = {
@@ -62,7 +48,7 @@ const TableData = ({ handleEdit, newDataTable }) => {
       <div className="center-content">
         <Button
           icon={<SvgEditIcon />}
-          onClick={handleEdit}
+          onClick={() => handleEdit(rowData.id)}
           className="action__button"
         />
       </div>
@@ -72,7 +58,7 @@ const TableData = ({ handleEdit, newDataTable }) => {
   return (
     <div className="reversal__table__container">
       <DataTable
-        value={updatedProductData}
+        value={Productdata}
         //   tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
         paginator
         rows={5}
@@ -85,11 +71,13 @@ const TableData = ({ handleEdit, newDataTable }) => {
           field="mainAC"
           header="Main A/c"
           className="fieldvalue_container"
+          sortable
         ></Column>
         <Column
           field="subAC"
           header="Sub A/c"
           className="fieldvalue_container"
+          sortable
         ></Column>
 
         <Column
@@ -106,11 +94,13 @@ const TableData = ({ handleEdit, newDataTable }) => {
           field="foreignAmount"
           header="Foreign Amount"
           className="fieldvalue_container"
+          sortable
         ></Column>
         <Column
           field="localAmount"
           header="Local Amount"
           className="fieldvalue_container"
+          sortable
         ></Column>
         <Column
           field="Entry"
@@ -118,6 +108,7 @@ const TableData = ({ handleEdit, newDataTable }) => {
           className="fieldvalue_container"
         ></Column>
         <Column
+          field="id"
           body={renderEditButton}
           header="Edit"
           className="fieldvalue_container"

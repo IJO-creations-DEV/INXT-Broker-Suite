@@ -15,12 +15,13 @@ import CustomToast from "../../components/Toast";
 const Reversals = () => {
   const toastRef = useRef(null);
   const handleApproval = () => {
-    toastRef.current.showToast();
-    {
-      setTimeout(() => {
-        setStep(2);
-      }, 3000);
-    }
+    setStep(2);
+    // toastRef.current.showToast();
+    // {
+    //   setTimeout(() => {
+    //     setStep(2);
+    //   }, 3000);
+    // }
   };
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(false);
@@ -28,11 +29,19 @@ const Reversals = () => {
   const [debitTotal, setDebitTotal] = useState(2500);
   const [netTotal, setNetTotal] = useState(100);
   const [newDataTable, setnewDataTable] = useState([]);
+  const [editID, setEditID] = useState(null);
+  const [storeID, setStoreID] = useState(null);
   const items = [
-    { label: "Corrections JV", url: "/correctionjv" },
-    { label: "Corrections JV Details", url: "/reversaljv" },
+    {
+      label: "Corrections JV",
+      url: "/accounts/correctionsjv/correctionsjvdetails",
+    },
+    {
+      label: "Corrections JV Details",
+      url: "/accounts/correctionsjv/correctionsjvdetails",
+    },
   ];
-  const home = { label: "Accounts", url: "/reversaljv" };
+  const home = { label: "Accounts", url: "/accounts" };
   const codeOptions = [
     { label: "Option 1", value: "Trans00123" },
     { label: "Option 2", value: "Trans00124" },
@@ -70,31 +79,34 @@ const Reversals = () => {
       setStep(1);
     },
   });
-  const handleEdit = () => {
-    console.log("handleEdit success");
+  const handleEdit = (editID) => {
+    setEditID(editID);
+    console.log(editID, "find handleEdit success");
     setVisible(true);
   };
   const handleUpdate = (values) => {
+    setStoreID(editID);
     setnewDataTable([values]);
+
     setNetTotal(0);
     setDebitTotal(2600);
   };
   const handlePrint = () => {
-    toastRef.current.showToast();
+    // toastRef.current.showToast();
     formik.resetForm();
     setStep(0);
   };
 
   return (
     <div className="container__corrections__jv">
-      {step === 1 ? (
+      {/* {step === 1 ? (
         <CustomToast
           ref={toastRef}
           props="Transaction Number 1234 is created"
         />
       ) : (
         <CustomToast ref={toastRef} props="Successfully Printed" />
-      )}
+      )} */}
       <div className="grid m-0 top__container">
         <div className="col-12 p-0">
           <NavBar />
@@ -257,12 +269,18 @@ const Reversals = () => {
         <>
           <div className="grid m-0 table__container">
             <div className="col-12 p-0">
-              <TableData handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}/>
+              <TableData
+                handleEdit={handleEdit}
+                newDataTable={newDataTable}
+                visible={visible}
+                editID={editID}
+              />
             </div>
             <ModalData
               visible={visible}
               setVisible={setVisible}
               handleUpdate={handleUpdate}
+              setEditID={setEditID}
             />
           </div>
 

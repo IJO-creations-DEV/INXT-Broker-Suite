@@ -8,16 +8,12 @@ import SvgEditIcon from "../../../assets/icons/SvgEditIcon";
 import { Button } from "primereact/button";
 const TableData = ({ handleEdit, newDataTable, editID }) => {
   const editId = editID;
-  console.log(editID, "find vvvvvvvvvvvv");
-
 
   const newForeignAmount = newDataTable[0]?.foreignAmount;
   const editedObject = Productdata.find((item) => item.id === editId);
   if (editedObject && newForeignAmount != undefined) {
     editedObject.foreignAmount = newForeignAmount;
   }
-
-  console.log(editedObject, "find v");
 
   const template2 = {
     layout:

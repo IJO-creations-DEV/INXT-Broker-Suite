@@ -73,13 +73,16 @@ function Createvoucher() {
     
     const home = { label: "Accounts" };
     const items = [
-        { label: 'Payment Voucher' ,url:'/paymentvoucher'},
-        { label: 'Create Voucher' ,url:'/paymentvoucher/createvoucher'},
+        { label: 'Payment Voucher' ,url:'/accounts/paymentvoucher'},
+        { label: 'Create Voucher' ,url:'/accounts/paymentvoucher/createvoucher'},
     ];
+
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 1);
 
 const handleSubmit=(value)=>{
   
-    Navigate("/paymentvoucher/SpecificVoucher")
+    Navigate("/accounts/paymentvoucher/SpecificVoucher")
 }
 
 // const toastRef = useRef(null);
@@ -147,7 +150,8 @@ const formik = useFormik({
             // content={"Voucher Details Save Successfully"}
             /> */}
             <div>
-                <SvgBackicon/>
+              <span onClick={() => Navigate(-1)}>
+                <SvgBackicon/></span>
             <label className='label_header'>Create</label>
             </div>
             <BreadCrumb
@@ -170,12 +174,19 @@ const formik = useFormik({
              <Calendar 
              classNames="calender__container"
                showIcon
-              value={formik.values.VoucherDate ? new Date(formik.values.VoucherDate) : null}
-                onChange={(e) => {
-                  formik.handleChange("VoucherDate")(
-                    e.value.toISOString().split("T")[0]
-                  );
-                }}
+              // value={formik.values.VoucherDate ? new Date(formik.values.VoucherDate) : null}
+              //   onChange={(e) => {
+              //     formik.handleChange("VoucherDate")(
+              //       e.value.toISOString().split("T")[0]
+              //     );
+              //   }}
+
+              value={formik.values.VoucherDate}
+          minDate={minDate}
+
+              onChange={(e) => {
+                formik.setFieldValue("VoucherDate", e.target.value);
+              }}
                 dateFormat="yy-mm-dd"
               
               />

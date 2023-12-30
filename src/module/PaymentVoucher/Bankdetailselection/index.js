@@ -32,8 +32,8 @@ console.log("first",selectedProducts)
     const [bankaccountitem, setBankaccount] = useState(null);
 
     const items = [
-        { label: 'Payment Voucher' ,url:'/paymentvoucher'},
-        { label: 'Create Voucher' ,url:'/paymentvoucher/createvoucher'},
+        { label: 'Payment Voucher' ,url:'/accounts/paymentvoucher'},
+        { label: 'Create Voucher' ,url:'/accounts/paymentvoucher/createvoucher'},
     ];
     
     const template2 = {
@@ -59,7 +59,7 @@ console.log("first",selectedProducts)
     };
 
     const headerStyle = {
-        width: '12rem',
+        // width: '12rem',
         // backgroundColor: 'red',
         fontSize: 16,
         fontFamily: 'Inter var',
@@ -110,7 +110,8 @@ console.log("first",selectedProducts)
         <div className='overall__bankdetailview__container'>
             <NavBar/>
             <div>
-                <SvgBackicon/>
+            <span onClick={() => Navigate(-1)}>
+                <SvgBackicon/></span>
             <label className='label_header'>Create Voucher</label>
             </div>
             <BreadCrumb
@@ -192,12 +193,12 @@ console.log("first",selectedProducts)
        {Productdata.length > 0 && (
     <Column selectionMode="single" selectedItem headerStyle={{ width: '4rem' }}></Column>
 )}
-        <Column field="VoucherNumber" header="Customer Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+        <Column field="VoucherNumber" header="Customer Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column field="TransactionNumber" header="Customer Name" headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column field="CustomerCode" header="Main Account" headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column field="VoucheDate" header="Instrument Book ID" headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column field="Amount" header="Instrument No" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-        <Column field="Amount" header="Instrument Date" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column>
+        <Column field="Amount" header="Instrument Date"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column field="Amount" header="Total Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column>
         <Column 
     field="status"

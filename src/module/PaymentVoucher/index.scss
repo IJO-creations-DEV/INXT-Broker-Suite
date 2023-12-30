@@ -58,7 +58,8 @@ gap:10px
     font-family: Inter var;
     border: 1px solid #fff !important; 
     border-radius: 6px !important;
-    padding: 2rem 0.5rem !important;
+    padding: 1rem 0.5rem !important;
+    margin: 3.5px 0px;
 }
 .p-datatable .p-datatable-tbody > tr.p-highlight {
     background: #EEF2FF;
@@ -142,5 +143,12 @@ font-weight: 500;
     font-weight: 400;
     padding: 1rem 0.5rem;
   cursor: pointer;
+}
+.p-card {
+    background: #ffffff;
+    color: #4b5563;
+    /* box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12); */
+    border-radius: 6px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !important;
 }
 }

@@ -19,6 +19,7 @@ import { Column } from 'primereact/column';
 import Productdata from './mock'
 import { Dropdown } from 'primereact/dropdown';
 
+
 import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { getpaymentVocherByIdMiddleware } from '../store/paymentVocherMiddleware';
@@ -44,7 +45,7 @@ function Detailview() {
   const Navigate = useNavigate()
   const [selectedItem, setSelectedItem] = useState(null);
   const items = [
-    { label: 'Payment Voucher Details' },
+    { label: 'Payment Voucher Details',url:'/accounts/paymentvoucher/detailview' },
   ];
   const statusBodyTemplate = (rowData) => {
     return (
@@ -85,7 +86,7 @@ function Detailview() {
   };
 
   const headerStyle = {
-    width: '12rem',
+    // width: '12rem',
     // backgroundColor: 'red',
     fontSize: 16,
     fontFamily: 'Inter var',
@@ -107,16 +108,20 @@ function Detailview() {
   ];
   const home = { label: "Accounts" };
 
+   
 
-  const handleNavigation = () => {
-    Navigate("/SpecificVoucher")
-  }
+  // const handleNavigation = () => {
+  //   Navigate("/SpecificVoucher")
+  // }
 
   return (
     <div className='overall__detailview__container'>
       <NavBar />
       <div>
-        <SvgBackicon />
+      <span  onClick={() => Navigate(-1)}>
+                <SvgBackicon/>
+                </span>
+        
         <label className='label_header'>Payment Voucher Details</label>
       </div>
       <BreadCrumb
@@ -243,12 +248,12 @@ function Detailview() {
           {Productdata.length > 0 && (
             <Column selectionMode="single" selectedItem headerStyle={{ width: '4rem' }}></Column>
           )}
-          <Column field="VoucherNumber" header="Customer Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+          <Column field="VoucherNumber" header="Customer Code" headerStyle={headerStyle} sortable  className='fieldvalue_container'></Column>
           <Column field="TransactionNumber" header="Customer Name" headerStyle={headerStyle} className='fieldvalue_container'></Column>
           <Column field="CustomerCode" header="Main Account" headerStyle={headerStyle} className='fieldvalue_container'></Column>
           <Column field="VoucheDate" header="Instrument Book ID" headerStyle={headerStyle} className='fieldvalue_container'></Column>
           <Column field="Amount" header="Instrument No" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-          <Column field="Amount" header="Instrument Date" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column>
+          <Column field="Amount" header="Instrument Date"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
           <Column field="Amount" header="Total Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column>
           <Column
             field="status"
@@ -286,7 +291,7 @@ function Detailview() {
       <div className="next_container">
 
         <Button className="submit_button p-0" label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
-          onClick={handleNavigation}
+          // onClick={handleNavigation}
           disabled={!selectedProducts}
         />
       </div>

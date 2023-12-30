@@ -161,10 +161,14 @@ margin:10px 0px
 .tablegap_container{
     margin-top: 20px;
 }
+.p-button-label {
+    font-weight: 500 !important;
+    font-size: 18px;
+}
 
 }
 .dialog_fields{
-    width:38rem;
+    width:36rem;
 .update_btn{
     display: flex;
     justify-content: flex-end;
@@ -181,6 +185,10 @@ font-size: 18px;
 font-weight: 500;
 
     }
+}
+.p-button-label {
+    font-weight: 500 !important;
+    font-size: 18px;
 }
 }
 
@@ -217,66 +225,3 @@ font-weight: 500;
         max-width: 50%;
     }
 }
-// @media only screen and (min-width: 1340px) {
-//     .dialog_fields{
-//         width:44%;
-//     .update_btn{
-//         display: flex;
-//         justify-content: flex-end;
-//         align-items: flex-end;
-//         .update_btnlabel{
-//             border-radius: 30px;
-//             background-color: #6366F1;
-//             color: #FFF;
-    
-//     font-family: Inter var;
-//     font-size: 18px;
-    
-//     font-weight: 500;
-    
-//         }
-//     }
-//     }
-// }
-// @media only screen and (min-width: 1400px) {
-//     .dialog_fields{
-//         width:40%;
-//     .update_btn{
-//         display: flex;
-//         justify-content: flex-end;
-//         align-items: flex-end;
-//         .update_btnlabel{
-//             border-radius: 30px;
-//             background-color: #6366F1;
-//             color: #FFF;
-    
-//     font-family: Inter var;
-//     font-size: 18px;
-    
-//     font-weight: 500;
-    
-//         }
-//     }
-//     }
-// }
-// @media only screen and (min-width:1000px ) and (max-width: 1690px){
-//     .dialog_fields{
-//         width:44%;
-//     .update_btn{
-//         display: flex;
-//         justify-content: flex-end;
-//         align-items: flex-end;
-//         .update_btnlabel{
-//             border-radius: 30px;
-//             background-color: #6366F1;
-//             color: #FFF;
-    
-//     font-family: Inter var;
-//     font-size: 18px;
-    
-//     font-weight: 500;
-    
-//         }
-//     }
-//     }
-// }

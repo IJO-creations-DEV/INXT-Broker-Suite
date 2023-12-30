@@ -25,7 +25,7 @@ function SpecificVoucher() {
     const [products, setProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState(false);
 const handlebankdetail=()=>{
-    Navigate('/paymentvoucher/bankdetailselection')
+    Navigate('/accounts/paymentvoucher/bankdetailselection')
 }
     
 const renderViewButton = (e) => {
@@ -46,8 +46,8 @@ const renderViewButton = (e) => {
   };
 
     const items = [
-        { label: 'Payment Voucher' ,url:'/paymentvoucher'},
-        { label: 'Create Voucher' ,url:'/paymentvoucher/createvoucher'},
+        { label: 'Payment Voucher' ,url:'/accounts/paymentvoucher'},
+        { label: 'Create Voucher' ,url:'/accounts/paymentvoucher/createvoucher'},
 
     ];
     const home = { label: "Accounts " };
@@ -77,21 +77,23 @@ const renderViewButton = (e) => {
     };
 
     const headerStyle = {
-        width: '12rem',
+          width: '4rem',
         // backgroundColor: 'red',
         fontSize: 16,
         fontFamily: 'Inter var',
         fontWeight: 500,
-        padding: 6,
+        // padding: 4,
         color: '#000',
-        border: 'none'
+        border: 'none',
+        margin:20
     };
 
     return (
         <div className='overall__specific__container'>
             <NavBar />
             <div>
-                <SvgBackicon />
+            <span onClick={() => Navigate(-1)}>
+                <SvgBackicon/></span>
                 <label className='label_header'>Payment Voucher</label>
             </div>
             <BreadCrumb
@@ -118,15 +120,19 @@ const renderViewButton = (e) => {
 
                 >
                     <Column selectionMode="multiple" headerStyle={{ width: '4rem' }}></Column>
-                    <Column field="VoucherNumber" header="Payables" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="TransactionNumber" header="Outstanding" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="CustomerCode" header="FC Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="VoucheDate" header="LC Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="Amount" header="Excess/Discounts" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="Amount" header="Bal O/s Amount" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="Amount" header="VAT%" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="Amount" header="WHT%" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="Amount" header="Total Amount" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="VoucherNumber" header="Payables"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="TransactionNumber" header="Outstanding" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="CustomerCode" header="FC Amount"  style={{ width: '20rem' }}  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="VoucheDate" header="LC Amount"  style={{ width: '20rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="CustomerCode" header="Excess/Discounts"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="Amount" header="Bal O/s Amount" 
+                    style={{ width: '20rem' }} 
+                    headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="Amount" header="VAT%" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="Amount" header="WHT%" headerStyle={headerStyle}   className='fieldvalue_container'></Column>
+                    <Column field="Amount" header="Total Amount" 
+                    style={{ width: '20rem' }}
+                     headerStyle={headerStyle} className='fieldvalue_container'></Column>
                    
 
                     <Column
@@ -186,27 +192,12 @@ const renderViewButton = (e) => {
     <div class="col-12 md:col-6 lg:col-6">
     <InputField
               classNames="field__container"
-              label="LC Amount"
-              placeholder={"Enter"}
-            />
-    </div>
-    </div>
-    <div class="grid">
-    <div class="col-12 md:col-6 lg:col-6">
-    <InputField
-              classNames="field__container"
               label="Excess/Discounts"
               placeholder={"Enter"}
             />
     </div>
-    <div class="col-12 md:col-6 lg:col-6">
-    <InputField
-              classNames="field__container"
-              label="Bal O/s Amount"
-              placeholder={"Enter"}
-            />
     </div>
-    </div>
+    
     <div class="grid">
     <div class="col-12 md:col-6 lg:col-6">
     <InputField
@@ -223,15 +214,7 @@ const renderViewButton = (e) => {
             />
     </div>
     </div>
-    <div class="grid">
-    <div class="col-12 md:col-6 lg:col-6">
-    <InputField
-              classNames="field__container"
-              label="Total Amount"
-              placeholder={"Enter"}
-            />
-    </div>
-    </div>
+    
     <div className='update_btn'>
     <Button label="Update" className='update_btnlabel' onClick={() => setVisible(false)}
     

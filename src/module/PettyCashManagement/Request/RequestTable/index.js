@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -10,6 +10,8 @@ import SvgFilters from "../../../../assets/icons/SvgFilter";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
+import { TieredMenu } from "primereact/tieredmenu";
+import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
 const RequestTable = () => {
   const [products, setProducts] = useState([]);
@@ -65,6 +67,20 @@ const RequestTable = () => {
     );
   };
 
+  const menu = useRef(null);
+  const menuitems = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Date',
+    },
+    {
+      label: 'Voucher Number',
+    },
+  ];
+
+
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
     navigate("/accounts/pettycash/PettyCashCodeDetails");
@@ -92,13 +108,11 @@ const RequestTable = () => {
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-            <Button
-              label="Sort By"
-              outlined
-              icon={<SvgFilters />}
+            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
+            <Button label="Search by" outlined icon={<SvgDropdownicon />}
               className="sorbyfilter_container"
-            />
-          </div>
+              onClick={(e) => menu.current.toggle(e)}
+            /></div>
           <div className="sub__title">Petty Cash Code history</div>
         </div>
         <div className="card">

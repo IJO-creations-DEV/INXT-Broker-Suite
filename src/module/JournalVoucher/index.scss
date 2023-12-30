@@ -1,5 +1,18 @@
 .container__Journal__Voture {
 
+    // @layer primereact {
+    //     .p-card {
+    //       background: #ffffff;
+    //       color: #4b5563;
+    //       box-shadow: none !important;
+    //       border-radius: 6px !important;
+    //       fill: #fff !important;
+    //       stroke-width: 1px !important;
+    //       stroke: #fff !important;
+    //       filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
+    //     }
+    //   }
+
     .add__icon__title__Journal__Voture {
         color: #111927;
         font-size: 28px;
@@ -80,9 +93,16 @@
     }
 
     .sub__container__Journal__Voture {
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        border-radius: 10px;
-
+        // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        // border-radius: 10px;
+        background: #ffffff;
+        color: #4b5563;
+        box-shadow: none !important;
+        border-radius: 6px !important;
+        fill: #fff !important;
+        stroke-width: 1px !important;
+        stroke: #fff !important;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
         .sort__filter__view__Journal__Voture {
             display: flex;
             justify-content: space-evenly;

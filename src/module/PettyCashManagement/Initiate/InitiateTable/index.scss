@@ -150,6 +150,18 @@
 .center-content{
   padding: 1rem 0.1rem;
 }
+.sorbyfilter_container{
+  flex-direction: row-reverse;
+  // gap:5px;
+  height: 46px;
+  border-color: #d1d5db;
+  font-family: Inter var;
+font-size: 16px;
+padding: 5px;
+font-weight: 500;
+  width:100%;
+  
+}
 }
 @media screen and (min-width: 1024px) {
   .input__view.lg-col-2-5 {

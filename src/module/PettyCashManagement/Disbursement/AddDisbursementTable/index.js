@@ -111,7 +111,7 @@ const AddDisbursementTable = () => {
 
   return (
     <div className="add__disbursement__table">
-      <CustomToast ref={toastRef}  message="Disbursment Transaction Number 1234 is created"/>
+      <CustomToast ref={toastRef}  message="Petty Cash Disbursment Successfully"/>
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div

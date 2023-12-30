@@ -1,9 +1,8 @@
 .pettycash__management {
-
   @layer primereact {
     .p-tabview .p-tabview-nav {
       background: #ffffff;
-      border: 1px solid #FFF !important;
+      border: 1px solid #fff !important;
       border-top-width: 1px;
       border-right-width: 1px;
       border-bottom-width: 1px;
@@ -11,7 +10,7 @@
       border-width: 0 0 2px 0;
     }
   }
-  .btn__container{
+  .btn__container {
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -25,19 +24,19 @@
   //   // height: 45px;
   //   // width: 120px;
   //   margin: 10px;
-  //   font-family: "Inter var";     
+  //   font-family: "Inter var";
   // }
-  .correction__print__btn{
-    color:#6366F1;
+  .correction__print__btn {
+    color: #6366f1;
     font-size: 14px;
     font-weight: 500;
     background-color: transparent;
     border-radius: 30px;
     height: 45px;
     width: 153px;
-    font-family: 'Inter var';
+    font-family: "Inter var";
     margin: 10px;
-}
+  }
 
   justify-content: center;
   max-width: 100% !important;
@@ -151,7 +150,7 @@
     padding: 1rem;
     z-index: 1;
   }
- 
+
   .custommodal_create {
     background-color: #fff;
     border-radius: 20px;
@@ -168,79 +167,77 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
- 
-  .searchinput_left {
-    width: 100%;
-    border-radius: 8px;
+
+    .searchinput_left {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .sorbyfilter_container {
+      flex-direction: row-reverse;
+      // gap:10px;
+      height: 46px;
+      border-color: #d1d5db;
+      width: 100%;
+    }
+    .fieldvalue_container {
+      font-size: 16px !important;
+      font-family: "Inter var" !important;
+      font-weight: 400;
+    }
+    span.p-button-label.p-c {
+      font-size: 16px;
+    }
+    .sorbyfilter_container svg {
+      width: 40px;
+      height: 40px;
+      border: none !important;
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+    }
+    .sorbyfilter_container {
+      background: #fff !important;
+      color: #6366f1 !important;
+    }
   }
-  .sorbyfilter_container {
-    flex-direction: row-reverse;
-    // gap:10px;
-    height: 46px;
-    border-color: #d1d5db;
-    width: 100%;
+  .company__title {
+    color: #111927;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    font-family: "Inter var";
   }
-  .fieldvalue_container {
-    font-size: 16px !important;
-    font-family: "Inter var" !important;
-    font-weight: 400;
-  }
-  span.p-button-label.p-c {
+  .breadCrums {
+    padding: 0;
+    border: none !important;
+    font-weight: 500;
+    color: #000;
     font-size: 16px;
   }
-  .sorbyfilter_container svg {
-    width: 40px;
-    height: 40px;
+  .p-breadcrumb {
+    background: #ffffff;
     border: none !important;
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
+    border-radius: 6px;
+    padding: 0rem;
+    margin-top: 1rem;
   }
-  .sorbyfilter_container{
-    background: #fff !important;
-    color: #6366F1 !important;
+  .add__btn {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500 !important;
+    background-color: #6366f1;
+    border-radius: 60px !important;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 10px;
+    font-family: "Inter var";
+    column-gap: 0.4rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
   }
 }
-.company__title {
-  color: #111927;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 600;
-  font-family: "Inter var";
-}
-.breadCrums {
-  padding: 0;
-  border: none !important;
-  font-weight: 500;
-  color: #000;
-  font-size: 16px;
-}
-.p-breadcrumb {
-  background: #ffffff;
-  border: none !important;
-  border-radius: 6px;
-  padding: 0rem;
-  margin-top: 1rem;
-}
-.add__btn {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500 !important;
-  background-color: #6366f1;
-  border-radius: 60px !important;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  margin: 10px;
-  font-family: "Inter var";
-  column-gap: 0.4rem;
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
-}
-
-}
-
 
 @media screen and (min-width: 320px) {
   .pettycash__title {
@@ -250,7 +247,6 @@
     font-weight: 600;
     font-family: "Inter var";
   }
-
 }
 @media screen and (min-width: 767px) {
   .pettycash__title {
@@ -299,8 +295,12 @@
   .p-card {
     background: #ffffff;
     color: #4b5563;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px !important;
-    border-radius: 6px;
+    box-shadow: none !important;
+    border-radius: 6px !important;
+    fill: #fff !important;
+    stroke-width: 1px !important;
+    stroke: #fff !important;
+    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
   }
 }
 .p-datatable .p-datatable-tbody > tr > td {
@@ -310,5 +310,5 @@
   padding: 1rem 0.4rem;
 }
 .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
-  color: #B1B1B1 !important;
+  color: #b1b1b1 !important;
 }

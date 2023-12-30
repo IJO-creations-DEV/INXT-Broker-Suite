@@ -80,7 +80,7 @@ const InitiateForm = () => {
     toastRef.current.showToast();
     setTimeout(() => {
       navigate("/accounts/pettycash/pettycashcodeinitiate");
-    }, 200000);
+    }, 2000);
   };
   const items = [
     { label: "Petty Cash", url: "/accounts/pettycash/pettycashcodeinitiate" },

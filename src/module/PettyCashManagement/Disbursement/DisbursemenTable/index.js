@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -10,9 +10,11 @@ import SvgFilters from "../../../../assets/icons/SvgFilter";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
+import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+import { TieredMenu } from "primereact/tieredmenu";
 
 const DisbursementTable = () => {
-  const [products, setProducts] = useState([{PettycashCode:"PettycashCode"}]);
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
 
@@ -78,6 +80,21 @@ const DisbursementTable = () => {
     color: "#000",
     border: "none",
   };
+
+  const menu = useRef(null);
+  const menuitems = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Date',
+    },
+    {
+      label: 'Voucher Number',
+    },
+  ];
+
+
   return (
     <div className="disbursement__table">
       <Card className="mt-1">
@@ -92,13 +109,11 @@ const DisbursementTable = () => {
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-            <Button
-              label="Sort By"
-              outlined
-              icon={<SvgFilters />}
+            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
+            <Button label="Search by" outlined icon={<SvgDropdownicon />}
               className="sorbyfilter_container"
-            />
-          </div>
+              onClick={(e) => menu.current.toggle(e)}
+            /></div>
           <div className="sub__title">Disbursement history</div>
         </div>
         <div className="card">

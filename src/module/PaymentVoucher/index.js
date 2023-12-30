@@ -25,11 +25,16 @@ const Index = () => {
     return {
       loading: paymentVoucherReducers?.loading,
       paymentVocherList: paymentVoucherReducers?.paymentVocherList,
+    // const [products, setProducts] = useState([]);
+    
+// const handleView=()=>{
+//   navigate('/accounts/paymentvoucher/detailview')
+// }
 
     };
   });
   const handleView = (columnData) => {
-    navigate(`/paymentvoucher/detailview/${columnData?.id}`)
+    navigate(`/accounts/paymentvoucher/detailview/${columnData?.id}`)
   }
 
   const template2 = {
@@ -84,9 +89,9 @@ const Index = () => {
     {
       id: 1,
       label: "Payment Voucher",
-      url: '/paymentvoucher'
-    },
-
+      url: '/accounts/paymentvoucher'
+     },
+    
   ];
   const home = { label: "Accounts" };
 
@@ -103,9 +108,9 @@ const Index = () => {
   const onGlobalFilterChange = (event) => {
     setGlobalFilter(event.target.value);
   };
-
-  const handlePolicy = () => {
-    navigate('/paymentvoucher/createvoucher')
+ 
+  const handlePolicy =()=>{
+    navigate('/accounts/paymentvoucher/createvoucher')
   }
 
   return (
@@ -169,10 +174,10 @@ const Index = () => {
             scrollHeight="40vh"
           >
 
-            <Column field="VoucherNumber" header="Voucher Number" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="TransactionNumber" header="Transaction Number" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="CustomerCode" header="Customer Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="VoucheDate" header="Voucher Date" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="VoucherNumber" header="Voucher Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="TransactionNumber" header="Transaction Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="CustomerCode" header="Customer Code" sortable  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="VoucheDate" header="Voucher Date" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="Amount" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>

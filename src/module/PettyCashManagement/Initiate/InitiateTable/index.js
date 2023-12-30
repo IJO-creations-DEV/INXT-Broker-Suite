@@ -12,7 +12,7 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 
 const InitiateTable = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([{name:"1"},{name:"1"},{name:"1"},{name:"1"},{name:"1"}]);
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
 

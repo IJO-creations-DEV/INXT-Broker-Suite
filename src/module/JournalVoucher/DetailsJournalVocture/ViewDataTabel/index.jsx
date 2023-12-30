@@ -72,8 +72,8 @@ const ViewDataTabel = ({ handleEdit, newDataTable }) => {
             );
         },
     };
-   
- 
+
+
 
     return (
         <div className="journal__table__container">
@@ -91,53 +91,52 @@ const ViewDataTabel = ({ handleEdit, newDataTable }) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
-
             >
                 <Column
                     field="mainAC"
                     header="Main A/c"
                     className="fieldvalue_container"
-                    sortable
+                    
                 ></Column>
                 <Column
                     field="subAC"
                     header="Sub A/c"
                     className="fieldvalue_container"
-                    sortable
+                    
                 ></Column>
 
                 <Column
                     field="Remarks"
                     header="Remarks"
                     className="fieldvalue_container"
-                   
+
                 ></Column>
-                 <Column
+                <Column
                     field="Currency"
                     header="Currency"
                     className="fieldvalue_container"
-                   
+
                 ></Column>
                 <Column
                     field="foreignAmount"
                     header="Foreign Amount"
                     className="fieldvalue_container"
-                    sortable
+                   
                 ></Column>
-               
+
 
                 <Column
                     field="localAmount"
                     header="Local Amount"
                     className="fieldvalue_container"
-                    sortable
+                    
                 ></Column>
                 <Column
                     field="Entry"
                     header="Entry"
                     className="fieldvalue_container"
-                   
-                ></Column>    
+
+                ></Column>
             </DataTable>
         </div>
     );

@@ -1,14 +1,14 @@
 
 import React from "react";
 import { Dialog } from "primereact/dialog";
-import "./index.scss";
+import "../EditData/index.scss";
 import { useFormik } from "formik";
 import DropDowns from "../../../../components/DropDowns";
 import InputField from "../../../../components/InputField";
 import { Button } from "primereact/button";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import SvgModalClose from "../../../../assets/icons/SvgNodalClose";
-const AddData = ({ visible, setVisible, handleUpdate }) => {
+const EditData = ({ visibleEdit, setVisibleEdit, handleUpdate }) => {
   const codeOptions = [
     { label: "Option 1", value: "00123" },
     { label: "Option 2", value: "00124" },
@@ -96,15 +96,15 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
       handleSubmit(values);
       formik.resetForm();
       handleUpdate(values);
-      setVisible(false);
+      setVisibleEdit(false);
     },
   });
   return (
     <Dialog
       header="Add Journal Voucher"
-      visible={visible}
-      className="jv__Edit__modal__container"
-      onHide={() => setVisible(false)}
+      visible={visibleEdit}
+      className="jv__Edit__container"
+      onHide={() => setVisibleEdit(false)}
       dismissableMask={true}
     >
       <div className="form__container">
@@ -135,7 +135,6 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               classNames="input__field__jv"
               className="input__label__jv"
               label="Main Account Description"
-              disabled={true}
               value={
                 formik.values.mainAccount
                   ? `Main Account Description ${formik.values.mainAccount}`
@@ -196,7 +195,6 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               classNames="input__field__jv"
               className="input__label__jv"
               label="Sub Account Description"
-              disabled={true}
               value={
                 formik.values.subAccount
                   ? `Sub Account Description ${formik.values.subAccount}`
@@ -235,7 +233,6 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               classNames="input__field__jv"
               className="input__label__jv"
               label="Branch Code Description"
-              disabled={true}
               value={
                 formik.values.branchCode
                   ? `Branch Code Description ${formik.values.branchCode}`
@@ -283,7 +280,6 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               classNames="input__field__jv"
               className="input__label__jv"
               label="Department Description"
-              disabled={true}
               value={
                 formik.values.departmentCode
                   ? `Department Description ${formik.values.departmentCode}`
@@ -331,7 +327,6 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               classNames="input__field__jv"
               className="input__label__jv"
               label="Currency Description"
-              disabled={true}
               value={
                 formik.values.currencyCode
                   ? `Currency Description ${formik.values.currencyCode}`
@@ -375,7 +370,6 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               // className="select__label__jv"
               // label="Remarks (Options)"
               value={formik.values.remarks}
-          
               onChange={(e) =>
                 formik.setFieldValue("remarks", e.target.value)
               }
@@ -413,6 +407,6 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
   );
 };
 
-export default AddData;
+export default EditData;
 
 

@@ -6,9 +6,14 @@ import Productdata from "./data";
 import { Dropdown } from "primereact/dropdown";
 import SvgTable from "../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
+import { useNavigate } from "react-router-dom";
 const DataTabelJV = ({ handleEdit, newDataTable }) => {
+    const navigate=useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const handleNavigate=()=>{
+        navigate("/accounts/journalvoucher/detailsjournalvocture")
+    }
     console.log(newDataTable, "find newDataTable");
     let newProduct;
     let updatedProductData;
@@ -74,7 +79,7 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
     
     const renderEditButton = (rowData) => {
         return (
-            <div className="centercontent">
+            <div className="centercontent" onClick={handleNavigate}>
                 <SvgEyeIcon/>
                 
             </div>
@@ -114,7 +119,7 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
                     field="mainAC"
                     header="Transaction Code"
                     className="fieldvalue_container"
-                    sortable
+                    
                     
                 ></Column>
                 <Column

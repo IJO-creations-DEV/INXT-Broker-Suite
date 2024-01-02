@@ -3,7 +3,6 @@ import journalVoucherReducers from '../module/JournalVoucher/store/journalVouche
 import paymentVoucherReducers from '../module/PaymentVoucher/store/paymentVoucherReducer';
 
 
-
 const reducers = {
     journalVoucherReducers,
     paymentVoucherReducers

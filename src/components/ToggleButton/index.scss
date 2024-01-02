@@ -25,13 +25,13 @@ label {
   }
   .input:not(:checked) ~ .toggle-wrapper .active-text {
     display: block;
-    // left: 40%;
+    left: 40%;
     right: auto;
   }
 
   .toggle-wrapper {
     position: relative;
-    // width: 75px;
+    width: 75px;
     height: 25px;
     background-color: red;
     border-radius: 999px;

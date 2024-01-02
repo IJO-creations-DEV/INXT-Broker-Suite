@@ -112,6 +112,13 @@ import EditCommission from "../module/GeneralMasters/Commission/EditCommission";
 import ViewCommission from "../module/GeneralMasters/Commission/ViewCommission";
 import EditPettyCash from "../module/FinanceMastersModule/PettyCashMaster/EditPettyCash";
 
+import ViewExchange from "../module/FinanceMastersModule/ExchangeRateMaster/ViewExchange";
+import BankMaster from "../module/FinanceMastersModule/BankMaster";
+import AddBankMaster from "../module/FinanceMastersModule/BankMaster/AddBankMaster";
+import Accountdataview from '../module/FinanceMastersModule/BankMaster/AccountDataView/index';
+import AddAccountDetail from '../module/FinanceMastersModule/BankMaster/AccountDataView/AddAccountDetail/index'
+import ViewAccountDetail from "../module/FinanceMastersModule/BankMaster/AccountDataView/ViewAccountData";
+import EditAccountDetail from "../module/FinanceMastersModule/BankMaster/AccountDataView/EditAccountData";
 const Maincomponent = () => {
   return (
     <div
@@ -388,6 +395,37 @@ const Maincomponent = () => {
               element={<CurrencyMaster />}
             />
 
+
+            {/* Bank */}
+
+            <Route
+              path="master/finance/bank"
+              element={<BankMaster/>}
+            />
+            <Route
+              path="master/finance/bank/addbankmaster"
+              element={<AddBankMaster/>}
+            />
+             <Route
+              path="master/finance/bank/accountdataview"
+              element={<Accountdataview/>}
+            />
+            <Route
+              path="master/finance/bank/accountdataview/addaccountdetail"
+              element={<AddAccountDetail/>}
+            />
+            <Route
+              path="master/finance/bank/accountdataview/viewaccountdetail"
+              element={<ViewAccountDetail/>}
+            />
+            <Route
+              path="master/finance/bank/accountdataview/editaccountdetail"
+              element={<EditAccountDetail/>}
+            />
+
+
+
+{/* exchangeRate */}
             <Route
               path="master/finance/exchangerate"
               element={<ExchangeRateMaster />}
@@ -400,6 +438,15 @@ const Maincomponent = () => {
               path="master/finance/exchangerate/saveandeditexchange"
               element={<SaveAndEditExchange />}
             />
+            <Route
+              path="master/finance/exchangerate/viewexchange"
+              element={<ViewExchange/>}
+            />
+            
+
+
+{/*  */}
+
             <Route
               path="master/finance/mainaccount"
               element={<MainAccountMaster />}

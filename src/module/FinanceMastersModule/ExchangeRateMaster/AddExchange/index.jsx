@@ -1,183 +1,334 @@
-import { BreadCrumb } from 'primereact/breadcrumb'
-import React, { useEffect, useState } from 'react'
-import NavBar from '../../../../components/NavBar'
-import SvgDot from '../../../../assets/icons/SvgDot';
-import "../AddExchange/index.scss"
-import DropDowns from '../../../../components/DropDowns';
+import React,{useState,useRef} from 'react';
+import './index.scss';
+import { BreadCrumb } from 'primereact/breadcrumb';
 import InputField from '../../../../components/InputField';
-import { Button } from 'primereact/button';
-import SuccessIcon from '../../../../assets/icons/SuccessIcon';
+import SubmitButton from '../../../../components/SubmitButton'
+import SvgDot from '../../../../assets/icons/SvgDot';
+import DropDowns from '../../../../components/DropDowns';
 import SvgDropdown from '../../../../assets/icons/SvgDropdown';
-import LabelWrapper from '../../../../components/LabelWrapper';
-import SvgDatePicker from '../../../../assets/icons/SvgDatePicker';
+import { Button } from 'primereact/button';
+import { useNavigate } from 'react-router-dom';
+import NavBar from '../../../../components/NavBar';
+import SvgBackicon from '../../../../assets/icons/SvgBackicon';
+import { Card } from "primereact/card";
+import DatePicker from '../../../../components/DatePicker';
 import { Calendar } from 'primereact/calendar';
+import LabelWrapper from '../../../../components/LabelWrapper';
+import { useFormik } from "formik";
+import { Toast } from 'primereact/toast';
+import CustomToast from "../../../../components/Toast";
 
-const AddExchange = () => {
-    const [visiblePopup, setVisiblePopup] = useState(false);
-    const [date, setDate] = useState(new Date());
-    const items = [
-        { label: 'Exchange Rate', url: '/exchangerate' },
-        { label: 'Add Exchange Rate', url: '/saveandaddexchange' },
+const initialValues ={
+    EffectiveFrom: new Date(),
+    EffectiveTo:new Date(),
+  CurrencyCode:"",
+  ToCurrencyCode:"",
+  ExchangeRate:"",
+  CurrencyDescription:"",
+  ToCurrencyDescription:""
+ 
+}
 
-    ];
+function AddExchange() {
+    const toastRef = useRef(null);
+    const [date, setDate] = useState(null);
+    const Navigate=useNavigate()
+    const [departmentcode, setDepartmentCode] = useState(null);
+    const [branchcode, setBranchCode] = useState(null);
+    const [payeetype, setPayeeType] = useState(null);
+    const [criteria, setCriteria] = useState(null);
+    const [customercode, setCustomerCode] = useState(null);
+    const [transactioncode, setTransactioncode] = useState(null);
+    const [selectinstrumentcurrency, setSelectInstrumentCurrency] = useState(null);
+    
+    const currencyCode = [
+        { name: "INR", code: "NY" },
+        { name: "USD", code: "RM" },
+      ];
+      const ToCurrencyCode = [
+        { name: "INR", code: "NY" },
+        { name: "USD", code: "RM" },
+      ];
+      const PayeeType = [
+        { name: "Customer", code: "NY" },
+        { name: "owner", code: "RM" },
+      ];
+      const Criteria = [
+        { name: "Specific", code: "NY" },
+        { name: "payall", code: "RM" },
+      ];
+      const CustomerCode = [
+        { name: "Cus00123", code: "NY" },
+        { name: "Cus001234", code: "RM" },
+      ];
+      const Transactioncode = [
+        { name: "Trans00123", code: "NY" },
+        { name: "Trans001234", code: "RM" },
+      ];
+      const SelectInstrumentCurrency = [
+        { name: "INR", code: "NY" },
+        { name: "CSE", code: "RM" },
+      ];
+    
     const home = { label: "Master" };
-    useEffect(() => {
-        const timerId = setTimeout(() => {
-            setVisiblePopup(false);
-        }, 2000);
+    const items = [
+        { label: 'Exchange Rate' ,url:'/master/finance/exchangerate'},
+        { label: 'Add Exchange Rate' ,url:'/master/finance/exchangerate/addexchange'},
+    ];
 
-        return () => clearTimeout(timerId);
-    }, [visiblePopup]);
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 1);
+
+// const handleSubmit=(value)=>{
+  
+//     Navigate("/master/finance/exchangerate")
+// }
+
+// const toastRef = useRef(null);
+
+const handleSubmit = (values) => {
+  // Handle form submission
+  console.log(values, "find values");
+  
+  toastRef.current.showToast();
+  // {
+    setTimeout(() => {
+    Navigate("/master/finance/exchangerate")
+    }, 3000);
+  }
+  
+// };
+
+const customValidation = (values) => {
+  const errors = {};
+
+  if (!values.CurrencyCode) {
+    errors.CurrencyCode = "This field Code is required";
+  }
+  if (!values.ToCurrencyCode) {
+    errors.ToCurrencyCode = "This field is required";
+  }
+  if (!values.ExchangeRate) {
+    errors.ExchangeRate = "This field is required";
+  }
+ 
+  // if (!values.TransactionDescription) {
+  //   errors.TransactionDescription = "This field is required";
+  // }
+  
+  return errors;
+};
+
+const formik = useFormik({
+  initialValues:initialValues,
+  validate: customValidation,
+  // onSubmit: (values) => {
+  //   // Handle form submission
+  //    handleSubmit(values);
+    
+  // },
+   onSubmit:handleSubmit
+});
 
     return (
-        <div className='grid sub__add__container'>
-            <div className='col-12'>
-                <NavBar />
+        <div className='overall__addexchange__container'>
+
+            <NavBar/>
+            {/* <CustomToast ref={toastRef} 
+            // detail="Some detail text"
+            // content={"Voucher Details Save Successfully"}
+            /> */}
+            <CustomToast ref={toastRef} message="Exchange Rate ER1234 is added"/>
+            <div>
+              <span onClick={() => Navigate(-1)}>
+                <SvgBackicon/></span>
+            <label className='label_header'>Add Exchange Rate</label>
             </div>
-            <div className='col-12 mb-2'>
-                <div className='add__sub__title'>Add Exchange Rate</div>
-                <div className='mt-3'>
-                    <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
-                </div>
+            <BreadCrumb
+                model={items}
+                home={home}
+                className='breadcrumbs_container'
+                separatorIcon={<SvgDot color={"#000"} />} />
+
+
+            
+
+
+<Card>
+        
+        <div class="grid">
+          <div class="sm-col-12 col-12 md:col-3 lg-col-3">
+            <div>
+               <DropDowns
+              className="dropdown__container"
+              label="Currency Code"
+              // value={departmentcode}
+              // onChange={(e) => setDepartmentCode(e.value)}
+              value={formik.values.CurrencyCode}
+              onChange={(e) =>
+                formik.setFieldValue("CurrencyCode", e.value)
+              }
+
+              options={currencyCode}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+             { formik.touched.CurrencyCode && formik.errors.CurrencyCode && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.CurrencyCode}
+              </div>
+            )}
             </div>
-            <div className='col-12 m-0 '>
-                <div className='grid add__account__sub__container p-3'>
-                    <div class="sm-col-12  md:col-3 lg-col-4 col-offset-9">
-                        <DropDowns
-                            className="dropdown__add__sub"
-                            label="Status"
-                            classNames='label__sub__add'
-                            // value={selectedItem}
-                            // onChange={(e) => setSelectedItem(e.value)}
-                            // options={item}
-                            // optionLabel="name"
-                            placeholder={"Select"}
-                            dropdownIcon={<SvgDropdown color={"#000"} />}
-                        />
-                    </div>
-                    <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
-                        <div class="calender_container_claim p-0">
-                            <LabelWrapper
-                                label="Effective From"
-                                textSize={"14px"}
-                                textColor={"#000"}
-                                textWeight={"500"}
-                            >
-                                <Calendar
-                                 
-                                    value={date}
-                                    onChange={(e) => setDate(e.value)}
-                                    showIcon
-                                    className="calender_field_claim "
-                                    // placeholder={translate("claimstatus")["Choose Date"]}
-                                />
-                                <div className="calender_icon_claim">
-                                    <SvgDatePicker />
-                                </div>
-                            </LabelWrapper>
-                        </div>
-                    </div>
-                    <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
-                        <div class="calender_container_claim p-0">
-                            <LabelWrapper
-                                label="Effective To"
-                                textSize={"14px"}
-                                textColor={"#000"}
-                                textWeight={"500"}
-                                // className="label__sub__add"
-                                classNames="label__sub__add"
-                            >
-                                <Calendar
-                                    value={date}
-                                    onChange={(e) => setDate(e.value)}
-                                    showIcon
-                                    className="calender_field_claim"
-                                    // placeholder={translate("claimstatus")["Choose Date"]}
-                                />
-                                <div className="calender_icon_claim">
-                                    <SvgDatePicker />
-                                </div>
-                            </LabelWrapper>
-                        </div>
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="Sub Account Code"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <DropDowns
-                            label="Currency Code"
-                            className='dropdown__add__sub'
-                            classNames='label__sub__add'
-                            placeholder={"Select"}
-                            dropdownIcon={<SvgDropdown color={"#000"} />}
-                        />
-                    </div>
-                    
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="Currency  description"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <DropDowns
-                            label="To Currency Code"
-                            className='dropdown__add__sub'
-                            classNames='label__sub__add'
-                            placeholder={"Select"}
-                            dropdownIcon={<SvgDropdown color={"#000"} />}
-                        />
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="To Currency  description"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="Exchange Rate"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                </div>
+          </div>
+          <div class="sm-col-12 col-12 md:col-6 lg-col-6">
+            <div>
+            <InputField
+              classNames="field__container"
+              label="Currency  Description"
+              placeholder={"Enter"}
+            //   value={formik.values.CurrencyDescription}
+            value={
+                formik.values.CurrencyCode
+                  ? `CurrencyCode ${formik.values.CurrencyDescription}`
+                  : ""
+              }
+              onChange={formik.handleChange("CurrencyDescription")}
+              
+            />
+           
             </div>
-            <div className='col-12 btn__view__Add mt-2'>
-                <Button
-                    label='Save'
-                    className='save__add__btn'
-                    onClick={() => setVisiblePopup(true)}
+          </div>
+        </div>
+
+        
+        <div class="grid">
+          <div class="sm-col-12 col-12 md:col-3 lg-col-3">
+            <div>
+               <DropDowns
+              className="dropdown__container"
+              label="To Currency Code"
+              // value={departmentcode}
+              // onChange={(e) => setDepartmentCode(e.value)}
+              value={formik.values.ToCurrencyCode}
+              onChange={(e) =>
+                formik.setFieldValue("ToCurrencyCode", e.value)
+              }
+
+              options={ToCurrencyCode}
+              optionLabel="name"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+             { formik.touched.ToCurrencyCode && formik.errors.ToCurrencyCode && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.ToCurrencyCode}
+              </div>
+            )}
+            </div>
+          </div>
+          <div class="sm-col-12 col-12 md:col-6 lg-col-6">
+            <div>
+            <InputField
+              classNames="field__container"
+              label="To Currency  Description"
+              placeholder={"Enter"}
+            //   value={formik.values.ToCurrencyDescription}
+            value={
+                formik.values.ToCurrencyCode
+                  ? `ToCurrencyCode ${formik.values.ToCurrencyDescription}`
+                  : ""
+              }
+              onChange={formik.handleChange("ToCurrencyDescription")}
+              
+            />
+           
+            </div>
+          </div>
+        </div>
+
+
+        <div class="grid">
+          <div class="col-3 md:col-3 lg-col-3">
+           
+          <LabelWrapper className="calenderlable__container">Effective From</LabelWrapper>
+             <Calendar 
+             classNames="calender__container"
+               showIcon
+              
+
+              value={formik.values.EffectiveFrom}
+          minDate={minDate}
+
+              onChange={(e) => {
+                formik.setFieldValue("EffectiveFrom", e.target.value);
+              }}
+                dateFormat="yy-mm-dd"
+              
+              />
+          </div>
+          <div class="col-3 md:col-3 lg-col-3">
+          <LabelWrapper className="calenderlable__container">Effective To</LabelWrapper>
+             <Calendar 
+             classNames="calender__container"
+               showIcon
+              
+
+              value={formik.values.EffectiveTo}
+          minDate={minDate}
+
+              onChange={(e) => {
+                formik.setFieldValue("EffectiveTo", e.target.value);
+              }}
+                dateFormat="yy-mm-dd"
+              
+              />
+          </div>
+          <div class="col-3 md:col-3 lg-col-3">
+          <InputField
+              classNames="field__container"
+              label="Exchange Rate"
+              placeholder={"Enter"}
+              value={formik.values.ExchangeRate}
+              onChange={formik.handleChange("ExchangeRate")}
+              
+            />
+             {formik.touched.ExchangeRate && formik.errors.ExchangeRate && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.ExchangeRate}
+              </div>
+            )}
+          </div>
+          
+        </div>
+        
+      </Card>
+
+
+            <div className="next_container">
+               
+                <Button className="submit_button p-0" label="Save"  disabled={!formik.isValid}
+                onClick={()=>{formik.handleSubmit();}} 
                 />
             </div>
-            <div className="col-12">
-                {visiblePopup && (
-                    <div className="grid custom-modal-overlay">
-                        <div className="col-10 md:col-2 lg:col-2 custom-modal">
-                            <div className='popup__text'>
-                            successfully added.
-                            </div>
-                            <div className='popup__icon'>
-                                <SuccessIcon
 
-                                />
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
+
+
+
+
+
+
         </div>
-    )
-
+    );
 }
-export default AddExchange
+
+export default AddExchange;

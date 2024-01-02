@@ -1,57 +1,131 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from 'primereact/button'
 import SvgAdd from '../../../assets/icons/SvgAdd'
-import "../SubAccountMaster/index.scss"
+import "./index.scss"
 import { BreadCrumb } from 'primereact/breadcrumb'
 import SvgDot from '../../../assets/icons/SvgDot'
 import NavBar from "../../../components/NavBar"
-import SvgFilters from '../../../assets/icons/SvgFilters'
-import InputField from "../../../components/InputField"
 import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon'
 import { Paginator } from 'primereact/paginator'
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
-import SvgArrow from '../../../assets/icons/SvgArrow'
 import { Dropdown } from 'primereact/dropdown'
 import { useNavigate } from 'react-router-dom'
 import { InputText } from 'primereact/inputtext'
-import { InputSwitch } from 'primereact/inputswitch'
+import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
+import SvgEditIcon from "../../../assets/icons/SvgEditicons";
+import ToggleButton from "../../../components/ToggleButton";
+import Productdata from './mock';
+import SvgUploade from "../../../assets/icons/SvgUploade";
+import { Dialog } from "primereact/dialog";
+import InputField from '../../../components/InputField';
+import DropDowns from '../../../components/DropDowns';
+import SvgDropdown from "../../../assets/icons/SvgDropdown";
+import { MultiSelect } from 'primereact/multiselect';
+import CustomToast from "../../../components/Toast";
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate('/master/finance/subaccount/subadd')
+  const [visiblePopup, setVisiblePopup] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption1, setSelectedOption1] = useState(null);
+  const handleDropdownChange = (e) => {
+    setSelectedOption(e.value);
   };
-  const handleNavigateedit = () => {
-    navigate('/master/finance/subaccount/saveandedit')
-  }
-
+  const handleDropdownChange1 = (e) => {
+    setSelectedOption1(e.value);
+  };
+ 
+  const handleClick = () => {
+  
+  };
+ 
+ 
   const items = [
-    { id: 1, label: 'Sub Account', url: '/subaccount' },
+    { label: 'Sub Account', url: '/master/finance/subaccount'},
   ];
   const home = { label: "Master" };
+  const headerStyle = {
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border: "none",
+  };
+  const ViewheaderStyle = {
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border: "none",
+    display: "flex",
+    justifyContent: "center",
+  };
 
   const columns = [
-    { field: 'subAccount', headerName: 'Sub Account Code', flex: 1 },
-    { field: 'shorDesc', headerName: 'Short Description', flex: 1 },
-    { field: 'desc', headerName: 'Main Account Code', flex: 1 },
+    { field: 'tax', headerName: 'Tax Code', flex: 1 },
+    { field: 'taxName', headerName: ' Tax Name', flex: 1 },
+   
+ 
+    { field: 'desc', headerName: 'Tax Rate', flex: 1 },
+    { field: 'effective', headerName: 'Effective From', flex: 1 },
+    { field: 'effectiveTo', headerName: 'Effective To', flex: 1 },
     { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'view', headerName: 'View', flex: 1 },
+    { field: 'action', headerName: 'Action', flex: 1 },
   ];
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [checked, setChecked] = useState(true);
 
   const onPageChange = (event) => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
+  const item = [{ name: "Main00123 - Main Account Description" }, { name: "Main00125 - Main Account Description" }, { name: "Main00128 - Main Account Description" }];
+const item1 =[{name:"INR-Indian Currency",name:"EUR-Euro",name:"HKD-Hong Kong Dollar"}]
+const toastRef = useRef(null);
+  const renderViewButton = (rowData) => {
+    return (
+      <div className="center-content">
+        <Button
+          icon={<SvgEyeIcon />}
+          className="eye__btn"
+          onClick={() => handleDetail(rowData)}
+        />
+        <Button
+          icon={<SvgEditIcon />}
+          className="eye__btn"
+          onClick={() => handlEdit(rowData)}
+        />
+      </div>
+    );
+  };
 
-  const rows = [
-    { id: 1, subAccount: '', shorDesc: '', desc: '', status: '', view: '' },
-  ];
+  const renderToggleButton = () => {
+    return (
+      <div>
+   <ToggleButton/>
+      </div>
+    );
+  };
 
+  const handleView = (rowData) => {
+    console.log("View clicked:", rowData);
+    setVisiblePopup(true);
+
+  };
+  const handleToast =()=>{
+    toastRef.current.showToast();
+  }
+  const handlEdit =()=>{
+    navigate("/master/finance/subaccount/subaccountedit")
+  }
+  const handleDetail =()=>{
+    navigate("/master/finance/subaccount/subaccountdetails")
+  }
   const template2 = {
     layout: "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
@@ -64,7 +138,7 @@ const SubAccountMaster = () => {
 
       return (
         <React.Fragment>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '40%' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',width:'40%' }}>
             <span
 
               className="mx-1"
@@ -84,161 +158,196 @@ const SubAccountMaster = () => {
     },
   };
   return (
-    <div className='grid  container__sub__account__master'>
+    <div className='grid  container__taxation'>
       <div className='col-12'>
         <NavBar />
       </div>
       <div className='col-12 md:col-6 lg:col-6 mb-1'>
-        <div className='add__icon__title'>Sub Account Master</div>
-     
+        <div className='add__icon__title__taxation'>Sub Account Master</div>
         <div className='mt-3'>
-          <BreadCrumb
-            home={home}
-            className={items.map((val) => {
-              return val.label === '/subaccount' ? 'breadCrums__view__reversal' : 'item__color';
-            })}
-            model={items}
-            
-            separatorIcon={<SvgDot color={"#000"} />}
-          />
+          <BreadCrumb home={home} className='breadCrums__view__reversal__taxation' model={items} separatorIcon={<SvgDot color={"#000"} />} />
         </div>
       </div>
-      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn mb-1'>
-        <div className='add__icon__view' onClick={handleNavigate}>
-          <div className='add__icon' >
-            <SvgAdd />
+     
+          <div className="col-12 md:col-6 lg:col-6 mb-1">
+          <div className="btn__container">
+          <Button
+          outlined
+              label="Upload"
+              icon={<SvgUploade color={"#fff"} />}
+              className="upload__btn"
+              onClick={() => {
+                handleClick();
+              }}
+            />
+            <Button
+              label="Add"
+              icon={<SvgAdd color={"#fff"} />}
+              className="add__btn"
+              onClick={() => {
+                handleView();
+              }}
+            />
           </div>
-          <div className='add__text'>
-            Add
-          </div>
-
         </div>
-      </div>
       <div className='col-12 m-0 '>
-        <div className='sub__account__sub__container'>
-          <div className='col-12 search__filter__view'>
+        <div className='sub__account__sub__container__taxation'>
+        <div className='col-12 search__filter__view__taxation'>
             <div className='col-12 md:col-10 lg:col-10'>
-              <div className='searchIcon__view__input'>
+              <div className='searchIcon__view__input__taxation'>
                 <span className='p-1'> <SvgSearchIcon /></span>
                 <InputText
-                  style={{width:'100%'}}
-                  classNames='input__sub__account'
+                 style={{width:'100%'}}
+                  classNames='input__sub__account__taxation'
                   placeholder='Search By Sub Account Code'
                 />
               </div>
             </div>
-            <div className='col-12 md:col-2 lg:col-2'>
-              <div className='sort__filter__view'>
-                <div className='sort__by__text'>Sort By</div>
-                <div>
-                  <SvgFilters />
-                </div>
-              </div>
-            </div>
+       
           </div>
           <div className='col-12 '>
-            <div className='main__tabel__title p-2'>Main Account List</div>
+            <div className='main__tabel__title__taxation p-2'>Main Account List</div>
           </div>
-          {/* <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
-            <div className="card">
-              <DataTable
-                style={{ overflowY: 'auto', maxWidth: '100%' }}
-                responsive={true}
-                className='table__view'
-                paginator
-                paginatorLeft
-                rows={5}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
-              >
-                {columns.map((column) => (
-                  <Column
-                    style={{
-                      width: column.field === 'rowcount' ? '10%' : `${90 / (columns.length - 1)}%`, // Set width for the dropdown column
-                      boxSizing: 'border-box',
-                      fontSize: 14,
-                      fontWeight: 500,
-                    }}
-                    key={column.field}
-                    field={column.field}
-                    header={column.headerName}
-                    paginator
-                    rows={5}
-                    rowsPerPageOptions={[5, 10, 25, 50]}
-                    currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                    paginatorTemplate={template2}
-                    bodyStyle={{
-                      fontSize: 14,
-                      height: 50,
-                      padding: 18,
-                      ...(column.field === 'status' && { color: 'green' }),
-                    }}
-                    body={column.field === 'view' ? <SvgArrow /> : column.field && 'A012'}
-                  />
-                ))}
-              </DataTable>
-
-
-            </div>
-          </div> */}
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
-              <DataTable
-                value={rows}
-                style={{ overflowY: 'auto', maxWidth: '100%' }}
-                responsive={true}
-                className='table__view'
-                paginator
-                paginatorLeft
-                rows={5}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
-              >
-                {columns.map((column) => (
-                  <Column
-                    style={{
-                      width: column.field === 'rowcount' ? '10%' : `${90 / (columns.length - 1)}%`,
-                      boxSizing: 'border-box',
-                      fontSize: 14,
-                      fontWeight: 500,
-                    }}
-                    key={column.field}
-                    field={column.field}
-                    header={column.headerName}
-                    paginator
-                    rows={5}
-                    rowsPerPageOptions={[5, 10, 25, 50]}
-                    currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                    paginatorTemplate={template2}
-                    bodyStyle={{
-                      fontSize: 14,
-                      height: 50,
-                      padding: 18,
-                      ...(column.field === 'status' && { color: 'green' }),
-                    }}
-                    body={column.field === 'view' ? <div onClick={() => handleNavigateedit()}><SvgArrow /></div> : column.field == 'status' ? 
-                    <InputSwitch
-                      checked={checked}
-                      onChange={(e) => setChecked(e.value)}
-                      content='jsjhjs'
-                      // falseValue={true}
-                      list='jd'
-                      name='hfghf'
-                      placeholder='jhhf'
-                      value="dggsd"
-                      
-                    />
-                     : column.field && 'A012'}
-                  />
-                ))}
+            <DataTable
+      value={Productdata}
+      style={{ overflowY: 'auto', maxWidth: '100%' }}
+      responsive={true}
+      className='table__view__taxation'
+      paginator
+      paginatorLeft
+      rows={5}
+      rowsPerPageOptions={[5, 10, 25, 50]}
+      currentPageReportTemplate="{first} - {last} of {totalRecords}"
+      paginatorTemplate={template2}
+      onPage={onPageChange}
+      onPageChange={onPageChange}
+    >
+
+<Column
+              field="SubAccountCode"
+              header="Sub Account Code"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="Description"
+              header="Description"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            
+            ></Column>
+           
+           
+            <Column
+              body={renderToggleButton}
+              header="Status"
+              headerStyle={{ textAlign: 'center', ...headerStyle }}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              body={renderViewButton}
+              header="Action"
+              headerStyle={{ ...ViewheaderStyle }}
+              className="fieldvalue_container centered"
+            ></Column>
+                
               </DataTable>
+
+              <div className="col-12">
+      
+      <Dialog
+        header="Add Sub Account"
+        visible={visiblePopup}
+        className="dialog_fields"
+        onHide={() => setVisiblePopup(false)}
+        style={{ width: '60vw' }}
+      >
+        <div class="grid">
+          <div class="sm-col-12  md:col-4 lg-col-4">
+            <InputField
+              classNames="field__container"
+              label="Sub Account Code"
+              placeholder={"Enter"}
+              //   value={selectedRowData.policy}
+            />
+          </div>
+          <div class="sm-col-12  md:col-8 lg-col-8">
+            <InputField
+              classNames="field__container"
+              label="Sub Account Name"
+              placeholder={"Enter"}
+            />
+          </div>
+        </div>
+        <div class="grid">
+          <div class="sm-col-12  md:col-8 lg-col-8">
+            <InputField
+              classNames="field__container"
+              label="Description"
+              placeholder={"Enter"}
+            />
+          </div>
+         
+        </div>
+        <div class="grid">
+          <div class="sm-col-12  md:col-8 lg-col-8">
+            <label className='main_acc_text'>Main Account</label>
+           <MultiSelect
+              value={selectedOption}
+              options={item}
+              onChange={handleDropdownChange}
+              className="dropdown__add__sub"
+              label="Main Account"
+              display="chip"
+              optionLabel="name"
+              classNames="label__sub__add"
+              placeholder={"Select"}
+              
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />  
+         
+          </div>
+         
+        </div>
+        <div class="grid">
+         
+                 <div class="sm-col-12  md:col-8 lg-col-8">
+            <label className='main_acc_text'>Currency Code</label>
+           <MultiSelect
+              value={selectedOption1}
+              options={item1}
+              onChange={handleDropdownChange1}
+              className="dropdown__add__sub"
+              
+              display="chip"
+              optionLabel="name"
+              classNames="label__sub__add"
+              placeholder={"Select"}
+              
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />  
+         
+          </div>
+         
+        </div>
+       
+        <div className="update_btn">
+          <Button
+         
+            label="Save"
+            className="update_btnlabel"
+            onClick={() => handleToast()}
+            
+          />
+        </div>
+      </Dialog>
+      <CustomToast
+          ref={toastRef}
+          message="Sub Account Code SAC1234 is added"
+        />
+    </div>
             </div>
           </div>
 
@@ -251,3 +360,4 @@ const SubAccountMaster = () => {
 }
 
 export default SubAccountMaster
+ 

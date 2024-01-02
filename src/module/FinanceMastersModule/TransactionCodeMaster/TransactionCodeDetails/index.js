@@ -1,0 +1,337 @@
+import React, { useRef } from "react";
+import "./index.scss";
+import { useFormik } from "formik";
+import { BreadCrumb } from "primereact/breadcrumb";
+import SvgDot from "../../../../assets/icons/SvgDot";
+import { useNavigate } from "react-router";
+import SvgBackArrow from "../../../../assets/icons/SvgBackArrow";
+import { Card } from "primereact/card";
+import InputField from "../../../../components/InputField";
+import DropDowns from "../../../../components/DropDowns";
+import SvgDropdown from "../../../../assets/icons/SvgDropdown";
+import TransactionCodeMasterDetailViewTable from "./TransactionCodeMasterDetailViewTable";
+
+const initialValue = {
+  TransactionCode: "",
+  TransactionName: "",
+};
+
+const TransactionCodeDetails = () => {
+  const toastRef = useRef(null);
+  const navigate = useNavigate();
+  const items = [
+    {
+      label: "Transaction code",
+      url: "/master/finance/transactioncode",
+    },
+    {
+      label: "Transaction Code Details",
+      url: "/master/finance/transactioncode/transactioncodedetails",
+    },
+  ];
+  const Initiate = { label: "Master" };
+
+  const handleClick = () => {
+    navigate("/master/finance/transactioncode");
+  };
+
+  const validate = () => {};
+
+  const handleSubmit = () => {
+    navigate("/master/finance/transactioncode");
+  };
+
+  const formik = useFormik({
+    initialValues: initialValue,
+    validate,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
+  });
+
+  return (
+    <div className="transactioncode__master__detail__view">
+      {/* <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully"/> */}
+      <div className="grid  m-0">
+        <div className="col-12 md:col-12 lg:col-12">
+          <div
+            className="Transaction__Code__Master__title"
+            onClick={() => {
+              handleClick();
+            }}
+          >
+            <SvgBackArrow />
+            Transaction Code Details
+          </div>
+          <div className="mt-3">
+            <BreadCrumb
+              model={items}
+              home={Initiate}
+              className="breadCrums"
+              separatorIcon={<SvgDot color={"#000"} />}
+            />
+          </div>
+        </div>
+      </div>
+      <form onSubmit={formik.handleSubmit}>
+        <Card className="mt-4">
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Transaction Code"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                // value={formik.values.TransactionCode}
+                // onChange={formik.handleChange("TransactionCode")}
+                // error={
+                //   formik.touched.TransactionCode &&
+                //   formik.errors.TransactionCode
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Transaction Name"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                // value={formik.values.TransactionName}
+                // onChange={formik.handleChange("TransactionName")}
+                // error={
+                //   formik.touched.TransactionName &&
+                //   formik.errors.TransactionName
+                // }
+              />
+            </div>
+          </div>
+          <div className="grid mt-1">
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Description"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                // value={formik.values.TransactionName}
+                // onChange={formik.handleChange("TransactionName")}
+                // error={
+                //   formik.touched.TransactionName &&
+                //   formik.errors.TransactionName
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Transaction Basis"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formik.values.Description}
+                // options={BankAccountCode}
+                // onChange={(e) => {
+                //   console.log(e.value);
+                //   formik.setFieldValue("Description", e.value);
+                //   handleAccountcode(e.value.);
+                // }}
+                // optionLabel="Description"
+                // error={
+                //   formik.touched.BankAccountNumber &&
+                //   formik.errors.BankAccountNumber
+                // }
+              />
+            </div>
+          </div>
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Main Account Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formik.values.Description}
+                // options={BankAccountCode}
+                // onChange={(e) => {
+                //   console.log(e.value);
+                //   formik.setFieldValue("Description", e.value);
+                //   handleAccountcode(e.value.);
+                // }}
+                // optionLabel="Description"
+                // error={
+                //   formik.touched.BankAccountNumber &&
+                //   formik.errors.BankAccountNumber
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Main Account Description"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                // value={formik.values.TransactionName}
+                // onChange={formik.handleChange("TransactionName")}
+                // error={
+                //   formik.touched.TransactionName &&
+                //   formik.errors.TransactionName
+                // }
+              />
+            </div>
+          </div>
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Sub Account Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formik.values.Description}
+                // options={BankAccountCode}
+                // onChange={(e) => {
+                //   console.log(e.value);
+                //   formik.setFieldValue("Description", e.value);
+                //   handleAccountcode(e.value.);
+                // }}
+                // optionLabel="Description"
+                // error={
+                //   formik.touched.BankAccountNumber &&
+                //   formik.errors.BankAccountNumber
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Description"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                // value={formik.values.TransactionName}
+                // onChange={formik.handleChange("TransactionName")}
+                // error={
+                //   formik.touched.TransactionName &&
+                //   formik.errors.TransactionName
+                // }
+              />
+            </div>
+          </div>
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Branch Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formik.values.Description}
+                // options={BankAccountCode}
+                // onChange={(e) => {
+                //   console.log(e.value);
+                //   formik.setFieldValue("Description", e.value);
+                //   handleAccountcode(e.value.);
+                // }}
+                // optionLabel="Description"
+                // error={
+                //   formik.touched.BankAccountNumber &&
+                //   formik.errors.BankAccountNumber
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Branch Description"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                // value={formik.values.TransactionName}
+                // onChange={formik.handleChange("TransactionName")}
+                // error={
+                //   formik.touched.TransactionName &&
+                //   formik.errors.TransactionName
+                // }
+              />
+            </div>
+          </div>
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Department"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formik.values.Description}
+                // options={BankAccountCode}
+                // onChange={(e) => {
+                //   console.log(e.value);
+                //   formik.setFieldValue("Description", e.value);
+                //   handleAccountcode(e.value.);
+                // }}
+                // optionLabel="Description"
+                // error={
+                //   formik.touched.BankAccountNumber &&
+                //   formik.errors.BankAccountNumber
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Department Description"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                // value={formik.values.TransactionName}
+                // onChange={formik.handleChange("TransactionName")}
+                // error={
+                //   formik.touched.TransactionName &&
+                //   formik.errors.TransactionName
+                // }
+              />
+            </div>
+          </div>
+        </Card>
+      </form>
+      <TransactionCodeMasterDetailViewTable/>
+
+    </div>
+  );
+};
+
+export default TransactionCodeDetails;

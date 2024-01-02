@@ -5,16 +5,17 @@ import "../TaxationMaster/index.scss"
 import { BreadCrumb } from 'primereact/breadcrumb'
 import SvgDot from '../../../assets/icons/SvgDot'
 import NavBar from "../../../components/NavBar"
-import SvgFilters from '../../../assets/icons/SvgFilters'
-import InputField from "../../../components/InputField"
 import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon'
 import { Paginator } from 'primereact/paginator'
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
-import SvgArrow from '../../../assets/icons/SvgArrow'
 import { Dropdown } from 'primereact/dropdown'
 import { useNavigate } from 'react-router-dom'
 import { InputText } from 'primereact/inputtext'
+import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
+import SvgEditIcon from "../../../assets/icons/SvgEditicons";
+import ToggleButton from "../../../components/ToggleButton";
+import Productdata from './mock'
 
 const TaxationMaster = () => {
   const navigate = useNavigate();
@@ -22,21 +23,42 @@ const TaxationMaster = () => {
     navigate('/master/finance/taxation/addtaxation')
   };
   const handleNavigateedit = () => {
-    navigate('/master/finance/taxation/saveandedittaxation')
+    navigate('/master/finance/taxation/taxationdetails')
   }
 
   const items = [
-    { label: 'Taxation', url: '/taxation' },
+    { label: 'Taxation', url: '/master/finance/taxation' },
   ];
   const home = { label: "Master" };
+  const headerStyle = {
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border: "none",
+  };
+  const ViewheaderStyle = {
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border: "none",
+    display: "flex",
+    justifyContent: "center",
+  };
 
   const columns = [
     { field: 'tax', headerName: 'Tax Code', flex: 1 },
-    { field: 'shorDesc', headerName: 'Short Description', flex: 1 },
+    { field: 'taxName', headerName: ' Tax Name', flex: 1 },
+   
+ 
     { field: 'desc', headerName: 'Tax Rate', flex: 1 },
     { field: 'effective', headerName: 'Effective From', flex: 1 },
+    { field: 'effectiveTo', headerName: 'Effective To', flex: 1 },
     { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'view', headerName: 'View', flex: 1 },
+    { field: 'action', headerName: 'Action', flex: 1 },
   ];
 
   const [first, setFirst] = useState(0);
@@ -50,7 +72,38 @@ const TaxationMaster = () => {
   const rows = [
     { id: 1, tax: '', shorDesc: '', desc: '', effective: '', status: '', view: '' },
   ];
+  const renderViewButton = (rowData) => {
+    return (
+      <div className="center-content">
+        <Button
+          icon={<SvgEyeIcon />}
+          className="eye__btn"
+          onClick={() => handleView(rowData)}
+        />
+        <Button
+          icon={<SvgEditIcon />}
+          className="eye__btn"
+          onClick={() => handlEdit(rowData)}
+        />
+      </div>
+    );
+  };
 
+  const renderToggleButton = () => {
+    return (
+      <div>
+   <ToggleButton/>
+      </div>
+    );
+  };
+
+  const handleView = (rowData) => {
+    console.log("View clicked:", rowData);
+    navigate("/master/finance/taxation/taxationdetails")
+  };
+  const handlEdit =()=>{
+    navigate("/master/finance/taxation/taxationedit")
+  }
   const template2 = {
     layout: "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
@@ -117,39 +170,76 @@ const TaxationMaster = () => {
                 />
               </div>
             </div>
-            <div className='col-12 md:col-2 lg:col-2'>
-              <div className='sort__filter__view__taxation'>
-                <div className='sort__by__text__taxation'>Sort By</div>
-                <div>
-                  <SvgFilters />
-                </div>
-              </div>
-            </div>
+       
           </div>
           <div className='col-12 '>
             <div className='main__tabel__title__taxation p-2'>Taxation List</div>
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
-              <DataTable
-              value={rows}
-                style={{ overflowY: 'auto', maxWidth: '100%' }}
-                responsive={true}
-                className='table__view__taxation'
-                paginator
-                paginatorLeft
-                rows={5}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
-              >
-                {columns.map((column) => (
+            <DataTable
+      value={Productdata}
+      style={{ overflowY: 'auto', maxWidth: '100%' }}
+      responsive={true}
+      className='table__view__taxation'
+      paginator
+      paginatorLeft
+      rows={5}
+      rowsPerPageOptions={[5, 10, 25, 50]}
+      currentPageReportTemplate="{first} - {last} of {totalRecords}"
+      paginatorTemplate={template2}
+      onPage={onPageChange}
+      onPageChange={onPageChange}
+    >
+
+<Column
+              field="TaxCode"
+              header="Tax Code"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="TaxName"
+              header="Tax Name"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            //   sortable
+            ></Column>
+            <Column
+              field="TaxRate"
+              header="Tax Rate"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            //   sortable
+            ></Column>
+            <Column
+              field="EffectiveFrom"
+              header="Effective From"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="EffectiveTo"
+              header="Effective To"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              body={renderToggleButton}
+              header="Status"
+              headerStyle={{ textAlign: 'center', ...headerStyle }}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              body={renderViewButton}
+              header="Action"
+              headerStyle={{ ...ViewheaderStyle }}
+              className="fieldvalue_container centered"
+            ></Column>
+                {/* {columns.map((column) => (
                   <Column
                     style={{
-                      width: column.field === 'rowcount' ? '10%' : `${90 / (columns.length - 1)}%`, // Set width for the dropdown column
+                      width: column.field === 'rowcount' ? '10%' : `${90 / (columns.length - 1)}%`, 
                       boxSizing: 'border-box',
                       fontSize: 14,
                       fontWeight: 500,
@@ -170,7 +260,7 @@ const TaxationMaster = () => {
                     }}
                     body={column.field === 'view' ? <div onClick={() => handleNavigateedit()}><SvgArrow /></div> : column.field == 'status' ? 'Active' : column.field && 'A012'}
                   />
-                ))}
+                ))} */}
               </DataTable>
 
               

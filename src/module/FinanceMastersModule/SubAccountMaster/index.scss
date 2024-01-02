@@ -1,44 +1,78 @@
-.container__sub__account__master {
+.container__taxation {
 
     // justify-content: center;
-    .add__icon__title {
+    .add__icon__title__taxation {
         color: #111927;
-        font-size: 23px;
+        font-size: 30px;
         font-weight: 600;
         font-family: Inter var;
 
     }
+   
 
-    .breadCrums__view__reversal {
+    .breadCrums__view__reversal__taxation {
         border: none;
         padding: 0;
         font-family: Inter var;
         color: #111927;
         font-size: 14px;
         font-weight: 600;
-       
+
 
     }
+    .dropdown__add__sub {
+        width: 100%;
+        margin: 6px 0;
+        border-radius: 10px;
+    }
+
+    .label__sub__add {
+        font-family: Inter var;
+        font-size: 16px !important;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+   
+    .dropdown__container{
+        width:100%;
+        height:44px;
+        border-radius: 12px;
+        overflow: hidden;
+        text-wrap: nowrap;
+        margin: 10px 0px;
+    }
+  
+      .dialog_fields{
+        background-color: red;
+        width: 100%;
+      }
+    
+    .eye__btn {
+        color: #ffffff;
+        background: #ffff !important;
+        border: 1px solid #fff !important;
+        padding: 0.25rem 0.75rem !important;
+        font-size: 1rem !important;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+          box-shadow 0.2s;
+        border-radius: 10px !important;
+      }
+      .p-button:focus {
+        box-shadow: none !important;
+      }
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
         color: #B1B1B1;
     }
 
-    .item__color {
-        border: none;
-        padding: 0;
-        font-family: Inter var;
-        color: red !important;
-        font-size: 14px;
-        font-weight: 600;
-    }
-
-
-    .add__icon__alighn {
+    .add__icon__alighn__taxation {
         display: flex;
         justify-content: flex-end;
         align-items: end;
 
-        .add__icon__view {
+        .add__icon__view__taxation {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -49,7 +83,7 @@
             color: #fff;
             font-family: Inter var;
 
-            .add__icon {
+            .add__icon__taxation {
                 display: flex;
                 justify-content: flex-end;
                 align-items: flex-end;
@@ -57,7 +91,7 @@
                 font-family: Inter var;
             }
 
-            .add__text {
+            .add__text__taxation {
                 color: #FFF !important;
                 font-size: 16px;
                 font-weight: 500;
@@ -69,17 +103,13 @@
         }
     }
 
-    .sub__account__sub__container {
-        // border: 1px solid #B1B1B1;
-        // box-shadow: #FFF;
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    .sub__account__sub__container__taxation {
+        box-shadow: 0px 0px 20px 0px #00000014;
         border-radius: 10px;
-        // display: flex;
-        // justify-content:space-between;
-        // align-items: center;
 
 
-        .sort__filter__view {
+
+        .sort__filter__view__taxation {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -88,29 +118,23 @@
             border-radius: 5px !important;
 
         }
-
-        .sort__by__text {
+        .sort__by__text__taxation {
             font-family: Inter var;
             font-size: 14px;
             font-weight: 500;
             text-align: left;
-            color: #6366F1;
-
+            color: #6366F1 !important;
+    
         }
 
-        .input__sub__account {
+        .input__sub__account__taxation {
             width: 100% !important;
             position: relative;
-        }
-        .table__view{
-            color: #000;
-            font-size: 14px;
-            font-weight: 600;
         }
 
     }
 
-    .main__tabel__title {
+    .main__tabel__title__taxation {
         font-family: Inter var;
         font-size: 20px;
         font-weight: 600;
@@ -119,8 +143,7 @@
         text-align: left;
 
     }
-
-    .addbutton_container {
+    .addbutton_container__taxation{
         background-color: #6366f1;
         border-radius: 60px;
         width: 100px !important;
@@ -130,38 +153,36 @@
         align-items: center;
         cursor: pointer;
         color: #fff;
-    }
+      }
 
-    .filterbutton_container {
+      .filterbutton_container__taxation{
         display: flex;
         // justify-content:center;
         align-items: center;
         margin: 16px 0px;
-        gap: 20px
+        gap:20px
     }
-
-    .overallfilter_container {
+      .overallfilter_container__taxation{
         display: flex;
         align-items: self-start;
         justify-content: space-between;
     }
-
-    .overallcard_container {
-        width: 1236px;
-        height: 700px;
+    .overallcard_container__taxation{
+       width:1236px;
+       height:700px;
     }
-
-    .searchinput_left {
+    .searchinput_left__taxation {
         width: 100%;
         border-radius: 8px;
     }
 
-    .searchiput_container {
+    .searchiput_container__taxation {
         // background-color: red;
         width: 100%;
         margin-bottom: 20px;
     }
-    .searchIcon__view__input{
+    
+    .searchIcon__view__input__taxation{
         display: flex;
         // justify-content: center;
         align-items: center;
@@ -198,72 +219,106 @@
         margin-left: 10px;
         
     }
-    .sorbyfilter_container {
+    .sorbyfilter_container__taxation{
         flex-direction: row-reverse;
         // gap:10px;
         height: 46px;
         border-color: #d1d5db;
         width: 85%;
         margin-left: 8px;
+        
+    }
+    .sort__by__text__taxation {
+        font-family: Inter var;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+        color: #6366F1;
 
     }
-    .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
-        background: 
-        #E2F6EF;
-        border: 1px solid #48c99e;
-    }
-    .p-inputswitch:not(.p-disabled):hover .p-inputswitch-slider {
-        background: #E2F6EF;
-    }
-    .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
-        background: #48c99e;
-    }
-    .p-inputswitch .p-inputswitch-slider:before {
-        background:  #F36156;
-        width: 1.25rem;
-        height: 1.25rem;
-        left: 0.25rem;
-        margin-top: -0.625rem;
-        border-radius: 50%;
-        transition-duration: 0.2s;
-    }
-    .p-inputswitch:not(.p-disabled):hover .p-inputswitch-slider {
-        /* background: #b7bcc5; */
-    }
-    // .container__sub__account__master .p-inputswitch:not(.p-disabled):hover .p-inputswitch-slider {
-    //     background: #F2DEDC;
-    //     border: 1px solid #F36156 !important;
-    // }
-    .container__sub__account__master .p-inputswitch:not(.p-disabled):hover .p-inputswitch-slider {
-        background: #E2F6EF;
-        border: 1px solid #F36156 !important;
-    }
-    .pagedropdown_container {
+    .pagedropdown_container__taxation{
         margin-right: 20%;
         border-style: hidden;
         background-color: #FAFAFA;
     }
-
-    .header_search_container {
+    .header_search_container__taxation{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 16px;
-
+       margin-bottom: 16px;
+    
     }
-
-    .fieldvalue_container {
+    .fieldvalue_container__taxation{
         font-size: 14px;
         font-family: Inter var;
         font-weight: 400;
-
+       
     }
+    .fieldvalue_container.centered {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
 
 }
+.p-multiselect {
+    display: inline-flex;
+    user-select: none;
+    cursor: pointer;
+    width: 100% !important;
+}
+.add__btn {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500 !important;
+    background-color: #6366f1;
+    border-radius: 60px !important;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 10px;
+    font-family: "Inter var";
+    column-gap: 0.4rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+  .main_acc_text{
+    color: #111927 !important;
+
+    font-family: Inter var !important;
+    font-size: 16px !important;
+   
+    font-weight: 500 !important;
+    
+  }
+
+  .upload__btn{
+    color:  #6366f1;
+    font-size: 18px;
+    font-weight: 500 !important;
+    background-color: #fff;
+    border-radius: 60px !important;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 10px;
+    font-family: "Inter var";
+    column-gap: 0.4rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    border-color: #6366f1;
+  }
+  .btn__container{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
 
 @media screen and (min-width: 768px) {
 
-    .searchIcon__view {
+    .searchIcon__view__taxation {
         position: absolute;
         top: 50%;
         left: 28%;
@@ -271,18 +326,18 @@
 }
 
 @media screen and (min-width: 767px) {
-    .search__filter__view {
+    .search__filter__view__taxation{
         display: flex;
         justify-content: space-between;
     }
+    
 
-
-    .sort__filter__view {
+    .sort__filter__view__taxation {
         height: 45px;
         width: 100px;
     }
 
-    .searchIcon__view {
+    .searchIcon__view__taxation {
         position: absolute;
         top: 34%;
         left: 28%;
@@ -290,18 +345,18 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .sort__filter__view {
+    .sort__filter__view__taxation {
         height: 45px;
         width: 150px;
     }
 
-    .searchIcon__view {
+    .searchIcon__view__taxation {
         position: absolute;
         top: 37%;
         left: 22%;
     }
 
-    .searchIcon__view {
+    .searchIcon__view__taxation {
         position: absolute;
         top: 37%;
         left: 22%;
@@ -309,12 +364,12 @@
 }
 
 @media screen and (min-width: 1400px) {
-    .sort__filter__view {
+    .sort__filter__view__taxation {
         height: 45px;
         width: 170px;
     }
 
-    .searchIcon__view {
+    .searchIcon__view__ {
         position: absolute;
         top: 29%;
         left: 21%;

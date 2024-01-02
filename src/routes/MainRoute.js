@@ -44,15 +44,18 @@ import TransactionCodeMaster from "../module/FinanceMastersModule/TransactionCod
 import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
 import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
 import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView";
+import AccountCategoryMaster from "../module/FinanceMastersModule/AccountCategoryMaster";
+// import SubAdd from "../module/FinanceMastersModule/SubAccountMaster/SubAdd";
 import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
 import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding";
 import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
-import SubAdd from "../module/FinanceMastersModule/SubAccountMaster/SubAdd";
-import SaveAndEdit from "../module/FinanceMastersModule/SubAccountMaster/SaveAndEdit";
+import SubAccountDetails from "../module/FinanceMastersModule/SubAccountMaster/SubAccountDetails";
+import SaveAndEdit from "../module/FinanceMastersModule/SubAccountMaster/SubAccountEdit";
 import AddCurrency from "../module/FinanceMastersModule/CurrencyMaster/AddCurrency";
-import SaveAndEditCurrency from "../module/FinanceMastersModule/CurrencyMaster/SaveAndEditCurrency";
+import SaveAndEditCurrency from "../module/FinanceMastersModule/CurrencyMaster/ViewCurrency";
 import AddTaxation from "../module/FinanceMastersModule/TaxationMaster/AddTaxation";
-import SaveAndEditTaxation from "../module/FinanceMastersModule/TaxationMaster/SaveAndEditTaxation";
+import TaxationDetails from "../module/FinanceMastersModule/TaxationMaster/TaxationDetails";
+import TaxationEdit from "../module/FinanceMastersModule/TaxationMaster/TaxationEdit"
 import AddExchange from "../module/FinanceMastersModule/ExchangeRateMaster/AddExchange";
 import SaveAndEditExchange from "../module/FinanceMastersModule/ExchangeRateMaster/SaveAndEditExchange";
 
@@ -78,6 +81,7 @@ import Bankdetailselection from "../module/PaymentVoucher/Bankdetailselection";
 // import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
 import Initiate from "../module/PettyCashManagement/Initiate";
 import Disbursement from "../module/PettyCashManagement/Disbursement";
+import SubAccountEdit from "../module/FinanceMastersModule/SubAccountMaster/SubAccountEdit"
 import Request from "../module/PettyCashManagement/Request";
 import PettyCashReceipts from "../module/PettyCashManagement/Receipts";
 import PettyCashReplenish from "../module/PettyCashManagement/Replenish";
@@ -96,6 +100,17 @@ import AddReplenish from "../module/PettyCashManagement/Replenish/AddReplenish";
 import AddReplenishTable from "../module/PettyCashManagement/Replenish/AddReplenishTable";
 import ReplenishtDetailView from "../module/PettyCashManagement/Replenish/ReplenishDetailview";
 import TransactionCodeMasterView from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeMasterView";
+import TransactionCodeDetails from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeDetails";
+import ViewCurrency from "../module/FinanceMastersModule/CurrencyMaster/ViewCurrency";
+import EditCurrency from "../module/FinanceMastersModule/CurrencyMaster/EditCurrency";
+import AddMainAccount from "../module/FinanceMastersModule/MainAccountMaster/AddMainAccount";
+import EditMainAccount from "../module/FinanceMastersModule/MainAccountMaster/EditMainAccount";
+import ViewMainAccount from "../module/FinanceMastersModule/MainAccountMaster/ViewMainAccount";
+import Commission from "../module/GeneralMasters/Commission";
+import AddCommission from "../module/GeneralMasters/Commission/AddCommission";
+import EditCommission from "../module/GeneralMasters/Commission/EditCommission";
+import ViewCommission from "../module/GeneralMasters/Commission/ViewCommission";
+import EditPettyCash from "../module/FinanceMastersModule/PettyCashMaster/EditPettyCash";
 
 const Maincomponent = () => {
   return (
@@ -144,8 +159,14 @@ const Maincomponent = () => {
 
             {/* Payment Vouchers */}
 
-            <Route path="accounts/paymentvoucher" element={<Paymentvoucher />} />
-            <Route path="accounts/paymentvoucher/createvoucher" element={<CreateVoucher />} />
+            <Route
+              path="accounts/paymentvoucher"
+              element={<Paymentvoucher />}
+            />
+            <Route
+              path="accounts/paymentvoucher/createvoucher"
+              element={<CreateVoucher />}
+            />
             <Route
               path="accounts/paymentvoucher/detailview/:id"
               element={<Detailview />}
@@ -156,13 +177,25 @@ const Maincomponent = () => {
             />
 
             {/* <Route path="/payallvoucher" element={<Payallvoucher />} /> */}
-            <Route path="accounts/paymentvoucher/SpecificVoucher" element={<SpecificVoucher />} />
+            <Route
+              path="accounts/paymentvoucher/SpecificVoucher"
+              element={<SpecificVoucher />}
+            />
 
             {/* Journal voucher */}
 
-            <Route path="/accounts/journalvoucher" element={<Journalvoucher />} />
-            <Route path="/accounts/journalvoucher/addjournalvoucture" element={<AddJournalVoucture/>}/>
-            <Route path="/accounts/journalvoucher/detailsjournalvocture" element={<DetailsJournalVocture/>}/>
+            <Route
+              path="/accounts/journalvoucher"
+              element={<Journalvoucher />}
+            />
+            <Route
+              path="/accounts/journalvoucher/addjournalvoucture"
+              element={<AddJournalVoucture />}
+            />
+            <Route
+              path="/accounts/journalvoucher/detailsjournalvocture"
+              element={<DetailsJournalVocture />}
+            />
 
             {/* Corrections JV */}
 
@@ -243,7 +276,7 @@ const Maincomponent = () => {
               path="accounts/pettycash/addreplenishtable"
               element={<AddReplenishTable />}
             />
-               <Route
+            <Route
               path="accounts/pettycash/replenishtdetailview"
               element={<ReplenishtDetailView />}
             />
@@ -290,16 +323,8 @@ const Maincomponent = () => {
             {/* Account Category Master */}
 
             <Route
-              path="master/finance/category/categoryadding"
-              element={<CategoryAdding />}
-            />
-            <Route
-              path="master/finance/category/categorydetailsview"
-              element={<CategoryDetailsView />}
-            />
-            <Route
-              path="master/finance/category"
-              element={<CategoryMasterInitial />}
+              path="master/finance/accountcategory"
+              element={<AccountCategoryMaster />}
             />
 
             <Route
@@ -353,7 +378,8 @@ const Maincomponent = () => {
               element={<PettyCashdetails />}
             />
 
-            {/* <Route path="master/finance/bank" element={<BankMaster />} /> */}
+
+            <Route path="master/finance/pettycash/editpettycash" element={<EditPettyCash />} />
 
             <Route />
             <Route path="master/finance/company" element={<CompanyMaster />} />
@@ -378,6 +404,18 @@ const Maincomponent = () => {
               path="master/finance/mainaccount"
               element={<MainAccountMaster />}
             />
+            <Route
+              path="master/finance/mainaccount/addmainaccount"
+              element={<AddMainAccount />}
+            />
+            <Route
+              path="master/finance/mainaccount/editmainaccount"
+              element={<EditMainAccount />}
+            />
+            <Route
+              path="master/finance/mainaccount/viewmainaccount"
+              element={<ViewMainAccount />}
+            />
 
             <Route
               path="master/finance/subaccount"
@@ -392,8 +430,12 @@ const Maincomponent = () => {
               element={<AddTaxation />}
             />
             <Route
-              path="master/finance/taxation/saveandedittaxation"
-              element={<SaveAndEditTaxation />}
+              path="master/finance/taxation/taxationedit"
+              element={<TaxationEdit />}
+            />
+             <Route
+              path="master/finance/taxation/taxationdetails"
+              element={<TaxationDetails />}
             />
 
             {/* Transactioncode */}
@@ -402,27 +444,39 @@ const Maincomponent = () => {
               path="master/finance/transactioncode"
               element={<TransactionCodeMaster />}
             />
-                        <Route
+            <Route
               path="master/finance/transactioncode/addtransactioncode"
               element={<TransactionCodeMasterView />}
             />
+                                    <Route
+              path="master/finance/transactioncode/transactioncodedetails"
+              element={<TransactionCodeDetails />}
+            />
+            
             <Route
-              path="master/finance/subaccount/subadd"
-              element={<SubAdd />}
+              path="master/finance/subaccount/subaccountdetails"
+              element={<SubAccountDetails />}
             />
             <Route
-              path="master/finance/subaccount/saveandedit"
-              element={<SaveAndEdit />}
+              path="master/finance/subaccount/subaccountedit"
+              element={<SubAccountEdit />}
             />
             <Route
-              path="master/finance/company/addcurrency"
+              path="master/finance/currency/addcurrency"
               element={<AddCurrency />}
             />
             <Route
-              path="master/finance/company/saveandeditcurrency"
-              element={<SaveAndEditCurrency />}
+              path="master/finance/currency/editcurrency"
+              element={<EditCurrency />}
             />
-            {/* <Route path="master/finance/company/addcompany" element={<AddCompany />} /> */}
+                        <Route
+              path="master/finance/currency/viewcurrency"
+              element={<ViewCurrency />}
+            />
+            <Route path="master/generals/commission" element={<Commission/>} />
+            <Route path="master/generals/commission/addcommission" element={<AddCommission/>} />
+            <Route path="master/generals/commission/editcommission" element={<EditCommission />} />
+            <Route path="master/generals/commission/viewcommission" element={<ViewCommission />} />
           </Route>
         </Routes>
       </div>

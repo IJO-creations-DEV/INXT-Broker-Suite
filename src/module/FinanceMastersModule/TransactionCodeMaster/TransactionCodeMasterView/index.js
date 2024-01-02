@@ -39,7 +39,9 @@ const TransactionCodeMasterView = () => {
 
   const validate = () => {};
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    navigate("/master/finance/transactioncode");
+  };
 
   const formik = useFormik({
     initialValues: initialValue,
@@ -317,6 +319,15 @@ const TransactionCodeMasterView = () => {
         </Card>
       </form>
       <TransactionCodeMasterViewTable/>
+      <div className="btn__container">
+          <Button
+            label="Save"
+            className="add__btn"
+            onClick={() => {
+                handleSubmit();
+            }}
+          />
+        </div>
     </div>
   );
 };

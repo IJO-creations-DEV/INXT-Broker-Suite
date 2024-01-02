@@ -1,9 +1,9 @@
 .container__taxation {
 
-    // justify-content: center;
+  
     .add__icon__title__taxation {
         color: #111927;
-        font-size: 23px;
+        font-size: 30px;
         font-weight: 600;
         font-family: Inter var;
 
@@ -19,6 +19,19 @@
 
 
     }
+    .eye__btn {
+        color: #ffffff;
+        background: #ffff !important;
+        border: 1px solid #fff !important;
+        padding: 0.25rem 0.75rem !important;
+        font-size: 1rem !important;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+          box-shadow 0.2s;
+        border-radius: 10px !important;
+      }
+      .p-button:focus {
+        box-shadow: none !important;
+      }
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
         color: #B1B1B1;
     }
@@ -43,7 +56,7 @@
                 display: flex;
                 justify-content: flex-end;
                 align-items: flex-end;
-                // padding-left: 10px;
+               
                 font-family: Inter var;
             }
 
@@ -70,7 +83,7 @@
             justify-content: center;
             align-items: center;
             border: 0.5px solid #d1d5db  !important;
-            // border-color: #6366F1 !important;
+           
             border-radius: 5px !important;
 
         }
@@ -113,7 +126,7 @@
 
       .filterbutton_container__taxation{
         display: flex;
-        // justify-content:center;
+       
         align-items: center;
         margin: 16px 0px;
         gap:20px
@@ -133,14 +146,14 @@
     }
 
     .searchiput_container__taxation {
-        // background-color: red;
+       
         width: 100%;
         margin-bottom: 20px;
     }
     
     .searchIcon__view__input__taxation{
         display: flex;
-        // justify-content: center;
+      
         align-items: center;
         border: 1px solid #d1d5db;
         border-radius: 5px;
@@ -177,7 +190,7 @@
     }
     .sorbyfilter_container__taxation{
         flex-direction: row-reverse;
-        // gap:10px;
+       
         height: 46px;
         border-color: #d1d5db;
         width: 85%;
@@ -210,6 +223,11 @@
         font-weight: 400;
        
     }
+    .fieldvalue_container.centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-// import "./index.scss";
+import "./index.scss";
 import { useFormik } from "formik";
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../../../assets/icons/SvgDot";

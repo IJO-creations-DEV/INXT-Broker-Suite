@@ -27,7 +27,7 @@ export const getpaymentVocherByIdMiddleware = createAsyncThunk(
 
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return filteredData;
+            return filteredData[0];
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

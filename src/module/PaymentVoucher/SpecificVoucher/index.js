@@ -17,6 +17,7 @@ import SvgBackicon from '../../../assets/icons/SvgBackicon';
 import { Dropdown } from 'primereact/dropdown';
 import SvgEditicon from '../../../assets/icons/SvgEdit';
 import SvgEditIcon from '../../../assets/icons/SvgEditicons';
+import { useSelector } from 'react-redux';
 
 function SpecificVoucher() {
     const Navigate = useNavigate()
@@ -38,12 +39,19 @@ const renderViewButton = (e) => {
     );
   };
 
-  const handleView = (rowData) => {
-    console.log("View clicked:", rowData);
-    setSelectedRowData(rowData)
-    // Navigate("/accounts/pettycash/PettyCashCodeDetails")
-    setVisible(true)
-  };
+
+    const { invoiceListData, loading } = useSelector(({ paymentVoucherReducers }) => {
+        return {
+            loading: paymentVoucherReducers?.loading,
+            invoiceListData: paymentVoucherReducers?.invoiceList,
+
+        };
+    }); const handleView = (rowData) => {
+        console.log("View clicked:", rowData);
+        setSelectedRowData(rowData)
+        // Navigate("/accounts/pettycash/PettyCashCodeDetails")
+        setVisible(true)
+    };
 
     const items = [
         { label: 'Payment Voucher' ,url:'/accounts/paymentvoucher'},
@@ -106,11 +114,11 @@ const renderViewButton = (e) => {
 
 
             <div className='tablegap_container' >
-                <DataTable value={productdata} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
+                <DataTable value={invoiceListData} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
                     paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
                     // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                    paginatorTemplate={template2} scrollable={true} 
+                    paginatorTemplate={template2} scrollable={true}
                     scrollHeight="40vh"
 
                     selection={selectedProducts}
@@ -155,9 +163,9 @@ const renderViewButton = (e) => {
 
 
                 <Button label="Next"
-                className='submitbutton_container'
-                onClick={()=>handlebankdetail()}
-                disabled={!selectedProducts.length}
+                    className='submitbutton_container'
+                    onClick={() => handlebankdetail()}
+                    disabled={!selectedProducts.length}
                 />
             </div>
 

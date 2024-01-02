@@ -35,13 +35,14 @@ function Detailview() {
     dispatch(getpaymentVocherByIdMiddleware(id))
   }, [id])
 
-  const { paymentVocherList, loading } = useSelector(({ paymentVoucherReducers }) => {
+  const { individualVoucherData, loading } = useSelector(({ paymentVoucherReducers }) => {
     return {
       loading: paymentVoucherReducers?.loading,
-      paymentVocherList: paymentVoucherReducers?.paymentVocherList,
+      individualVoucherData: paymentVoucherReducers?.individualVoucher,
 
     };
   });
+  console.log(individualVoucherData,"assd")
   const Navigate = useNavigate()
   const [selectedItem, setSelectedItem] = useState(null);
   const items = [

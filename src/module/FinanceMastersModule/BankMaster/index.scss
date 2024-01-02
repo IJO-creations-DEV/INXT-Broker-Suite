@@ -20,8 +20,9 @@ font-weight: 600;
         color: #FFF;
 
 font-family: Inter var;
-font-size: 16px;
+font-size: 18px;
 font-weight: 500;
+margin: 8px;
 
     }
     .dropdown__container{
@@ -43,16 +44,35 @@ font-weight: 500;
     border-radius: 6px !important;
     padding: 2rem 0rem !important;
 }
-.addbutton_container{
-    background-color: #6366f1;
+.uploadbutton_container{
     border-radius: 60px;
-    width: 200px !important;
-    height: 38px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background-color: #fff;
+    color: #6366f1;
+    padding: 8px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    gap:8px
+}
+.uploadtext{
+    color: red;
+}
+.addbutton_container{
+    background-color: #6366f1;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+   
     color: #fff;
+    padding: 8px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    gap:8px
   }
   .filterbutton_container{
     display: flex;
@@ -72,7 +92,7 @@ font-weight: 500;
 }
 .searchinput_left{
      width:100%;
-     border-radius: 8px;
+     border-radius: 10px;
    }
 .searchiput_container{
     // background-color: red;
@@ -106,4 +126,27 @@ font-weight: 500;
     font-weight: 400;
    
 }
+.menubutton_popup{
+    background-color: #fff;
+    border-style: hidden
+}
+.p-button:not(:disabled):hover {
+     background: #fff; 
+    color: #ffffff;
+     border-color: #fff; 
+     border-style:#ffF
+}
+}
+.dialog_updatebutton_view{
+    background-color: #6366f1;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    padding: 8px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    gap: 8px;
 }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
-import NavBar from "../../../components/NavBar";
+import NavBar from "../../../../components/NavBar";
 import { useNavigate } from "react-router-dom";
-import SvgDot from "../../../assets/icons/SvgDot"
-import SvgFilters from "../../../assets/icons/SvgFilters";
-import SvgAdd from "../../../assets/icons/SvgAdd";
+import SvgDot from "../../../../assets/icons/SvgDot"
+import SvgFilters from "../../../../assets/icons/SvgFilters";
+import SvgAdd from "../../../../assets/icons/SvgAdd";
 import { Card } from 'primereact/card';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -14,14 +14,13 @@ import Productdata from './mock';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { TieredMenu } from 'primereact/tieredmenu';
-import SvgIconeye from "../../../assets/icons/SvgIconeye";
-import SvgDropdown from "../../../assets/icons/SvgDropdown";
-import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
+import SvgIconeye from "../../../../assets/icons/SvgIconeye";
+import SvgDropdown from "../../../../assets/icons/SvgDropdown";
+import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useSelector } from "react-redux";
-import SvgEditicon from "../../../assets/icons/SvgEdit";
-import SvgEdit from "../../../assets/icons/SvgEdits";
-import ToggleButton from "../../../components/ToggleButton";
-import SvgEditicons from "../../../assets/icons/SvgEditicons";
+import SvgEditicon from "../../../../assets/icons/SvgEdit";
+import SvgEdit from "../../../../assets/icons/SvgEdits";
+import ToggleButton from "../../../../components/ToggleButton";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
@@ -38,10 +37,10 @@ const Index = () => {
     };
   });
   const handleView = (columnData) => {
-    navigate("/master/finance/exchangerate/viewexchange")
+    navigate("/master/finance/bank/accountdataview/viewaccountdetail")
   }
   const handleEdit = (columnData) => {
-    navigate("/master/finance/exchangerate/saveandeditexchange")
+    navigate("/master/finance/bank/accountdataview/editaccountdetail")
   }
 
 
@@ -81,13 +80,6 @@ const Index = () => {
     },
   ];
 
-  const renderToggleButton = () => {
-    return (
-      <div>
-   <ToggleButton/>
-      </div>
-    );
-  };
 
   const headerStyle = {
     // width: '19%',
@@ -102,12 +94,24 @@ const Index = () => {
 
   const items = [
     {
-      id: 1,
-      label: "Exchange Rate",
-      // url: '/accounts/paymentvoucher'
+     
+      label: "Bank",
+       url: '/master/finance/bank'
      },
+     {
+        
+        label: "Account Details",
+        //  url: '/accounts/paymentvoucher'
+       },
     
   ];
+  const renderToggleButton = () => {
+    return (
+      <div>
+   <ToggleButton/>
+      </div>
+    );
+  };
   const home = { label: "Master" };
 
   const navigate = useNavigate();
@@ -125,15 +129,15 @@ const Index = () => {
   };
  
   const handlePolicy =()=>{
-    navigate('/master/finance/exchangerate/addexchange')
+    navigate('/master/finance/bank/accountdataview/addaccountdetail')
   }
 
   return (
-    <div className='overall__exchangerate__container'>
+    <div className='overall__accountdataview__container'>
       <NavBar />
       <div className="overallfilter_container">
         <div >
-          <label className='label_header'>Exchange Rate Master</label>
+          <label className='label_header'>Account Details</label>
           <BreadCrumb
             model={items}
             home={home}
@@ -146,7 +150,7 @@ const Index = () => {
 
           <div className="addbutton_container" onClick={handlePolicy} >
             <SvgAdd />
-            <p className="addtext">Add</p>
+            <p className="addtext">Add Account</p>
           </div>
         </div>
       </div>
@@ -164,19 +168,14 @@ const Index = () => {
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
-              <InputText placeholder="Search By Currency code " className="searchinput_left" />
+              <InputText placeholder="Search By Account Number" className="searchinput_left" />
             </span>
           </div>
           {/* </div> */}
-          <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button label="Search by" outlined icon={<SvgDropdownicon />}
-              className="sorbyfilter_container"
-              onClick={(e) => menu.current.toggle(e)}
-            /></div>
+         
 
         </div>
-        <div className="headlist_lable">Exchange Rate List</div>
+        <div className="headlist_lable">Bank Account List</div>
 
         {/* </div> */}
 
@@ -187,13 +186,14 @@ const Index = () => {
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2} scrollable={true}
             scrollHeight="40vh"
+           
           >
 
-            <Column field="VoucherNumber" header="Effective From"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="TransactionNumber" header="Effective To"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="CustomerCode" header="Currency Code"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="VoucheDate" header="To Currency Code"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="Amount" header="Exchange Rate" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="VoucherNumber" header="Account Number"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="TransactionNumber" header="Account Name"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="CustomerCode" header="Account Type"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="VoucheDate" header="Main Account"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="Amount" header="Max Transaction Limit" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
@@ -203,7 +203,7 @@ const Index = () => {
                 <div className="action_icons">
 
                 <SvgIconeye onClick={() => handleView(columnData)} />
-                <SvgEditicons onClick={() => handleEdit(columnData)}/>
+                <SvgEdit onClick={() => handleEdit(columnData)}/>
                 </div>
               )}
               header="Action"

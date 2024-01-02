@@ -21,15 +21,15 @@ import CustomToast from "../../../../components/Toast";
 const initialValues ={
     EffectiveFrom: new Date(),
     EffectiveTo:new Date(),
-  CurrencyCode:"",
-  ToCurrencyCode:"",
+  CurrencyCode:"INR",
+  ToCurrencyCode:"USD",
   ExchangeRate:"",
   CurrencyDescription:"",
   ToCurrencyDescription:""
  
 }
 
-function EditExchange() {
+function ViewExchange() {
     const [date, setDate] = useState(null);
     const Navigate=useNavigate()
     const [departmentcode, setDepartmentCode] = useState(null);
@@ -72,13 +72,14 @@ function EditExchange() {
     const home = { label: "Master" };
     const items = [
         { label: 'Exchange Rate' ,url:'/master/finance/exchangerate'},
-        { label: 'Edit Exchange Rate'}
+        { label: 'Exchange Rate Details' ,}
     ];
 
     const minDate = new Date();
     minDate.setDate(minDate.getDate() + 1);
 
 const handleSubmit=(value)=>{
+  
     Navigate("/master/finance/exchangerate")
 }
 
@@ -97,16 +98,39 @@ const handleSubmit=(value)=>{
   
 // };
 
+const customValidation = (values) => {
+  const errors = {};
 
+  if (!values.CurrencyCode) {
+    errors.CurrencyCode = "This field Code is required";
+  }
+  if (!values.ToCurrencyCode) {
+    errors.ToCurrencyCode = "This field is required";
+  }
+  if (!values.ExchangeRate) {
+    errors.ExchangeRate = "This field is required";
+  }
+ 
+  // if (!values.TransactionDescription) {
+  //   errors.TransactionDescription = "This field is required";
+  // }
+  
+  return errors;
+};
 
 const formik = useFormik({
   initialValues:initialValues,
-
+  validate: customValidation,
+  // onSubmit: (values) => {
+  //   // Handle form submission
+  //    handleSubmit(values);
+    
+  // },
    onSubmit:handleSubmit
 });
 
     return (
-        <div className='overall__editexchange__container'>
+        <div className='overall__viewexchange__container'>
 
             <NavBar/>
             {/* <CustomToast ref={toastRef} 
@@ -116,13 +140,17 @@ const formik = useFormik({
             <div>
               <span onClick={() => Navigate(-1)}>
                 <SvgBackicon/></span>
-            <label className='label_header'>Edit Exchange Rate</label>
+            <label className='label_header'>Exchange Rate Details</label>
             </div>
             <BreadCrumb
                 model={items}
                 home={home}
                 className='breadcrumbs_container'
                 separatorIcon={<SvgDot color={"#000"} />} />
+
+
+            
+
 
 <Card>
         
@@ -138,12 +166,20 @@ const formik = useFormik({
               onChange={(e) =>
                 formik.setFieldValue("CurrencyCode", e.value)
               }
+
               options={currencyCode}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            
+             { formik.touched.CurrencyCode && formik.errors.CurrencyCode && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.CurrencyCode}
+              </div>
+            )}
             </div>
           </div>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
@@ -185,7 +221,14 @@ const formik = useFormik({
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            
+             { formik.touched.ToCurrencyCode && formik.errors.ToCurrencyCode && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.ToCurrencyCode}
+              </div>
+            )}
             </div>
           </div>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
@@ -254,7 +297,14 @@ const formik = useFormik({
               onChange={formik.handleChange("ExchangeRate")}
               
             />
-            
+             {formik.touched.ExchangeRate && formik.errors.ExchangeRate && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.ExchangeRate}
+              </div>
+            )}
           </div>
           
         </div>
@@ -262,14 +312,7 @@ const formik = useFormik({
       </Card>
 
 
-            <div className="next_container">
-               
-                <Button className="submit_button p-0" label="Update"  
-                // disabled={!formik.isValid}
-                // onClick={()=>{formik.handleSubmit();}} 
-                onClick={handleSubmit()}
-                />
-            </div>
+            {/*  */}
 
 
 
@@ -281,4 +324,4 @@ const formik = useFormik({
     );
 }
 
-export default EditExchange;
+export default ViewExchange;

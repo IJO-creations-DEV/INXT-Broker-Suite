@@ -1,5 +1,5 @@
-.container__main__category__master {
-  .main__account__title {
+.container__account__category__master {
+  .correction__title__reversal {
     color: #111927;
     font-size: 30px;
     font-style: normal;
@@ -22,52 +22,44 @@
   .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
     color: #b1b1b1 !important;
   }
-  .main__btn__action {
+  .correction__btn__reversal {
     color: #fff;
     background-color: #6366f1;
     border-radius: 30px;
     padding: 8px 20px;
     font-family: "Inter var";
-    font-weight: 500;
-    font-size: 18px;
-  }
-  .main__btn__action__upload {
-    border-radius: 30px;
-    border: 1px solid #6366f1;
-    background: #fff;
-    padding: 8px 20px;
-    color: #6366f1;
-    font-family: "Inter var";
-    font-weight: 500;
-    font-size: 18px;
+    .p-button-label {
+      font-weight: 500 !important;
+      font-size: 18px !important;
+    }
   }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .main__account__title {
+    .correction__title__reversal {
       font-size: 26px;
     }
     .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
       font-size: 12px;
     }
-    .main__btn__action {
-      font-size: 14px;
-    }
-    .main__btn__action__upload {
-      font-size: 14px;
+    .correction__btn__reversal {
+      .p-button-label {
+        font-weight: 500 !important;
+        font-size: 14px !important;
+      }
     }
   }
 
   @media only screen and (min-width: 992px) and (max-width: 1440px) {
-    .main__account__title {
+    .correction__title__reversal {
       font-size: 28px;
     }
     .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
       font-size: 14px;
     }
-    .main__btn__action {
-      font-size: 16px;
-    }
-    .main__btn__action__upload {
-      font-size: 16px;
+    .correction__btn__reversal {
+      .p-button-label {
+        font-weight: 500 !important;
+        font-size: 16px !important;
+      }
     }
   }
 }

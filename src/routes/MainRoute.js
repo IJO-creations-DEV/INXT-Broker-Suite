@@ -44,9 +44,7 @@ import TransactionCodeMaster from "../module/FinanceMastersModule/TransactionCod
 import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
 import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
 import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView";
-import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
-import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding";
-import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
+import AccountCategoryMaster from "../module/FinanceMastersModule/AccountCategoryMaster";
 import SubAdd from "../module/FinanceMastersModule/SubAccountMaster/SubAdd";
 import SaveAndEdit from "../module/FinanceMastersModule/SubAccountMaster/SaveAndEdit";
 import AddCurrency from "../module/FinanceMastersModule/CurrencyMaster/AddCurrency";
@@ -99,6 +97,9 @@ import TransactionCodeMasterView from "../module/FinanceMastersModule/Transactio
 import TransactionCodeDetails from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeDetails";
 import ViewCurrency from "../module/FinanceMastersModule/CurrencyMaster/ViewCurrency";
 import EditCurrency from "../module/FinanceMastersModule/CurrencyMaster/EditCurrency";
+import AddMainAccount from "../module/FinanceMastersModule/MainAccountMaster/AddMainAccount";
+import EditMainAccount from "../module/FinanceMastersModule/MainAccountMaster/EditMainAccount";
+import ViewMainAccount from "../module/FinanceMastersModule/MainAccountMaster/ViewMainAccount";
 
 const Maincomponent = () => {
   return (
@@ -147,8 +148,14 @@ const Maincomponent = () => {
 
             {/* Payment Vouchers */}
 
-            <Route path="accounts/paymentvoucher" element={<Paymentvoucher />} />
-            <Route path="accounts/paymentvoucher/createvoucher" element={<CreateVoucher />} />
+            <Route
+              path="accounts/paymentvoucher"
+              element={<Paymentvoucher />}
+            />
+            <Route
+              path="accounts/paymentvoucher/createvoucher"
+              element={<CreateVoucher />}
+            />
             <Route
               path="accounts/paymentvoucher/detailview/:id"
               element={<Detailview />}
@@ -159,13 +166,25 @@ const Maincomponent = () => {
             />
 
             {/* <Route path="/payallvoucher" element={<Payallvoucher />} /> */}
-            <Route path="accounts/paymentvoucher/SpecificVoucher" element={<SpecificVoucher />} />
+            <Route
+              path="accounts/paymentvoucher/SpecificVoucher"
+              element={<SpecificVoucher />}
+            />
 
             {/* Journal voucher */}
 
-            <Route path="/accounts/journalvoucher" element={<Journalvoucher />} />
-            <Route path="/accounts/journalvoucher/addjournalvoucture" element={<AddJournalVoucture/>}/>
-            <Route path="/accounts/journalvoucher/detailsjournalvocture" element={<DetailsJournalVocture/>}/>
+            <Route
+              path="/accounts/journalvoucher"
+              element={<Journalvoucher />}
+            />
+            <Route
+              path="/accounts/journalvoucher/addjournalvoucture"
+              element={<AddJournalVoucture />}
+            />
+            <Route
+              path="/accounts/journalvoucher/detailsjournalvocture"
+              element={<DetailsJournalVocture />}
+            />
 
             {/* Corrections JV */}
 
@@ -246,7 +265,7 @@ const Maincomponent = () => {
               path="accounts/pettycash/addreplenishtable"
               element={<AddReplenishTable />}
             />
-               <Route
+            <Route
               path="accounts/pettycash/replenishtdetailview"
               element={<ReplenishtDetailView />}
             />
@@ -293,16 +312,8 @@ const Maincomponent = () => {
             {/* Account Category Master */}
 
             <Route
-              path="master/finance/category/categoryadding"
-              element={<CategoryAdding />}
-            />
-            <Route
-              path="master/finance/category/categorydetailsview"
-              element={<CategoryDetailsView />}
-            />
-            <Route
-              path="master/finance/category"
-              element={<CategoryMasterInitial />}
+              path="master/finance/accountcategory"
+              element={<AccountCategoryMaster />}
             />
 
             <Route
@@ -381,6 +392,18 @@ const Maincomponent = () => {
               path="master/finance/mainaccount"
               element={<MainAccountMaster />}
             />
+            <Route
+              path="master/finance/mainaccount/addmainaccount"
+              element={<AddMainAccount />}
+            />
+            <Route
+              path="master/finance/mainaccount/editmainaccount"
+              element={<EditMainAccount />}
+            />
+            <Route
+              path="master/finance/mainaccount/viewmainaccount"
+              element={<ViewMainAccount />}
+            />
 
             <Route
               path="master/finance/subaccount"
@@ -405,7 +428,7 @@ const Maincomponent = () => {
               path="master/finance/transactioncode"
               element={<TransactionCodeMaster />}
             />
-                        <Route
+            <Route
               path="master/finance/transactioncode/addtransactioncode"
               element={<TransactionCodeMasterView />}
             />

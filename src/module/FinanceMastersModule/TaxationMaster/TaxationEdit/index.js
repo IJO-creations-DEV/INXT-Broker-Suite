@@ -1,5 +1,5 @@
 import { BreadCrumb } from "primereact/breadcrumb";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import NavBar from "../../../../components/NavBar";
 import SvgDot from "../../../../assets/icons/SvgDot";
 import "../AddTaxation/index.scss";
@@ -10,16 +10,19 @@ import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../../components/LabelWrapper";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import SvgBack from "../../../../assets/icons/SvgBack";
-import CustomToast from "../../../../components/Toast";
 
 const AddTaxation = () => {
   const [errors, setErrors] = useState("");
-
-  const toastRef = useRef(null);
+  const navigate = useNavigate();
+  const [selectedOption, setSelectedOption] = useState("30%");
+  const handleDropdownChange = (e) => {
+    setSelectedOption(e.value);
+  };
   const items = [
     { label: "Taxation", url: "/master/finance/taxation" },
-    { label: "Add Taxation", url: "/master/finance/taxation/addtaxation" },
+    { label: "Edit Taxation ", url: "/master/finance/taxation/taxationedit" },
   ];
   const home = { label: "Master" };
 
@@ -64,8 +67,7 @@ const AddTaxation = () => {
     const formErrors = validate(formik.values);
     setErrors(formErrors);
     console.log(formErrors, "iiiii");
-
-    toastRef.current.showToast();
+    navigate("/addpolicyedit");
   };
 
   const formik = useFormik({
@@ -80,7 +82,7 @@ const AddTaxation = () => {
       </div>
       <div>
         <SvgBack />
-        <label className="label_header">Add Taxation</label>
+        <label className="label_header">Edit Taxation </label>
       </div>
       <div className="col-12 mb-2">
         <div className="mt-3">
@@ -96,9 +98,7 @@ const AddTaxation = () => {
         <div className="grid add__account__sub__container p-3">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-              value={formik.values.taxCode}
-              onChange={formik.handleChange("taxCode")}
-              error={formik.errors.taxCode}
+              value={"0102"}
               label="Tax Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -107,9 +107,7 @@ const AddTaxation = () => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-              value={formik.values.taxName}
-              onChange={formik.handleChange("taxName")}
-              error={formik.errors.taxName}
+              value={"Name"}
               label="Tax Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -118,23 +116,20 @@ const AddTaxation = () => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
-              value={formik.values.taxRate}
-              onChange={formik.handleChange("taxRate")}
-              error={formik.errors.taxRate}
+              value={selectedOption}
+              options={item}
+              onChange={handleDropdownChange}
               className="dropdown__add__sub"
               label="Tax Rate"
               classNames="label__sub__add"
-              placeholder={"Select"}
-              options={item}
+              placeholder={"30%"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-              value={formik.values.basis}
-              onChange={formik.handleChange("basis")}
-              error={formik.errors.basis}
+              value={"0102"}
               label="Basis"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -143,9 +138,7 @@ const AddTaxation = () => {
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <InputField
-              value={formik.values.remarks}
-              onChange={formik.handleChange("remarks")}
-              error={formik.errors.remarks}
+              value={"Remarks to be entered here"}
               label="Remarks"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -154,9 +147,9 @@ const AddTaxation = () => {
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <InputField
-              value={formik.values.taxationDescription}
-              onChange={formik.handleChange("taxationDescription")}
-              error={formik.errors.taxationDescription}
+              value={
+                "A description is a detailed and informative explanation or portrayal of something"
+              }
               label="Taxation Description"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -205,15 +198,13 @@ const AddTaxation = () => {
       </div>
       <div className="col-12 btn__view__Add mt-2">
         <Button
-          label="Save"
+          label="Update"
           className="save__add__btn"
           onClick={() => {
             formik.handleSubmit();
           }}
-          disabled={!formik.isValid}
         />
       </div>
-      <CustomToast ref={toastRef} message="Tax Code T1234 is added" />
     </div>
   );
 };

@@ -47,10 +47,16 @@ import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMast
 import AccountCategoryMaster from "../module/FinanceMastersModule/AccountCategoryMaster";
 import SubAdd from "../module/FinanceMastersModule/SubAccountMaster/SubAdd";
 import SaveAndEdit from "../module/FinanceMastersModule/SubAccountMaster/SaveAndEdit";
+import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
+import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding";
+import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
+import SubAccountDetails from "../module/FinanceMastersModule/SubAccountMaster/SubAccountDetails";
+import SaveAndEdit from "../module/FinanceMastersModule/SubAccountMaster/SubAccountEdit";
 import AddCurrency from "../module/FinanceMastersModule/CurrencyMaster/AddCurrency";
 import SaveAndEditCurrency from "../module/FinanceMastersModule/CurrencyMaster/ViewCurrency";
 import AddTaxation from "../module/FinanceMastersModule/TaxationMaster/AddTaxation";
-import SaveAndEditTaxation from "../module/FinanceMastersModule/TaxationMaster/SaveAndEditTaxation";
+import TaxationDetails from "../module/FinanceMastersModule/TaxationMaster/TaxationDetails";
+import TaxationEdit from "../module/FinanceMastersModule/TaxationMaster/TaxationEdit"
 import AddExchange from "../module/FinanceMastersModule/ExchangeRateMaster/AddExchange";
 import SaveAndEditExchange from "../module/FinanceMastersModule/ExchangeRateMaster/SaveAndEditExchange";
 
@@ -76,6 +82,7 @@ import Bankdetailselection from "../module/PaymentVoucher/Bankdetailselection";
 // import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
 import Initiate from "../module/PettyCashManagement/Initiate";
 import Disbursement from "../module/PettyCashManagement/Disbursement";
+import SubAccountEdit from "../module/FinanceMastersModule/SubAccountMaster/SubAccountEdit"
 import Request from "../module/PettyCashManagement/Request";
 import PettyCashReceipts from "../module/PettyCashManagement/Receipts";
 import PettyCashReplenish from "../module/PettyCashManagement/Replenish";
@@ -418,8 +425,12 @@ const Maincomponent = () => {
               element={<AddTaxation />}
             />
             <Route
-              path="master/finance/taxation/saveandedittaxation"
-              element={<SaveAndEditTaxation />}
+              path="master/finance/taxation/taxationedit"
+              element={<TaxationEdit />}
+            />
+             <Route
+              path="master/finance/taxation/taxationdetails"
+              element={<TaxationDetails />}
             />
 
             {/* Transactioncode */}
@@ -438,12 +449,12 @@ const Maincomponent = () => {
             />
             
             <Route
-              path="master/finance/subaccount/subadd"
-              element={<SubAdd />}
+              path="master/finance/subaccount/subaccountdetails"
+              element={<SubAccountDetails />}
             />
             <Route
-              path="master/finance/subaccount/saveandedit"
-              element={<SaveAndEdit />}
+              path="master/finance/subaccount/subaccountedit"
+              element={<SubAccountEdit />}
             />
             <Route
               path="master/finance/currency/addcurrency"

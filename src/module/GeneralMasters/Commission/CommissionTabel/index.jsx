@@ -64,7 +64,7 @@ const CommissionTabel = ({ handleEdit, newDataTable }) => {
 
             return (
                 <div
-                    style={{ width: '40%' }}
+                    style={{display:'flex',justifyContent:'center',alignItems:'center'}}
                     className="table__selector">
                     <React.Fragment>
                         <span style={{ color: "var(--text-color)", userSelect: "none" }}>

@@ -12,7 +12,7 @@ import { DataTable } from "primereact/datatable";
 import { Dialog } from "primereact/dialog";
 import { Column } from "primereact/column";
 import InputField from "../../../../components/InputField";
-import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
+import SvgEditIcon from "../../../../assets/icons/SvgEditicons";
 import { Card } from "primereact/card";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import DropDowns from "../../../../components/DropDowns";

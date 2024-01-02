@@ -1,4 +1,4 @@
-import SvgEditIcon from "../../../assets/icons/SvgEditIcon";
+import SvgEditIcon from "../../../assets/icons/SvgEditicons";
 
   const Productdata = [
     {

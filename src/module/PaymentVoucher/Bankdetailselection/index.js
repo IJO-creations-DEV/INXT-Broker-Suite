@@ -19,7 +19,7 @@ import { Column } from 'primereact/column';
 import Productdata from './mock'
 import { Dropdown } from 'primereact/dropdown';
 import { Tag } from 'primereact/tag';
-import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
+import SvgEditIcon from '../../../assets/icons/SvgEditicons';
 import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 function Bankdetailselection() {

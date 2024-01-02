@@ -4,7 +4,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
-import SvgEditIcon from "../../../assets/icons/SvgEditIcon";
+import SvgEditIcon from "../../../assets/icons/SvgEditicons";
 import { Button } from "primereact/button";
 const TableData = ({ handleEdit, newDataTable, editID }) => {
   const editId = editID;

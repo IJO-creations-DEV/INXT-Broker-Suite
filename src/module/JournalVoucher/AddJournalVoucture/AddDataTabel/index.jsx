@@ -4,7 +4,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import Productdata from "./data";
 import { Dropdown } from "primereact/dropdown";
-import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
+import SvgEditIcon from "../../../../assets/icons/SvgEditicons";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgDeleteIcon from "../../../../assets/icons/SvgDeleteIcon";
 const AddDataTabel = ({ handleEdit, newDataTable,setVisibleEdit }) => {

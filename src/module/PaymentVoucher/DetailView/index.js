@@ -20,7 +20,7 @@ import Productdata from './mock'
 import { Dropdown } from 'primereact/dropdown';
 
 
-import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
+import SvgEditIcon from '../../../assets/icons/SvgEditicons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getpaymentVocherByIdMiddleware } from '../store/paymentVocherMiddleware';
 

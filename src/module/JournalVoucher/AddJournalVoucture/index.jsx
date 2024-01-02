@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import SvgDeleteIcon from '../../../assets/icons/SvgDeleteIcon';
-import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
+import SvgEditIcon from '../../../assets/icons/SvgEditicons';
 // import { Toast } from 'primereact/toast';
 import { useFormik } from 'formik';
 import AddData from './AddData/AddData';

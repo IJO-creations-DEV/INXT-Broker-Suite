@@ -16,7 +16,7 @@ import NavBar from '../../../components/NavBar';
 import SvgBackicon from '../../../assets/icons/SvgBackicon';
 import { Dropdown } from 'primereact/dropdown';
 import SvgEditicon from '../../../assets/icons/SvgEdit';
-import SvgEditIcon from '../../../assets/icons/SvgEditIcon';
+import SvgEditIcon from '../../../assets/icons/SvgEditicons';
 
 function SpecificVoucher() {
     const Navigate = useNavigate()

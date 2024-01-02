@@ -1,4 +1,4 @@
-.Transaction__Code__Master__container{
+.transactioncode__master__view{
     @layer primereact {
         .p-card {
           background: #ffffff;
@@ -10,17 +10,6 @@
           stroke: #fff !important;
           filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
         }
-      }
-      .Transaction__Code__Master__title{
-        color: #111927;
-        font-size: 30px;
-        font-style: normal;
-        font-weight: 600;
-        font-family: "Inter var";
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        cursor: pointer;
       }
       .p-datatable .p-datatable-tbody > tr > td {
         text-align: left;
@@ -78,70 +67,23 @@
         padding-top: 0.6rem;
         padding-bottom: 0.6rem;
       }
-      .upload__btn{
-        color:  #6366f1;
-        font-size: 18px;
-        font-weight: 500 !important;
-        background-color: #fff;
-        border-radius: 60px !important;
-        padding-right: 1rem;
-        padding-left: 1rem;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        margin: 10px;
+      .Transaction__Code__Master__title{
+        color: #111927;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 600;
         font-family: "Inter var";
-        column-gap: 0.4rem;
-        padding-top: 0.6rem;
-        padding-bottom: 0.6rem;
-        border-color: #6366f1;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+      }
+      .p-dropdown {
+        background: #ffffff;
+        border: 1px solid #d1d5db;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        border-radius: 6px;
+        margin-top: 0.5rem !important;
+        width: 100% !important;
       }
 }
-
-
-@media screen and (min-width: 320px) {
-    .Transaction__Code__Master__title {
-      color: #111927;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 600;
-      font-family: "Inter var";
-    }
-  
-  }
-  @media screen and (min-width: 767px) {
-    .Transaction__Code__Master__title {
-      color: #111927;
-      font-size: 25px;
-      font-style: normal;
-      font-weight: 600;
-      font-family: "Inter var";
-    }
-  }
-  @media screen and (min-width: 1024px) {
-    .input__view.lg-col-2-5 {
-      width: 19% !important;
-    }
-    .input__view__request.lg-col-2-5 {
-      width: 20% !important;
-    }
-    .Transaction__Code__Master__title {
-      color: #111927;
-      font-size: 30px;
-      font-style: normal;
-      font-weight: 600;
-      font-family: "Inter var";
-    }
-  }
-  @media screen and (min-width: 768px) {
-    .md\:col-5 {
-      flex: 0 0 auto;
-      padding: 0.5rem;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      width: 40.6667% !important;
-    }
-  }
-  .p-button-label {
-    font-weight: 500 !important;
-    font-size: 18px !important;
-  }

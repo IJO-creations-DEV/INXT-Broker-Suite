@@ -1,0 +1,25 @@
+.transactioncode__master__table_view{
+.empty-table-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  .paginator__container{
+    margin-right: 10%;
+    display: flex;
+  }
+  .p-paginator-bottom.p-paginator.p-component {
+    display: flex !important;
+    justify-content: flex-end !important;
+}
+.p-dropdown {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+    margin-top: 0.5rem !important;
+}
+
+}

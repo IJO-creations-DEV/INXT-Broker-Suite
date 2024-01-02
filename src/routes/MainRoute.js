@@ -95,6 +95,7 @@ import ReceiptList from "../module/PettyCashManagement/Receipts/ReceiptList";
 import AddReplenish from "../module/PettyCashManagement/Replenish/AddReplenish";
 import AddReplenishTable from "../module/PettyCashManagement/Replenish/AddReplenishTable";
 import ReplenishtDetailView from "../module/PettyCashManagement/Replenish/ReplenishDetailview";
+import TransactionCodeMasterView from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeMasterView";
 
 const Maincomponent = () => {
   return (
@@ -394,9 +395,16 @@ const Maincomponent = () => {
               path="master/finance/taxation/saveandedittaxation"
               element={<SaveAndEditTaxation />}
             />
+
+            {/* Transactioncode */}
+
             <Route
               path="master/finance/transactioncode"
               element={<TransactionCodeMaster />}
+            />
+                        <Route
+              path="master/finance/transactioncode/addtransactioncode"
+              element={<TransactionCodeMasterView />}
             />
             <Route
               path="master/finance/subaccount/subadd"

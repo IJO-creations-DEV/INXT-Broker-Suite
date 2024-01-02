@@ -5,13 +5,19 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router";
 import "./index.scss";
 import SvgTable from "../../../../../../assets/icons/SvgTable";
+import { Button } from "primereact/button";
+import SvgAdd from "../../../../../../assets/icons/SvgAdd";
+import { Dialog } from "primereact/dialog";
+import InputField from "../../../../../../components/InputField";
+import DropDowns from "../../../../../../components/DropDowns";
+import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
 
 const UserGroupAccess = () => {
   const [products, setProducts] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
+  const [show, setShow] = useState(false);
 
-  const handleToggle = () => {
-    setIsChecked(!isChecked);
+  const handleClick = () => {
+    setShow(!show);
   };
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
@@ -37,10 +43,14 @@ const UserGroupAccess = () => {
           <React.Fragment>
             <span
               className="mx-1"
-              style={{ color: "var(--text-color)", userSelect: "none",    width: '127%',
-              textAlign: 'center',
-              display: 'flex',
-              alignItems: 'center', }}
+              style={{
+                color: "var(--text-color)",
+                userSelect: "none",
+                width: "127%",
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+              }}
             >
               Row count :{" "}
             </span>
@@ -56,7 +66,6 @@ const UserGroupAccess = () => {
     },
   };
 
-
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
     // navigate("/accounts/pettycash/PettyCashCodeDetails")
@@ -69,54 +78,143 @@ const UserGroupAccess = () => {
     color: "#000",
     border: "none",
   };
+
+  const handleSave = () => {
+    setShow(false);
+  };
   return (
     <div className="transactioncode__master__table_UserGroupAccess">
       {/* <Card className="mt-1"> */}
-        <div className="card">
-          <DataTable
-            value={products}
-            tableStyle={{
-              minWidth: "50rem",
-              color: "#1C2536",
+      <div className="card">
+        <div className="btn__container">
+          <Button
+            label="Add"
+            icon={<SvgAdd color={"#fff"} />}
+            className="add__btn"
+            onClick={() => {
+              handleClick();
             }}
-            scrollable={true}
-            scrollHeight="40vh"
-            paginator
-            rows={5}
-            rowsPerPageOptions={[5, 10, 25, 50]}
-            // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-            currentPageReportTemplate="{first} - {last} of {totalRecords}"
-            paginatorTemplate={template2}
-            emptyMessage={isEmpty ? emptyTableIcon : null}
-          >
-            <Column
-              field="UserRole"
-              header="User Role"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              field="MinimumTransaction"
-              header="Minimum Transaction"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            //   sortable
-            ></Column>
-            <Column
-              field="MaximumTransaction"
-              header="Maximum Transaction"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            //   sortable
-            ></Column>
-            <Column
-              field="Edit"
-              header="Edit"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-          </DataTable>
+          />
         </div>
+        <DataTable
+          value={products}
+          tableStyle={{
+            minWidth: "50rem",
+            color: "#1C2536",
+          }}
+          scrollable={true}
+          scrollHeight="40vh"
+          paginator
+          rows={5}
+          rowsPerPageOptions={[5, 10, 25, 50]}
+          // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+          currentPageReportTemplate="{first} - {last} of {totalRecords}"
+          paginatorTemplate={template2}
+          emptyMessage={isEmpty ? emptyTableIcon : null}
+        >
+          <Column
+            field="UserRole"
+            header="User Role"
+            headerStyle={headerStyle}
+            className="fieldvalue_container"
+          ></Column>
+          <Column
+            field="MinimumTransaction"
+            header="Minimum Transaction"
+            headerStyle={headerStyle}
+            className="fieldvalue_container"
+            //   sortable
+          ></Column>
+          <Column
+            field="MaximumTransaction"
+            header="Maximum Transaction"
+            headerStyle={headerStyle}
+            className="fieldvalue_container"
+            //   sortable
+          ></Column>
+          <Column
+            field="Edit"
+            header="Edit"
+            headerStyle={headerStyle}
+            className="fieldvalue_container"
+          ></Column>
+        </DataTable>
+      </div>
+      <Dialog
+        header="Add User Group Access"
+        visible={show}
+        style={{ width: "50vw" }}
+        onHide={() => setShow(false)}
+      >
+        <div className="grid mt-1">
+          <div className=" col-12 md:col-6 lg-col-6 ">
+            <DropDowns
+              className="input__filed"
+              label="User Role"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // value={formik.values.Description}
+              // options={BankAccountCode}
+              // onChange={(e) => {
+              //   console.log(e.value);
+              //   formik.setFieldValue("Description", e.value);
+              //   handleAccountcode(e.value.);
+              // }}
+              // optionLabel="Description"
+              // error={
+              //   formik.touched.BankAccountNumber &&
+              //   formik.errors.BankAccountNumber
+              // }
+            />
+          </div>
+        </div>
+        <div className="grid mt-1">
+          <div className=" col-12 md:col-6 lg-col-6 ">
+            <InputField
+              classNames="input__filed"
+              label="Minimum Transaction"
+              placeholder="Enter"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              // value={formik.values.TransactionCode}
+              // onChange={formik.handleChange("TransactionCode")}
+              // error={
+              //   formik.touched.TransactionCode &&
+              //   formik.errors.TransactionCode
+              // }
+            />
+          </div>
+          <div className=" col-12 md:col-6 lg-col-6 ">
+            <InputField
+              classNames="input__filed"
+              label="Maximum Transaction"
+              placeholder="Enter"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              // value={formik.values.TransactionCode}
+              // onChange={formik.handleChange("TransactionCode")}
+              // error={
+              //   formik.touched.TransactionCode &&
+              //   formik.errors.TransactionCode
+              // }
+            />
+          </div>
+        </div>
+        <div className="btn__container">
+          <Button
+            label="Save"
+            className="add__btn"
+            onClick={() => {
+              handleSave();
+            }}
+          />
+        </div>
+      </Dialog>
       {/* </Card> */}
     </div>
   );

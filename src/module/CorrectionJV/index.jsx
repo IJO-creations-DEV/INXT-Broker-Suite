@@ -16,12 +16,12 @@ const Reversals = () => {
   const toastRef = useRef(null);
   const handleApproval = () => {
     setStep(2);
-    // toastRef.current.showToast();
-    // {
-    //   setTimeout(() => {
-    //     setStep(2);
-    //   }, 3000);
-    // }
+    toastRef.current.showToast();
+    {
+      setTimeout(() => {
+        setStep(2);
+      }, 3000);
+    }
   };
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(false);
@@ -92,21 +92,21 @@ const Reversals = () => {
     setDebitTotal(2600);
   };
   const handlePrint = () => {
-    // toastRef.current.showToast();
+    toastRef.current.showToast();
     formik.resetForm();
     setStep(0);
   };
 
   return (
     <div className="container__corrections__jv">
-      {/* {step === 1 ? (
+      {step === 1 ? (
         <CustomToast
           ref={toastRef}
-          props="Transaction Number 1234 is created"
+          message="Transaction Number 1234 is created"
         />
       ) : (
-        <CustomToast ref={toastRef} props="Successfully Printed" />
-      )} */}
+        <CustomToast ref={toastRef} message="Successfully Printed" />
+      )}
       <div className="grid m-0 top__container">
         <div className="col-12 p-0">
           <NavBar />

@@ -1,201 +1,122 @@
-import React, { useState,useEffect} from "react";
-import "./index.scss";
-import { BreadCrumb } from "primereact/breadcrumb";
-import NavBar from "../../../components/NavBar";
-import { useNavigate } from "react-router-dom";
-import SvgDot from "../../../assets/icons/SvgDot"
-import SvgFilters from "../../../assets/icons/SvgFilters";
-import SvgAdd from "../../../assets/icons/SvgAdd";
-import { Card } from 'primereact/card';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { InputText } from "primereact/inputtext";
-import { ProductService } from './mock';
-import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
-import SvgArrow from "../../../assets/icons/SvgArrow";
-import { InputSwitch } from 'primereact/inputswitch'
+import { BreadCrumb } from 'primereact/breadcrumb';
+import React, { useState, useRef } from 'react'
+import NavBar from '../../../components/NavBar';
+import SvgDot from '../../../assets/icons/SvgDot';
+import "../PettyCashMaster/index.scss"
+import SvgAdd from '../../../assets/icons/SvgAdd';
+import { useNavigate } from 'react-router-dom';
+import SvgFilters from '../../../assets/icons/SvgFilters';
+import { InputText } from 'primereact/inputtext';
+import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon';
+import SvgUpload from "../../../assets/icons/SvgUpload"
+import { TieredMenu } from 'primereact/tieredmenu';
+import PettyDataTabel from './PettyDataTabel';
+
 
 const PettyCashMaster = () => {
-  const [checked, setChecked] = useState(false);
-    const [products, setProducts] = useState([]);
-    const [SelectedProducts, setSelectedProducts] = useState(false);
-    console.log("first1",SelectedProducts)
-    useEffect(() => {
-        ProductService.getProductsMini().then(data => setProducts(data));
-    }, []);
-
-
-    const template2 = {
-        layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
-        RowsPerPageDropdown: (options) => {
-            const dropdownOptions = [
-                { label: 5, value: 5 },
-                { label: 10, value: 10 },
-                { label: 20, value: 20 },
-                { label: 120, value: 120 }
-            ];
-
-            return (
-                <React.Fragment >
-                    <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-                    Row count :{' '}
-                    </span>
-                    <Dropdown value={options.value} className="pagedropdown_container"options={dropdownOptions} onChange={options.onChange} />
-                </React.Fragment>
-            );
-        },
-       
-    };
-
-
-
-
-
-    const headerStyle = {
-      width:'14%',
-        // backgroundColor: 'red',
-        fontSize: 14,
-        fontFamily: 'Inter var',
-        fontWeight: 500,
-        padding: 6,
-        color:'#000',
-        border: 'none',
-        textalign:'center'
-    };
-
+  const [visible, setVisible] = useState(false);
+  const [newDataTable, setnewDataTable] = useState([]);
+  const navigate = useNavigate()
   const items = [
-    { label: "Petty Cash" },
-    // { label: "Accounts " },
-    // { label: "Receipts" },
+    { id: 1, label: 'Petty Cash', url: '/master/finance/pettycash' },
   ];
-  const home = { label: "Master" };
- 
-  const navigate = useNavigate();
-  const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(5);
-  const [globalFilter, setGlobalFilter] = useState('');
-
-  const onPageChange = (event) => {
-    setFirst(event.first);
-    setRows(event.rows);
+  const home = { label: "Master " };
+  const handleNavigate = () => {
+    navigate('/accounts/journalvoucher/addjournalvoucture')
   };
 
-  const onGlobalFilterChange = (event) => {
-    setGlobalFilter(event.target.value);
+ ;
+
+  const handleEdit = () => {
+    console.log("handleEdit success");
+    setVisible(true);
   };
- 
-  const handlePolicy =()=>{
+    const handlePolicy =()=>{
     navigate('/master/finance/pettycash/addpettycash')
   }
-  const handleArrowClick=()=>{
-    navigate('/master/finance/pettycash/pettycashdetail')
-  }
-  const handleEditClick = () => {
-    navigate("/otherreceiptsview");
-  };
+
+  
+  const menu = useRef(null);
+  const menuitems = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Date',
+    },
+    {
+      label: 'Voucher Number',
+    },
+  ];
+
+
   return (
-    <div className='overall__pettycashmaster__container'>
-         <NavBar/>
-<div className="overallfilter_container">
-         <div >
-            <label className='label_header'>Petty Cash Master</label>
-            <BreadCrumb
-                model={items}
-                home={home}
-                className='breadcrumbs_container'
-                separatorIcon={<SvgDot color={"#000"} />} />
-          </div>
-          <div className="filterbutton_container">
-            {/* <SvgFilters/> */}
-            
-            <div className="addbutton_container" onClick={handlePolicy} >
-          <SvgAdd className="addicon" />
-          <p className="addtext">Add</p>
-             </div>
-          </div>
-          </div>
+    <div className='grid  container__petty__cash'>
+      <div className='col-12'>
+        <NavBar />
+      </div>
+      <div className='col-12 md:col-6 lg:col-6 mb-1'>
+        <div className='add__icon__title__petty'>Petty Cash Master</div>
+        <div className='mt-4'>
+          <BreadCrumb
+            home={home}
+            className={items.map((val) => {
+              return val.label === '/subaccount' ? 'breadCrums__view__reversal__petty' : 'item__color__petty';
+            })}
+            model={items}
 
-
-          <Card 
-        //   className="overallcard_container"
-          >
-            {/* <div className="searchiput_container"> */}
-    
-
-<div  className="header_search_container">
-    <div class="col-12 md:col-6 lg:col-10">
-        {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
-        <span className="p-input-icon-left" style={{width:"100%"}}>
-                <i className="pi pi-search" />
-                <InputText placeholder="Search By Petty Cash Code" className="searchinput_left"/>
-            </span>
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
-    {/* </div> */}
-    <div class="col-12 md:col-6 lg:col-2">
-     
-    <Button label="Sort By" outlined icon={<SvgFilters/>} className="sorbyfilter_container" /></div>
-    
-    </div>
-    <div className="listlable_textcontainer">
-<label className="listlable_text">Petty Cash List</label>
-
+      </div>
+      <div className="menu-container">
+        <TieredMenu className='mt-2' model={menuitems} popup ref={menu} breakpoint="767px" />
+      </div>
+      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__petty mb-3'>
+      <div className='upload__icon__view__petty' onClick={handleNavigate}>
+          <div className='upload__icon__petty' >
+            <SvgUpload color={'#fff'} />
+          </div>
+          <div className='upload__text__petty'>
+          Upload
+          </div>
+        </div>
+        <div className='add__icon__view__petty' onClick={handlePolicy}>
+          <div className='add__icon__petty' >
+            <SvgAdd color={'#fff'} />
+          </div>
+          <div className='add__text__petty'>
+          Add
+          </div>
+        </div>
+      </div>
+      <div className='col-12 m-0 '>
+        <div className='sub__container__petty'>
+          <div className='col-12 search__filter__view__petty'>
+            <div className='col-12 md:col-10 lg:col-10'>
+              <div className='searchIcon__view__input__petty'>
+                <span className='p-1'> <SvgSearchIcon /></span>
+                <InputText
+                  style={{ width: '100%' }}
+                  classNames='input__sub__account__petty'
+                  placeholder='Search By Petty Cash Code'
+                />
+              </div>
             </div>
-
-
-            {/* <div
-      className="card flex justify-content-center"
-      style={{ position: 'relative', top: '0' }}
-    >
-      <div style={{position:"absolute",color:"red",zIndex:'1'}}>hello</div>
-      <InputSwitch
-    style={{width:'100%'}}
-        checked={checked}
-        id="ii"
-        onChange={(e) => setChecked(e.value)}
-      />
-    </div> */}
-
-
-    <div className="card">
-                <DataTable value={products} tableStyle={{ minWidth: '50rem',color:'#1C2536',maxHeight:'50vh',overflowy:"auto" }}
-                    paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
-                    // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                    currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                    paginatorTemplate={template2}
-                    className="datatable_container"
-                    selection={SelectedProducts}
-          onSelectionChange={(e) => setSelectedProducts(e.value)}
-          selectionMode="checkbox"
-                >
-                  
-                    <Column field="name" header="Petty Cash Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="name" header="Petty Cash Name" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="Petty Cash Size" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="quantity" header="Minimum Cash Box"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="name" header="Transaction Limit" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="name" header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="View"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                  
-                    <Column
-                  body={(params) => (
-                    <SvgArrow onClick={() => handleArrowClick()} />
-                  )}
-                  header="View"
-                  headerStyle={headerStyle}
-                  className="fieldvalue_container"
-                ></Column>
-             
-                </DataTable>
-
-
+          </div>
+          <div className='col-12 '>
+            <div className='main__tabel__title__petty p-2'>Petty Cash List</div>
+          </div>
+          <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
+            <div className="card p-1">
+              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
             </div>
-
-</Card>
-
-
+          </div>
+        </div>
+      </div>
     </div>
-  );
-};
+  )
+}
+ 
+export default PettyCashMaster
 
-export default PettyCashMaster;

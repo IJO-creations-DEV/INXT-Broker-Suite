@@ -15,25 +15,10 @@
         font-weight: 600;
 
     }
+
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
         color: #B1B1B1;
     }
-    .edit__btn__view{
-        display: flex;
-        justify-content:space-evenly;
-        align-items: center;
-        background-color: #6366F1;
-        height: 40px;
-        width: 110px;
-        border-radius: 30px;
-        color: #fff;
-
-    }
-    .header__button__view{
-        display: flex;
-        justify-content: space-between;
-    }
-
     .add__account__sub__container {
         box-shadow: rgba(241, 244, 247, 0.3) 0px 1px 2px 0px, rgba(169, 174, 179, 0.15) 0px 2px 6px 2px;
         border-radius: 10px;
@@ -59,8 +44,6 @@
         justify-content: flex-end;
         align-items: flex-end;
         .save__add__btn{
-            height: 40px;
-            width: 130px;
             background-color: #6366F1
             ;
             border-radius: 30px;

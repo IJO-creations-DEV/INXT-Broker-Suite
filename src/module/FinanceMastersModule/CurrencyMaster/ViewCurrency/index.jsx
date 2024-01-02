@@ -9,27 +9,22 @@ import SvgDropdown from '../../../../assets/icons/SvgDropdown';
 import CustomToast from '../../../../components/Toast';
 import { useNavigate } from 'react-router-dom';
 
-const AddCurrency = () => {
+const ViewCurrency = () => {
     const toastRef = useRef(null);
     const navigate = useNavigate();
     const items = [
         { label: 'Currency', url: '/master/finance/currency' },
-        { label: 'Add Currency', url: '/master/finance/currency/addcurrency' },
+        { label: 'Currency Details', url: '/master/finance/currency/viewcurrency' },
 
     ];
     const home = { label: "Master" };
-    const handleSubmit = () => {
-        toastRef.current.showToast();
-        setTimeout(() => {
-          navigate("/master/finance/currency");
-        }, 2000);
-      };
+
 
     return (
         <div className='grid sub__add__container'>
               <CustomToast ref={toastRef} message="Add Currency Successfully"/>
             <div className='col-12 mb-2'>
-                <div className='add__sub__title'>Add Currency</div>
+                <div className='add__sub__title'>Currency Details</div>
                 <div className='mt-3'>
                     <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
                 </div>
@@ -42,6 +37,7 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            disabled={true}
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -51,6 +47,7 @@ const AddCurrency = () => {
                             classNames='label__sub__add'
                             placeholder={"Select"}
                             dropdownIcon={<SvgDropdown color={"#000"} />}
+                            disabled={true}
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -59,6 +56,7 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            disabled={true}
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -67,6 +65,7 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            disabled={true}
                         />
                     </div>
                     </div>
@@ -77,6 +76,7 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            disabled={true}
                             
                         />
                     </div>
@@ -86,6 +86,7 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            disabled={true}
                         />
                     </div>
                     </div>
@@ -96,6 +97,7 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            disabled={true}
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -104,19 +106,13 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            disabled={true}
                         />
                     </div>
                 </div>
-            </div>
-            <div className='col-12 btn__view__Add mt-2'>
-                <Button
-                    label='Save'
-                    className='save__add__btn'
-                    onClick={()=>{handleSubmit()}}
-                />
             </div>
         </div>
     )
 
 }
-export default AddCurrency
+export default ViewCurrency

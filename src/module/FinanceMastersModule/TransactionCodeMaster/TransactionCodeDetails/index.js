@@ -9,16 +9,14 @@ import { Card } from "primereact/card";
 import InputField from "../../../../components/InputField";
 import DropDowns from "../../../../components/DropDowns";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
-import { Button } from "primereact/button";
-import CustomToast from "../../../../components/Toast";
-import TransactionCodeMasterViewTable from "./TransactionCodeMasterViewTable";
+import TransactionCodeMasterDetailViewTable from "./TransactionCodeMasterDetailViewTable";
 
 const initialValue = {
   TransactionCode: "",
   TransactionName: "",
 };
 
-const TransactionCodeMasterView = () => {
+const TransactionCodeDetails = () => {
   const toastRef = useRef(null);
   const navigate = useNavigate();
   const items = [
@@ -27,8 +25,8 @@ const TransactionCodeMasterView = () => {
       url: "/master/finance/transactioncode",
     },
     {
-      label: "Add Transaction Code",
-      url: "/master/finance/transactioncode/addtransactioncode",
+      label: "Transaction Code Details",
+      url: "/master/finance/transactioncode/transactioncodedetails",
     },
   ];
   const Initiate = { label: "Master" };
@@ -52,7 +50,7 @@ const TransactionCodeMasterView = () => {
   });
 
   return (
-    <div className="transactioncode__master__view">
+    <div className="transactioncode__master__detail__view">
       {/* <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully"/> */}
       <div className="grid  m-0">
         <div className="col-12 md:col-12 lg:col-12">
@@ -63,7 +61,7 @@ const TransactionCodeMasterView = () => {
             }}
           >
             <SvgBackArrow />
-            Add Transaction Code
+            Transaction Code Details
           </div>
           <div className="mt-3">
             <BreadCrumb
@@ -86,6 +84,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 // value={formik.values.TransactionCode}
                 // onChange={formik.handleChange("TransactionCode")}
                 // error={
@@ -102,6 +101,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 // value={formik.values.TransactionName}
                 // onChange={formik.handleChange("TransactionName")}
                 // error={
@@ -120,6 +120,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 // value={formik.values.TransactionName}
                 // onChange={formik.handleChange("TransactionName")}
                 // error={
@@ -136,6 +137,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 // value={formik.values.Description}
                 // options={BankAccountCode}
@@ -161,6 +163,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 // value={formik.values.Description}
                 // options={BankAccountCode}
@@ -184,6 +187,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 // value={formik.values.TransactionName}
                 // onChange={formik.handleChange("TransactionName")}
                 // error={
@@ -202,6 +206,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 // value={formik.values.Description}
                 // options={BankAccountCode}
@@ -225,6 +230,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 // value={formik.values.TransactionName}
                 // onChange={formik.handleChange("TransactionName")}
                 // error={
@@ -243,6 +249,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 // value={formik.values.Description}
                 // options={BankAccountCode}
@@ -266,6 +273,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 // value={formik.values.TransactionName}
                 // onChange={formik.handleChange("TransactionName")}
                 // error={
@@ -284,6 +292,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 // value={formik.values.Description}
                 // options={BankAccountCode}
@@ -307,6 +316,7 @@ const TransactionCodeMasterView = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 // value={formik.values.TransactionName}
                 // onChange={formik.handleChange("TransactionName")}
                 // error={
@@ -318,18 +328,10 @@ const TransactionCodeMasterView = () => {
           </div>
         </Card>
       </form>
-      <TransactionCodeMasterViewTable/>
-      <div className="btn__container">
-          <Button
-            label="Save"
-            className="add__btn"
-            onClick={() => {
-                handleSubmit();
-            }}
-          />
-        </div>
+      <TransactionCodeMasterDetailViewTable/>
+
     </div>
   );
 };
 
-export default TransactionCodeMasterView;
+export default TransactionCodeDetails;

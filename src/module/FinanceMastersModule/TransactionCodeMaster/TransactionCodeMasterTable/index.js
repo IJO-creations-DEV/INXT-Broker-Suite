@@ -82,7 +82,7 @@ const TransactionCodeMasterTable = () => {
 
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
-    // navigate("/accounts/pettycash/PettyCashCodeDetails")
+    navigate("/master/finance/transactioncode/transactioncodedetails")
   };
   const headerStyle = {
     fontSize: 16,

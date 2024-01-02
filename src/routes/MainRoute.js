@@ -50,7 +50,7 @@ import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryM
 import SubAdd from "../module/FinanceMastersModule/SubAccountMaster/SubAdd";
 import SaveAndEdit from "../module/FinanceMastersModule/SubAccountMaster/SaveAndEdit";
 import AddCurrency from "../module/FinanceMastersModule/CurrencyMaster/AddCurrency";
-import SaveAndEditCurrency from "../module/FinanceMastersModule/CurrencyMaster/SaveAndEditCurrency";
+import SaveAndEditCurrency from "../module/FinanceMastersModule/CurrencyMaster/ViewCurrency";
 import AddTaxation from "../module/FinanceMastersModule/TaxationMaster/AddTaxation";
 import SaveAndEditTaxation from "../module/FinanceMastersModule/TaxationMaster/SaveAndEditTaxation";
 import AddExchange from "../module/FinanceMastersModule/ExchangeRateMaster/AddExchange";
@@ -96,6 +96,9 @@ import AddReplenish from "../module/PettyCashManagement/Replenish/AddReplenish";
 import AddReplenishTable from "../module/PettyCashManagement/Replenish/AddReplenishTable";
 import ReplenishtDetailView from "../module/PettyCashManagement/Replenish/ReplenishDetailview";
 import TransactionCodeMasterView from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeMasterView";
+import TransactionCodeDetails from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeDetails";
+import ViewCurrency from "../module/FinanceMastersModule/CurrencyMaster/ViewCurrency";
+import EditCurrency from "../module/FinanceMastersModule/CurrencyMaster/EditCurrency";
 
 const Maincomponent = () => {
   return (
@@ -406,6 +409,11 @@ const Maincomponent = () => {
               path="master/finance/transactioncode/addtransactioncode"
               element={<TransactionCodeMasterView />}
             />
+                                    <Route
+              path="master/finance/transactioncode/transactioncodedetails"
+              element={<TransactionCodeDetails />}
+            />
+            
             <Route
               path="master/finance/subaccount/subadd"
               element={<SubAdd />}
@@ -415,12 +423,16 @@ const Maincomponent = () => {
               element={<SaveAndEdit />}
             />
             <Route
-              path="master/finance/company/addcurrency"
+              path="master/finance/currency/addcurrency"
               element={<AddCurrency />}
             />
             <Route
-              path="master/finance/company/saveandeditcurrency"
-              element={<SaveAndEditCurrency />}
+              path="master/finance/currency/editcurrency"
+              element={<EditCurrency />}
+            />
+                        <Route
+              path="master/finance/currency/viewcurrency"
+              element={<ViewCurrency />}
             />
             {/* <Route path="master/finance/company/addcompany" element={<AddCompany />} /> */}
           </Route>

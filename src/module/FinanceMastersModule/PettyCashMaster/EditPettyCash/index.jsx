@@ -1,9 +1,8 @@
-
 import { BreadCrumb } from 'primereact/breadcrumb'
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState ,useRef} from 'react'
 import NavBar from '../../../../components/NavBar'
 import SvgDot from '../../../../assets/icons/SvgDot';
-import "../AddPettyCash/index.scss"
+import "../EditPettyCash/index.scss"
 import DropDowns from '../../../../components/DropDowns';
 import InputField from '../../../../components/InputField';
 import { Button } from 'primereact/button';
@@ -11,16 +10,15 @@ import SuccessIcon from '../../../../assets/icons/SuccessIcon';
 import SvgDropdown from '../../../../assets/icons/SvgDropdown';
 import { useFormik } from 'formik';
 import ArrowLeftIcon from '../../../../assets/icons/ArrowLeftIcon';
-import CustomToast from '../../../../components/Toast';
 import { useNavigate } from 'react-router-dom';
+import CustomToast from '../../../../components/Toast';
 
-const AddPettyCash = () => {
-  const navigate=useNavigate()
-  const toastRef = useRef(null);
+const EditPettyCash = () => {
+    const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const items = [
     { label: 'Petty Cash', url: '/master/finance/pettycash' },
-    { label: 'Add Petty Cash', url: '/master/finance/pettycash/addpettycash' },
+    { label: 'Edit Petty Cash', url: '/master/finance/pettycash/editpettycash' },
 
   ];
   const home = { label: "Master" };
@@ -31,9 +29,6 @@ const AddPettyCash = () => {
 
     return () => clearTimeout(timerId);
   }, [visiblePopup]);
-  const handleGoBack=()=>{
-    navigate("/master/finance/pettycash")
-  }
 
   const [step, setStep] = useState(0);
   const customValidation = (values) => {
@@ -61,7 +56,10 @@ const AddPettyCash = () => {
 
     return errors;
   };
- 
+  const navigate=useNavigate()
+  const handleGoBack=()=>{
+    navigate("/master/finance/pettycash")
+  }
   const handleSubmit = (values) => {
     toastRef.current.showToast();
     setTimeout(() => {
@@ -84,7 +82,7 @@ const AddPettyCash = () => {
     },
   });
   return (
-    <div className='grid petty__add__container'>
+    <div className='grid edit__add__container'>
       <div className='col-12'>
         <NavBar />
       </div>
@@ -92,7 +90,7 @@ const AddPettyCash = () => {
         <CustomToast ref={toastRef} message="Add Petty Cash" />
       </div>
       <div className='col-12 mb-2'>
-        <div className='add__sub__title mr-2'><div onClick={handleGoBack} className='mr-2 mt-1'><ArrowLeftIcon /></div>Add Petty Cash</div>
+        <div className='add__sub__title mr-2'><div onClick={handleGoBack} className='mr-2 mt-1'><ArrowLeftIcon /></div>Edit Petty Cash</div>
         <div className='mt-3'>
           <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
         </div>
@@ -103,9 +101,9 @@ const AddPettyCash = () => {
             classNames="input__field__reversal__inactive"
             className={
               // step === 0
-              // ?
-              "input__label__reversal"
-              // : "input__label__reversal__inactive"
+                // ?
+                 "input__label__reversal"
+                // : "input__label__reversal__inactive"
             }
             label="Petty Cash Code"
             placeholder="Enter"
@@ -118,7 +116,7 @@ const AddPettyCash = () => {
             }
 
           />
-          {formik.touched.prttycashcode && formik.errors.prttycashcode && (
+            {formik.touched.prttycashcode && formik.errors.prttycashcode && (
             <div style={{ fontSize: 12, color: "red" }}>
               {formik.errors.prttycashcode}
             </div>
@@ -129,9 +127,9 @@ const AddPettyCash = () => {
             classNames="input__field__reversal__inactive"
             className={
               // step === 0
-              // ?
-              "input__label__reversal"
-              // : "input__label__reversal__inactive"
+                // ?
+                 "input__label__reversal"
+                // : "input__label__reversal__inactive"
             }
             label="Petty Cash Name"
             placeholder="Enter"
@@ -142,7 +140,7 @@ const AddPettyCash = () => {
               formik.setFieldValue("pettycashname", e.target.value)
             }
           />
-          {formik.touched.pettycashname && formik.errors.pettycashname && (
+            {formik.touched.pettycashname && formik.errors.pettycashname && (
             <div style={{ fontSize: 12, color: "red" }}>
               {formik.errors.pettycashname}
             </div>
@@ -153,9 +151,9 @@ const AddPettyCash = () => {
             classNames="input__field__reversal__inactive"
             className={
               // step === 0
-              // ?
-              "input__label__reversal"
-              // : "input__label__reversal__inactive"
+                // ?
+                 "input__label__reversal"
+                // : "input__label__reversal__inactive"
             }
             label="Petty Cash Size"
             placeholder="Enter"
@@ -167,7 +165,7 @@ const AddPettyCash = () => {
               formik.setFieldValue("pettycashsize", e.target.value)
             }
           />
-          {formik.touched.pettycashsize && formik.errors.pettycashsize && (
+            {formik.touched.pettycashsize && formik.errors.pettycashsize && (
             <div style={{ fontSize: 12, color: "red" }}>
               {formik.errors.pettycashsize}
             </div>
@@ -178,9 +176,9 @@ const AddPettyCash = () => {
             classNames="input__field__reversal__inactive"
             className={
               // step === 0
-              // ?
-              "input__label__reversal"
-              // : "input__label__reversal__inactive"
+                // ?
+                 "input__label__reversal"
+                // : "input__label__reversal__inactive"
             }
             label="Available Cash"
             placeholder="Enter"
@@ -192,7 +190,7 @@ const AddPettyCash = () => {
               formik.setFieldValue("avilabelcash", e.target.value)
             }
           />
-          {formik.touched.avilabelcash && formik.errors.avilabelcash && (
+            {formik.touched.avilabelcash && formik.errors.avilabelcash && (
             <div style={{ fontSize: 12, color: "red" }}>
               {formik.errors.avilabelcash}
             </div>
@@ -203,9 +201,9 @@ const AddPettyCash = () => {
             classNames="input__field__reversal__inactive"
             className={
               // step === 0
-              // ?
-              "input__label__reversal"
-              // : "input__label__reversal__inactive"
+                // ?
+                 "input__label__reversal"
+                // : "input__label__reversal__inactive"
             }
             label="Minimum Cash Box"
             placeholder="Enter"
@@ -217,7 +215,7 @@ const AddPettyCash = () => {
               formik.setFieldValue("mincashback", e.target.value)
             }
           />
-          {formik.touched.mincashback && formik.errors.mincashback && (
+            {formik.touched.mincashback && formik.errors.mincashback && (
             <div style={{ fontSize: 12, color: "red" }}>
               {formik.errors.mincashback}
             </div>
@@ -228,9 +226,9 @@ const AddPettyCash = () => {
             classNames="input__field__reversal__inactive"
             className={
               // step === 0
-              // ?
-              "input__label__reversal"
-              // : "input__label__reversal__inactive"
+                // ?
+                 "input__label__reversal"
+                // : "input__label__reversal__inactive"
             }
             label="Transaction Limit"
             placeholder="Enter"
@@ -242,7 +240,7 @@ const AddPettyCash = () => {
               formik.setFieldValue("transactionlimit", e.target.value)
             }
           />
-          {formik.touched.transactionlimit && formik.errors.transactionlimit && (
+            {formik.touched.transactionlimit && formik.errors.transactionlimit && (
             <div style={{ fontSize: 12, color: "red" }}>
               {formik.errors.transactionlimit}
             </div>
@@ -262,5 +260,5 @@ const AddPettyCash = () => {
     </div>
   )
 }
-export default AddPettyCash
+export default EditPettyCash
 

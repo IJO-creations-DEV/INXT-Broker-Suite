@@ -107,6 +107,11 @@ import EditCurrency from "../module/FinanceMastersModule/CurrencyMaster/EditCurr
 import AddMainAccount from "../module/FinanceMastersModule/MainAccountMaster/AddMainAccount";
 import EditMainAccount from "../module/FinanceMastersModule/MainAccountMaster/EditMainAccount";
 import ViewMainAccount from "../module/FinanceMastersModule/MainAccountMaster/ViewMainAccount";
+import Commission from "../module/GeneralMasters/Commission";
+import AddCommission from "../module/GeneralMasters/Commission/AddCommission";
+import EditCommission from "../module/GeneralMasters/Commission/EditCommission";
+import ViewCommission from "../module/GeneralMasters/Commission/ViewCommission";
+import EditPettyCash from "../module/FinanceMastersModule/PettyCashMaster/EditPettyCash";
 
 const Maincomponent = () => {
   return (
@@ -374,7 +379,8 @@ const Maincomponent = () => {
               element={<PettyCashdetails />}
             />
 
-            {/* <Route path="master/finance/bank" element={<BankMaster />} /> */}
+
+            <Route path="master/finance/pettycash/editpettycash" element={<EditPettyCash />} />
 
             <Route />
             <Route path="master/finance/company" element={<CompanyMaster />} />
@@ -468,7 +474,10 @@ const Maincomponent = () => {
               path="master/finance/currency/viewcurrency"
               element={<ViewCurrency />}
             />
-            {/* <Route path="master/finance/company/addcompany" element={<AddCompany />} /> */}
+            <Route path="master/generals/commission" element={<Commission/>} />
+            <Route path="master/generals/commission/addcommission" element={<AddCommission/>} />
+            <Route path="master/generals/commission/editcommission" element={<EditCommission />} />
+            <Route path="master/generals/commission/viewcommission" element={<ViewCommission />} />
           </Route>
         </Routes>
       </div>

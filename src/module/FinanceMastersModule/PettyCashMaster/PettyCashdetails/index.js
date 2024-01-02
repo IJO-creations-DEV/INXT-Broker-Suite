@@ -1,159 +1,219 @@
-import React, { useState } from "react";
-import "./index.scss";
-import { BreadCrumb } from "primereact/breadcrumb";
-import InputField from "../../../../components/InputField";
-import SvgDot from "../../../../assets/icons/SvgDot";
-import { Button } from "primereact/button";
-import SvgDropdown from "../../../../assets/icons/SvgDropdown";
-import DropDowns from "../../../../components/DropDowns";
-import { Card } from "primereact/card";
-import SuccessIcon from "../../../../assets/icons/SuccessIcon";
-import NavBar from "../../../../components/NavBar";
-import SvgEditicon from "../../../../assets/icons/SvgEdit";
 
-function PettyCashDetail() {
-  const [selectedItem, setSelectedItem] = useState(null);
+import { BreadCrumb } from 'primereact/breadcrumb'
+import React, { useEffect, useState,useRef } from 'react'
+import NavBar from '../../../../components/NavBar'
+import SvgDot from '../../../../assets/icons/SvgDot';
+import "../PettyCashdetails/index.scss"
+import InputField from '../../../../components/InputField';
+import { Button } from 'primereact/button';
+import { useFormik } from 'formik';
+import ArrowLeftIcon from '../../../../assets/icons/ArrowLeftIcon';
+import { useNavigate } from 'react-router-dom';
+
+const PettyCashDetail = () => {
+  const toastRef = useRef(null);
+  const navigate=useNavigate()
   const [visiblePopup, setVisiblePopup] = useState(false);
-  const showPopup = () => {
-    setVisiblePopup(true);
-    setTimeout(() => {
-      setVisiblePopup(false);
-    }, 4000);
-  };
-  
-  const items = [{ label: "Petty Cash" }, { label: "Add Petty Cash" }];
-  const item = [
-    { name: "New York", code: "NY" },
-    { name: "Rome", code: "RM" },
-    { name: "London", code: "LDN" },
-    { name: "Istanbul", code: "IST" },
-    { name: "Paris", code: "PRS" },
+  const items = [
+    { label: 'Petty Cash', url: '/master/finance/pettycash' },
+    { label: 'Petty Cash Details', url: '/master/finance/pettycash/pettycashdetail' },
+
   ];
+  const handleGoBack=()=>{
+    navigate("/master/finance/pettycash")
+  }
   const home = { label: "Master" };
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setVisiblePopup(false);
+    }, 2000);
 
+    return () => clearTimeout(timerId);
+  }, [visiblePopup]);
+
+  const [step, setStep] = useState(0);
+  const customValidation = (values) => {
+    const errors = {};
+
+    if (!values.prttycashcode) {
+      errors.prttycashcode = "This field Code is required";
+    }
+
+    if (!values.pettycashname) {
+      errors.pettycashname = "This field is required";
+    }
+    if (!values.pettycashsize) {
+      errors.pettycashsize = "This field is required";
+    }
+    if (!values.avilabelcash) {
+      errors.avilabelcash = "This field is required";
+    }
+    if (!values.mincashback) {
+      errors.mincashback = "This field is required";
+    }
+    if (!values.transactionlimit) {
+      errors.transactionlimit = "This field is required";
+    }
+
+    return errors;
+  };
+  const handleSubmit = (values) => {
+    console.log(values, "find values");
+  };
+  const formik = useFormik({
+    initialValues: {
+      prttycashcode: "",
+      pettycashname: "",
+      pettycashsize: "",
+      avilabelcash: "",
+      mincashback: "",
+      transactionlimit: ""
+    },
+    validate: customValidation,
+    onSubmit: (values) => {
+      handleSubmit(values);
+      setStep(1);
+    },
+  });
   return (
-    <div className="overall_pettycashdetail_container">
-        <NavBar/>
-        <div className="bankaccountedit_container">
-        <div>
-      <label className="label_header">Add Petty Cash</label>
-      <BreadCrumb
-        model={items}
-        home={home}
-        className="breadcrumbs_container"
-        separatorIcon={<SvgDot color={"#000"} />}
-      />
+    <div className='grid detail__add__container'>
+      <div className='col-12'>
+        <NavBar />
       </div>
-      <div className="addbutton_container">
-          <SvgEditicon className="addicon"/>
-          <p className="addtext">Edit</p>
-             </div>
-             </div>
-      <Card>
-        <div class="grid">
-          <div class="sm-col-12  md:col-3 lg-col-4 col-offset-9">
-            <DropDowns
-              className="dropdown__container"
-              label="Status"
-              value={selectedItem}
-              onChange={(e) => setSelectedItem(e.value)}
-              options={item}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-        </div>
-        <div class="grid">
-          <div class="sm-col-12 col-12 md:col-3 lg-col-4">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Account Number"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-          <div class="sm-col-12  md:col-6 lg-col-4">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Account Name"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-          <div class="sm-col-12 col-12 md:col-3 lg-col-4">
-            <div>
-            <InputField
-                classNames="field__container"
-                label="Account Type description"
-                placeholder={"Enter"}
-              />
-            </div>
-          </div>
-        </div>
-
-        
-
-        <div class="grid">
-          <div class="col-3 md:col-3 lg-col-3">
-          <InputField
-                classNames="field__container"
-                label="Account Type description"
-                placeholder={"Enter"}
-              />
-          </div>
-          <div class="col-3 md:col-3 lg-col-3">
-          <InputField
-                classNames="field__container"
-                label="Account Type description"
-                placeholder={"Enter"}
-              />
-          </div>
-          <div class="sm-col-12 col-12 md:col-3 lg-col-4">
-          <InputField
-                classNames="field__container"
-                label="Account Type description"
-                placeholder={"Enter"}
-              />
-          </div>
-          <div class="sm-col-12  md:col-3 lg-col-4">
-            <InputField
-              classNames="field__container"
-              label="Currency Description"
-              placeholder={"Enter"}
-            />
-          </div>
-        </div>
-       
-      </Card>
-
-      <div className="next_container">
-        <div className="exit_print_buttons">
-          <Button label="Save" className="print" onClick={showPopup} />
-        </div>
-        <div>
-          {visiblePopup && (
-            <div className="grid custom-modal-overlay">
-              <div className="col-10 md:col-2 lg:col-2 custom-modal">
-                <div className="popup__text">
-                Account  Number 
-                <span className="accountnum_text">
-                     265478932107 
-                    </span>
-is Successfully added
-                </div>
-                <div className="popup__icon">
-                  <SuccessIcon />
-                </div>
-              </div>
-            </div>
-          )}
+      <div className='col-12 mb-2'>
+        <div className='add__sub__title '><div onClick={handleGoBack} className='mr-2 mt-1'><ArrowLeftIcon /></div> Petty Cash Details</div>
+        <div className='mt-3'>
+          <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
         </div>
       </div>
+      <div className="grid card__container p-2">
+        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+          <InputField
+            classNames="input__field__reversal__inactive"
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Petty Cash Code"
+            placeholder="Enter"
+            value={
+              formik.values.prttycashcode
+
+            }
+            onChange={(e) =>
+              formik.setFieldValue("prttycashcode", e.target.value)
+            }
+
+          />
+        </div>
+        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+          <InputField
+            classNames="input__field__reversal__inactive"
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Petty Cash Name"
+            placeholder="Enter"
+            value={
+              formik.values.pettycashname
+            }
+            onChange={(e) =>
+              formik.setFieldValue("pettycashname", e.target.value)
+            }
+          />
+        </div>
+        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+          <InputField
+            classNames="input__field__reversal__inactive"
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Petty Cash Size"
+            placeholder="Enter"
+            value={
+              formik.values.pettycashsize
+
+            }
+            onChange={(e) =>
+              formik.setFieldValue("pettycashsize", e.target.value)
+            }
+          />
+        </div>
+        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+          <InputField
+            classNames="input__field__reversal__inactive"
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Available Cash"
+            placeholder="Enter"
+            value={
+              formik.values.avilabelcash
+
+            }
+            onChange={(e) =>
+              formik.setFieldValue("avilabelcash", e.target.value)
+            }
+          />
+        </div>
+        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+          <InputField
+            classNames="input__field__reversal__inactive"
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Minimum Cash Box"
+            placeholder="Enter"
+            value={
+              formik.values.mincashback
+
+            }
+            onChange={(e) =>
+              formik.setFieldValue("mincashback", e.target.value)
+            }
+          />
+        </div>
+        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+          <InputField
+            classNames="input__field__reversal__inactive"
+            className={
+              step === 0
+                ? "input__label__reversal"
+                : "input__label__reversal__inactive"
+            }
+            label="Transaction Limit"
+            placeholder="Enter"
+            value={
+              formik.values.transactionlimit
+
+            }
+            onChange={(e) =>
+              formik.setFieldValue("transactionlimit", e.target.value)
+            }
+          />
+        </div>
+      </div>
+      {/* <div className='col-12 btn__view__Add mt-2'>
+        <Button
+          label='Save'
+          className='save__add__btn'
+          // onClick={() => setVisiblePopup(true)}
+          onClick={formik.handleSubmit}
+        />
+      </div> */}
+
     </div>
-  );
+  )
 }
+export default PettyCashDetail
 
-export default PettyCashDetail;
+

@@ -1,5 +1,5 @@
-.container__petty__cash {
-    .add__icon__title__petty{
+.container__commission {
+    .add__icon__title__Journal__Voture {
         color: #111927;
         font-size: 30px;
         font-weight: 600;
@@ -8,7 +8,7 @@
         align-items: center;
     }
 
-    .breadCrums__view__reversal__petty {
+    .breadCrums__view__reversal__Journal__Voture {
         border: none;
         padding: 0;
         font-family: Inter var;
@@ -23,7 +23,7 @@
         color: #B1B1B1;
     }
 
-    .item__color__petty {
+    .item__color__Journal__Voture {
         border: none;
         padding: 0;
         font-family: Inter var;
@@ -31,7 +31,7 @@
         font-size: 16px;
         font-weight: 600;
     }
-    .add__icon__alighn__petty{
+    .add__icon__alighn__Journal__Voture {
         display: flex;
         justify-content: flex-end;
         align-items: end;
@@ -106,7 +106,7 @@
         }
 
     }
-    .sub__container__petty {
+    .sub__container__Journal__Voture {
         // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         // border-radius: 10px;
         background: #ffffff;
@@ -117,7 +117,7 @@
         stroke-width: 1px !important;
         stroke: #fff !important;
         filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
-        .sort__filter__view__petty {
+        .sort__filter__view__Journal__Voture {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -129,7 +129,7 @@
 
         }
 
-        .sort__by__text__petty {
+        .sort__by__text__Journal__Voture {
             font-family: Inter var;
             font-size: 14px;
             font-weight: 500;
@@ -139,13 +139,13 @@
 
         }
 
-        .input__sub__account__petty{
+        .input__sub__account__Journal__Voture {
             width: 100% !important;
             position: relative;
             border-radius: 10px;
         }
 
-        .table__view__petty {
+        .table__view__Journal__Voture {
             color: #000;
             font-size: 14px;
             font-weight: 600;
@@ -163,18 +163,18 @@
             cursor: pointer;
 
         }
-        .searchinput_left__petty{
+        .searchinput_left__Journal__Voture {
             width: 100%;
             border-radius: 8px;
         }
     
-        .searchiput_container__petty{
+        .searchiput_container__Journal__Voture {
             // background-color: red;
             width: 100%;
             margin-bottom: 20px;
         }
     
-        .searchIcon__view__input__petty {
+        .searchIcon__view__input__Journal__Voture {
             display: flex;
             // justify-content: center;
             align-items: center;
@@ -214,7 +214,7 @@
             margin-left: 10px;
     
         }
-        .main__tabel__title__petty {
+        .main__tabel__title__Journal__Voture {
             font-family: 'Inter var';
             font-size: 20px;
             font-weight: 600;

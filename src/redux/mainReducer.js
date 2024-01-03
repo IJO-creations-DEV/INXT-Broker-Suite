@@ -27,5 +27,4 @@ const reducers = {
     receiptsTableReducers,
 }
 
-
 export default reducers;

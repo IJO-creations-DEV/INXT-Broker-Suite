@@ -29,7 +29,7 @@ function BranchAdding() {
   // }
 
   const navigate = useNavigate();
-  const items = [{ label: "Receipts",url:"policyreceipts" }, { label: "Add Receipts" }];
+  const items = [{ label: "accounts/Receipts",url:"accounts/receipts/policyreceipts" }, { label: "Add Receipts" }];
   const home = { label: "Accounts " };
   const item = [
     { name: "Policy", code: "PL" },
@@ -109,7 +109,7 @@ function BranchAdding() {
     const formErrors = validate(formik.values);
     setErrors(formErrors);
     console.log(formErrors, "iiiii");
-    navigate("/addpolicyedit");
+    navigate("/accounts/receipts/addpolicyedit");
   };
 
   const formik = useFormik({

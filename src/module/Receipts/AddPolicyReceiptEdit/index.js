@@ -26,7 +26,7 @@ function PolicyReceipts() {
     setProducts(data);
   }, []);
   const navigate = useNavigate();
-  const items = [{ label: "Receipts",url:"/policyreceipts" }, { label: "Add Receipts" }];
+  const items = [{ label: "accounts/Receipts",url:"/accounts/receipts/policyreceipts" }, { label: "Add Receipts" }];
 
   const home = { label: "Accounts " };
  

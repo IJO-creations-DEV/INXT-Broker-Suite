@@ -9,7 +9,8 @@ import mainAccoutMiddleware from '../module/FinanceMastersModule/MainAccountMast
 import commissionMianReducers from "../module/GeneralMasters/Commission/store/commissionReducers";
 import taxationMainReducers from "../module/FinanceMastersModule/TaxationMaster/store/taxationReducers";
 import subAccountMainReducers from "../module/FinanceMastersModule/SubAccountMaster/store/subAccountReducers";
-import pettyCashMainReducers from "../module/FinanceMastersModule/PettyCashMaster/store/pettyCashMasterReducers"
+import pettyCashMainReducers from "../module/FinanceMastersModule/PettyCashMaster/store/pettyCashMasterReducers";
+import receiptsTableReducers from "../module/Receipts/store/receiptsReducers"
 const reducers = {
     journalVoucherReducers,
     paymentVoucherReducers,
@@ -22,7 +23,8 @@ const reducers = {
     commissionMianReducers,
     taxationMainReducers,
     subAccountMainReducers,
-    pettyCashMainReducers
+    pettyCashMainReducers,
+    receiptsTableReducers,
 }
 
 

@@ -82,3 +82,10 @@ export const GET_SUB_ACCOUNT_SEARCH_LIST = 'subaccount/GET_SUB_ACCOUNT_SEARCH_LI
 export const  POST_SUB__ACCOUNT = 'subaccount/POST_SUB__ACCOUNT'
 export const  GET_SUB__ACCOUNT_VIEW = 'subaccount/GET_SUB__ACCOUNT_VIEW'
 export const  PATCH_SUB__ACCOUNT_EDIT = 'subaccount/PATCH_SUB__ACCOUNT_EDIT'
+
+export const GET_RECEIPT_DETAILS = 'receipts/GET_RECEIPT_DETAILS'
+export const GET_RECEIPT_DETAILS_BY_ID ='receipts/GET_RECEIPT_DETAILS_BY_ID'
+export const GET_RECEIVABLE_TABLE ='receipts/GET_RECEIVABLE_TABLE'
+export const POST_ADD_RECEIPTS ='receipts/POST_ADD_RECEIPTS'
+export const POST_PAYMENT_DETAILS ='receipts/POST_PAYMENT_DETAILS'
+export const PATCH_RECEIPT_EDIT ='receipts/PATCH_RECEIPT_EDIT'

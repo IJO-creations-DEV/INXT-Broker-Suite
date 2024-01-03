@@ -15,6 +15,7 @@ import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import SvgEye from "../../../assets/icons/SvgEye";
 import { TieredMenu } from 'primereact/tieredmenu';
+import { useSelector } from "react-redux";
 
 const PolicyReceipts = () => {
   const [products, setProducts] = useState([]);
@@ -30,7 +31,19 @@ const PolicyReceipts = () => {
     },
    
   ];
+  const { receiptsTableList, loading } = useSelector(({ receiptsTableReducers }) => {
+    return {
+      loading: receiptsTableReducers?.loading,
+      receiptsTableList: receiptsTableReducers?.receiptsTableList,
+    // const [products, setProducts] = useState([]);
+    
+// const handleView=()=>{
+//   navigate('/accounts/paymentvoucher/detailview')
+// }
 
+    };
+  });
+console.log(receiptsTableList,"receiptsTableList")
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -123,13 +136,13 @@ const PolicyReceipts = () => {
   };
 
   const handlePolicy = () => {
-    navigate("/addpolicyreceipts1");
+    navigate("/accounts/receipts/addpolicyreceipts1");
   };
   const handleArrowClick = () => {
-    navigate("/policyreceiptsview");
+    navigate("/accounts/receipts/policyreceiptsview");
   };
   const handleEditClick = () => {
-    navigate("/otherreceiptsview");
+    navigate("/accounts/receipts/otherreceiptsview");
   };
   return (
     <div className="overall__policyreceipts__container">
@@ -181,7 +194,7 @@ const PolicyReceipts = () => {
 
         <div className="card">
           <DataTable
-            value={products}
+            value={receiptsTableList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",

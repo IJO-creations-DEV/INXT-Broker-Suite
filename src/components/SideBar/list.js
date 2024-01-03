@@ -16,20 +16,7 @@ export const menuList = [
         id: 3,
         name: "Petty Cash",
         submenu: [
-            {
-                id: 1,
-                name: "Receipts",
-                path: "/policyreceipts",
-            },
-            {
-                id: 2,
-                name: "Payment Voucher",
-                path: "accounts/paymentvoucher",
-            },
-            {
-                id: 3,
-                name: "Petty Cash",
-                submenu: [
+    
                     {
                         id: 1,
                         name: "Initiate",
@@ -57,23 +44,7 @@ export const menuList = [
                     },
                 ],
             },
-            {
-                id: 4,
-                name: 'Journal Voucher',
-                path: '/accounts/journalvoucher',
-            },
-            {
-                id: 5,
-                name: "Correction Journal Voucher",
-                path: "/accounts/correctionsjv/correctionsjvdetails",
-            },
-            {
-                id: 6,
-                name: "Reversal Journal Voucher",
-                path: "/accounts/reversaljv/reversaljvdetails",
-            },
-        ],
-      },
+      
       {
         id: 4,
         name: "Journal Voucher",

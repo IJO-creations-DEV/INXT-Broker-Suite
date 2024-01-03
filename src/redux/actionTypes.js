@@ -4,12 +4,34 @@ export const GET_JOURNAL_VOUCHER = 'journalvoucher/GET_JOURNAL_VOUCHER'
 export const GET_PAYMENT_VOUCHER = 'journalvoucher/GET_PAYMENT_VOUCHER';
 export const GET_PAYMENT_VOUCHER_BY_ID = 'journalvoucher/GET_PAYMENT_VOUCHER_BY_ID'
 export const GET_COMMISSION="commission/GET_COMMISSION";
-export const GET_COMMISSION_BY_ID="commission/GET_COMMISSION_BY_ID"
 export const GET_TAXATION="taxation/GET_TAXATION";
-export const GET_TAXATION_BY_ID="taxation/GET_TAXATION_BY_ID";
 export const GET_SUB__ACCOUNT="subaccount/GET_SUB__ACCOUNT";
+export const POST_ADD_PETTY_CASH="pettycash/POST_ADD_PETTY_CASH";
+
+export const GET_COMMISSION_BY_ID="commission/GET_COMMISSION_BY_ID"
+export const GET_COMMISSION_SEARCH_LIST = 'commission/GET_COMMISSION_SEARCH_LIST'
+export const  POST_COMMISSION = 'commission/POST_COMMISSION'
+export const  GET_COMMISSION_VIEW = 'commission/GET_COMMISSION_VIEW'
+export const  PATCH_COMMISSION_EDIT = 'commission/PATCH_COMMISSION_EDIT'
+
+export const GET_TAXATION_BY_ID="taxation/GET_TAXATION_BY_ID";
+export const GET_TAXATION_SEARCH_LIST = 'taxation/GET_TAXATION_SEARCH_LIST'
+export const  POST_TAXATION = 'taxation/POST_TAXATION'
+export const  GET_TAXATION_VIEW = 'taxation/GET_TAXATION_VIEW'
+export const  PATCH_TAXATION_EDIT = 'taxation/PATCH_TAXATION_EDIT'
+
+export const GET_PETTY_CASH_BY_ID="pettycash/GET_PETTY_CASH_BY_ID";
+export const GET_PETTY_CASH_SEARCH_LIST = 'pettycash/GET_PETTY_CASH_SEARCH_LIST'
+export const  POST_PETTY_CASH = 'pettycash/POST_PETTY_CASH'
+export const  GET_PETTY_CASH_VIEW = 'pettycash/GET_PETTY_CASH_VIEW'
+export const  PATCH_PETTY_CASH_EDIT = 'pettycash/PATCH_PETTY_CASH_EDIT'
+
 export const GET_SUB__ACCOUNT_BY_ID="subaccount/GET_SUB__ACCOUNT_BY_ID";
-export const GET_PETTY_CASH_BY_ID="pettycash/GET_PETTY_CASH_BY_ID"
+// export const GET_PETTY_CASH_BY_ID="pettycash/GET_PETTY_CASH_BY_ID"
+// export const GET_SUB_ACCOUNT_SEARCH_LIST = 'subaccount/GET_SUB_ACCOUNT_SEARCH_LIST'
+// export const  POST_SUB__ACCOUNT = 'subaccount/POST_SUB__ACCOUNT'
+// export const  GET_SUB__ACCOUNT_VIEW = 'subaccount/GET_SUB__ACCOUNT_VIEW'
+// export const  PATCH_SUB__ACCOUNT_EDIT = 'subaccount/PATCH_SUB__ACCOUNT_EDIT'
 
 export const GET_TRANSACTION_CODE_LIST = 'transaction/GET_TRANSACTION_CODE_LIST'
 export const GET_TRANSACTION_CODE_LIST_SEARCH = 'transaction/GET_TRANSACTION_CODE_LIST_SEARCH'
@@ -56,3 +78,7 @@ export const  POST_MAIN_ACCOUNT_STATUS = 'mainAccout/POST_MAIN_ACCOUNT_STATUS'
 export const  GET_MAIN_ACCOUNT_DETAIL_VIEW = 'mainAccout/GET_MAIN_ACCOUNT_DETAIL_VIEW'
 export const  GET_ADD_MAIN_ACCOUNT = 'mainAccout/GET_ADD_MAIN_ACCOUNT'
 export const  PATCH_MAIN_ACCOUNT_DETAIL_EDIT = 'mainAccout/PATCH_MAIN_ACCOUNT_DETAIL_EDIT'
+export const GET_SUB_ACCOUNT_SEARCH_LIST = 'subaccount/GET_SUB_ACCOUNT_SEARCH_LIST'
+export const  POST_SUB__ACCOUNT = 'subaccount/POST_SUB__ACCOUNT'
+export const  GET_SUB__ACCOUNT_VIEW = 'subaccount/GET_SUB__ACCOUNT_VIEW'
+export const  PATCH_SUB__ACCOUNT_EDIT = 'subaccount/PATCH_SUB__ACCOUNT_EDIT'

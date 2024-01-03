@@ -15,7 +15,7 @@ import CustomToast from '../../../../components/Toast';
 import { useNavigate } from 'react-router-dom';
 
 const AddPettyCash = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const items = [
@@ -31,7 +31,7 @@ const AddPettyCash = () => {
 
     return () => clearTimeout(timerId);
   }, [visiblePopup]);
-  const handleGoBack=()=>{
+  const handleGoBack = () => {
     navigate("/master/finance/pettycash")
   }
 
@@ -61,7 +61,7 @@ const AddPettyCash = () => {
 
     return errors;
   };
- 
+
   const handleSubmit = (values) => {
     toastRef.current.showToast();
     setTimeout(() => {
@@ -102,10 +102,7 @@ const AddPettyCash = () => {
           <InputField
             classNames="input__field__reversal__inactive"
             className={
-              // step === 0
-              // ?
               "input__label__reversal"
-              // : "input__label__reversal__inactive"
             }
             label="Petty Cash Code"
             placeholder="Enter"
@@ -128,10 +125,7 @@ const AddPettyCash = () => {
           <InputField
             classNames="input__field__reversal__inactive"
             className={
-              // step === 0
-              // ?
               "input__label__reversal"
-              // : "input__label__reversal__inactive"
             }
             label="Petty Cash Name"
             placeholder="Enter"
@@ -152,10 +146,7 @@ const AddPettyCash = () => {
           <InputField
             classNames="input__field__reversal__inactive"
             className={
-              // step === 0
-              // ?
               "input__label__reversal"
-              // : "input__label__reversal__inactive"
             }
             label="Petty Cash Size"
             placeholder="Enter"
@@ -177,10 +168,7 @@ const AddPettyCash = () => {
           <InputField
             classNames="input__field__reversal__inactive"
             className={
-              // step === 0
-              // ?
               "input__label__reversal"
-              // : "input__label__reversal__inactive"
             }
             label="Available Cash"
             placeholder="Enter"
@@ -202,10 +190,7 @@ const AddPettyCash = () => {
           <InputField
             classNames="input__field__reversal__inactive"
             className={
-              // step === 0
-              // ?
               "input__label__reversal"
-              // : "input__label__reversal__inactive"
             }
             label="Minimum Cash Box"
             placeholder="Enter"
@@ -227,10 +212,7 @@ const AddPettyCash = () => {
           <InputField
             classNames="input__field__reversal__inactive"
             className={
-              // step === 0
-              // ?
               "input__label__reversal"
-              // : "input__label__reversal__inactive"
             }
             label="Transaction Limit"
             placeholder="Enter"
@@ -253,7 +235,7 @@ const AddPettyCash = () => {
         <Button
           label='Save'
           className='save__add__btn'
-          // onClick={() => setVisiblePopup(true)}
+
           disabled={!formik.isValid}
           onClick={formik.handleSubmit}
         />

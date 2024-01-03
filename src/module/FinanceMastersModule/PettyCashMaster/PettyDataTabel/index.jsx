@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
+
 const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList }) => {
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
@@ -131,14 +132,14 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList }) => {
                     field="pettycashcode"
                     header="Petty Cash Code"
                     className="fieldvalue_container"
-
+                   sortable
 
                 ></Column>
                 <Column
                     field="pettycashname"
                     header="Petty Cash Name"
                     className="fieldvalue_container"
-
+                     sortable
                 ></Column>
 
                 <Column
@@ -146,7 +147,7 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList }) => {
                     header="Petty Cash Size"
                     className="fieldvalue_container"
 
-
+                    sortable
                 ></Column>
                 <Column
                     field="minicashbox"

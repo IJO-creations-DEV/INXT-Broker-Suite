@@ -72,7 +72,7 @@ const ViewCurrency = () => {
                     <div className='grid'>
                     <div className='col-12 md:col-6 lg:col-6'>
                         <InputField
-                            label="Currency Description"
+                            label="Currency Name"
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
@@ -82,7 +82,7 @@ const ViewCurrency = () => {
                     </div>
                     <div className='col-12 md:col-6 lg:col-6'>
                         <InputField
-                            label="Currency Short Description"
+                            label="Description"
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"

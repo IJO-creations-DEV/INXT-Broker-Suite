@@ -10,7 +10,7 @@ export const menuList = [
       {
         id: 2,
         name: "Payment Voucher",
-        path: "/accounts/paymentvoucher",
+        path: "accounts/paymentvoucher",
       },
       {
         id: 3,

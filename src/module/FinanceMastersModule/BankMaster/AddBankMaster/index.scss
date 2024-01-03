@@ -140,6 +140,17 @@ font-weight: 500;
     overflow: hidden;
     text-wrap: nowrap;
     margin: 10px 0px;
+    overflow: visible;
+}
+.p-inputgroup-addon:last-child, .p-inputgroup button:last-child, .p-inputgroup input:last-child, .p-inputgroup > .p-inputwrapper:last-child, .p-inputgroup > .p-inputwrapper:last-child > .p-inputtext {
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    /* overflow: hidden; */
+}
+.p-inputgroup-addon:first-child, .p-inputgroup button:first-child, .p-inputgroup input:first-child, .p-inputgroup > .p-inputwrapper:first-child, .p-inputgroup > .p-inputwrapper:first-child > .p-inputtext {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    /* border-radius: 10px; */
 }
 }
 @media (min-width: 576px) {

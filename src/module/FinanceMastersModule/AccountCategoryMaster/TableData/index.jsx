@@ -115,6 +115,7 @@ const TableData = ({ handleAction, EmptyTable }) => {
           field="accountCategoryCode"
           header="Account Category Code"
           className="fieldvalue_container"
+          sortable
         ></Column>
         <Column
           field="accountCategoryName"

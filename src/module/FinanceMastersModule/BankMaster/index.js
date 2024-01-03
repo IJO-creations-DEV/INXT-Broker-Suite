@@ -19,6 +19,7 @@ import { TieredMenu } from 'primereact/tieredmenu';
 import { Dialog } from 'primereact/dialog';
 import InputField from "../../../components/InputField";      
 import ToggleButton from "../../../components/ToggleButton";
+import SvgTable from "../../../assets/icons/SvgTable";
 
 const BankMaster = () => {
   const menu = useRef(null);
@@ -31,6 +32,7 @@ const BankMaster = () => {
     {label:"Add/Edit Account", command: () => navigate("/master/finance/bank/accountdataview")}
   ]
 
+  
     const [products, setProducts] = useState([]);
     useEffect(() => {
         ProductService.getProductsMini().then(data => setProducts(data));
@@ -39,7 +41,16 @@ const BankMaster = () => {
     const handleView =()=>{
       console.log("succes")
     }
+    const isEmpty = products.length === 0;
 
+    const emptyTableIcon = (
+      <div>
+      <div className="empty-table-icon">
+        <SvgTable/>
+      </div>
+      <div className="no__data__found">No data entered</div>
+      </div>
+    );
     const template2 = {
         layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
         RowsPerPageDropdown: (options) => {
@@ -71,7 +82,7 @@ const BankMaster = () => {
     const headerStyle = {
         // width: '10rem',
         // backgroundColor: 'red',
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: 'Inter var',
         fontWeight: 500,
         padding: 6,
@@ -172,11 +183,12 @@ onClick={handleadd}
                     paginatorTemplate={template2}
                     scrollable={true}
             scrollHeight="40vh"
+            emptyMessage={isEmpty ? emptyTableIcon : null}
                 >
                   
-                    <Column field="name" header="Bank Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="name" header="Bank Name" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="Bank Branch" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="name" header="Bank Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="name" header="Bank Name"sortable headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="category" header="Bank Branch" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
                     <Column field="quantity" header="IFSC Code"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="name" header="Email" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="name" header="Phone" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
@@ -338,7 +350,7 @@ onClick={handleadd}
     </div>
 </div>
 <div style={{display:'flex',justifyContent:'flex-end'}}>
-  <Button label="Update" className="dialog_updatebutton_view"/>
+  <Button label="Update" className="dialog_updatebutton_view" onClick={() => setVisible(false)}/>
 </div>
 
 

@@ -206,6 +206,7 @@ const TaxationMaster = () => {
                   header="Tax Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  sortable
                 ></Column>
                 <Column
                   field="taxationName"
@@ -219,7 +220,7 @@ const TaxationMaster = () => {
                   header="Tax Rate"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-                //   sortable
+                  sortable
                 ></Column>
                 <Column
                   field="effectiveFrom"

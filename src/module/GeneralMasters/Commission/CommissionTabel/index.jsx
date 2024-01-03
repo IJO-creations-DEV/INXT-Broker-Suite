@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../components/ToggleButton";
+
 const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
@@ -134,14 +135,14 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                     field="commissionCode"
                     header="Commission Code"
                     className="fieldvalue_container"
-
+                    sortable
 
                 ></Column>
                 <Column
                     field="product"
                     header="Product"
                     className="fieldvalue_container"
-                   
+                   sortable
                 ></Column>
 
                 <Column

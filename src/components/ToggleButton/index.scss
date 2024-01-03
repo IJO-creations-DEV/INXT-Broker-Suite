@@ -22,11 +22,21 @@ label {
     display: none;
     left: 10px;
     right: auto;
+    top: 17px;
+    font-family: 'Inter var';
+    font-size: 10px;
+    
+    font-weight: 500;
   }
   .input:not(:checked) ~ .toggle-wrapper .active-text {
     display: block;
     left: 40%;
     right: auto;
+    top: 17px;
+    font-family: 'Inter var';
+    font-size: 10px;
+    
+    font-weight: 500;
   }
 
   .toggle-wrapper {
@@ -65,13 +75,17 @@ label {
     transform: translateY(-100%);
     transition: all 0.25s ease;
     white-space: nowrap;
-    font-size: 10px;
+   
     color: #ef0000;
+    font-family: 'Inter var';
+    font-size: 10px;
+    
+    font-weight: 500;
   }
 
   .inactive-text {
     position: absolute;
-    top: 70%;
+    top: 74%;
     transform: translateY(-100%);
     transition: all 0.25s ease;
     white-space: nowrap;

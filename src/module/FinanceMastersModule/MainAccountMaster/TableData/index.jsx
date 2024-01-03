@@ -120,6 +120,7 @@ const TableData = ({ handleAction }) => {
           field="mainAccountCode"
           header="Main Account Code"
           className="fieldvalue_container"
+          sortable
         ></Column>
         <Column
           field="description"

@@ -20,6 +20,10 @@ import {
   Branchcode,
   Departcode,
 } from "../../mock";
+import {
+  postInitiateMiddleware,
+} from "../store/pettyCashInitiateMiddleware";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialValue = {
   PettyCashCode: "",
@@ -43,6 +47,7 @@ const initialValue = {
 const InitiateForm = () => {
   const toastRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
 
@@ -76,7 +81,21 @@ const InitiateForm = () => {
     return errors;
   };
 
-  const handleSubmit = () => {
+  const { InitiateList, loading } = useSelector(
+    ({ pettyCashInitiateReducer }) => {
+      return {
+        loading: pettyCashInitiateReducer?.loading,
+        InitiateList: pettyCashInitiateReducer?.InitiateList,
+      };
+    }
+  );
+
+  const handleSubmit = (value) => {
+    const valueWithId = {
+      ...value,
+      id: InitiateList?.length + 1,
+    };
+    dispatch(postInitiateMiddleware(valueWithId));
     toastRef.current.showToast();
     setTimeout(() => {
       navigate("/accounts/pettycash/pettycashcodeinitiate");
@@ -293,7 +312,7 @@ const InitiateForm = () => {
   };
   return (
     <div className="pettycash__form">
-      <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully"/>
+      <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully" />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div
@@ -390,7 +409,7 @@ const InitiateForm = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("BankAccountNumber", e.value);
-                  handleAccountcode(e.value.BankAccountCode)
+                  handleAccountcode(e.value.BankAccountCode);
                 }}
                 optionLabel="BankAccountCode"
                 error={
@@ -515,7 +534,7 @@ const InitiateForm = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("BranchCode", e.value);
-                  handleBranch(e.value.Branchcode)
+                  handleBranch(e.value.Branchcode);
                 }}
                 optionLabel="Branchcode"
                 error={formik.touched.BranchCode && formik.errors.BranchCode}
@@ -554,7 +573,7 @@ const InitiateForm = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("DepartmentCode", e.value);
-                  handleDepart(e.value.Departcode)
+                  handleDepart(e.value.Departcode);
                 }}
                 optionLabel="Departcode"
                 error={

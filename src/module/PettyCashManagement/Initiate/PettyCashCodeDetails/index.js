@@ -9,6 +9,7 @@ import { Card } from "primereact/card";
 import InputField from "../../../../components/InputField";
 import DropDowns from "../../../../components/DropDowns";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
+import { useSelector } from "react-redux";
 
 const initialValue = {
   PettyCashCode: "",
@@ -31,6 +32,17 @@ const initialValue = {
 
 const PettyCashCodeDetails = () => {
   const validate = () => {};
+
+  const { InitiateDetails, loading } = useSelector(
+    ({ pettyCashInitiateReducer }) => {
+      return {
+        loading: pettyCashInitiateReducer?.loading,
+        InitiateDetails: pettyCashInitiateReducer?.InitiateDetails,
+      };
+    }
+  );
+
+  console.log(InitiateDetails,"InitiateList")
 
   const navigate = useNavigate();
   const items = [

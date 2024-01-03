@@ -9,8 +9,14 @@ import mainAccoutMiddleware from '../module/FinanceMastersModule/MainAccountMast
 import commissionMianReducers from "../module/GeneralMasters/Commission/store/commissionReducers";
 import taxationMainReducers from "../module/FinanceMastersModule/TaxationMaster/store/taxationReducers";
 import subAccountMainReducers from "../module/FinanceMastersModule/SubAccountMaster/store/subAccountReducers";
-import pettyCashMainReducers from "../module/FinanceMastersModule/PettyCashMaster/store/pettyCashMasterReducers";
 import receiptsTableReducers from "../module/Receipts/store/receiptsReducers"
+import pettyCashMainReducers from "../module/FinanceMastersModule/PettyCashMaster/store/pettyCashMasterReducers"
+import pettyCashInitiateReducer from '../module/PettyCashManagement/Initiate/store/pettyCashInitiateReducer';
+import pettyCashDisbursementReducers from '../module/PettyCashManagement/Disbursement/store/pettyCashDisbursementReducers';
+import pettyCashReceiptsReducer from '../module/PettyCashManagement/Receipts/store/pettyCashReceiptsReducer';
+import pettyCashReplenishReducer from '../module/PettyCashManagement/Replenish/store/pettyCashReplenishReducer';
+import pettyCashRequestReducer from '../module/PettyCashManagement/Request/store/pettyCashRequestReducer'; 
+
 const reducers = {
     journalVoucherReducers,
     paymentVoucherReducers,
@@ -25,6 +31,11 @@ const reducers = {
     subAccountMainReducers,
     pettyCashMainReducers,
     receiptsTableReducers,
+    pettyCashInitiateReducer,
+    pettyCashDisbursementReducers,
+    pettyCashReceiptsReducer,
+    pettyCashReplenishReducer,
+    pettyCashRequestReducer
 }
 
 

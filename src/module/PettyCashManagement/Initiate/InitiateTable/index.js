@@ -12,12 +12,21 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+import { useDispatch, useSelector } from "react-redux";
+import { getInitiateDetailsMiddleware } from "../store/pettyCashInitiateMiddleware";
 
 const InitiateTable = () => {
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
-
+  
+  const { InitiateList, loading } = useSelector(({ pettyCashInitiateReducer }) => {
+    return {
+      loading: pettyCashInitiateReducer?.loading,
+      InitiateList: pettyCashInitiateReducer?.InitiateList,
+    };
+  });
   const emptyTableIcon = (
     <div>
     <div className="empty-table-icon">
@@ -59,6 +68,7 @@ const InitiateTable = () => {
   };
 
   const renderViewButton = (rowData) => {
+    dispatch(getInitiateDetailsMiddleware(rowData));
     return (
         <div className="center-content">
       <Button
@@ -127,7 +137,7 @@ const InitiateTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={products}
+            value={InitiateList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
@@ -157,7 +167,7 @@ const InitiateTable = () => {
               sortable
             ></Column>
             <Column
-              field="Transaction Number"
+              field="TransactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
@@ -185,7 +195,7 @@ const InitiateTable = () => {
               
             ></Column>
             <Column
-              field="category"
+              field="Date"
               header="Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"

@@ -18,8 +18,8 @@ import NavBar from '../../../components/NavBar';
 const AddPolicyReceipts = () => {
     const items = [
         { label: 'Accounts', url: '/accounts' },
-        { label: 'Receipts', url: '/receipts' },
-        { label: 'Add Receipts', url: '/addpolicyreceipts' },
+        { label: 'Receipts', url: '/accounts/receipts' },
+        { label: 'Add Receipts', url: '/accounts/receipts/addpolicyreceipts' },
     ];
 
     const home = { label: "Dashboard" };

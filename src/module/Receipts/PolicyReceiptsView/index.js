@@ -19,7 +19,7 @@ function PolicyReceipts() {
     setProducts(data);
   }, []);
 
-  const items = [{ label: "Receipts",url:'policyreceipts'}, { label: "Receipt Detail View" }];
+  const items = [{ label: "Receipts",url:'accounts/receipts/policyreceipts'}, { label: "Receipt Detail View" }];
 
   const home = { label: "Accounts " };
   const template2 = {

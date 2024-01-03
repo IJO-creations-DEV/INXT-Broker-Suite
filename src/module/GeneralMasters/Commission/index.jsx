@@ -9,6 +9,7 @@ import { InputText } from 'primereact/inputtext';
 import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon';
 import { TieredMenu } from 'primereact/tieredmenu';
 import CommissionTabel from './CommissionTabel';
+import { useSelector } from 'react-redux';
 
 
 const Commission = () => {
@@ -48,7 +49,15 @@ const Commission = () => {
     },
   ];
 
-
+  const [products, setProducts] = useState([]);
+  const { commissionList, loading } = useSelector(({ commissionMianReducers }) => {
+    return {
+      loading: commissionMianReducers?.loading,
+      commissionList: commissionMianReducers?.commissionList,
+   
+    };
+  });
+  console.log(commissionList,"commissionList")
   return (
     <div className='grid  container__commission'>
       <div className='col-12'>
@@ -102,7 +111,7 @@ const Commission = () => {
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <CommissionTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
+              <CommissionTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} commissionList={commissionList} />
             </div>
           </div>
         </div>

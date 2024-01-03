@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../components/ToggleButton";
-const CommissionTabel = ({ handleEdit, newDataTable }) => {
+const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -64,7 +64,7 @@ const CommissionTabel = ({ handleEdit, newDataTable }) => {
 
             return (
                 <div
-                    style={{ width: '40%' }}
+                    style={{display:'flex',justifyContent:'center',alignItems:'center'}}
                     className="table__selector">
                     <React.Fragment>
                         <span style={{ color: "var(--text-color)", userSelect: "none" }}>
@@ -115,7 +115,7 @@ const CommissionTabel = ({ handleEdit, newDataTable }) => {
     return (
         <div className="petty__cash__table__container">
             <DataTable
-                value={updatedProductData}
+                value={commissionList}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -131,21 +131,21 @@ const CommissionTabel = ({ handleEdit, newDataTable }) => {
 
             >
                 <Column
-                    field="mainAC"
+                    field="commissionCode"
                     header="Commission Code"
                     className="fieldvalue_container"
 
 
                 ></Column>
                 <Column
-                    field="subAC"
+                    field="product"
                     header="Product"
                     className="fieldvalue_container"
                    
                 ></Column>
 
                 <Column
-                    field="Remarks"
+                    field="selectCovers"
                     header="Select Covers"
                     className="fieldvalue_container"
                   
@@ -153,14 +153,14 @@ const CommissionTabel = ({ handleEdit, newDataTable }) => {
                 ></Column>
                 <Column
 
-                    header="Effective From"
+                    header="effectiveFrom"
                     className="fieldvalue_container"
 
 
                 ></Column>
                 <Column
 
-                    header="Effective To"
+                    header="effectionTo"
                     className="fieldvalue_container"
 
 
@@ -168,13 +168,13 @@ const CommissionTabel = ({ handleEdit, newDataTable }) => {
                
                 <Column
                     body={renderToggleButton}
-                    header="Status"
+                    header="satus"
                     headerStyle={{ textAlign: 'left', ...headerStyle }}
                     className="fieldvalue_container"
                 ></Column>
                 <Column
                     body={renderEditButton}
-                    header="Action"
+                    header="action"
                     className="fieldvalue_container"
 
 

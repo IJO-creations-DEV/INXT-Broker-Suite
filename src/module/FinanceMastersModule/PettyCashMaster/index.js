@@ -11,6 +11,7 @@ import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon';
 import SvgUpload from "../../../assets/icons/SvgUpload"
 import { TieredMenu } from 'primereact/tieredmenu';
 import PettyDataTabel from './PettyDataTabel';
+import { useSelector } from 'react-redux';
 
 
 const PettyCashMaster = () => {
@@ -48,7 +49,14 @@ const PettyCashMaster = () => {
       label: 'Voucher Number',
     },
   ];
+  const { pettyCashList, loading } = useSelector(({ pettyCashMainReducers }) => {
+    return {
+      loading: pettyCashMainReducers?.loading,
+      pettyCashList: pettyCashMainReducers?.pettyCashList,
 
+    };
+  });
+  console.log(pettyCashList, "pettyCashList");
 
   return (
     <div className='grid  container__petty__cash'>
@@ -109,7 +117,7 @@ const PettyCashMaster = () => {
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
+              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} pettyCashList={pettyCashList} />
             </div>
           </div>
         </div>

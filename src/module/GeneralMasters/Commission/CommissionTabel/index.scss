@@ -8,7 +8,26 @@
         justify-content: space-between;
         align-items: center;
     }
-
+    .p-datatable .p-datatable-thead > tr > th {
+        text-align: left;
+        padding: 1rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-width: 0 0 1px 0;
+        font-weight: 500;
+        color: #111927;
+        background: #f9fafb;
+        transition: box-shadow 0.2s;
+        font-size: 16px !important;
+    }
+    .p-datatable .p-datatable-tbody > tr > td {
+        text-align: left;
+        border: 1px solid #e5e7eb;
+        border-width: 0 0 1px 0;
+        font-size: 16px;
+        font-weight: 400;
+        font-family: 'Inter Var';
+        color: #111927;
+    }
 
     .reversal__table__main {
         tr {
@@ -160,4 +179,24 @@
         transition: box-shadow 0.2s;
         border-radius: 50%;
     }
+}
+.p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last {
+  background-color: transparent;
+  border: 0 none;
+  color: #1c2536;
+  min-width: 0.5rem;
+  height: 3rem;
+  margin: 0.143rem;
+  transition: box-shadow 0.2s;
+  border-radius: 50%;
+}
+
+.p-paginator-left-content {
+    
+     display: flex;
+     justify-content: center;
+     align-items: center; 
 }

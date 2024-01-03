@@ -140,7 +140,7 @@ const Maincomponent = () => {
 
             {/* Receipts */}
 
-            <Route path="/accounts/Receipts" element={<Receipts />} />
+            {/* <Route path="/accounts/receipts" element={<Receipts />} /> */}
 
             <Route path="/accounts/receipts/addpolicyreceipts" element={<AddPolicyReceipts />} />
 
@@ -149,18 +149,18 @@ const Maincomponent = () => {
               element={<PolicyReceiptsView />}
             />
 
-            <Route path="/accounts/receipts/addpolicyreceipt1" element={<AddPolicyReceipts1 />} />
+            {/* <Route path="/accounts/receipts/addreceipt" element={<AddPolicyReceipts1 />} /> */}
 
-            <Route path="/accounts/receipts/policyreceipts" element={<PolicyReceipts />} />
-            <Route path="/accounts/receipts/addpolicyedit" element={<AddPolicyEdit />} />
+            <Route path="/accounts/receipts" element={<PolicyReceipts />} />
+            <Route path="/accounts/receipts/addreceiptedit" element={<AddPolicyEdit />} />
             <Route
-              path="/accounts/receipts/policyreceiptsview"
+              path="/accounts/receipts/receiptdetailview"
               element={<PolicyReceiptsView />}
             />
             <Route path="/accounts/receipts/paymentdetails" element={<PaymentDetails />} />
 
             <Route
-              path="/accounts/receipts/addpolicyreceipts1"
+              path="/accounts/receipts/addreceipts"
               element={<AddPolicyReceipts1 />}
             />
             <Route path="/accounts/receipts/policyreceipts" element={<PolicyReceipts />} />

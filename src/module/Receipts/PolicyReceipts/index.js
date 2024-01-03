@@ -27,7 +27,7 @@ const PolicyReceipts = () => {
   const items = [
   
     {
-      label: 'Receipts',
+      label: 'Receipts',url:"/accounts/receipts"
     },
    
   ];
@@ -35,11 +35,6 @@ const PolicyReceipts = () => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptsTableList: receiptsTableReducers?.receiptsTableList,
-    // const [products, setProducts] = useState([]);
-    
-// const handleView=()=>{
-//   navigate('/accounts/paymentvoucher/detailview')
-// }
 
     };
   });
@@ -136,10 +131,10 @@ console.log(receiptsTableList,"receiptsTableList")
   };
 
   const handlePolicy = () => {
-    navigate("/accounts/receipts/addpolicyreceipts1");
+    navigate("/accounts/receipts/addreceipts");
   };
   const handleArrowClick = () => {
-    navigate("/accounts/receipts/policyreceiptsview");
+    navigate("/accounts/receipts/receiptdetailview");
   };
   const handleEditClick = () => {
     navigate("/accounts/receipts/otherreceiptsview");

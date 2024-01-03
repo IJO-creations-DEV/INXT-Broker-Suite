@@ -47,12 +47,15 @@ export const getReceiptsReceivableMiddleware = createAsyncThunk(
 export const postAddReceiptsMiddleware = createAsyncThunk(
     POST_ADD_RECEIPTS,
     async (payload, { rejectWithValue }) => {
+        console.log(payload,"ytytyyyttyty")
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
-        } catch (error) {
+        } 
+        catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }
+      
     },
 );
 export const postPaymentDetailsMiddleware = createAsyncThunk(

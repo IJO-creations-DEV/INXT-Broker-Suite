@@ -62,7 +62,7 @@ const formik = useFormik({
   validate,
   onSubmit: handleSubmit,
 });
-  const items = [{ label: "accounts/Receipts",url:'accounts/receipts/policyreceipts' }, { label: "Add Receipts" }];
+  const items = [{ label: "Receipts",url:'/accounts/receipts' }, { label: "Add Receipts",url:'/accounts/receipts/addreceipts'}];
 
   const home = { label: "Accounts " };
   const template2 = {

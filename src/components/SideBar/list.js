@@ -5,7 +5,7 @@ export const menuList = [
       {
         id: 1,
         name: "Receipts",
-        path: "/accounts/policyreceipts",
+        path: "/accounts/receipts",
       },
       {
         id: 2,

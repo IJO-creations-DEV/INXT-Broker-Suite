@@ -15,21 +15,13 @@ import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../components/LabelWrapper";
 
 function BranchAdding() {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedItem1, setSelectedItem1] = useState(null);
-  const [selectedItem2, setSelectedItem2] = useState(null);
-  const [selectedItem3, setSelectedItem3] = useState(null);
-  const [selectedItem4, setSelectedItem4] = useState(null);
-  const [selectedItem5, setSelectedItem5] = useState(null);
-  const [visiblePopup, setVisiblePopup] = useState(false);
+  
   const [errors, setErrors] = useState("");
 
-  // const handleClick =()=>{
-  //   navigate("/addpolicyedit")
-  // }
+ 
 
   const navigate = useNavigate();
-  const items = [{ label: "accounts/Receipts",url:"accounts/receipts/policyreceipts" }, { label: "Add Receipts" }];
+  const items = [{ label: "Receipts",url:"/accounts/receipts" }, { label: "Add Receipts",url:"/accounts/receipts/addreceipts" }];
   const home = { label: "Accounts " };
   const item = [
     { name: "Policy", code: "PL" },
@@ -105,11 +97,11 @@ function BranchAdding() {
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
     const formErrors = validate(formik.values);
     setErrors(formErrors);
     console.log(formErrors, "iiiii");
-    navigate("/accounts/receipts/addpolicyedit");
+    navigate("/accounts/receipts/addreceiptedit");
   };
 
   const formik = useFormik({
@@ -117,6 +109,8 @@ function BranchAdding() {
     validate,
     onSubmit: handleSubmit,
   });
+
+ 
   return (
     <div className="overall_add_policy_receipts_container">
       <NavBar />

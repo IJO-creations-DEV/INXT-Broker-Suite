@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from "react";
+import React, { useState,useEffect,useRef} from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import NavBar from "../../../components/NavBar";
@@ -13,13 +13,32 @@ import { InputText } from "primereact/inputtext";
 import { ProductService } from './mock';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
+import SvgUpload from "../../../assets/icons/SvgUpload";
+import SvgMenudots from "../../../assets/icons/SvgMenudots";
+import { TieredMenu } from 'primereact/tieredmenu';
+import { Dialog } from 'primereact/dialog';
+import InputField from "../../../components/InputField";      
+import ToggleButton from "../../../components/ToggleButton";
 
 const BankMaster = () => {
+  const menu = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const [visibleview, setVisibleview] = useState(false);
+  
+  const menuitems=[
+    {label:"Edit",command: () => setVisible(true)},
+    {label:"View",command: () => setVisibleview(true)},
+    {label:"Add/Edit Account", command: () => navigate("/master/finance/bank/accountdataview")}
+  ]
+
     const [products, setProducts] = useState([]);
     useEffect(() => {
         ProductService.getProductsMini().then(data => setProducts(data));
     }, []);
 
+    const handleView =()=>{
+      console.log("succes")
+    }
 
     const template2 = {
         layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
@@ -45,10 +64,12 @@ const BankMaster = () => {
 
 
 
-
+    const handleadd =()=>{
+      navigate('/master/finance/bank/addbankmaster')
+    }
 
     const headerStyle = {
-        width: '10rem',
+        // width: '10rem',
         // backgroundColor: 'red',
         fontSize: 14,
         fontFamily: 'Inter var',
@@ -59,11 +80,18 @@ const BankMaster = () => {
     };
 
   const items = [
-    { label: "Dashboard" },
-    { label: "Accounts " },
-    { label: "Receipts" },
+    { label: "Bank" },
+   
   ];
-  const home = { label: "Dashboard" };
+  const renderToggleButton = () => {
+    return (
+      <div>
+   <ToggleButton/>
+      </div>
+    );
+  };
+  
+  const home = { label: "Master" };
  
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
@@ -88,12 +116,13 @@ const BankMaster = () => {
   const handleEditClick = () => {
     navigate("/otherreceiptsview");
   };
+
   return (
     <div className='overall__bankmaster__container'>
          <NavBar/>
 <div className="overallfilter_container">
          <div >
-            <label className='label_header'>Payment Voucher</label>
+            <label className='label_header'>Bank Master</label>
             <BreadCrumb
                 model={items}
                 home={home}
@@ -101,12 +130,14 @@ const BankMaster = () => {
                 separatorIcon={<SvgDot color={"#000"} />} />
           </div>
           <div className="filterbutton_container">
-            {/* <SvgFilters/> */}
+           
+<Button type="button" label="Upload" className="uploadbutton_container"  icon= {<SvgUpload/> }outlined />
+
+<Button type="button" label="Add" className="addbutton_container"  icon= {<SvgAdd/> }
+onClick={handleadd}
+/>
             
-            <div className="addbutton_container" onClick={handlePolicy} >
-          <SvgAdd className="addicon" />
-          <p className="addtext">Create Voucher</p>
-             </div>
+           
           </div>
           </div>
 
@@ -126,9 +157,7 @@ const BankMaster = () => {
             </span>
         </div>
     {/* </div> */}
-    <div class="col-12 md:col-6 lg:col-2">
-     
-    <Button label="Sort By" outlined icon={<SvgFilters/>} className="sorbyfilter_container" /></div>
+   
     
     </div>
 
@@ -141,17 +170,34 @@ const BankMaster = () => {
                     // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
                     paginatorTemplate={template2}
+                    scrollable={true}
+            scrollHeight="40vh"
                 >
                   
-                    <Column field="name" header="Branch Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="name" header="Department" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="Document Date" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="quantity" header="Document No"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="name" header="Customer Code" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="name" header="Instrument No" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="code" header="Action" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="name" header="Bank Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="name" header="Bank Name" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="category" header="Bank Branch" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="quantity" header="IFSC Code"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="name" header="Email" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="name" header="Phone" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column body={renderToggleButton} header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+          
+                    <Column  body={(columnData) => (
+              //         <div className="card flex justify-content-center">
+               
+              //  <TieredMenu model={menuitems} popup ref={menu}  />
+              //   <SvgMenudots onClick={(e) => menu.current.toggle(e)} />
+
+               
+              //   </div>
+              <div className="card flex justify-content-center">
+            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
+            <Button icon={<SvgMenudots/>} onClick={(e) => menu.current.toggle(e)} className="menubutton_popup" />
+        </div>
+
+               
+              )}
+                     header="Action" headerStyle={headerStyle} className='fieldvalue_container'></Column>
              
                 </DataTable>
 
@@ -160,6 +206,278 @@ const BankMaster = () => {
 
 </Card>
 
+
+<Dialog header="Bank Details" visible={visible} style={{ width: '60vw' }} onHide={() => setVisible(false)}>
+   
+<div class="grid">
+    <div class="col-12 md:col-3 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Bank Code"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-6">
+    <InputField
+              classNames="field__container"
+              label="Bank Name"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-3 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Bank Branch"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="IFSC Code"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Address Line 1"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Address Line 2"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Address Line 3"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="City"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="State"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Country"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Phone Number"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Fax"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Email ID"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+</div>
+<div style={{display:'flex',justifyContent:'flex-end'}}>
+  <Button label="Update" className="dialog_updatebutton_view"/>
+</div>
+
+
+</Dialog>
+
+<Dialog header="Bank Details" visible={visibleview} style={{ width: '60vw' }} onHide={() => setVisibleview(false)}>
+   
+<div class="grid">
+    <div class="col-12 md:col-3 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Bank Code"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-6">
+    <InputField
+              classNames="field__container"
+              label="Bank Name"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-3 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Bank Branch"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="IFSC Code"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Address Line 1"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Address Line 2"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Address Line 3"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="City"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="State"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Country"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Phone Number"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Fax"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+    <InputField
+              classNames="field__container"
+              label="Email ID"
+              placeholder={"Enter"}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
+            />
+    </div>
+</div>
+
+
+
+</Dialog>
 
     </div>
   );

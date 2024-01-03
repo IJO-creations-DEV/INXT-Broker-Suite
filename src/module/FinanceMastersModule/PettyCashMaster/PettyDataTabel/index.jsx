@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
-const PettyDataTabel = ({ handleEdit, newDataTable }) => {
+const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList }) => {
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -79,7 +79,7 @@ const PettyDataTabel = ({ handleEdit, newDataTable }) => {
 
             return (
                 <div
-                style={{display:'flex',justifyContent:'center',alignItems:'center'}}
+                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                     className="table__selector">
                     <React.Fragment>
                         <span style={{ color: "var(--text-color)", userSelect: "none" }}>
@@ -100,19 +100,19 @@ const PettyDataTabel = ({ handleEdit, newDataTable }) => {
     const renderEditButton = (rowData) => {
         return (
             <div className="centercontent" >
-               <div onClick={handleNavigateView}> <SvgEyeIcon /></div>
-               <div onClick={handleNavigateEdit}> <SvgEditIcon /></div>
+                <div onClick={handleNavigateView}> <SvgEyeIcon /></div>
+                <div onClick={handleNavigateEdit}> <SvgEditIcon /></div>
 
             </div>
         );
     };
-  
+
 
 
     return (
         <div className="petty__cash__table__container">
             <DataTable
-                value={updatedProductData}
+                value={pettyCashList}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -128,41 +128,42 @@ const PettyDataTabel = ({ handleEdit, newDataTable }) => {
 
             >
                 <Column
-                    field="mainAC"
+                    field="pettycashcode"
                     header="Petty Cash Code"
                     className="fieldvalue_container"
 
 
                 ></Column>
                 <Column
-                    field="subAC"
+                    field="pettycashname"
                     header="Petty Cash Name"
                     className="fieldvalue_container"
 
                 ></Column>
 
                 <Column
-                    field="Remarks"
+                    field="pettycashsize"
                     header="Petty Cash Size"
                     className="fieldvalue_container"
 
 
                 ></Column>
                 <Column
-
+                    field="minicashbox"
                     header="Minimum Cash Box"
                     className="fieldvalue_container"
 
 
                 ></Column>
                 <Column
-
+                    field="transactionlimit"
                     header="Transaction Limit"
                     className="fieldvalue_container"
 
 
                 ></Column>
                 <Column
+                    field="status"
                     body={renderToggleButton}
                     header="Status"
                     headerStyle={{ textAlign: 'center', ...headerStyle }}
@@ -170,8 +171,9 @@ const PettyDataTabel = ({ handleEdit, newDataTable }) => {
                 ></Column>
 
                 <Column
+                    field="action"
                     body={renderEditButton}
-                  
+
                     header="View"
                     className="fieldvalue_container"
 

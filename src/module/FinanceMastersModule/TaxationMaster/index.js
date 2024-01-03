@@ -16,6 +16,7 @@ import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../assets/icons/SvgEditicons";
 import ToggleButton from "../../../components/ToggleButton";
 import Productdata from './mock'
+import { useSelector } from 'react-redux'
 
 const TaxationMaster = () => {
   const navigate = useNavigate();
@@ -52,8 +53,8 @@ const TaxationMaster = () => {
   const columns = [
     { field: 'tax', headerName: 'Tax Code', flex: 1 },
     { field: 'taxName', headerName: ' Tax Name', flex: 1 },
-   
- 
+
+
     { field: 'desc', headerName: 'Tax Rate', flex: 1 },
     { field: 'effective', headerName: 'Effective From', flex: 1 },
     { field: 'effectiveTo', headerName: 'Effective To', flex: 1 },
@@ -68,6 +69,14 @@ const TaxationMaster = () => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
+  const { taxationList, loading } = useSelector(({ taxationMainReducers }) => {
+    return {
+      loading: taxationMainReducers?.loading,
+      taxationList: taxationMainReducers?.taxationList,
+
+    };
+  });
+  console.log(taxationList, "taxationList");
 
   const rows = [
     { id: 1, tax: '', shorDesc: '', desc: '', effective: '', status: '', view: '' },
@@ -92,7 +101,7 @@ const TaxationMaster = () => {
   const renderToggleButton = () => {
     return (
       <div>
-   <ToggleButton/>
+        <ToggleButton />
       </div>
     );
   };
@@ -101,7 +110,7 @@ const TaxationMaster = () => {
     console.log("View clicked:", rowData);
     navigate("/master/finance/taxation/taxationdetails")
   };
-  const handlEdit =()=>{
+  const handlEdit = () => {
     navigate("/master/finance/taxation/taxationedit")
   }
   const template2 = {
@@ -116,7 +125,7 @@ const TaxationMaster = () => {
 
       return (
         <React.Fragment>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',width:'40%' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '40%' }}>
             <span
 
               className="mx-1"
@@ -154,88 +163,90 @@ const TaxationMaster = () => {
           <div className='add__text__taxation'>
             Add
           </div>
-          
+
         </div>
       </div>
       <div className='col-12 m-0 '>
         <div className='sub__account__sub__container__taxation'>
-        <div className='col-12 search__filter__view__taxation'>
+          <div className='col-12 search__filter__view__taxation'>
             <div className='col-12 md:col-10 lg:col-10'>
               <div className='searchIcon__view__input__taxation'>
                 <span className='p-1'> <SvgSearchIcon /></span>
                 <InputText
-                 style={{width:'100%'}}
+                  style={{ width: '100%' }}
                   classNames='input__sub__account__taxation'
                   placeholder='Search By Sub Account Code'
                 />
               </div>
             </div>
-       
+
           </div>
           <div className='col-12 '>
             <div className='main__tabel__title__taxation p-2'>Taxation List</div>
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
-            <DataTable
-      value={Productdata}
-      style={{ overflowY: 'auto', maxWidth: '100%' }}
-      responsive={true}
-      className='table__view__taxation'
-      paginator
-      paginatorLeft
-      rows={5}
-      rowsPerPageOptions={[5, 10, 25, 50]}
-      currentPageReportTemplate="{first} - {last} of {totalRecords}"
-      paginatorTemplate={template2}
-      onPage={onPageChange}
-      onPageChange={onPageChange}
-    >
+              <DataTable
+                value={taxationList}
+                style={{ overflowY: 'auto', maxWidth: '100%' }}
+                responsive={true}
+                className='table__view__taxation'
+                paginator
+                paginatorLeft
+                rows={5}
+                rowsPerPageOptions={[5, 10, 25, 50]}
+                currentPageReportTemplate="{first} - {last} of {totalRecords}"
+                paginatorTemplate={template2}
+                onPage={onPageChange}
+                onPageChange={onPageChange}
+              >
 
-<Column
-              field="TaxCode"
-              header="Tax Code"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              field="TaxName"
-              header="Tax Name"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            //   sortable
-            ></Column>
-            <Column
-              field="TaxRate"
-              header="Tax Rate"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            //   sortable
-            ></Column>
-            <Column
-              field="EffectiveFrom"
-              header="Effective From"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              field="EffectiveTo"
-              header="Effective To"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              body={renderToggleButton}
-              header="Status"
-              headerStyle={{ textAlign: 'center', ...headerStyle }}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-              body={renderViewButton}
-              header="Action"
-              headerStyle={{ ...ViewheaderStyle }}
-              className="fieldvalue_container centered"
-            ></Column>
+                <Column
+                  field="taxationCode"
+                  header="Tax Code"
+                  headerStyle={headerStyle}
+                  className="fieldvalue_container"
+                ></Column>
+                <Column
+                  field="taxationName"
+                  header="Tax Name"
+                  headerStyle={headerStyle}
+                  className="fieldvalue_container"
+                //   sortable
+                ></Column>
+                <Column
+                  field="taxationRate"
+                  header="Tax Rate"
+                  headerStyle={headerStyle}
+                  className="fieldvalue_container"
+                //   sortable
+                ></Column>
+                <Column
+                  field="effectiveFrom"
+                  header="Effective From"
+                  headerStyle={headerStyle}
+                  className="fieldvalue_container"
+                ></Column>
+                <Column
+                  field="effectiveTo"
+                  header="Effective To"
+                  headerStyle={headerStyle}
+                  className="fieldvalue_container"
+                ></Column>
+                <Column
+                field='status'
+                  body={renderToggleButton}
+                  header="Status"
+                  headerStyle={{ textAlign: 'center', ...headerStyle }}
+                  className="fieldvalue_container"
+                ></Column>
+                <Column
+                field='action'
+                  body={renderViewButton}
+                  header="Action"
+                  headerStyle={{ ...ViewheaderStyle }}
+                  className="fieldvalue_container centered"
+                ></Column>
                 {/* {columns.map((column) => (
                   <Column
                     style={{
@@ -263,7 +274,7 @@ const TaxationMaster = () => {
                 ))} */}
               </DataTable>
 
-              
+
             </div>
           </div>
 
@@ -276,4 +287,4 @@ const TaxationMaster = () => {
 }
 
 export default TaxationMaster
- 
+

@@ -23,6 +23,7 @@ import DropDowns from '../../../components/DropDowns';
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import { MultiSelect } from 'primereact/multiselect';
 import CustomToast from "../../../components/Toast";
+import { useSelector } from "react-redux";
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
@@ -157,6 +158,14 @@ const toastRef = useRef(null);
       );
     },
   };
+  const { subAccountList, loading } = useSelector(({ subAccountMainReducers }) => {
+    return {
+      loading: subAccountMainReducers?.loading,
+      subAccountList: subAccountMainReducers?.subAccountList,
+
+    };
+  });
+  console.log(subAccountList, "subAccountList");
   return (
     <div className='grid  container__taxation'>
       <div className='col-12'>
@@ -226,13 +235,13 @@ const toastRef = useRef(null);
     >
 
 <Column
-              field="SubAccountCode"
+              field="subAccountCode"
               header="Sub Account Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="Description"
+              field="description"
               header="Description"
               headerStyle={headerStyle}
               className="fieldvalue_container"
@@ -241,12 +250,14 @@ const toastRef = useRef(null);
            
            
             <Column
+            field="status"
               body={renderToggleButton}
               header="Status"
               headerStyle={{ textAlign: 'center', ...headerStyle }}
               className="fieldvalue_container"
             ></Column>
             <Column
+            field="action"
               body={renderViewButton}
               header="Action"
               headerStyle={{ ...ViewheaderStyle }}

@@ -1,191 +1,226 @@
-import React, { useState } from 'react'
-import { Button } from 'primereact/button'
-import SvgAdd from '../../../assets/icons/SvgAdd'
-import "../ExchangeRateMaster/index.scss"
-import { BreadCrumb } from 'primereact/breadcrumb'
-import SvgDot from '../../../assets/icons/SvgDot'
-import NavBar from "../../../components/NavBar"
-import SvgFilters from '../../../assets/icons/SvgFilters'
-import InputField from "../../../components/InputField"
-import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon'
-import { Paginator } from 'primereact/paginator'
-import { DataTable } from 'primereact/datatable'
-import { Column } from 'primereact/column'
-import SvgArrow from '../../../assets/icons/SvgArrow'
-import { Dropdown } from 'primereact/dropdown'
-import { useNavigate } from 'react-router-dom'
-import { InputText } from 'primereact/inputtext'
-// import { useNavigation } from '';
+import React, { useState, useEffect, useRef } from "react";
+import "./index.scss";
+import { BreadCrumb } from "primereact/breadcrumb";
+import NavBar from "../../../components/NavBar";
+import { useNavigate } from "react-router-dom";
+import SvgDot from "../../../assets/icons/SvgDot"
+import SvgFilters from "../../../assets/icons/SvgFilters";
+import SvgAdd from "../../../assets/icons/SvgAdd";
+import { Card } from 'primereact/card';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { InputText } from "primereact/inputtext";
+import Productdata from './mock';
+import { Button } from 'primereact/button';
+import { Dropdown } from 'primereact/dropdown';
+import { TieredMenu } from 'primereact/tieredmenu';
+import SvgIconeye from "../../../assets/icons/SvgIconeye";
+import SvgDropdown from "../../../assets/icons/SvgDropdown";
+import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
+import { useSelector } from "react-redux";
+import SvgEditicon from "../../../assets/icons/SvgEdit";
+import SvgEdit from "../../../assets/icons/SvgEdits";
+import ToggleButton from "../../../components/ToggleButton";
+import SvgEditicons from "../../../assets/icons/SvgEditicons";
 
-const ExchangeRateMaster = () => {
-  const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate('/master/finance/exchangerate/addexchange')
-  };
-  const handleNavigateedit = () => {
-    navigate('/master/finance/exchangerate/saveandeditexchange')
+const Index = () => {
+  const [products, setProducts] = useState([]);
+  const { paymentVocherList, loading } = useSelector(({ paymentVoucherReducers }) => {
+    return {
+      loading: paymentVoucherReducers?.loading,
+      paymentVocherList: paymentVoucherReducers?.paymentVocherList,
+    // const [products, setProducts] = useState([]);
+    
+// const handleView=()=>{
+//   navigate('/accounts/paymentvoucher/detailview')
+// }
+
+    };
+  });
+  const handleView = (columnData) => {
+    navigate("/master/finance/exchangerate/viewexchange")
+  }
+  const handleEdit = (columnData) => {
+    navigate("/master/finance/exchangerate/saveandeditexchange")
   }
 
-  const items = [
-    { label: 'Exchange Rate', url: '/exchangerate' },
-  ];
-  const home = { label: "Master" };
-
-  const columns = [
-    { field: 'effectiveForm', headerName: 'Effective From', flex: 1 },
-    { field: 'effectiveto', headerName: 'Effective To', flex: 1 },
-    { field: 'currencyCode', headerName: 'Currency Code', flex: 1 },
-    { field: 'toCurrebcy', headerName: 'To Currency Code', flex: 1 },
-    { field: 'exchangeRate', headerName: 'Exchange Rate', flex: 1 },
-    { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'view', headerName: 'View', flex: 1 },
-  ];
-
-  const [first, setFirst] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const onPageChange = (event) => {
-    setFirst(event.first);
-    setRowsPerPage(event.rows);
-  };
-
-  const rows = [
-    { id: 1, effectiveForm: '', effectiveto: '', currencyCode: '', exchangeRate: '', status: '', view: '' },
-  ];
 
   const template2 = {
-    layout: "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 },
+        { label: 120, value: 120 }
       ];
 
       return (
-        <React.Fragment>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',width:'40%' }}>
-            <span
-
-              className="mx-1"
-              style={{ color: "var(--text-color)", userSelect: "none" }}
-            >
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-          </div>
+        <React.Fragment >
+          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+            Row count :{' '}
+          </span>
+          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
         </React.Fragment>
       );
     },
+
   };
+
+
+  const menu = useRef(null);
+  const menuitems = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Date',
+    },
+    {
+      label: 'Voucher Number',
+    },
+  ];
+
+  const renderToggleButton = () => {
+    return (
+      <div>
+   <ToggleButton/>
+      </div>
+    );
+  };
+
+  const headerStyle = {
+    // width: '19%',
+    // backgroundColor: 'red',
+    fontSize: 16,
+    fontFamily: 'Inter var',
+    fontWeight: 500,
+    padding: 6,
+    color: '#000',
+    border: 'none'
+  };
+
+  const items = [
+    {
+      id: 1,
+      label: "Exchange Rate",
+      // url: '/accounts/paymentvoucher'
+     },
+    
+  ];
+  const home = { label: "Master" };
+
+  const navigate = useNavigate();
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(5);
+  const [globalFilter, setGlobalFilter] = useState('');
+
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
+
+  const onGlobalFilterChange = (event) => {
+    setGlobalFilter(event.target.value);
+  };
+ 
+  const handlePolicy =()=>{
+    navigate('/master/finance/exchangerate/addexchange')
+  }
+
   return (
-    <div className='grid  container__Exchange'>
-      <div className='col-12'>
-        <NavBar />
-      </div>
-      <div className='col-12 md:col-6 lg:col-6 mb-1'>
-        <div className='add__icon__title'>Exchange Rate Master</div>
-        <div className='mt-3'>
-          <BreadCrumb home={home} className='breadCrums__view__reversal' model={items} separatorIcon={<SvgDot color={"#000"} />} />
+    <div className='overall__exchangerate__container'>
+      <NavBar />
+      <div className="overallfilter_container">
+        <div >
+          <label className='label_header'>Exchange Rate Master</label>
+          <BreadCrumb
+            model={items}
+            home={home}
+            className='breadcrumbs_container'
+
+            separatorIcon={<SvgDot color={"#000"} />} />
         </div>
-      </div>
-      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn mb-1'>
-        <div className='add__icon__view' onClick={handleNavigate}>
-          <div className='add__icon' >
+        <div className="filterbutton_container">
+          {/* <SvgFilters/> */}
+
+          <div className="addbutton_container" onClick={handlePolicy} >
             <SvgAdd />
+            <p className="addtext">Add</p>
           </div>
-          <div className='add__text'>
-            Add
-          </div>
-
         </div>
       </div>
-      <div className='col-12 m-0 '>
-        <div className='sub__account__sub__container'>
-          <div className='col-12 search__filter__view'>
-            <div className='col-12 md:col-10 lg:col-10'>
-              <div className='searchIcon__view__input'>
-                <span className='p-1'> <SvgSearchIcon /></span>
-                <InputText
-                  style={{width:'100%'}}
-                  classNames='input__sub__account'
-                  placeholder='Search By Sub Account Code'
-                />
-              </div>
-            </div>
-            <div className='col-12 md:col-2 lg:col-2'>
-              <div className='sort__filter__view'>
-                <div className='sort__by__text'>Sort By</div>
-                <div>
-                  <SvgFilters />
+
+
+      <Card
+
+      //   className="overallcard_container"
+      >
+        {/* <div className="searchiput_container"> */}
+
+
+        <div className="header_search_container">
+          <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 0 }}>
+            {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
+            <span className="p-input-icon-left" style={{ width: "100%" }}>
+              <i className="pi pi-search" />
+              <InputText placeholder="Search By Currency code " className="searchinput_left" />
+            </span>
+          </div>
+          {/* </div> */}
+          <div class="col-12 md:col-6 lg:col-2">
+            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
+            <Button label="Search by" outlined icon={<SvgDropdownicon />}
+              className="sorbyfilter_container"
+              onClick={(e) => menu.current.toggle(e)}
+            /></div>
+
+        </div>
+        <div className="headlist_lable">Exchange Rate List</div>
+
+        {/* </div> */}
+
+        <div >
+          <DataTable value={paymentVocherList} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
+            paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
+            // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+            paginatorTemplate={template2} scrollable={true}
+            scrollHeight="40vh"
+          >
+
+            <Column field="VoucherNumber" header="Effective From"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="TransactionNumber" header="Effective To"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="CustomerCode" header="Currency Code"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="VoucheDate" header="To Currency Code"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="Amount" header="Exchange Rate" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
+            <Column body={renderToggleButton} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column
+              body={(columnData) => (
+                <div className="action_icons">
+
+                <SvgIconeye onClick={() => handleView(columnData)} />
+                <SvgEditicons onClick={() => handleEdit(columnData)}/>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className='col-12 '>
-            <div className='main__tabel__title p-2'>Exchange Rate List</div>
-          </div>
-          <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
-            <div className="card">
-              <DataTable
-              value={rows}
-                style={{ overflowY: 'auto', maxWidth: '100%' }}
-                responsive={true}
-                className='table__view'
-                paginator
-                paginatorLeft
-                rows={5}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
-              >
-                {columns.map((column) => (
-                  <Column
-                    style={{
-                      width: column.field === 'rowcount' ? '10%' : `${90 / (columns.length - 1)}%`, // Set width for the dropdown column
-                      boxSizing: 'border-box',
-                      fontSize: 14,
-                      fontWeight: 500,
-                    }}
-                    key={column.field}
-                    field={column.field}
-                    header={column.headerName}
-                    paginator
-                    rows={5}
-                    rowsPerPageOptions={[5, 10, 25, 50]}
-                    currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                    paginatorTemplate={template2}
-                    bodyStyle={{
-                      fontSize: 14,
-                      height: 50,
-                      padding: 18,
-                      ...(column.field === 'status' && { color: 'green' }),
-                    }}
-                    body={column.field === 'view' ? <div onClick={() => handleNavigateedit()}><SvgArrow /></div> : column.field == 'status' ? 'Active' : column.field && 'A012'}
-                        />
-                ))}
-              </DataTable>
+              )}
+              header="Action"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
 
+          </DataTable>
 
-            </div>
-          </div>
 
         </div>
 
-      </div>
+      </Card>
+
 
     </div>
-  )
-}
+  );
+};
 
-export default ExchangeRateMaster
-
+export default Index;

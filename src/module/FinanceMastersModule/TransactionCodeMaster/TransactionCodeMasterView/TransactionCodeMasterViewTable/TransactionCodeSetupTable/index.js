@@ -87,7 +87,7 @@ const TransactionCodeSetupTable = () => {
       {/* <Card className="mt-1"> */}
       <div className="card">
         <div className="col-12 md:col-12 lg-col-12 ">
-          <div className="btn__container">
+          <div className="btn__container__add">
             <Button
               label="Add"
               icon={<SvgAdd color={"#fff"} />}

@@ -116,71 +116,46 @@ export const menuList = [
         submenu: [
           {
             id: 1,
-            name: "Company",
-            path: "master/finance/company",
-          },
-          {
-            id: 2,
-            name: "Branch",
-            path: "master/finance/branch",
-          },
-          {
-            id: 3,
-            name: "Department",
-            path: "master/finance/department",
-          },
-          {
-            id: 4,
             name: "Transaction code",
             path: "master/finance/transactioncode",
           },
           {
-            id: 5,
+            id: 2,
             name: "Currency",
             path: "master/finance/currency",
           },
           {
-            id: 6,
+            id: 3,
             name: "Exchange Rate",
             path: "master/finance/exchangerate",
           },
           {
-            id: 7,
+            id: 4,
             name: "Bank",
             path: "master/finance/bank",
           },
           {
-            id: 8,
-            name: "Bank Account",
-            path: "master/finance/bankaccount",
-          },
-          {
-            id: 9,
-            name: "Bank Cheque",
-            path: "master/finance/bankcheque",
-          },
-          {
-            id: 10,
+            id: 5,
             name: "Account Category",
             path: "master/finance/accountcategory",
           },
           {
-            id: 11,
+            id: 6,
             name: "Main Account",
             path: "master/finance/mainaccount",
           },
           {
-            id: 12,
+            id: 7,
             name: "Sub Account",
             path: "master/finance/subaccount",
           },
           {
-            id: 13,
+            id: 8,
             name: "Taxation",
             path: "master/finance/taxation",
           },
           {
-            id: 14,
+            id: 9,
             name: "Petty cash",
             path: "master/finance/pettycash",
           },

@@ -14,6 +14,16 @@ import TransactionCodeMasterDetailViewTable from "./TransactionCodeMasterDetailV
 const initialValue = {
   TransactionCode: "",
   TransactionName: "",
+  Description:"",
+  TransactionBasis:"",
+  MainAccountCode:"",
+  MainAccountDescription:"",
+  SubAccountCode:"",
+  SubAccountDescription:"",
+  BranchCode:"",
+  BranchDescription:"",
+  Department:"",
+  DepartmentDescription:"",
 };
 
 const TransactionCodeDetails = () => {
@@ -85,12 +95,12 @@ const TransactionCodeDetails = () => {
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                // value={formik.values.TransactionCode}
-                // onChange={formik.handleChange("TransactionCode")}
-                // error={
-                //   formik.touched.TransactionCode &&
-                //   formik.errors.TransactionCode
-                // }
+                value={formik.values.TransactionCode}
+                onChange={formik.handleChange("TransactionCode")}
+                error={
+                  formik.touched.TransactionCode &&
+                  formik.errors.TransactionCode
+                }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -102,12 +112,12 @@ const TransactionCodeDetails = () => {
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                // value={formik.values.TransactionName}
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+                value={formik.values.TransactionName}
+                onChange={formik.handleChange("TransactionName")}
+                error={
+                  formik.touched.TransactionName &&
+                  formik.errors.TransactionName
+                }
               />
             </div>
           </div>
@@ -121,12 +131,12 @@ const TransactionCodeDetails = () => {
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                // value={formik.values.TransactionName}
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+                value={formik.values.Description}
+                onChange={formik.handleChange("Description")}
+                error={
+                  formik.touched.Description &&
+                  formik.errors.Description
+                }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
@@ -139,18 +149,18 @@ const TransactionCodeDetails = () => {
                 textWeight={500}
                 disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                // value={formik.values.Description}
+                value={formik.values.TransactionBasis}
                 // options={BankAccountCode}
-                // onChange={(e) => {
-                //   console.log(e.value);
-                //   formik.setFieldValue("Description", e.value);
-                //   handleAccountcode(e.value.);
-                // }}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("TransactionBasis", e.value);
+                //   handleAccountcode(e.value.TransactionBasis);
+                }}
                 // optionLabel="Description"
-                // error={
-                //   formik.touched.BankAccountNumber &&
-                //   formik.errors.BankAccountNumber
-                // }
+                error={
+                  formik.touched.TransactionBasis &&
+                  formik.errors.TransactionBasis
+                }
               />
             </div>
           </div>
@@ -165,35 +175,35 @@ const TransactionCodeDetails = () => {
                 textWeight={500}
                 disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                // value={formik.values.Description}
+                value={formik.values.MainAccountCode}
                 // options={BankAccountCode}
-                // onChange={(e) => {
-                //   console.log(e.value);
-                //   formik.setFieldValue("Description", e.value);
-                //   handleAccountcode(e.value.);
-                // }}
-                // optionLabel="Description"
-                // error={
-                //   formik.touched.BankAccountNumber &&
-                //   formik.errors.BankAccountNumber
-                // }
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("MainAccountCode", e.value);
+                //   handleAccountcode(e.value.MainAccountCode);
+                }}
+                // optionLabel="MainAccountCode"
+                error={
+                  formik.touched.MainAccountCode &&
+                  formik.errors.MainAccountCode
+                }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
               <InputField
                 classNames="input__filed"
                 label="Main Account Description"
-                placeholder="Enter"
+                // placeholder="Enter"
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                // value={formik.values.TransactionName}
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+                value={formik.values.MainAccountDescription}
+                onChange={formik.handleChange("MainAccountDescription")}
+                error={
+                  formik.touched.MainAccountDescription &&
+                  formik.errors.MainAccountDescription
+                }
               />
             </div>
           </div>

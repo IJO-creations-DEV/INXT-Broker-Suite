@@ -5,12 +5,12 @@ export const menuList = [
       {
         id: 1,
         name: "Receipts",
-        path: "/policyreceipts",
+        path: "/accounts/policyreceipts",
       },
       {
         id: 2,
         name: "Payment Voucher",
-        path: "/paymentvoucher",
+        path: "/accounts/paymentvoucher",
       },
       {
         id: 3,

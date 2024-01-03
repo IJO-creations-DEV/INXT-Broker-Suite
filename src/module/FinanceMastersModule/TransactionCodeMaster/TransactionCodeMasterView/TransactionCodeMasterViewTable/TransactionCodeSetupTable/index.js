@@ -11,10 +11,18 @@ import { Dialog } from "primereact/dialog";
 import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../../../../components/LabelWrapper";
 import InputField from "../../../../../../components/InputField";
+import { useFormik } from "formik";
 
 const TransactionCodeSetupTable = () => {
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
+
+  const initialValues ={
+    AccountingPeriodStart: new Date(),
+    AccountingPeriodEnd:new Date(),
+    TransactionNumberFrom:"",
+    TransactionNumberTo:"",
+  }
 
   const handleClick = () => {
     setShow(!show);
@@ -66,7 +74,7 @@ const TransactionCodeSetupTable = () => {
     },
   };
 
-  const handleSave = ()=>{
+  const handleSubmit = ()=>{
     setShow(false)
   }
 
@@ -82,6 +90,34 @@ const TransactionCodeSetupTable = () => {
     color: "#000",
     border: "none",
   };
+  const customValidation = (values) => {
+    const errors = {};
+  
+    if (!values.TransactionNumberFrom) {
+      errors.TransactionNumberFrom = "This field Code is required";
+    }
+    if (!values.TransactionNumberTo) {
+      errors.TransactionNumberTo = "This field is required";
+    }
+   
+    return errors;
+  };
+
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
+
+  const formik = useFormik({
+    initialValues:initialValues,
+    validate: customValidation,
+    // onSubmit: (values) => {
+    //   // Handle form submission
+    //    handleSubmit(values);
+      
+    // },
+     onSubmit:handleSubmit
+  });
+
+  
   return (
     <div className="transactioncode__master__table_view">
       {/* <Card className="mt-1"> */}
@@ -161,14 +197,16 @@ const TransactionCodeSetupTable = () => {
             </LabelWrapper>
             <Calendar
               showIcon
-              placeholder="Select"
-              //   value={formik.values.receiptDate}
-              //   minDate={minDate}
-              //   onChange={(e) => {
-              //     formik.setFieldValue("receiptDate", e.target.value);
-              //   }}
-              //   dateFormat="yy-mm-dd"
-              //   error={formik.errors.receiptDate}
+              // placeholder="Select"
+
+className="calendar_container"
+                value={formik.values.AccountingPeriodStart}
+                minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("AccountingPeriodStart", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+                error={formik.errors.AccountingPeriodStart}
             />
           </div>
           <div className="calender__container col-12 md:col-6 lg-col-6 ">
@@ -176,15 +214,16 @@ const TransactionCodeSetupTable = () => {
               Accounting Period End
             </LabelWrapper>
             <Calendar
+            className="calendar_container"
               showIcon
               placeholder="Select"
-              //   value={formik.values.receiptDate}
-              //   minDate={minDate}
-              //   onChange={(e) => {
-              //     formik.setFieldValue("receiptDate", e.target.value);
-              //   }}
-              //   dateFormat="yy-mm-dd"
-              //   error={formik.errors.receiptDate}
+                value={formik.values.AccountingPeriodEnd}
+                minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("AccountingPeriodEnd", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+                error={formik.errors.AccountingPeriodEnd}
             />
           </div>
         </div>
@@ -197,13 +236,14 @@ const TransactionCodeSetupTable = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              // value={formik.values.TransactionCode}
-              // onChange={formik.handleChange("TransactionCode")}
-              // error={
-              //   formik.touched.TransactionCode &&
-              //   formik.errors.TransactionCode
-              // }
+              value={formik.values.TransactionNumberFrom}
+              onChange={formik.handleChange("TransactionNumberFrom")}
+              error={
+                formik.touched.TransactionNumberFrom &&
+                formik.errors.TransactionNumberFrom
+              }
             />
+           
           </div>
           <div className="col-12 md:col-6 lg-col-6 ">
             <InputField
@@ -213,12 +253,12 @@ const TransactionCodeSetupTable = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              // value={formik.values.TransactionCode}
-              // onChange={formik.handleChange("TransactionCode")}
-              // error={
-              //   formik.touched.TransactionCode &&
-              //   formik.errors.TransactionCode
-              // }
+              value={formik.values.TransactionNumberTo}
+              onChange={formik.handleChange("TransactionNumberTo")}
+              error={
+                formik.touched.TransactionNumberTo &&
+                formik.errors.TransactionNumberTo
+              }
             />
           </div>
         </div>
@@ -226,9 +266,10 @@ const TransactionCodeSetupTable = () => {
             <Button
               label="Save"
               className="add__btn"
-              onClick={() => {
-                handleSave();
-              }}
+              // onClick={() => {
+              //   handleSave();
+              // }}
+              onClick={()=>{formik.handleSubmit();}} 
             />
           </div>
       </Dialog>

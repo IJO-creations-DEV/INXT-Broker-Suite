@@ -8,6 +8,19 @@ import { Button } from 'primereact/button';
 import SvgDropdown from '../../../../assets/icons/SvgDropdown';
 import CustomToast from '../../../../components/Toast';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from "formik";
+
+const initialValues ={
+    CurrencyCode: "",
+    ISOcode:"",
+    SmallestUnit:"",
+    UnitDescription:"",
+    CurrencyName:"",
+    Description:"",
+    CurrencyFormat:"",
+    NumberofDecimals:""
+ 
+}
 
 const AddCurrency = () => {
     const toastRef = useRef(null);
@@ -17,13 +30,64 @@ const AddCurrency = () => {
         { label: 'Add Currency', url: '/master/finance/currency/addcurrency' },
 
     ];
+
+    const ISOcode = [
+        { name: "ISO 3166-2:IN", code: "NY" },
+        { name: "ISO 3166-2:USD", code: "RM" },
+      ];
     const home = { label: "Master" };
+
     const handleSubmit = () => {
         toastRef.current.showToast();
         setTimeout(() => {
           navigate("/master/finance/currency");
         }, 2000);
       };
+
+      const customValidation = (values) => {
+        const errors = {};
+      
+        if (!values.CurrencyCode) {
+          errors.CurrencyCode = "This field Code is required";
+        }
+        if (!values.ISOcode) {
+          errors.ISOcode = "This field is required";
+        }
+        if (!values.SmallestUnit) {
+          errors.SmallestUnit = "This field is required";
+        }
+        if (!values.UnitDescription) {
+            errors.UnitDescription = "This field is required";
+          }
+          if (!values.CurrencyName) {
+            errors.CurrencyName = "This field is required";
+          }
+          if (!values.Description) {
+            errors.Description = "This field is required";
+          }
+       
+        if (!values.CurrencyFormat) {
+          errors.CurrencyFormat = "This field is required";
+        }
+        if (!values. NumberofDecimals) {
+            errors. NumberofDecimals = "This field is required";
+          }
+          
+        
+        return errors;
+      };
+
+
+      const formik = useFormik({
+        initialValues:initialValues,
+        validate: customValidation,
+        // onSubmit: (values) => {
+        //   // Handle form submission
+        //    handleSubmit(values);
+          
+        // },
+         onSubmit:handleSubmit
+      });
 
     return (
         <div className='grid sub__add__container'>
@@ -42,7 +106,17 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            value={formik.values.CurrencyCode}
+              onChange={formik.handleChange("CurrencyCode")}
                         />
+                        {formik.touched.CurrencyCode && formik.errors.CurrencyCode && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.CurrencyCode}
+              </div>
+            )}
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
                         <DropDowns
@@ -51,6 +125,13 @@ const AddCurrency = () => {
                             classNames='label__sub__add'
                             placeholder={"Select"}
                             dropdownIcon={<SvgDropdown color={"#000"} />}
+                            value={formik.values.ISOcode}
+              onChange={(e) =>
+                formik.setFieldValue("ISOcode", e.value)
+                
+              }
+              options={ISOcode}
+              optionLabel="name"
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -59,7 +140,17 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            value={formik.values.SmallestUnit}
+              onChange={formik.handleChange("SmallestUnit")}
                         />
+                                {formik.touched.SmallestUnit && formik.errors.SmallestUnit && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.SmallestUnit}
+              </div>
+            )}
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
                         <InputField
@@ -67,26 +158,56 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            value={formik.values.UnitDescription}
+                            onChange={formik.handleChange("UnitDescription")}
                         />
+                                     {formik.touched.UnitDescription && formik.errors.UnitDescription && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.UnitDescription}
+              </div>
+            )}
                     </div>
                     </div>
                     <div className='grid'>
                     <div className='col-12 md:col-6 lg:col-6'>
                         <InputField
-                            label="Currency Description"
+                            label="Currency Name"
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
-                            
+                            value={formik.values.CurrencyName}
+                            onChange={formik.handleChange("CurrencyName")}
                         />
+                                         {formik.touched.CurrencyName && formik.errors.CurrencyName && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.CurrencyName}
+              </div>
+            )}
+                        
                     </div>
                     <div className='col-12 md:col-6 lg:col-6'>
                         <InputField
-                            label="Currency Short Description"
+                            label="Description"
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            value={formik.values.Description}
+                            onChange={formik.handleChange("Description")}
                         />
+                                                {formik.touched.Description && formik.errors.Description && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.Description}
+              </div>
+            )}
                     </div>
                     </div>
                     <div className='grid '>
@@ -96,7 +217,17 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            value={formik.values.CurrencyFormat}
+                            onChange={formik.handleChange("CurrencyFormat")}
                         />
+                                                    {formik.touched.CurrencyFormat && formik.errors.CurrencyFormat && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.CurrencyFormat}
+              </div>
+            )}
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
                         <InputField
@@ -104,7 +235,17 @@ const AddCurrency = () => {
                             classNames='dropdown__add__sub'
                             className='label__sub__add'
                             placeholder="Enter"
+                            value={formik.values.NumberofDecimals}
+                            onChange={formik.handleChange("NumberofDecimals")}
                         />
+                                                    {formik.touched.NumberofDecimals && formik.errors.NumberofDecimals && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.NumberofDecimals}
+              </div>
+            )}
                     </div>
                 </div>
             </div>
@@ -112,7 +253,8 @@ const AddCurrency = () => {
                 <Button
                     label='Save'
                     className='save__add__btn'
-                    onClick={()=>{handleSubmit()}}
+                    onClick={()=>{formik.handleSubmit();}}
+                    disabled={!formik.isValid}
                 />
             </div>
         </div>

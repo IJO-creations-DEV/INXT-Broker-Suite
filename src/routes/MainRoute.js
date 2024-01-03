@@ -178,7 +178,7 @@ const Maincomponent = () => {
             <Route
               path="accounts/paymentvoucher/detailview/:id"
               element={<Detailview />}
-            />
+            />  
             <Route
               path="accounts/paymentvoucher/bankdetailselection"
               element={<Bankdetailselection />}

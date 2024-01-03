@@ -9,7 +9,7 @@ import { Button } from "primereact/button";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
-import SvgEditIcon from "../../../../assets/icons/SvgEditicons";
+import SvgEditIcon from "../../../../assets/icons/SvgEdit";
 import ToggleButton from "../../../../components/ToggleButton";
 
 const TransactionCodeMasterTable = () => {
@@ -104,7 +104,7 @@ const TransactionCodeMasterTable = () => {
   };
   return (
     <div className="transactioncode__master__table">
-      <Card className="mt-1">
+      <Card className="mt-4">
         <div className="header__search__container grid">
           <div class="col-12 md:col-6 lg:col-10">
             <span className="p-input-icon-left" style={{ width: "100%" }}>
@@ -145,6 +145,7 @@ const TransactionCodeMasterTable = () => {
             <Column
               field="TransactionCode"
               header="Transaction Code"
+              sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
@@ -165,6 +166,7 @@ const TransactionCodeMasterTable = () => {
             <Column
               field="BranchCode"
               header="Branch Code"
+              sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>

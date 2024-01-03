@@ -1,4 +1,4 @@
-.container__taxation {
+.container__subaccount {
 
     // justify-content: center;
     .add__icon__title__taxation {
@@ -106,7 +106,7 @@
     .sub__account__sub__container__taxation {
         box-shadow: 0px 0px 20px 0px #00000014;
         border-radius: 10px;
-
+        margin-top:14px;
 
 
         .sort__filter__view__taxation {
@@ -187,7 +187,7 @@
         // justify-content: center;
         align-items: center;
         border: 1px solid #d1d5db;
-        border-radius: 5px;
+        border-radius: 10px;
         height: 45px;
     }
     .p-inputtext{
@@ -236,8 +236,8 @@
         color: #6366F1;
 
     }
-    .pagedropdown_container__taxation{
-        margin-right: 20%;
+    .pagedropdown_container{
+        margin-right: 30%;
         border-style: hidden;
         background-color: #FAFAFA;
     }
@@ -256,7 +256,7 @@
     }
     .fieldvalue_container.centered {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
       }
 
@@ -266,6 +266,8 @@
     user-select: none;
     cursor: pointer;
     width: 100% !important;
+    margin-top: 8px;
+
 }
 .add__btn {
     color: #fff;

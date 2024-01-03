@@ -21,7 +21,8 @@ import { useSelector } from "react-redux";
 import SvgEditicon from "../../../assets/icons/SvgEdit";
 import SvgEdit from "../../../assets/icons/SvgEdits";
 import ToggleButton from "../../../components/ToggleButton";
-import SvgEditicons from "../../../assets/icons/SvgEditicons";
+import SvgEditicons from "../../../assets/icons/SvgEdit";
+import SvgTable from "../../../assets/icons/SvgTable";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
@@ -43,6 +44,18 @@ const Index = () => {
   const handleEdit = (columnData) => {
     navigate("/master/finance/exchangerate/saveandeditexchange")
   }
+  console.log("first",paymentVocherList)
+
+  const isEmpty = paymentVocherList.length === 0;
+
+  const emptyTableIcon = (
+    <div>
+    <div className="empty-table-icon">
+      <SvgTable/>
+    </div>
+    <div className="no__data__found">No data entered</div>
+    </div>
+  );
 
 
   const template2 = {
@@ -168,12 +181,13 @@ const Index = () => {
             </span>
           </div>
           {/* </div> */}
-          <div class="col-12 md:col-6 lg:col-2">
+          {/* <div class="col-12 md:col-6 lg:col-2">
             <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
             <Button label="Search by" outlined icon={<SvgDropdownicon />}
               className="sorbyfilter_container"
               onClick={(e) => menu.current.toggle(e)}
-            /></div>
+            />
+            </div> */}
 
         </div>
         <div className="headlist_lable">Exchange Rate List</div>
@@ -187,11 +201,12 @@ const Index = () => {
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2} scrollable={true}
             scrollHeight="40vh"
+            emptyMessage={isEmpty ? emptyTableIcon : null}
           >
 
             <Column field="VoucherNumber" header="Effective From"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="TransactionNumber" header="Effective To"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="CustomerCode" header="Currency Code"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="CustomerCode" header="Currency Code"  sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="VoucheDate" header="To Currency Code"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="Amount" header="Exchange Rate" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>

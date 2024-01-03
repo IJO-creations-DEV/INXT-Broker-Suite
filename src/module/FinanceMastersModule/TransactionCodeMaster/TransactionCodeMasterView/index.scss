@@ -6,8 +6,8 @@
           box-shadow: none !important;
           border-radius: 6px !important;
           fill: #fff !important;
-          stroke-width: 1px !important;
-          stroke: #fff !important;
+          // stroke-width: 1px !important;
+          // stroke: #fff !important;
           filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
         }
       }
@@ -86,4 +86,19 @@
         margin-top: 0.5rem !important;
         width: 100% !important;
       }
+     
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+      font-weight: 400 !important;
+      font-family: inter var;
+      border: none !important;
+    }
+    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+      background: #ffffff;
+      border-color: #6366F1;
+      color: #6366F1;
+      
+      font-weight: 500 !important;
+      font-family: inter var;
+  }
+ 
 }

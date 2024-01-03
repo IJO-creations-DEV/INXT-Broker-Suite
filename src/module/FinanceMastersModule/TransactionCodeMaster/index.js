@@ -7,6 +7,7 @@ import SvgAdd from "../../../assets/icons/SvgAdd";
 import { useNavigate } from "react-router";
 import SvgUploade from "../../../assets/icons/SvgUploade";
 import TransactionCodeMasterTable from "./TransactionCodeMasterTable";
+import NavBar from "../../../components/NavBar";
 
 const TransactionCodeMaster = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const TransactionCodeMaster = () => {
 
   return (
     <div className="Transaction__Code__Master__container">
+      <NavBar/>
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div className="Transaction__Code__Master__title">

@@ -153,14 +153,15 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                 ></Column>
                 <Column
 
-                    header="effectiveFrom"
+                    field="effectiveFrom"
+                    header="Effective From"
                     className="fieldvalue_container"
 
 
                 ></Column>
                 <Column
-
-                    header="effectionTo"
+                   field="effectionTo"
+                    header="Effection To"
                     className="fieldvalue_container"
 
 
@@ -168,13 +169,14 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                
                 <Column
                     body={renderToggleButton}
-                    header="satus"
+                    field="status"
+                    header="Status"
                     headerStyle={{ textAlign: 'left', ...headerStyle }}
                     className="fieldvalue_container"
                 ></Column>
                 <Column
                     body={renderEditButton}
-                    header="action"
+                    header="Action"
                     className="fieldvalue_container"
 
 

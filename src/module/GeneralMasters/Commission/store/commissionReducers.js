@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getCommission } from "./commissionMiddleWare";
+import { getCommission, getCommissionSearchList, getCommissionView, patchCommissionEdit, postAddCommission } from "./commissionMiddleWare";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
     loading: false,
     error: "",
+    addCommission: {},
+    commissionSearchList: [],
+    commissionView: {},
+    CommissionEdit: {},
     commissionList: [
         {
             id: 1,
@@ -13,7 +17,7 @@ const initialState = {
             selectCover: "Cus01123",
             effectiveFrom: "11/12/2023",
             effectiveTo: "11/12/2023",
-            status:"true",
+            status: "true",
             // Amount: "500.00",
             action: <SvgIconeye />,
         },
@@ -24,7 +28,7 @@ const initialState = {
             selectCover: "Cus01123",
             effectiveFrom: "11/12/2023",
             effectiveTo: "11/12/2023",
-            status:"false",
+            status: "false",
             // Amount: "500.00",
             action: <SvgIconeye />,
         },
@@ -35,7 +39,7 @@ const initialState = {
             selectCover: "Cus01123",
             effectiveFrom: "11/12/2023",
             effectiveTo: "11/12/2023",
-            status:"true",
+            status: "true",
             // Amount: "500.00",
             action: <SvgIconeye />,
         },
@@ -46,14 +50,15 @@ const initialState = {
             selectCover: "Cus01123",
             effectiveFrom: "11/12/2023",
             effectiveTo: "11/12/2023",
-            status:"false",
+            status: "false",
             // Amount: "500.00",
             action: <SvgIconeye />,
         },
-        
+
     ],
-    
-   
+
+
+
 };
 const commissionReducers = createSlice({
     name: "commission",
@@ -73,7 +78,93 @@ const commissionReducers = createSlice({
             state.commissionList = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
         });
-     
+
+        //addCommission
+        builder.addCase(postAddCommission.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            postAddCommission.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                state.addCommission = action.payload;
+            }
+        );
+        builder.addCase(
+            postAddCommission.rejected,
+            (state, action) => {
+                state.loading = false;
+
+                state.addCommission = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+        //commissionSearchList
+
+        builder.addCase(getCommissionSearchList.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            getCommissionSearchList.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                state.commissionSearchList = action.payload;
+            }
+        );
+        builder.addCase(
+            getCommissionSearchList.rejected,
+            (state, action) => {
+                state.loading = false;
+
+                state.commissionSearchList = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
+
+        //CommissionDetail
+
+        // builder.addCase(patchCommissionEdit.pending, (state) => {
+        //     state.loading = true;
+        // });
+        // builder.addCase(
+        //     patchCommissionEdit,
+        //     (state, action) => {
+        //         state.loading = false;
+        //         state.CommissionEdit = action.payload;
+        //     }
+        // );
+        // builder.addCase(
+        //     patchCommissionEdit.rejected,
+        //     (state, action) => {
+        //         state.loading = false;
+
+        //         state.CommissionEdit = {};
+        //         state.error = typeof action.payload === "string" ? action.payload : "";
+        //     }
+        // );
+
+        //getCommissionView
+
+        builder.addCase(getCommissionView.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            getCommissionView.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                state.commissionView = action.payload;
+            }
+        );
+        builder.addCase(
+            getCommissionView.rejected,
+            (state, action) => {
+                state.loading = false;
+
+                state.commissionView = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
 
     },
 });

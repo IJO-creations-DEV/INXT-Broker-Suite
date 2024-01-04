@@ -68,19 +68,19 @@ export const menuList = [
       {
         id: 1,
         name: "Generals",
-        submenu:[
-            {
-                id:1,
-                name:"Organization",
-                path:"master/generals/organization"
-            },
-            {
-                id:2,
-                name:"Commission",
-                path:"master/generals/commission"
-            }
-        ]
-    },
+        submenu: [
+          {
+            id: 1,
+            name: "Organization",
+            path: "master/generals/organization",
+          },
+          {
+            id: 2,
+            name: "Commission",
+            path: "master/generals/commission",
+          },
+        ],
+      },
       {
         id: 2,
         name: "Finance",

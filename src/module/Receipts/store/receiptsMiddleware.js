@@ -39,10 +39,14 @@ export const getReceiptsListByIdMiddleware = createAsyncThunk(
 );
 export const getReceiptsReceivableMiddleware = createAsyncThunk(
   GET_RECEIVABLE_TABLE,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue,getState}) => {
+    const { receivableTableReducers } = getState();
+    console.log(receivableTableReducers, "dta");
+    const { receivableTableList } = receivableTableReducers;
+    const filteredData = receivableTableList.filter((item) => item.id === 1);
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return filteredData[0];
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -98,10 +102,39 @@ export const postPaymentDetailsMiddleware = createAsyncThunk(
 );
 export const patchReceipEditMiddleware = createAsyncThunk(
   PATCH_RECEIPT_EDIT,
-  async (payload, { rejectWithValue }) => {
+  
+    async (payload, { rejectWithValue,getState}) => {
+      console.log(payload,"find payloadsss")
+      const { editReducers } = getState();
+      console.log(editReducers, "edit1");
+      const { receivableTableList } = editReducers;
+      console.log(receivableTableList,'find t data')
+      const updateTable=receivableTableList?.map((item) => {
+        if (item.id === parseInt(payload?.id)) {
+          return {
+            ...item,
+            policies: payload?.policy,
+            netPremium: payload?.netPremium,
+            paid:payload?.paid,
+            unPaid:payload?.unPaid,
+            discounts:payload.discounts,
+            dst:payload.dst,
+            lgt:payload.lgt,
+            vat:payload.vat,
+            other:payload.other,
+            fcAmount:payload.fcAmount,
+            lcAmount:payload.lcAmount
+            
+          };
+        }
+        return item;
+      });
+      console.log(updateTable,'find updateTable')
+    
+      
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return updateTable;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

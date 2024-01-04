@@ -16,107 +16,208 @@ const initialState = {
             amount: "500.37",
             action: "Action",
           },
-          // {
-          //   id: 2,
-          //   receiptNumber: "01Rep012302",
-          //   transactionCode: "123456",
-          //   transactionNumber: "Transac00123",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-          // {
-          //   id: 3,
-          //   receiptNumber: "01Rep012302",
-          //   transactionCode: "123456",
-          //   transactionNumber: "Transac00123",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-          // {
-          //   id: 4,
-          //   receiptNumber: "01Rep012303",
-          //   transactionCode: "123457",
-          //   transactionNumber: "Transac00124",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-          // {
-          //   id: 5,
-          //   receiptNumber: "01Rep012307",
-          //   transactionCode: "123456",
-          //   transactionNumber: "Transac00129",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-          // {
-          //   id: 6,
-          //   receiptNumber: "01Rep012307",
-          //   transactionCode: "123456",
-          //   transactionNumber: "Transac00123",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-          // {
-          //   id: 7,
-          //   receiptNumber: "01Rep012302",
-          //   transactionCode: "123456",
-          //   transactionNumber: "Transac00123",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-          // {
-          //   id: 8,
-          //   receiptNumber: "01Rep012301",
-          //   transactionCode: "123456",
-          //   transactionNumber: "Transac00123",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-          // {
-          //   id: 9,
-          //   receiptNumber: "01Rep012302",
-          //   transactionCode: "123456",
-          //   transactionNumber: "Transac00123",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-          // {
-          //   id: 10,
-          //   receiptNumber: "01Rep012302",
-          //   transactionCode: "123456",
-          //   transactionNumber: "Transac00123",
-          //   name: "Name",
-          //   customerCode: "CC0102",
-          //   date: "11/12/2023",
-          //   amount: "500.37",
-          //   action: "Action",
-          // },
-    ]
- 
+          {
+            id: 2,
+            receiptNumber: "01Rep012302",
+            transactionCode: "123456",
+            transactionNumber: "Transac00123",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+          {
+            id: 3,
+            receiptNumber: "01Rep012302",
+            transactionCode: "123456",
+            transactionNumber: "Transac00123",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+          {
+            id: 4,
+            receiptNumber: "01Rep012303",
+            transactionCode: "123457",
+            transactionNumber: "Transac00124",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+          {
+            id: 5,
+            receiptNumber: "01Rep012307",
+            transactionCode: "123456",
+            transactionNumber: "Transac00129",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+          {
+            id: 6,
+            receiptNumber: "01Rep012307",
+            transactionCode: "123456",
+            transactionNumber: "Transac00123",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+          {
+            id: 7,
+            receiptNumber: "01Rep012302",
+            transactionCode: "123456",
+            transactionNumber: "Transac00123",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+          {
+            id: 8,
+            receiptNumber: "01Rep012301",
+            transactionCode: "123456",
+            transactionNumber: "Transac00123",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+          {
+            id: 9,
+            receiptNumber: "01Rep012302",
+            transactionCode: "123456",
+            transactionNumber: "Transac00123",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+          {
+            id: 10,
+            receiptNumber: "01Rep012302",
+            transactionCode: "123456",
+            transactionNumber: "Transac00123",
+            name: "Name",
+            customerCode: "CC0102",
+            date: "11/12/2023",
+            amount: "500.37",
+            action: "Action",
+          },
+    ],
+    receivableTableList: [
+      {
+        id: 1,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+      {
+        id: 2,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+      {
+        id: 3,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+      {
+        id: 4,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+      {
+        id: 5,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+    ],
+  receiptDetailList :[
+    {
+      id: 1,
+      policies: "Motor",
+      netPremium: "4000.00",
+      paid: "000.00",
+      unPaid: "4000.00",
+      discounts: "200.00",
+      dst: "200.00",
+      lgt: "200.00",
+      vat: "200.00",
+      ewt: "200.00",
+      fcAmount:"00.00",
+      lcAmount:"00.00"
+    },
+    {
+      id: 2,
+      policies: "Motor",
+      netPremium: "4000.00",
+      paid: "000.00",
+      unPaid: "4000.00",
+      discounts: "200.00",
+      dst: "200.00",
+      lgt: "200.00",
+      vat: "200.00",
+      ewt: "200.00",
+      fcAmount:"00.00",
+      lcAmount:"00.00"
+    },
+  ]
 };
 const receiptsReducer = createSlice({
     name: "receipts",
@@ -141,12 +242,12 @@ const receiptsReducer = createSlice({
         });
         builder.addCase(getReceiptsListByIdMiddleware.fulfilled, (state, action) => {
             state.loading = false;
-            state.receiptsTableList = action.payload;
+            state.receiptDetailList = action.payload;
         });
         builder.addCase(getReceiptsListByIdMiddleware.rejected, (state, action) => {
             state.loading = false;
 
-            state.receiptsTableList = {};
+            state.receiptDetailList = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
         });
         builder.addCase(getReceiptsReceivableMiddleware.pending, (state) => {
@@ -156,7 +257,7 @@ const receiptsReducer = createSlice({
             getReceiptsReceivableMiddleware.fulfilled,
             (state, action) => {
               state.loading = false;
-              state.BankDetailView = action.payload;
+              state.receivableTableList = action.payload;
             }
           );
           builder.addCase(
@@ -164,11 +265,12 @@ const receiptsReducer = createSlice({
             (state, action) => {
               state.loading = false;
       
-              state.getReceiptsReceivableMiddleware = {};
+              state.receivableTableList = {};
               state.error = typeof action.payload === "string" ? action.payload : "";
             }
           );
-        
+     
+
           builder.addCase(postAddReceiptsMiddleware.pending, (state) => {
             state.loading = true;
           });
@@ -210,7 +312,8 @@ const receiptsReducer = createSlice({
             patchReceipEditMiddleware.fulfilled,
             (state, action) => {
               state.loading = false;
-              state.BankDetailView = action.payload;
+            
+              state.receivableTableList = action.payload;
             }
           );
           builder.addCase(
@@ -218,7 +321,7 @@ const receiptsReducer = createSlice({
             (state, action) => {
               state.loading = false;
       
-              state.patchReceipEditMiddleware = {};
+              state.editList = {};
               state.error = typeof action.payload === "string" ? action.payload : "";
             }
           );

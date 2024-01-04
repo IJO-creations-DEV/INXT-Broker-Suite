@@ -11,13 +11,21 @@ import { data } from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import { Card } from "primereact/card";
 import SvgBack from "../../../assets/icons/SvgBack";
+import { useSelector } from "react-redux";
 
 function PolicyReceipts() {
-  const [products, setProducts] = useState([]);
+  const { receiptDetailList, loading,total } = useSelector(({ receiptsTableReducers }) => {
+    return {
+      loading: receiptsTableReducers?.loading,
+      receiptDetailList: receiptsTableReducers?.receiptDetailList,
+      total:receiptsTableReducers
 
-  useEffect(() => {
-    setProducts(data);
-  }, []);
+    };
+  });
+  useEffect(()=>{
+    console.log(total,"sd")
+  },[total])
+console.log(total,"find receivableTableList")
 
   const items = [{ label: "Receipts",url:'accounts/receipts/policyreceipts'}, { label: "Receipt Detail View" }];
 
@@ -80,7 +88,7 @@ function PolicyReceipts() {
 
       <div className="card">
         <DataTable
-          value={products}
+          value={receiptDetailList}
           tableStyle={{
             minWidth: "50rem",
             color: "#1C2536",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import "./index.scss";
 import { useFormik } from "formik";
@@ -6,42 +6,56 @@ import DropDowns from "../../../../components/DropDowns";
 import InputField from "../../../../components/InputField";
 import { Button } from "primereact/button";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
+import { useSelector, useDispatch } from "react-redux";
+import { patchAccountCategoryDetailEditMiddleWare } from "../store/accountCategoryMeddleware";
 
-const ModalData = ({
+const ModalEditData = ({
   visible,
   setVisible,
   setEditID,
   handleSave,
   handleEdit,
-  popUpAction,
 }) => {
-  console.log(popUpAction, "find popUpAction");
-  const customValidation = (values) => {
-    const errors = {};
+  const dispatch = useDispatch();
+  const { AccountCategoryDetailEdit, loading } = useSelector(
+    ({ accountCategoryReducer }) => {
+      return {
+        loading: accountCategoryReducer?.loading,
+        AccountCategoryDetailEdit:
+          accountCategoryReducer?.AccountCategoryDetailEdit,
+      };
+    }
+  );
+  useEffect(() => {
+    setFormikValues();
+  }, [AccountCategoryDetailEdit]);
+  console.log(AccountCategoryDetailEdit, "find AccountCategoryDetailEdit");
 
-    if (!values.categoryCode) {
-      errors.categoryCode = "This field is required";
-    }
-    if (!values.categoryName) {
-      errors.categoryName = "This field is required";
-    }
-    if (!values.description) {
-      errors.description = "This field is required";
-    }
-
-    return errors;
-  };
   const handleSubmit = (values) => {
     // Handle form submission
-    console.log(values, "find values");
+    dispatch(patchAccountCategoryDetailEditMiddleWare(values));
+  };
+  const setFormikValues = () => {
+    const categoryCode = AccountCategoryDetailEdit?.accountCategoryCode;
+    const categoryName = AccountCategoryDetailEdit?.accountCategoryName;
+    const description = "Account Category description";
+    const id = AccountCategoryDetailEdit?.id;
+
+    const updatedValues = {
+      categoryCode: `${categoryCode}`,
+      categoryName: `${categoryName}`,
+      description: `${description}`,
+      id: `${id}`,
+    };
+    formik.setValues({ ...formik.values, ...updatedValues });
   };
   const formik = useFormik({
     initialValues: {
+      id: "",
       categoryCode: "",
       categoryName: "",
       description: "",
     },
-    validate: customValidation,
     onSubmit: (values) => {
       handleSubmit(values);
       formik.resetForm();
@@ -52,13 +66,7 @@ const ModalData = ({
   });
   return (
     <Dialog
-      header={
-        popUpAction === "Edit"
-          ? "Edit Category"
-          : popUpAction === "View"
-          ? "Account Category Detail"
-          : "Add Account Category"
-      }
+      header={"Edit Category"}
       visible={visible}
       className="account__category__jv__Edit__modal__container"
       onHide={() => setVisible(false)}
@@ -126,14 +134,12 @@ const ModalData = ({
               alignItems: "flex-end",
             }}
           >
-            {popUpAction !== "View" && (
-              <Button
-                label={popUpAction === "Add" ? "Save" : "Update"}
-                className="correction__btn__reversal"
-                disabled={!formik.isValid}
-                onClick={formik.handleSubmit}
-              />
-            )}
+            <Button
+              label="Update"
+              className="correction__btn__reversal"
+              disabled={!formik.isValid}
+              onClick={formik.handleSubmit}
+            />
           </div>
         </div>
       </div>
@@ -141,4 +147,4 @@ const ModalData = ({
   );
 };
 
-export default ModalData;
+export default ModalEditData;

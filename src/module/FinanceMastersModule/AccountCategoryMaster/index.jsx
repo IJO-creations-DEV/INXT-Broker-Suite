@@ -6,9 +6,20 @@ import SvgDot from "../../../assets/icons/SvgDot";
 import SvgAdd from "../../../assets/icons/SvgAdd";
 import { Button } from "primereact/button";
 import TableData from "./TableData/index";
-import ModalData from "./PopUpData/ModalData";
+import ModalEditData from "./PopUpData/ModalEditData";
+import ModalViewData from "./PopUpData/ModalViewData";
+import ModalAddData from "./PopUpData/ModalAddData";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getAccountCategoryDetailViewMiddleWare,
+  getAccountCategoryDetailEditMiddleWare,
+} from "./store/accountCategoryMeddleware";
+
 const AccountCategoryMaster = () => {
-  const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
+  const [visibleAdd, setVisibleAdd] = useState(false);
+  const [visibleView, setVisibleView] = useState(false);
+  const [visibleEdit, setVisibleEdit] = useState(false);
   const [EditID, setEditID] = useState(null);
   const [popUpAction, setpopUpAction] = useState(null);
   const [EmptyTable, setEmptyTable] = useState(false);
@@ -20,14 +31,26 @@ const AccountCategoryMaster = () => {
   ];
   const home = { label: "Master" };
   const handleSave = (values) => {
-    setVisible(false);
+    // setVisible(false);
     setEmptyTable(true);
   };
   const handleEdit = (values) => {
-    setVisible(false);
+    // setVisible(false);
   };
+  const handleViewAction = (data) => {
+    dispatch(getAccountCategoryDetailViewMiddleWare(data));
+    setVisibleView(true);
+  };
+  const handleEditAction = (data) => {
+    dispatch(getAccountCategoryDetailEditMiddleWare(data));
+    setVisibleEdit(true);
+  };
+  const handleAddAction = () => {
+    setVisibleAdd(true);
+  };
+
   const handleAction = (editindex, actionName) => {
-    setVisible(true);
+    setVisibleAdd(true);
     setEditID(editindex);
     setpopUpAction(actionName);
   };
@@ -51,7 +74,7 @@ const AccountCategoryMaster = () => {
             }
             label="Add"
             className="correction__btn__reversal"
-            onClick={() => handleAction(null, "Add")}
+            onClick={handleAddAction}
           />
         </div>
         <div className="col-12 p-0">
@@ -65,12 +88,33 @@ const AccountCategoryMaster = () => {
       </div>
       <div className="grid m-0 table__container">
         <div className="col-12 p-0">
-          <TableData handleAction={handleAction} EmptyTable={EmptyTable} />
+          <TableData
+            handleViewAction={handleViewAction}
+            handleEditAction={handleEditAction}
+            EmptyTable={EmptyTable}
+          />
         </div>
       </div>
-      <ModalData
-        visible={visible}
-        setVisible={setVisible}
+
+      <ModalAddData
+        visible={visibleAdd}
+        setVisible={setVisibleAdd}
+        handleSave={handleSave}
+        setEditID={setEditID}
+        handleEdit={handleEdit}
+        popUpAction={popUpAction}
+      />
+      <ModalEditData
+        visible={visibleEdit}
+        setVisible={setVisibleEdit}
+        handleSave={handleSave}
+        setEditID={setEditID}
+        handleEdit={handleEdit}
+        popUpAction={popUpAction}
+      />
+      <ModalViewData
+        visible={visibleView}
+        setVisible={setVisibleView}
         handleSave={handleSave}
         setEditID={setEditID}
         handleEdit={handleEdit}

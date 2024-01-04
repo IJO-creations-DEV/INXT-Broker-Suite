@@ -12,6 +12,8 @@ import subAccountMainReducers from "../module/FinanceMastersModule/SubAccountMas
 import pettyCashMainReducers from "../module/FinanceMastersModule/PettyCashMaster/store/pettyCashMasterReducers";
 import receiptsTableReducers from "../module/Receipts/store/receiptsReducers";
 import reversalMainReducers from "../module/Reversals/store/reversalReducers"
+import receivableTableReducers from "../module/Receipts/store/receiptsReducers";
+import editReducers from "../module/Receipts/store/receiptsReducers"
 const reducers = {
     journalVoucherMainReducers,
     paymentVoucherReducers,
@@ -27,6 +29,9 @@ const reducers = {
     pettyCashMainReducers,
     receiptsTableReducers,
     reversalMainReducers,
+    receivableTableReducers,
+    editReducers,
+   
 }
 
 export default reducers;

@@ -115,7 +115,7 @@ function BranchAdding() {
     console.log(valueWithId,'find valueWithId')
   
     dispatch(postAddReceiptsMiddleware(valueWithId));
-    navigate("/accounts/receipts");
+    navigate("/accounts/receipts/addreceiptedit");
 
   };
  

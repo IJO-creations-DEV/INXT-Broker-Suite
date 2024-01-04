@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
-import { getTaxationData, getTaxationSearchList, getTaxationView, patchTaxationEdit, postAddTaxation } from "./taxationMiddleWare";
+import { getTaxationData, getTaxationSearchList, getTaxationView, patchTaxationEdit, postAddTaxationMiddileware } from "./taxationMiddleWare";
 const initialState = {
     loading: false,
     error: "",
@@ -11,8 +11,8 @@ const initialState = {
     taxationList: [
         {
             id: 1,
-            taxationCode: "Voucher0123",
-            taxationName: "Tax",
+            taxationCode: "Tax0123",
+            taxationName: "Income Tax",
             taxationRate: '30%',
             effectiveFrom: "11/12/2023",
             effectiveTo: "11/12/2023",
@@ -21,9 +21,9 @@ const initialState = {
         },
         {
             id: 2,
-            taxationCode: "Voucher0123",
-            taxationName: "Tax",
-            taxationRate: '30%',
+            taxationCode: "Tax983",
+            taxationName: "Income Tax",
+            taxationRate: '40%',
             effectiveFrom: "11/12/2023",
             effectiveTo: "11/12/2023",
             status: "true",
@@ -31,9 +31,9 @@ const initialState = {
         },
         {
             id: 3,
-            taxationCode: "Voucher0123",
-            taxationName: "Tax",
-            taxationRate: '30%',
+            taxationCode: "Tax0120",
+            taxationName: "Income Tax1",
+            taxationRate: '60%',
             effectiveFrom: "11/12/2023",
             effectiveTo: "11/12/2023",
             status: "true",
@@ -41,9 +41,9 @@ const initialState = {
         },
         {
             id: 4,
-            taxationCode: "Voucher0123",
-            taxationName: "Tax",
-            taxationRate: '30%',
+            taxationCode: "Tax145",
+            taxationName: "Income Tax",
+            taxationRate: '80%',
             effectiveFrom: "11/12/2023",
             effectiveTo: "11/12/2023",
             status: "true",
@@ -76,19 +76,19 @@ const taxationReducers = createSlice({
 
 
         //addCommission
-        builder.addCase(postAddTaxation.pending, (state) => {
+        builder.addCase(postAddTaxationMiddileware.pending, (state) => {
             state.loading = true;
         });
         builder.addCase(
-            postAddTaxation.fulfilled,(state, action) => {
+            postAddTaxationMiddileware.fulfilled,(state, action) => {
                 state.loading = false;
-                state.addTaxation = action.payload;
+                state.taxationList = [...state.taxationList,action.payload];
             }
         );
         builder.addCase(
-            postAddTaxation.rejected,(state, action) => {
+            postAddTaxationMiddileware.rejected,(state, action) => {
                 state.loading = false;
-                state.addTaxation = {};
+               
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );

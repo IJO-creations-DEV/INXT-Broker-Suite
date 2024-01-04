@@ -52,12 +52,12 @@ export const menuList = [
       },
       {
         id: 5,
-        name: "Correction Journal Voucher",
+        name: "Correction JV",
         path: "/accounts/correctionsjv/correctionsjvdetails",
       },
       {
         id: 6,
-        name: "Reversal Journal Voucher",
+        name: "Reversal JV",
         path: "/accounts/reversaljv/reversaljvdetails",
       },
     ],

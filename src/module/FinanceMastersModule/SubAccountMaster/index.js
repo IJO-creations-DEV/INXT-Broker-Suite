@@ -24,6 +24,7 @@ import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import { MultiSelect } from 'primereact/multiselect';
 import CustomToast from "../../../components/Toast";
 import { useSelector } from "react-redux";
+import SvgTable from "../../../assets/icons/SvgTable";
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
@@ -136,6 +137,17 @@ const toastRef = useRef(null);
   const handleDetail =()=>{
     navigate("/master/finance/subaccount/subaccountdetails")
   }
+
+  const emptyTableIcon = (
+    <div>
+    <div className="empty-table-icon">
+      <SvgTable />
+    </div>
+    <div className="no__data__found">No data entered</div>
+    </div>
+  );
+  const isEmpty = Productdata.length === 0;
+
   const template2 = {
     layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
     RowsPerPageDropdown: (options) => {
@@ -231,6 +243,7 @@ const toastRef = useRef(null);
       paginatorTemplate={template2}
       onPage={onPageChange}
       onPageChange={onPageChange}
+      emptyMessage={isEmpty ? emptyTableIcon : null}
     >
 
 <Column

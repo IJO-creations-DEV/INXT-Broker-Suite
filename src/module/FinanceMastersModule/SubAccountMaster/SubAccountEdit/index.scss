@@ -15,6 +15,18 @@
         font-weight: 600;
 
     }
+    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: Inter var;
+      }
+    .svgback_container{
+        gap: 8px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: baseline;
+      }
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
         color: #B1B1B1;
     }

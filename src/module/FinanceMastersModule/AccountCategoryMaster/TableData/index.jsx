@@ -15,8 +15,11 @@ import ToggleButton from "../../../../components/ToggleButton";
 const TableData = ({ handleAction, EmptyTable }) => {
   const [products, setProducts] = useState([]);
   const emptyTableIcon = (
-    <div className="flex w-full justify-content-center">
+    <div>
+    <div className="empty-table-icon">
       <SvgTable />
+    </div>
+    <div className="no__data__found">No data entered</div>
     </div>
   );
   const template2 = {

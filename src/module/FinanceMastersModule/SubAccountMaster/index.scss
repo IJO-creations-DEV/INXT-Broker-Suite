@@ -9,7 +9,28 @@
 
     }
    
-
+    .empty-table-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 2%;
+        padding-bottom: 2%;
+      }
+      .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: Inter var;
+      }
+      .no__data__found {
+        color: #b1b1b1;
+        font-family: "Inter var";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+      }
     .breadCrums__view__reversal__taxation {
         border: none;
         padding: 0;

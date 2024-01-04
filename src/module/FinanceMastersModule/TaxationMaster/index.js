@@ -114,35 +114,25 @@ const TaxationMaster = () => {
     navigate("/master/finance/taxation/taxationedit")
   }
   const template2 = {
-    layout: "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 },
+        { label: 120, value: 120 }
       ];
 
       return (
-        <React.Fragment>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '40%' }}>
-            <span
-
-              className="mx-1"
-              style={{ color: "var(--text-color)", userSelect: "none" }}
-            >
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-          </div>
+        <React.Fragment >
+          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+            Row count :{' '}
+          </span>
+          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
         </React.Fragment>
       );
     },
+
   };
   return (
     <div className='grid  container__taxation'>
@@ -171,7 +161,7 @@ const TaxationMaster = () => {
           <div className='col-12 search__filter__view__taxation'>
             <div className='col-12 md:col-10 lg:col-10'>
               <div className='searchIcon__view__input__taxation'>
-                <span className='p-1'> <SvgSearchIcon /></span>
+                <span className='pl-3'> <SvgSearchIcon /></span>
                 <InputText
                   style={{ width: '100%' }}
                   classNames='input__sub__account__taxation'

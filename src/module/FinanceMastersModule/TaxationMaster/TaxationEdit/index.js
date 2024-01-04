@@ -81,7 +81,9 @@ const AddTaxation = () => {
         <NavBar />
       </div>
       <div>
+      <span onClick={()=>navigate(-1)}>
         <SvgBack />
+        </span>
         <label className="label_header">Edit Taxation </label>
       </div>
       <div className="col-12 mb-2">

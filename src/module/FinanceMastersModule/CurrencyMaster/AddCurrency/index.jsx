@@ -9,6 +9,8 @@ import SvgDropdown from '../../../../assets/icons/SvgDropdown';
 import CustomToast from '../../../../components/Toast';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
+import SvgBack from '../../../../assets/icons/SvgBack';
+import NavBar from '../../../../components/NavBar';
 
 const initialValues ={
     CurrencyCode: "",
@@ -91,9 +93,16 @@ const AddCurrency = () => {
 
     return (
         <div className='grid sub__add__container'>
+          <NavBar/>
               <CustomToast ref={toastRef} message="Add Currency Successfully"/>
             <div className='col-12 mb-2'>
+              <div className='back_container'>
+                <span onClick={()=>navigate(-1)}>
+                  <SvgBack/>
+                  </span>
                 <div className='add__sub__title'>Add Currency</div>
+               
+                </div>
                 <div className='mt-3'>
                     <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
                 </div>

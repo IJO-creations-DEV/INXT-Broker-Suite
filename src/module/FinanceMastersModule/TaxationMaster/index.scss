@@ -35,6 +35,13 @@
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
         color: #B1B1B1;
     }
+    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: Inter var;
+      }
+    
 
     .add__icon__alighn__taxation {
         display: flex;
@@ -51,6 +58,7 @@
             border-radius: 30px;
             color: #fff;
             font-family: Inter var;
+            gap:8px;
 
             .add__icon__taxation {
                 display: flex;
@@ -156,7 +164,7 @@
       
         align-items: center;
         border: 1px solid #d1d5db;
-        border-radius: 5px;
+        border-radius: 10px;
         height: 45px;
     }
     .p-inputtext{
@@ -205,7 +213,7 @@
         color: #6366F1;
 
     }
-    .pagedropdown_container__taxation{
+    .pagedropdown_container{
         margin-right: 30%;
         border-style: hidden;
         background-color: #FAFAFA;

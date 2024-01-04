@@ -29,10 +29,17 @@ margin-left: 10px;
         margin: 10px 0px;
     }
     
+    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        // color: #4b5563;
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: Inter var;
+    }
 .breadcrumbs_container{
     // margin-bottom: 60px;
     
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     font-family: Inter var;
     border: 1px solid #fff !important; 

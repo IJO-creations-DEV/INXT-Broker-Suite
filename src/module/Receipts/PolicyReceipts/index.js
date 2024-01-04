@@ -31,14 +31,18 @@ const PolicyReceipts = () => {
     },
    
   ];
-  const { receiptsTableList, loading } = useSelector(({ receiptsTableReducers }) => {
+  const { receiptsTableList, loading,total } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptsTableList: receiptsTableReducers?.receiptsTableList,
+      total:receiptsTableReducers
 
     };
   });
-console.log(receiptsTableList,"receiptsTableList")
+  useEffect(()=>{
+    console.log(total,"sd")
+  },[total])
+console.log(total,"find receiptsTableList")
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",

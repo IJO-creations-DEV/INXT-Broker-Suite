@@ -13,10 +13,15 @@ import SvgBack from "../../../assets/icons/SvgBack";
 import { useFormik } from "formik";
 import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../components/LabelWrapper";
+import { useSelector, useDispatch } from 'react-redux';
+import { postAddReceiptsMiddleware } from '../store/receiptsMiddleware';
+
 
 function BranchAdding() {
   
   const [errors, setErrors] = useState("");
+  const addReceiptsList = useSelector(state => state.addReceiptsList);
+  const dispatch = useDispatch()
 
  
 
@@ -64,6 +69,7 @@ function BranchAdding() {
     currencyCode: "",
     transactionCode: "",
     remarks: "",
+   
   };
   const validate = (values) => {
     console.log(values, "sss");
@@ -101,8 +107,18 @@ function BranchAdding() {
     const formErrors = validate(formik.values);
     setErrors(formErrors);
     console.log(formErrors, "iiiii");
-    navigate("/accounts/receipts/addreceiptedit");
+  
+    const valueWithId = {
+      ...values,
+      id: addReceiptsList?.length + 1,
+    };
+    console.log(valueWithId,'find valueWithId')
+  
+    dispatch(postAddReceiptsMiddleware(valueWithId));
+    navigate("/accounts/receipts");
+
   };
+ 
 
   const formik = useFormik({
     initialValues: initialValue,

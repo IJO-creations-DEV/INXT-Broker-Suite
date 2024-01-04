@@ -1,4 +1,4 @@
-import journalVoucherReducers from '../module/JournalVoucher/store/journalVoucherReducer';
+import journalVoucherMainReducers from '../module/JournalVoucher/store/journalVoucherReducer';
 import paymentVoucherReducers from '../module/PaymentVoucher/store/paymentVoucherReducer';
 import transactionCodeMasterReducer from "../module/FinanceMastersModule/TransactionCodeMaster/store/transactionMasterReducer"
 import currencyMasterReducer from '../module/FinanceMastersModule/CurrencyMaster/store/currencyMasterReducer';
@@ -10,9 +10,10 @@ import commissionMianReducers from "../module/GeneralMasters/Commission/store/co
 import taxationMainReducers from "../module/FinanceMastersModule/TaxationMaster/store/taxationReducers";
 import subAccountMainReducers from "../module/FinanceMastersModule/SubAccountMaster/store/subAccountReducers";
 import pettyCashMainReducers from "../module/FinanceMastersModule/PettyCashMaster/store/pettyCashMasterReducers";
-import receiptsTableReducers from "../module/Receipts/store/receiptsReducers"
+import receiptsTableReducers from "../module/Receipts/store/receiptsReducers";
+import reversalMainReducers from "../module/Reversals/store/reversalReducers"
 const reducers = {
-    journalVoucherReducers,
+    journalVoucherMainReducers,
     paymentVoucherReducers,
     transactionCodeMasterReducer,
     currencyMasterReducer,
@@ -25,6 +26,7 @@ const reducers = {
     subAccountMainReducers,
     pettyCashMainReducers,
     receiptsTableReducers,
+    reversalMainReducers,
 }
 
 export default reducers;

@@ -11,6 +11,8 @@ import TableData from "./TableData/TableData";
 import { useFormik } from "formik";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import CustomToast from "../../components/Toast";
+import { useDispatch, useSelector } from "react-redux";
+import { postReversalJVData } from "./store/reversalMiddleWare";
 const Reversals = () => {
   const toastRef = useRef(null);
   const handleApproval = () => {
@@ -51,10 +53,41 @@ const Reversals = () => {
 
     return errors;
   };
+ 
+  const dispatch=useDispatch()
+  const [errors,setErrors]=useState("")
+  const { reversalJVList, loading, total } = useSelector(({ reversalMainReducers }) => {
+    return {
+      loading: reversalMainReducers?.loading,
+      reversalJVList: reversalMainReducers?.reversalJVList,
+      total: reversalMainReducers
+
+    };
+  });
+  
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
   const handleSubmit = (values) => {
-    // Handle form submission
-    console.log(values, "find values");
+    const formErrors = customValidation(formik.values);
+    setErrors(formErrors);
+    console.log(formErrors, "iiiii");
+
+   
+    console.log(formik.values, 'find valueWithId')
+
+    dispatch(postReversalJVData(formik.values));
+   
+    setStep(1);
+
   };
+
+
+
+
+  useEffect(() => {
+    console.log(total, "sd")
+  }, [total])
+  console.log(total, "find receiptsTableList")
   const formik = useFormik({
     initialValues: {
       transactionCode: "",
@@ -62,11 +95,12 @@ const Reversals = () => {
       reversalJVTransactionCode: "",
     },
     validate: customValidation,
-    onSubmit: (values) => {
-      // Handle form submission
-      handleSubmit(values);
-      setStep(1);
-    },
+    // onSubmit: (values) => {
+    //   // Handle form submission
+    //   handleSubmit(values);
+    //   setStep(1);
+    // },
+    onSubmit: handleSubmit
   });
   const handlePrint = () => {
     toastRef.current.showToast();
@@ -237,7 +271,7 @@ const Reversals = () => {
       {step !== 0 && (
         <div className="grid m-0 table__container">
           <div className="col-12 p-0">
-            <TableData />
+            <TableData reversalJVList={reversalJVList} />
           </div>
         </div>
       )}
@@ -249,7 +283,8 @@ const Reversals = () => {
               label="Next"
               className="correction__btn__reversal"
               disabled={!formik.isValid}
-              onClick={formik.handleSubmit}
+              // onClick={formik.handleSubmit}
+              onClick={handleSubmit}
             />
           )}
 

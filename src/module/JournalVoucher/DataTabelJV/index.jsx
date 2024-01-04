@@ -7,13 +7,20 @@ import { Dropdown } from "primereact/dropdown";
 import SvgTable from "../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import { useNavigate } from "react-router-dom";
-const DataTabelJV = ({ handleEdit, newDataTable }) => {
-    const navigate=useNavigate()
+const DataTabelJV = ({ handleEdit, newDataTable, journalVoucherList }) => {
+    console.log(journalVoucherList, "journalVoucherList")
+    const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const handleNavigate=()=>{
-        navigate("/accounts/journalvoucher/detailsjournalvocture")
-    }
+    const handleNavigate = (rowData) => {
+        const serializedData = JSON.stringify(rowData);
+        navigate(`/accounts/journalvoucher/detailsjournalvocture`, { state: { serializedData: serializedData } });
+    };
+    // const handleNavigate = () => {
+    //     const serializedData = JSON.stringify(journalVoucherList);
+    //     navigate('/accounts/journalvoucher/detailsjournalvocture', { state: { journalVoucherList: serializedData } });
+    // }
+
     console.log(newDataTable, "find newDataTable");
     let newProduct;
     let updatedProductData;
@@ -59,8 +66,8 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
 
             return (
                 <div
-                style={{width:'40%'}}
-                 className="table__selector">
+                    style={{ width: '40%' }}
+                    className="table__selector">
                     <React.Fragment>
                         <span style={{ color: "var(--text-color)", userSelect: "none" }}>
                             Row count :{" "}
@@ -76,31 +83,31 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
             );
         },
     };
-    
+
     const renderEditButton = (rowData) => {
         return (
             <div className="centercontent" onClick={handleNavigate}>
-                <SvgEyeIcon/>
-                
+                <SvgEyeIcon />
+
             </div>
         );
     };
-    
+
     const header__style = {
         display: 'flex',
         justifyContent: 'flex-end',
         paddingRight: 20
-      };
-      const body__style = {
+    };
+    const body__style = {
         display: 'flex',
         justifyContent: 'flex-end',
         paddingRight: 30
-      };
+    };
 
     return (
         <div className="journal__table__container">
             <DataTable
-                value={updatedProductData}
+                value={journalVoucherList}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -113,27 +120,28 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
-                
+                onRowClick={(event) => handleNavigate(event.data)}
+
             >
                 <Column
-                    field="mainAC"
+                    field="tc"
                     header="Transaction Code"
                     className="fieldvalue_container"
-                    
-                    
+
+
                 ></Column>
                 <Column
-                    field="subAC"
+                    field="tn"
                     header="Transaction Number"
                     className="fieldvalue_container"
-                    sortable
+
                 ></Column>
 
                 <Column
-                    field="Remarks"
+                    field="date"
                     header="Date"
                     className="fieldvalue_container"
-                    sortable
+
                 ></Column>
 
                 <Column
@@ -142,7 +150,7 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
                     className="fieldvalue_container"
                     headerStyle={header__style}
                     bodyStyle={body__style}
-                   
+
                 ></Column>
             </DataTable>
         </div>

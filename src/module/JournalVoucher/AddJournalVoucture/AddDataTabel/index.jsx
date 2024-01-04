@@ -7,10 +7,13 @@ import { Dropdown } from "primereact/dropdown";
 import SvgEditIcon from "../../../../assets/icons/SvgEditicons";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgDeleteIcon from "../../../../assets/icons/SvgDeleteIcon";
-const AddDataTabel = ({ handleEdit, newDataTable,setVisibleEdit }) => {
+import { useDispatch, useSelector } from "react-redux";
+
+const AddDataTabel = ({ handleEdit, newDataTable, setVisibleEdit,journalVoucherPostTabelData }) => {
+    // console.log(addJournalVoucher,"ayesha")
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    console.log(newDataTable, "find newDataTable");
+    console.log(journalVoucherPostTabelData, "jv");
     let newProduct;
     let updatedProductData;
 
@@ -41,6 +44,7 @@ const AddDataTabel = ({ handleEdit, newDataTable,setVisibleEdit }) => {
             <SvgTable />
         </div>
     );
+   
 
     const template2 = {
         layout:
@@ -75,19 +79,20 @@ const AddDataTabel = ({ handleEdit, newDataTable,setVisibleEdit }) => {
     const renderEditButton = (rowData) => {
         return (
             <div className="centercontent">
-                <div onClick={()=>setVisibleEdit(true)}><SvgEditIcon /></div>
+                <div onClick={() => setVisibleEdit(true)}><SvgEditIcon /></div>
                 <div><SvgDeleteIcon /></div>
-                
+
             </div>
         );
     };
+
 
    
 
     return (
         <div className="journal__table__container">
             <DataTable
-                value={updatedProductData}
+                value={journalVoucherPostTabelData}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -100,59 +105,60 @@ const AddDataTabel = ({ handleEdit, newDataTable,setVisibleEdit }) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
+            // onRowClick={(event) => handleNavigate(event.data)}
 
             >
                 <Column
-                    field="mainAC"
+                    field="mainAccount"
                     header="Main A/c"
                     className="fieldvalue_container"
-                   
+
                 ></Column>
                 <Column
-                    field="subAC"
+                    field="subAccount"
                     header="Sub A/c"
                     className="fieldvalue_container"
-                    
+
                 ></Column>
 
                 <Column
-                    field="Remarks"
+                    field="remarks"
                     header="Remarks"
                     className="fieldvalue_container"
-                   
+
                 ></Column>
                 <Column
                     field="foreignAmount"
                     header="Foreign Amount"
                     className="fieldvalue_container"
-                   
+
                 ></Column>
                 <Column
-                    field="Currency"
+                    field="currencyCode"
                     header="Currency"
                     className="fieldvalue_container"
-                    
+
                 ></Column>
 
                 <Column
                     field="localAmount"
                     header="Local Amount"
                     className="fieldvalue_container"
-                  
+
                 ></Column>
                 <Column
-                    field="Entry"
+                    field="entryType"
                     header="Entry"
                     className="fieldvalue_container"
-                   
+
                 ></Column>
                 <Column
                     body={renderEditButton}
                     header="Action"
                     className="fieldvalue_container"
-                    
+
                 ></Column>
-                
+
             </DataTable>
         </div>
     );

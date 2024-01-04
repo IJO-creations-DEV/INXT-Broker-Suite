@@ -14,7 +14,8 @@ import PettyDataTabel from './PettyDataTabel';
 import { useSelector } from 'react-redux';
 
 
-const PettyCashMaster = () => {
+const PettyCashMaster = ({ response }) => {
+  console.log(response, "response")
   const [visible, setVisible] = useState(false);
   const [newDataTable, setnewDataTable] = useState([]);
   const navigate = useNavigate()
@@ -26,17 +27,17 @@ const PettyCashMaster = () => {
     navigate('/accounts/journalvoucher/addjournalvoucture')
   };
 
- ;
+  ;
 
   const handleEdit = () => {
     console.log("handleEdit success");
     setVisible(true);
   };
-    const handlePolicy =()=>{
+  const handlePolicy = () => {
     navigate('/master/finance/pettycash/addpettycash')
   }
 
-  
+
   const menu = useRef(null);
   const menuitems = [
     {
@@ -49,10 +50,11 @@ const PettyCashMaster = () => {
       label: 'Voucher Number',
     },
   ];
-  const { pettyCashList, loading } = useSelector(({ pettyCashMainReducers }) => {
+  const { pettyCashList,addPettyCash, loading } = useSelector(({ pettyCashMainReducers }) => {
     return {
       loading: pettyCashMainReducers?.loading,
       pettyCashList: pettyCashMainReducers?.pettyCashList,
+      addPettyCash:pettyCashMainReducers?.addPettyCash
 
     };
   });
@@ -81,12 +83,12 @@ const PettyCashMaster = () => {
         <TieredMenu className='mt-2' model={menuitems} popup ref={menu} breakpoint="767px" />
       </div>
       <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__petty mb-3'>
-      <div className='upload__icon__view__petty' onClick={handleNavigate}>
+        <div className='upload__icon__view__petty' onClick={handleNavigate}>
           <div className='upload__icon__petty' >
             <SvgUpload color={'#fff'} />
           </div>
           <div className='upload__text__petty'>
-          Upload
+            Upload
           </div>
         </div>
         <div className='add__icon__view__petty' onClick={handlePolicy}>
@@ -94,7 +96,7 @@ const PettyCashMaster = () => {
             <SvgAdd color={'#fff'} />
           </div>
           <div className='add__text__petty'>
-          Add
+            Add
           </div>
         </div>
       </div>
@@ -117,7 +119,7 @@ const PettyCashMaster = () => {
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} pettyCashList={pettyCashList} />
+              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} pettyCashList={pettyCashList} addPettyCash={addPettyCash} />
             </div>
           </div>
         </div>
@@ -125,6 +127,6 @@ const PettyCashMaster = () => {
     </div>
   )
 }
- 
+
 export default PettyCashMaster
 

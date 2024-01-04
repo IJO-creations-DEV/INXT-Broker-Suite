@@ -1,5 +1,5 @@
 import { BreadCrumb } from 'primereact/breadcrumb';
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import NavBar from '../../components/NavBar';
 import SvgDot from '../../assets/icons/SvgDot';
 import "../JournalVoucher/index.scss"
@@ -12,17 +12,26 @@ import { Dropdown } from 'primereact/dropdown';
 import { dataa } from './data';
 import { TieredMenu } from 'primereact/tieredmenu';
 import SvgTable from '../../assets/icons/SvgTable';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DataTabelJV from './DataTabelJV';
+import { getJournalVoucherSearchList, journalVoucherMiddleware } from './store/journalVoucherMiddleware';
+import { useFormik } from 'formik';
+import { data } from './DetailsJournalVocture/data';
 
 const JournalVoucher = () => {
-  const { journalVoucherList, loading } = useSelector(({ journalVoucherReducers }) => {
+  const { journalVoucherList, journalVoucherSearchList, loading, addJournalVoucher } = useSelector(({ journalVoucherMainReducers }) => {
     return {
-      loading: journalVoucherReducers?.loading,
-      journalVoucherList: journalVoucherReducers?.journalVoucherList,
+      loading: journalVoucherMainReducers?.loading,
+      journalVoucherList: journalVoucherMainReducers?.journalVoucherList,
+      journalVoucherSearchList: journalVoucherMainReducers?.journalVoucherSearchList,
+      // addJournalVoucher: journalVoucherReducers?.addJournalVoucher
 
     };
-  }); const [products, setProducts] = useState([]);
+  });
+  console.log(journalVoucherSearchList, "journalVoucherSearchList")
+
+
+  const [products, setProducts] = useState([]);
   const [visible, setVisible] = useState(false);
   const [newDataTable, setnewDataTable] = useState([]);
   const navigate = useNavigate()
@@ -41,6 +50,23 @@ const JournalVoucher = () => {
     console.log("handleEdit success");
     setVisible(true);
   };
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    console.log(values.search, "getSearchPolicyList");
+    dispatch(getJournalVoucherSearchList({ textSearch: values.search }));
+  }
+
+
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+     
+      dispatch(getJournalVoucherSearchList({ textSearch: formik.values.search }));
+    }
+  }, [formik.values.search]);
 
   const onPageChange = (event) => {
     setFirst(event.first);
@@ -61,6 +87,11 @@ const JournalVoucher = () => {
       label: 'Voucher Number',
     },
   ];
+
+  // const dispatch=useDispatch();
+  //   useEffect(()=>{
+  // dispatch(journalVoucherMiddleware(data))
+  //   },[])
 
 
   return (
@@ -98,16 +129,18 @@ const JournalVoucher = () => {
       <div className='col-12 m-0 '>
         <div className='sub__container__Journal__Voture'>
           <div className='col-12 search__filter__view__Journal__Voture'>
-            <div className='col-12 md:col-10 lg:col-10'>
+            <form onSubmit={formik.handleSubmit} className='col-12 md:col-10 lg:col-10'>
               <div className='searchIcon__view__input__Journal__Voture'>
                 <span className='p-1'> <SvgSearchIcon /></span>
                 <InputText
                   style={{ width: '100%' }}
                   classNames='input__sub__account__Journal__Voture'
                   placeholder='Search by Transaction Code'
+                  value={formik.values.search}
+                  onChange={formik.handleChange("search")}
                 />
               </div>
-            </div>
+            </form>
             <div className='col-12 md:col-2 lg:col-2'>
               <div className='sort__filter__view__Journal__Voture' onClick={(e) => menu.current.toggle(e)}>
                 <div className='sort__by__text__Journal__Voture'>Search By</div>
@@ -123,7 +156,12 @@ const JournalVoucher = () => {
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <DataTabelJV handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
+              <DataTabelJV
+                handleEdit={handleEdit}
+                newDataTable={newDataTable}
+                visible={visible}
+                journalVoucherList={formik.values.search !== "" ? journalVoucherSearchList : journalVoucherList}
+              />
             </div>
           </div>
         </div>

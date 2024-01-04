@@ -153,7 +153,6 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
 
                 ></Column>
                 <Column
-
                     field="effectiveFrom"
                     header="Effective From"
                     className="fieldvalue_container"
@@ -162,7 +161,7 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                 ></Column>
                 <Column
                    field="effectionTo"
-                    header="Effection To"
+                    header="Effective To"
                     className="fieldvalue_container"
 
 

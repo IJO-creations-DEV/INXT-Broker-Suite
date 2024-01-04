@@ -2,8 +2,20 @@ export const LOGIN = "login/LOGIN";
 export const LOGOUT = "login/LOGOUT";
 export const GET_JOURNAL_VOUCHER = 'journalvoucher/GET_JOURNAL_VOUCHER'
 export const GET_POST_TABEL_JOURNAL_VOUCHER = 'journalvoucher/GET_POST_TABEL_JOURNAL_VOUCHER'
-export const GET_PAYMENT_VOUCHER = 'journalvoucher/GET_PAYMENT_VOUCHER';
-export const GET_PAYMENT_VOUCHER_BY_ID = 'journalvoucher/GET_PAYMENT_VOUCHER_BY_ID'
+
+export const GET_PAYMENT_VOUCHER = "journalvoucher/GET_PAYMENT_VOUCHER";
+export const GET_PAYMENT_VOUCHER_BY_ID =
+  "journalvoucher/GET_PAYMENT_VOUCHER_BY_ID";
+export const PATCH_PAYMENT_STATUS_BY_ID =
+  "paymentvoucher/PATCH_PAYMENT_STATUS_BY_ID";
+export const POST_PAYMENT_VOUCHER_CREATE_DATA =
+  "paymentvoucher/POST_PAYMENT_VOUCHER_CREATE_DATA";
+export const GET_CHECK_BOOK_DETAILS = "paymentvoucher/GET_CHECK_BOOK_DETAILS";
+export const GET_PAYMENT_CHECKBOK_DETAILS =
+  "paymentvoucher/GET_PAYMENT_CHECKBOK_DETAILS";
+export const PATCH_INVOICE_LIST_DETAILS =
+  "paymentvoucher/GET_PAYMENT_CHECKBOK_DETAILS";
+
 export const GET_COMMISSION = "commission/GET_COMMISSION";
 export const GET_TAXATION = "taxation/GET_TAXATION";
 export const GET_SUB__ACCOUNT = "subaccount/GET_SUB__ACCOUNT";

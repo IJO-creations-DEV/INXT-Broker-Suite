@@ -14,7 +14,7 @@ import ArrowLeftIcon from "../../../assets/icons/ArrowLeftIcon"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import SvgArrow from '../../../assets/icons/SvgArrow';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Dropdown } from 'primereact/dropdown';
 import { Toast } from 'primereact/toast';
 import { data } from './data';
@@ -24,7 +24,15 @@ import ViewDataTabel from './ViewDataTabel';
 
 const DetailsJournalVocture = () => {
     const navigate = useNavigate()
-    
+    const location = useLocation();
+    const { serializedData } = location.state || {};
+    const data=JSON.parse(serializedData)
+    console.log(data, "serializedData");
+    // const { journalVoucherList } = location.state || {};
+    // const parsedJournalVoucherList = JSON.parse(journalVoucherList);
+    // console.log(parsedJournalVoucherList,"parsedJournalVoucherList")
+
+
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [sortField, setSortField] = useState(null);
     const [sortOrder, setSortOrder] = useState(null);
@@ -36,7 +44,7 @@ const DetailsJournalVocture = () => {
 
     ];
     const home = { label: "Account" };
-   
+
 
 
     const [first, setFirst] = useState(0);
@@ -46,7 +54,7 @@ const DetailsJournalVocture = () => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
     };
-    
+
     const rows = [
         { id: 1, main: '', sub: '', remarks: '', currency: '', foreign: '', local: '', entry: '' },
         { id: 2, main: '', sub: '', remarks: '', currency: '', foreign: '', local: '', entry: '' },
@@ -97,9 +105,10 @@ const DetailsJournalVocture = () => {
     }
     const formik = useFormik({
         initialValues: {
-            transactioncode: 'label',
-            transactionDescription: 'code',
-            transactionNumber: '22',
+            transactioncode: `${data.tc}`,
+            transactionDescription: `${data.tc}`,
+            transactionNumber: `${data.tn}`,
+            date: `${data.date}`,
             totalCredit: '500',
             totalDebit: '500',
             net: '00.00'
@@ -118,7 +127,7 @@ const DetailsJournalVocture = () => {
 
         return () => clearTimeout(timerId);
     }, [visiblePopup]);
-    const handleGoback=()=>{
+    const handleGoback = () => {
         navigate('/accounts/journalvoucher')
     }
 
@@ -187,6 +196,7 @@ const DetailsJournalVocture = () => {
                                 disabled={true}
                             />
 
+
                         </div>
                         <div className='col-12 md:col-6 lg:col-6'>
                             <InputField
@@ -222,13 +232,24 @@ const DetailsJournalVocture = () => {
                                     textWeight={"300"}
                                     classNames="label__sub__add"
                                 >
-                                    <Calendar
-                                        value={date}
+                                    {/* <Calendar
+                                        value={formik.values.date}
                                         onChange={(e) => setDate(e.value)}
                                         showIcon
                                         className="calender_field_claim"
                                         disabled={true}
+                                    /> */}
+                                    <Calendar
+                                        value={date || formik.values.date || null}
+                                        onChange={(e) => {
+                                            setDate(e.value);
+                                            formik.setFieldValue('date', e.value);
+                                        }}
+                                        showIcon
+                                        className="calender_field_claim"
+                                        disabled={true}
                                     />
+
                                     <div className="calender_icon_claim">
                                         <SvgDatePicker />
                                     </div>

@@ -71,6 +71,7 @@ const ModalData = ({
               classNames="input__field__corrections"
               className="input__label__corrections"
               label="Account Category Code"
+              placeholder="enter"
               value={formik.values.categoryCode}
               onChange={(e) =>
                 formik.setFieldValue("categoryCode", e.target.value)
@@ -87,6 +88,7 @@ const ModalData = ({
               classNames="input__field__corrections"
               className="input__label__corrections"
               label="Account Category Name"
+              placeholder="enter"
               value={formik.values.categoryName}
               onChange={(e) =>
                 formik.setFieldValue("categoryName", e.target.value)
@@ -103,6 +105,7 @@ const ModalData = ({
               classNames="input__field__corrections"
               className="input__label__corrections"
               label="Description"
+              placeholder="enter"
               value={formik.values.description}
               onChange={(e) =>
                 formik.setFieldValue("description", e.target.value)

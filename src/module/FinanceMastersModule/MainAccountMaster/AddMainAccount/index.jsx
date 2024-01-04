@@ -13,6 +13,9 @@ import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
 import { useNavigate } from "react-router-dom";
 import CustomToast from "../../../../components/Toast";
+import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+
+
 const AddMainAccount = () => {
   const toastRef = useRef(null);
   const navigation = useNavigate();
@@ -309,6 +312,7 @@ const AddMainAccount = () => {
               optionLabel="value"
               display="chip"
               placeholder="Select"
+              dropdownIcon={<SvgDropdown/>}
             />
             {formik.touched.companyCode && formik.errors.companyCode && (
               <div
@@ -337,6 +341,7 @@ const AddMainAccount = () => {
               optionLabel="value"
               display="chip"
               placeholder="Select"
+              dropdownIcon={<SvgDropdown/>}
             />
           </div>
         </div>

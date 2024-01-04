@@ -22,6 +22,12 @@
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
         color: #B1B1B1;
     }
+    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: inter var;
+    }
 
 
     .add__icon__alighn {
@@ -299,6 +305,7 @@
         top: 37%;
         left: 22%;
     }
+    
 }
 
 @media screen and (min-width: 1400px) {

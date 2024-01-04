@@ -12,6 +12,7 @@ import LabelWrapper from "../../../../components/LabelWrapper";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
 import { useNavigate } from "react-router-dom";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const EditMainAccount = () => {
   const navigation = useNavigate();
@@ -85,9 +86,14 @@ const EditMainAccount = () => {
       <div className="grid m-0 top-container">
         <div className="col-12 p-0">
           <NavBar />
-        </div>
+        </div >
         <div className="col-12 p-0">
+          <div className="svgback_container">
+        <span onClick={() => navigation(-1)}>
+            <SvgBackicon/>
+            </span>
           <div className="main__account__title">Edit Main Account</div>
+          </div>
         </div>
         <div className="col-12 p-0">
           <BreadCrumb
@@ -273,6 +279,7 @@ const EditMainAccount = () => {
               optionLabel="value"
               display="chip"
               placeholder="Select"
+              dropdownIcon={<SvgDropdown/>}
             />
             {formik.touched.companyCode && formik.errors.companyCode && (
               <div
@@ -302,6 +309,7 @@ const EditMainAccount = () => {
                 optionLabel="value"
                 display="chip"
                 placeholder="Select"
+                dropdownIcon={<SvgDropdown/>}
               />
             </div>
           )}

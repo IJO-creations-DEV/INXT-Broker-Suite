@@ -45,7 +45,7 @@ const AccountCategoryMaster = () => {
         <div className="col-12 p-0 flex justify-content-end">
           <Button
             icon={
-              <div className="pr-2">
+              <div className="pt-1">
                 <SvgAdd />
               </div>
             }

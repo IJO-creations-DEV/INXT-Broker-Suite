@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../../../components/NavBar";
 import SvgDot from "../../../../assets/icons/SvgDot";
 import "./index.scss";
-
+import { useNavigate } from "react-router-dom";
 import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
 import { ScrollPanel } from "primereact/scrollpanel";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const SubAdd = () => {
+  const navigation = useNavigate();
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOption1, setSelectedOption1] = useState(null);
@@ -66,7 +68,12 @@ const SubAdd = () => {
         <NavBar />
       </div>
       <div className="col-12 mb-2">
+      <div className="svgback_container">
+        <span onClick={() => navigation(-1)}>
+            <SvgBackicon/>
+            </span>
         <div className="add__sub__title">Sub Account Details</div>
+        </div>
         <div className="mt-3">
           <BreadCrumb
             home={home}
@@ -113,30 +120,31 @@ const SubAdd = () => {
             <label className="main_acc_text">Main Account Code</label>
 
             <div>
-              <Card>
-                <ScrollPanel style={{ width: "100%", height: "150px" }}>
+              
+              
+                <ScrollPanel  className="scrollpanal_container">
                   <div>
                     {texts.map((text, index) => (
                       <div key={index}>{text}</div>
                     ))}
                   </div>
                 </ScrollPanel>
-              </Card>
+              
             </div>
           </div>
           <div class="sm-col-12  md:col-6 lg-col-6">
             <label className="main_acc_text">Currency</label>
 
             <div>
-              <Card>
-                <ScrollPanel style={{ width: "100%", height: "150px" }}>
+             
+                <ScrollPanel  className="scrollpanal_container">
                   <div>
                     {texts1.map((text, index) => (
                       <div key={index}>{texts1}</div>
                     ))}
                   </div>
                 </ScrollPanel>
-              </Card>
+              
             </div>
           </div>
         </div>

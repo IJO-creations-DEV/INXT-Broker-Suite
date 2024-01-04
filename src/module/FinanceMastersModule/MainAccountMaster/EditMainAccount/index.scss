@@ -12,12 +12,18 @@
     border: none;
     padding: 1px 0;
   }
+  .svgback_container{
+    gap: 8px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: baseline;
+  }
 
   .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
     color: #000;
     font-size: 16px;
     font-weight: 500;
-    font-family: "Inter var";
+    font-family: Inter var;
   }
   .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
     color: #b1b1b1 !important;

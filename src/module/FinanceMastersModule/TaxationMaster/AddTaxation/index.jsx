@@ -12,10 +12,10 @@ import LabelWrapper from "../../../../components/LabelWrapper";
 import { useFormik } from "formik";
 import SvgBack from "../../../../assets/icons/SvgBack";
 import CustomToast from "../../../../components/Toast";
-
+import { useNavigate } from "react-router-dom";
 const AddTaxation = () => {
   const [errors, setErrors] = useState("");
-
+  const navigate = useNavigate();
   const toastRef = useRef(null);
   const items = [
     { label: "Taxation", url: "/master/finance/taxation" },
@@ -66,6 +66,9 @@ const AddTaxation = () => {
     console.log(formErrors, "iiiii");
 
     toastRef.current.showToast();
+    setTimeout(()=>{
+      navigate('/master/finance/taxation')
+    },2000)
   };
 
   const formik = useFormik({
@@ -79,7 +82,9 @@ const AddTaxation = () => {
         <NavBar />
       </div>
       <div>
+        <span onClick={()=>navigate(-1)}>
         <SvgBack />
+        </span>
         <label className="label_header">Add Taxation</label>
       </div>
       <div className="col-12 mb-2">

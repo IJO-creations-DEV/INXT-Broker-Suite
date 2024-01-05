@@ -112,7 +112,7 @@ import AddCommission from "../module/GeneralMasters/Commission/AddCommission";
 import EditCommission from "../module/GeneralMasters/Commission/EditCommission";
 import ViewCommission from "../module/GeneralMasters/Commission/ViewCommission";
 import EditPettyCash from "../module/FinanceMastersModule/PettyCashMaster/EditPettyCash";
-import TransactioncodeEdit from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeMasterEdit/index"
+import TransactioncodeEdit from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeMasterEdit/index";
 import ViewExchange from "../module/FinanceMastersModule/ExchangeRateMaster/ViewExchange";
 import BankMaster from "../module/FinanceMastersModule/BankMaster";
 import AddBankMaster from "../module/FinanceMastersModule/BankMaster/AddBankMaster";
@@ -137,7 +137,7 @@ import Designation from "../module/GeneralMasters/EmployeeManagementMasters/Desi
 import Employee from "../module/GeneralMasters/EmployeeManagementMasters/Employee";
 import User from "../module/GeneralMasters/UserManagementMasters/User";
 import Role from "../module/GeneralMasters/UserManagementMasters/Role";
-
+import InsuranceDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/InsuranceCompany/InsuranceDetailsAction";
 
 const Maincomponent = () => {
   return (
@@ -345,6 +345,19 @@ const Maincomponent = () => {
               element={<InsuranceCompany />}
             />
             <Route
+              path="master/generals/insurancemanagement/insurancecompany/add/:id"
+              element={<InsuranceDetailsAction action="add" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/insurancecompany/edit/:id"
+              element={<InsuranceDetailsAction action="edit" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/insurancecompany/view/:id"
+              element={<InsuranceDetailsAction action="view" />}
+            />
+
+            <Route
               path="master/generals/insurancemanagement/lineofbusiness"
               element={<LineOfBusiness />}
             />
@@ -374,37 +387,31 @@ const Maincomponent = () => {
               path="master/generals/location/country"
               element={<Country />}
             />
-             <Route
-              path="master/generals/location/state"
-              element={<State />}
-            />
-             <Route
-              path="master/generals/location/city"
-              element={<City/>}
-            />
+            <Route path="master/generals/location/state" element={<State />} />
+            <Route path="master/generals/location/city" element={<City />} />
 
             {/* Employee Management */}
             <Route
               path="master/generals/employeemanagement/hierarchy"
-              element={<Hierarchy/>}
+              element={<Hierarchy />}
             />
             <Route
               path="master/generals/employeemanagement/designation"
-              element={<Designation/>}
+              element={<Designation />}
             />
             <Route
               path="master/generals/employeemanagement/employee"
-              element={<Employee/>}
+              element={<Employee />}
             />
 
             {/* User Management */}
             <Route
               path="master/generals/usermanagement/user"
-              element={<User/>}
+              element={<User />}
             />
-  <Route
+            <Route
               path="master/generals/usermanagement/role"
-              element={<Role/>}
+              element={<Role />}
             />
 
             {/* Branch Master Module */}
@@ -604,11 +611,11 @@ const Maincomponent = () => {
               element={<TransactionCodeDetails />}
             />
 
-<Route
+            <Route
               path="master/finance/transactioncode/transactioncodeedit"
               element={<TransactioncodeEdit />}
             />
-            
+
             <Route
               path="master/finance/subaccount/subaccountdetails"
               element={<SubAccountDetails />}

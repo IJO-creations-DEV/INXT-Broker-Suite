@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getReversalJVView, getReversalTabelData, postReversalJVData } from "./reversalMiddleWare";
 import { getCorrectionJVTabelData, getCorrectionJVView, patchCorrectionJVEdit, postCorrectionJVData } from "./correctionJVMiddleWare";
 
 const initialState = {
@@ -7,9 +6,31 @@ const initialState = {
     error: "",
     addCorrectionJV: {},
     correctionJVView: {},
-    correctionEdit:{},
-    correctionJVList: [],
+    correctionEdit: {},
+    correctionJVList: [
+        {
+            id: 1,
+            mainAccount: "main044",
+            subAccount: "sub0123",
+            branchCode: "branch012",
+            currencyCode: "cu123",
+            foreignAmount: "5100",
+            localAmount: "200",
+            entryType: "credit"
+        },
+        {
+            id: 2,
+            mainAccount: "main0123",
+            subAccount: "sub0123",
+            branchCode: "branch88",
+            currencyCode: "cu77",
+            foreignAmount: "200",
+            localAmount: "5100",
+            entryType: "debit"
+        }
+    ],
 };
+let nextId = 2
 const correctioneversalJVReducers = createSlice({
     name: "reversalJV",
     initialState,
@@ -31,17 +52,17 @@ const correctioneversalJVReducers = createSlice({
 
         //post
 
+
         builder.addCase(postCorrectionJVData.pending, (state) => {
             state.loading = true;
-        });
+        })
         builder.addCase(postCorrectionJVData.fulfilled, (state, action) => {
             state.loading = false;
-            state.addCorrectionJV = action.payload.data;
-        });
+            const newItem = { ...action.payload, id: nextId++ };
+            state.correctionJVList = [...state.correctionJVList, newItem];
+        })
         builder.addCase(postCorrectionJVData.rejected, (state, action) => {
             state.loading = false;
-
-            state.addCorrectionJV = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
         });
         //view
@@ -59,20 +80,24 @@ const correctioneversalJVReducers = createSlice({
             state.error = typeof action.payload === "string" ? action.payload : "";
         });
 
-        
-        builder.addCase(patchCorrectionJVEdit.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(patchCorrectionJVEdit.fulfilled, (state, action) => {
-            state.loading = false;
-            state.correctionEdit = action.payload.data;
-        });
+
+
+        builder.addCase(patchCorrectionJVEdit.pending,
+            (state) => {
+                state.loading = true;
+            }
+        );
+        builder.addCase(
+            patchCorrectionJVEdit.fulfilled, (state, action) => {
+                state.loading = false;
+                state.correctionJVList=action.payload
+            }
+        );
         builder.addCase(patchCorrectionJVEdit.rejected, (state, action) => {
             state.loading = false;
-
-            state.correctionEdit = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
-        });
+        }
+        );
     },
 });
 

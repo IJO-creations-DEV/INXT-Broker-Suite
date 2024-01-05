@@ -9,6 +9,7 @@ import { Button } from "primereact/button";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import SvgModalClose from "../../../../assets/icons/SvgNodalClose";
 const EditData = ({ visibleEdit, setVisibleEdit, handleUpdate }) => {
+
   const codeOptions = [
     { label: "Option 1", value: "00123" },
     { label: "Option 2", value: "00124" },

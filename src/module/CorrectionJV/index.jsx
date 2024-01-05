@@ -12,6 +12,8 @@ import { useFormik } from "formik";
 import ModalData from "./EditData/ModalData";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import CustomToast from "../../components/Toast";
+import { useDispatch, useSelector } from "react-redux";
+import { postCorrectionJVData } from "./store/correctionJVMiddleWare";
 const Reversals = () => {
   const toastRef = useRef(null);
   const handleApproval = () => {
@@ -23,6 +25,15 @@ const Reversals = () => {
       }, 3000);
     }
   };
+  const { correctionJVList, loading } = useSelector(
+    ({ correctionJVMainReducers }) => {
+      return {
+        loading: correctionJVMainReducers?.loading,
+        correctionJVList: correctionJVMainReducers?.correctionJVList,
+      };
+    }
+  );
+  console.log(correctionJVList, "correctionJVList")
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(false);
   const [creditTotal, setCreditTotal] = useState(2600);
@@ -62,9 +73,12 @@ const Reversals = () => {
 
     return errors;
   };
+  const dispatch=useDispatch()
   const handleSubmit = (values) => {
     // Handle form submission
-    console.log(values, "find values");
+    // console.log(values, "find values");
+    dispatch(postCorrectionJVData(formik.values));
+    
   };
   const formik = useFormik({
     initialValues: {
@@ -97,6 +111,17 @@ const Reversals = () => {
     setStep(0);
   };
 
+  
+
+  const totalForeignAmount = correctionJVList.reduce((total, item) => {
+    const foreignAmount = parseFloat(item.foreignAmount);
+    return !isNaN(foreignAmount) ? total + foreignAmount : total;
+  }, 0);
+
+  const totalLocalAmount = correctionJVList.reduce((total, item) => {
+    const localAmount = parseFloat(item.localAmount);
+    return !isNaN(localAmount) ? total + localAmount : total;
+  }, 0);
   return (
     <div className="container__corrections__jv">
       {step === 1 ? (
@@ -269,6 +294,7 @@ const Reversals = () => {
                 newDataTable={newDataTable}
                 visible={visible}
                 editID={editID}
+                correctionJVList={correctionJVList}
               />
             </div>
             <ModalData
@@ -276,6 +302,7 @@ const Reversals = () => {
               setVisible={setVisible}
               handleUpdate={handleUpdate}
               setEditID={setEditID}
+              correctionJVList={correctionJVList}
             />
           </div>
 
@@ -287,7 +314,7 @@ const Reversals = () => {
                 className="input__label__reversal"
                 label="Total credit"
                 placeholder="Enter"
-                value={creditTotal}
+                value={totalForeignAmount}
               />
             </div>
             <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -297,7 +324,7 @@ const Reversals = () => {
                 className="input__label__reversal"
                 label="Total Debit"
                 placeholder="Enter"
-                value={debitTotal}
+                value={totalLocalAmount}
               />
             </div>
             <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -307,7 +334,7 @@ const Reversals = () => {
                 className="input__label__reversal"
                 label="Net"
                 placeholder="Enter"
-                value={netTotal}
+                value={totalForeignAmount - totalLocalAmount}
               />
             </div>
           </div>
@@ -329,7 +356,7 @@ const Reversals = () => {
               label="Approve"
               className="correction__btn__reversal"
               onClick={handleApproval}
-              disabled={netTotal === 0 ? false : true}
+              disabled={totalForeignAmount - totalLocalAmount === 0 ? false : true}
             />
           )}
 
@@ -342,6 +369,7 @@ const Reversals = () => {
           )}
         </div>
       </div>
+    
     </div>
   );
 };

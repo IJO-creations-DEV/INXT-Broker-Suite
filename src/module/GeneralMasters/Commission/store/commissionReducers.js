@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import { getCommission, getCommissionSearchList, getCommissionView, patchCommissionEdit, postAddCommission } from "./commissionMiddleWare";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
@@ -21,45 +20,14 @@ const initialState = {
             // Amount: "500.00",
             action: <SvgIconeye />,
         },
-        {
-            id: 2,
-            commissionCode: "Voucher0123",
-            product: "Trans00123",
-            selectCover: "Cus01123",
-            effectiveFrom: "11/12/2023",
-            effectiveTo: "11/12/2023",
-            status: "false",
-            // Amount: "500.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 3,
-            commissionCode: "Voucher0123",
-            product: "Trans00123",
-            selectCover: "Cus01123",
-            effectiveFrom: "11/12/2023",
-            effectiveTo: "11/12/2023",
-            status: "true",
-            // Amount: "500.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 4,
-            commissionCode: "Voucher0123",
-            product: "Trans00123",
-            selectCover: "Cus01123",
-            effectiveFrom: "11/12/2023",
-            effectiveTo: "11/12/2023",
-            status: "false",
-            // Amount: "500.00",
-            action: <SvgIconeye />,
-        },
+
 
     ],
 
 
 
 };
+let nextId=2
 const commissionReducers = createSlice({
     name: "commission",
     initialState,
@@ -70,7 +38,7 @@ const commissionReducers = createSlice({
         });
         builder.addCase(getCommission.fulfilled, (state, action) => {
             state.loading = false;
-            state.commissionList = action.payload;
+            state.commissionList = [action.payload];
         });
         builder.addCase(getCommission.rejected, (state, action) => {
             state.loading = false;
@@ -87,15 +55,14 @@ const commissionReducers = createSlice({
             postAddCommission.fulfilled,
             (state, action) => {
                 state.loading = false;
-                state.addCommission = action.payload;
+                const newItem = { ...action.payload, id: nextId++ };
+                state.commissionList = [...state.commissionList, newItem];
             }
         );
         builder.addCase(
             postAddCommission.rejected,
             (state, action) => {
                 state.loading = false;
-
-                state.addCommission = {};
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );

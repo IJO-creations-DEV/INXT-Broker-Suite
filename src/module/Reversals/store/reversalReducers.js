@@ -5,21 +5,41 @@ const initialState = {
     loading: false,
     error: "",
     reversalJVList: [
+        // {
+        //     id: 1,
+        //     transactionCode: "Tc123",
+        //     transactionNumber: "5678",
+        //     reversalJVTransactionCode: "99",
+        //     name: "Name",
+        //     customerCode: "CC0102",
+        //     date: "11/12/2023",
+        //     amount: "500.37",
+        //     action: "Action",
+        // },
+    ],
+    reversalJVGetDataList: [
         {
             id: 1,
-            transactionCode: "Tc123",
-            transactionNumber: "5678",
-            reversalJVTransactionCode: "99",
-            name: "Name",
-            customerCode: "CC0102",
-            date: "11/12/2023",
-            amount: "500.37",
-            action: "Action",
+            mainAccount: "main0123",
+            subAccount: "sub0123",
+            branchCode: "branch012",
+            remarks: "500",
+            currency:"666",
+            entryType: "credit"
         },
-    ],
+        {
+            id: 1,
+            mainAccount: "main0123",
+            subAccount: "sub0123",
+            branchCode: "branch012",
+            remarks: "cu123",
+            currency:"666",
+            entryType: "credit"
+        }
+    ]
 };
 
-let nextId = 2; 
+let nextId = 2;
 
 const reversalJVReducers = createSlice({
     name: "receipts",

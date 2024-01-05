@@ -129,6 +129,7 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
+            
 
             >
                 <Column
@@ -146,7 +147,7 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                 ></Column>
 
                 <Column
-                    field="selectCovers"
+                    field="selectCover"
                     header="Select Covers"
                     className="fieldvalue_container"
                   
@@ -160,7 +161,7 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
 
                 ></Column>
                 <Column
-                   field="effectionTo"
+                   field="effectiveTo"
                     header="Effective To"
                     className="fieldvalue_container"
 

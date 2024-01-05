@@ -9,8 +9,8 @@ export const getReversalTabelData = createAsyncThunk(
     async (payload, { rejectWithValue, getState }) => {
         const { reversalMainReducers } = getState();
         console.log(reversalMainReducers, "data");
-        const { reversalJVList } = reversalMainReducers;
-        const filteredData = reversalJVList.filter((item) => item.id === 1);
+        const { reversalJVGetDataList } = reversalMainReducers;
+        const filteredData = reversalJVGetDataList.filter((item) => item.id === 1);
 
         try {
             // Simulate an API call if needed
@@ -31,7 +31,6 @@ export const postReversalJVData = createAsyncThunk(
             reversalJVTransactionCode: payload?.reversalJVTransactionCode,
             transactionNumber: payload?.transactionNumber,
             transactionCode: payload?.transactionCode,
-           
         };
         try {
             console.log(bodyTableData, "find middleware");

@@ -53,41 +53,34 @@ const Reversals = () => {
 
     return errors;
   };
- 
+  // const handleSubmit = (values) => {
+  //   // Handle form submission
+  //   console.log(values, "find values");
+  // };
   const dispatch=useDispatch()
   const [errors,setErrors]=useState("")
-  const { reversalJVList, loading, total } = useSelector(({ reversalMainReducers }) => {
+  const { reversalJVList, loading, reversalJVGetDataList } = useSelector(({ reversalMainReducers }) => {
     return {
       loading: reversalMainReducers?.loading,
       reversalJVList: reversalMainReducers?.reversalJVList,
-      total: reversalMainReducers
+      reversalJVGetDataList:reversalMainReducers?.reversalJVGetDataList
 
     };
   });
-  
-  const minDate = new Date();
-  minDate.setDate(minDate.getDate() + 1);
+  // const reversalJVList = useSelector(state => state.reversalJVList);
+console.log(reversalJVGetDataList,"reversalJVGetDataList")
   const handleSubmit = (values) => {
-    const formErrors = customValidation(formik.values);
-    setErrors(formErrors);
-    console.log(formErrors, "iiiii");
-
    
-    console.log(formik.values, 'find valueWithId')
 
     dispatch(postReversalJVData(formik.values));
-   
-    setStep(1);
+    
+    // navigate("/accounts/receipts");
+ 
 
   };
 
 
 
-
-  useEffect(() => {
-    console.log(total, "sd")
-  }, [total])
-  console.log(total, "find receiptsTableList")
   const formik = useFormik({
     initialValues: {
       transactionCode: "",
@@ -95,12 +88,12 @@ const Reversals = () => {
       reversalJVTransactionCode: "",
     },
     validate: customValidation,
-    // onSubmit: (values) => {
-    //   // Handle form submission
-    //   handleSubmit(values);
-    //   setStep(1);
-    // },
-    onSubmit: handleSubmit
+    onSubmit: (values) => {
+      // Handle form submission
+      handleSubmit(values);
+      setStep(1);
+    },
+    // onSubmit: handleSubmit
   });
   const handlePrint = () => {
     toastRef.current.showToast();
@@ -271,7 +264,7 @@ const Reversals = () => {
       {step !== 0 && (
         <div className="grid m-0 table__container">
           <div className="col-12 p-0">
-            <TableData reversalJVList={reversalJVList} />
+            <TableData reversalJVGetDataList={reversalJVGetDataList} reversalJVList={reversalJVList} />
           </div>
         </div>
       )}

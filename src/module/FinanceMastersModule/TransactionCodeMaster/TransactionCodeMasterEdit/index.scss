@@ -1,4 +1,4 @@
-.transactioncode__master__detail__view{
+.transactioncode__master__Edit__view{
     @layer primereact {
         .p-card {
           background: #ffffff;
@@ -78,9 +78,6 @@
         gap: 5px;
         cursor: pointer;
       }
-      .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-        border: none !important;
-     }
       .p-dropdown {
         background: #ffffff;
         border: 1px solid #d1d5db;
@@ -88,5 +85,17 @@
         border-radius: 6px;
         margin-top: 0.5rem !important;
         width: 100% !important;
+      }
+      .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border: none !important;
+    }
+    .no__data__found {
+        color: #b1b1b1;
+        font-family: "Inter var";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
       }
 }

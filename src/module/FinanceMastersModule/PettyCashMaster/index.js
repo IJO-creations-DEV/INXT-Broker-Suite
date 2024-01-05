@@ -105,7 +105,7 @@ const PettyCashMaster = ({ response }) => {
           <div className='col-12 search__filter__view__petty'>
             <div className='col-12 md:col-10 lg:col-10'>
               <div className='searchIcon__view__input__petty'>
-                <span className='p-1'> <SvgSearchIcon /></span>
+                <span className='pl-2'> <SvgSearchIcon /></span>
                 <InputText
                   style={{ width: '100%' }}
                   classNames='input__sub__account__petty'

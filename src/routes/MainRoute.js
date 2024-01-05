@@ -112,7 +112,7 @@ import AddCommission from "../module/GeneralMasters/Commission/AddCommission";
 import EditCommission from "../module/GeneralMasters/Commission/EditCommission";
 import ViewCommission from "../module/GeneralMasters/Commission/ViewCommission";
 import EditPettyCash from "../module/FinanceMastersModule/PettyCashMaster/EditPettyCash";
-
+import TransactioncodeEdit from "../module/FinanceMastersModule/TransactionCodeMaster/TransactionCodeMasterEdit/index"
 import ViewExchange from "../module/FinanceMastersModule/ExchangeRateMaster/ViewExchange";
 import BankMaster from "../module/FinanceMastersModule/BankMaster";
 import AddBankMaster from "../module/FinanceMastersModule/BankMaster/AddBankMaster";
@@ -137,6 +137,8 @@ import Designation from "../module/GeneralMasters/EmployeeManagementMasters/Desi
 import Employee from "../module/GeneralMasters/EmployeeManagementMasters/Employee";
 import User from "../module/GeneralMasters/UserManagementMasters/User";
 import Role from "../module/GeneralMasters/UserManagementMasters/Role";
+
+
 const Maincomponent = () => {
   return (
     <div
@@ -602,6 +604,11 @@ const Maincomponent = () => {
               element={<TransactionCodeDetails />}
             />
 
+<Route
+              path="master/finance/transactioncode/transactioncodeedit"
+              element={<TransactioncodeEdit />}
+            />
+            
             <Route
               path="master/finance/subaccount/subaccountdetails"
               element={<SubAccountDetails />}

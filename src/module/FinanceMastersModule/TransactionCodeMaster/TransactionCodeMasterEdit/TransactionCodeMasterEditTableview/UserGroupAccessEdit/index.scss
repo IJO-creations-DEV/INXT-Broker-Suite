@@ -1,4 +1,4 @@
-.transactioncode__master__table_UserGroupAccess{
+.transactioncode__master__tableedit_UserGroupAccess{
     .empty-table-icon {
         display: flex;
         justify-content: center;
@@ -6,8 +6,11 @@
         padding-top: 2%;
         padding-bottom: 2%;
       }
+      .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border: none !important;
+    }
       .paginator__container{
-        margin-right: 10%;
+        margin-right: 30%;
         display: flex;
       }
       .no__data__found {
@@ -31,9 +34,12 @@
         margin-top: 0.5rem !important;
         width: 100% !important;
     }
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border: none !important;
+    }
    
     
 }
 .inputdialog__fieled{
-  width:100%
-}
+    width:100%
+  }

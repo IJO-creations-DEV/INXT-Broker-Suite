@@ -105,8 +105,8 @@ const AddCommission = () => {
       selectCovers: "",
       maxRate: "",
       selectAgent: "",
-      effectiveFrom: "",
-      effectiveTo: ""
+      effectiveFrom: new Date(),
+      effectiveTo: new Date()
 
     },
     validate: customValidation,
@@ -139,36 +139,29 @@ const AddCommission = () => {
   const handleApproval = () => {
     setStep(2);
   };
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
 
   const template2 = {
-    layout:
-      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 },
+        { label: 120, value: 120 }
       ];
 
       return (
-        <div
-        style={{display:'flex',justifyContent:'center',alignItems:'center'}}
-          className="table__selector">
-          <React.Fragment>
-            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-          </React.Fragment>
-        </div>
+        <React.Fragment >
+          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+            Row count :{' '}
+          </span>
+          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+        </React.Fragment>
       );
     },
+
   };
   const handleNavigateView = () => {
     navigate("/master/generals/commission/viewcommission")
@@ -382,6 +375,8 @@ const handleEditNavigate = () => {
                 }}
                 dateFormat="yy-mm-dd"
                 showIcon
+                minDate={minDate}
+
                 className="calender_field_claim"
               />
               <div className="calender_icon_claim">
@@ -418,6 +413,7 @@ const handleEditNavigate = () => {
                 }}
                 dateFormat="yy-mm-dd"
                 showIcon
+                minDate={minDate}
                 className="calender_field_claim"
               />
               <div className="calender_icon_claim">

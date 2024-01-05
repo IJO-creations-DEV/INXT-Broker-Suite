@@ -11,6 +11,20 @@
       margin-right: 30%;
       display: flex;
     }
+    
+
+   
+
+
+    .no__data__found {
+      color: #b1b1b1;
+      font-family: "Inter var";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-align: center;
+    }
     .p-paginator-bottom.p-paginator.p-component {
       display: flex !important;
       justify-content: flex-end !important;
@@ -22,6 +36,7 @@
         box-shadow 0.2s;
       border-radius: 6px;
       margin-top: 0.5rem !important;
+      width: 100% !important;
     }
     .input__block .p-inputtext {
       font-family: var(--font-family);

@@ -19,12 +19,19 @@ margin-left: 10px;
         text-wrap: nowrap;
         margin: 10px 0px;
     }
+    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        // color: #4b5563;
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: Inter var;
+    }
     
 .breadcrumbs_container{
     // margin-bottom: 60px;
     
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 500;
     font-family: Inter var;
     border: 1px solid #fff !important; 
     border-radius: 6px !important;
@@ -140,6 +147,17 @@ font-weight: 500;
     overflow: hidden;
     text-wrap: nowrap;
     margin: 10px 0px;
+    overflow: visible;
+}
+.p-inputgroup-addon:last-child, .p-inputgroup button:last-child, .p-inputgroup input:last-child, .p-inputgroup > .p-inputwrapper:last-child, .p-inputgroup > .p-inputwrapper:last-child > .p-inputtext {
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    /* overflow: hidden; */
+}
+.p-inputgroup-addon:first-child, .p-inputgroup button:first-child, .p-inputgroup input:first-child, .p-inputgroup > .p-inputwrapper:first-child, .p-inputgroup > .p-inputwrapper:first-child > .p-inputtext {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    /* border-radius: 10px; */
 }
 }
 @media (min-width: 576px) {

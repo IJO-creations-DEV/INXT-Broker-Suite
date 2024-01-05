@@ -71,6 +71,7 @@
       font-style: normal;
       font-weight: 400;
       line-height: normal;
+      border-radius: 10px;
     }
     .searchinput__field::placeholder {
       color: #b1b1b1;
@@ -95,14 +96,34 @@
       border: none;
     }
   }
+  .empty-table-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  .no__data__found {
+    color: #b1b1b1;
+    font-family: "Inter var";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+  }
+
   .reversal__table__main {
     tr {
-      //   height: 50px;
+        // height: 50px;
     }
     thead {
       tr {
         th {
           border: 0 !important;
+          font-size: 16px !important;
+    font-weight: 500 !important;
+    font-family: inter var;
         }
         .p-column-header-content {
           //   justify-content: center;
@@ -155,7 +176,7 @@
         line-height: normal;
       }
       .table__selector {
-        padding-right: 25%;
+        padding-right: 30%;
         .pagedropdown_container {
           border: none;
           margin: 0 !important;

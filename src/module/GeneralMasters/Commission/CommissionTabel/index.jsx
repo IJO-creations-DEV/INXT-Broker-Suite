@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../components/ToggleButton";
+
 const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
@@ -128,31 +129,31 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
+            
 
             >
                 <Column
                     field="commissionCode"
                     header="Commission Code"
                     className="fieldvalue_container"
-
+                    sortable
 
                 ></Column>
                 <Column
                     field="product"
                     header="Product"
                     className="fieldvalue_container"
-                   
+                   sortable
                 ></Column>
 
                 <Column
-                    field="selectCovers"
+                    field="selectCover"
                     header="Select Covers"
                     className="fieldvalue_container"
                   
 
                 ></Column>
                 <Column
-
                     field="effectiveFrom"
                     header="Effective From"
                     className="fieldvalue_container"
@@ -160,8 +161,8 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
 
                 ></Column>
                 <Column
-                   field="effectionTo"
-                    header="Effection To"
+                   field="effectiveTo"
+                    header="Effective To"
                     className="fieldvalue_container"
 
 

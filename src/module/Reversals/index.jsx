@@ -11,6 +11,8 @@ import TableData from "./TableData/TableData";
 import { useFormik } from "formik";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import CustomToast from "../../components/Toast";
+import { useDispatch, useSelector } from "react-redux";
+import { postReversalJVData } from "./store/reversalMiddleWare";
 const Reversals = () => {
   const toastRef = useRef(null);
   const handleApproval = () => {
@@ -51,10 +53,34 @@ const Reversals = () => {
 
     return errors;
   };
+  // const handleSubmit = (values) => {
+  //   // Handle form submission
+  //   console.log(values, "find values");
+  // };
+  const dispatch=useDispatch()
+  const [errors,setErrors]=useState("")
+  const { reversalJVList, loading, reversalJVGetDataList } = useSelector(({ reversalMainReducers }) => {
+    return {
+      loading: reversalMainReducers?.loading,
+      reversalJVList: reversalMainReducers?.reversalJVList,
+      reversalJVGetDataList:reversalMainReducers?.reversalJVGetDataList
+
+    };
+  });
+  // const reversalJVList = useSelector(state => state.reversalJVList);
+console.log(reversalJVGetDataList,"reversalJVGetDataList")
   const handleSubmit = (values) => {
-    // Handle form submission
-    console.log(values, "find values");
+   
+
+    dispatch(postReversalJVData(formik.values));
+    
+    // navigate("/accounts/receipts");
+ 
+
   };
+
+
+
   const formik = useFormik({
     initialValues: {
       transactionCode: "",
@@ -67,6 +93,7 @@ const Reversals = () => {
       handleSubmit(values);
       setStep(1);
     },
+    // onSubmit: handleSubmit
   });
   const handlePrint = () => {
     toastRef.current.showToast();
@@ -237,7 +264,7 @@ const Reversals = () => {
       {step !== 0 && (
         <div className="grid m-0 table__container">
           <div className="col-12 p-0">
-            <TableData />
+            <TableData reversalJVGetDataList={reversalJVGetDataList} reversalJVList={reversalJVList} />
           </div>
         </div>
       )}
@@ -249,7 +276,8 @@ const Reversals = () => {
               label="Next"
               className="correction__btn__reversal"
               disabled={!formik.isValid}
-              onClick={formik.handleSubmit}
+              // onClick={formik.handleSubmit}
+              onClick={handleSubmit}
             />
           )}
 

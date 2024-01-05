@@ -24,6 +24,7 @@ import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import { MultiSelect } from 'primereact/multiselect';
 import CustomToast from "../../../components/Toast";
 import { useSelector } from "react-redux";
+import SvgTable from "../../../assets/icons/SvgTable";
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
@@ -118,45 +119,55 @@ const toastRef = useRef(null);
     setVisiblePopup(true);
 
   };
-  const handleToast =()=>{
+  
+
+  const handleToast = (values) => {
+    // Handle form submission
+    console.log(values, "find values");
+    
     toastRef.current.showToast();
-  }
+    // {
+      setTimeout(() => {
+        setVisiblePopup(false)
+      }, 3000);
+    }
   const handlEdit =()=>{
     navigate("/master/finance/subaccount/subaccountedit")
   }
   const handleDetail =()=>{
     navigate("/master/finance/subaccount/subaccountdetails")
   }
+
+  const emptyTableIcon = (
+    <div>
+    <div className="empty-table-icon">
+      <SvgTable />
+    </div>
+    <div className="no__data__found">No data entered</div>
+    </div>
+  );
+  const isEmpty = Productdata.length === 0;
+
   const template2 = {
-    layout: "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 },
+        { label: 120, value: 120 }
       ];
 
       return (
-        <React.Fragment>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',width:'40%' }}>
-            <span
-
-              className="mx-1"
-              style={{ color: "var(--text-color)", userSelect: "none" }}
-            >
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-          </div>
+        <React.Fragment >
+          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+            Row count :{' '}
+          </span>
+          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
         </React.Fragment>
       );
     },
+
   };
   const { subAccountList, loading } = useSelector(({ subAccountMainReducers }) => {
     return {
@@ -167,7 +178,7 @@ const toastRef = useRef(null);
   });
   console.log(subAccountList, "subAccountList");
   return (
-    <div className='grid  container__taxation'>
+    <div className='grid  container__subaccount'>
       <div className='col-12'>
         <NavBar />
       </div>
@@ -204,7 +215,7 @@ const toastRef = useRef(null);
         <div className='col-12 search__filter__view__taxation'>
             <div className='col-12 md:col-10 lg:col-10'>
               <div className='searchIcon__view__input__taxation'>
-                <span className='p-1'> <SvgSearchIcon /></span>
+                <span className='p-3'> <SvgSearchIcon /></span>
                 <InputText
                  style={{width:'100%'}}
                   classNames='input__sub__account__taxation'
@@ -232,6 +243,7 @@ const toastRef = useRef(null);
       paginatorTemplate={template2}
       onPage={onPageChange}
       onPageChange={onPageChange}
+      emptyMessage={isEmpty ? emptyTableIcon : null}
     >
 
 <Column
@@ -239,6 +251,7 @@ const toastRef = useRef(null);
               header="Sub Account Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              sortable
             ></Column>
             <Column
               field="description"
@@ -281,6 +294,7 @@ const toastRef = useRef(null);
               classNames="field__container"
               label="Sub Account Code"
               placeholder={"Enter"}
+              textWeight="400"
               //   value={selectedRowData.policy}
             />
           </div>
@@ -289,6 +303,7 @@ const toastRef = useRef(null);
               classNames="field__container"
               label="Sub Account Name"
               placeholder={"Enter"}
+              textWeight="400"
             />
           </div>
         </div>
@@ -298,6 +313,7 @@ const toastRef = useRef(null);
               classNames="field__container"
               label="Description"
               placeholder={"Enter"}
+              textWeight="400"
             />
           </div>
          

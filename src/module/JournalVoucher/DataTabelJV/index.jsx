@@ -7,39 +7,48 @@ import { Dropdown } from "primereact/dropdown";
 import SvgTable from "../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import { useNavigate } from "react-router-dom";
-const DataTabelJV = ({ handleEdit, newDataTable }) => {
-    const navigate=useNavigate()
+import SvgIconeye from "../../../assets/icons/SvgIconeye";
+const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
+    console.log(journalVoucherList, "journalVoucherList")
+    const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const handleNavigate=()=>{
-        navigate("/accounts/journalvoucher/detailsjournalvocture")
-    }
-    console.log(newDataTable, "find newDataTable");
-    let newProduct;
-    let updatedProductData;
+    const handleView = (rowData) => {
+        console.log(rowData.id,"rowdata")
+        // const serializedData = JSON.stringify(rowData);
+        navigate(`/accounts/journalvoucher/detailsjournalvocture/${rowData.id}`);
+    };
+    // const handleNavigate = () => {
+    //     const serializedData = JSON.stringify(journalVoucherList);
+    //     navigate('/accounts/journalvoucher/detailsjournalvocture', { state: { journalVoucherList: serializedData } });
+    // }
 
-    if (newDataTable.length > 0) {
-        updatedProductData = [
-            ...Productdata,
-            (newProduct = {
-                id: 11,
-                mainAC: newDataTable[0].mainAccount,
-                subAC: newDataTable[0].subAccount,
-                Currency: newDataTable[0].currencyCode,
-                foreignAmount: newDataTable[0].foreignAmount,
-                localAmount: "500.00",
-                Remarks: "New credit voucher",
-                Entry: newDataTable[0].entryType,
-            }),
-        ];
-    } else {
-        updatedProductData = Productdata;
-    }
+    // console.log(newDataTable, "find newDataTable");
+    // let newProduct;
+    // let updatedProductData;
+
+    // if (newDataTable.length > 0) {
+    //     updatedProductData = [
+    //         ...Productdata,
+    //         (newProduct = {
+    //             id: 11,
+    //             mainAC: newDataTable[0].mainAccount,
+    //             subAC: newDataTable[0].subAccount,
+    //             Currency: newDataTable[0].currencyCode,
+    //             foreignAmount: newDataTable[0].foreignAmount,
+    //             localAmount: "500.00",
+    //             Remarks: "New credit voucher",
+    //             Entry: newDataTable[0].entryType,
+    //         }),
+    //     ];
+    // } else {
+    //     updatedProductData = Productdata;
+    // }
     const onPageChange = (event) => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
     };
-    const isEmpty = updatedProductData.length === 0;
+    const isEmpty = journalVoucherList.length === 0;
     const emptyTableIcon = (
         <div className="empty-table-icon">
             <SvgTable />
@@ -59,8 +68,8 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
 
             return (
                 <div
-                style={{width:'40%'}}
-                 className="table__selector">
+                    style={{ width: '40%' }}
+                    className="table__selector">
                     <React.Fragment>
                         <span style={{ color: "var(--text-color)", userSelect: "none" }}>
                             Row count :{" "}
@@ -76,31 +85,31 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
             );
         },
     };
-    
-    const renderEditButton = (rowData) => {
-        return (
-            <div className="centercontent" onClick={handleNavigate}>
-                <SvgEyeIcon/>
-                
-            </div>
-        );
-    };
-    
+
+    // const renderEditButton = (rowData) => {
+    //     return (
+    //         <div className="centercontent" onClick={handleNavigate}>
+    //             <SvgEyeIcon />
+
+    //         </div>
+    //     );
+    // };
+
     const header__style = {
         display: 'flex',
         justifyContent: 'flex-end',
         paddingRight: 20
-      };
-      const body__style = {
+    };
+    const body__style = {
         display: 'flex',
         justifyContent: 'flex-end',
         paddingRight: 30
-      };
+    };
 
     return (
         <div className="journal__table__container">
             <DataTable
-                value={updatedProductData}
+                value={journalVoucherList}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -113,36 +122,42 @@ const DataTabelJV = ({ handleEdit, newDataTable }) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
-                
+                // onRowClick={(event) => handleNavigate(event.data)}
+
             >
                 <Column
-                    field="mainAC"
+                    field="transationCode"
                     header="Transaction Code"
                     className="fieldvalue_container"
-                    
-                    
+
+
                 ></Column>
                 <Column
-                    field="subAC"
+                    field="totalCredit"
                     header="Transaction Number"
                     className="fieldvalue_container"
-                    sortable
+
                 ></Column>
 
                 <Column
-                    field="Remarks"
+                    field="date"
                     header="Date"
                     className="fieldvalue_container"
-                    sortable
+
                 ></Column>
 
                 <Column
-                    body={renderEditButton}
+                    // body={renderEditButton}
+
+                    body={(columnData) => (
+                        <SvgIconeye onClick={() => handleView(columnData)} />
+                    )}
+
                     header="View"
                     className="fieldvalue_container"
                     headerStyle={header__style}
                     bodyStyle={body__style}
-                   
+
                 ></Column>
             </DataTable>
         </div>

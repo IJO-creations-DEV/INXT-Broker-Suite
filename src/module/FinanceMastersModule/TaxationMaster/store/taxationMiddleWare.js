@@ -20,12 +20,26 @@ export const getTaxationData = createAsyncThunk(
 );
 
 
-export const postAddTaxation = createAsyncThunk(
+export const postAddTaxationMiddileware = createAsyncThunk(
     POST_TAXATION,
     async (payload, { rejectWithValue }) => {
+        let bodyTableData = {
+            id: 8,
+            taxationCode: `Tax${8}`,
+            taxationName: payload?.taxationName?.name,
+            taxationRate:payload?.taxationRate?.name,
+            effectiveFrom: payload?.effectiveFrom?.name,
+            effectiveTo: payload?.effectiveTo?.name,
+           
+            status: "500.00",
+            action: 8,
+          };
+          console.log(payload?.taxationName?.name,"find tax")
         try {
+            console.log(bodyTableData, "find middleware taxation");
+
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            return bodyTableData;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

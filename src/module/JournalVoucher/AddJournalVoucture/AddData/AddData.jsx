@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import "./index.scss";
 import { useFormik } from "formik";
@@ -8,6 +8,8 @@ import InputField from "../../../../components/InputField";
 import { Button } from "primereact/button";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import SvgModalClose from "../../../../assets/icons/SvgNodalClose";
+import { postAddJournalVoucher, postJournalVoucher } from "../../store/journalVoucherMiddleware";
+import { useDispatch, useSelector } from "react-redux";
 const AddData = ({ visible, setVisible, handleUpdate }) => {
   const codeOptions = [
     { label: "Option 1", value: "00123" },
@@ -71,10 +73,46 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
 
     return errors;
   };
+
+  const dispatch = useDispatch()
+  // const handleSubmit = (values) => {
+  //   if (values) {
+  //     dispatch(postJournalVoucher(values))
+  //       .then((response) => {
+  //         console.log(response.payload.success, "success");
+  //         if (response.payload.success) {
+  //           alert("data added successfully")
+  //           // updateTableData([values]);
+  //         } else {
+  //           alert(" Invalid credentials");
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error:", error);
+  //       });
+  //   }
+
+  // };
+  const [errors, setErrors] = useState("")
+
+  const { loading, journalVoucherPostTabelData, total } = useSelector(({ journalVoucherMainReducers }) => {
+    return {
+      loading: journalVoucherMainReducers?.loading,
+      journalVoucherPostTabelData: journalVoucherMainReducers?.journalVoucherPostTabelData
+
+    };
+  });
+
+  console.log(journalVoucherPostTabelData, "journalVoucherPostTabelData")
+
   const handleSubmit = (values) => {
-    // Handle form submission
-    console.log(values, "find values");
+    dispatch(postAddJournalVoucher(formik.values));
   };
+
+
+
+
+
   const formik = useFormik({
     initialValues: {
       mainAccount: "",
@@ -375,7 +413,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               // className="select__label__jv"
               // label="Remarks (Options)"
               value={formik.values.remarks}
-          
+
               onChange={(e) =>
                 formik.setFieldValue("remarks", e.target.value)
               }

@@ -12,11 +12,15 @@ import LabelWrapper from "../../../../components/LabelWrapper";
 import { useFormik } from "formik";
 import SvgBack from "../../../../assets/icons/SvgBack";
 import CustomToast from "../../../../components/Toast";
-
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { postAddTaxationMiddileware } from "../store/taxationMiddleWare";
 const AddTaxation = () => {
   const [errors, setErrors] = useState("");
-
+  const navigate = useNavigate();
   const toastRef = useRef(null);
+  const dispatch = useDispatch()
+  const addTaxationList = useSelector(state => state.addTaxationList);
   const items = [
     { label: "Taxation", url: "/master/finance/taxation" },
     { label: "Add Taxation", url: "/master/finance/taxation/addtaxation" },
@@ -60,13 +64,38 @@ const AddTaxation = () => {
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-  const handleSubmit = () => {
-    const formErrors = validate(formik.values);
-    setErrors(formErrors);
-    console.log(formErrors, "iiiii");
+  // const handleSubmit = () => {
+  //   const formErrors = validate(formik.values);
+  //   setErrors(formErrors);
+  //   console.log(formErrors, "iiiii");
 
-    toastRef.current.showToast();
-  };
+  //   toastRef.current.showToast();
+  //   setTimeout(()=>{
+  //     navigate('/master/finance/taxation')
+  //   },2000)
+  // };
+
+  
+  
+    const handleSubmit = (values) => {
+      const formErrors = validate(formik.values);
+      setErrors(formErrors);
+      console.log(formErrors, "iiiii");
+    
+      const valueWithId = {
+        ...values,
+        id: addTaxationList?.length + 1,
+      };
+      console.log(valueWithId,'find valueWithId')
+    
+      dispatch(postAddTaxationMiddileware(valueWithId));
+      navigate("/master/finance/taxation");
+  
+    };
+   
+ 
+
+  
 
   const formik = useFormik({
     initialValues: initialValue,
@@ -79,7 +108,9 @@ const AddTaxation = () => {
         <NavBar />
       </div>
       <div>
+        <span onClick={()=>navigate(-1)}>
         <SvgBack />
+        </span>
         <label className="label_header">Add Taxation</label>
       </div>
       <div className="col-12 mb-2">

@@ -189,8 +189,8 @@ const Index = () => {
            
           >
 
-            <Column field="VoucherNumber" header="Account Number"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="TransactionNumber" header="Account Name"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="VoucherNumber" header="Account Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="TransactionNumber" header="Account Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="CustomerCode" header="Account Type"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="VoucheDate" header="Main Account"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="Amount" header="Max Transaction Limit" headerStyle={headerStyle} className='fieldvalue_container'></Column>

@@ -28,11 +28,18 @@ margin-left: 10px;
         text-wrap: nowrap;
         margin: 10px 0px;
     }
+    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        // color: #4b5563;
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: Inter var;
+    }
     
 .breadcrumbs_container{
     // margin-bottom: 60px;
     
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     font-family: Inter var;
     border: 1px solid #fff !important; 
@@ -164,7 +171,7 @@ margin:10px 0px
     padding: 0rem 0;
 }
 .pagedropdown_container {
-    margin-right: 20%;
+    margin-right: 30%;
     border-style: hidden;
     background-color: #FAFAFA;
 }

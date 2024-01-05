@@ -10,8 +10,11 @@ import SuccessIcon from '../../../../assets/icons/SuccessIcon';
 import SvgDropdown from '../../../../assets/icons/SvgDropdown';
 import { Card } from 'primereact/card';
 import { MultiSelect } from 'primereact/multiselect';
+import { useNavigate } from "react-router-dom";
+import SvgBackicon from '../../../../assets/icons/SvgBackicon';
 
 const SubAdd = () => {
+    const navigation = useNavigate();
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [selectedOption, setSelectedOption] = useState([{name:"Main0123"},{name:"Main0126"},{name:"Main0128"}]);
     const [selectedOption1, setSelectedOption1] = useState([{name:"INR"},{name:"EUR"},{name:"AUD"}]);
@@ -45,7 +48,12 @@ const SubAdd = () => {
                 <NavBar />
             </div>
             <div className='col-12 mb-2'>
+            <div className="svgback_container">
+        <span onClick={() => navigation(-1)}>
+            <SvgBackicon/> 
+            </span>
                 <div className='add__sub__title'>Sub Account Details</div>
+                </div>
                 <div className='mt-3'>
                     <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
                 </div>
@@ -79,7 +87,7 @@ const SubAdd = () => {
                 </div>
             </div> */}
             {/* <Card> */}
-            <Card>
+            <Card style={{width:'100%'}}>
             <div className='grid sub__details'>
             <div className='col-12 md:col-3 lg:col-3'>
                         <InputField
@@ -180,7 +188,7 @@ const SubAdd = () => {
 
             {/* </Card> */}
 
-            <div className='col-12 btn__view__Add mt-2'>
+            <div className='col-12 btn__view__Add mt-6'>
                 <Button
                     label='Update'
                     className='save__add__btn'

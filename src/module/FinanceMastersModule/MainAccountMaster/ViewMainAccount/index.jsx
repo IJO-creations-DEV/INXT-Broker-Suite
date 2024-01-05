@@ -12,6 +12,8 @@ import LabelWrapper from "../../../../components/LabelWrapper";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
 import { useNavigate } from "react-router-dom";
+import SvgBack from "../../../../assets/icons/SvgBack";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const ViewMainAccount = () => {
   const navigation = useNavigate();
@@ -87,7 +89,13 @@ const ViewMainAccount = () => {
           <NavBar />
         </div>
         <div className="col-12 p-0">
+          <div className="svgback_container">
+            <span onClick={() => navigation(-1)}>
+            <SvgBackicon/>
+            </span>
+          
           <div className="main__account__title">Main Account Details</div>
+          </div>
         </div>
         <div className="col-12 p-0">
           <BreadCrumb

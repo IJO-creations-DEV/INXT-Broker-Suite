@@ -6,8 +6,8 @@
           box-shadow: none !important;
           border-radius: 6px !important;
           fill: #fff !important;
-          stroke-width: 1px !important;
-          stroke: #fff !important;
+          // stroke-width: 1px !important;
+          // stroke: #fff !important;
           filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
         }
       }
@@ -44,7 +44,7 @@
         color: #000;
         font-size: 16px;
         font-weight: 500;
-        font-family: "Inter var";
+        font-family: Inter var;
       }
       .btn__container{
         display: flex;

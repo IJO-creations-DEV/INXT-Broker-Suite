@@ -34,29 +34,79 @@ export const getCommission = createAsyncThunk(
     },
 );
 
+// export const postAddCommission = createAsyncThunk(
+//     POST_COMMISSION,
+//     async (payload, { rejectWithValue }) => {
+//         try {
+//             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+//             return payload;
+//         } catch (error) {
+//             return rejectWithValue(error?.response.data.error.message);
+//         }
+//     },
+// )
 export const postAddCommission = createAsyncThunk(
     POST_COMMISSION,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        console.log(payload, "payload");
+
+        let bodyTableData = {
+            // reversalJVTransactionCode: payload?.reversalJVTransactionCode,
+            // transactionNumber: payload?.transactionNumber,
+            // transactionCode: payload?.transactionCode,
+            commissionCode: payload?.commissionCode,
+            product:payload?.product,
+            selectCover: payload?.product,
+            effectiveFrom:payload?.effectiveFrom,
+            effectiveTo: payload?.effectiveTo,
+            status: payload?.status,
+           
+        };
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            console.log(bodyTableData, "find middleware");
+
+            return bodyTableData;
         } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
+            return rejectWithValue(error?.response?.data?.error?.message);
         }
-    },
-)
+    }
+);
 
 export const getCommissionSearchList = createAsyncThunk(
     GET_COMMISSION_SEARCH_LIST,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        const { textSearch } = payload;
+        const { commissionMianReducers } = getState();
+
+        const { commissionList } = commissionMianReducers;
+        console.log(commissionList, "1234")
+
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            if (textSearch.trim() !== "") {
+                const searchResults = commissionList.filter(item => {
+                    return item.product.toLowerCase().includes(textSearch.toLowerCase());
+                });
+                console.log(searchResults, "searchResults")
+                return searchResults;
+            } else {
+                return commissionList;
+            }
         } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
+            return rejectWithValue(error?.response?.data?.error?.message);
         }
     },
-)
+);
+// export const getCommissionSearchList = createAsyncThunk(
+//     GET_COMMISSION_SEARCH_LIST,
+//     async (payload, { rejectWithValue }) => {
+//         try {
+//             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+//             return payload;
+//         } catch (error) {
+//             return rejectWithValue(error?.response.data.error.message);
+//         }
+//     },
+// )
 
 export const getCommissionView=createAsyncThunk(
     GET_COMMISSION_VIEW,

@@ -115,8 +115,109 @@ const initialState = {
             amount: "500.37",
             action: "Action",
           },
-    ]
- 
+    ],
+    receivableTableList: [
+      {
+        id: 1,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+      {
+        id: 2,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+      {
+        id: 3,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+      {
+        id: 4,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+      {
+        id: 5,
+        policies: "Motor",
+        netPremium: "4000.00",
+        paid: "000.00",
+        unPaid: "4000.00",
+        discounts: "200.00",
+        dst: "200.00",
+        lgt: "200.00",
+        vat: "200.00",
+        other: "200.00",
+        fcAmount:"00.00",
+        lcAmount:"00.00"
+      },
+    ],
+  receiptDetailList :[
+    {
+      id: 1,
+      policies: "Motor",
+      netPremium: "4000.00",
+      paid: "000.00",
+      unPaid: "4000.00",
+      discounts: "200.00",
+      dst: "200.00",
+      lgt: "200.00",
+      vat: "200.00",
+      ewt: "200.00",
+      fcAmount:"00.00",
+      lcAmount:"00.00"
+    },
+    {
+      id: 2,
+      policies: "Motor",
+      netPremium: "4000.00",
+      paid: "000.00",
+      unPaid: "4000.00",
+      discounts: "200.00",
+      dst: "200.00",
+      lgt: "200.00",
+      vat: "200.00",
+      ewt: "200.00",
+      fcAmount:"00.00",
+      lcAmount:"00.00"
+    },
+  ]
 };
 const receiptsReducer = createSlice({
     name: "receipts",
@@ -141,12 +242,12 @@ const receiptsReducer = createSlice({
         });
         builder.addCase(getReceiptsListByIdMiddleware.fulfilled, (state, action) => {
             state.loading = false;
-            state.receiptsTableList = action.payload;
+            state.receiptDetailList = action.payload;
         });
         builder.addCase(getReceiptsListByIdMiddleware.rejected, (state, action) => {
             state.loading = false;
 
-            state.receiptsTableList = {};
+            state.receiptDetailList = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
         });
         builder.addCase(getReceiptsReceivableMiddleware.pending, (state) => {
@@ -156,7 +257,7 @@ const receiptsReducer = createSlice({
             getReceiptsReceivableMiddleware.fulfilled,
             (state, action) => {
               state.loading = false;
-              state.BankDetailView = action.payload;
+              state.receivableTableList = action.payload;
             }
           );
           builder.addCase(
@@ -164,29 +265,26 @@ const receiptsReducer = createSlice({
             (state, action) => {
               state.loading = false;
       
-              state.getReceiptsReceivableMiddleware = {};
+              state.receivableTableList = {};
               state.error = typeof action.payload === "string" ? action.payload : "";
             }
           );
+     
+
           builder.addCase(postAddReceiptsMiddleware.pending, (state) => {
             state.loading = true;
           });
-          builder.addCase(
-            postAddReceiptsMiddleware.fulfilled,
-            (state, action) => {
-              state.loading = false;
-              state.BankDetailView = action.payload;
-            }
-          );
-          builder.addCase(
-            postAddReceiptsMiddleware.rejected,
-            (state, action) => {
-              state.loading = false;
-      
-              state.postAddReceiptsMiddleware = {};
-              state.error = typeof action.payload === "string" ? action.payload : "";
-            }
-          );
+          builder.addCase(postAddReceiptsMiddleware.fulfilled, (state, action) => {
+            console.log(action.payload,'find action.payload')
+            state.loading = false;
+            state.receiptsTableList = [...state.receiptsTableList, action.payload];
+          });
+          builder.addCase(postAddReceiptsMiddleware.rejected, (state, action) => {
+            state.loading = false;
+       
+            //   state.paymentVocherList = state.paymentVocherList;
+            state.error = typeof action.payload === "string" ? action.payload : "";
+          });
 
           builder.addCase(postPaymentDetailsMiddleware.pending, (state) => {
             state.loading = true;
@@ -214,7 +312,8 @@ const receiptsReducer = createSlice({
             patchReceipEditMiddleware.fulfilled,
             (state, action) => {
               state.loading = false;
-              state.BankDetailView = action.payload;
+            
+              state.receivableTableList = action.payload;
             }
           );
           builder.addCase(
@@ -222,7 +321,7 @@ const receiptsReducer = createSlice({
             (state, action) => {
               state.loading = false;
       
-              state.patchReceipEditMiddleware = {};
+              state.editList = {};
               state.error = typeof action.payload === "string" ? action.payload : "";
             }
           );

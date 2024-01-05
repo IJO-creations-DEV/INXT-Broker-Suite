@@ -13,23 +13,20 @@ import SvgBack from "../../../assets/icons/SvgBack";
 import { useFormik } from "formik";
 import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../components/LabelWrapper";
+import { useSelector, useDispatch } from 'react-redux';
+import { postAddReceiptsMiddleware } from '../store/receiptsMiddleware';
+
 
 function BranchAdding() {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedItem1, setSelectedItem1] = useState(null);
-  const [selectedItem2, setSelectedItem2] = useState(null);
-  const [selectedItem3, setSelectedItem3] = useState(null);
-  const [selectedItem4, setSelectedItem4] = useState(null);
-  const [selectedItem5, setSelectedItem5] = useState(null);
-  const [visiblePopup, setVisiblePopup] = useState(false);
+  
   const [errors, setErrors] = useState("");
+  const addReceiptsList = useSelector(state => state.addReceiptsList);
+  const dispatch = useDispatch()
 
-  // const handleClick =()=>{
-  //   navigate("/addpolicyedit")
-  // }
+ 
 
   const navigate = useNavigate();
-  const items = [{ label: "accounts/Receipts",url:"accounts/receipts/policyreceipts" }, { label: "Add Receipts" }];
+  const items = [{ label: "Receipts",url:"/accounts/receipts" }, { label: "Add Receipts",url:"/accounts/receipts/addreceipts" }];
   const home = { label: "Accounts " };
   const item = [
     { name: "Policy", code: "PL" },
@@ -72,6 +69,7 @@ function BranchAdding() {
     currencyCode: "",
     transactionCode: "",
     remarks: "",
+   
   };
   const validate = (values) => {
     console.log(values, "sss");
@@ -105,18 +103,30 @@ function BranchAdding() {
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
     const formErrors = validate(formik.values);
     setErrors(formErrors);
     console.log(formErrors, "iiiii");
-    navigate("/accounts/receipts/addpolicyedit");
+  
+    const valueWithId = {
+      ...values,
+      id: addReceiptsList?.length + 1,
+    };
+    console.log(valueWithId,'find valueWithId')
+  
+    dispatch(postAddReceiptsMiddleware(valueWithId));
+    navigate("/accounts/receipts/addreceiptedit");
+
   };
+ 
 
   const formik = useFormik({
     initialValues: initialValue,
     validate,
     onSubmit: handleSubmit,
   });
+
+ 
   return (
     <div className="overall_add_policy_receipts_container">
       <NavBar />

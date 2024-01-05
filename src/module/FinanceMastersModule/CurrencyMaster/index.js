@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useRef} from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../assets/icons/SvgAdd";
 import "../CurrencyMaster/index.scss";
+import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../../assets/icons/SvgDot";
 import NavBar from "../../../components/NavBar";
@@ -20,6 +21,7 @@ import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import ToggleButton from "../../../components/ToggleButton";
 import SvgEditicon from "../../../assets/icons/SvgEdit";
 // import { useNavigation } from '';
+import { TieredMenu } from 'primereact/tieredmenu';
 
 const CurrencyMaster = () => {
   const [products, setProducts] = useState([{ TransactionCode: "100101" }]);
@@ -32,36 +34,38 @@ const CurrencyMaster = () => {
       <SvgTable />
     </div>
   );
+  const menu = useRef(null);
+  const menuitems = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Date',
+    },
+    {
+      label: 'Voucher Number',
+    },
+  ];
   const template2 = {
-    layout:
-      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 },
+        { label: 120, value: 120 }
       ];
 
       return (
-        <div className="paginator__container">
-          <React.Fragment>
-            <span
-              className="mx-1"
-              style={{ color: "var(--text-color)", userSelect: "none" }}
-            >
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-          </React.Fragment>
-        </div>
+        <React.Fragment >
+          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+            Row count :{' '}
+          </span>
+          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+        </React.Fragment>
       );
     },
+
   };
 
   const renderViewButton = (rowData) => {
@@ -161,30 +165,22 @@ const CurrencyMaster = () => {
           <div className="col-12 search__filter__view">
             <div className="col-12 md:col-10 lg:col-10">
               <div className="searchIcon__view__input mt-2">
-                <span className="p-1">
+                <span className="pl-2">
                   <SvgSearchIcon />
                 </span>
                 <InputText
                   style={{ width: "100%" }}
                   classNames="input__sub__account"
-                  placeholder="Search By Sub Account Code"
+                  placeholder="Search By Currency code "
                 />
               </div>
             </div>
             <div className="col-12 md:col-2 lg:col-2">
-              <InputField
-                classNames="input__filed"
-                placeholder="Enter"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                // value={formik.values.TransactionCode}
-                // onChange={formik.handleChange("TransactionCode")}
-                // error={
-                //   formik.touched.TransactionCode &&
-                //   formik.errors.TransactionCode
-                // }
-              />
+            {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
+            <Button label="Search by" outlined icon={<SvgDropdownicon />}
+              className="sorbyfilter_container"
+              onClick={(e) => menu.current.toggle(e)}
+            /> */}
             </div>
           </div>
           <div className="col-12 ">
@@ -214,6 +210,7 @@ const CurrencyMaster = () => {
                 <Column
                   field="Currencycode"
                   header="Currency code"
+                  sortable
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                 ></Column>
@@ -227,6 +224,7 @@ const CurrencyMaster = () => {
                 <Column
                   field="ISOcode"
                   header="ISO code"
+                  sortable
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                   //   sortable

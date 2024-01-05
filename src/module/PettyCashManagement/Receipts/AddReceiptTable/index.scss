@@ -9,9 +9,9 @@
     .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
       // color: #4b5563;
       color: #000;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 500;
-      font-family: "Inter var";
+      font-family: Inter var;
     }
     .fieldvalue_container {
         font-size: 16px;
@@ -111,7 +111,7 @@
     padding: 1rem 0.5rem;
 }
 .paginator__container{
-    margin-right: 10%;
+    margin-right: 30%;
   }
   .p-paginator-bottom.p-paginator.p-component {
     display: flex !important;

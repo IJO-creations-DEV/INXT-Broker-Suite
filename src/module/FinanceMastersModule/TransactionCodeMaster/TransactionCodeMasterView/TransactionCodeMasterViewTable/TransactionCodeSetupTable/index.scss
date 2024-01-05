@@ -8,9 +8,10 @@
   }
   
   .paginator__container {
-    margin-right: 10%;
+    margin-right: 30%;
     display: flex;
   }
+  
   .p-paginator-bottom.p-paginator.p-component {
     display: flex !important;
     justify-content: flex-end !important;
@@ -42,6 +43,10 @@
   border-radius: 30px;
   background-color: #fff !important;
   margin-top: 10px;
+  .calendar_container{
+    width:100% !important;
+    
+  }
   .p-button {
     color:#6366F1;
     border-bottom: 1px solid #d1d5db !important;

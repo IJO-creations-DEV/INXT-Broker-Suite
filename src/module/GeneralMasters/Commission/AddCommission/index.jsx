@@ -25,6 +25,8 @@ import CustomToast from '../../../../components/Toast';
 import { SelectButton } from 'primereact/selectbutton';
 import data from './data';
 import SvgEditIcon from '../../../../assets/icons/SvgEditIcon';
+import { postAddCommission } from '../store/commissionMiddleWare';
+import { useDispatch } from 'react-redux';
 
 const AddCommission = () => {
   const toastRef = useRef(null);
@@ -82,11 +84,14 @@ const AddCommission = () => {
     { label: "Option 1", value: "Trans00123" },
     { label: "Option 2", value: "Trans00124" },
   ];
+  const dispatch=useDispatch()
   const handleSubmit = (values) => {
-    toastRef.current.showToast();
-    setTimeout(() => {
-      navigate("/master/generals/Commission");
-    }, 2000);
+    dispatch(postAddCommission(formik.values));
+    navigate("/master/generals/commission")
+    // toastRef.current.showToast();
+    // setTimeout(() => {
+    //   navigate("/master/generals/Commission");
+    // }, 2000);
   };
   const handleGoBack = () => {
     navigate("/master/generals/Commission");

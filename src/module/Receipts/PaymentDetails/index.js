@@ -18,51 +18,51 @@ import { useFormik } from "formik";
 function PolicyReceipts() {
   const [selectedProducts, setSelectedProducts] = useState(false);
   const navigate = useNavigate();
-  const [errors,setErrors] =useState("")
+  const [errors, setErrors] = useState("");
 
+  const initialValue = {
+    totalPayment: 1600,
+    bankcode: "",
+    bankName: "Money Bank",
+    bankAccount: "",
+    bankAccountName: "Business Account",
+    paymentType: "",
+    cardNumber: "1234 5678 9874 5632",
+  };
+  const validate = (values) => {
+    console.log(values, "sss");
+    const errors = {};
 
-const initialValue = {
-        
-  totalPayment: "",
-  bankcode: "",
-  bankName: "",
-  bankAccount: "",
-  bankAccountName: "",
-  paymentType: "",
-  cardNumber: "",
- 
-};
-const validate = (values) => {
-  console.log(values, "sss");
-  const errors = {};
- 
-  if (!values.bankcode) {
-    errors.bankcode = "Bank code is required";
-  }
-  if (!values.bankAccount) {
-    errors.bankAccount = "Account number is required";
-  }
-  if (!values.paymentType) {
-    errors.paymentType = "Payment type is required";
-  }
- 
-  return errors;
-};
-const minDate = new Date();
-minDate.setDate(minDate.getDate() + 1);
-const handleSubmit = () => {
-  const formErrors = validate(formik.values);
-  setErrors(formErrors);
-  console.log(formErrors, "iiiii");
-  // navigate("/addpolicyedit");
-};
+    if (!values.bankcode) {
+      errors.bankcode = "Bank code is required";
+    }
+    if (!values.bankAccount) {
+      errors.bankAccount = "Account number is required";
+    }
+    if (!values.paymentType) {
+      errors.paymentType = "Payment type is required";
+    }
 
-const formik = useFormik({
-  initialValues: initialValue,
-  validate,
-  onSubmit: handleSubmit,
-});
-  const items = [{ label: "accounts/Receipts",url:'accounts/receipts/policyreceipts' }, { label: "Add Receipts" }];
+    return errors;
+  };
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
+  const handleSubmit = () => {
+    const formErrors = validate(formik.values);
+    setErrors(formErrors);
+    console.log(formErrors, "iiiii");
+    
+  };
+
+  const formik = useFormik({
+    initialValues: initialValue,
+    validate,
+    onSubmit: handleSubmit,
+  });
+  const items = [
+    { label: "Receipts", url: "/accounts/receipts" },
+    { label: "Add Receipts", url: "/accounts/receipts/addreceipts" },
+  ];
 
   const home = { label: "Accounts " };
   const template2 = {
@@ -75,8 +75,6 @@ const formik = useFormik({
         { label: 20, value: 20 },
         { label: 120, value: 120 },
       ];
-
-    
 
       return (
         <React.Fragment>
@@ -96,22 +94,21 @@ const formik = useFormik({
       );
     },
   };
-  const data =[
+  const data = [
     { name: "Bank00123", code: "B1" },
     { name: "Bank00256", code: "B2" },
-    { name: "Bank00134", code: "B3"},
-  ]
+    { name: "Bank00134", code: "B3" },
+  ];
   const data1 = [
     { name: "678945678902", code: "01" },
     { name: "678934562345", code: "02" },
-    { name: "987645345672", code: "03"},
-  ]
+    { name: "987645345672", code: "03" },
+  ];
   const data2 = [
     { name: "Card", code: "C1" },
     { name: "Card1", code: "C2" },
-    { name: "Card2", code: "C3"},
-  ]
-  
+    { name: "Card2", code: "C3" },
+  ];
 
   const headerStyle = {
     fontSize: 16,
@@ -121,11 +118,11 @@ const formik = useFormik({
     border: "none",
     textalign: "center",
   };
- 
+
   return (
     <div className="overall__payment_details_container">
       <NavBar />
-      <SvgBack/>
+      <SvgBack />
       <label className="label_header">Payment Details</label>
       <BreadCrumb
         model={items}
@@ -134,8 +131,6 @@ const formik = useFormik({
         separatorIcon={<SvgDot color={"#000"} />}
       />
 
-
-     
       <Card>
         <div class="grid">
           <div class="col-4 md:col-4 lg-col-4">
@@ -146,7 +141,7 @@ const formik = useFormik({
                 error={formik.errors.totalPayment}
                 classNames="field__policy "
                 label="Total Payment"
-                // value={"16000.00"}
+                
               />
             </div>
           </div>
@@ -155,28 +150,25 @@ const formik = useFormik({
         <div class="grid">
           <div class="col-4 md:col-4 lg-col-4">
             <div>
-                 <DropDowns
-                  value={formik.values.bankcode}
-                  onChange={formik.handleChange("bankcode")}
-                  error={formik.errors.bankcode}
-              className="dropdown__container"
-              label="Bank code"
-              
-              
-              options={data}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-             
+              <DropDowns
+                value={formik.values.bankcode}
+                onChange={formik.handleChange("bankcode")}
+                error={formik.errors.bankcode}
+                className="dropdown__container"
+                label="Bank code"
+                options={data}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-              value={formik.values.bankName}
-              onChange={formik.handleChange("bankName")}
-              error={formik.errors.bankName}
+                value={formik.values.bankName}
+                onChange={formik.handleChange("bankName")}
+                error={formik.errors.bankName}
                 classNames="field__policy "
                 label="Bank Name"
                 // value={"Money bank"}
@@ -187,28 +179,25 @@ const formik = useFormik({
         <div class="grid">
           <div class="col-4 md:col-4 lg-col-4">
             <div>
-            <DropDowns
-             value={formik.values.bankAccount}
-             onChange={formik.handleChange("bankAccount")}
-             error={formik.errors.bankAccount}
-              className="dropdown__container"
-              label="Bank Account"
-             
-              
-              options={data1}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-             
+              <DropDowns
+                value={formik.values.bankAccount}
+                onChange={formik.handleChange("bankAccount")}
+                error={formik.errors.bankAccount}
+                className="dropdown__container"
+                label="Bank Account"
+                options={data1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-              value={formik.values.bankAccountName}
-              onChange={formik.handleChange("bankAccountName")}
-              error={formik.errors.bankAccountName}
+                value={formik.values.bankAccountName}
+                onChange={formik.handleChange("bankAccountName")}
+                error={formik.errors.bankAccountName}
                 classNames="field__policy"
                 label="Bank Account Name"
                 // value={"Business Account"}
@@ -219,20 +208,17 @@ const formik = useFormik({
         <div class="grid">
           <div class="col-4 md:col-4 lg-col-4">
             <div>
-            <DropDowns
-             value={formik.values.paymentType}
-             onChange={formik.handleChange("paymentType")}
-             error={formik.errors.paymentType}
-              className="dropdown__container"
-              label="Payment Type"
-             
-             
-              options={data2}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-             
+              <DropDowns
+                value={formik.values.paymentType}
+                onChange={formik.handleChange("paymentType")}
+                error={formik.errors.paymentType}
+                className="dropdown__container"
+                label="Payment Type"
+                options={data2}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
@@ -241,19 +227,24 @@ const formik = useFormik({
                 value={formik.values.cardNumber}
                 onChange={formik.handleChange("cardNumber")}
                 error={formik.errors.cardNumber}
-              
                 classNames="field__policy "
                 label="Card Number"
                 // value={"1234 5678 9874 5632"}
               />
             </div>
           </div>
-         
         </div>
       </Card>
       <div className="exit_print_buttons">
-          <Button  label={selectedProducts?.status === "Approved" ? "Print" :"Approve"} className="print" onClick={()=>{formik.handleSubmit();}} disabled={!formik.isValid} />
-        </div>
+        <Button
+          label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
+          className="print"
+          onClick={() => {
+            formik.handleSubmit();
+          }}
+          disabled={!formik.isValid}
+        />
+      </div>
     </div>
   );
 }

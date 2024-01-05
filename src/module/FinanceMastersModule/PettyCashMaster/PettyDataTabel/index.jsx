@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
-const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList }) => {
+const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList,addPettyCash }) => {
+    console.log(addPettyCash.data,"addPettyCash")
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -112,7 +113,7 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList }) => {
     return (
         <div className="petty__cash__table__container">
             <DataTable
-                value={pettyCashList}
+                value={[addPettyCash.data]}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -128,7 +129,7 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList }) => {
 
             >
                 <Column
-                    field="pettycashcode"
+                    field="prttycashcode"
                     header="Petty Cash Code"
                     className="fieldvalue_container"
 
@@ -149,7 +150,7 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList }) => {
 
                 ></Column>
                 <Column
-                    field="minicashbox"
+                    field="mincashback"
                     header="Minimum Cash Box"
                     className="fieldvalue_container"
 

@@ -13,6 +13,9 @@ import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
 import { useNavigate } from "react-router-dom";
 import CustomToast from "../../../../components/Toast";
+import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
+
 const AddMainAccount = () => {
   const toastRef = useRef(null);
   const navigation = useNavigate();
@@ -123,7 +126,12 @@ const AddMainAccount = () => {
           <NavBar />
         </div>
         <div className="col-12 p-0">
-          <div className="main__account__title">Main Account Master</div>
+          <div className="svgback_container">
+            <span onClick={() => navigation(-1)}>
+              <SvgBackicon />
+            </span>
+            <div className="main__account__title">Main Account Master</div>
+          </div>
         </div>
         <div className="col-12 p-0">
           <BreadCrumb
@@ -309,6 +317,7 @@ const AddMainAccount = () => {
               optionLabel="value"
               display="chip"
               placeholder="Select"
+              dropdownIcon={<SvgDropdown />}
             />
             {formik.touched.companyCode && formik.errors.companyCode && (
               <div
@@ -337,6 +346,7 @@ const AddMainAccount = () => {
               optionLabel="value"
               display="chip"
               placeholder="Select"
+              dropdownIcon={<SvgDropdown />}
             />
           </div>
         </div>

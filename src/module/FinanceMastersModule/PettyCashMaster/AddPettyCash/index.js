@@ -13,6 +13,8 @@ import { useFormik } from 'formik';
 import ArrowLeftIcon from '../../../../assets/icons/ArrowLeftIcon';
 import CustomToast from '../../../../components/Toast';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { pettyCashMaster, postAddPettyCash } from '../store/pettyCashMasterMiddleWare';
 
 const AddPettyCash = () => {
   const navigate = useNavigate()
@@ -61,12 +63,72 @@ const AddPettyCash = () => {
 
     return errors;
   };
-
+  const dispatch = useDispatch()
   const handleSubmit = (values) => {
-    toastRef.current.showToast();
-    setTimeout(() => {
-      navigate("/master/finance/pettycash");
-    }, 2000);
+    // // console.log(values,"values")
+    // // dispatch(postAddPettyCash(values))
+
+
+    // // const formErrors = formik.values;
+    // // setErrors(formErrors)
+    // // console.log(formErrors, "formError");
+    // if (values) {
+    //   dispatch(postAddPettyCash(values))
+    //     .then((response) => {
+    //       console.log(response.payload.success, "success");
+    //       if (response.payload.success) {
+    //         toastRef.current.showToast();
+    //                 setTimeout(() => {
+    //                   navigate(`/master/finance/pettycash`);
+    //                 }, 2000);
+    //       } else {
+    //         alert(" Invalid credentials");
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error:", error);
+    //     });
+    // }
+    // // if (values) {
+    // //   dispatch(postAddPettyCash(values))
+    // //     .then((response) => {
+    // //       console.log(response.payload.success, "success");
+    // //       if (response.payload.success) {
+    // //         toastRef.current.showToast();
+    // //         setTimeout(() => {
+    // //           navigate(`/master/finance/pettycash`);
+    // //         }, 2000);
+    // //       } else {
+    // //         alert(" Invalid credentials");
+    // //       }
+    // //     })
+    // //     .catch((error) => {
+    // //       console.error("Error:", error);
+    // //     });
+    // // }
+    // const handleSubmit = (values) => {
+      if (values) {
+        dispatch(postAddPettyCash(values))
+          .then((response) => {
+            console.log(response.payload.success, "success");
+            if (response.payload.success) {
+              // Dispatch the new petty cash data to update the store
+              dispatch(pettyCashMaster(values));
+  
+              toastRef.current.showToast();
+              setTimeout(() => {
+                navigate(`/master/finance/pettycash`);
+              }, 2000);
+            } else {
+              alert(" Invalid credentials");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    // };
+
   };
   const formik = useFormik({
     initialValues: {

@@ -27,23 +27,22 @@ const PolicyReceipts = () => {
   const items = [
   
     {
-      label: 'Receipts',
+      label: 'Receipts',url:"/accounts/receipts"
     },
    
   ];
-  const { receiptsTableList, loading } = useSelector(({ receiptsTableReducers }) => {
+  const { receiptsTableList, loading,total } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptsTableList: receiptsTableReducers?.receiptsTableList,
-    // const [products, setProducts] = useState([]);
-    
-// const handleView=()=>{
-//   navigate('/accounts/paymentvoucher/detailview')
-// }
+      total:receiptsTableReducers
 
     };
   });
-console.log(receiptsTableList,"receiptsTableList")
+  useEffect(()=>{
+    console.log(total,"sd")
+  },[total])
+console.log(total,"find receiptsTableList")
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -136,10 +135,10 @@ console.log(receiptsTableList,"receiptsTableList")
   };
 
   const handlePolicy = () => {
-    navigate("/accounts/receipts/addpolicyreceipts1");
+    navigate("/accounts/receipts/addreceipts");
   };
   const handleArrowClick = () => {
-    navigate("/accounts/receipts/policyreceiptsview");
+    navigate("/accounts/receipts/receiptdetailview");
   };
   const handleEditClick = () => {
     navigate("/accounts/receipts/otherreceiptsview");

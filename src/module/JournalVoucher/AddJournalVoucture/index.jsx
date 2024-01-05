@@ -28,20 +28,22 @@ import CustomToast from "../../../components/Toast";
 import SuccessIcon from '../../../assets/icons/SuccessIcon';
 import AddDataTabel from './AddDataTabel';
 import EditData from './EditData';
+import { useDispatch, useSelector } from 'react-redux';
+import { postTCJournalVoucher } from '../store/journalVoucherMiddleware';
 
 
 const AddJournalVocture = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const [buttonshow, setButtonShow] = useState(0)
     const [products, setProducts] = useState([]);
     const [visibleSuccess, setVisibleSuccess] = useState(false);
-  
+
     const toastRef = useRef(null);
-    
+
 
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [visibleEdit, setVisibleEdit]=useState(false)
+    const [visibleEdit, setVisibleEdit] = useState(false)
     const [date, setDate] = useState(new Date());
     const items = [
         { label: 'Journal Voucher', url: '/accounts/journalvoucher' },
@@ -49,7 +51,7 @@ const AddJournalVocture = () => {
 
     ];
     const home = { label: "Accounts" };
-   
+
     useEffect(() => {
         const timerId = setTimeout(() => {
             setVisibleSuccess(false);
@@ -57,11 +59,19 @@ const AddJournalVocture = () => {
 
         return () => clearTimeout(timerId);
     }, [visibleSuccess]);
-   
-    const handleGoback=()=>{
+
+    const handleGoback = () => {
         navigate('/accounts/journalvoucher')
     }
+    const { loading, journalVoucherPostTabelData } = useSelector(({ journalVoucherMainReducers }) => {
+        return {
+            loading: journalVoucherMainReducers?.loading,
+            // addJournalVoucher: journalVoucherMainReducers?.addJournalVoucher,
+            journalVoucherPostTabelData: journalVoucherMainReducers?.journalVoucherPostTabelData
 
+        };
+    });
+    console.log(journalVoucherPostTabelData, "journalVoucherPostTabelData")
 
 
     const customValidation = (values) => {
@@ -87,13 +97,30 @@ const AddJournalVocture = () => {
 
         return errors;
     };
+    const [errors, setErrors] = useState("")
+
+
     
+    const dispatch = useDispatch()
     const handleSubmit = (values) => {
-        // Handle form submission
-        console.log(values);
-        setVisible(false);
-        setVisiblePopup(true);
-    }
+        
+        dispatch(postTCJournalVoucher(formik.values));
+    };
+
+
+
+
+    useEffect(() => {
+        handleSubmit()
+    }, [])
+    // console.log(total, "find receiptsTableList")
+
+    // const handleSubmit = (values) => {
+    //     // Handle form submission
+    //     console.log(values);
+    //     setVisible(false);
+    //     setVisiblePopup(true);
+    // }
     const formik = useFormik({
         initialValues: {
             transationCode: '',
@@ -101,6 +128,7 @@ const AddJournalVocture = () => {
             totalCredit: '',
             totalDebit: '',
             net: '',
+            date: ""
 
         },
         validate: customValidation,
@@ -115,7 +143,7 @@ const AddJournalVocture = () => {
         return () => clearTimeout(timerId);
     }, [visiblePopup]);
 
-   
+
     const [creditTotal, setCreditTotal] = useState(500);
     const [debitTotal, setDebitTotal] = useState(500);
     const [netTotal, setNetTotal] = useState(100);
@@ -142,12 +170,34 @@ const AddJournalVocture = () => {
         { label: 'Trans00124', value: 'Trans00124' },
 
     ];
-
+    const totalForeignAmount = journalVoucherPostTabelData.reduce((total, item) => {
+        const foreignAmount = parseFloat(item.foreignAmount);
+        return !isNaN(foreignAmount) ? total + foreignAmount : total;
+      }, 0);
     
+      const totalLocalAmount = journalVoucherPostTabelData.reduce((total, item) => {
+        const localAmount = parseFloat(item.localAmount);
+        return !isNaN(localAmount) ? total + localAmount : total;
+      }, 0);
+
+    const handlePrint = () => {
+        setVisibleSuccess(true)
+        handleSubmit()
+        navigate("/accounts/journalvoucher")
+    }
+
 
     return (
         <div className='grid add__JV__container'>
             {/* <CustomToast ref={toastRef} /> */}
+            {buttonshow === 0 ? (
+                <CustomToast
+                    ref={toastRef}
+                    message="Transaction Number 1234 is created"
+                />
+            ) : (
+                <CustomToast ref={toastRef} message="Successfully Printed" />
+            )}
             <div className='col-12'>
                 <NavBar />
             </div>
@@ -168,14 +218,14 @@ const AddJournalVocture = () => {
                             onChange={(e) =>
                                 formik.setFieldValue("transationCode", e.target.value)
                             }
-                          
+
                             options={mainAccountOptions}
 
                             optionLabel='label'
                             placeholder={"Select"}
                             dropdownIcon={<SvgDropdown color={"#000"} />}
                         />
-                      
+
                         {formik.touched.transationCode && formik.errors.transationCode && (
                             <div
                                 style={{ fontSize: 12, color: "red" }}
@@ -191,7 +241,7 @@ const AddJournalVocture = () => {
                             label="Transaction Description"
                             classNames='dropdown__add__sub__JV'
                             className='label__sub__add__JV'
-                            
+
                             value={
                                 formik.values.transationCode
                                     ? `Transaction Description ${formik.values.transationCode}`
@@ -202,7 +252,7 @@ const AddJournalVocture = () => {
                                 formik.setFieldValue("transactionDescription", e.target.value)
                             }
                         />
-                       
+
                         {formik.touched.transationDescription && formik.errors.transationDescription && (
                             <div
                                 style={{ fontSize: 12, color: "red" }}
@@ -222,8 +272,17 @@ const AddJournalVocture = () => {
                                 classNames="label__sub__add__JV"
                             >
                                 <Calendar
-                                    value={date}
-                                    onChange={(e) => setDate(e.value)}
+                                    value={
+                                        formik.values.date
+                                            ? new Date(formik.values.date)
+                                            : null
+                                    }
+                                    onChange={(e) => {
+                                        formik.handleChange("date")(
+                                            e.value.toISOString().split("T")[0]
+                                        );
+                                    }}
+                                    dateFormat="yy-mm-dd"
                                     showIcon
                                     className="calender_field_claim__JV"
                                 />
@@ -235,15 +294,15 @@ const AddJournalVocture = () => {
                     </div>
 
 
-                    
+
                 </div>
             </div>
             <div className='col-12 m-0'>
                 <div className='sub__account__sub__container__JV'>
                     <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
                         <div className="card">
-                            <AddDataTabel setVisibleEdit={setVisibleEdit} handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
-                            
+                            <AddDataTabel setVisibleEdit={setVisibleEdit} handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} journalVoucherPostTabelData={journalVoucherPostTabelData} />
+
                         </div>
 
                     </div>
@@ -268,8 +327,8 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
-                                value={creditTotal}
-                          
+                                value={totalForeignAmount}
+
                             />
                             {formik.touched.totalCredit && formik.errors.totalCredit && (
                                 <div
@@ -286,8 +345,8 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
-                                value={debitTotal}
-                           
+                                value={totalLocalAmount}
+
                             />
                             {formik.touched.totalDebit && formik.errors.totalDebit && (
                                 <div
@@ -304,8 +363,8 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
-                                value={netTotal}
-                          
+                                value={totalForeignAmount-totalLocalAmount}
+
                             />
                             {formik.touched.net && formik.errors.net && (
                                 <div
@@ -331,15 +390,15 @@ const AddJournalVocture = () => {
                     />
                 </div>
             )}
-        
+
 
             {buttonshow === 1 && (
                 <div className='col-12 btn__view__Add__JV mt-2'>
                     <Button
                         label='Print'
                         className='save__add__btn__print'
-                        
-                        onClick={() => setVisibleSuccess(true)}
+
+                        onClick={handlePrint}
                     />
                 </div>
             )}

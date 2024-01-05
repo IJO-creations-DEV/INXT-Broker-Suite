@@ -10,6 +10,7 @@ import InputField from "../../../../components/InputField";
 import DropDowns from "../../../../components/DropDowns";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import TransactionCodeMasterDetailViewTable from "./TransactionCodeMasterDetailViewTable";
+import NavBar from "../../../../components/NavBar";
 
 const initialValue = {
   TransactionCode: "",
@@ -61,6 +62,7 @@ const TransactionCodeDetails = () => {
 
   return (
     <div className="transactioncode__master__detail__view">
+      <NavBar/>
       {/* <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully"/> */}
       <div className="grid  m-0">
         <div className="col-12 md:col-12 lg:col-12">

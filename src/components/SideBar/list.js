@@ -10,7 +10,7 @@ export const menuList = [
       {
         id: 2,
         name: "Payment Voucher",
-        path: "/accounts/paymentvoucher",
+        path: "accounts/paymentvoucher",
       },
       {
         id: 3,
@@ -52,12 +52,12 @@ export const menuList = [
       },
       {
         id: 5,
-        name: "Correction Journal Voucher",
+        name: "Correction JV",
         path: "/accounts/correctionsjv/correctionsjvdetails",
       },
       {
         id: 6,
-        name: "Reversal Journal Voucher",
+        name: "Reversal JV",
         path: "/accounts/reversaljv/reversaljvdetails",
       },
     ],
@@ -68,19 +68,19 @@ export const menuList = [
       {
         id: 1,
         name: "Generals",
-        submenu:[
-            {
-                id:1,
-                name:"Organization",
-                path:"master/generals/organization"
-            },
-            {
-                id:2,
-                name:"Commission",
-                path:"master/generals/commission"
-            }
-        ]
-    },
+        submenu: [
+          {
+            id: 1,
+            name: "Organization",
+            path: "master/generals/organization",
+          },
+          {
+            id: 2,
+            name: "Commission",
+            path: "master/generals/commission",
+          },
+        ],
+      },
       {
         id: 2,
         name: "Finance",

@@ -5,8 +5,10 @@ import SvgDot from "../../../../assets/icons/SvgDot";
 import "./index.scss";
 import InputField from "../../../../components/InputField";
 import SvgBack from "../../../../assets/icons/SvgBack";
+import { useNavigate } from "react-router-dom";
 
 const TaxationDetails = () => {
+  const navigate=useNavigate()
   const items = [
     { label: "Taxation Master", url: "/master/finance/taxation" },
     {
@@ -22,7 +24,9 @@ const TaxationDetails = () => {
         <NavBar />
       </div>
       <div>
+        <span onClick={()=>navigate(-1)}>
         <SvgBack />
+        </span>
         <label className="label_header">Taxation Details</label>
       </div>
       <div className="col-12 mb-2">

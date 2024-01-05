@@ -12,11 +12,20 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+import { useDispatch, useSelector } from "react-redux";
 
 const RequestTable = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isEmpty = products.length === 0;
+
+  const { RequestList, loading } = useSelector(({ pettyCashRequestReducer }) => {
+    return {
+      loading: pettyCashRequestReducer?.loading,
+      RequestList: pettyCashRequestReducer?.RequestList,
+    };
+  });
+
+  const isEmpty = RequestList.length === 0;
 
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -117,7 +126,7 @@ const RequestTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={products}
+            value={RequestList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
@@ -140,7 +149,7 @@ const RequestTable = () => {
               
             ></Column>
             <Column
-              field="Request Number"
+              field="RequestNumber"
               header="Request Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"

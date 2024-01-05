@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../../../assets/icons/SvgDot";
@@ -17,6 +17,8 @@ import { Card } from "primereact/card";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import DropDowns from "../../../../components/DropDowns";
 import { Maincode, SubAccount } from "../../mock";
+import { useDispatch, useSelector } from "react-redux";
+import { postEditDisbursmentMiddleware } from "../store/pettyCashDisbursementMiddleware";
 
 const initialValue = {
   RequestNumber: "",
@@ -32,12 +34,26 @@ const initialValue = {
 };
 
 const AddDisbursementTable = () => {
-  const [data, setData] = useState([{ RequestNumber: "RequestNumber" }]);
   const [visible, setVisible] = useState(false);
+  const [moduleData, setModuleData] = useState();
+  const [selectedRows, setSelectedRows] = useState([]);
   const [show, setshow] = useState(false);
-  const isEmpty = data.length === 0;
+  const dispatch = useDispatch();
   const toastRef = useRef(null);
   const navigate = useNavigate();
+
+  console.log(selectedRows, "selectedRows");
+  const { AddDisbursmentTable, loading } = useSelector(
+    ({ pettyCashDisbursementReducers }) => {
+      return {
+        loading: pettyCashDisbursementReducers?.loading,
+        AddDisbursmentTable: pettyCashDisbursementReducers?.AddDisbursmentTable,
+      };
+    }
+  );
+
+  const isEmpty = AddDisbursmentTable.length === 0;
+
   const handleSubmit = () => {
     toastRef.current.showToast();
     {
@@ -78,7 +94,10 @@ const AddDisbursementTable = () => {
     border: "none",
     textAlign: "center",
   };
-  const handleEdit = (id) => {
+  const handleEdit = (data) => {
+    console.log(data, "sata");
+
+    setModuleData({ ...data });
     setVisible(true);
   };
 
@@ -96,7 +115,9 @@ const AddDisbursementTable = () => {
     return errors;
   };
 
-  const handleSave = () => {
+  const handleSave = (value) => {
+    console.log(value, "-value");
+    dispatch(postEditDisbursmentMiddleware(value));
     setVisible(false);
     setshow(true);
   };
@@ -109,9 +130,91 @@ const AddDisbursementTable = () => {
     },
   });
 
+  const handlePettyCashSubAccountCodedecription = (value) => {
+    let description = "";
+    switch (value.SubAccount) {
+      case "Sub1929920":
+        description = "SUB-1";
+        break;
+      case "Sub8299201":
+        description = "SUB-2";
+        break;
+      case "Sub9920010":
+        description = "SUB-3";
+        break;
+      case "Sub1818811":
+        description = "SUB-4";
+        break;
+      default:
+        description = "Unknown";
+        break;
+    }
+    formik.setFieldValue("SubAccountDescription", description);
+  };
+
+  const handlePettyCashMainAccountDescribtion = (value) => {
+    let description = "";
+    switch (value.Maincode) {
+      case "192992":
+        description = "Main-1";
+        break;
+      case "199191":
+        description = "Main-2";
+        break;
+      case "101019":
+        description = "Main-3";
+        break;
+      case "181929":
+        description = "Main-4";
+        break;
+      default:
+        description = "Unknown";
+        break;
+    }
+    formik.setFieldValue("MainAccountDescription", description);
+  };
+
+  const SetFormikValue = () => {
+    const updatedValues = {
+      RequestNumber: moduleData?.RequestNumber,
+      Requester: moduleData?.RequesterName,
+    };
+
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
+
+  useEffect(() => {
+    SetFormikValue();
+    formik.setFieldValue("id", moduleData?.id);
+    formik.setFieldValue("TotalAmount", moduleData?.TotalAmount || "");
+  }, [moduleData]);
+
+  const handlecheck = (rowData) => {
+    const selectedIndex = selectedRows.findIndex(
+      (row) => row.id === rowData.id
+    );
+    let updatedSelectedRows = [];
+
+    if (selectedIndex === -1) {
+      updatedSelectedRows = [...selectedRows, rowData];
+    } else {
+      updatedSelectedRows = selectedRows.filter((row) => row.id !== rowData.id);
+    }
+
+    setSelectedRows(updatedSelectedRows);
+    console.log(updatedSelectedRows, "selected rows");
+    const TotalAmount = selectedRows.map((item) => {
+      return item.TotalAmount;
+    });
+  };
+
+  console.log(AddDisbursmentTable, "RequestList");
   return (
     <div className="add__disbursement__table">
-      <CustomToast ref={toastRef}  message="Petty Cash Disbursment Successfully"/>
+      <CustomToast
+        ref={toastRef}
+        message="Petty Cash Disbursment Successfully"
+      />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div
@@ -141,13 +244,21 @@ const AddDisbursementTable = () => {
         </div>
         <div className="table__container">
           <DataTable
-            value={data}
+            value={AddDisbursmentTable}
             tableStyle={{ minWidth: "50rem" }}
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            selection={selectedRows}
+            onSelectionChange={(e) => setSelectedRows(e.value)}
           >
             <Column
               header={<input type="checkbox" />}
-              body={() => <input type="checkbox" />}
+              body={(rowData) => (
+                <input
+                  type="checkbox"
+                  checked={selectedRows.some((row) => row.id === rowData.id)}
+                  onClick={() => handlecheck(rowData)}
+                />
+              )}
               headerStyle={headerStyle}
               style={{ textAlign: "center" }}
             />
@@ -158,7 +269,7 @@ const AddDisbursementTable = () => {
               sortable
             ></Column>
             <Column
-              field="Requester"
+              field="RequesterName"
               header="Requester"
               headerStyle={headerStyle}
               sortable
@@ -167,33 +278,43 @@ const AddDisbursementTable = () => {
               field="Remarks"
               header="Remarks"
               headerStyle={headerStyle}
-              
+              body={(rowData) => rowData.Remarks || "-"}
             ></Column>
             <Column
               field="Amount"
               header="Amount"
               headerStyle={headerStyle}
+              body={(rowData) => rowData.Amount || "-"}
               sortable
             ></Column>
-            <Column field="VAT" header="VAT" headerStyle={headerStyle} ></Column>
-            <Column field="EWT" header="EWT" headerStyle={headerStyle} ></Column>
+            <Column
+              field="VAT"
+              header="VAT%"
+              headerStyle={headerStyle}
+              body={(rowData) => rowData.VAT || "-"}
+            ></Column>
+            <Column
+              field="EWT"
+              header="EWT%"
+              headerStyle={headerStyle}
+              body={(rowData) => rowData.EWT || "-"}
+            ></Column>
             <Column
               field="MainAccount"
               header="Main Account"
               headerStyle={headerStyle}
-              
+              body={(rowData) => rowData.MainAccount || "-"}
             ></Column>
             <Column
               field="SubAccount"
               header="Sub Account"
               headerStyle={headerStyle}
-              
+              body={(rowData) => rowData.SubAccount || "-"}
             ></Column>
             <Column
               field="TotalAmount"
               header="Total Amount"
               headerStyle={headerStyle}
-              
             ></Column>
             <Column
               field="Action"
@@ -203,7 +324,7 @@ const AddDisbursementTable = () => {
                 <Button
                   icon={<SvgEditIcon />}
                   className="delete__btn"
-                  onClick={() => handleEdit(rowData.id)}
+                  onClick={() => handleEdit(rowData)}
                 />
               )}
             ></Column>
@@ -261,6 +382,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.RequestNumber}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
@@ -272,6 +394,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.Requester}
               />
             </div>
           </div>
@@ -281,10 +404,11 @@ const AddDisbursementTable = () => {
                 classNames="input__filed"
                 label="Amount"
                 // placeholder="Enter"
-                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.Amount}
+                onChange={formik.handleChange("Amount")}
               />
             </div>
           </div>
@@ -297,6 +421,8 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.VAT}
+                onChange={formik.handleChange("VAT")}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
@@ -307,6 +433,8 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.EWT}
+                onChange={formik.handleChange("EWT")}
               />
             </div>
           </div>
@@ -325,10 +453,12 @@ const AddDisbursementTable = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("MainAccountCode", e.value);
+                  handlePettyCashMainAccountDescribtion(e.value);
                 }}
                 optionLabel="Maincode"
                 error={
-                  formik.touched.MainAccountCode && formik.errors.MainAccountCode
+                  formik.touched.MainAccountCode &&
+                  formik.errors.MainAccountCode
                 }
               />
             </div>
@@ -336,11 +466,12 @@ const AddDisbursementTable = () => {
               <InputField
                 classNames="input__filed"
                 label="Main Account Description"
-                 // placeholder="Enter"
-                 disabled={true}
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.MainAccountDescription}
               />
             </div>
           </div>
@@ -359,6 +490,7 @@ const AddDisbursementTable = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("SubAccountCode", e.value);
+                  handlePettyCashSubAccountCodedecription(e.value);
                 }}
                 optionLabel="SubAccount"
                 error={
@@ -370,11 +502,12 @@ const AddDisbursementTable = () => {
               <InputField
                 classNames="input__filed"
                 label="Sub Account Description"
-                 // placeholder="Enter"
-                 disabled={true}
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.SubAccountDescription}
               />
             </div>
           </div>
@@ -387,6 +520,8 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                value={formik.values.Remarks}
+                onChange={formik.handleChange("Remarks")}
               />
             </div>
           </div>

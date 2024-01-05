@@ -1,228 +1,207 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPettyCashRequestListMiddleware, getPettyCashRequestByIdMiddleware } from "./pettyCashRequestMiddleware";
+import {
+  getRequestListMiddleware,
+  getRequestSearchMiddleware,
+  postAddRequestMiddleware,
+  getAddRequestTableMiddleware,
+  postEditRequestMiddleware,
+} from "./pettyCashRequestMiddleware";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
-    loading: false,
-    error: "",
-    paymentVocherList: [
-        {
-            id: 1,
-            VoucherNumber: "Voucher0123",
-            TransactionNumber: "Trans00123",
-            CustomerCode: "Cus01123",
-            VoucheDate: "11/12/2023",
-            Amount: "500.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 2,
-            VoucherNumber: "Voucher0124",
-            CustomerCode: "Cus01123",
-            TransactionNumber: "Trans00124",
-            VoucheDate: "12/12/2023",
-            Amount: "600.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 3,
-            VoucherNumber: "Voucher0125",
-            TransactionNumber: "Trans00125",
-            CustomerCode: "Cus01123",
-            VoucheDate: "13/12/2023",
-            Amount: "700.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 4,
-            VoucherNumber: "Voucher0126",
-            TransactionNumber: "Trans00126",
-            CustomerCode: "Cus01123",
-            VoucheDate: "14/12/2023",
-            Amount: "800.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 5,
-            VoucherNumber: "Voucher0127",
-            TransactionNumber: "Trans00127",
-            VoucheDate: "15/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "900.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 6,
-            VoucherNumber: "Voucher0128",
-            TransactionNumber: "Trans00128",
-            VoucheDate: "16/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1000.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 7,
-            VoucherNumber: "Voucher0129",
-            TransactionNumber: "Trans00129",
-            VoucheDate: "17/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1100.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 8,
-            VoucherNumber: "Voucher0130",
-            TransactionNumber: "Trans00130",
-            VoucheDate: "18/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1200.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 9,
-            VoucherNumber: "Voucher0131",
-            TransactionNumber: "Trans00131",
-            VoucheDate: "19/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1300.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 10,
-            VoucherNumber: "Voucher0132",
-            TransactionNumber: "Trans00132",
-            VoucheDate: "20/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1400.00",
-            action: <SvgIconeye />,
-        }
-    ],
-    invoiceList: [
-        {
-            id: 1,
-            VoucherNumber: "Voucher0123",
-            TransactionNumber: "Trans00123",
-            CustomerCode: "Cus01123",
-            VoucheDate: "11/12/2023",
-            Amount: "500.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 2,
-            VoucherNumber: "Voucher0124",
-            CustomerCode: "Cus01123",
-            TransactionNumber: "Trans00124",
-            VoucheDate: "12/12/2023",
-            Amount: "600.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 3,
-            VoucherNumber: "Voucher0125",
-            TransactionNumber: "Trans00125",
-            CustomerCode: "Cus01123",
-            VoucheDate: "13/12/2023",
-            Amount: "700.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 4,
-            VoucherNumber: "Voucher0126",
-            TransactionNumber: "Trans00126",
-            CustomerCode: "Cus01123",
-            VoucheDate: "14/12/2023",
-            Amount: "800.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 5,
-            VoucherNumber: "Voucher0127",
-            TransactionNumber: "Trans00127",
-            VoucheDate: "15/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "900.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 6,
-            VoucherNumber: "Voucher0128",
-            TransactionNumber: "Trans00128",
-            VoucheDate: "16/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1000.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 7,
-            VoucherNumber: "Voucher0129",
-            TransactionNumber: "Trans00129",
-            VoucheDate: "17/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1100.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 8,
-            VoucherNumber: "Voucher0130",
-            TransactionNumber: "Trans00130",
-            VoucheDate: "18/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1200.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 9,
-            VoucherNumber: "Voucher0131",
-            TransactionNumber: "Trans00131",
-            VoucheDate: "19/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1300.00",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 10,
-            VoucherNumber: "Voucher0132",
-            TransactionNumber: "Trans00132",
-            VoucheDate: "20/12/2023",
-            CustomerCode: "Cus01123",
-            Amount: "1400.00",
-            action: <SvgIconeye />,
-        }
-    ],
-    individualVoucher: {}
+  loading: false,
+  error: "",
+  RequestList: [
+    {
+      id: 1,
+      PettycashCode: "PCC0123",
+      RequestNumber: "10000",
+      RequesterName: "Shanmu",
+      Branchcode: "Branch00123",
+      Departmentcode: "Depart00123",
+      TotalAmount: "10,000",
+      Date: "21/12/2023",
+    },
+    {
+      id: 2,
+      PettycashCode: "PCC0456",
+      RequestNumber: "20000",
+      RequesterName: "Mani",
+      Branchcode: "Branch00456",
+      Departmentcode: "Depart00456",
+      TotalAmount: "10,000",
+      Date: "15/11/2023",
+    },
+    {
+      id: 3,
+      PettycashCode: "PCC0789",
+      RequestNumber: "30000",
+      RequesterName: "Ayisha",
+      Branchcode: "Branch00789",
+      Departmentcode: "Depart00789",
+      TotalAmount: "10,000",
+      Date: "10/10/2023",
+    },
+    {
+      id: 4,
+      PettycashCode: "PCC0987",
+      RequestNumber: "40000",
+      RequesterName: "Sindhu",
+      Branchcode: "Branch00987",
+      Departmentcode: "Depart00987",
+      TotalAmount: "10,000",
+      Date: "05/09/2023",
+    },
+    {
+      id: 5,
+      PettycashCode: "PCC0123",
+      RequestNumber: "50000",
+      RequesterName: "Pandi",
+      Branchcode: "Branch00567",
+      Departmentcode: "Depart00567",
+      TotalAmount: "10,000",
+      Date: "01/08/2023",
+    },
+    {
+      id: 6,
+      PettycashCode: "PCC0345",
+      RequestNumber: "60000",
+      RequesterName: "Yuva",
+      Branchcode: "Branch00678",
+      Departmentcode: "Depart00678",
+      TotalAmount: "10,000",
+      Date: "25/07/2023",
+    },
+    {
+      id: 7,
+      PettycashCode: "PCC0567",
+      RequestNumber: "70000",
+      RequesterName: "Uttam",
+      Branchcode: "Branch00234",
+      Departmentcode: "Depart00234",
+      TotalAmount: "10,000",
+      Date: "20/06/2023",
+    },
+    {
+      id: 8,
+      PettycashCode: "PCC0789",
+      RequestNumber: "80000",
+      RequesterName: "Justin",
+      Branchcode: "Branch00890",
+      Departmentcode: "Depart00890",
+      TotalAmount: "10,000",
+      Date: "15/05/2023",
+    },
+    {
+      id: 9,
+      PettycashCode: "PCC0901",
+      RequestNumber: "90000",
+      RequesterName: "Manoj Kumar",
+      Branchcode: "Branch00345",
+      Departmentcode: "Depart00345",
+      TotalAmount: "10,000",
+      Date: "10/04/2023",
+    },
+    {
+      id: 10,
+      PettycashCode: "PCC0101",
+      RequestNumber: "100000",
+      RequesterName: "Leo",
+      Branchcode: "Branch00101",
+      Departmentcode: "Depart00101",
+      TotalAmount: "10,000",
+      Date: "05/03/2023",
+    },
+  ],
+  RequestSearch: [],
+  AddRequest: {},
+  AddRequestTable: [],
+  EditRequest: {},
 };
 const PettyCashRequestReducer = createSlice({
-    name: "pettycashrequest",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(getPettyCashRequestListMiddleware.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(getPettyCashRequestListMiddleware.fulfilled, (state, action) => {
-            state.loading = false;
-            state.paymentVocherList = action.payload;
-        });
-        builder.addCase(getPettyCashRequestListMiddleware.rejected, (state, action) => {
-            state.loading = false;
+  name: "pettycashrequest",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getRequestListMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getRequestListMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.RequestList = action.payload;
+    });
+    builder.addCase(getRequestListMiddleware.rejected, (state, action) => {
+      state.loading = false;
 
-            state.paymentVocherList = {};
-            state.error = typeof action.payload === "string" ? action.payload : "";
-        });
-        builder.addCase(getPettyCashRequestByIdMiddleware.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(getPettyCashRequestByIdMiddleware.fulfilled, (state, action) => {
-            state.loading = false;
-            state.individualVoucher = action.payload;
-        });
-        builder.addCase(getPettyCashRequestByIdMiddleware.rejected, (state, action) => {
-            state.loading = false;
+      state.RequestList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
-            state.paymentVocherList = {};
-            state.error = typeof action.payload === "string" ? action.payload : "";
-        });
+    //RequestSearch
 
-    },
+    builder.addCase(getRequestSearchMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getRequestSearchMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.RequestSearch = action.payload;
+    });
+    builder.addCase(getRequestSearchMiddleware.rejected, (state, action) => {
+      state.loading = false;
+
+      state.DisbursmentSearch = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    // AddRequest
+
+    builder.addCase(postAddRequestMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(postAddRequestMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      // state.AddRequest = action.payload;
+      state.RequestList = [...state.RequestList, action.payload];
+    });
+    builder.addCase(postAddRequestMiddleware.rejected, (state, action) => {
+      state.loading = false;
+
+      state.AddRequest = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    //AddRequestTable
+
+    builder.addCase(getAddRequestTableMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getAddRequestTableMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.AddRequestTable = action.payload;
+    });
+    builder.addCase(getAddRequestTableMiddleware.rejected, (state, action) => {
+      state.loading = false;
+
+      state.AddRequestTable = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    //EditRequest
+
+    builder.addCase(postEditRequestMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(postEditRequestMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      // state.EditRequest = action.payload;
+      state.AddRequestTable = [...state.AddRequestTable, action.payload];
+    });
+    builder.addCase(postEditRequestMiddleware.rejected, (state, action) => {
+      state.loading = false;
+
+      state.EditRequest = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+  },
 });
 
 export default PettyCashRequestReducer.reducer;

@@ -1,35 +1,85 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_PAYMENT_VOUCHER, GET_PAYMENT_VOUCHER_BY_ID } from "../../../../redux/actionTypes";
+import {
+  GET_REQUEST_VOUCHER_LIST,
+  GET_REQUEST_VOUCHER_SEARCH,
+  POST_ADD_REQUEST_VOUCHER,
+  GET_ADD_REQUEST_TABLE_VOUCHER,
+  POST_EDIT_REQUEST_VOUCHER,
+} from "../../../../redux/actionTypes";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
 
-
-
-export const getPettyCashRequestListMiddleware = createAsyncThunk(
-    GET_PAYMENT_VOUCHER,
-    async (payload, { rejectWithValue }) => {
-        try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
-        } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
-        }
-    },
+export const getRequestListMiddleware = createAsyncThunk(
+  GET_REQUEST_VOUCHER_LIST,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
 );
-export const getPettyCashRequestByIdMiddleware = createAsyncThunk(
-    GET_PAYMENT_VOUCHER_BY_ID,
-    async (payload, { rejectWithValue, getState }) => {
-        const { paymentVoucherReducers } = getState();
-        console.log(paymentVoucherReducers, "dta");
-        const { paymentVocherList } = paymentVoucherReducers
-        const filteredData = paymentVocherList.filter(item => item.id === 1);
 
+export const getRequestSearchMiddleware = createAsyncThunk(
+  GET_REQUEST_VOUCHER_SEARCH,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
 
-        try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return filteredData[0];
-        } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
-        }
-    },
+export const postAddRequestMiddleware = createAsyncThunk(
+  POST_ADD_REQUEST_VOUCHER,
+  async (payload, { rejectWithValue }) => {
+    const currentDate = new Date(); 
+    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+    const randomTotalAmount = Math.floor(Math.random() * 50000) + 10000;
+
+    const TableData = {
+      id: payload?.id,
+      PettycashCode: payload.PettyCashCode.pettycashcode,
+      RequestNumber: payload.Requestnumber,
+      RequesterName: payload.RequesterName.Name,
+      Branchcode: payload.BranchCode.Branchcode,
+      Departmentcode: payload.DepartmentCode.Departcode,
+      TotalAmount: randomTotalAmount.toString(),
+      Date:formattedDate,
+    }
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return TableData;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getAddRequestTableMiddleware = createAsyncThunk(
+  GET_ADD_REQUEST_TABLE_VOUCHER,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const postEditRequestMiddleware = createAsyncThunk(
+  POST_EDIT_REQUEST_VOUCHER,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload,"Edit")
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
 );

@@ -41,7 +41,7 @@ const PettyCashDisbursement = () => {
         <div className="col-12 md:col-6 lg:col-6">
           <div className="btn__container">
             <Button
-              label="Add"
+              label="Disbursement"
               icon={<SvgAdd color={"#fff"}/>}
               className="add__btn"
               onClick={() => {

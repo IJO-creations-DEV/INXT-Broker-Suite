@@ -12,11 +12,19 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { TieredMenu } from "primereact/tieredmenu";
+import { useSelector } from "react-redux";
 
 const DisbursementTable = () => {
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const isEmpty = products.length === 0;
+
+  const { DisbursmentList, loading } = useSelector(({ pettyCashDisbursementReducers }) => {
+    return {
+      loading: pettyCashDisbursementReducers?.loading,
+      DisbursmentList: pettyCashDisbursementReducers?.DisbursmentList,
+    };
+  });
+
+  const isEmpty = DisbursmentList.length === 0;
 
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -118,7 +126,7 @@ const DisbursementTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={products}
+            value={DisbursmentList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",

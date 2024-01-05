@@ -36,9 +36,23 @@ export const getRequestSearchMiddleware = createAsyncThunk(
 export const postAddRequestMiddleware = createAsyncThunk(
   POST_ADD_REQUEST_VOUCHER,
   async (payload, { rejectWithValue }) => {
+    const currentDate = new Date(); 
+    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+    const randomTotalAmount = Math.floor(Math.random() * 50000) + 10000;
+
+    const TableData = {
+      id: payload?.id,
+      PettycashCode: payload.PettyCashCode.pettycashcode,
+      RequestNumber: payload.Requestnumber,
+      RequesterName: payload.RequesterName.Name,
+      Branchcode: payload.BranchCode.Branchcode,
+      Departmentcode: payload.DepartmentCode.Departcode,
+      TotalAmount: randomTotalAmount.toString(),
+      Date:formattedDate,
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return TableData;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -60,6 +74,7 @@ export const getAddRequestTableMiddleware = createAsyncThunk(
 export const postEditRequestMiddleware = createAsyncThunk(
   POST_EDIT_REQUEST_VOUCHER,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"Edit")
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;

@@ -10,7 +10,108 @@ import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
   loading: false,
   error: "",
-  RequestList: [],
+  RequestList: [
+    {
+      id: 1,
+      PettycashCode: "PCC0123",
+      RequestNumber: "10000",
+      RequesterName: "Shanmu",
+      Branchcode: "Branch00123",
+      Departmentcode: "Depart00123",
+      TotalAmount: "10,000",
+      Date: "21/12/2023",
+    },
+    {
+      id: 2,
+      PettycashCode: "PCC0456",
+      RequestNumber: "20000",
+      RequesterName: "Mani",
+      Branchcode: "Branch00456",
+      Departmentcode: "Depart00456",
+      TotalAmount: "10,000",
+      Date: "15/11/2023",
+    },
+    {
+      id: 3,
+      PettycashCode: "PCC0789",
+      RequestNumber: "30000",
+      RequesterName: "Ayisha",
+      Branchcode: "Branch00789",
+      Departmentcode: "Depart00789",
+      TotalAmount: "10,000",
+      Date: "10/10/2023",
+    },
+    {
+      id: 4,
+      PettycashCode: "PCC0987",
+      RequestNumber: "40000",
+      RequesterName: "Sindhu",
+      Branchcode: "Branch00987",
+      Departmentcode: "Depart00987",
+      TotalAmount: "10,000",
+      Date: "05/09/2023",
+    },
+    {
+      id: 5,
+      PettycashCode: "PCC0123",
+      RequestNumber: "50000",
+      RequesterName: "Pandi",
+      Branchcode: "Branch00567",
+      Departmentcode: "Depart00567",
+      TotalAmount: "10,000",
+      Date: "01/08/2023",
+    },
+    {
+      id: 6,
+      PettycashCode: "PCC0345",
+      RequestNumber: "60000",
+      RequesterName: "Yuva",
+      Branchcode: "Branch00678",
+      Departmentcode: "Depart00678",
+      TotalAmount: "10,000",
+      Date: "25/07/2023",
+    },
+    {
+      id: 7,
+      PettycashCode: "PCC0567",
+      RequestNumber: "70000",
+      RequesterName: "Uttam",
+      Branchcode: "Branch00234",
+      Departmentcode: "Depart00234",
+      TotalAmount: "10,000",
+      Date: "20/06/2023",
+    },
+    {
+      id: 8,
+      PettycashCode: "PCC0789",
+      RequestNumber: "80000",
+      RequesterName: "Justin",
+      Branchcode: "Branch00890",
+      Departmentcode: "Depart00890",
+      TotalAmount: "10,000",
+      Date: "15/05/2023",
+    },
+    {
+      id: 9,
+      PettycashCode: "PCC0901",
+      RequestNumber: "90000",
+      RequesterName: "Manoj Kumar",
+      Branchcode: "Branch00345",
+      Departmentcode: "Depart00345",
+      TotalAmount: "10,000",
+      Date: "10/04/2023",
+    },
+    {
+      id: 10,
+      PettycashCode: "PCC0101",
+      RequestNumber: "100000",
+      RequesterName: "Leo",
+      Branchcode: "Branch00101",
+      Departmentcode: "Depart00101",
+      TotalAmount: "10,000",
+      Date: "05/03/2023",
+    },
+  ],
   RequestSearch: [],
   AddRequest: {},
   AddRequestTable: [],
@@ -58,7 +159,8 @@ const PettyCashRequestReducer = createSlice({
     });
     builder.addCase(postAddRequestMiddleware.fulfilled, (state, action) => {
       state.loading = false;
-      state.AddRequest = action.payload;
+      // state.AddRequest = action.payload;
+      state.RequestList = [...state.RequestList, action.payload];
     });
     builder.addCase(postAddRequestMiddleware.rejected, (state, action) => {
       state.loading = false;
@@ -90,7 +192,8 @@ const PettyCashRequestReducer = createSlice({
     });
     builder.addCase(postEditRequestMiddleware.fulfilled, (state, action) => {
       state.loading = false;
-      state.EditRequest = action.payload;
+      // state.EditRequest = action.payload;
+      state.AddRequestTable = [...state.AddRequestTable, action.payload];
     });
     builder.addCase(postEditRequestMiddleware.rejected, (state, action) => {
       state.loading = false;

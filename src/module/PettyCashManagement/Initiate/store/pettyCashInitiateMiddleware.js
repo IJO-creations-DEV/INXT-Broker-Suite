@@ -34,6 +34,8 @@ export const postInitiateMiddleware = createAsyncThunk(
   POST_PETTY_CASH_VOUCHER_INITIAT,
   async (payload, { rejectWithValue }) => {
     console.log(payload, "leomaxvj");
+    const currentDate = new Date(); // Get current date
+    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
 
     const TableData = {
       id: payload?.id,
@@ -43,7 +45,7 @@ export const postInitiateMiddleware = createAsyncThunk(
       TransactionLimit: payload?.TransactionLimit,
       Branchcode: payload?.BranchCode?.Branchcode,
       Departmentcode: payload?.DepartmentCode?.Departcode,
-      Date: Date.now(),
+      Date: formattedDate,
     };
 
     try {

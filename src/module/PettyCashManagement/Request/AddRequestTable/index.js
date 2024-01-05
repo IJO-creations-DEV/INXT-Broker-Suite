@@ -15,6 +15,8 @@ import { Column } from "primereact/column";
 import InputField from "../../../../components/InputField";
 import SvgDelete from "../../../../assets/icons/SvgDeleteIcon";
 import { Card } from "primereact/card";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddRequestMiddleware, postEditRequestMiddleware } from "../store/pettyCashRequestMiddleware";
 
 const initialValue = {
   Narration: "",
@@ -22,13 +24,26 @@ const initialValue = {
 };
 
 const AddRequestTable = () => {
-  const [data, setData] = useState([{Narration:"Narration"}]);
   const [visible, setVisible] = useState(false);
   const [show, setshow] = useState(false);
-  const isEmpty = data.length === 0;
+  const dispatch = useDispatch();
   const toastRef = useRef(null);
   const navigate = useNavigate();
+
+  const { AddRequestTable, loading } = useSelector(
+    ({ pettyCashRequestReducer }) => {
+      return {
+        loading: pettyCashRequestReducer?.loading,
+        AddRequestTable: pettyCashRequestReducer?.AddRequestTable,
+      };
+    }
+  );
+
+  
+  const isEmpty = AddRequestTable.length === 0;
+
   const handleSubmit = () => {
+    dispatch(postAddRequestMiddleware(totalAmount));
     toastRef.current.showToast();
     {
       setTimeout(() => {
@@ -70,7 +85,6 @@ const AddRequestTable = () => {
     border: "none",
     textAlign: "center",
   };
-  const handleDelete = (id) => {};
 
   const validate = (values) => {
     const errors = {};
@@ -85,7 +99,12 @@ const AddRequestTable = () => {
     return errors;
   };
 
-  const handleSave = () => {
+  const handleSave = (value) => {
+    const valueWithId = {
+      ...value,
+      id: AddRequestTable?.length + 1,
+    };
+    dispatch(postEditRequestMiddleware(valueWithId));
     setVisible(false);
     setshow(true);
   };
@@ -97,6 +116,11 @@ const AddRequestTable = () => {
       handleSave(values);
     },
   });
+
+  const totalAmount = AddRequestTable.reduce((total, item) => total + parseInt(item.Amount), 0);
+
+  const handleDelete = (id) => {
+  };
 
   return (
     <div className="add__request__table">
@@ -142,7 +166,7 @@ const AddRequestTable = () => {
         </div>
         <div className="table__container">
           <DataTable
-            value={data}
+            value={AddRequestTable}
             tableStyle={{ minWidth: "50rem" }}
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
@@ -186,6 +210,7 @@ const AddRequestTable = () => {
               disabled={true}
               textSize={"16"}
               textWeight={500}
+              value={totalAmount}
             />
           </div>
         </div>

@@ -13,6 +13,8 @@ import { Button } from "primereact/button";
 import CustomToast from "../../../../components/Toast";
 import { TriStateCheckbox } from "primereact/tristatecheckbox";
 import { PettyCashCode, Name, Branchcode, Departcode } from "../../mock";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddRequestMiddleware } from "../store/pettyCashRequestMiddleware";
 
 const initialValue = {
   PettyCashCode: "",
@@ -27,7 +29,30 @@ const initialValue = {
 const RequestForm = () => {
   const [value, setValue] = useState(null);
   const toastRef = useRef(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { RequestList, loading } = useSelector(
+    ({ pettyCashRequestReducer }) => {
+      return {
+        loading: pettyCashRequestReducer?.loading,
+        RequestList: pettyCashRequestReducer?.RequestList,
+      };
+    }
+  );
+ 
+  const handleSubmit = (value) => {
+    const valueWithId = {
+      ...value,
+      id: RequestList?.length + 1,
+    };
+    dispatch(postAddRequestMiddleware(valueWithId));
+    // toastRef.current.showToast();
+    // setTimeout(() => {
+    navigate("/accounts/pettycash/addrequesttable");
+    // }, 3000);
+  };
+
   const validate = (values) => {
     const errors = {};
 
@@ -49,12 +74,7 @@ const RequestForm = () => {
     return errors;
   };
 
-  const handleSubmit = () => {
-    // toastRef.current.showToast();
-    // setTimeout(() => {
-    navigate("/accounts/pettycash/addrequesttable");
-    // }, 3000);
-  };
+
   const items = [
     { label: "Petty Cash", url: "/accounts/pettycash/addrequest" },
     {

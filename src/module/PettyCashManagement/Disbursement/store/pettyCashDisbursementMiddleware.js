@@ -37,9 +37,27 @@ export const getDisbursmentSearchMiddleware = createAsyncThunk(
 export const postAddDisbursmentMiddleware = createAsyncThunk(
   POST_ADD_DISBURSMENT_VOUCHER,
   async (payload, { rejectWithValue }) => {
+    console.log(payload, "postdisbursment");
+
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()}/${
+      currentDate.getMonth() + 1
+    }/${currentDate.getFullYear()}`;
+    const randomTotalAmount = Math.floor(Math.random() * 50000) + 10000;
+
+    const TableData = {
+      id: payload?.id,
+      PettycashCode: payload.PettyCashCode.pettycashcode,
+      Transactioncode: payload.TransactionCode.Transcode,
+      TransactionNumber: randomTotalAmount.toString(),
+      Branchcode: payload.BranchCode.Branchcode,
+      Departmentcode: payload.DepartmentCode.Departcode,
+      Date: formattedDate,
+    };
+
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return TableData;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -61,9 +79,29 @@ export const getAddDisbursmentTableMiddleware = createAsyncThunk(
 export const postEditDisbursmentMiddleware = createAsyncThunk(
   POST_EDIT_DISBURSMENT_VOUCHER,
   async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
+    const VATin = (payload.VAT / 100) * 100;
+    const EWTin = (payload.EWT / 100) * 100;
+    const TotalAmount = parseFloat(payload?.TotalAmount) || 0;
+    const EWTinAdd = parseFloat(EWTin) || 0;
+    const VATinAdd = parseFloat(VATin) || 0;
+    const Totalin =TotalAmount+EWTinAdd+VATinAdd
+    const TableData = {
+      id: payload?.id,
+      RequestNumber: payload.RequestNumber,
+      RequesterName: payload.Requester,
+      Amount: payload.Amount,
+      VAT: VATin,
+      EWT: EWTin,
+      MainAccount: payload.MainAccountCode.Maincode,
+      SubAccount: payload?.SubAccountCode?.SubAccount,
+      TotalAmount: Totalin,
+      Remarks: payload.Remarks,
+    };
+    console.log(TableData, "TableData");
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return TableData;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

@@ -17,6 +17,8 @@ import {
   Branchcode,
   Departcode,
 } from "../../mock";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddDisbursmentMiddleware } from "../store/pettyCashDisbursementMiddleware";
 
 
 const initialValue = {
@@ -28,7 +30,16 @@ const initialValue = {
 
 const AddDisbursement = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // const toastRef = useRef(null);
+
+  const { AddDisbursment, loading } = useSelector(({ pettyCashDisbursementReducers }) => {
+    return {
+      loading: pettyCashDisbursementReducers?.loading,
+      AddDisbursment: pettyCashDisbursementReducers?.AddDisbursment,
+    };
+  });
+
   const items = [
     { label: "Petty Cash", url: "/accounts/pettycash/adddisbursement" },
     {
@@ -41,7 +52,13 @@ const AddDisbursement = () => {
   const handleBack = () => {
     navigate("/accounts/pettycash/disbursement");
   };
-  const handleSubmit = () => {
+  const handleSubmit = (value) => {
+
+    const valueWithId = {
+      ...value,
+      id: AddDisbursment?.length + 1,
+    };
+    dispatch(postAddDisbursmentMiddleware(valueWithId));
     // toastRef.current.showToast();
     // {
     //   setTimeout(() => {

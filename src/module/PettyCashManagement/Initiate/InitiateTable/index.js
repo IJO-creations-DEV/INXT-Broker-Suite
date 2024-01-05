@@ -19,7 +19,7 @@ const InitiateTable = () => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isEmpty = products.length === 0;
+
   
   const { InitiateList, loading } = useSelector(({ pettyCashInitiateReducer }) => {
     return {
@@ -27,6 +27,9 @@ const InitiateTable = () => {
       InitiateList: pettyCashInitiateReducer?.InitiateList,
     };
   });
+
+  const isEmpty = InitiateList.length === 0;
+
   const emptyTableIcon = (
     <div>
     <div className="empty-table-icon">
@@ -68,7 +71,7 @@ const InitiateTable = () => {
   };
 
   const renderViewButton = (rowData) => {
-    dispatch(getInitiateDetailsMiddleware(rowData));
+    
     return (
         <div className="center-content">
       <Button
@@ -81,7 +84,7 @@ const InitiateTable = () => {
   };
 
   const handleView = (rowData) => {
-    console.log("View clicked:", rowData);
+dispatch(getInitiateDetailsMiddleware(rowData));
     navigate("/accounts/pettycash/PettyCashCodeDetails")
   };
   const headerStyle = {

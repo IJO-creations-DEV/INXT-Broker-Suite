@@ -56,7 +56,7 @@ import AddCurrency from "../module/FinanceMastersModule/CurrencyMaster/AddCurren
 import SaveAndEditCurrency from "../module/FinanceMastersModule/CurrencyMaster/ViewCurrency";
 import AddTaxation from "../module/FinanceMastersModule/TaxationMaster/AddTaxation";
 import TaxationDetails from "../module/FinanceMastersModule/TaxationMaster/TaxationDetails";
-import TaxationEdit from "../module/FinanceMastersModule/TaxationMaster/TaxationEdit"
+import TaxationEdit from "../module/FinanceMastersModule/TaxationMaster/TaxationEdit";
 import AddExchange from "../module/FinanceMastersModule/ExchangeRateMaster/AddExchange";
 import SaveAndEditExchange from "../module/FinanceMastersModule/ExchangeRateMaster/SaveAndEditExchange";
 
@@ -82,7 +82,7 @@ import Bankdetailselection from "../module/PaymentVoucher/Bankdetailselection";
 // import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
 import Initiate from "../module/PettyCashManagement/Initiate";
 import Disbursement from "../module/PettyCashManagement/Disbursement";
-import SubAccountEdit from "../module/FinanceMastersModule/SubAccountMaster/SubAccountEdit"
+import SubAccountEdit from "../module/FinanceMastersModule/SubAccountMaster/SubAccountEdit";
 import Request from "../module/PettyCashManagement/Request";
 import PettyCashReceipts from "../module/PettyCashManagement/Receipts";
 import PettyCashReplenish from "../module/PettyCashManagement/Replenish";
@@ -116,10 +116,27 @@ import EditPettyCash from "../module/FinanceMastersModule/PettyCashMaster/EditPe
 import ViewExchange from "../module/FinanceMastersModule/ExchangeRateMaster/ViewExchange";
 import BankMaster from "../module/FinanceMastersModule/BankMaster";
 import AddBankMaster from "../module/FinanceMastersModule/BankMaster/AddBankMaster";
-import Accountdataview from '../module/FinanceMastersModule/BankMaster/AccountDataView/index';
-import AddAccountDetail from '../module/FinanceMastersModule/BankMaster/AccountDataView/AddAccountDetail/index'
+import Accountdataview from "../module/FinanceMastersModule/BankMaster/AccountDataView/index";
+import AddAccountDetail from "../module/FinanceMastersModule/BankMaster/AccountDataView/AddAccountDetail/index";
 import ViewAccountDetail from "../module/FinanceMastersModule/BankMaster/AccountDataView/ViewAccountData";
 import EditAccountDetail from "../module/FinanceMastersModule/BankMaster/AccountDataView/EditAccountData";
+import CompanyMasters from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster";
+import BranchMasters from "../module/GeneralMasters/OrganizationMasters/BranchMaster";
+import InsuranceCompany from "../module/GeneralMasters/InsuranceManagementMasters/InsuranceCompany";
+import LineOfBusiness from "../module/GeneralMasters/InsuranceManagementMasters/LineOfBusiness";
+import ProductMaster from "../module/GeneralMasters/InsuranceManagementMasters/ProductMaster";
+import PolicyType from "../module/GeneralMasters/InsuranceManagementMasters/PolicyTypeMaster";
+import Cover from "../module/GeneralMasters/InsuranceManagementMasters/Cover";
+import Signatories from "../module/GeneralMasters/InsuranceManagementMasters/SignatoriesMaster";
+import Vahicle from "../module/GeneralMasters/InsuranceManagementMasters/Vehicle";
+import Country from "../module/GeneralMasters/LocationMasters/CountryMaster";
+import State from "../module/GeneralMasters/LocationMasters/StateMaster";
+import City from "../module/GeneralMasters/LocationMasters/CityMaster";
+import Hierarchy from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy";
+import Designation from "../module/GeneralMasters/EmployeeManagementMasters/Designation";
+import Employee from "../module/GeneralMasters/EmployeeManagementMasters/Employee";
+import User from "../module/GeneralMasters/UserManagementMasters/User";
+import Role from "../module/GeneralMasters/UserManagementMasters/Role";
 const Maincomponent = () => {
   return (
     <div
@@ -142,7 +159,10 @@ const Maincomponent = () => {
 
             {/* <Route path="/accounts/receipts" element={<Receipts />} /> */}
 
-            <Route path="/accounts/receipts/addpolicyreceipts" element={<AddPolicyReceipts />} />
+            <Route
+              path="/accounts/receipts/addpolicyreceipts"
+              element={<AddPolicyReceipts />}
+            />
 
             <Route
               path="/accounts/receipts/policyreceiptsview"
@@ -152,18 +172,27 @@ const Maincomponent = () => {
             {/* <Route path="/accounts/receipts/addreceipt" element={<AddPolicyReceipts1 />} /> */}
 
             <Route path="/accounts/receipts" element={<PolicyReceipts />} />
-            <Route path="/accounts/receipts/addreceiptedit" element={<AddPolicyEdit />} />
+            <Route
+              path="/accounts/receipts/addreceiptedit"
+              element={<AddPolicyEdit />}
+            />
             <Route
               path="/accounts/receipts/receiptdetailview"
               element={<PolicyReceiptsView />}
             />
-            <Route path="/accounts/receipts/paymentdetails" element={<PaymentDetails />} />
+            <Route
+              path="/accounts/receipts/paymentdetails"
+              element={<PaymentDetails />}
+            />
 
             <Route
               path="/accounts/receipts/addreceipts"
               element={<AddPolicyReceipts1 />}
             />
-            <Route path="/accounts/receipts/policyreceipts" element={<PolicyReceipts />} />
+            <Route
+              path="/accounts/receipts/policyreceipts"
+              element={<PolicyReceipts />}
+            />
 
             {/* Payment Vouchers */}
 
@@ -178,7 +207,7 @@ const Maincomponent = () => {
             <Route
               path="accounts/paymentvoucher/detailview/:id"
               element={<Detailview />}
-            />  
+            />
             <Route
               path="accounts/paymentvoucher/bankdetailselection"
               element={<Bankdetailselection />}
@@ -298,6 +327,84 @@ const Maincomponent = () => {
               element={<AccountCategoryMaster />}
             /> */}
 
+            {/* General Master */}
+            {/* Organization Master */}
+            <Route
+              path="master/generals/organization/companymaster"
+              element={<CompanyMasters />}
+            />
+            <Route
+              path="master/generals/organization/branchmaster"
+              element={<BranchMasters />}
+            />
+            {/* Insurance Management Masters */}
+            <Route
+              path="master/generals/insurancemanagement/insurancecompany"
+              element={<InsuranceCompany />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/lineofbusiness"
+              element={<LineOfBusiness />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/productmaster"
+              element={<ProductMaster />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/policytype"
+              element={<PolicyType />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/cover"
+              element={<Cover />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/signatories"
+              element={<Signatories />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/vehicle"
+              element={<Vahicle />}
+            />
+
+            {/* Location */}
+            <Route
+              path="master/generals/location/country"
+              element={<Country />}
+            />
+             <Route
+              path="master/generals/location/state"
+              element={<State />}
+            />
+             <Route
+              path="master/generals/location/city"
+              element={<City/>}
+            />
+
+            {/* Employee Management */}
+            <Route
+              path="master/generals/employeemanagement/hierarchy"
+              element={<Hierarchy/>}
+            />
+            <Route
+              path="master/generals/employeemanagement/designation"
+              element={<Designation/>}
+            />
+            <Route
+              path="master/generals/employeemanagement/employee"
+              element={<Employee/>}
+            />
+
+            {/* User Management */}
+            <Route
+              path="master/generals/usermanagement/user"
+              element={<User/>}
+            />
+  <Route
+              path="master/generals/usermanagement/role"
+              element={<Role/>}
+            />
+
             {/* Branch Master Module */}
             <Route
               path="master/finance/branch/branchadding"
@@ -386,8 +493,10 @@ const Maincomponent = () => {
               element={<PettyCashdetails />}
             />
 
-
-            <Route path="master/finance/pettycash/editpettycash" element={<EditPettyCash />} />
+            <Route
+              path="master/finance/pettycash/editpettycash"
+              element={<EditPettyCash />}
+            />
 
             <Route />
             <Route path="master/finance/company" element={<CompanyMaster />} />
@@ -396,37 +505,31 @@ const Maincomponent = () => {
               element={<CurrencyMaster />}
             />
 
-
             {/* Bank */}
 
-            <Route
-              path="master/finance/bank"
-              element={<BankMaster/>}
-            />
+            <Route path="master/finance/bank" element={<BankMaster />} />
             <Route
               path="master/finance/bank/addbankmaster"
-              element={<AddBankMaster/>}
+              element={<AddBankMaster />}
             />
-             <Route
+            <Route
               path="master/finance/bank/accountdataview"
-              element={<Accountdataview/>}
+              element={<Accountdataview />}
             />
             <Route
               path="master/finance/bank/accountdataview/addaccountdetail"
-              element={<AddAccountDetail/>}
+              element={<AddAccountDetail />}
             />
             <Route
               path="master/finance/bank/accountdataview/viewaccountdetail"
-              element={<ViewAccountDetail/>}
+              element={<ViewAccountDetail />}
             />
             <Route
               path="master/finance/bank/accountdataview/editaccountdetail"
-              element={<EditAccountDetail/>}
+              element={<EditAccountDetail />}
             />
 
-
-
-{/* exchangeRate */}
+            {/* exchangeRate */}
             <Route
               path="master/finance/exchangerate"
               element={<ExchangeRateMaster />}
@@ -441,12 +544,10 @@ const Maincomponent = () => {
             />
             <Route
               path="master/finance/exchangerate/viewexchange"
-              element={<ViewExchange/>}
+              element={<ViewExchange />}
             />
-            
 
-
-{/*  */}
+            {/*  */}
 
             <Route
               path="master/finance/mainaccount"
@@ -481,7 +582,7 @@ const Maincomponent = () => {
               path="master/finance/taxation/taxationedit"
               element={<TaxationEdit />}
             />
-             <Route
+            <Route
               path="master/finance/taxation/taxationdetails"
               element={<TaxationDetails />}
             />
@@ -496,11 +597,11 @@ const Maincomponent = () => {
               path="master/finance/transactioncode/addtransactioncode"
               element={<TransactionCodeMasterView />}
             />
-                                    <Route
+            <Route
               path="master/finance/transactioncode/transactioncodedetails"
               element={<TransactionCodeDetails />}
             />
-            
+
             <Route
               path="master/finance/subaccount/subaccountdetails"
               element={<SubAccountDetails />}
@@ -517,14 +618,23 @@ const Maincomponent = () => {
               path="master/finance/currency/editcurrency"
               element={<EditCurrency />}
             />
-                        <Route
+            <Route
               path="master/finance/currency/viewcurrency"
               element={<ViewCurrency />}
             />
-            <Route path="master/generals/commission" element={<Commission/>} />
-            <Route path="master/generals/commission/addcommission" element={<AddCommission/>} />
-            <Route path="master/generals/commission/editcommission" element={<EditCommission />} />
-            <Route path="master/generals/commission/viewcommission" element={<ViewCommission />} />
+            <Route path="master/generals/commission" element={<Commission />} />
+            <Route
+              path="master/generals/commission/addcommission"
+              element={<AddCommission />}
+            />
+            <Route
+              path="master/generals/commission/editcommission"
+              element={<EditCommission />}
+            />
+            <Route
+              path="master/generals/commission/viewcommission"
+              element={<ViewCommission />}
+            />
           </Route>
         </Routes>
       </div>

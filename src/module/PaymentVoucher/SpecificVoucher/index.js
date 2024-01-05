@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import InputField from "../../../components/InputField";
@@ -22,8 +22,10 @@ import {
   patchpaymentVocherInvoiceListMiddleware,
 } from "../store/paymentVocherMiddleware";
 import { useFormik } from "formik";
+import CustomToast from "../../../components/Toast";
 
 function SpecificVoucher() {
+  const toastRef = useRef(null);
   const dispatch = useDispatch();
   const Navigate = useNavigate();
 
@@ -84,12 +86,16 @@ function SpecificVoucher() {
     wht: "",
   };
   const handleSubmit = (values) => {
-    console.log(values, "find values in formik");
+    setSelectedProducts([]);
     const valueWithId = {
       ...values,
       id: EditID,
     };
     dispatch(patchpaymentVocherInvoiceListMiddleware(valueWithId));
+    toastRef.current.showToast();
+    {
+      setTimeout(() => {}, 3000);
+    }
     setVisible(false);
   };
 
@@ -156,6 +162,10 @@ function SpecificVoucher() {
   return (
     <div className="overall__specific__container">
       <NavBar />
+      <CustomToast
+        ref={toastRef}
+        message="Invoice details updated successfully"
+      />
       <div>
         <span onClick={() => Navigate(-1)}>
           <SvgBackicon />

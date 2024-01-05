@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import InputField from "../../../components/InputField";
@@ -23,13 +23,16 @@ import {
   getpaymentVocherByIdMiddleware,
   patchpaymentStatusByIdMiddleware,
 } from "../store/paymentVocherMiddleware";
+import CustomToast from "../../../components/Toast";
 
 function Detailview() {
+  const toastRef = useRef(null);
   const [date, setDate] = useState(null);
-  const [selectedProducts, setSelectedProducts] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
   const [visible, setVisible] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [actionToast, setactionToast] = useState(null);
 
   useEffect(() => {
     dispatch(getpaymentVocherByIdMiddleware(id));
@@ -119,15 +122,33 @@ function Detailview() {
     { name: "Paris", code: "PRS" },
   ];
   const home = { label: "Accounts" };
-
+  useEffect(() => {
+    if (actionToast != null) {
+      toastRef.current.showToast();
+      {
+        setTimeout(() => {}, 3000);
+      }
+    }
+  }, [actionToast]);
   const handlePatchAction = () => {
     const patchID = selectedProducts?.id;
-    dispatch(patchpaymentStatusByIdMiddleware(patchID));
-  };
 
+    dispatch(patchpaymentStatusByIdMiddleware(patchID));
+    setactionToast(
+      selectedProducts?.status === "Pending" ? "Approved" : "Printed"
+    );
+    setSelectedProducts([]);
+  };
+  const getStatusClassName = (status) => {
+    return status === "Printed" ? "disabled-row" : "";
+  };
   return (
     <div className="overall__detailview__container">
       <NavBar />
+      <CustomToast
+        ref={toastRef}
+        message={`Cheque book details ${actionToast} successfully`}
+      />
       <div>
         <span onClick={() => Navigate(-1)}>
           <SvgBackicon />
@@ -250,6 +271,7 @@ function Detailview() {
           selection={selectedProducts}
           onSelectionChange={(e) => setSelectedProducts(e.value)}
           selectionMode="checkbox"
+          rowClassName={(rowData) => getStatusClassName(rowData.status)}
         >
           {chequebooklist?.length > 0 && (
             <Column
@@ -315,7 +337,10 @@ function Detailview() {
           className="submit_button p-0"
           label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
           onClick={handlePatchAction}
-          disabled={!selectedProducts || selectedProducts?.status === "Printed"}
+          disabled={
+            selectedProducts?.length === 0 ||
+            selectedProducts?.status === "Printed"
+          }
         />
       </div>
     </div>

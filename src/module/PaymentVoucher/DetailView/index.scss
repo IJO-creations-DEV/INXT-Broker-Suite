@@ -1,6 +1,9 @@
 
 .overall__detailview__container{
     // background-color: green;
+    .disabled-row{
+        pointer-events: none;
+    }
     .label_header{
        
 color: #111927;

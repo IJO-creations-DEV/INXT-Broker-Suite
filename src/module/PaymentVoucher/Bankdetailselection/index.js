@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import InputField from "../../../components/InputField";
@@ -23,8 +23,10 @@ import SvgEditIcon from "../../../assets/icons/SvgEditicons";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { patchpaymentStatusByIdMiddleware } from "../store/paymentVocherMiddleware";
+import CustomToast from "../../../components/Toast";
 
 function Bankdetailselection() {
+  const toastRef = useRef(null);
   const [date, setDate] = useState(null);
   const dispatch = useDispatch();
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -33,6 +35,7 @@ function Bankdetailselection() {
   const Navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
   const [bankaccountitem, setBankaccount] = useState(null);
+  const [actionToast, setactionToast] = useState(null);
 
   const { chequebooklist, loading } = useSelector(
     ({ paymentVoucherReducers }) => {
@@ -118,15 +121,32 @@ function Bankdetailselection() {
       </div>
     );
   };
-
+  useEffect(() => {
+    if (actionToast != null) {
+      toastRef.current.showToast();
+      {
+        setTimeout(() => {}, 3000);
+      }
+    }
+  }, [actionToast]);
   const handlePatchAction = () => {
     const patchID = selectedProducts?.id;
     dispatch(patchpaymentStatusByIdMiddleware(patchID));
     setSelectedProducts([]);
+    setactionToast(
+      selectedProducts?.status === "Pending" ? "Approved" : "Printed"
+    );
+  };
+  const getStatusClassName = (status) => {
+    return status === "Printed" ? "disabled-row" : "";
   };
   return (
     <div className="overall__bankdetailview__container">
       <NavBar />
+      <CustomToast
+        ref={toastRef}
+        message={`Cheque book details ${actionToast} successfully`}
+      />
       <div>
         <span onClick={() => Navigate(-1)}>
           <SvgBackicon />
@@ -201,6 +221,7 @@ function Bankdetailselection() {
           selection={selectedProducts}
           onSelectionChange={(e) => setSelectedProducts(e.value)}
           selectionMode="checkbox"
+          rowClassName={(rowData) => getStatusClassName(rowData.status)}
         >
           {chequebooklist?.length > 0 && (
             <Column
@@ -277,6 +298,11 @@ function Bankdetailselection() {
       </div>
 
       <div className="next_container">
+        <Button
+          className="history_button"
+          label="Go to history"
+          onClick={() => Navigate("/accounts/paymentvoucher")}
+        />
         <Button
           className="submit_button p-0"
           label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}

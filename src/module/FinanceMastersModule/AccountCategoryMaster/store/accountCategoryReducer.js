@@ -1,108 +1,166 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    getAccountCategoryList,
-    getAccountCategorySearchList,
-    postAccountCategoryStatus,
-    getAddAccountCategory,
-    patchAccountCategoryDetailEdit,
-    getAccountCategoryDetailView
+  getAccountCategoryList,
+  getAccountCategorySearchList,
+  postAccountCategoryStatus,
+  getAddAccountCategoryMiddleWare,
+  getAccountCategoryDetailEditMiddleWare,
+  getAccountCategoryDetailViewMiddleWare,
+  patchAccountCategoryDetailEditMiddleWare,
 } from "./accountCategoryMeddleware";
 const initialState = {
   loading: false,
   error: "",
-  AccountCategoryList: [],
-  AccountCategorySearchList:[],
-  AccountCategoryStatus:{},
-  AddAccountCategory:{},
-  AccountCategoryDetailEdit:{},
-  AccountCategoryDetailView:{}
+
+  AccountCategoryList: [
+    {
+      id: 1,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 0,
+      action: 1,
+    },
+    {
+      id: 2,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 1,
+      action: 2,
+    },
+    {
+      id: 3,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 0,
+      action: 3,
+    },
+    {
+      id: 4,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 1,
+      action: 4,
+    },
+    {
+      id: 5,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 0,
+      action: 5,
+    },
+    {
+      id: 6,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 1,
+      action: 6,
+    },
+    {
+      id: 7,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 0,
+      action: 7,
+    },
+    {
+      id: 8,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 1,
+      action: 8,
+    },
+    {
+      id: 9,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 0,
+      action: 9,
+    },
+    {
+      id: 10,
+      accountCategoryCode: "AC00123",
+      accountCategoryName: "Debtor",
+      status: 0,
+      action: 10,
+    },
+  ],
+  AccountCategorySearchList: [],
+  AccountCategoryStatus: {},
+  AddAccountCategory: {},
+  AccountCategoryDetailEdit: {},
+  AccountCategoryDetailView: {},
 };
 const accountCategoryMasterReducer = createSlice({
   name: "accountCategoryMaster",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-
     //AccountCategoryList
 
     builder.addCase(getAccountCategoryList.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-        getAccountCategoryList.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.AccountCategoryList = action.payload;
-      }
-    );
-    builder.addCase(
-        getAccountCategoryList.rejected,
-      (state, action) => {
-        state.loading = false;
+    builder.addCase(getAccountCategoryList.fulfilled, (state, action) => {
+      state.loading = false;
+      state.AccountCategoryList = action.payload;
+    });
+    builder.addCase(getAccountCategoryList.rejected, (state, action) => {
+      state.loading = false;
 
-        state.AccountCategoryList = {};
-        state.error = typeof action.payload === "string" ? action.payload : "";
-      }
-    );
+      state.AccountCategoryList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
     //AccountCategorySearchList
 
     builder.addCase(getAccountCategorySearchList.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      getAccountCategorySearchList.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.AccountCategorySearchList = action.payload;
-      }
-    );
-    builder.addCase(
-      getAccountCategorySearchList.rejected,
-      (state, action) => {
-        state.loading = false;
+    builder.addCase(getAccountCategorySearchList.fulfilled, (state, action) => {
+      state.loading = false;
+      state.AccountCategorySearchList = action.payload;
+    });
+    builder.addCase(getAccountCategorySearchList.rejected, (state, action) => {
+      state.loading = false;
 
-        state.AccountCategorySearchList = {};
-        state.error = typeof action.payload === "string" ? action.payload : "";
-      }
-    );
+      state.AccountCategorySearchList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
     //AccountCategoryStatus
-    
+
     builder.addCase(postAccountCategoryStatus.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      postAccountCategoryStatus.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.AccountCategoryStatus = action.payload;
-      }
-    );
-    builder.addCase(
-      postAccountCategoryStatus.rejected,
-      (state, action) => {
-        state.loading = false;
+    builder.addCase(postAccountCategoryStatus.fulfilled, (state, action) => {
+      state.loading = false;
+      state.AccountCategoryStatus = action.payload;
+    });
+    builder.addCase(postAccountCategoryStatus.rejected, (state, action) => {
+      state.loading = false;
 
-        state.AccountCategoryStatus = {};
-        state.error = typeof action.payload === "string" ? action.payload : "";
-      }
-    );
+      state.AccountCategoryStatus = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
     //AddAccountCategory
 
-    builder.addCase(getAddAccountCategory.pending, (state) => {
+    builder.addCase(getAddAccountCategoryMiddleWare.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(
-      getAddAccountCategory.fulfilled,
+      getAddAccountCategoryMiddleWare.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.AddBank = action.payload;
+        state.AccountCategoryList = [
+          ...state.AccountCategoryList,
+          action.payload,
+        ];
+        // state.AddBank = action.payload;
       }
     );
     builder.addCase(
-      getAddAccountCategory.rejected,
+      getAddAccountCategoryMiddleWare.rejected,
       (state, action) => {
         state.loading = false;
 
@@ -113,18 +171,18 @@ const accountCategoryMasterReducer = createSlice({
 
     //AccountCategoryDetailEdit
 
-    builder.addCase(patchAccountCategoryDetailEdit.pending, (state) => {
+    builder.addCase(getAccountCategoryDetailEditMiddleWare.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(
-      patchAccountCategoryDetailEdit.fulfilled,
+      getAccountCategoryDetailEditMiddleWare.fulfilled,
       (state, action) => {
         state.loading = false;
         state.AccountCategoryDetailEdit = action.payload;
       }
     );
     builder.addCase(
-      patchAccountCategoryDetailEdit.rejected,
+      getAccountCategoryDetailEditMiddleWare.rejected,
       (state, action) => {
         state.loading = false;
 
@@ -135,18 +193,18 @@ const accountCategoryMasterReducer = createSlice({
 
     //AccountCategoryDetailView
 
-    builder.addCase(getAccountCategoryDetailView.pending, (state) => {
+    builder.addCase(getAccountCategoryDetailViewMiddleWare.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(
-      getAccountCategoryDetailView.fulfilled,
+      getAccountCategoryDetailViewMiddleWare.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.BankDetailView = action.payload;
+        state.AccountCategoryDetailView = action.payload;
       }
     );
     builder.addCase(
-      getAccountCategoryDetailView.rejected,
+      getAccountCategoryDetailViewMiddleWare.rejected,
       (state, action) => {
         state.loading = false;
 
@@ -154,7 +212,41 @@ const accountCategoryMasterReducer = createSlice({
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
-},
+
+    // patch data
+
+    builder.addCase(
+      patchAccountCategoryDetailEditMiddleWare.pending,
+      (state) => {
+        state.loading = true;
+      }
+    );
+    builder.addCase(
+      patchAccountCategoryDetailEditMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        console.log(action.payload, "find red");
+        state.AccountCategoryList = state.AccountCategoryList?.map((item) => {
+          if (item.id === parseInt(action.payload?.id)) {
+            return {
+              ...item,
+              accountCategoryCode: action.payload?.categoryCode,
+              accountCategoryName: action.payload?.categoryName,
+            };
+          }
+          return item;
+        });
+        // state.AccountCategoryDetailView = action.payload;
+      }
+    );
+    builder.addCase(
+      patchAccountCategoryDetailEditMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+  },
 });
 
 export default accountCategoryMasterReducer.reducer;

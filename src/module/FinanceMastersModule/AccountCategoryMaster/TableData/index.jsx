@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -11,15 +10,25 @@ import SvgEdit from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../components/ToggleButton";
+import { useSelector } from "react-redux";
 
-const TableData = ({ handleAction, EmptyTable }) => {
+const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
   const [products, setProducts] = useState([]);
+  const { AccountCategoryList, loading } = useSelector(
+    ({ accountCategoryReducer }) => {
+      return {
+        loading: accountCategoryReducer?.loading,
+        AccountCategoryList: accountCategoryReducer?.AccountCategoryList,
+      };
+    }
+  );
+  console.log(AccountCategoryList, "find AccountCategoryList");
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable />
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
   const template2 = {
@@ -55,12 +64,12 @@ const TableData = ({ handleAction, EmptyTable }) => {
       <div className="action__button__container">
         <Button
           icon={<SvgIconeye />}
-          onClick={() => handleAction(rowData.id, "View")}
+          onClick={() => handleViewAction(rowData)}
           className="action__button p-0"
         />
         <Button
           icon={<SvgEdit />}
-          onClick={() => handleAction(rowData.id, "Edit")}
+          onClick={() => handleEditAction(rowData)}
           className="action__button p-0 w-auto"
         />
       </div>
@@ -105,7 +114,7 @@ const TableData = ({ handleAction, EmptyTable }) => {
         </div>
       </div>
       <DataTable
-        value={EmptyTable ? Productdata : []}
+        value={AccountCategoryList}
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}

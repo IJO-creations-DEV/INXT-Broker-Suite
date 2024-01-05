@@ -36,6 +36,12 @@
     font-weight: 500 !important;
     line-height: normal !important;
   }
+  .svgback_container{
+    gap: 8px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: baseline;
+  }
   .input__label__corrections {
     color: #111927 !important;
     font-family: "Inter var";

@@ -66,7 +66,7 @@ const TransactionCodeMasterTable = () => {
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-          onClick={() => handleView(rowData)}
+          onClick={() => handleEdit(rowData)}
         />
       </div>
     );
@@ -84,6 +84,9 @@ const TransactionCodeMasterTable = () => {
     console.log("View clicked:", rowData);
     navigate("/master/finance/transactioncode/transactioncodedetails")
   };
+  const handleEdit=(rowData) => {
+    navigate("/master/finance/transactioncode/transactioncodeedit")
+  }
   const headerStyle = {
     fontSize: 16,
     fontFamily: "Inter var",

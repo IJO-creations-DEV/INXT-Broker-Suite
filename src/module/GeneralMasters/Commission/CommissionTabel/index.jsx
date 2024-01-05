@@ -53,35 +53,26 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
     );
 
     const template2 = {
-        layout:
-            "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+        layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
         RowsPerPageDropdown: (options) => {
-            const dropdownOptions = [
-                { label: 5, value: 5 },
-                { label: 10, value: 10 },
-                { label: 20, value: 20 },
-                { label: 120, value: 120 },
-            ];
-
-            return (
-                <div
-                    style={{display:'flex',justifyContent:'center',alignItems:'center'}}
-                    className="table__selector">
-                    <React.Fragment>
-                        <span style={{ color: "var(--text-color)", userSelect: "none" }}>
-                            Row count :{" "}
-                        </span>
-                        <Dropdown
-                            value={options.value}
-                            className="pagedropdown_container"
-                            options={dropdownOptions}
-                            onChange={options.onChange}
-                        />
-                    </React.Fragment>
-                </div>
-            );
+          const dropdownOptions = [
+            { label: 5, value: 5 },
+            { label: 10, value: 10 },
+            { label: 20, value: 20 },
+            { label: 120, value: 120 }
+          ];
+    
+          return (
+            <React.Fragment >
+              <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+                Row count :{' '}
+              </span>
+              <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+            </React.Fragment>
+          );
         },
-    };
+    
+      };
 
     const renderEditButton = (rowData) => {
         return (

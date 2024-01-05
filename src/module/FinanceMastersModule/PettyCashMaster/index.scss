@@ -18,6 +18,13 @@
 
 
     }
+    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+        // color: #4b5563;
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: Inter var;
+    }
 
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
         color: #B1B1B1;
@@ -113,9 +120,9 @@
         color: #4b5563;
         box-shadow: none !important;
         border-radius: 6px !important;
-        fill: #fff !important;
-        stroke-width: 1px !important;
-        stroke: #fff !important;
+        // fill: #fff !important;
+        // stroke-width: 1px !important;
+        // stroke: #fff !important;
         filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
         .sort__filter__view__petty {
             display: flex;

@@ -86,7 +86,7 @@ const UserGroupAccess = () => {
     setShow(false);
   };
   return (
-    <div className="transactioncode__master__table_UserGroupAccess">
+    <div className="transactioncode__master__tableedit_UserGroupAccess">
       {/* <Card className="mt-1"> */}
       <div className="card">
         <div className="btn__container">

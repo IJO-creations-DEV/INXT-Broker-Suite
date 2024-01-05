@@ -11,6 +11,15 @@
     margin-right: 30%;
     display: flex;
   }
+  .no__data__found {
+    color: #b1b1b1;
+    font-family: "Inter var";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+  }
   
   .p-paginator-bottom.p-paginator.p-component {
     display: flex !important;
@@ -23,6 +32,7 @@
       box-shadow 0.2s;
     border-radius: 6px;
     margin-top: 0.5rem !important;
+    width: 100% !important;
   }
   .input__block .p-inputtext {
     font-family: var(--font-family);
@@ -50,7 +60,7 @@
   .p-button {
     color:#6366F1;
     border-bottom: 1px solid #d1d5db !important;
-    border-left: 0px solid #d1d5db !important;
+    border-left: none !important;
     border-right:1px solid #d1d5db !important ;
     border-top:1px solid #d1d5db !important ;
     padding: 0rem 0rem !important;
@@ -73,10 +83,11 @@
 .p-calendar .p-inputtext {
   flex: 1 1 auto;
   width: 1%;
-  border-right-style: hidden;
+  // border-right-style: hidden;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-color: #d1d5db;
+  border-right: none;
 }
 
 .btn__container{

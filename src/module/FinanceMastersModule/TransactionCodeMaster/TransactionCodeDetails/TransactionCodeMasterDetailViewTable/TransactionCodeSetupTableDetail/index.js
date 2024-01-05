@@ -13,10 +13,14 @@ const TransactionCodeSetupTableDetail = () => {
   const isEmpty = products.length === 0;
 
   const emptyTableIcon = (
+    <div>
     <div className="empty-table-icon">
-      <SvgTable />
+      <SvgTable/>
+    </div>
+    <div className="no__data__found">No data entered</div>
     </div>
   );
+  
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",

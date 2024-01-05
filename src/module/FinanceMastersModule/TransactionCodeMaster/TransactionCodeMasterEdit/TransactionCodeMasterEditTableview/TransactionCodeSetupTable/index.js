@@ -5,16 +5,24 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router";
 import "./index.scss";
 import SvgTable from "../../../../../../assets/icons/SvgTable";
-import { Button } from "primereact/button";
 import SvgAdd from "../../../../../../assets/icons/SvgAdd";
+import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
+import { Calendar } from "primereact/calendar";
+import LabelWrapper from "../../../../../../components/LabelWrapper";
 import InputField from "../../../../../../components/InputField";
-import DropDowns from "../../../../../../components/DropDowns";
-import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
+import { useFormik } from "formik";
 
-const UserGroupAccess = () => {
+const TransactionCodeSetupTable = () => {
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
+
+  const initialValues ={
+    AccountingPeriodStart: new Date(),
+    AccountingPeriodEnd:new Date(),
+    TransactionNumberFrom:"",
+    TransactionNumberTo:"",
+  }
 
   const handleClick = () => {
     setShow(!show);
@@ -69,6 +77,10 @@ const UserGroupAccess = () => {
     },
   };
 
+  const handleSubmit = ()=>{
+    setShow(false)
+  }
+
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
     // navigate("/accounts/pettycash/PettyCashCodeDetails")
@@ -81,23 +93,49 @@ const UserGroupAccess = () => {
     color: "#000",
     border: "none",
   };
-
-  const handleSave = () => {
-    setShow(false);
+  const customValidation = (values) => {
+    const errors = {};
+  
+    if (!values.TransactionNumberFrom) {
+      errors.TransactionNumberFrom = "This field Code is required";
+    }
+    if (!values.TransactionNumberTo) {
+      errors.TransactionNumberTo = "This field is required";
+    }
+   
+    return errors;
   };
+
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
+
+  const formik = useFormik({
+    initialValues:initialValues,
+    validate: customValidation,
+    // onSubmit: (values) => {
+    //   // Handle form submission
+    //    handleSubmit(values);
+      
+    // },
+     onSubmit:handleSubmit
+  });
+
+  
   return (
-    <div className="transactioncode__master__table_UserGroupAccess">
+    <div className="transactioncode__master__table_edit">
       {/* <Card className="mt-1"> */}
       <div className="card">
-        <div className="btn__container">
-          <Button
-            label="Add"
-            icon={<SvgAdd color={"#fff"} />}
-            className="add__btn"
-            onClick={() => {
-              handleClick();
-            }}
-          />
+        <div className="col-12 md:col-12 lg-col-12 ">
+          <div className="btn__container__add">
+            <Button
+              label="Add"
+              icon={<SvgAdd color={"#fff"} />}
+              className="add__btn"
+              onClick={() => {
+                handleClick();
+              }}
+            />
+          </div>
         </div>
         <DataTable
           value={products}
@@ -116,111 +154,131 @@ const UserGroupAccess = () => {
           emptyMessage={isEmpty ? emptyTableIcon : null}
         >
           <Column
-            field="UserRole"
-            header="User Role"
+            field="AccountingPeriodstart"
+            header="Accounting Period start"
             headerStyle={headerStyle}
             className="fieldvalue_container"
           ></Column>
           <Column
-            field="MinimumTransaction"
-            header="Minimum Transaction"
-            headerStyle={headerStyle}
-            className="fieldvalue_container"
-            //   sortable
-          ></Column>
-          <Column
-            field="MaximumTransaction"
-            header="Maximum Transaction"
+            field="AccountingPeriodEnd"
+            header="Accounting Period End"
             headerStyle={headerStyle}
             className="fieldvalue_container"
             //   sortable
           ></Column>
           <Column
-            field="Edit"
-            header="Edit"
+            field="TransactionNofrom"
+            header="Transaction No from"
+            headerStyle={headerStyle}
+            className="fieldvalue_container"
+            //   sortable
+          ></Column>
+          <Column
+            field="TransactionNoTo"
+            header="Transaction No To"
+            headerStyle={headerStyle}
+            className="fieldvalue_container"
+          ></Column>
+          <Column
+            field="LastUsed"
+            header="Last Used"
             headerStyle={headerStyle}
             className="fieldvalue_container"
           ></Column>
         </DataTable>
       </div>
       <Dialog
-        header="Add User Group Access"
+        header="Add Transaction code Setup"
         visible={show}
         style={{ width: "50vw" }}
         onHide={() => setShow(false)}
       >
         <div className="grid mt-1">
-          <div className=" col-12 md:col-6 lg-col-6 ">
-            <DropDowns
-              className="inputdialog__fieled"
-              label="User Role"
+          <div className="calender__container col-12 md:col-6 lg-col-6 ">
+            <LabelWrapper className="calenderlable__container">
+              Accounting Period Start
+            </LabelWrapper>
+            <Calendar
+              showIcon
+              // placeholder="Select"
+
+className="calendar_container"
+                value={formik.values.AccountingPeriodStart}
+                minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("AccountingPeriodStart", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+                error={formik.errors.AccountingPeriodStart}
+            />
+          </div>
+          <div className="calender__container col-12 md:col-6 lg-col-6 ">
+            <LabelWrapper className="calenderlable__container">
+              Accounting Period End
+            </LabelWrapper>
+            <Calendar
+            className="calendar_container"
+              showIcon
               placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value={formik.values.Description}
-              // options={BankAccountCode}
-              // onChange={(e) => {
-              //   console.log(e.value);
-              //   formik.setFieldValue("Description", e.value);
-              //   handleAccountcode(e.value.);
-              // }}
-              // optionLabel="Description"
-              // error={
-              //   formik.touched.BankAccountNumber &&
-              //   formik.errors.BankAccountNumber
-              // }
+                value={formik.values.AccountingPeriodEnd}
+                minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("AccountingPeriodEnd", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+                error={formik.errors.AccountingPeriodEnd}
             />
           </div>
         </div>
         <div className="grid mt-1">
-          <div className=" col-12 md:col-6 lg-col-6 ">
+          <div className="col-12 md:col-6 lg-col-6 ">
             <InputField
               classNames="input__filed"
-              label="Minimum Transaction"
+              label="Transaction Number From"
               placeholder="Enter"
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              // value={formik.values.TransactionCode}
-              // onChange={formik.handleChange("TransactionCode")}
-              // error={
-              //   formik.touched.TransactionCode &&
-              //   formik.errors.TransactionCode
-              // }
+              value={formik.values.TransactionNumberFrom}
+              onChange={formik.handleChange("TransactionNumberFrom")}
+              error={
+                formik.touched.TransactionNumberFrom &&
+                formik.errors.TransactionNumberFrom
+              }
             />
+           
           </div>
-          <div className=" col-12 md:col-6 lg-col-6 ">
+          <div className="col-12 md:col-6 lg-col-6 ">
             <InputField
               classNames="input__filed"
-              label="Maximum Transaction"
+              label="Transaction Number To"
               placeholder="Enter"
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              // value={formik.values.TransactionCode}
-              // onChange={formik.handleChange("TransactionCode")}
-              // error={
-              //   formik.touched.TransactionCode &&
-              //   formik.errors.TransactionCode
-              // }
+              value={formik.values.TransactionNumberTo}
+              onChange={formik.handleChange("TransactionNumberTo")}
+              error={
+                formik.touched.TransactionNumberTo &&
+                formik.errors.TransactionNumberTo
+              }
             />
           </div>
         </div>
         <div className="btn__container">
-          <Button
-            label="Save"
-            className="add__btn"
-            onClick={() => {
-              handleSave();
-            }}
-          />
-        </div>
+            <Button
+              label="Save"
+              className="add__btn"
+              // onClick={() => {
+              //   handleSave();
+              // }}
+              onClick={()=>{formik.handleSubmit();}} 
+            />
+          </div>
       </Dialog>
       {/* </Card> */}
     </div>
   );
 };
 
-export default UserGroupAccess;
+export default TransactionCodeSetupTable;

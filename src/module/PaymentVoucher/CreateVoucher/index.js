@@ -16,7 +16,7 @@ import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../components/LabelWrapper";
 import { useFormik } from "formik";
 import { Toast } from "primereact/toast";
-import CustomToast from "../../../components/Toast";
+
 import { useDispatch, useSelector } from "react-redux";
 import { postpaymentVocherCreateDataMiddleware } from "../store/paymentVocherMiddleware";
 const initialValues = {
@@ -33,7 +33,6 @@ const initialValues = {
 };
 
 function Createvoucher() {
-  const toastRef = useRef(null);
   const dispatch = useDispatch();
   const Navigate = useNavigate();
 
@@ -88,12 +87,7 @@ function Createvoucher() {
       id: paymentVocherList?.length + 1,
     };
     dispatch(postpaymentVocherCreateDataMiddleware(valueWithId));
-    toastRef.current.showToast();
-    {
-      setTimeout(() => {
-        Navigate("/accounts/paymentvoucher/SpecificVoucher");
-      }, 3000);
-    }
+    Navigate("/accounts/paymentvoucher/SpecificVoucher");
   };
 
   const customValidation = (values) => {
@@ -135,10 +129,7 @@ function Createvoucher() {
   return (
     <div className="overall__createvoucher__container">
       <NavBar />
-      <CustomToast
-        ref={toastRef}
-        message="Transaction Number 1234 is created"
-      />
+
       <div>
         <span onClick={() => Navigate(-1)}>
           <SvgBackicon />
@@ -299,6 +290,7 @@ function Createvoucher() {
           </div>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <InputField
+              disabled={true}
               classNames="field__container"
               label="Transaction Description"
               // placeholder={"Enter"}
@@ -363,15 +355,11 @@ function Createvoucher() {
       </Card>
 
       <div className="next_container">
-        {/* <SubmitButton label="Next"
-                    className="submit_button p-0"
-                    navigation="/voucherbankdetails"
-                // handleSubmit={handleSubmit}
-                // setVisiblechange={setVisiblechange}
-                // visiblechange={visiblechange}
-
-
-                /> */}
+        <Button
+          className="history_button"
+          label="Go to history"
+          onClick={() => Navigate("/accounts/paymentvoucher")}
+        />
         <Button
           className="submit_button p-0"
           label="Next"

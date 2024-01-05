@@ -8,6 +8,8 @@ import InputField from "../../../../../components/InputField";
 import { Button } from "primereact/button";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 import SvgModalClose from "../../../../../assets/icons/SvgNodalClose";
+import { postAddLevelShareRatingCommission } from "../../store/commissionMiddleWare";
+import { useDispatch } from "react-redux";
 const AddCommissionPopup = ({ visible, setVisible, handleUpdate }) => {
 
     const codeOptionsMain = [
@@ -23,21 +25,36 @@ const AddCommissionPopup = ({ visible, setVisible, handleUpdate }) => {
             errors.level = "This field is required";
         }
 
-        if (!values.rate) {
-            errors.rate = "This field is required";
+        if (!values.sharingRate) {
+            errors.sharingRate = "This field is required";
         }
 
 
         return errors;
     };
+    // const handleSubmit = (values) => {
+    //     console.log(values, "find values");
+    //     setVisible(false);
+    // };
+    const dispatch=useDispatch()
     const handleSubmit = (values) => {
-        console.log(values, "find values");
-        setVisible(false);
-    };
+        dispatch(postAddLevelShareRatingCommission(formik.values))
+          .then(() => {
+            // toastRef.current.showToast();
+            // setTimeout(() => {
+            //     setVisible(false);
+            // }, 2000);
+            setVisible(false);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      };
+    
     const formik = useFormik({
         initialValues: {
             level: "",
-            rate: "",
+            sharingRate: "",
 
         },
         validate: customValidation,
@@ -87,16 +104,16 @@ const AddCommissionPopup = ({ visible, setVisible, handleUpdate }) => {
                             className="input__label__jv"
                             label="Rate"
                             value={
-                                formik.values.rate
+                                formik.values.sharingRate
                             }
-                            onChange={(e) => formik.setFieldValue("rate", e.target.value)}
+                            onChange={(e) => formik.setFieldValue("sharingRate", e.target.value)}
                         />
-                        {formik.touched.rate && formik.errors.rate && (
+                        {formik.touched.sharingRate && formik.errors.sharingRate && (
                             <div
                                 style={{ fontSize: 12, color: "red" }}
                                 className="formik__errror__JV"
                             >
-                                {formik.errors.rate}
+                                {formik.errors.sharingRate}
                             </div>
                         )}
                     </div>

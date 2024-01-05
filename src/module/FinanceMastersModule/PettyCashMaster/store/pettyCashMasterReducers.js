@@ -16,52 +16,26 @@ const initialState = {
             pettycashsize: "23",
             minicashbox: "222",
             transactionlimit: "500.00",
+            availabelCash:"777",
             status: "true",
             action: <SvgIconeye />,
         },
         {
             id: 2,
-            pettycashcode: "petty123",
+            pettycashcode: "petty777",
             pettycashname: "petty",
-            pettycashsize: "23",
-            minicashbox: "222",
-            transactionlimit: "500.00",
+            pettycashsize: "77",
+            minicashbox: "99",
+            transactionlimit: "800.00",
+            availabelCash:"00",
             status: "true",
             action: <SvgIconeye />,
         },
-        {
-            id: 3,
-            pettycashcode: "petty123",
-            pettycashname: "petty",
-            pettycashsize: "23",
-            minicashbox: "222",
-            transactionlimit: "500.00",
-            status: "true",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 4,
-            pettycashcode: "petty123",
-            pettycashname: "petty",
-            pettycashsize: "23",
-            minicashbox: "222",
-            transactionlimit: "500.00",
-            status: "true",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 5,
-            pettycashcode: "petty123",
-            pettycashname: "petty",
-            pettycashsize: "23",
-            minicashbox: "222",
-            transactionlimit: "500.00",
-            status: "true",
-            action: <SvgIconeye />,
-        },
+
     ],
 
 };
+let nextId = 3
 const pettyCashMasterReducers = createSlice({
     name: "pettyCashMaster",
     initialState,
@@ -87,13 +61,14 @@ const pettyCashMasterReducers = createSlice({
         builder.addCase(
             postAddPettyCash.fulfilled, (state, action) => {
                 state.loading = false;
-                state.addPettyCash = action.payload;
+                const newItem = { ...action.payload, id: nextId++ };
+                state.pettyCashList = [...state.pettyCashList, newItem];
+                console.log(state.pettyCashList, "newItem")
             }
         );
         builder.addCase(
             postAddPettyCash.rejected, (state, action) => {
                 state.loading = false;
-                state.addPettyCash = {};
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );
@@ -105,7 +80,7 @@ const pettyCashMasterReducers = createSlice({
         builder.addCase(
             getPettyCashSearchList.fulfilled, (state, action) => {
                 state.loading = false;
-                state.pettyCashSearchList = action.payload;
+                state.pettyCashSearchList = [action.payload];
             }
         );
         builder.addCase(
@@ -117,24 +92,22 @@ const pettyCashMasterReducers = createSlice({
         );
 
 
-        //patchPettyCashEdit
+        // patchPettyCashEdit
 
-        // builder.addCase(patchPettyCashEdit.pending, (state) => {
-        //     state.loading = true;
-        // });
-        // builder.addCase(
-        //     patchPettyCashEdit.fulfilled, (state, action) => {
-        //         state.loading = false;
-        //         state.pettyCashEdit = action.payload;
-        //     }
-        // );
-        // builder.addCase(
-        //     patchPettyCashEdit.rejected, (state, action) => {
-        //         state.loading = false;
-        //         state.pettyCashEdit = {};
-        //         state.error = typeof action.payload === "string" ? action.payload : "";
-        //     }
-        // );
+        builder.addCase(patchPettyCashEdit.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(patchPettyCashEdit.fulfilled, (state, action) => {
+            state.loading = false;
+            state.pettyCashList = action.payload;
+        }
+        );
+        builder.addCase(patchPettyCashEdit.rejected, (state, action) => {
+            state.loading = false;
+            state.pettyCashList = {};
+            state.error = typeof action.payload === "string" ? action.payload : "";
+        }
+        );
 
         //getPettyCashView
 
@@ -145,6 +118,7 @@ const pettyCashMasterReducers = createSlice({
             getPettyCashView.fulfilled, (state, action) => {
                 state.loading = false;
                 state.pettyCashView = action.payload;
+                
             }
         );
         builder.addCase(

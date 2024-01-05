@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCommission, getCommissionSearchList, getCommissionView, patchCommissionEdit, postAddCommission } from "./commissionMiddleWare";
+import { getCommission, getCommissionSearchList, getCommissionView, getLevelCommissionSharing, patchCommissionEdit, postAddCommission, postAddLevelShareRatingCommission } from "./commissionMiddleWare";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
     loading: false,
@@ -23,11 +23,26 @@ const initialState = {
 
 
     ],
+    addLevelCommissionSharing: [
+        {
+            id: 1,
+            level: "11",
+            commissionCode: "CC123",
+            sharingRate: "S123",
+        },
+        {
+            id: 2,
+            level: "11",
+            commissionCode: "CC123",
+            sharingRate: "S123",
+        }
+    ]
 
 
 
 };
-let nextId=2
+let nextId = 2
+let nextIdd=3
 const commissionReducers = createSlice({
     name: "commission",
     initialState,
@@ -84,6 +99,38 @@ const commissionReducers = createSlice({
                 state.loading = false;
 
                 state.commissionSearchList = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
+        builder.addCase(getLevelCommissionSharing.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(getLevelCommissionSharing.fulfilled, (state, action) => {
+            state.loading = false;
+            state.addLevelCommissionSharing = [action.payload];
+        });
+        builder.addCase(getLevelCommissionSharing.rejected, (state, action) => {
+            state.loading = false;
+            state.addLevelCommissionSharing = {};
+            state.error = typeof action.payload === "string" ? action.payload : "";
+        });
+
+        builder.addCase(postAddLevelShareRatingCommission.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            postAddLevelShareRatingCommission.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                const newItem = { ...action.payload, id: nextIdd++ };
+                state.addLevelCommissionSharing = [...state.addLevelCommissionSharing, newItem];
+            }
+        );
+        builder.addCase(
+            postAddLevelShareRatingCommission.rejected,
+            (state, action) => {
+                state.loading = false;
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );

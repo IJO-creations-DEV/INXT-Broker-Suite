@@ -9,45 +9,22 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
+import { useSelector } from "react-redux";
+import SvgIconeye from "../../../../assets/icons/SvgIconeye";
+import SvgEditicon from "../../../../assets/icons/SvgEdit";
+const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
+    // console.log(addPettyCash.data,"addPettyCash")
 
-
-const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList,addPettyCash }) => {
-    console.log(addPettyCash.data,"addPettyCash")
+    console.log(pettyCashList.pettycashcode, "pettyCashList");
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const handleNavigateView = () => {
-        navigate("/master/finance/pettycash/pettycashdetail")
-    }
-    const handleNavigateEdit = () => {
-        navigate("/master/finance/pettycash/editpettycash")
-    }
-    console.log(newDataTable, "find newDataTable");
-    let newProduct;
-    let updatedProductData;
 
-    if (newDataTable.length > 0) {
-        updatedProductData = [
-            ...data,
-            (newProduct = {
-                id: 11,
-                mainAC: newDataTable[0].mainAccount,
-                subAC: newDataTable[0].subAccount,
-                Currency: newDataTable[0].currencyCode,
-                foreignAmount: newDataTable[0].foreignAmount,
-                localAmount: "500.00",
-                Remarks: "New credit voucher",
-                Entry: newDataTable[0].entryType,
-            }),
-        ];
-    } else {
-        updatedProductData = data;
-    }
     const onPageChange = (event) => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
     };
-    const isEmpty = updatedProductData.length === 0;
+    const isEmpty = pettyCashList.length === 0;
     const emptyTableIcon = (
         <div className="empty-table-icon">
             <SvgTable />
@@ -91,22 +68,20 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList,addPettyCash }
     
       };
 
-    const renderEditButton = (rowData) => {
-        return (
-            <div className="centercontent" >
-                <div onClick={handleNavigateView}> <SvgEyeIcon /></div>
-                <div onClick={handleNavigateEdit}> <SvgEditIcon /></div>
+    const handleView = (columnData) => {
+        console.log(columnData.id, "columnData")
+        navigate(`/master/finance/pettycash/pettycashdetail/${columnData.id}`)
 
-            </div>
-        );
-    };
-
-
+    }
+    const handleEdit = (columnData) => {
+        // alert(columnData.id, "hiii")
+        navigate(`/master/finance/pettycash/editpettycash/${columnData.id}`)
+    }
 
     return (
         <div className="petty__cash__table__container">
             <DataTable
-                value={[addPettyCash.data]}
+                value={pettyCashList}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__Journal__Voture'
@@ -122,7 +97,7 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList,addPettyCash }
 
             >
                 <Column
-                    field="prttycashcode"
+                    field="pettycashcode"
                     header="Petty Cash Code"
                     className="fieldvalue_container"
 
@@ -143,7 +118,7 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList,addPettyCash }
 
                 ></Column>
                 <Column
-                    field="mincashback"
+                    field="minicashbox"
                     header="Minimum Cash Box"
                     className="fieldvalue_container"
 
@@ -166,8 +141,12 @@ const PettyDataTabel = ({ handleEdit, newDataTable, pettyCashList,addPettyCash }
 
                 <Column
                     field="action"
-                    body={renderEditButton}
-
+                    body={(columnData) => (
+                        <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
+                            <SvgEditicon onClick={() => handleEdit(columnData)} />
+                            <SvgIconeye onClick={() => handleView(columnData)} />
+                        </div>
+                    )}
                     header="View"
                     className="fieldvalue_container"
 

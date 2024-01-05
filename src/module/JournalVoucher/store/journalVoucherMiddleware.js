@@ -92,6 +92,7 @@ export const postTCJournalVoucher = createAsyncThunk(
 export const patchJVMiddleware = createAsyncThunk(
     PATCH_JOURNAL_VOUCHER_EDIT,
     async (payload, { rejectWithValue, getState }) => {
+        console.log(payload,"payloadpayload")
         const { journalVoucherMainReducers } = getState();
         const { journalVoucherPostTabelData } = journalVoucherMainReducers;
         try {
@@ -110,6 +111,7 @@ export const patchJVMiddleware = createAsyncThunk(
                 }
                 return item;
             });
+            console.log(editData,"editData")
             return editData;
         } catch (error) {
             return rejectWithValue(error?.response?.data?.error?.message || "An error occurred");

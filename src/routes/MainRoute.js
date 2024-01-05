@@ -491,14 +491,12 @@ const Maincomponent = () => {
               element={<AddPettyCash />}
             />
             <Route
-              path="master/finance/pettycash/pettycashdetail"
+              path="master/finance/pettycash/pettycashdetail/:id"
               element={<PettyCashdetails />}
             />
 
-            <Route
-              path="master/finance/pettycash/editpettycash"
-              element={<EditPettyCash />}
-            />
+
+            <Route path="master/finance/pettycash/editpettycash/:id" element={<EditPettyCash />} />
 
             <Route />
             <Route path="master/finance/company" element={<CompanyMaster />} />
@@ -629,19 +627,10 @@ const Maincomponent = () => {
               path="master/finance/currency/viewcurrency"
               element={<ViewCurrency />}
             />
-            <Route path="master/generals/commission" element={<Commission />} />
-            <Route
-              path="master/generals/commission/addcommission"
-              element={<AddCommission />}
-            />
-            <Route
-              path="master/generals/commission/editcommission"
-              element={<EditCommission />}
-            />
-            <Route
-              path="master/generals/commission/viewcommission"
-              element={<ViewCommission />}
-            />
+            <Route path="master/generals/commission" element={<Commission/>} />
+            <Route path="master/generals/commission/addcommission" element={<AddCommission/>} />
+            <Route path="master/generals/commission/editcommission/id:" element={<EditCommission />} />
+            <Route path="/master/generals/commission/viewcommission/id:" element={<ViewCommission />} />
           </Route>
         </Routes>
       </div>

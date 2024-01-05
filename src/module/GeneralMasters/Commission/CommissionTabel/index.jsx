@@ -9,43 +9,49 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../components/ToggleButton";
+import SvgEditicon from "../../../../assets/icons/SvgEdit";
+import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 
-const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
+const CommissionTabel = ({ handleEdit, newDataTable, commissionList }) => {
+    console.log(commissionList, "commissionList")
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const handleNavigateView = () => {
-        navigate("/master/generals/commission/viewcommission")
-    }
-    const handleEditNavigate = () => {
-        navigate("/master/generals/commission/editcommission")
-    }
-    console.log(newDataTable, "find newDataTable");
-    let newProduct;
-    let updatedProductData;
+    const handleNavigateView = (columnData) => {
+        console.log(columnData.id, "columnData")
+        // navigate(`/master/generals/commission/viewcommission`)
 
-    if (newDataTable.length > 0) {
-        updatedProductData = [
-            ...data,
-            (newProduct = {
-                id: 11,
-                mainAC: newDataTable[0].mainAccount,
-                subAC: newDataTable[0].subAccount,
-                Currency: newDataTable[0].currencyCode,
-                foreignAmount: newDataTable[0].foreignAmount,
-                localAmount: "500.00",
-                Remarks: "New credit voucher",
-                Entry: newDataTable[0].entryType,
-            }),
-        ];
-    } else {
-        updatedProductData = data;
+        navigate(`/master/generals/commission/viewcommission/${columnData.id}`)
     }
+    const handleEditNavigate = (columnData) => {
+        // navigate(`/master/generals/commission/editcommission/${columnData.id}`)
+    }
+    // console.log(newDataTable, "find newDataTable");
+    // let newProduct;
+    // let updatedProductData;
+
+    // if (newDataTable.length > 0) {
+    //     updatedProductData = [
+    //         ...data,
+    //         (newProduct = {
+    //             id: 11,
+    //             mainAC: newDataTable[0].mainAccount,
+    //             subAC: newDataTable[0].subAccount,
+    //             Currency: newDataTable[0].currencyCode,
+    //             foreignAmount: newDataTable[0].foreignAmount,
+    //             localAmount: "500.00",
+    //             Remarks: "New credit voucher",
+    //             Entry: newDataTable[0].entryType,
+    //         }),
+    //     ];
+    // } else {
+    //     updatedProductData = data;
+    // }
     const onPageChange = (event) => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
     };
-    const isEmpty = updatedProductData.length === 0;
+    const isEmpty = commissionList.length === 0;
     const emptyTableIcon = (
         <div className="empty-table-icon">
             <SvgTable />
@@ -94,7 +100,7 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
         // padding: 6,
         color: "#000",
         border: "none",
-      };
+    };
     const renderToggleButton = () => {
         return (
             <div>
@@ -120,7 +126,7 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
-            
+
 
             >
                 <Column
@@ -134,14 +140,14 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
                     field="product"
                     header="Product"
                     className="fieldvalue_container"
-                   sortable
+                    sortable
                 ></Column>
 
                 <Column
                     field="selectCover"
                     header="Select Covers"
                     className="fieldvalue_container"
-                  
+
 
                 ></Column>
                 <Column
@@ -152,22 +158,29 @@ const CommissionTabel = ({ handleEdit, newDataTable ,commissionList}) => {
 
                 ></Column>
                 <Column
-                   field="effectiveTo"
+                    field="effectiveTo"
                     header="Effective To"
                     className="fieldvalue_container"
 
 
                 ></Column>
-               
+
                 <Column
                     body={renderToggleButton}
+
                     field="status"
                     header="Status"
                     headerStyle={{ textAlign: 'left', ...headerStyle }}
                     className="fieldvalue_container"
                 ></Column>
                 <Column
-                    body={renderEditButton}
+                    // body={renderEditButton}
+                    body={(columnData) => (
+                        <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
+                            <SvgEditicon onClick={() => handleEditNavigate(columnData)} />
+                            <SvgIconeye onClick={() => {handleNavigateView(columnData)}} />
+                        </div>
+                    )}
                     header="Action"
                     className="fieldvalue_container"
 

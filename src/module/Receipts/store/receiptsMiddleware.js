@@ -55,15 +55,7 @@ export const getReceiptsReceivableMiddleware = createAsyncThunk(
 export const postAddReceiptsMiddleware = createAsyncThunk(
   POST_ADD_RECEIPTS,
   async (payload, { rejectWithValue, getState }) => {
-    // id: 1,
-    // receiptNumber: "01Rep012302",
-    // transactionCode: "123456",
-    // transactionNumber: "Transac00123",
-    // name: "Name",
-    // customerCode: "CC0102",
-    // date: "11/12/2023",
-    // amount: "500.37",
-    // action: "Action",
+   
     let bodyTableData = {
       id: 8,
       receiptNumber: `Rep${8}`,

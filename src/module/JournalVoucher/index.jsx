@@ -19,7 +19,7 @@ import { useFormik } from 'formik';
 import { data } from './DetailsJournalVocture/data';
 
 const JournalVoucher = () => {
-  const { journalVoucherList, journalVoucherSearchList, loading, addJournalVoucher } = useSelector(({ journalVoucherMainReducers }) => {
+  const { journalVoucherList, journalVoucherSearchList, loading} = useSelector(({ journalVoucherMainReducers }) => {
     return {
       loading: journalVoucherMainReducers?.loading,
       journalVoucherList: journalVoucherMainReducers?.journalVoucherList,
@@ -28,7 +28,8 @@ const JournalVoucher = () => {
 
     };
   });
-  console.log(journalVoucherSearchList, "journalVoucherSearchList")
+  console.log(journalVoucherList, "journalVoucherList")
+ 
 
 
   const [products, setProducts] = useState([]);

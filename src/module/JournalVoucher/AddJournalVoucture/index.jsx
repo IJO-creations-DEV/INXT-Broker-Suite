@@ -28,7 +28,8 @@ import CustomToast from "../../../components/Toast";
 import SuccessIcon from '../../../assets/icons/SuccessIcon';
 import AddDataTabel from './AddDataTabel';
 import EditData from './EditData';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { postTCJournalVoucher } from '../store/journalVoucherMiddleware';
 
 
 const AddJournalVocture = () => {
@@ -96,13 +97,30 @@ const AddJournalVocture = () => {
 
         return errors;
     };
+    const [errors, setErrors] = useState("")
 
+
+    
+    const dispatch = useDispatch()
     const handleSubmit = (values) => {
-        // Handle form submission
-        console.log(values);
-        setVisible(false);
-        setVisiblePopup(true);
-    }
+        
+        dispatch(postTCJournalVoucher(formik.values));
+    };
+
+
+
+
+    useEffect(() => {
+        handleSubmit()
+    }, [])
+    // console.log(total, "find receiptsTableList")
+
+    // const handleSubmit = (values) => {
+    //     // Handle form submission
+    //     console.log(values);
+    //     setVisible(false);
+    //     setVisiblePopup(true);
+    // }
     const formik = useFormik({
         initialValues: {
             transationCode: '',
@@ -110,6 +128,7 @@ const AddJournalVocture = () => {
             totalCredit: '',
             totalDebit: '',
             net: '',
+            date: ""
 
         },
         validate: customValidation,
@@ -151,7 +170,21 @@ const AddJournalVocture = () => {
         { label: 'Trans00124', value: 'Trans00124' },
 
     ];
+    const totalForeignAmount = journalVoucherPostTabelData.reduce((total, item) => {
+        const foreignAmount = parseFloat(item.foreignAmount);
+        return !isNaN(foreignAmount) ? total + foreignAmount : total;
+      }, 0);
+    
+      const totalLocalAmount = journalVoucherPostTabelData.reduce((total, item) => {
+        const localAmount = parseFloat(item.localAmount);
+        return !isNaN(localAmount) ? total + localAmount : total;
+      }, 0);
 
+    const handlePrint = () => {
+        setVisibleSuccess(true)
+        handleSubmit()
+        navigate("/accounts/journalvoucher")
+    }
 
 
     return (
@@ -239,8 +272,17 @@ const AddJournalVocture = () => {
                                 classNames="label__sub__add__JV"
                             >
                                 <Calendar
-                                    value={date}
-                                    onChange={(e) => setDate(e.value)}
+                                    value={
+                                        formik.values.date
+                                            ? new Date(formik.values.date)
+                                            : null
+                                    }
+                                    onChange={(e) => {
+                                        formik.handleChange("date")(
+                                            e.value.toISOString().split("T")[0]
+                                        );
+                                    }}
+                                    dateFormat="yy-mm-dd"
                                     showIcon
                                     className="calender_field_claim__JV"
                                 />
@@ -285,7 +327,7 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
-                                value={creditTotal}
+                                value={totalForeignAmount}
 
                             />
                             {formik.touched.totalCredit && formik.errors.totalCredit && (
@@ -303,7 +345,7 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
-                                value={debitTotal}
+                                value={totalLocalAmount}
 
                             />
                             {formik.touched.totalDebit && formik.errors.totalDebit && (
@@ -321,7 +363,7 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
-                                value={netTotal}
+                                value={totalForeignAmount-totalLocalAmount}
 
                             />
                             {formik.touched.net && formik.errors.net && (
@@ -356,7 +398,7 @@ const AddJournalVocture = () => {
                         label='Print'
                         className='save__add__btn__print'
 
-                        onClick={() => setVisibleSuccess(true)}
+                        onClick={handlePrint}
                     />
                 </div>
             )}

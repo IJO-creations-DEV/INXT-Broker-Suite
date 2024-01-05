@@ -39,7 +39,7 @@ export const getReceiptsListByIdMiddleware = createAsyncThunk(
 );
 export const getReceiptsReceivableMiddleware = createAsyncThunk(
   GET_RECEIVABLE_TABLE,
-  async (payload, { rejectWithValue,getState}) => {
+  async (payload, { rejectWithValue, getState }) => {
     const { receivableTableReducers } = getState();
     console.log(receivableTableReducers, "dta");
     const { receivableTableList } = receivableTableReducers;
@@ -60,7 +60,7 @@ export const postAddReceiptsMiddleware = createAsyncThunk(
       id: 8,
       receiptNumber: `Rep${8}`,
       transactionNumber: payload?.transactionNumber?.name,
-      transactionCode:payload?.transactionCode?.name,
+      transactionCode: payload?.transactionCode?.name,
       customerCode: payload?.customerCode?.name,
       name: payload?.name,
       date: payload?.receiptDate.toLocaleDateString("en-US", {
@@ -72,7 +72,7 @@ export const postAddReceiptsMiddleware = createAsyncThunk(
       action: 8,
     };
     try {
-        console.log(bodyTableData, "find middleware");
+      console.log(bodyTableData, "find middleware");
 
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return bodyTableData;
@@ -94,36 +94,36 @@ export const postPaymentDetailsMiddleware = createAsyncThunk(
 );
 export const patchReceipEditMiddleware = createAsyncThunk(
   PATCH_RECEIPT_EDIT,
-  
-    async (payload, { rejectWithValue,getState}) => {
-      console.log(payload,"find payloadsss")
-      const { editReducers } = getState();
-      console.log(editReducers, "edit1");
-      const { receivableTableList } = editReducers;
-      console.log(receivableTableList,'find t data')
-      const updateTable=receivableTableList?.map((item) => {
-        if (item.id === parseInt(payload?.id)) {
-          return {
-            ...item,
-            policies: payload?.policy,
-            netPremium: payload?.netPremium,
-            paid:payload?.paid,
-            unPaid:payload?.unPaid,
-            discounts:payload.discounts,
-            dst:payload.dst,
-            lgt:payload.lgt,
-            vat:payload.vat,
-            other:payload.other,
-            fcAmount:payload.fcAmount,
-            lcAmount:payload.lcAmount
-            
-          };
-        }
-        return item;
-      });
-      console.log(updateTable,'find updateTable')
-    
-      
+
+  async (payload, { rejectWithValue, getState }) => {
+    console.log(payload, "find payloadsss")
+    const { editReducers } = getState();
+    console.log(editReducers, "edit1");
+    const { receivableTableList } = editReducers;
+    console.log(receivableTableList, 'find t data')
+    const updateTable = receivableTableList?.map((item) => {
+      if (item.id === parseInt(payload?.id)) {
+        return {
+          ...item,
+          policies: payload?.policy,
+          netPremium: payload?.netPremium,
+          paid: payload?.paid,
+          unPaid: payload?.unPaid,
+          discounts: payload.discounts,
+          dst: payload.dst,
+          lgt: payload.lgt,
+          vat: payload.vat,
+          other: payload.other,
+          fcAmount: payload.fcAmount,
+          lcAmount: payload.lcAmount
+
+        };
+      }
+      return item;
+    });
+    console.log(updateTable, 'find updateTable')
+
+
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return updateTable;

@@ -14,23 +14,39 @@ import ArrowLeftIcon from "../../../assets/icons/ArrowLeftIcon"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import SvgArrow from '../../../assets/icons/SvgArrow';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate , useParams} from 'react-router-dom';
 import { Dropdown } from 'primereact/dropdown';
 import { Toast } from 'primereact/toast';
 import { data } from './data';
 import { useFormik } from 'formik';
 import ViewDataTabel from './ViewDataTabel';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const DetailsJournalVocture = () => {
     const navigate = useNavigate()
-    const location = useLocation();
-    const { serializedData } = location.state || {};
-    const data=JSON.parse(serializedData)
-    console.log(data, "serializedData");
+    // const location = useLocation();
+    // const { serializedData } = location.state || {};
+    // const data=JSON.parse(serializedData)
+    // console.log(data, "serializedData");
     // const { journalVoucherList } = location.state || {};
     // const parsedJournalVoucherList = JSON.parse(journalVoucherList);
     // console.log(parsedJournalVoucherList,"parsedJournalVoucherList")
+    const { id } = useParams();
+    const dispatch = useDispatch();
+  
+    // useEffect(() => {
+    //   dispatch(getpaymentVocherByIdMiddleware(id));
+    // }, [id]);
+  
+    const {  journalVoucherList, loading } = useSelector(
+      ({ journalVoucherMainReducers }) => {
+        return {
+          loading: journalVoucherMainReducers?.loading,
+          journalVoucherList: journalVoucherMainReducers?.journalVoucherList,
+        };
+      }
+    );
 
 
     const [visiblePopup, setVisiblePopup] = useState(false);
@@ -105,10 +121,10 @@ const DetailsJournalVocture = () => {
     }
     const formik = useFormik({
         initialValues: {
-            transactioncode: `${data.tc}`,
-            transactionDescription: `${data.tc}`,
-            transactionNumber: `${data.tn}`,
-            date: `${data.date}`,
+            transactioncode: `${journalVoucherList[0].transationCode}`,
+            transactionDescription: `${journalVoucherList[0].transationDescription}`,
+            transactionNumber: `${journalVoucherList[0].transationCode}`,
+            date: `${journalVoucherList.date}`,
             totalCredit: '500',
             totalDebit: '500',
             net: '00.00'

@@ -201,7 +201,7 @@ const Maincomponent = () => {
               element={<AddJournalVoucture />}
             />
             <Route
-              path="/accounts/journalvoucher/detailsjournalvocture"
+              path="/accounts/journalvoucher/detailsjournalvocture/:id"
               element={<DetailsJournalVocture />}
             />
 

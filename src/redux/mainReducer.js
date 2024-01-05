@@ -11,9 +11,11 @@ import taxationMainReducers from "../module/FinanceMastersModule/TaxationMaster/
 import subAccountMainReducers from "../module/FinanceMastersModule/SubAccountMaster/store/subAccountReducers";
 import pettyCashMainReducers from "../module/FinanceMastersModule/PettyCashMaster/store/pettyCashMasterReducers";
 import receiptsTableReducers from "../module/Receipts/store/receiptsReducers";
-import reversalMainReducers from "../module/Reversals/store/reversalReducers"
+// import reversalMainReducers from "../module/Reversals/store/reversalReducers"
 import receivableTableReducers from "../module/Receipts/store/receiptsReducers";
 import editReducers from "../module/Receipts/store/receiptsReducers"
+import reversalMainReducers from "../module/Reversals/store/reversalReducers";
+import correctionJVMainReducers from "../module/CorrectionJV/store/correctionJVReducers"
 const reducers = {
     journalVoucherMainReducers,
     paymentVoucherReducers,
@@ -31,7 +33,7 @@ const reducers = {
     reversalMainReducers,
     receivableTableReducers,
     editReducers,
-   
+    correctionJVMainReducers,
 }
 
 export default reducers;

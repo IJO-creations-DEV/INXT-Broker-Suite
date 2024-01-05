@@ -1,5 +1,5 @@
 import { BreadCrumb } from 'primereact/breadcrumb';
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef,useEffect } from 'react'
 import NavBar from '../../../components/NavBar';
 import SvgDot from '../../../assets/icons/SvgDot';
 import "../Commission/index.scss"
@@ -9,7 +9,9 @@ import { InputText } from 'primereact/inputtext';
 import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon';
 import { TieredMenu } from 'primereact/tieredmenu';
 import CommissionTabel from './CommissionTabel';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { getCommissionSearchList } from './store/commissionMiddleWare';
 
 
 const Commission = () => {
@@ -48,12 +50,30 @@ const Commission = () => {
       label: 'Voucher Number',
     },
   ];
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    console.log(values.search, "getSearchPolicyList");
+    dispatch(getCommissionSearchList({ textSearch: values.search }));
+  }
+
+
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+     
+      dispatch(getCommissionSearchList({ textSearch: formik.values.search }));
+    }
+  }, [formik.values.search]);
 
   const [products, setProducts] = useState([]);
-  const { commissionList, loading } = useSelector(({ commissionMianReducers }) => {
+  const { commissionList, loading ,commissionSearchList} = useSelector(({ commissionMianReducers }) => {
     return {
       loading: commissionMianReducers?.loading,
       commissionList: commissionMianReducers?.commissionList,
+      commissionSearchList:commissionMianReducers?.commissionSearchList
    
     };
   });
@@ -93,7 +113,7 @@ const Commission = () => {
       </div>
       <div className='col-12 m-0 '>
         <div className='sub__container__Journal__Voture'>
-          <div className='col-12 search__filter__view__Journal__Voture'>
+          <form onSubmit={formik.handleSubmit}  className='col-12 search__filter__view__Journal__Voture'>
             <div className='col-12 md:col-10 lg:col-10'>
               <div className='searchIcon__view__input__Journal__Voture'>
                 <span className='p-1'> <SvgSearchIcon /></span>
@@ -101,17 +121,25 @@ const Commission = () => {
                   style={{ width: '100%' }}
                   classNames='input__sub__account__Journal__Voture'
                   placeholder='Search By Commission Code'
+                  value={formik.values.search}
+                  onChange={formik.handleChange("search")}
                 />
               </div>
             </div>
          
-          </div>
+          </form>
           <div className='col-12 '>
             <div className='main__tabel__title__Journal__Voture p-2'>Petty Cash List</div>
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <CommissionTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} commissionList={commissionList} />
+              <CommissionTabel 
+              handleEdit={handleEdit} 
+              newDataTable={newDataTable} 
+              visible={visible} 
+           
+              commissionList={formik.values.search !== "" ? commissionSearchList : commissionList}
+              />
             </div>
           </div>
         </div>

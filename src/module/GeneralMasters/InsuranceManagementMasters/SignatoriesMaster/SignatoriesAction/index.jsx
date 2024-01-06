@@ -16,7 +16,7 @@ import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
 
-const CoverDetailsAction = ({ action }) => {
+const SignatoriesDetailsAction = ({ action }) => {
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -34,17 +34,17 @@ const CoverDetailsAction = ({ action }) => {
       url: "/master/generals/insurancemanagement/insurancecompany",
     },
     {
-      label: "Cover",
-      url: "/master/generals/insurancemanagement/cover",
+      label: "Signatories",
+      url: "/master/generals/insurancemanagement/signatories",
     },
 
     {
       label: `${
         action === "add"
-          ? "Add Cover"
+          ? "Add Signatories"
           : action === "edit"
-          ? "Edit Cover"
-          : "Cover Details"
+          ? "Edit Signatories"
+          : "Signatories Details"
       }`,
     },
   ];
@@ -72,14 +72,14 @@ const CoverDetailsAction = ({ action }) => {
   const customValidation = (values) => {
     const errors = {};
 
-    if (!values.coverCode) {
-      errors.coverCode = "This field is required";
+    if (!values.signatoryCode) {
+      errors.signatoryCode = "This field is required";
     }
-    if (!values.coverName) {
-      errors.coverName = "This field is required";
+    if (!values.signatoryName) {
+      errors.signatoryName = "This field is required";
     }
-    if (!values.coverDescription) {
-      errors.coverDescription = "This field is required";
+    if (!values.signatoryDescription) {
+      errors.signatoryDescription = "This field is required";
     }
 
     return errors;
@@ -91,27 +91,27 @@ const CoverDetailsAction = ({ action }) => {
 
       {
         setTimeout(() => {
-          navigation("/master/generals/insurancemanagement/cover");
+          navigation("/master/generals/insurancemanagement/signatories");
           formik.resetForm();
         }, 3000);
       }
     } else {
-      navigation("/master/generals/insurancemanagement/cover");
+      navigation("/master/generals/insurancemanagement/signatories");
     }
 
     console.log(values, "find values");
   };
   const setFormikValues = () => {
-    const coverCode = "CC1234";
-    const coverName = "Name";
-    const coverDescription = "Cover description";
-    const modifiedBy = "Johnson";
+    const signatoryCode = "Signatory0123";
+    const signatoryName = "Signatory";
+    const signatoryDescription = "Signatory description";
+    const modifiedBy = "Name";
     const modifiedOn = "12/12/23";
 
     const updatedValues = {
-      coverCode: `${coverCode}`,
-      coverName: `${coverName}`,
-      coverDescription: `${coverDescription}`,
+      signatoryCode: `${signatoryCode}`,
+      signatoryName: `${signatoryName}`,
+      signatoryDescription: `${signatoryDescription}`,
       modifiedBy: `${modifiedBy}`,
       modifiedOn: `${modifiedOn}`,
     };
@@ -119,9 +119,9 @@ const CoverDetailsAction = ({ action }) => {
   };
   const formik = useFormik({
     initialValues: {
-      coverCode: "",
-      coverName: "",
-      coverDescription: "",
+      signatoryCode: "",
+      signatoryName: "",
+      signatoryDescription: "",
       modifiedBy: "",
       modifiedOn: "",
     },
@@ -133,7 +133,7 @@ const CoverDetailsAction = ({ action }) => {
   return (
     <div className="action__cover_container">
       <div className="grid m-0 top-container">
-        <CustomToast ref={toastRef} message="Cover Code CC1234 is added" />
+        <CustomToast ref={toastRef} message="Signatory Code 001234 is added" />
         <div className="col-12 p-0">
           <NavBar />
         </div>
@@ -144,10 +144,10 @@ const CoverDetailsAction = ({ action }) => {
             </span>
             <div className="main__account__title">
               {action === "add"
-                ? "Add Cover"
+                ? "Add Signatories"
                 : action === "edit"
-                ? "Edit Cover"
-                : "Cover Details"}
+                ? "Edit Signatories"
+                : "Signatories Details"}
             </div>
           </div>
         </div>
@@ -168,15 +168,15 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Code"
-              value={formik.values.coverCode}
+              label="Signatory Code"
+              value={formik.values.signatoryCode}
               onChange={(e) =>
-                formik.setFieldValue("coverCode", e.target.value)
+                formik.setFieldValue("signatoryCode", e.target.value)
               }
             />
-            {formik.touched.coverCode && formik.errors.coverCode && (
+            {formik.touched.signatoryCode && formik.errors.signatoryCode && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.coverCode}
+                {formik.errors.signatoryCode}
               </div>
             )}
           </div>
@@ -186,15 +186,15 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Name"
-              value={formik.values.coverName}
+              label="Signatory Name"
+              value={formik.values.signatoryName}
               onChange={(e) =>
-                formik.setFieldValue("coverName", e.target.value)
+                formik.setFieldValue("signatoryName", e.target.value)
               }
             />
-            {formik.touched.coverName && formik.errors.coverName && (
+            {formik.touched.signatoryName && formik.errors.signatoryName && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.coverName}
+                {formik.errors.signatoryName}
               </div>
             )}
           </div>
@@ -204,16 +204,16 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Description"
-              value={formik.values.coverDescription}
+              label="Signatory Description"
+              value={formik.values.signatoryDescription}
               onChange={(e) =>
-                formik.setFieldValue("coverDescription", e.target.value)
+                formik.setFieldValue("signatoryDescription", e.target.value)
               }
             />
-            {formik.touched.coverDescription &&
-              formik.errors.coverDescription && (
+            {formik.touched.signatoryDescription &&
+              formik.errors.signatoryDescription && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.coverDescription}
+                  {formik.errors.signatoryDescription}
                 </div>
               )}
           </div>
@@ -267,4 +267,4 @@ const CoverDetailsAction = ({ action }) => {
   );
 };
 
-export default CoverDetailsAction;
+export default SignatoriesDetailsAction;

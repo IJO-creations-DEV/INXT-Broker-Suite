@@ -16,7 +16,7 @@ import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
 
-const CoverDetailsAction = ({ action }) => {
+const PolicyTypeDetailsAction = ({ action }) => {
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -34,17 +34,16 @@ const CoverDetailsAction = ({ action }) => {
       url: "/master/generals/insurancemanagement/insurancecompany",
     },
     {
-      label: "Cover",
-      url: "/master/generals/insurancemanagement/cover",
+      label: "Product",
+      url: "master/generals/insurancemanagement/productmaster",
     },
-
     {
       label: `${
         action === "add"
-          ? "Add Cover"
+          ? "Add Policy type"
           : action === "edit"
-          ? "Edit Cover"
-          : "Cover Details"
+          ? "Edit Policy type"
+          : "Policy type details"
       }`,
     },
   ];
@@ -72,14 +71,17 @@ const CoverDetailsAction = ({ action }) => {
   const customValidation = (values) => {
     const errors = {};
 
-    if (!values.coverCode) {
-      errors.coverCode = "This field is required";
+    if (!values.policyTypeCode) {
+      errors.policyTypeCode = "This field is required";
     }
-    if (!values.coverName) {
-      errors.coverName = "This field is required";
+    if (!values.policyTypeName) {
+      errors.policyTypeName = "This field is required";
     }
-    if (!values.coverDescription) {
-      errors.coverDescription = "This field is required";
+    if (!values.policyTypeDescription) {
+      errors.policyTypeDescription = "This field is required";
+    }
+    if (!values.Product) {
+      errors.Product = "This field is required";
     }
 
     return errors;
@@ -91,37 +93,40 @@ const CoverDetailsAction = ({ action }) => {
 
       {
         setTimeout(() => {
-          navigation("/master/generals/insurancemanagement/cover");
+          navigation("/master/generals/insurancemanagement/policytype");
           formik.resetForm();
         }, 3000);
       }
     } else {
-      navigation("/master/generals/insurancemanagement/cover");
+      navigation("/master/generals/insurancemanagement/policytype");
     }
 
     console.log(values, "find values");
   };
   const setFormikValues = () => {
-    const coverCode = "CC1234";
-    const coverName = "Name";
-    const coverDescription = "Cover description";
+    const policyTypeCode = "pro00123";
+    const policyTypeName = "Motor Comprehensive";
+    const policyTypeDescription = "Product Description";
     const modifiedBy = "Johnson";
     const modifiedOn = "12/12/23";
+    const Product = "Line of Business";
 
     const updatedValues = {
-      coverCode: `${coverCode}`,
-      coverName: `${coverName}`,
-      coverDescription: `${coverDescription}`,
+      policyTypeCode: `${policyTypeCode}`,
+      policyTypeName: `${policyTypeName}`,
+      policyTypeDescription: `${policyTypeDescription}`,
       modifiedBy: `${modifiedBy}`,
       modifiedOn: `${modifiedOn}`,
+      Product: `${Product}`,
     };
     formik.setValues({ ...formik.values, ...updatedValues });
   };
   const formik = useFormik({
     initialValues: {
-      coverCode: "",
-      coverName: "",
-      coverDescription: "",
+      policyTypeCode: "",
+      policyTypeName: "",
+      policyTypeDescription: "",
+      Product: "",
       modifiedBy: "",
       modifiedOn: "",
     },
@@ -131,9 +136,9 @@ const CoverDetailsAction = ({ action }) => {
     },
   });
   return (
-    <div className="action__cover_container">
+    <div className="policy__type__master_container">
       <div className="grid m-0 top-container">
-        <CustomToast ref={toastRef} message="Cover Code CC1234 is added" />
+        <CustomToast ref={toastRef} message="Policy type Code CC1234 is added" />
         <div className="col-12 p-0">
           <NavBar />
         </div>
@@ -144,10 +149,10 @@ const CoverDetailsAction = ({ action }) => {
             </span>
             <div className="main__account__title">
               {action === "add"
-                ? "Add Cover"
+                ? "Add Policy type"
                 : action === "edit"
-                ? "Edit Cover"
-                : "Cover Details"}
+                ? "Edit Policy type"
+                : "Policy type details"}
             </div>
           </div>
         </div>
@@ -168,15 +173,15 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Code"
-              value={formik.values.coverCode}
+              label="Policy Type Code"
+              value={formik.values.policyTypeCode}
               onChange={(e) =>
-                formik.setFieldValue("coverCode", e.target.value)
+                formik.setFieldValue("policyTypeCode", e.target.value)
               }
             />
-            {formik.touched.coverCode && formik.errors.coverCode && (
+            {formik.touched.policyTypeCode && formik.errors.policyTypeCode && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.coverCode}
+                {formik.errors.policyTypeCode}
               </div>
             )}
           </div>
@@ -186,15 +191,15 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Name"
-              value={formik.values.coverName}
+              label="Policy Type Name"
+              value={formik.values.policyTypeName}
               onChange={(e) =>
-                formik.setFieldValue("coverName", e.target.value)
+                formik.setFieldValue("policyTypeName", e.target.value)
               }
             />
-            {formik.touched.coverName && formik.errors.coverName && (
+            {formik.touched.policyTypeName && formik.errors.policyTypeName && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.coverName}
+                {formik.errors.policyTypeName}
               </div>
             )}
           </div>
@@ -204,18 +209,36 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Description"
-              value={formik.values.coverDescription}
+              label="Policy Type Description"
+              value={formik.values.policyTypeDescription}
               onChange={(e) =>
-                formik.setFieldValue("coverDescription", e.target.value)
+                formik.setFieldValue("policyTypeDescription", e.target.value)
               }
             />
-            {formik.touched.coverDescription &&
-              formik.errors.coverDescription && (
+            {formik.touched.policyTypeDescription &&
+              formik.errors.policyTypeDescription && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.coverDescription}
+                  {formik.errors.policyTypeDescription}
                 </div>
               )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
+            <InputField
+              disabled={action === "view" ? true : false}
+              classNames="input__field__corrections"
+              className="input__label__corrections"
+              placeholder="Enter"
+              label="Product"
+              value={formik.values.Product}
+              onChange={(e) =>
+                formik.setFieldValue("Product", e.target.value)
+              }
+            />
+            {formik.touched.Product && formik.errors.Product && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.Product}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
             <InputField
@@ -267,4 +290,4 @@ const CoverDetailsAction = ({ action }) => {
   );
 };
 
-export default CoverDetailsAction;
+export default PolicyTypeDetailsAction;

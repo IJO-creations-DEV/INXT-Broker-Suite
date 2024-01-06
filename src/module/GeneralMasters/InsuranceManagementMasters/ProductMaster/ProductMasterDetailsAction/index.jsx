@@ -16,7 +16,7 @@ import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
 
-const CoverDetailsAction = ({ action }) => {
+const ProductMatserDetailsAction = ({ action }) => {
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -34,17 +34,16 @@ const CoverDetailsAction = ({ action }) => {
       url: "/master/generals/insurancemanagement/insurancecompany",
     },
     {
-      label: "Cover",
-      url: "/master/generals/insurancemanagement/cover",
+      label: "Product",
+      url: "master/generals/insurancemanagement/productmaster",
     },
-
     {
       label: `${
         action === "add"
-          ? "Add Cover"
+          ? "Add Line of Business"
           : action === "edit"
-          ? "Edit Cover"
-          : "Cover Details"
+          ? "Edit Line of Business"
+          : "Line of Business Details"
       }`,
     },
   ];
@@ -72,14 +71,17 @@ const CoverDetailsAction = ({ action }) => {
   const customValidation = (values) => {
     const errors = {};
 
-    if (!values.coverCode) {
-      errors.coverCode = "This field is required";
+    if (!values.productCode) {
+      errors.productCode = "This field is required";
     }
-    if (!values.coverName) {
-      errors.coverName = "This field is required";
+    if (!values.productName) {
+      errors.productName = "This field is required";
     }
-    if (!values.coverDescription) {
-      errors.coverDescription = "This field is required";
+    if (!values.productDescription) {
+      errors.productDescription = "This field is required";
+    }
+    if (!values.lineofBusiness) {
+      errors.lineofBusiness = "This field is required";
     }
 
     return errors;
@@ -91,37 +93,40 @@ const CoverDetailsAction = ({ action }) => {
 
       {
         setTimeout(() => {
-          navigation("/master/generals/insurancemanagement/cover");
+          navigation("/master/generals/insurancemanagement/productmaster");
           formik.resetForm();
         }, 3000);
       }
     } else {
-      navigation("/master/generals/insurancemanagement/cover");
+      navigation("/master/generals/insurancemanagement/productmaster");
     }
 
     console.log(values, "find values");
   };
   const setFormikValues = () => {
-    const coverCode = "CC1234";
-    const coverName = "Name";
-    const coverDescription = "Cover description";
+    const productCode = "pro00123";
+    const productName = "Motor Comprehensive";
+    const productDescription = "Product Description";
     const modifiedBy = "Johnson";
     const modifiedOn = "12/12/23";
+    const lineofBusiness = "Line of Business";
 
     const updatedValues = {
-      coverCode: `${coverCode}`,
-      coverName: `${coverName}`,
-      coverDescription: `${coverDescription}`,
+      productCode: `${productCode}`,
+      productName: `${productName}`,
+      productDescription: `${productDescription}`,
       modifiedBy: `${modifiedBy}`,
       modifiedOn: `${modifiedOn}`,
+      lineofBusiness: `${lineofBusiness}`,
     };
     formik.setValues({ ...formik.values, ...updatedValues });
   };
   const formik = useFormik({
     initialValues: {
-      coverCode: "",
-      coverName: "",
-      coverDescription: "",
+      productCode: "",
+      productName: "",
+      productDescription: "",
+      lineofBusiness: "",
       modifiedBy: "",
       modifiedOn: "",
     },
@@ -131,9 +136,9 @@ const CoverDetailsAction = ({ action }) => {
     },
   });
   return (
-    <div className="action__cover_container">
+    <div className="action__product__master_container">
       <div className="grid m-0 top-container">
-        <CustomToast ref={toastRef} message="Cover Code CC1234 is added" />
+        <CustomToast ref={toastRef} message="Product Code CC1234 is added" />
         <div className="col-12 p-0">
           <NavBar />
         </div>
@@ -144,10 +149,10 @@ const CoverDetailsAction = ({ action }) => {
             </span>
             <div className="main__account__title">
               {action === "add"
-                ? "Add Cover"
+                ? "Add Line of Business"
                 : action === "edit"
-                ? "Edit Cover"
-                : "Cover Details"}
+                ? "Edit Line of Business"
+                : "Line of Business Details"}
             </div>
           </div>
         </div>
@@ -168,15 +173,15 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Code"
-              value={formik.values.coverCode}
+              label="Product Code"
+              value={formik.values.productCode}
               onChange={(e) =>
-                formik.setFieldValue("coverCode", e.target.value)
+                formik.setFieldValue("productCode", e.target.value)
               }
             />
-            {formik.touched.coverCode && formik.errors.coverCode && (
+            {formik.touched.productCode && formik.errors.productCode && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.coverCode}
+                {formik.errors.productCode}
               </div>
             )}
           </div>
@@ -186,15 +191,15 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Name"
-              value={formik.values.coverName}
+              label="Product Name"
+              value={formik.values.productName}
               onChange={(e) =>
-                formik.setFieldValue("coverName", e.target.value)
+                formik.setFieldValue("productName", e.target.value)
               }
             />
-            {formik.touched.coverName && formik.errors.coverName && (
+            {formik.touched.productName && formik.errors.productName && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.coverName}
+                {formik.errors.productName}
               </div>
             )}
           </div>
@@ -204,18 +209,36 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Description"
-              value={formik.values.coverDescription}
+              label="Product Description"
+              value={formik.values.productDescription}
               onChange={(e) =>
-                formik.setFieldValue("coverDescription", e.target.value)
+                formik.setFieldValue("productDescription", e.target.value)
               }
             />
-            {formik.touched.coverDescription &&
-              formik.errors.coverDescription && (
+            {formik.touched.productDescription &&
+              formik.errors.productDescription && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.coverDescription}
+                  {formik.errors.productDescription}
                 </div>
               )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
+            <InputField
+              disabled={action === "view" ? true : false}
+              classNames="input__field__corrections"
+              className="input__label__corrections"
+              placeholder="Enter"
+              label="Line of Business"
+              value={formik.values.lineofBusiness}
+              onChange={(e) =>
+                formik.setFieldValue("lineofBusiness", e.target.value)
+              }
+            />
+            {formik.touched.lineofBusiness && formik.errors.lineofBusiness && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.lineofBusiness}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
             <InputField
@@ -267,4 +290,4 @@ const CoverDetailsAction = ({ action }) => {
   );
 };
 
-export default CoverDetailsAction;
+export default ProductMatserDetailsAction;

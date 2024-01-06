@@ -22,7 +22,6 @@ const Index = () => {
     },
     {
       label: "Insurance Company",
-      url: "/master/generals/insurancemanagement/insurancecompany",
     },
   ];
   const home = { label: "Master" };

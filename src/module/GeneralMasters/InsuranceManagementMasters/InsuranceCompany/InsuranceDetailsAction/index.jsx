@@ -113,13 +113,17 @@ const InsuranceDetailsAction = ({ action }) => {
   };
   const handleSubmit = (values) => {
     // Handle form submission
-    toastRef.current.showToast();
+    if (action === "add") {
+      toastRef.current.showToast();
 
-    {
-      setTimeout(() => {
-        navigation("/master/generals/insurancemanagement/insurancecompany");
-        formik.resetForm();
-      }, 3000);
+      {
+        setTimeout(() => {
+          navigation("/master/generals/insurancemanagement/insurancecompany");
+          formik.resetForm();
+        }, 3000);
+      }
+    } else {
+      navigation("/master/generals/insurancemanagement/insurancecompany");
     }
 
     console.log(values, "find values");
@@ -432,7 +436,6 @@ const InsuranceDetailsAction = ({ action }) => {
               disabled={true}
               classNames="input__field__corrections"
               className="input__label__corrections"
-              placeholder="Enter"
               label="Modified By"
               value={formik.values.modifiedBy}
               onChange={(e) =>
@@ -445,7 +448,6 @@ const InsuranceDetailsAction = ({ action }) => {
               disabled={true}
               classNames="input__field__corrections"
               className="input__label__corrections"
-              placeholder="Enter"
               label="Modified On"
               value={formik.values.modifiedOn}
               onChange={(e) =>

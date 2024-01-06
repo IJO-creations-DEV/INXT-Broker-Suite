@@ -78,29 +78,25 @@ const TableData = ({ navigate }) => {
   };
 
   const handleView = (id) => {
-    navigate(
-      `/master/generals/insurancemanagement/insurancecompany/view/${id}`
-    );
+    navigate(`/master/generals/insurancemanagement/productmaster/view/${id}`);
   };
   const handleEdit = (id) => {
-    navigate(
-      `/master/generals/insurancemanagement/insurancecompany/edit/${id}`
-    );
+    navigate(`/master/generals/insurancemanagement/productmaster/edit/${id}`);
   };
   return (
-    <div className="insurance__company__table__container">
+    <div className="product__master__table__container">
       <div className="grid m-0 header_search_container">
         <div class="col-12 md:col-10 lg:col-10 xl:col-10 p-0">
           <span className="p-input-icon-left w-full">
             <i className="pi pi-search" />
             <InputText
-              placeholder="Search By Insurance Company  Code"
+              placeholder="Search By Product Code"
               className="searchinput__field"
             />
           </span>
         </div>
         <div className="p-0 col-12">
-          <div className="table__title">Insurance Company List</div>
+          <div className="table__title">Product List</div>
         </div>
       </div>
       <DataTable
@@ -114,24 +110,24 @@ const TableData = ({ navigate }) => {
         emptyMessage={emptyTableIcon}
       >
         <Column
-          field="insuranceCompanyCode"
-          header="Insurance Company  Code"
+          field="productCode"
+          header="Product Code"
           className="fieldvalue_container"
           sortable
         ></Column>
         <Column
-          field="insuranceCompanyName"
-          header="Insurance Company Name"
+          field="productName"
+          header="Product Name"
           className="fieldvalue_container"
         ></Column>
         <Column
-          field="email"
-          header="E-mail"
+          field="lineofBusiness"
+          header="Line of Business"
           className="fieldvalue_container"
         ></Column>
         <Column
-          field="phoneNumber"
-          header="Phone Number"
+          field="commissionCode"
+          header="Commission Code"
           className="fieldvalue_container"
         ></Column>
         <Column

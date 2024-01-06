@@ -18,28 +18,27 @@ const Index = () => {
   const items = [
     {
       label: "Insurance Management",
-      url: "/master/generals/insurancemanagement/insurancecompany",
+      url: "/master/generals/insurancemanagement/cover",
     },
     {
-      label: "Insurance Company",
-      url: "/master/generals/insurancemanagement/insurancecompany",
+      label: "Cover",
     },
   ];
   const home = { label: "Master" };
 
   const handleAction = () => {
     navigation(
-      `/master/generals/insurancemanagement/insurancecompany/add/${1}`
+      `/master/generals/insurancemanagement/cover/add/${1}`
     );
   };
   return (
-    <div className="container__insurance_company_master">
+    <div className="container__cover_master">
       <div className="grid m-0 top__container">
         <div className="col-12 p-0">
           <NavBar />
         </div>
         <div className="col-12 p-0">
-          <div className="main__account__title">Insurance Company</div>
+          <div className="main__account__title">Cover Master</div>
         </div>
         <div className="col-12 p-0 flex justify-content-end">
           <Button

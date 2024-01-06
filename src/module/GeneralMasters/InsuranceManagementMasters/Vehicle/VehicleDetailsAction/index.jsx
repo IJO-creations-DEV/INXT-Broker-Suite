@@ -5,18 +5,12 @@ import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../../../../assets/icons/SvgDot";
 import InputField from "../../../../../components/InputField";
 import { useFormik } from "formik";
-import DropDowns from "../../../../../components/DropDowns";
-import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
-import { MultiSelect } from "primereact/multiselect";
-import LabelWrapper from "../../../../../components/LabelWrapper";
 import { Button } from "primereact/button";
-import { SelectButton } from "primereact/selectbutton";
 import { useNavigate, useParams } from "react-router-dom";
 import CustomToast from "../../../../../components/Toast";
-import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
 
-const CoverDetailsAction = ({ action }) => {
+const VehicleDetailsAction = ({ action }) => {
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -34,17 +28,17 @@ const CoverDetailsAction = ({ action }) => {
       url: "/master/generals/insurancemanagement/insurancecompany",
     },
     {
-      label: "Cover",
-      url: "/master/generals/insurancemanagement/cover",
+      label: "Vehicle",
+      url: "/master/generals/insurancemanagement/vehicle",
     },
 
     {
       label: `${
         action === "add"
-          ? "Add Cover"
+          ? "Add Vehicle"
           : action === "edit"
-          ? "Edit Cover"
-          : "Cover Details"
+          ? "Edit Vehicle"
+          : "View Vehicle"
       }`,
     },
   ];
@@ -72,14 +66,25 @@ const CoverDetailsAction = ({ action }) => {
   const customValidation = (values) => {
     const errors = {};
 
-    if (!values.coverCode) {
-      errors.coverCode = "This field is required";
+    if (!values.vehicleCode) {
+      errors.vehicleCode = "This field is required";
     }
-    if (!values.coverName) {
-      errors.coverName = "This field is required";
+    if (!values.vehicleName) {
+      errors.vehicleName = "This field is required";
     }
-    if (!values.coverDescription) {
-      errors.coverDescription = "This field is required";
+    if (!values.vehicleVariant) {
+      errors.vehicleVariant = "This field is required";
+    }
+
+    if (!values.vehicleModel) {
+      errors.vehicleModel = "This field is required";
+    }
+    if (!values.vehicleBrand) {
+      errors.vehicleBrand = "This field is required";
+    }
+
+    if (!values.seatingCapacity) {
+      errors.seatingCapacity = "This field is required";
     }
 
     return errors;
@@ -91,39 +96,42 @@ const CoverDetailsAction = ({ action }) => {
 
       {
         setTimeout(() => {
-          navigation("/master/generals/insurancemanagement/cover");
+          navigation("/master/generals/insurancemanagement/vehicle");
           formik.resetForm();
         }, 3000);
       }
     } else {
-      navigation("/master/generals/insurancemanagement/cover");
+      navigation("/master/generals/insurancemanagement/vehicle");
     }
 
     console.log(values, "find values");
   };
   const setFormikValues = () => {
-    const coverCode = "CC1234";
-    const coverName = "Name";
-    const coverDescription = "Cover description";
-    const modifiedBy = "Johnson";
-    const modifiedOn = "12/12/23";
+    const vehicleCode = "VC12345";
+    const vehicleName = "Kia";
+    const vehicleVariant = "S Series";
+    const vehicleModel = "Seltos";
+    const vehicleBrand = "Kia";
+    const seatingCapacity = "7";
 
     const updatedValues = {
-      coverCode: `${coverCode}`,
-      coverName: `${coverName}`,
-      coverDescription: `${coverDescription}`,
-      modifiedBy: `${modifiedBy}`,
-      modifiedOn: `${modifiedOn}`,
+      vehicleCode: `${vehicleCode}`,
+      vehicleName: `${vehicleName}`,
+      vehicleVariant: `${vehicleVariant}`,
+      vehicleModel: `${vehicleModel}`,
+      vehicleBrand: `${vehicleBrand}`,
+      seatingCapacity: `${seatingCapacity}`,
     };
     formik.setValues({ ...formik.values, ...updatedValues });
   };
   const formik = useFormik({
     initialValues: {
-      coverCode: "",
-      coverName: "",
-      coverDescription: "",
-      modifiedBy: "",
-      modifiedOn: "",
+      vehicleCode: "",
+      vehicleName: "",
+      vehicleVariant: "",
+      vehicleModel: "",
+      vehicleBrand: "",
+      seatingCapacity: "",
     },
     validate: customValidation,
     onSubmit: (values) => {
@@ -131,9 +139,9 @@ const CoverDetailsAction = ({ action }) => {
     },
   });
   return (
-    <div className="action__cover_container">
+    <div className="action__vehicle_container">
       <div className="grid m-0 top-container">
-        <CustomToast ref={toastRef} message="Cover Code CC1234 is added" />
+        <CustomToast ref={toastRef} message="Vehicle Code VC1234 is added" />
         <div className="col-12 p-0">
           <NavBar />
         </div>
@@ -144,10 +152,10 @@ const CoverDetailsAction = ({ action }) => {
             </span>
             <div className="main__account__title">
               {action === "add"
-                ? "Add Cover"
+                ? "Add Vehicle"
                 : action === "edit"
-                ? "Edit Cover"
-                : "Cover Details"}
+                ? "Edit Vehicle"
+                : "View Vehicle"}
             </div>
           </div>
         </div>
@@ -168,15 +176,15 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Code"
-              value={formik.values.coverCode}
+              label="Vehicle Code"
+              value={formik.values.vehicleCode}
               onChange={(e) =>
-                formik.setFieldValue("coverCode", e.target.value)
+                formik.setFieldValue("vehicleCode", e.target.value)
               }
             />
-            {formik.touched.coverCode && formik.errors.coverCode && (
+            {formik.touched.vehicleCode && formik.errors.vehicleCode && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.coverCode}
+                {formik.errors.vehicleCode}
               </div>
             )}
           </div>
@@ -186,60 +194,90 @@ const CoverDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Name"
-              value={formik.values.coverName}
+              label="Vehicle Name"
+              value={formik.values.vehicleName}
               onChange={(e) =>
-                formik.setFieldValue("coverName", e.target.value)
+                formik.setFieldValue("vehicleName", e.target.value)
               }
             />
-            {formik.touched.coverName && formik.errors.coverName && (
+            {formik.touched.vehicleName && formik.errors.vehicleName && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.coverName}
+                {formik.errors.vehicleName}
               </div>
             )}
           </div>
-          <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
             <InputField
               disabled={action === "view" ? true : false}
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Cover Description"
-              value={formik.values.coverDescription}
+              label="Vehicle Variant"
+              value={formik.values.vehicleVariant}
               onChange={(e) =>
-                formik.setFieldValue("coverDescription", e.target.value)
+                formik.setFieldValue("vehicleVariant", e.target.value)
               }
             />
-            {formik.touched.coverDescription &&
-              formik.errors.coverDescription && (
+            {formik.touched.vehicleVariant && formik.errors.vehicleVariant && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.vehicleVariant}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
+            <InputField
+              disabled={action === "view" ? true : false}
+              classNames="input__field__corrections"
+              className="input__label__corrections"
+              placeholder="Enter"
+              label="Vehicle Model"
+              value={formik.values.vehicleModel}
+              onChange={(e) =>
+                formik.setFieldValue("vehicleModel", e.target.value)
+              }
+            />
+            {formik.touched.vehicleModel && formik.errors.vehicleModel && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.vehicleModel}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
+            <InputField
+              disabled={action === "view" ? true : false}
+              classNames="input__field__corrections"
+              className="input__label__corrections"
+              placeholder="Enter"
+              label="Vehicle Brand"
+              value={formik.values.vehicleBrand}
+              onChange={(e) =>
+                formik.setFieldValue("vehicleBrand", e.target.value)
+              }
+            />
+            {formik.touched.vehicleBrand && formik.errors.vehicleBrand && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.vehicleBrand}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
+            <InputField
+              disabled={action === "view" ? true : false}
+              classNames="input__field__corrections"
+              className="input__label__corrections"
+              placeholder="Enter"
+              label="Seating Capacity"
+              value={formik.values.seatingCapacity}
+              onChange={(e) =>
+                formik.setFieldValue("seatingCapacity", e.target.value)
+              }
+            />
+            {formik.touched.seatingCapacity &&
+              formik.errors.seatingCapacity && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.coverDescription}
+                  {formik.errors.seatingCapacity}
                 </div>
               )}
-          </div>
-          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
-            <InputField
-              disabled={true}
-              classNames="input__field__corrections"
-              className="input__label__corrections"
-              label="Modified By"
-              value={formik.values.modifiedBy}
-              onChange={(e) =>
-                formik.setFieldValue("modifiedBy", e.target.value)
-              }
-            />
-          </div>
-          <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
-            <InputField
-              disabled={true}
-              classNames="input__field__corrections"
-              className="input__label__corrections"
-              label="Modified On"
-              value={formik.values.modifiedOn}
-              onChange={(e) =>
-                formik.setFieldValue("modifiedOn", e.target.value)
-              }
-            />
           </div>
         </div>
       </div>
@@ -267,4 +305,4 @@ const CoverDetailsAction = ({ action }) => {
   );
 };
 
-export default CoverDetailsAction;
+export default VehicleDetailsAction;

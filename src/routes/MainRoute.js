@@ -133,6 +133,12 @@ import Country from "../module/GeneralMasters/LocationMasters/CountryMaster";
 import State from "../module/GeneralMasters/LocationMasters/StateMaster";
 import City from "../module/GeneralMasters/LocationMasters/CityMaster";
 import InsuranceDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/InsuranceCompany/InsuranceDetailsAction";
+import LineBusinessDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/LineOfBusiness/LineBusinessDetailsAction";
+import ProductMatserDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/ProductMaster/ProductMasterDetailsAction";
+import PolicyTypeDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/PolicyTypeMaster/PolicyTypeDetailsAction";
+import CoverDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/Cover/CoverDetailsAction";
+import SignatoriesDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/SignatoriesMaster/SignatoriesAction";
+import VehicleDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/Vehicle/VehicleDetailsAction";
 
 import Designation from "../module/GeneralMasters/EmployeeManagementMasters/Designation/DesignationMaster";
 import AddDesignation from "../module/GeneralMasters/EmployeeManagementMasters/Designation/AddDesignation";
@@ -372,24 +378,96 @@ const Maincomponent = () => {
               element={<LineOfBusiness />}
             />
             <Route
+              path="master/generals/insurancemanagement/lineofbusiness/add/:id"
+              element={<LineBusinessDetailsAction action="add" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/lineofbusiness/edit/:id"
+              element={<LineBusinessDetailsAction action="edit" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/lineofbusiness/view/:id"
+              element={<LineBusinessDetailsAction action="view" />}
+            />
+            <Route
               path="master/generals/insurancemanagement/productmaster"
               element={<ProductMaster />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/productmaster/add/:id"
+              element={<ProductMatserDetailsAction action="add" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/productmaster/edit/:id"
+              element={<ProductMatserDetailsAction action="edit" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/productmaster/view/:id"
+              element={<ProductMatserDetailsAction action="view" />}
             />
             <Route
               path="master/generals/insurancemanagement/policytype"
               element={<PolicyType />}
             />
             <Route
+              path="master/generals/insurancemanagement/policytype/add/:id"
+              element={<PolicyTypeDetailsAction action="add" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/policytype/edit/:id"
+              element={<PolicyTypeDetailsAction action="edit" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/policytype/view/:id"
+              element={<PolicyTypeDetailsAction action="view" />}
+            />
+            <Route
               path="master/generals/insurancemanagement/cover"
               element={<Cover />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/cover/add/:id"
+              element={<CoverDetailsAction action="add" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/cover/edit/:id"
+              element={<CoverDetailsAction action="edit" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/cover/view/:id"
+              element={<CoverDetailsAction action="view" />}
             />
             <Route
               path="master/generals/insurancemanagement/signatories"
               element={<Signatories />}
             />
             <Route
+              path="master/generals/insurancemanagement/signatories/add/:id"
+              element={<SignatoriesDetailsAction action="add" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/signatories/edit/:id"
+              element={<SignatoriesDetailsAction action="edit" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/signatories/view/:id"
+              element={<SignatoriesDetailsAction action="view" />}
+            />
+            <Route
               path="master/generals/insurancemanagement/vehicle"
               element={<Vahicle />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/vehicle/add/:id"
+              element={<VehicleDetailsAction action="add" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/vehicle/edit/:id"
+              element={<VehicleDetailsAction action="edit" />}
+            />
+            <Route
+              path="master/generals/insurancemanagement/vehicle/view/:id"
+              element={<VehicleDetailsAction action="view" />}
             />
 
             {/* Location */}

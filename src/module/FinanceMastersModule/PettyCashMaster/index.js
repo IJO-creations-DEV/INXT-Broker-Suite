@@ -1,5 +1,5 @@
 import { BreadCrumb } from 'primereact/breadcrumb';
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef ,useEffect} from 'react'
 import NavBar from '../../../components/NavBar';
 import SvgDot from '../../../assets/icons/SvgDot';
 import "../PettyCashMaster/index.scss"
@@ -11,7 +11,9 @@ import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon';
 import SvgUpload from "../../../assets/icons/SvgUpload"
 import { TieredMenu } from 'primereact/tieredmenu';
 import PettyDataTabel from './PettyDataTabel';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { getPettyCashSearchList } from './store/pettyCashMasterMiddleWare';
 
 
 const PettyCashMaster = ({ response }) => {
@@ -50,11 +52,28 @@ const PettyCashMaster = ({ response }) => {
       label: 'Voucher Number',
     },
   ];
-  const { pettyCashList,addPettyCash, loading } = useSelector(({ pettyCashMainReducers }) => {
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    console.log(values.search, "getSearchPolicyList");
+    dispatch(getPettyCashSearchList({ textSearch: values.search }));
+  }
+
+
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+     
+      dispatch(getPettyCashSearchList({ textSearch: formik.values.search }));
+    }
+  }, [formik.values.search]);
+  const { pettyCashList,pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
     return {
       loading: pettyCashMainReducers?.loading,
       pettyCashList: pettyCashMainReducers?.pettyCashList,
-      addPettyCash:pettyCashMainReducers?.addPettyCash
+      pettyCashSearchList:pettyCashMainReducers?.pettyCashSearchList
 
     };
   });
@@ -102,7 +121,7 @@ const PettyCashMaster = ({ response }) => {
       </div>
       <div className='col-12 m-0 '>
         <div className='sub__container__petty'>
-          <div className='col-12 search__filter__view__petty'>
+          <form onSubmit={formik.handleSubmit} className='col-12 search__filter__view__petty'>
             <div className='col-12 md:col-10 lg:col-10'>
               <div className='searchIcon__view__input__petty'>
                 <span className='pl-2'> <SvgSearchIcon /></span>
@@ -110,16 +129,18 @@ const PettyCashMaster = ({ response }) => {
                   style={{ width: '100%' }}
                   classNames='input__sub__account__petty'
                   placeholder='Search By Petty Cash Code'
+                  value={formik.values.search}
+                  onChange={formik.handleChange("search")}
                 />
               </div>
             </div>
-          </div>
+          </form>
           <div className='col-12 '>
             <div className='main__tabel__title__petty p-2'>Petty Cash List</div>
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} pettyCashList={pettyCashList} addPettyCash={addPettyCash} />
+              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}   pettyCashList={formik.values.search !== "" ? pettyCashSearchList : pettyCashList} />
             </div>
           </div>
         </div>

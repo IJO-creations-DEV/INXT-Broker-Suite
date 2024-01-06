@@ -1,6 +1,6 @@
 
 import { BreadCrumb } from 'primereact/breadcrumb'
-import React, { useEffect, useState,useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import NavBar from '../../../../components/NavBar'
 import SvgDot from '../../../../assets/icons/SvgDot';
 import "../PettyCashdetails/index.scss"
@@ -9,17 +9,28 @@ import { Button } from 'primereact/button';
 import { useFormik } from 'formik';
 import ArrowLeftIcon from '../../../../assets/icons/ArrowLeftIcon';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const PettyCashDetail = () => {
   const toastRef = useRef(null);
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const [visiblePopup, setVisiblePopup] = useState(false);
+
   const items = [
     { label: 'Petty Cash', url: '/master/finance/pettycash' },
     { label: 'Petty Cash Details', url: '/master/finance/pettycash/pettycashdetail' },
 
   ];
-  const handleGoBack=()=>{
+  const { pettyCashList, pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
+    return {
+      loading: pettyCashMainReducers?.loading,
+      pettyCashList: pettyCashMainReducers?.pettyCashList,
+      pettyCashSearchList: pettyCashMainReducers?.pettyCashSearchList
+
+    };
+  });
+  console.log(pettyCashList, "pettyCashList")
+  const handleGoBack = () => {
     navigate("/master/finance/pettycash")
   }
   const home = { label: "Master" };
@@ -57,17 +68,23 @@ const PettyCashDetail = () => {
 
     return errors;
   };
+  // const [view, setView]=useState({})
   const handleSubmit = (values) => {
     console.log(values, "find values");
   };
+  // const viewData=pettyCashList.map((val)=>{
+  //   return val
+  // })
+
+
   const formik = useFormik({
     initialValues: {
-      prttycashcode: "",
-      pettycashname: "",
-      pettycashsize: "",
-      avilabelcash: "",
-      mincashback: "",
-      transactionlimit: ""
+      prttycashcode: pettyCashList[0]?.pettycashcode || '',
+      pettycashname: pettyCashList[0]?.pettycashname || '',
+      pettycashsize: pettyCashList[0]?.pettycashsize || '',
+      avilabelcash: pettyCashList[0]?.avilabelcash || '',
+      mincashback: pettyCashList[0]?.minicashbox || '',
+      transactionlimit: pettyCashList[0]?.transactionlimit || ''
     },
     validate: customValidation,
     onSubmit: (values) => {
@@ -75,6 +92,7 @@ const PettyCashDetail = () => {
       setStep(1);
     },
   });
+
   return (
     <div className='grid detail__add__container'>
       <div className='col-12'>
@@ -101,9 +119,10 @@ const PettyCashDetail = () => {
               formik.values.prttycashcode
 
             }
-            onChange={(e) =>
-              formik.setFieldValue("prttycashcode", e.target.value)
-            }
+            disabled={true}
+          // onChange={(e) =>
+          //   formik.setFieldValue("prttycashcode", e.target.value)
+          // }
 
           />
         </div>
@@ -120,9 +139,10 @@ const PettyCashDetail = () => {
             value={
               formik.values.pettycashname
             }
-            onChange={(e) =>
-              formik.setFieldValue("pettycashname", e.target.value)
-            }
+            disabled={true}
+          // onChange={(e) =>
+          //   formik.setFieldValue("pettycashname", e.target.value)
+          // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -139,9 +159,10 @@ const PettyCashDetail = () => {
               formik.values.pettycashsize
 
             }
-            onChange={(e) =>
-              formik.setFieldValue("pettycashsize", e.target.value)
-            }
+            disabled={true}
+          // onChange={(e) =>
+          //   formik.setFieldValue("pettycashsize", e.target.value)
+          // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -158,9 +179,10 @@ const PettyCashDetail = () => {
               formik.values.avilabelcash
 
             }
-            onChange={(e) =>
-              formik.setFieldValue("avilabelcash", e.target.value)
-            }
+            disabled={true}
+          // onChange={(e) =>
+          //   formik.setFieldValue("avilabelcash", e.target.value)
+          // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -177,9 +199,10 @@ const PettyCashDetail = () => {
               formik.values.mincashback
 
             }
-            onChange={(e) =>
-              formik.setFieldValue("mincashback", e.target.value)
-            }
+            disabled={true}
+          // onChange={(e) =>
+          //   formik.setFieldValue("mincashback", e.target.value)
+          // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -196,9 +219,10 @@ const PettyCashDetail = () => {
               formik.values.transactionlimit
 
             }
-            onChange={(e) =>
-              formik.setFieldValue("transactionlimit", e.target.value)
-            }
+            disabled={true}
+          // onChange={(e) =>
+          //   formik.setFieldValue("transactionlimit", e.target.value)
+          // }
           />
         </div>
       </div>

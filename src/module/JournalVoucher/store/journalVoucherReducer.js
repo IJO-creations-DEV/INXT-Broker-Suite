@@ -17,7 +17,7 @@ const initialState = {
       branchCode: "branch012",
       currencyCode: "cu123",
       foreignAmount: "500",
-      localAmount:'600',
+      localAmount: '600',
       entryType: "credit"
     },
     {
@@ -27,7 +27,7 @@ const initialState = {
       branchCode: "branch88",
       currencyCode: "cu77",
       foreignAmount: "800",
-      localAmount:'600',
+      localAmount: '600',
       entryType: "debit"
     }
   ],
@@ -133,16 +133,14 @@ const journalVoucherReducer = createSlice({
         state.error = typeof action.payload === "string" ? action.payload : "";
       });
 
-    builder.addCase(patchJVMiddleware.pending,
-      (state) => {
-        state.loading = true;
-      }
+    builder.addCase(patchJVMiddleware.pending, (state) => {
+      state.loading = true;
+    }
     );
-    builder.addCase(
-      patchJVMiddleware.fulfilled, (state, action) => {
-        state.loading = false;
-        state.journalVoucherPostTabelData=action.payload
-      }
+    builder.addCase(patchJVMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.journalVoucherPostTabelData = action.payload
+    }
     );
     builder.addCase(patchJVMiddleware.rejected, (state, action) => {
       state.loading = false;

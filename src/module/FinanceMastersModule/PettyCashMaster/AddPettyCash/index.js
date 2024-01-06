@@ -41,8 +41,8 @@ const AddPettyCash = () => {
   const customValidation = (values) => {
     const errors = {};
 
-    if (!values.prttycashcode) {
-      errors.prttycashcode = "This field Code is required";
+    if (!values.pettycashcode) {
+      errors.pettycashcode = "This field Code is required";
     }
 
     if (!values.pettycashname) {
@@ -54,8 +54,8 @@ const AddPettyCash = () => {
     if (!values.avilabelcash) {
       errors.avilabelcash = "This field is required";
     }
-    if (!values.mincashback) {
-      errors.mincashback = "This field is required";
+    if (!values.minicashbox) {
+      errors.minicashbox = "This field is required";
     }
     if (!values.transactionlimit) {
       errors.transactionlimit = "This field is required";
@@ -65,78 +65,25 @@ const AddPettyCash = () => {
   };
   const dispatch = useDispatch()
   const handleSubmit = (values) => {
-    // // console.log(values,"values")
-    // // dispatch(postAddPettyCash(values))
-
-
-    // // const formErrors = formik.values;
-    // // setErrors(formErrors)
-    // // console.log(formErrors, "formError");
-    // if (values) {
-    //   dispatch(postAddPettyCash(values))
-    //     .then((response) => {
-    //       console.log(response.payload.success, "success");
-    //       if (response.payload.success) {
-    //         toastRef.current.showToast();
-    //                 setTimeout(() => {
-    //                   navigate(`/master/finance/pettycash`);
-    //                 }, 2000);
-    //       } else {
-    //         alert(" Invalid credentials");
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error:", error);
-    //     });
-    // }
-    // // if (values) {
-    // //   dispatch(postAddPettyCash(values))
-    // //     .then((response) => {
-    // //       console.log(response.payload.success, "success");
-    // //       if (response.payload.success) {
-    // //         toastRef.current.showToast();
-    // //         setTimeout(() => {
-    // //           navigate(`/master/finance/pettycash`);
-    // //         }, 2000);
-    // //       } else {
-    // //         alert(" Invalid credentials");
-    // //       }
-    // //     })
-    // //     .catch((error) => {
-    // //       console.error("Error:", error);
-    // //     });
-    // // }
-    // const handleSubmit = (values) => {
-      if (values) {
-        dispatch(postAddPettyCash(values))
-          .then((response) => {
-            console.log(response.payload.success, "success");
-            if (response.payload.success) {
-              // Dispatch the new petty cash data to update the store
-              dispatch(pettyCashMaster(values));
-  
-              toastRef.current.showToast();
-              setTimeout(() => {
-                navigate(`/master/finance/pettycash`);
-              }, 2000);
-            } else {
-              alert(" Invalid credentials");
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
-    // };
-
+    dispatch(postAddPettyCash(formik.values))
+      .then(() => {
+        toastRef.current.showToast();
+        setTimeout(() => {
+          navigate(`/master/finance/pettycash`);
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
+
   const formik = useFormik({
     initialValues: {
-      prttycashcode: "",
+      pettycashcode: "",
       pettycashname: "",
       pettycashsize: "",
       avilabelcash: "",
-      mincashback: "",
+      minicashbox: "",
       transactionlimit: ""
     },
     validate: customValidation,
@@ -169,17 +116,17 @@ const AddPettyCash = () => {
             label="Petty Cash Code"
             placeholder="Enter"
             value={
-              formik.values.prttycashcode
+              formik.values.pettycashcode
 
             }
             onChange={(e) =>
-              formik.setFieldValue("prttycashcode", e.target.value)
+              formik.setFieldValue("pettycashcode", e.target.value)
             }
 
           />
-          {formik.touched.prttycashcode && formik.errors.prttycashcode && (
+          {formik.touched.pettycashcode && formik.errors.pettycashcode && (
             <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.prttycashcode}
+              {formik.errors.pettycashcode}
             </div>
           )}
         </div>
@@ -257,16 +204,16 @@ const AddPettyCash = () => {
             label="Minimum Cash Box"
             placeholder="Enter"
             value={
-              formik.values.mincashback
+              formik.values.minicashbox
 
             }
             onChange={(e) =>
-              formik.setFieldValue("mincashback", e.target.value)
+              formik.setFieldValue("minicashbox", e.target.value)
             }
           />
-          {formik.touched.mincashback && formik.errors.mincashback && (
+          {formik.touched.minicashbox && formik.errors.minicashbox && (
             <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.mincashback}
+              {formik.errors.minicashbox}
             </div>
           )}
         </div>

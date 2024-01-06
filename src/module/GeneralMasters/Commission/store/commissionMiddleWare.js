@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import { getRequest } from "../../../utility/commonServices";
 // import { APIROUTES } from "../../../routes/apiRoutes";
-import { GET_COMMISSION, GET_COMMISSION_BY_ID, GET_COMMISSION_SEARCH_LIST, GET_COMMISSION_VIEW, PATCH_COMMISSION_EDIT, POST_COMMISSION } from "../../../../redux/actionTypes";
+import { GET_COMMISSION, GET_COMMISSION_BY_ID, GET_COMMISSION_SEARCH_LIST, GET_COMMISSION_SHARING, GET_COMMISSION_VIEW, PATCH_COMMISSION_EDIT, POST_ADD_SHARINGRATE_COMMISSION, POST_COMMISSION } from "../../../../redux/actionTypes";
 
 
 
@@ -34,6 +34,7 @@ export const getCommission = createAsyncThunk(
     },
 );
 
+
 // export const postAddCommission = createAsyncThunk(
 //     POST_COMMISSION,
 //     async (payload, { rejectWithValue }) => {
@@ -55,12 +56,12 @@ export const postAddCommission = createAsyncThunk(
             // transactionNumber: payload?.transactionNumber,
             // transactionCode: payload?.transactionCode,
             commissionCode: payload?.commissionCode,
-            product:payload?.product,
+            product: payload?.product,
             selectCover: payload?.product,
-            effectiveFrom:payload?.effectiveFrom,
+            effectiveFrom: payload?.effectiveFrom,
             effectiveTo: payload?.effectiveTo,
             status: payload?.status,
-           
+
         };
         try {
             console.log(bodyTableData, "find middleware");
@@ -108,7 +109,7 @@ export const getCommissionSearchList = createAsyncThunk(
 //     },
 // )
 
-export const getCommissionView=createAsyncThunk(
+export const getCommissionView = createAsyncThunk(
     GET_COMMISSION_VIEW,
     async (payload, { rejectWithValue }) => {
         try {
@@ -119,7 +120,7 @@ export const getCommissionView=createAsyncThunk(
         }
     },
 )
-export const patchCommissionEdit=createAsyncThunk(
+export const patchCommissionEdit = createAsyncThunk(
     PATCH_COMMISSION_EDIT,
     async (payload, { rejectWithValue }) => {
         try {
@@ -130,4 +131,46 @@ export const patchCommissionEdit=createAsyncThunk(
         }
     },
 )
+export const getLevelCommissionSharing = createAsyncThunk(
+    GET_COMMISSION_SHARING,
+    async (payload, { rejectWithValue, getState }) => {
+        const { commissionMianReducers } = getState();
+        const { addLevelCommissionSharing } = commissionMianReducers
+        const filteredData = addLevelCommissionSharing.filter(item => item.id === 1);
+        try {
+            return filteredData[0];
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+export const postAddLevelShareRatingCommission = createAsyncThunk(
+    POST_ADD_SHARINGRATE_COMMISSION,
+    async (payload, { rejectWithValue, getState }) => {
+        console.log(payload, "payload");
+
+        let bodyTableData = {
+            // reversalJVTransactionCode: payload?.reversalJVTransactionCode,
+            // transactionNumber: payload?.transactionNumber,
+            // transactionCode: payload?.transactionCode,
+            // commissionCode: payload?.commissionCode,
+            // product: payload?.product,
+            // selectCover: payload?.product,
+            // effectiveFrom: payload?.effectiveFrom,
+            // effectiveTo: payload?.effectiveTo,
+            // status: payload?.status,
+            level: payload?.level,
+            commissionCode: payload?.commissionCode,
+            sharingRate: payload?.sharingRate,
+
+        };
+        try {
+            console.log(bodyTableData, "find middleware");
+
+            return bodyTableData;
+        } catch (error) {
+            return rejectWithValue(error?.response?.data?.error?.message);
+        }
+    }
+);
 

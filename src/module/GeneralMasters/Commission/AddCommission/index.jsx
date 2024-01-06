@@ -1,4 +1,3 @@
-
 import { BreadCrumb } from 'primereact/breadcrumb'
 import React, { useEffect, useState, useRef } from 'react'
 import NavBar from '../../../../components/NavBar'
@@ -26,12 +25,21 @@ import { SelectButton } from 'primereact/selectbutton';
 import data from './data';
 import SvgEditIcon from '../../../../assets/icons/SvgEditIcon';
 import { postAddCommission } from '../store/commissionMiddleWare';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AddCommission = () => {
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [date, setDate] = useState();
+  const { addLevelCommissionSharing, loading, commissionSearchList } = useSelector(({ commissionMianReducers }) => {
+    return {
+      loading: commissionMianReducers?.loading,
+      addLevelCommissionSharing: commissionMianReducers?.addLevelCommissionSharing,
+      commissionSearchList: commissionMianReducers?.commissionSearchList
+
+    };
+  });
+  console.log(addLevelCommissionSharing, "addLevelCommissionSharing")
 
   const items = [
     { label: 'Commission', url: '/master/generals/Commission' },
@@ -84,7 +92,7 @@ const AddCommission = () => {
     { label: "Option 1", value: "Trans00123" },
     { label: "Option 2", value: "Trans00124" },
   ];
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const handleSubmit = (values) => {
     dispatch(postAddCommission(formik.values));
     navigate("/master/generals/commission")
@@ -164,30 +172,26 @@ const AddCommission = () => {
 
   };
   const handleNavigateView = () => {
-    navigate("/master/generals/commission/viewcommission")
-}
-const handleEditNavigate = () => {
-    navigate("/master/generals/commission/editcommission")
-}
+    // navigate("/master/generals/commission/viewcommission")
+  }
+  const handleEditNavigate = () => {
+    // navigate("/master/generals/commission/editcommission/")
+  }
   const renderEditButton = (rowData) => {
     return (
       <div className="centercontent" >
         <div className='eyeIcon' onClick={handleNavigateView}>
           <SvgEyeIcon />
         </div>
-        <div  onClick={handleEditNavigate}>
+        <div onClick={handleEditNavigate}>
           <SvgEditIcon />
         </div>
-
       </div>
     );
   };
   const [visible, setVisible] = useState(false);
-
   const selectSwitchoptions = ["Yes", "No"];
-
   const [selectSwitch, setselectSwitch] = useState(selectSwitchoptions[0]);
-
 
 
   return (
@@ -217,12 +221,10 @@ const handleEditNavigate = () => {
             placeholder="Enter"
             value={
               formik.values.commissioncode
-
             }
             onChange={(e) =>
               formik.setFieldValue("commissioncode", e.target.value)
             }
-
           />
           {formik.touched.commissioncode && formik.errors.commissioncode && (
             <div
@@ -491,7 +493,7 @@ const handleEditNavigate = () => {
         </div>
         <div className="col-12 card">
           <DataTable
-            value={products}
+            value={addLevelCommissionSharing}
             style={{ overflowY: 'auto', maxWidth: '100%' }}
             responsive={true}
             className='table__view__Journal__Voture'
@@ -507,25 +509,23 @@ const handleEditNavigate = () => {
 
           >
             <Column
-              field="mainAC"
+              field="level"
               header="Level"
 
 
             >
             </Column>
             <Column
-              field="mainAC"
+              field="commissionCode"
               header="Commission Code"
-              // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
+            // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
 
             >
 
             </Column>
             <Column
-              field="mainAC"
+              field="sharingRate"
               header="Share Rate"
-
-
             >
 
             </Column>

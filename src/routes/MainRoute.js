@@ -154,6 +154,11 @@ import UserEdit from "../module/GeneralMasters/UserManagementMasters/User/EditUs
 
 
 
+import AddCompany from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/AddCompany";
+import AddBranch from "../module/GeneralMasters/OrganizationMasters/BranchMaster/AddBranch";
+import AddCountry from "../module/GeneralMasters/LocationMasters/CountryMaster/AddCountry/index"
+import AddCity from "../module/GeneralMasters/LocationMasters/CityMaster/AddCity";
+import AddState from "../module/GeneralMasters/LocationMasters/StateMaster/AddState";
 
 const Maincomponent = () => {
   return (
@@ -345,15 +350,45 @@ const Maincomponent = () => {
               element={<AccountCategoryMaster />}
             /> */}
 
+
             {/* General Master */}
+
             {/* Organization Master */}
             <Route
               path="master/generals/organization/companymaster"
               element={<CompanyMasters />}
             />
+           
+
+<Route
+              path="master/generals/organization/companymaster/addcompany/add/:id"
+              element={<AddCompany  action="add"/>}
+            />
+            <Route
+              path="master/generals/organization/companymaster/addcompany/edit/:id"
+              element={<AddCompany action="edit" />}
+            />
+            <Route
+              path="master/generals/organization/companymaster/addcompany/view/:id"
+              element={<AddCompany action="view" />}
+            />
+
+            {/* Branch master */}
             <Route
               path="master/generals/organization/branchmaster"
               element={<BranchMasters />}
+            />
+            <Route
+              path="master/generals/organization/branchmaster/addbranchmaster/add/:id"
+              element={<AddBranch action="add"/>}
+            />
+            <Route
+              path="master/generals/organization/branchmaster/addbranchmaster/edit/:id"
+              element={<AddBranch action="edit" />}
+            />
+            <Route
+              path="master/generals/organization/branchmaster/addbranchmaster/view/:id"
+              element={<AddBranch action="view" />}
             />
             {/* Insurance Management Masters */}
             <Route
@@ -475,8 +510,55 @@ const Maincomponent = () => {
               path="master/generals/location/country"
               element={<Country />}
             />
-            <Route path="master/generals/location/state" element={<State />} />
-            <Route path="master/generals/location/city" element={<City />} />
+
+<Route
+              path="master/generals/location/country/addcountry/add/:id"
+              element={<AddCountry  action="add"/>}
+            />
+            <Route
+              path="master/generals/location/country/addcountry/edit/:id"
+              element={<AddCountry action="edit" />}
+            />
+            <Route
+              path="master/generals/location/country/addcountry/view/:id"
+              element={<AddCountry action="view" />}
+            />
+
+             <Route
+              path="master/generals/location/state"
+              element={<State />}
+            />
+            <Route
+              path="master/generals/location/state/addstate/add/:id"
+              element={<AddState action="add"/>}
+            />
+
+            <Route
+              path="master/generals/location/state/addstate/edit/:id"
+              element={<AddState action="edit" />}
+            />
+            <Route
+              path="master/generals/location/state/addstate/view/:id"
+              element={<AddState action="view" />}
+            />
+
+
+             <Route
+              path="master/generals/location/city"
+              element={<City/>}
+            />
+            <Route
+              path="master/generals/location/city/addcity/add/:id"
+              element={<AddCity action="add" />}
+            />
+             <Route
+              path="master/generals/location/city/addcity/edit/:id"
+              element={<AddCity action="edit" />}
+            />
+            <Route
+              path="master/generals/location/city/addcity/view/:id"
+              element={<AddCity action="view" />}
+            />
 
             {/* Employee Management */}
            

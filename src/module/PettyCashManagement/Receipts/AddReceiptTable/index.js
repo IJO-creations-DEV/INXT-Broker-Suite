@@ -14,7 +14,15 @@ import { Dropdown } from "primereact/dropdown";
 import { Card } from "primereact/card";
 
 const AddReceiptsTable = () => {
-  const [data, setData] = useState([{ TransactionCode: "12838" }]);
+  const [data, setData] = useState([
+    { TransactionCode: "12838", RequestNumber: "012345", Date: "17/05/2024", Amount: 123, Remarks: "remark1" },
+    { TransactionCode: "12839", RequestNumber: "01234516", Date: "13/05/2024", Amount: 143, Remarks: "remark2" },
+    { TransactionCode: "12840", RequestNumber: "01234536", Date: "14/05/2024", Amount: 153, Remarks: "remark3" },
+    { TransactionCode: "12841", RequestNumber: "01234546", Date: "15/05/2024", Amount: 173, Remarks: "remark4" },
+    { TransactionCode: "12842", RequestNumber: "01234556", Date: "16/05/2024", Amount: 183, Remarks: "remark5" },
+
+
+  ]);
   const [visible, setVisible] = useState(false);
   const isEmpty = data.length === 0;
   const toastRef = useRef(null);
@@ -94,7 +102,7 @@ const AddReceiptsTable = () => {
 
   return (
     <div className="add__receipts__table">
-      <CustomToast ref={toastRef}  message="Petty Cash Receipt Successfully"/>
+      <CustomToast ref={toastRef} message="Petty Cash Receipt Successfully" />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div
@@ -148,13 +156,13 @@ const AddReceiptsTable = () => {
               )}
               headerStyle={headerStyle}
               style={{ textAlign: "start" }}
-              
+
             />
             <Column
               field="TransactionCode"
               header="Transaction Code"
               headerStyle={headerStyle}
-              
+
             ></Column>
             <Column
               field="RequestNumber"
@@ -178,7 +186,7 @@ const AddReceiptsTable = () => {
               field="Remarks"
               header="Remarks"
               headerStyle={headerStyle}
-              
+
             ></Column>
           </DataTable>
         </div>
@@ -188,6 +196,7 @@ const AddReceiptsTable = () => {
           <InputField
             classNames="input__filed"
             label="Disbursed Amount"
+            value={120.00}
             // placeholder="Enter"
             disabled={true}
             textColor={"#111927"}
@@ -199,6 +208,7 @@ const AddReceiptsTable = () => {
           <InputField
             classNames="input__filed"
             label="Balance Amount"
+            value={20.00}
             // placeholder="Enter"
             disabled={true}
             textColor={"#111927"}

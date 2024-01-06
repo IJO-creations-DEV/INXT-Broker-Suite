@@ -1,21 +1,231 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    getBankList,
-    getBankSearchList,
-    postBankStatus,
-    getAddBank,
-    patchBankDetailEdit,
-    getBankDetailView
+  getBankList,
+  getBankSearchList,
+  postBankStatus,
+  getAddBank,
+  patchBankDetailEdit,
+  getBankDetailView
 } from "./bankMasterMiddleware";
+import SvgArrow from "../../../../assets/icons/SvgArrow";
 const initialState = {
   loading: false,
   error: "",
-  BankList: [],
-  BankSearchList:[],
-  BankStatus:{},
-  AddBank:{},
-  BankDetailEdit:{},
-  BankDetailView:{}
+  BankList: [
+    {
+      bankCode: 'Bank42588',
+      // code: <SvgArrow />,
+      bankName: 'Johnson Finance',
+      bankBranch: 'East Sarahburgh',
+      ifscCode: 'mb78901',
+      email: 'justin@gmail.com',
+      status: true,
+      mobile: 9791669887
+    },
+    {
+      bankCode: 'Bank12345',
+      // code: <SvgArrow />,
+      bankName: 'Miller Investments',
+      bankBranch: 'Port Karlibury',
+      ifscCode: 'mb23456',
+      email: 'alex@example.com',
+      status: false,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank78901',
+      // code: <SvgArrow />,
+      bankName: 'Smith and Sons Banking',
+      bankBranch: 'New Danielhaven',
+      ifscCode: 'mb56789',
+      email: 'emma@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank23456',
+      // code: <SvgArrow />,
+      bankName: 'Johnson Finance',
+      bankBranch: 'West Alexfort',
+      ifscCode: 'mb12345',
+      email: 'john@example.com',
+      status: false,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank67890',
+      // code: <SvgArrow />,
+      bankName: 'Miller Investments',
+      bankBranch: 'East Sarahburgh',
+      ifscCode: 'mb34567',
+      email: 'lisa@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank78912',
+      // code: <SvgArrow />,
+      bankName: 'Smith and Sons Banking',
+      bankBranch: 'Port Karlibury',
+      ifscCode: 'mb89012',
+      email: 'michael@example.com',
+      status: false, mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank34567',
+      // code: <SvgArrow />,
+      bankName: 'Johnson Finance',
+      bankBranch: 'West Alexfort',
+      ifscCode: 'mb45678',
+      email: 'olivia@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank89012',
+      // code: <SvgArrow />,
+      bankName: 'Miller Investments',
+      bankBranch: 'New Danielhaven',
+      ifscCode: 'mb56789',
+      email: 'sophia@example.com',
+      status: false, mobile: 9791669887
+
+
+    },
+    {
+      bankCode: 'Bank45678',
+      // code: <SvgArrow />,
+      bankName: 'Smith and Sons Banking',
+      bankBranch: 'East Sarahburgh',
+      ifscCode: 'mb23456',
+      email: 'william@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank56789',
+      // code: <SvgArrow />,
+      bankName: 'Johnson Finance',
+      bankBranch: 'Port Karlibury',
+      ifscCode: 'mb78901',
+      email: 'ava@example.com',
+      status: false,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank89012',
+      // code: <SvgArrow />,
+      bankName: 'Miller Investments',
+      bankBranch: 'West Alexfort',
+      ifscCode: 'mb34567',
+      email: 'james@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank12345',
+      // code: <SvgArrow />,
+      bankName: 'Smith and Sons Banking',
+      bankBranch: 'New Danielhaven',
+      ifscCode: 'mb89012',
+      email: 'mia@example.com',
+      status: false,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank23456',
+      // code: <SvgArrow />,
+      bankName: 'Johnson Finance',
+      bankBranch: 'East Sarahburgh',
+      ifscCode: 'mb45678',
+      email: 'benjamin@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank78901',
+      // code: <SvgArrow />,
+      bankName: 'Miller Investments',
+      bankBranch: 'Port Karlibury',
+      ifscCode: 'mb12345',
+      email: 'emma@example.com',
+      status: false,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank34567',
+      // code: <SvgArrow />,
+      bankName: 'Smith and Sons Banking',
+      bankBranch: 'West Alexfort',
+      ifscCode: 'mb56789',
+      email: 'oliver@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank89012',
+      // code: <SvgArrow />,
+      bankName: 'Johnson Finance',
+      bankBranch: 'New Danielhaven',
+      ifscCode: 'mb23456',
+      email: 'amelia@example.com',
+      status: false,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank45678',
+      // code: <SvgArrow />,
+      bankName: 'Miller Investments',
+      bankBranch: 'East Sarahburgh',
+      ifscCode: 'mb78901',
+      email: 'henry@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank56789',
+      // code: <SvgArrow />,
+      bankName: 'Smith and Sons Banking',
+      bankBranch: 'Port Karlibury',
+      ifscCode: 'mb34567',
+      email: 'ava@example.com',
+      status: false,
+      mobile: 9791669887
+
+    },
+    {
+      bankCode: 'Bank12345',
+      // code: <SvgArrow />,
+      bankName: 'Johnson Finance',
+      bankBranch: 'West Alexfort',
+      ifscCode: 'mb45678',
+      email: 'jackson@gmail.com',
+      status: true,
+      mobile: 9791669887
+
+    }
+  ]
+  ,
+  BankSearchList: [],
+  BankStatus: {},
+  AddBank: {},
+  BankDetailEdit: {},
+  BankDetailView: {}
 };
 const bankMasterReducer = createSlice({
   name: "bankMaster",
@@ -29,14 +239,14 @@ const bankMasterReducer = createSlice({
       state.loading = true;
     });
     builder.addCase(
-        getBankList.fulfilled,
+      getBankList.fulfilled,
       (state, action) => {
         state.loading = false;
         state.BankList = action.payload;
       }
     );
     builder.addCase(
-        getBankList.rejected,
+      getBankList.rejected,
       (state, action) => {
         state.loading = false;
 
@@ -68,7 +278,7 @@ const bankMasterReducer = createSlice({
     );
 
     //BankStatus
-    
+
     builder.addCase(postBankStatus.pending, (state) => {
       state.loading = true;
     });
@@ -154,7 +364,7 @@ const bankMasterReducer = createSlice({
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
-},
+  },
 });
 
 export default bankMasterReducer.reducer;

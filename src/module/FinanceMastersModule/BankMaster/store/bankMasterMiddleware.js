@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import {  GET_BANK_LIST,GET_BANK_SEARCH_LIST, POST_BANK_STATUS ,GET_BANK_DETAIL_VIEW, GET_ADD_BANK,PATCH_BANK_DETAIL_EDIT } from "../../../../redux/actionTypes";
+import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT } from "../../../../redux/actionTypes";
+import SvgEye from "../../../../assets/icons/SvgEye";
+import SvgArrow from "../../../../assets/icons/SvgArrow";
 
 
 export const getBankList = createAsyncThunk(
@@ -57,10 +59,38 @@ export const getAddBank = createAsyncThunk(
 
 export const patchBankDetailEdit = createAsyncThunk(
     PATCH_BANK_DETAIL_EDIT,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        const { bankMasterReducer } = getState();
+
+
+        // const { correctionJVList } = correctionJVMainReducers;
+        // const filteredData = correctionJVList.filter((item) => item.id === 1);
+
         try {
+            const { BankList } = bankMasterReducer;
+            const updatedObject = BankList.findIndex(item => item.bankCode === payload?.bankCode);
+            let newArr = [...BankList]
+            newArr[updatedObject] = {
+                bankBranch: payload?.bankBranch,
+                bankCode: payload?.bankCode,
+                bankName: payload?.bankName,
+
+
+                email
+                    :
+                    payload?.email,
+                ifscCode
+                    :
+                    payload?.ifscCode,
+                mobile
+                    :
+                    payload?.mobile,
+                status
+                    :
+                    true
+            }
             // const { data } = await patchRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            return newArr;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

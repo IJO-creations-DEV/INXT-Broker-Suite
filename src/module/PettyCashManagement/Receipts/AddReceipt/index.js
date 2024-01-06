@@ -50,11 +50,12 @@ const AddReceipts = () => {
   const handleBack = () => {
     navigate("/accounts/pettycash/receipts");
   };
-  const handleSubmit = () => {
+  const handleSubmit = (val) => {
+    console.log(val, "ad")
     // toastRef.current.showToast();
     // {
     //   setTimeout(() => {
-        navigate("/accounts/pettycash/addreceiptstable");
+    // navigate("/accounts/pettycash/addreceiptstable");
     //   }, 3000);
     // }
   };
@@ -109,9 +110,9 @@ const AddReceipts = () => {
       case "Ayisha":
         Receiptnumber = "28284";
         break;
-        case "Pandi":
-          Receiptnumber = "18284";
-          break;
+      case "Pandi":
+        Receiptnumber = "18284";
+        break;
       default:
         Receiptnumber = "Unknown";
         break;
@@ -248,248 +249,248 @@ const AddReceipts = () => {
         </div>
       </div>
       <form onSubmit={formik.handleSubmit}>
-      <Card className="mt-3">
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Receipt Number"
-              // placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={formik.values.ReceiptNumber}
-              onChange={formik.handleChange("ReceiptNumber")}
-              error={
-                formik.touched.ReceiptNumber &&
-                formik.errors.ReceiptNumber
-              }
-            />
+        <Card className="mt-3">
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Receipt Number"
+                // placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.ReceiptNumber}
+                onChange={formik.handleChange("ReceiptNumber")}
+                error={
+                  formik.touched.ReceiptNumber &&
+                  formik.errors.ReceiptNumber
+                }
+              />
+            </div>
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Requester"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.Requester}
+                options={Name}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("Requester", e.value);
+                  Requester(e.value.Name)
+                }}
+                optionLabel="Name"
+                error={formik.touched.Requester && formik.errors.Requester}
+              />
+            </div>
           </div>
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
-              label="Requester"
-              placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.Requester}
-              options={Name}
-              onChange={(e) => {
-                console.log(e.value);
-                formik.setFieldValue("Requester", e.value);
-                Requester(e.value.Name)
-              }}
-              optionLabel="Name"
-              error={formik.touched.Requester && formik.errors.Requester}
-            />
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Bank Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={400}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.BankCode}
+                options={BankAccountCode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("BankCode", e.value);
+                  handleBankcode(e.value.BankAccountCode)
+                }}
+                optionLabel="BankAccountCode"
+                error={formik.touched.BankCode && formik.errors.BankCode}
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Bank Account Name"
+                // placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.BankAccountName}
+                onChange={formik.handleChange("BankAccountName")}
+                error={
+                  formik.touched.BankAccountName &&
+                  formik.errors.BankAccountName
+                }
+              />
+            </div>
           </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
-              label="Bank Code"
-              placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={400}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.BankCode}
-              options={BankAccountCode}
-              onChange={(e) => {
-                console.log(e.value);
-                formik.setFieldValue("BankCode", e.value);
-                handleBankcode(e.value.BankAccountCode)
-              }}
-              optionLabel="BankAccountCode"
-              error={formik.touched.BankCode && formik.errors.BankCode}
-            />
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Sub Account Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={400}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.SubAccountCode}
+                options={SubAccount}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("SubAccountCode", e.value);
+                  handleSubAccount(e.value.SubAccount)
+                }}
+                optionLabel="SubAccount"
+                error={
+                  formik.touched.SubAccountCode && formik.errors.SubAccountCode
+                }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Sub Account Description"
+                // placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.SubAccountDescription}
+                onChange={formik.handleChange("SubAccountDescription")}
+                error={
+                  formik.touched.SubAccountDescription &&
+                  formik.errors.SubAccountDescription
+                }
+              />
+            </div>
           </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Bank Account Name"
-              // placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={formik.values.BankAccountName}
-              onChange={formik.handleChange("BankAccountName")}
-              error={
-                formik.touched.BankAccountName &&
-                formik.errors.BankAccountName
-              }
-            />
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Transaction Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.TransactionCode}
+                options={Transcode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("TransactionCode", e.value);
+                  handleTrans(e.value.Transcode)
+                }}
+                optionLabel="Transcode"
+                error={
+                  formik.touched.TransactionCode && formik.errors.TransactionCode
+                }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Transaction Description"
+                // placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.TransactionDescription}
+                onChange={formik.handleChange("TransactionDescription")}
+                error={
+                  formik.touched.TransactionDescription &&
+                  formik.errors.TransactionDescription
+                }
+              />
+            </div>
           </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
-              label="Sub Account Code"
-              placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={400}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.SubAccountCode}
-              options={SubAccount}
-              onChange={(e) => {
-                console.log(e.value);
-                formik.setFieldValue("SubAccountCode", e.value);
-                handleSubAccount(e.value.SubAccount)
-              }}
-              optionLabel="SubAccount"
-              error={
-                formik.touched.SubAccountCode && formik.errors.SubAccountCode
-              }
-            />
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Branch Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={400}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.BranchCode}
+                options={Branchcode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("BranchCode", e.value);
+                  handleBranch(e.value.Branchcode)
+                }}
+                optionLabel="Branchcode"
+                error={formik.touched.BranchCode && formik.errors.BranchCode}
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Branch Description"
+                // placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.BranchDescription}
+                onChange={formik.handleChange("BranchDescription")}
+                error={
+                  formik.touched.BranchDescription &&
+                  formik.errors.BranchDescription
+                }
+              />
+            </div>
           </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Sub Account Description"
-              // placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={formik.values.SubAccountDescription}
-              onChange={formik.handleChange("SubAccountDescription")}
-              error={
-                formik.touched.SubAccountDescription &&
-                formik.errors.SubAccountDescription
-              }
-            />
+          <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Department Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={400}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.DepartmentCode}
+                options={Departcode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("DepartmentCode", e.value);
+                  handleDepart(e.value.Departcode)
+                }}
+                optionLabel="Departcode"
+                error={
+                  formik.touched.DepartmentCode && formik.errors.DepartmentCode
+                }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg-col-6 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Department Description"
+                // placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.DepartmentDescription}
+                onChange={formik.handleChange("DepartmentDescription")}
+                error={
+                  formik.touched.DepartmentDescription &&
+                  formik.errors.DepartmentDescription
+                }
+              />
+            </div>
           </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
-              label="Transaction Code"
-              placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.TransactionCode}
-              options={Transcode}
-              onChange={(e) => {
-                console.log(e.value);
-                formik.setFieldValue("TransactionCode", e.value);
-                handleTrans(e.value.Transcode)
-              }}
-              optionLabel="Transcode"
-              error={
-                formik.touched.TransactionCode && formik.errors.TransactionCode
-              }
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Transaction Description"
-              // placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={formik.values.TransactionDescription}
-              onChange={formik.handleChange("TransactionDescription")}
-              error={
-                formik.touched.TransactionDescription &&
-                formik.errors.TransactionDescription
-              }
-            />
-          </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
-              label="Branch Code"
-              placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={400}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.BranchCode}
-              options={Branchcode}
-              onChange={(e) => {
-                console.log(e.value);
-                formik.setFieldValue("BranchCode", e.value);
-                handleBranch(e.value.Branchcode)
-              }}
-              optionLabel="Branchcode"
-              error={formik.touched.BranchCode && formik.errors.BranchCode}
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Branch Description"
-              // placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={formik.values.BranchDescription}
-              onChange={formik.handleChange("BranchDescription")}
-              error={
-                formik.touched.BranchDescription &&
-                formik.errors.BranchDescription
-              }
-            />
-          </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
-              label="Department Code"
-              placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={400}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.DepartmentCode}
-              options={Departcode}
-              onChange={(e) => {
-                console.log(e.value);
-                formik.setFieldValue("DepartmentCode", e.value);
-                handleDepart(e.value.Departcode)
-              }}
-              optionLabel="Departcode"
-              error={
-                formik.touched.DepartmentCode && formik.errors.DepartmentCode
-              }
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Department Description"
-              // placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={formik.values.DepartmentDescription}
-              onChange={formik.handleChange("DepartmentDescription")}
-              error={
-                formik.touched.DepartmentDescription &&
-                formik.errors.DepartmentDescription
-              }
-            />
-          </div>
-        </div>
-      </Card>
+        </Card>
       </form>
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">

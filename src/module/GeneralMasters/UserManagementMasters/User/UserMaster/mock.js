@@ -1,0 +1,122 @@
+const Productdata = [
+  {
+    id: 1,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+  {
+    id: 2,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "2/1/24",
+    status:"",
+    action:""
+  }, {
+    id: 3,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+  {
+    id: 4,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+  {
+    id: 5,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+  {
+    id: 6,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+  {
+    id: 7,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+  {
+    id: 8,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+  {
+    id: 9,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+  {
+    id: 10,
+    userName: "Johnson99",
+    employeeCode: "EC12345",
+    assignedRole: "Role",
+    email:"johnson@gmail.com",
+    phoneNumber:"63-1234567",
+    modifiedBy: "Johnson",
+    modifiedOn: "12/12/23",
+    status:"",
+    action:""
+  },
+];
+export default Productdata;

@@ -132,12 +132,22 @@ import Vahicle from "../module/GeneralMasters/InsuranceManagementMasters/Vehicle
 import Country from "../module/GeneralMasters/LocationMasters/CountryMaster";
 import State from "../module/GeneralMasters/LocationMasters/StateMaster";
 import City from "../module/GeneralMasters/LocationMasters/CityMaster";
-import Hierarchy from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy";
-import Designation from "../module/GeneralMasters/EmployeeManagementMasters/Designation";
-import Employee from "../module/GeneralMasters/EmployeeManagementMasters/Employee";
-import User from "../module/GeneralMasters/UserManagementMasters/User";
-import Role from "../module/GeneralMasters/UserManagementMasters/Role";
 import InsuranceDetailsAction from "../module/GeneralMasters/InsuranceManagementMasters/InsuranceCompany/InsuranceDetailsAction";
+
+import Designation from "../module/GeneralMasters/EmployeeManagementMasters/Designation/DesignationMaster";
+import AddDesignation from "../module/GeneralMasters/EmployeeManagementMasters/Designation/AddDesignation";
+import Employee from "../module/GeneralMasters/EmployeeManagementMasters/Employee/EmployeeMaster";
+import AddEmployee from "../module/GeneralMasters/EmployeeManagementMasters/Employee/AddEmployee";
+import User from "../module/GeneralMasters/UserManagementMasters/User/UserMaster";
+import AddUser from "../module/GeneralMasters/UserManagementMasters/User/AddUser";
+import Role from "../module/GeneralMasters/UserManagementMasters/Role/RoleMaster";
+import AddRole from "../module/GeneralMasters/UserManagementMasters/Role/AddRole";
+import HierarchyMaster from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/HierarchyMaster";
+import AddHierarchy from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/AddHierarchy";
+import UserEdit from "../module/GeneralMasters/UserManagementMasters/User/EditUser"
+
+
+
 
 const Maincomponent = () => {
   return (
@@ -391,27 +401,112 @@ const Maincomponent = () => {
             <Route path="master/generals/location/city" element={<City />} />
 
             {/* Employee Management */}
+           
+          
+            {/* Hierarchy */}
+            
+            <Route path="master/generals/employeemanagement/hierarchy" element={<HierarchyMaster/>}/>
             <Route
-              path="master/generals/employeemanagement/hierarchy"
-              element={<Hierarchy />}
+              path="master/generals/employeemanagement/hierarchy/add/:id"
+              element={<AddHierarchy action="add" />}
             />
+            <Route
+              path="master/generals/employeemanagement/hierarchy/edit/:id"
+              element={<AddHierarchy action="edit" />}
+            />
+            <Route
+              path="master/generals/employeemanagement/hierarchy/view/:id"
+              element={<AddHierarchy action="view" />}
+            />
+            <Route path="master/generals/employeemanagement/:id" element={<AddHierarchy/>}/>
+            
             <Route
               path="master/generals/employeemanagement/designation"
               element={<Designation />}
+            />
+             <Route
+              path="master/generals/employeemanagement/designation/add/:id"
+              element={<AddDesignation action="add" />}
+            />
+            <Route
+              path="master/generals/employeemanagement/designation/edit/:id"
+              element={<AddDesignation action="edit" />}
+            />
+            <Route
+              path="master/generals/employeemanagement/designation/view/:id"
+              element={<AddDesignation action="view" />}
+            />
+
+             <Route
+              path="master/generals/employeemanagement/adddesignation"
+              element={<AddDesignation/>}
             />
             <Route
               path="master/generals/employeemanagement/employee"
               element={<Employee />}
             />
+             <Route
+              path="master/generals/employeemanagement/employee/add/:id"
+              element={<AddEmployee action="add" />}
+            />
+            <Route
+              path="master/generals/employeemanagement/employee/edit/:id"
+              element={<AddEmployee action="edit" />}
+            />
+            <Route
+              path="master/generals/employeemanagement/employee/view/:id"
+              element={<AddEmployee action="view" />}
+            />
+            <Route
+              path="master/generals/employeemanagement/addemployee"
+              element={<AddEmployee/>}
+            />
 
             {/* User Management */}
             <Route
               path="master/generals/usermanagement/user"
-              element={<User />}
+              element={<User/>}
+            />
+             <Route
+              path="master/generals/usermanagement/useredit"
+              element={<UserEdit/>}
             />
             <Route
+              path="master/generals/usermanagement/user/add/:id"
+              element={<AddUser action="add" />}
+            />
+            <Route
+              path="master/generals/usermanagement/user/edit/:id"
+              element={<AddUser action="edit" />}
+            />
+            <Route
+              path="master/generals/usermanagement/user/view/:id"
+              element={<AddUser action="view" />}
+            />
+            <Route
+             
+              path="master/generals/usermanagement/adduser"
+              element={<AddUser/>}
+            />
+  <Route
               path="master/generals/usermanagement/role"
               element={<Role />}
+            />
+             <Route
+              path="master/generals/usermanagement/role/add/:id"
+              element={<AddRole action="add" />}
+            />
+            <Route
+              path="master/generals/usermanagement/role/edit/:id"
+              element={<AddRole action="edit" />}
+            />
+            <Route
+              path="master/generals/usermanagement/role/view/:id"
+              element={<AddRole action="view" />}
+            />
+             <Route
+              path="master/generals/usermanagement/addrole"
+              element={<AddRole/>}
             />
 
             {/* Branch Master Module */}

@@ -12,18 +12,24 @@ import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../../../../components/LabelWrapper";
 import InputField from "../../../../../../components/InputField";
 import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddTransactionCodeSetup } from "../../../store/transactionCodeMasterMiddleware";
 
 const TransactionCodeSetupTable = () => {
+  const { TransactioncodeListsearch, TransactionCodeSetup, loading } = useSelector(({ transactionCodeMasterReducer }) => {
+    return {
+      loading: transactionCodeMasterReducer?.loading,
+      TransactionCodeSetup: transactionCodeMasterReducer?.TransactionCodeSetup,
+    
+
+    };
+  });
+  console.log(TransactionCodeSetup, "TransactionCodeSetup")
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
-
-  const initialValues ={
-    AccountingPeriodStart: new Date(),
-    AccountingPeriodEnd:new Date(),
-    TransactionNumberFrom:"",
-    TransactionNumberTo:"",
-  }
-
+  const dispatch = useDispatch()
+ 
+ 
   const handleClick = () => {
     setShow(!show);
   };
@@ -32,10 +38,10 @@ const TransactionCodeSetupTable = () => {
 
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable/>
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
   const template2 = {
@@ -77,9 +83,6 @@ const TransactionCodeSetupTable = () => {
     },
   };
 
-  const handleSubmit = ()=>{
-    setShow(false)
-  }
 
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
@@ -93,16 +96,28 @@ const TransactionCodeSetupTable = () => {
     color: "#000",
     border: "none",
   };
+
+  const initialValues = {
+    AccountingPeriodStart: "",
+    AccountingPeriodEnd: "",
+    TransactionNumberFrom: "",
+    TransactionNumberTo: "",
+  }
+  const handleSubmit = (values) => {
+    dispatch(postAddTransactionCodeSetup(formik.values))
+    setShow(false)
+  }
+
   const customValidation = (values) => {
     const errors = {};
-  
+
     if (!values.TransactionNumberFrom) {
       errors.TransactionNumberFrom = "This field Code is required";
     }
     if (!values.TransactionNumberTo) {
       errors.TransactionNumberTo = "This field is required";
     }
-   
+
     return errors;
   };
 
@@ -110,17 +125,17 @@ const TransactionCodeSetupTable = () => {
   minDate.setDate(minDate.getDate() + 1);
 
   const formik = useFormik({
-    initialValues:initialValues,
+    initialValues: initialValues,
     validate: customValidation,
-    // onSubmit: (values) => {
-    //   // Handle form submission
-    //    handleSubmit(values);
-      
-    // },
-     onSubmit:handleSubmit
+    onSubmit: (values) => {
+      // Handle form submission
+       handleSubmit(values);
+
+    },
+    // onSubmit: handleSubmit
   });
 
-  
+
   return (
     <div className="transactioncode__master__table_view">
       {/* <Card className="mt-1"> */}
@@ -138,7 +153,7 @@ const TransactionCodeSetupTable = () => {
           </div>
         </div>
         <DataTable
-          value={products}
+          value={TransactionCodeSetup}
           tableStyle={{
             minWidth: "50rem",
             color: "#1C2536",
@@ -154,7 +169,7 @@ const TransactionCodeSetupTable = () => {
           emptyMessage={isEmpty ? emptyTableIcon : null}
         >
           <Column
-            field="AccountingPeriodstart"
+            field="AccountingPeriodStart"
             header="Accounting Period start"
             headerStyle={headerStyle}
             className="fieldvalue_container"
@@ -164,17 +179,17 @@ const TransactionCodeSetupTable = () => {
             header="Accounting Period End"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            //   sortable
+          //   sortable
           ></Column>
           <Column
-            field="TransactionNofrom"
+            field="TransactionNumberFrom"
             header="Transaction No from"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            //   sortable
+          //   sortable
           ></Column>
           <Column
-            field="TransactionNoTo"
+            field="TransactionNumberTo"
             header="Transaction No To"
             headerStyle={headerStyle}
             className="fieldvalue_container"
@@ -202,14 +217,14 @@ const TransactionCodeSetupTable = () => {
               showIcon
               // placeholder="Select"
 
-className="calendar_container"
-                value={formik.values.AccountingPeriodStart}
-                minDate={minDate}
-                onChange={(e) => {
-                  formik.setFieldValue("AccountingPeriodStart", e.target.value);
-                }}
-                dateFormat="yy-mm-dd"
-                error={formik.errors.AccountingPeriodStart}
+              className="calendar_container"
+              value={formik.values.AccountingPeriodStart}
+              minDate={minDate}
+              onChange={(e) => {
+                formik.setFieldValue("AccountingPeriodStart", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+              error={formik.errors.AccountingPeriodStart}
             />
           </div>
           <div className="calender__container col-12 md:col-6 lg-col-6 ">
@@ -217,16 +232,16 @@ className="calendar_container"
               Accounting Period End
             </LabelWrapper>
             <Calendar
-            className="calendar_container"
+              className="calendar_container"
               showIcon
               placeholder="Select"
-                value={formik.values.AccountingPeriodEnd}
-                minDate={minDate}
-                onChange={(e) => {
-                  formik.setFieldValue("AccountingPeriodEnd", e.target.value);
-                }}
-                dateFormat="yy-mm-dd"
-                error={formik.errors.AccountingPeriodEnd}
+              value={formik.values.AccountingPeriodEnd}
+              minDate={minDate}
+              onChange={(e) => {
+                formik.setFieldValue("AccountingPeriodEnd", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+              error={formik.errors.AccountingPeriodEnd}
             />
           </div>
         </div>
@@ -246,7 +261,7 @@ className="calendar_container"
                 formik.errors.TransactionNumberFrom
               }
             />
-           
+
           </div>
           <div className="col-12 md:col-6 lg-col-6 ">
             <InputField
@@ -266,15 +281,15 @@ className="calendar_container"
           </div>
         </div>
         <div className="btn__container">
-            <Button
-              label="Save"
-              className="add__btn"
-              // onClick={() => {
-              //   handleSave();
-              // }}
-              onClick={()=>{formik.handleSubmit();}} 
-            />
-          </div>
+          <Button
+            label="Save"
+            className="add__btn"
+            // onClick={() => {
+            //   handleSave();
+            // }}
+            onClick={() => { formik.handleSubmit(); }}
+          />
+        </div>
       </Dialog>
       {/* </Card> */}
     </div>

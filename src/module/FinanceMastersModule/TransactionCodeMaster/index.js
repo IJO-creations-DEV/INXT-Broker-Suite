@@ -8,8 +8,10 @@ import { useNavigate } from "react-router";
 import SvgUploade from "../../../assets/icons/SvgUploade";
 import TransactionCodeMasterTable from "./TransactionCodeMasterTable";
 import NavBar from "../../../components/NavBar";
+import { useSelector } from "react-redux";
 
 const TransactionCodeMaster = () => {
+ 
   const navigate = useNavigate();
   const items = [
     {
@@ -62,7 +64,9 @@ const TransactionCodeMaster = () => {
         </div>
       </div>
       <div>
-        <TransactionCodeMasterTable/>
+        <TransactionCodeMasterTable
+       
+        />
       </div>
     </div>
   );

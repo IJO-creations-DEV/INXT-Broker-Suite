@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../utility/commonServices";
 import { APIROUTES } from "../../../routes/apiRoutes";
-import { DELETE_JOURNAL_VOUCHER, GET_JOURNAL_VOUCHER, GET_JOURNAL_VOUCHER_SEARCH_LIST, GET_POST_TABEL_JOURNAL_VOUCHER, PATCH_JOURNAL_VOUCHER_EDIT, POST_ADD_JOURNAL_VOUCHER, POST_JOURNAL_VOUCHER } from "../../../redux/actionTypes";
+import { DELETE_JOURNAL_VOUCHER, GET_JOURNAL_VOUCHER, GET_JOURNAL_VOUCHER_SEARCH_LIST, GET_JOURNAL_VOUCHER_VIEW, GET_POST_TABEL_JOURNAL_VOUCHER, PATCH_JOURNAL_VOUCHER_EDIT, POST_ADD_JOURNAL_VOUCHER, POST_JOURNAL_VOUCHER } from "../../../redux/actionTypes";
 
 
 export const journalVoucherMiddleware = createAsyncThunk(
@@ -121,16 +121,17 @@ export const patchJVMiddleware = createAsyncThunk(
 
 
 export const getJournalVoucherViewData = createAsyncThunk(
-    GET_JOURNAL_VOUCHER,
+    GET_JOURNAL_VOUCHER_VIEW,
     async (payload, { rejectWithValue, getState }) => {
-        const { journalVoucherMainReducers } = getState();
-        console.log(journalVoucherMainReducers, "dta");
-        const { journalVoucherList } = journalVoucherMainReducers
-        const filteredData = journalVoucherList.filter(item => item.id === 1);
-        console.log(filteredData, "filteredData")
+        console.log(payload,"payload")
+        // const { journalVoucherMainReducers } = getState();
+        // console.log(journalVoucherMainReducers, "dta");
+        // const { journalVoucherList } = journalVoucherMainReducers
+        // const filteredData = journalVoucherList.filter(item => item.id === 1);
+        // console.log(filteredData, "filteredData")
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return filteredData[0];
+            return payload;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

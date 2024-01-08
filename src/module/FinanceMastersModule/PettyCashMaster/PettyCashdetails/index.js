@@ -21,15 +21,16 @@ const PettyCashDetail = () => {
     { label: 'Petty Cash Details', url: '/master/finance/pettycash/pettycashdetail' },
 
   ];
-  const { pettyCashList, pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
+  const { pettyCashView, pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
     return {
       loading: pettyCashMainReducers?.loading,
-      pettyCashList: pettyCashMainReducers?.pettyCashList,
+      pettyCashView: pettyCashMainReducers?.pettyCashView,
       pettyCashSearchList: pettyCashMainReducers?.pettyCashSearchList
 
     };
   });
-  console.log(pettyCashList, "pettyCashList")
+  
+  console.log(pettyCashView, "pettyCashView")
   const handleGoBack = () => {
     navigate("/master/finance/pettycash")
   }
@@ -79,12 +80,12 @@ const PettyCashDetail = () => {
 
   const formik = useFormik({
     initialValues: {
-      prttycashcode: pettyCashList[0]?.pettycashcode || '',
-      pettycashname: pettyCashList[0]?.pettycashname || '',
-      pettycashsize: pettyCashList[0]?.pettycashsize || '',
-      avilabelcash: pettyCashList[0]?.avilabelcash || '',
-      mincashback: pettyCashList[0]?.minicashbox || '',
-      transactionlimit: pettyCashList[0]?.transactionlimit || ''
+      prttycashcode: pettyCashView.pettycashcode || '',
+      pettycashname: pettyCashView.pettycashname || '',
+      pettycashsize: pettyCashView.pettycashsize || '',
+      avilabelcash: pettyCashView.avilabelcash || '',
+      mincashback: pettyCashView.minicashbox || '',
+      transactionlimit: pettyCashView.transactionlimit || ''
     },
     validate: customValidation,
     onSubmit: (values) => {

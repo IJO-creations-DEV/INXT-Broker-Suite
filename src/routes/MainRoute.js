@@ -510,54 +510,15 @@ const Maincomponent = () => {
               path="master/generals/location/country"
               element={<Country />}
             />
-
-<Route
-              path="master/generals/location/country/addcountry/add/:id"
-              element={<AddCountry  action="add"/>}
-            />
+            <Route path="master/generals/location/state" element={<State />} />
+            <Route path="master/generals/location/city" element={<City />} />
             <Route
-              path="master/generals/location/country/addcountry/edit/:id"
-              element={<AddCountry action="edit" />}
-            />
-            <Route
-              path="master/generals/location/country/addcountry/view/:id"
-              element={<AddCountry action="view" />}
-            />
-
-             <Route
               path="master/generals/location/state"
               element={<State />}
             />
             <Route
-              path="master/generals/location/state/addstate/add/:id"
-              element={<AddState action="add"/>}
-            />
-
-            <Route
-              path="master/generals/location/state/addstate/edit/:id"
-              element={<AddState action="edit" />}
-            />
-            <Route
-              path="master/generals/location/state/addstate/view/:id"
-              element={<AddState action="view" />}
-            />
-
-
-             <Route
               path="master/generals/location/city"
-              element={<City/>}
-            />
-            <Route
-              path="master/generals/location/city/addcity/add/:id"
-              element={<AddCity action="add" />}
-            />
-             <Route
-              path="master/generals/location/city/addcity/edit/:id"
-              element={<AddCity action="edit" />}
-            />
-            <Route
-              path="master/generals/location/city/addcity/view/:id"
-              element={<AddCity action="view" />}
+              element={<City />}
             />
 
             {/* Employee Management */}
@@ -889,8 +850,8 @@ const Maincomponent = () => {
               path="master/finance/currency/viewcurrency"
               element={<ViewCurrency />}
             />
-            <Route path="master/generals/commission" element={<Commission/>} />
-            <Route path="master/generals/commission/addcommission" element={<AddCommission/>} />
+            <Route path="master/generals/commission" element={<Commission />} />
+            <Route path="master/generals/commission/addcommission" element={<AddCommission />} />
             <Route path="master/generals/commission/editcommission/id:" element={<EditCommission />} />
             <Route path="/master/generals/commission/viewcommission/id:" element={<ViewCommission />} />
           </Route>

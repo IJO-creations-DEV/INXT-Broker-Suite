@@ -13,41 +13,43 @@ import { Button } from "primereact/button";
 import CustomToast from "../../../../components/Toast";
 import TransactionCodeMasterViewTable from "./TransactionCodeMasterViewTable";
 import NavBar from "../../../../components/NavBar";
+import { useDispatch } from "react-redux";
+import { postAddTransaction } from "../store/transactionCodeMasterMiddleware";
 
 const initialValue = {
   TransactionCode: "",
   TransactionName: "",
-  TransactionDescription:"",
-  TransactionBasis:"",
-  MainAccountCode:"",
-  MainAccountDescription:"",
-  SubAccountCode:"",
-  SubAccountDescription:"",
-  BranchCode:"",
-  BranchDescription:"",
-  Department:"",
-  DepartmentDescription:""
+  TransactionDescription: "",
+  TransactionBasis: "",
+  MainAccountCode: "",
+  MainAccountDescription: "",
+  SubAccountCode: "",
+  SubAccountDescription: "",
+  BranchCode: "",
+  BranchDescription: "",
+  Department: "",
+  DepartmentDescription: ""
 };
 
 const BankAccountCode = [
-  { name: "Cash", code: "NY" },
-  { name: "Netbanking", code: "RM" },
-];
+  { label: 'Trans00123', value: 'Trans00123' },
+  { label: 'Trans00124', value: 'Trans00124' },
+]
 const MainAccountCode = [
-  { name: "Main00123", code: "NY" },
-  { name: "Main001234", code: "RM" },
+  { label: 'Trans00123', value: 'Trans00123' },
+  { label: 'Trans00124', value: 'Trans00124' },
 ];
 const BranchCode = [
-  { name: "Branch00123", code: "NY" },
-  { name: "Branch001234", code: "RM" },
+  { label: 'Trans00123', value: 'Trans00123' },
+  { label: 'Trans00124', value: 'Trans00124' },
 ];
 const Department = [
-  { name: "Depart00123", code: "NY" },
-  { name: "Depart001234", code: "RM" },
+  { label: "Depart00123", value: "NY" },
+  { label: "Depart001234", value: "RM" },
 ];
 const SubAccountCode = [
-  { name: "Sub00123", code: "NY" },
-  { name: "Sub001234", code: "RM" },
+  { label: 'Trans00123', value: 'Trans00123' },
+  { label: 'Trans00124', value: 'Trans00124' },
 ];
 
 const TransactionCodeMasterView = () => {
@@ -66,23 +68,26 @@ const TransactionCodeMasterView = () => {
   const Initiate = { label: "Master" };
 
   const handleClick = () => {
-    navigate("/master/finance/transactioncode");
+    // navigate("/master/finance/transactioncode");
   };
 
-  const validate = () => {};
 
-  const handleSubmit = () => {
+
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+
+    dispatch(postAddTransaction(formik.values));
     toastRef.current.showToast();
     // {
-      setTimeout(() => {
-        navigate("/master/finance/transactioncode");
-      }, 3000);
-   
+    setTimeout(() => {
+      navigate("/master/finance/transactioncode");
+    }, 3000);
   };
+
 
   const customValidation = (values) => {
     const errors = {};
-  
+
     if (!values.TransactionCode) {
       errors.TransactionCode = "This field Code is required";
     }
@@ -98,6 +103,8 @@ const TransactionCodeMasterView = () => {
     if (!values.MainAccountCode) {
       errors.MainAccountCode = "This field is required";
     }
+
+
     // if (!values.MainAccountDescription) {
     //   errors.MainAccountDescription = "This field is required";
     // }
@@ -108,21 +115,21 @@ const TransactionCodeMasterView = () => {
     //   errors.SubAccountDescription = "This field is required";
     // }
     if (!values.Department) {
-      errors.Department= "This field is required";
+      errors.Department = "This field is required";
     }
     // if (!values. DepartmentDescription) {
     //   errors. DepartmentDescription= "This field is required";
     // }
-    if (!values. BranchCode) {
-      errors. BranchCode= "This field is required";
+    if (!values.BranchCode) {
+      errors.BranchCode = "This field is required";
     }
-    
+
     return errors;
   };
 
   const formik = useFormik({
     initialValues: initialValue,
-    validate:customValidation,
+    validate: customValidation,
     onSubmit: (values) => {
       handleSubmit(values);
     },
@@ -130,9 +137,9 @@ const TransactionCodeMasterView = () => {
 
   return (
     <div className="transactioncode__master__view">
-      <NavBar/>
+      <NavBar />
       {/* <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully"/> */}
-      <CustomToast ref={toastRef} message="Save Successfully"/>
+      <CustomToast ref={toastRef} message="Save Successfully" />
       <div className="grid  m-0">
         <div className="col-12 md:col-12 lg:col-12">
           <div
@@ -223,7 +230,7 @@ const TransactionCodeMasterView = () => {
                   formik.setFieldValue("TransactionBasis", e.value);
                   // handleAccountcode(e.value);
                 }}
-                optionLabel="name"
+                optionLabel="label"
                 error={
                   formik.touched.TransactionBasis &&
                   formik.errors.TransactionBasis
@@ -248,7 +255,7 @@ const TransactionCodeMasterView = () => {
                   formik.setFieldValue("MainAccountCode", e.value);
                   // handleAccountcode(e.value.);
                 }}
-                optionLabel="name"
+                optionLabel="label"
                 error={
                   formik.touched.MainAccountCode &&
                   formik.errors.MainAccountCode
@@ -270,10 +277,10 @@ const TransactionCodeMasterView = () => {
                 }
                 //value={formik.values.MainAccountDescription}
                 onChange={formik.handleChange("MainAccountDescription")}
-                // error={
-                //   formik.touched.MainAccountDescription &&
-                //   formik.errors.MainAccountDescription
-                // }
+              // error={
+              //   formik.touched.MainAccountDescription &&
+              //   formik.errors.MainAccountDescription
+              // }
               />
             </div>
           </div>
@@ -294,7 +301,7 @@ const TransactionCodeMasterView = () => {
                   formik.setFieldValue("SubAccountCode", e.value);
                   // handleAccountcode(e.value.);
                 }}
-                optionLabel="name"
+                optionLabel="label"
                 error={
                   formik.touched.SubAccountCode &&
                   formik.errors.SubAccountCode
@@ -316,10 +323,10 @@ const TransactionCodeMasterView = () => {
                     : ""
                 }
                 onChange={formik.handleChange("SubAccountDescription")}
-                // error={
-                //   formik.touched.SubAccountDescription &&
-                //   formik.errors.SubAccountDescription
-                // }
+              // error={
+              //   formik.touched.SubAccountDescription &&
+              //   formik.errors.SubAccountDescription
+              // }
               />
             </div>
           </div>
@@ -340,7 +347,7 @@ const TransactionCodeMasterView = () => {
                   formik.setFieldValue("BranchCode", e.value);
                   // handleAccountcode(e.value.);
                 }}
-                optionLabel="name"
+                optionLabel="label"
                 error={
                   formik.touched.BranchCode &&
                   formik.errors.BranchCode
@@ -362,10 +369,10 @@ const TransactionCodeMasterView = () => {
                     : ""
                 }
                 onChange={formik.handleChange("BranchDescription")}
-                // error={
-                //   formik.touched.BranchDescription &&
-                //   formik.errors.BranchDescription
-                // }
+              // error={
+              //   formik.touched.BranchDescription &&
+              //   formik.errors.BranchDescription
+              // }
               />
             </div>
           </div>
@@ -386,7 +393,7 @@ const TransactionCodeMasterView = () => {
                   formik.setFieldValue("Department", e.value);
                   // handleAccountcode(e.value.);
                 }}
-                optionLabel="name"
+                optionLabel="label"
                 error={
                   formik.touched.Department &&
                   formik.errors.Department
@@ -408,24 +415,24 @@ const TransactionCodeMasterView = () => {
                     : ""
                 }
                 onChange={formik.handleChange("DepartmentDescription")}
-                // error={
-                //   formik.touched.DepartmentDescription &&
-                //   formik.errors.DepartmentDescription
-                // }
+              // error={
+              //   formik.touched.DepartmentDescription &&
+              //   formik.errors.DepartmentDescription
+              // }
               />
             </div>
           </div>
         </Card>
       </form>
-      <TransactionCodeMasterViewTable/>
+      <TransactionCodeMasterViewTable />
       <div className="btn__container">
-          <Button
-            label="Save"
-            className="add__btn"
-            onClick={()=>{formik.handleSubmit();}} 
-            disabled={!formik.isValid}
-          />
-        </div>
+        <Button
+          label="Save"
+          className="add__btn"
+          onClick={() => { formik.handleSubmit(); }}
+          disabled={!formik.isValid}
+        />
+      </div>
     </div>
   );
 };

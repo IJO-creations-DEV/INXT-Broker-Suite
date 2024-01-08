@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 import data from "./data";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import SvgEditicon from "../../../../assets/icons/SvgEdit";
+import { getPettyCashView } from "../store/pettyCashMasterMiddleWare";
 const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
     // console.log(addPettyCash.data,"addPettyCash")
 
@@ -67,9 +68,10 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
         },
     
       };
-
+const dispatch=useDispatch()
     const handleView = (columnData) => {
         console.log(columnData.id, "columnData")
+        dispatch(getPettyCashView(columnData))
         navigate(`/master/finance/pettycash/pettycashdetail/${columnData.id}`)
 
     }

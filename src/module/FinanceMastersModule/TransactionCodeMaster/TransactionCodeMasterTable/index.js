@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -11,9 +11,22 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import SvgEditIcon from "../../../../assets/icons/SvgEdit";
 import ToggleButton from "../../../../components/ToggleButton";
+import { useFormik } from "formik";
+import { getTransactioncodeListsearch, getTrascationcodeDetailsView, patchTrascationcodeDetailsEdit } from "../store/transactionCodeMasterMiddleware";
+import { useDispatch, useSelector } from "react-redux";
 
 const TransactionCodeMasterTable = () => {
-  const [products, setProducts] = useState([{TransactionCode:"100101"}]);
+  const { TransactioncodeListsearch, TransactioncodeList, loading } = useSelector(({ transactionCodeMasterReducer }) => {
+    return {
+      loading: transactionCodeMasterReducer?.loading,
+      TransactioncodeList: transactionCodeMasterReducer?.TransactioncodeList,
+      TransactioncodeListsearch: transactionCodeMasterReducer?.TransactioncodeListsearch,
+      // addJournalVoucher: journalVoucherReducers?.addJournalVoucher
+
+    };
+  });
+  console.log(TransactioncodeList, "TransactioncodeList")
+  const [products, setProducts] = useState([{ TransactionCode: "100101" }]);
 
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
@@ -75,18 +88,23 @@ const TransactionCodeMasterTable = () => {
   const renderToggleButton = () => {
     return (
       <div>
-   <ToggleButton/>
+        <ToggleButton />
       </div>
     );
   };
+  const [selectedRows, setSelectedRows] = useState([]);
 
   const handleView = (rowData) => {
-    console.log("View clicked:", rowData);
-    navigate("/master/finance/transactioncode/transactioncodedetails")
+    dispatch(getTrascationcodeDetailsView(rowData))
+    navigate(`/master/finance/transactioncode/transactioncodedetails`)
   };
-  const handleEdit=(rowData) => {
-    navigate("/master/finance/transactioncode/transactioncodeedit")
+  // const [moduleData, setModuleData] = useState();
+  const handleEdit = (rowData) => {
+    console.log(rowData,"rowData")
+    dispatch(patchTrascationcodeDetailsEdit(rowData));
+    navigate(`/master/finance/transactioncode/transactioncodeedit`);
   }
+
   const headerStyle = {
     fontSize: 16,
     fontFamily: "Inter var",
@@ -95,6 +113,7 @@ const TransactionCodeMasterTable = () => {
     color: "#000",
     border: "none",
   };
+
   const ViewheaderStyle = {
     fontSize: 16,
     fontFamily: "Inter var",
@@ -105,32 +124,62 @@ const TransactionCodeMasterTable = () => {
     display: "flex",
     justifyContent: "center",
   };
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    console.log(values.search, "searchData");
+    dispatch(getTransactioncodeListsearch({ textSearch: values.search }));
+  }
+
+
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit
+  });
+  const handlecheck = (rowData) => {
+    console.log(rowData, "rowData")
+    const selectedIndex = selectedRows.findIndex(
+      (row) => row.id === rowData.id
+    );
+    let updatedSelectedRows = [];
+
+    if (selectedIndex === -1) {
+      updatedSelectedRows = [...selectedRows, rowData];
+    } else {
+      updatedSelectedRows = selectedRows.filter((row) => row.id !== rowData.id);
+    }
+
+    setSelectedRows(updatedSelectedRows);
+    console.log(updatedSelectedRows, "selected rows");
+
+  };
+
+  useEffect(() => {
+    if (formik.values.search !== "") {
+
+      dispatch(getTransactioncodeListsearch({ textSearch: formik.values.search }));
+    }
+  }, [formik.values.search]);
   return (
     <div className="transactioncode__master__table">
       <Card className="mt-4">
         <div className="header__search__container grid">
-          <div class="col-12 md:col-6 lg:col-10">
+          <form onSubmit={formik.handleSubmit} class="col-12 md:col-6 lg:col-10">
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
                 placeholder="Search By Transaction Code"
                 className="searchinput__left"
+                value={formik.values.search}
+                onChange={formik.handleChange("search")}
               />
             </span>
-          </div>
-          {/* <div class="col-12 md:col-6 lg:col-2">
-            <Button
-              label="Sort By"
-              outlined
-              icon={<SvgFilters />}
-              className="sorbyfilter_container"
-            />
-          </div> */}
+          </form>
+          
           <div className="sub__title">Transaction code List</div>
         </div>
         <div className="card">
           <DataTable
-            value={products}
+            value={formik.values.search !== "" ? TransactioncodeListsearch : TransactioncodeList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
@@ -139,12 +188,25 @@ const TransactionCodeMasterTable = () => {
             scrollHeight="40vh"
             paginator
             rows={5}
+            selection={selectedRows}
             rowsPerPageOptions={[5, 10, 25, 50]}
             // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
+            <Column
+              header={<input type="checkbox" />}
+              body={(rowData) => (
+                <input
+                  type="checkbox"
+                  checked={selectedRows.some((row) => row.id === rowData.id)}
+                  onClick={() => handlecheck(rowData)}
+                />
+              )}
+              headerStyle={headerStyle}
+              style={{ textAlign: "center" }}
+            />
             <Column
               field="TransactionCode"
               header="Transaction Code"
@@ -157,14 +219,12 @@ const TransactionCodeMasterTable = () => {
               header="Transaction Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-            //   sortable
             ></Column>
             <Column
               field="TransactionBasis"
               header="Transaction Basis"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-            //   sortable
             ></Column>
             <Column
               field="BranchCode"

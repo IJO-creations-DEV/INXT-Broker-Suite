@@ -14,39 +14,35 @@ import ArrowLeftIcon from "../../../assets/icons/ArrowLeftIcon"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import SvgArrow from '../../../assets/icons/SvgArrow';
-import { useLocation, useNavigate , useParams} from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Dropdown } from 'primereact/dropdown';
 import { Toast } from 'primereact/toast';
 import { data } from './data';
 import { useFormik } from 'formik';
 import ViewDataTabel from './ViewDataTabel';
 import { useDispatch, useSelector } from 'react-redux';
+import { getJournalVoucherViewData } from '../store/journalVoucherMiddleware';
 
 
 const DetailsJournalVocture = () => {
     const navigate = useNavigate()
-    // const location = useLocation();
-    // const { serializedData } = location.state || {};
-    // const data=JSON.parse(serializedData)
-    // console.log(data, "serializedData");
-    // const { journalVoucherList } = location.state || {};
-    // const parsedJournalVoucherList = JSON.parse(journalVoucherList);
-    // console.log(parsedJournalVoucherList,"parsedJournalVoucherList")
+
     const { id } = useParams();
     const dispatch = useDispatch();
-  
+
     // useEffect(() => {
     //   dispatch(getpaymentVocherByIdMiddleware(id));
     // }, [id]);
-  
-    const {  journalVoucherList, loading } = useSelector(
-      ({ journalVoucherMainReducers }) => {
-        return {
-          loading: journalVoucherMainReducers?.loading,
-          journalVoucherList: journalVoucherMainReducers?.journalVoucherList,
-        };
-      }
+
+    const { journalVoucherView, loading } = useSelector(
+        ({ journalVoucherMainReducers }) => {
+            return {
+                loading: journalVoucherMainReducers?.loading,
+                journalVoucherView: journalVoucherMainReducers?.journalVoucherView,
+            };
+        }
     );
+    console.log(journalVoucherView, "journalVoucherView")
 
 
     const [visiblePopup, setVisiblePopup] = useState(false);
@@ -114,17 +110,19 @@ const DetailsJournalVocture = () => {
         showSuccess();
     };
     const handleSubmit = (values) => {
+
+        dispatch(getJournalVoucherViewData())
         // Handle form submission
-        console.log(values);
+        console.log(values, "valuesuuu");
         // setVisible(false);
         // setVisiblePopup(true);
     }
     const formik = useFormik({
         initialValues: {
-            transactioncode: `${journalVoucherList[0].transationCode}`,
-            transactionDescription: `${journalVoucherList[0].transationDescription}`,
-            transactionNumber: `${journalVoucherList[0].transationCode}`,
-            date: `${journalVoucherList.date}`,
+            transactioncode: `${journalVoucherView.transationCode}`,
+            transactionDescription: `${journalVoucherView.totalCredit}`,
+            transactionNumber: `${journalVoucherView.transationCode}`,
+            date: `${journalVoucherView.date}`,
             totalCredit: '500',
             totalDebit: '500',
             net: '00.00'
@@ -203,7 +201,7 @@ const DetailsJournalVocture = () => {
                                 className="dropdown__add__sub"
                                 label="Transaction Code"
                                 classNames='label__sub__add'
-                                value={formik.values.transactioncode}
+                                value={journalVoucherView.transationCode}
                                 onChange={(e) => formik.setFieldValue('transactioncode', e.target.value)}
                                 options={mainAccountOptions}
                                 optionLabel='label'
@@ -220,7 +218,7 @@ const DetailsJournalVocture = () => {
                                 classNames='dropdown__add__sub'
                                 className='label__sub__add'
                                 placeholder="Enter"
-                                value={formik.values.transactionDescription}
+                                value={journalVoucherView.transationDescription}
                                 disabled={true}
 
                                 onChange={(e) => formik.setFieldValue('transactionDescription', e.target.value)}
@@ -233,7 +231,7 @@ const DetailsJournalVocture = () => {
                                 classNames='dropdown__add__sub'
                                 className='label__sub__add'
                                 // placeholder="Enter"
-                                value={formik.values.transactionNumber}
+                                value={journalVoucherView.transactionNumber}
 
                                 onChange={(e) => formik.setFieldValue('transactionNumber', e.target.value)}
                                 disabled={true}
@@ -256,7 +254,7 @@ const DetailsJournalVocture = () => {
                                         disabled={true}
                                     /> */}
                                     <Calendar
-                                        value={date || formik.values.date || null}
+                                        value={date || journalVoucherView.date || null}
                                         onChange={(e) => {
                                             setDate(e.value);
                                             formik.setFieldValue('date', e.value);

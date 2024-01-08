@@ -28,6 +28,7 @@ const InsuranceDetailsAction = ({ action }) => {
       setFormikValues();
     }
   }, [action]);
+  
   const items = [
     {
       label: "Insurance Management",

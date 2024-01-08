@@ -13,35 +13,19 @@ const initialState = {
             id: 1,
             subAccountCode: "sub123",
             description: "SubAccount",
+            subAccountName: "ayesha",
+            mainAccount: "m123",
+            currencyCode: "cd123",
             status: "true",
             action: <SvgIconeye />,
         },
-        {
-            id: 2,
-            subAccountCode: "sub123",
-            description: "SubAccount",
-            status: "true",
-            action: <SvgIconeye />
-        },
-        {
-            id: 3,
-            subAccountCode: "sub123",
-            description: "SubAccount",
-            status: "true",
-            action: <SvgIconeye />
-        },
-        {
-            id: 4,
-            subAccountCode: "sub123",
-            description: "SubAccount",
-            status: "true",
-            action: <SvgIconeye />
-        },
+
 
     ],
 
 
 };
+let nextId = 2
 const subAccaountReducers = createSlice({
     name: "subAccount",
     initialState,
@@ -52,7 +36,7 @@ const subAccaountReducers = createSlice({
         });
         builder.addCase(getSubAccount.fulfilled, (state, action) => {
             state.loading = false;
-            state.subAccountList = action.payload;
+            state.subAccountList = [action.payload];
 
         });
         builder.addCase(getSubAccount.rejected, (state, action) => {
@@ -70,14 +54,16 @@ const subAccaountReducers = createSlice({
         builder.addCase(
             postSubAccount.fulfilled, (state, action) => {
                 state.loading = false;
-                state.addSubAccount = action.payload;
+                const newItem2 = { ...action.payload, id: nextId++ };
+                state.subAccountList = [...state.subAccountList, newItem2];
+                console.log(state.subAccountList, "kkk")
             }
         );
         builder.addCase(
             postSubAccount.rejected, (state, action) => {
                 state.loading = false;
 
-                state.addSubAccount = {};
+                state.subAccountList = {};
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );

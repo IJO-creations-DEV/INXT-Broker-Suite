@@ -12,13 +12,24 @@ import { Column } from "primereact/column";
 import InputField from "../../../../components/InputField";
 import { Dropdown } from "primereact/dropdown";
 import { Card } from "primereact/card";
+import { useSelector } from "react-redux";
 
 const AddReplenishTable = () => {
-  const [data, setData] = useState([{ TransactionCode: "12838" }]);
   const [visible, setVisible] = useState(false);
-  const isEmpty = data.length === 0;
+  const [totalAmounts, setTotalAmounts] = useState(0);
   const toastRef = useRef(null);
   const navigate = useNavigate();
+
+  const { AddReplenishTable, loading } = useSelector(
+    ({ pettyCashReplenishReducer }) => {
+      return {
+        loading: pettyCashReplenishReducer?.loading,
+        AddReplenishTable: pettyCashReplenishReducer?.AddReplenishTable,
+      };
+    }
+  );
+  const isEmpty = AddReplenishTable.length === 0;
+
   const handleSubmit = () => {
     toastRef.current.showToast();
     {
@@ -43,8 +54,10 @@ const AddReplenishTable = () => {
   ];
   const Initiate = { label: "Accounts" };
 
-  const handleClick = () => {
+  const handleClick = (rowData) => {
     setVisible(true);
+    const clickedAmount = parseInt(rowData.Amount);
+    setTotalAmounts((prevTotalAmounts) => prevTotalAmounts + clickedAmount);
   };
 
   const handleBack = () => {
@@ -124,7 +137,7 @@ const AddReplenishTable = () => {
         </div>
         <div className="table__container">
           <DataTable
-            value={data}
+            value={AddReplenishTable}
             tableStyle={{ minWidth: "50rem" }}
             scrollable={true}
             scrollHeight="40vh"
@@ -138,11 +151,11 @@ const AddReplenishTable = () => {
           >
             <Column
               header={<input type="checkbox" />}
-              body={() => (
+              body={(rowData) => (
                 <input
                   type="checkbox"
-                  onClick={() => {
-                    handleClick();
+                   onClick={() => {
+                    handleClick(rowData); 
                   }}
                 />
               )}
@@ -205,6 +218,7 @@ const AddReplenishTable = () => {
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
+            value={100}
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3">
@@ -216,6 +230,7 @@ const AddReplenishTable = () => {
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
+            value={totalAmounts}
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3">
@@ -227,6 +242,7 @@ const AddReplenishTable = () => {
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
+            value={"1000"}
           />
         </div>
       </div>

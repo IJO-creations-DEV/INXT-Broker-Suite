@@ -37,6 +37,7 @@ const AddDisbursementTable = () => {
   const [visible, setVisible] = useState(false);
   const [moduleData, setModuleData] = useState();
   const [selectedRows, setSelectedRows] = useState([]);
+  const [totalAmounts, setTotalAmounts] = useState(0);
   const [show, setshow] = useState(false);
   const dispatch = useDispatch();
   const toastRef = useRef(null);
@@ -78,7 +79,11 @@ const AddDisbursementTable = () => {
   ];
   const Initiate = { label: "Accounts" };
 
-  const handleClick = () => {};
+  const handleClick = (rowData) => {
+    console.log(rowData,"rowData")
+    const clickedAmount = parseInt(rowData.TotalAmount);
+    setTotalAmounts((prevTotalAmounts) => prevTotalAmounts + clickedAmount);
+  };
 
   const handleBack = () => {
     navigate("/accounts/pettycash/adddisbursement");
@@ -189,24 +194,6 @@ const AddDisbursementTable = () => {
     formik.setFieldValue("TotalAmount", moduleData?.TotalAmount || "");
   }, [moduleData]);
 
-  const handlecheck = (rowData) => {
-    const selectedIndex = selectedRows.findIndex(
-      (row) => row.id === rowData.id
-    );
-    let updatedSelectedRows = [];
-
-    if (selectedIndex === -1) {
-      updatedSelectedRows = [...selectedRows, rowData];
-    } else {
-      updatedSelectedRows = selectedRows.filter((row) => row.id !== rowData.id);
-    }
-
-    setSelectedRows(updatedSelectedRows);
-    console.log(updatedSelectedRows, "selected rows");
-    const TotalAmount = selectedRows.map((item) => {
-      return item.TotalAmount;
-    });
-  };
 
   console.log(AddDisbursmentTable, "RequestList");
   return (
@@ -255,8 +242,9 @@ const AddDisbursementTable = () => {
               body={(rowData) => (
                 <input
                   type="checkbox"
-                  checked={selectedRows.some((row) => row.id === rowData.id)}
-                  onClick={() => handlecheck(rowData)}
+                  onClick={() => {
+                    handleClick(rowData); 
+                  }}
                 />
               )}
               headerStyle={headerStyle}
@@ -341,6 +329,7 @@ const AddDisbursementTable = () => {
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
+            value={totalAmounts}
           />
         </div>
       </div>

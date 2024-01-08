@@ -19,6 +19,8 @@ import {
   Departcode,
   SubAccount
 } from "../../mock";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddReceiptMiddleware } from "../store/pettyCashReceiptsMiddleware";
 
 const initialValue = {
   ReceiptNumber: "",
@@ -37,6 +39,7 @@ const initialValue = {
 
 const AddReceipts = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // const toastRef = useRef(null);
   const items = [
     { label: "Petty Cash", url: "/accounts/pettycash/addreceipts" },
@@ -50,8 +53,22 @@ const AddReceipts = () => {
   const handleBack = () => {
     navigate("/accounts/pettycash/receipts");
   };
-  const handleSubmit = (val) => {
-    console.log(val, "ad")
+
+  const { ReceiptList, loading } = useSelector(
+    ({ pettyCashReceiptsReducer }) => {
+      return {
+        loading: pettyCashReceiptsReducer?.loading,
+        ReceiptList: pettyCashReceiptsReducer?.ReceiptList,
+      };
+    }
+  );
+
+  const handleSubmit = (value) => {
+    const valueWithId = {
+      ...value,
+      id: ReceiptList?.length + 1,
+    };
+    dispatch(postAddReceiptMiddleware(valueWithId));
     // toastRef.current.showToast();
     // {
     //   setTimeout(() => {

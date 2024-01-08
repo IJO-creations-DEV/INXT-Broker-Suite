@@ -22,12 +22,20 @@ import ToggleButton from "../../../components/ToggleButton";
 import SvgEditicon from "../../../assets/icons/SvgEdit";
 // import { useNavigation } from '';
 import { TieredMenu } from 'primereact/tieredmenu';
+import { useSelector } from "react-redux";
 
 const CurrencyMaster = () => {
-  const [products, setProducts] = useState([{ TransactionCode: "100101" }]);
 
   const navigate = useNavigate();
-  const isEmpty = products.length === 0;
+
+  const { CurrencyList, loading } = useSelector(({ currencyMasterReducer }) => {
+    return {
+      loading: currencyMasterReducer?.loading,
+      CurrencyList: currencyMasterReducer?.CurrencyList,
+    };
+  });
+
+  const isEmpty = CurrencyList.length === 0;
 
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -117,6 +125,7 @@ const CurrencyMaster = () => {
     border: "none",
     display: "flex",
     justifyContent: "center",
+    width:"8rem"
   };
 
   const handleNavigate = () => {
@@ -192,7 +201,7 @@ const CurrencyMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={products}
+                value={CurrencyList}
                 tableStyle={{
                   minWidth: "50rem",
                   color: "#1C2536",

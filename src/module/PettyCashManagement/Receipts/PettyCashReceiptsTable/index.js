@@ -12,11 +12,22 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+import { useDispatch, useSelector } from "react-redux";
+import { getViewReceiptMiddleware } from "../store/pettyCashReceiptsMiddleware";
 
 const PettyCashReceiptsTable = () => {
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const isEmpty = products.length === 0;
+  const dispatch = useDispatch();
+
+  const { ReceiptList, loading } = useSelector(
+    ({ pettyCashReceiptsReducer }) => {
+      return {
+        loading: pettyCashReceiptsReducer?.loading,
+        ReceiptList: pettyCashReceiptsReducer?.ReceiptList,
+      };
+    }
+  );
+  const isEmpty = ReceiptList?.length === 0;
 
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -68,7 +79,7 @@ const PettyCashReceiptsTable = () => {
   };
 
   const handleView = (rowData) => {
-    console.log("View clicked:", rowData);
+    dispatch(getViewReceiptMiddleware(rowData));
     navigate("/accounts/pettycash/receiptlist");
   };
   const headerStyle = {
@@ -118,7 +129,7 @@ const PettyCashReceiptsTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={products}
+            value={ReceiptList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",

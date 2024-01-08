@@ -322,7 +322,7 @@ const bankMasterReducer = createSlice({
     );
 
     //BankDetailEdit
-
+    
     builder.addCase(patchBankDetailEdit.pending, (state) => {
       state.loading = true;
     });
@@ -330,9 +330,20 @@ const bankMasterReducer = createSlice({
       patchBankDetailEdit.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.BankDetailEdit = action.payload;
+        console.log(state.BankList, "state.BankList");
+        const updatedIndex = state.BankList.findIndex(
+          (item) => item.id === action.payload.id // The comparison here might need adjustment
+        );
+        if (updatedIndex !== -1) {
+          const updatedBankList = [...state.BankList];
+          updatedBankList[updatedIndex] = action.payload;
+          state.BankList = updatedBankList;
+        } else {
+          state.BankList = [...state.BankList, action.payload];
+        }
       }
     );
+    
     builder.addCase(
       patchBankDetailEdit.rejected,
       (state, action) => {

@@ -12,11 +12,23 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+import {  useDispatch, useSelector } from "react-redux";
+import { getViewReplenishMiddleware } from "../store/pettyCashReplenishMiddleware";
 
 const PettyCashReplenishTable = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isEmpty = products.length === 0;
+  const { ReplenishList, loading } = useSelector(
+    ({ pettyCashReplenishReducer }) => {
+      return {
+        loading: pettyCashReplenishReducer?.loading,
+        ReplenishList: pettyCashReplenishReducer?.ReplenishList,
+      };
+    }
+  );
+
+
+  const isEmpty = ReplenishList.length === 0;
 
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -68,6 +80,7 @@ const PettyCashReplenishTable = () => {
   };
 
   const handleView = (rowData) => {
+    dispatch(getViewReplenishMiddleware(rowData));
     console.log("View clicked:", rowData);
     navigate("/accounts/pettycash/replenishtdetailview");
   };
@@ -116,7 +129,7 @@ const PettyCashReplenishTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={products}
+            value={ReplenishList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
@@ -146,7 +159,7 @@ const PettyCashReplenishTable = () => {
               
             ></Column>
             <Column
-              field="Transaction code"
+              field="Transactioncode"
               header="Transactioncode"
               headerStyle={headerStyle}
               className="fieldvalue_container"

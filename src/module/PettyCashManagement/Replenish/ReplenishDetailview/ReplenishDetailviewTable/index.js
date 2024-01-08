@@ -4,10 +4,9 @@ import SvgTable from "../../../../../assets/icons/SvgTable";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
-const ReplenishtDetailViewTable = () => {
-  const [data, setData] = useState([]);
-  const isEmpty = data.length === 0;
-
+const ReplenishtDetailViewTable = ({AddReplenishTable}) => {
+  const isEmpty = AddReplenishTable.length === 0;
+console.log(AddReplenishTable,"AddReplenishTable")
   const emptyTableIcon = (
     <div className="empty-table-icon">
       <SvgTable />
@@ -28,12 +27,12 @@ const ReplenishtDetailViewTable = () => {
     <div className="add__replenish__table">
       <div className="table__container">
         <DataTable
-          value={data}
+          value={AddReplenishTable}
           tableStyle={{ minWidth: "50rem" }}
           emptyMessage={isEmpty ? emptyTableIcon : null}
         >
           <Column
-            field="TransactionCode"
+            field="Transactioncode"
             header="Transaction Code"
             headerStyle={headerStyle}
           ></Column>

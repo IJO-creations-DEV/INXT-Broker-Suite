@@ -3,14 +3,113 @@ import {
     getCurrencyList,
     getCurrencySearchList,
     postCurrencyStatus,
-    getAddCurrency,
+    postAddCurrency,
     patchCurrencyDetailEdit,
     getCurrencyDetailView
 } from "./currencyMasterMiddlewar";
 const initialState = {
   loading: false,
   error: "",
-  CurrencyList: [],
+  CurrencyList: [
+    {
+      id: 1,
+      Currencycode: "IND",
+      ISOcode: "ISO-1",
+      CurrencyFormat: "RUPES",
+      SmallestUnit: "RUPES",
+      UnitDescription: "UNI-01",
+      "CurrencyName": "Rupes"
+    },
+    {
+      "id": 2,
+      "Currencycode": "USD",
+      "ISOcode": "ISO-2",
+      "CurrencyFormat": "DOLLARS",
+      "SmallestUnit": "CENTS",
+      "UnitDescription": "CENT-02",
+      "CurrencyName": "United States Dollar"
+      }
+      ,
+      {
+      "id": 3,
+      "Currencycode": "EUR",
+      "ISOcode": "ISO-3",
+      "CurrencyFormat": "EUROS",
+      "SmallestUnit": "CENTIMES",
+      "UnitDescription": "CENT-03",
+      "CurrencyName": "Euro"
+      }
+      ,
+      {
+      "id": 4,
+      "Currencycode": "GBP",
+      "ISOcode": "ISO-4",
+      "CurrencyFormat": "POUNDS",
+      "SmallestUnit": "PENCE",
+      "UnitDescription": "PENNY",
+      "CurrencyName": "British Pound Sterling"
+      }
+      ,
+      {
+      "id": 5,
+      "Currencycode": "JPY",
+      "ISOcode": "ISO-5",
+      "CurrencyFormat": "YEN",
+      "SmallestUnit": "SEN",
+      "UnitDescription": "YEN-01",
+      "CurrencyName": "Japanese Yen"
+      }
+      ,
+      {
+      "id": 6,
+      "Currencycode": "AUD",
+      "ISOcode": "ISO-6",
+      "CurrencyFormat": "AUSTRALIAN DOLLARS",
+      "SmallestUnit": "CENTS",
+      "UnitDescription": "AUSSIE CENTS",
+      "CurrencyName": "Australian Dollar"
+      }
+      ,
+      {
+      "id": 7,
+      "Currencycode": "CAD",
+      "ISOcode": "ISO-7",
+      "CurrencyFormat": "CANADIAN DOLLARS",
+      "SmallestUnit": "CENTS",
+      "UnitDescription": "CANADIAN CENTS",
+      "CurrencyName": "Canadian Dollar"
+      }
+      ,
+      {
+      "id": 8,
+      "Currencycode": "CHF",
+      "ISOcode": "ISO-8",
+      "CurrencyFormat": "SWISS FRANCS",
+      "SmallestUnit": "RAPPEN",
+      "UnitDescription": "RAP",
+      "CurrencyName": "Swiss Franc"
+      }
+      ,
+      {
+      "id": 9,
+      "Currencycode": "CNY",
+      "ISOcode": "ISO-9",
+      "CurrencyFormat": "YUAN",
+      "SmallestUnit": "FEN",
+      "UnitDescription": "YUAN-01",
+      "CurrencyName": "Chinese Yuan"
+      }
+      ,
+      {
+      "id": 10,
+      "Currencycode": "INR",
+      "ISOcode": "ISO-10",
+      "CurrencyFormat": "RUPEES",
+      "SmallestUnit": "PAISE",
+      "UnitDescription": "PAISA",
+      "CurrencyName": "Indian Rupee"
+      }
+  ],
   CurrencySearchList:[],
   CurrencyStatus:{},
   AddCurrency:{},
@@ -89,20 +188,20 @@ const currencyMasterReducer = createSlice({
       }
     );
 
-    //AddCurrency
+    //postAddCurrency
 
-    builder.addCase(getAddCurrency.pending, (state) => {
+    builder.addCase(postAddCurrency.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(
-      getAddCurrency.fulfilled,
+      postAddCurrency.fulfilled,
       (state, action) => {
         state.loading = false;
         state.AddCurrency = action.payload;
       }
     );
     builder.addCase(
-      getAddCurrency.rejected,
+      postAddCurrency.rejected,
       (state, action) => {
         state.loading = false;
 

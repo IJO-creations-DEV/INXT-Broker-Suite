@@ -12,13 +12,15 @@ import { Button } from "primereact/button";
 import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
 import {
-    PettyCashCode,
+  PettyCashCode,
   BankAccountCode,
   SubAccount,
   Transcode,
   Branchcode,
   Departcode,
 } from "../../mock";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddReplenishMiddleware } from "../store/pettyCashReplenishMiddleware";
 
 const initialValue = {
   PettycashCode: "",
@@ -37,7 +39,17 @@ const initialValue = {
 
 const AddReplenish = () => {
   const navigate = useNavigate();
-//   const toastRef = useRef(null);
+  const dispatch = useDispatch();
+  //   const toastRef = useRef(null);
+
+  const { ReplenishList, loading } = useSelector(
+    ({ pettyCashReplenishReducer }) => {
+      return {
+        loading: pettyCashReplenishReducer?.loading,
+        ReplenishList: pettyCashReplenishReducer?.ReplenishList,
+      };
+    }
+  );
   const items = [
     { label: "Petty Cash", url: "/accounts/pettycash/addreplenish" },
     {
@@ -50,11 +62,16 @@ const AddReplenish = () => {
   const handleBack = () => {
     navigate("/accounts/pettycash/replenish");
   };
-  const handleSubmit = () => {
+  const handleSubmit = (value) => {
+    const valueWithId = {
+      ...value,
+      id: ReplenishList?.length + 1,
+    };
+    dispatch(postAddReplenishMiddleware(valueWithId));
     // toastRef.current.showToast();
     // {
     //   setTimeout(() => {
-        navigate("/accounts/pettycash/addreplenishtable");
+    navigate("/accounts/pettycash/addreplenishtable");
     //   }, 3000);
     // }
   };
@@ -115,7 +132,7 @@ const AddReplenish = () => {
     }
     formik.setFieldValue("PettycashDescription", description);
   };
-  
+
   const handleTrans = (value) => {
     let Trans = "";
     switch (value) {
@@ -258,17 +275,17 @@ const AddReplenish = () => {
                 textSize={"16"}
                 textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.PettycashDescription}
+                value={formik.values.PettycashCode}
                 options={PettyCashCode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("PettycashDescription", e.value);
-                  handlePettyCashDescribtion(e.value)
+                  formik.setFieldValue("PettycashCode", e.value);
+                  handlePettyCashDescribtion(e.value);
                 }}
                 optionLabel="pettycashcode"
                 error={
-                  formik.touched.PettycashDescription &&
-                  formik.errors.PettycashDescription
+                  formik.touched.PettycashCode &&
+                  formik.errors.PettycashCode
                 }
               />
             </div>
@@ -305,13 +322,10 @@ const AddReplenish = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("BankCode", e.value);
-                  handleBankcode(e.value.BankAccountCode)
+                  handleBankcode(e.value.BankAccountCode);
                 }}
                 optionLabel="BankAccountCode"
-                error={
-                  formik.touched.BankCode &&
-                  formik.errors.BankCode
-                }
+                error={formik.touched.BankCode && formik.errors.BankCode}
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -334,7 +348,7 @@ const AddReplenish = () => {
           </div>
           <div className="grid mt-1">
             <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns 
+              <DropDowns
                 className="input__filed"
                 label="Sub Account Code"
                 placeholder="Select"
@@ -347,12 +361,11 @@ const AddReplenish = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("SubAccountCode", e.value);
-                  handleSubAccount(e.value.SubAccount)
+                  handleSubAccount(e.value.SubAccount);
                 }}
                 optionLabel="SubAccount"
                 error={
-                  formik.touched.SubAccountCode &&
-                  formik.errors.SubAccountCode
+                  formik.touched.SubAccountCode && formik.errors.SubAccountCode
                 }
               />
             </div>
@@ -376,7 +389,7 @@ const AddReplenish = () => {
           </div>
           <div className="grid mt-1">
             <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns 
+              <DropDowns
                 className="input__filed"
                 label="Transaction Code"
                 placeholder="Select"
@@ -389,7 +402,7 @@ const AddReplenish = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("TransactionCode", e.value);
-                  handleTrans(e.value.Transcode)
+                  handleTrans(e.value.Transcode);
                 }}
                 optionLabel="Transcode"
                 error={
@@ -431,13 +444,10 @@ const AddReplenish = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("BranchCode", e.value);
-                  handleBranch(e.value.Branchcode)
+                  handleBranch(e.value.Branchcode);
                 }}
                 optionLabel="Branchcode"
-                error={
-                  formik.touched.BranchCode &&
-                  formik.errors.BranchCode
-                }
+                error={formik.touched.BranchCode && formik.errors.BranchCode}
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -473,12 +483,11 @@ const AddReplenish = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("DepartmentCode", e.value);
-                  handleDepart(e.value.Departcode)
+                  handleDepart(e.value.Departcode);
                 }}
                 optionLabel="Departcode"
                 error={
-                  formik.touched.DepartmentCode &&
-                  formik.errors.DepartmentCode
+                  formik.touched.DepartmentCode && formik.errors.DepartmentCode
                 }
               />
             </div>

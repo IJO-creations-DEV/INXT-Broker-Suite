@@ -36,7 +36,6 @@ export const postInitiateMiddleware = createAsyncThunk(
     console.log(payload, "leomaxvj");
     const currentDate = new Date(); // Get current date
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
-
     const TableData = {
       id: payload?.id,
       Pettycashcode: payload?.PettyCashCode?.pettycashcode,

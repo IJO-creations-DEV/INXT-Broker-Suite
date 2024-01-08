@@ -8,10 +8,23 @@ import SvgBackArrow from "../../../../assets/icons/SvgBackArrow";
 import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
 import ReceiptListTable from "./ReceiptsListTable";
+import { useSelector } from "react-redux";
 
 const ReceiptList = () => {
   const navigate = useNavigate();
-//   const toastRef = useRef(null);
+  //   const toastRef = useRef(null);
+  const { ViewReceipt, loading,AddReceiptTable } = useSelector(
+    ({ pettyCashReceiptsReducer }) => {
+      return {
+        loading: pettyCashReceiptsReducer?.loading,
+        ViewReceipt: pettyCashReceiptsReducer?.ViewReceipt,
+        AddReceiptTable:pettyCashReceiptsReducer?.AddReceiptTable
+      };
+    }
+  );
+
+  console.log(ViewReceipt,"ViewReceipt")
+
   const items = [
     { label: "Petty Cash", url: "/accounts/pettycash/receiptlist" },
     {
@@ -60,6 +73,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"1010011"}
             />
           </div>
           <div className="col-12 md:col-3 lg-col-3 input__view">
@@ -71,6 +85,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReceipt.RequesterName}
             />
           </div>
         </div>
@@ -84,6 +99,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReceipt.BankCode}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -95,6 +111,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Bank-01"}
             />
           </div>
         </div>
@@ -108,6 +125,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReceipt.SubAccount}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -119,6 +137,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"SubAccount-001"}
             />
           </div>
         </div>
@@ -132,6 +151,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReceipt.Transactioncode}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -143,6 +163,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Transactioncode-001"}
             />
           </div>
         </div>
@@ -156,6 +177,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReceipt.Branchcode}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -167,6 +189,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Branchcode-001"}
             />
           </div>
         </div>
@@ -180,6 +203,7 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Depart-001"}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -191,12 +215,13 @@ const ReceiptList = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"DepartDescription-001"}
             />
           </div>
         </div>
       </Card>
       <Card className="mt-3">
-        <ReceiptListTable />
+        <ReceiptListTable AddReceiptTable={AddReceiptTable}/>
       </Card>
     </div>
   );

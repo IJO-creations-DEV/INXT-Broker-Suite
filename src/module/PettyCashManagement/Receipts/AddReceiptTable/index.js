@@ -12,19 +12,12 @@ import { Column } from "primereact/column";
 import InputField from "../../../../components/InputField";
 import { Dropdown } from "primereact/dropdown";
 import { Card } from "primereact/card";
+import { useSelector } from "react-redux";
 
 const AddReceiptsTable = () => {
-  const [data, setData] = useState([
-    { TransactionCode: "12838", RequestNumber: "012345", Date: "17/05/2024", Amount: 123, Remarks: "remark1" },
-    { TransactionCode: "12839", RequestNumber: "01234516", Date: "13/05/2024", Amount: 143, Remarks: "remark2" },
-    { TransactionCode: "12840", RequestNumber: "01234536", Date: "14/05/2024", Amount: 153, Remarks: "remark3" },
-    { TransactionCode: "12841", RequestNumber: "01234546", Date: "15/05/2024", Amount: 173, Remarks: "remark4" },
-    { TransactionCode: "12842", RequestNumber: "01234556", Date: "16/05/2024", Amount: 183, Remarks: "remark5" },
-
-
-  ]);
   const [visible, setVisible] = useState(false);
-  const isEmpty = data.length === 0;
+  const [totalAmounts, setTotalAmounts] = useState(0);
+  
   const toastRef = useRef(null);
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -36,6 +29,15 @@ const AddReceiptsTable = () => {
     }
   };
 
+  const { AddReceiptTable, loading } = useSelector(
+    ({ pettyCashReceiptsReducer }) => {
+      return {
+        loading: pettyCashReceiptsReducer?.loading,
+        AddReceiptTable: pettyCashReceiptsReducer?.AddReceiptTable,
+      };
+    }
+  );
+  const isEmpty = AddReceiptTable?.length === 0;
   const emptyTableIcon = (
     <div className="empty-table-icon">
       <SvgTable />
@@ -51,9 +53,13 @@ const AddReceiptsTable = () => {
   ];
   const Initiate = { label: "Accounts" };
 
-  const handleClick = () => {
+  const handleClick = (rowData) => {
     setVisible(true);
+    const clickedAmount = parseInt(rowData.Amount);
+    setTotalAmounts((prevTotalAmounts) => prevTotalAmounts + clickedAmount);
   };
+  
+
 
   const handleBack = () => {
     navigate("/accounts/pettycash/addreceipts");
@@ -132,7 +138,7 @@ const AddReceiptsTable = () => {
         </div>
         <div className="table__container">
           <DataTable
-            value={data}
+            value={AddReceiptTable}
             tableStyle={{ minWidth: "50rem" }}
             scrollable={true}
             scrollHeight="40vh"
@@ -146,12 +152,13 @@ const AddReceiptsTable = () => {
           >
             <Column
               header={<input type="checkbox" />}
-              body={() => (
+              body={(rowData) => (
                 <input
                   type="checkbox"
                   onClick={() => {
-                    handleClick();
+                    handleClick(rowData); 
                   }}
+      
                 />
               )}
               headerStyle={headerStyle}
@@ -196,24 +203,24 @@ const AddReceiptsTable = () => {
           <InputField
             classNames="input__filed"
             label="Disbursed Amount"
-            value={120.00}
             // placeholder="Enter"
             disabled={true}
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
+            value={totalAmounts}
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3">
           <InputField
             classNames="input__filed"
             label="Balance Amount"
-            value={20.00}
             // placeholder="Enter"
             disabled={true}
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
+            value={1000}
           />
         </div>
       </div>

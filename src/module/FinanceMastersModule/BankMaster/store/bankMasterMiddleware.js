@@ -60,37 +60,37 @@ export const getAddBank = createAsyncThunk(
 export const patchBankDetailEdit = createAsyncThunk(
     PATCH_BANK_DETAIL_EDIT,
     async (payload, { rejectWithValue, getState }) => {
-        const { bankMasterReducer } = getState();
+        // const { bankMasterReducer } = getState();
 
 
         // const { correctionJVList } = correctionJVMainReducers;
         // const filteredData = correctionJVList.filter((item) => item.id === 1);
 
         try {
-            const { BankList } = bankMasterReducer;
-            const updatedObject = BankList.findIndex(item => item.bankCode === payload?.bankCode);
-            let newArr = [...BankList]
-            newArr[updatedObject] = {
-                bankBranch: payload?.bankBranch,
-                bankCode: payload?.bankCode,
-                bankName: payload?.bankName,
+            // const { BankList } = bankMasterReducer;
+            // const updatedObject = BankList.findIndex(item => item.bankCode === payload?.bankCode);
+            // let newArr = [...BankList]
+            // newArr[updatedObject] = {
+            //     bankBranch: payload?.bankBranch,
+            //     bankCode: payload?.bankCode,
+            //     bankName: payload?.bankName,
 
 
-                email
-                    :
-                    payload?.email,
-                ifscCode
-                    :
-                    payload?.ifscCode,
-                mobile
-                    :
-                    payload?.mobile,
-                status
-                    :
-                    true
-            }
+            //     email
+            //         :
+            //         payload?.email,
+            //     ifscCode
+            //         :
+            //         payload?.ifscCode,
+            //     mobile
+            //         :
+            //         payload?.mobile,
+            //     status
+            //         :
+            //         true
+            // }
             // const { data } = await patchRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return newArr;
+            return payload;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

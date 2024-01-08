@@ -4,9 +4,8 @@ import SvgTable from "../../../../../assets/icons/SvgTable";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
-const ReceiptListTable = () => {
-  const [data, setData] = useState([]);
-  const isEmpty = data.length === 0;
+const ReceiptListTable = ({AddReceiptTable}) => {
+  const isEmpty = AddReceiptTable.length === 0;
  
 
   const emptyTableIcon = (
@@ -29,7 +28,7 @@ const ReceiptListTable = () => {
     <div className="add__receipts__table">
         <div className="table__container">
           <DataTable
-            value={data}
+            value={AddReceiptTable}
             tableStyle={{ minWidth: "50rem" }}
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >

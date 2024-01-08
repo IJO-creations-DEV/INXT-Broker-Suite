@@ -8,9 +8,23 @@ import SvgBackArrow from "../../../../assets/icons/SvgBackArrow";
 import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
 import ReplenishtDetailViewTable from "./ReplenishDetailviewTable";
+import { useSelector } from "react-redux";
 
 const ReplenishtDetailView = () => {
   const navigate = useNavigate();
+
+  const { ViewReplenish, loading,AddReplenishTable } = useSelector(
+    ({ pettyCashReplenishReducer }) => {
+      return {
+        loading: pettyCashReplenishReducer?.loading,
+        ViewReplenish: pettyCashReplenishReducer?.ViewReplenish,
+        AddReplenishTable:pettyCashReplenishReducer?.AddReplenishTable
+      };
+    }
+  );
+
+  console.log(ViewReplenish,"ViewReplenish")
+
 //   const toastRef = useRef(null);
   const items = [
     { label: "Petty Cash", url: "/accounts/pettycash/replenishtdetailview" },
@@ -60,6 +74,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReplenish.Pettycashcode}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -71,6 +86,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Pettycash-0018"}
             />
           </div>
         </div>
@@ -84,6 +100,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReplenish.BankCode}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -95,6 +112,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Bank-01"}
             />
           </div>
         </div>
@@ -108,6 +126,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReplenish.SubAccount}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -119,6 +138,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"SubAC-01"}
             />
           </div>
         </div>
@@ -132,6 +152,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReplenish.Transactioncode}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -143,6 +164,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Transactioncode-01"}
             />
           </div>
         </div>
@@ -156,6 +178,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={ViewReplenish.Branchcode}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -167,6 +190,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Branchcode-01"}
             />
           </div>
         </div>
@@ -180,6 +204,7 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Depart-00101"}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -191,12 +216,13 @@ const ReplenishtDetailView = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"Depart-01"}
             />
           </div>
         </div>
       </Card>
       <Card className="mt-3">
-        <ReplenishtDetailViewTable />
+        <ReplenishtDetailViewTable AddReplenishTable={AddReplenishTable}/>
       </Card>
     </div>
   );

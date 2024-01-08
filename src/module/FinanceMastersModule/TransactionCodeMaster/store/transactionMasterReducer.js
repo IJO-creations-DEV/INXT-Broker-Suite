@@ -11,20 +11,76 @@ import {
   getTrascationcodeDetailsView,
   patchTrascationcodeDetailsEdit,
 } from "./transactionCodeMasterMiddleware";
+import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 const initialState = {
   loading: false,
   error: "",
-  TransactioncodeList: [],
-  TransactioncodeListsearch: {},
+  TransactioncodeList: [
+    {
+      id: 1,
+      TransactionCode: "TC123",
+      TransactionName: "TNAys",
+      TransactionBasis: "TB123",
+      BranchCode: "B123",
+      DepartmentCode: "Dept123",
+      MainAccountCode: "12",
+      MainAccountDescription: "hii",
+      SubAccountCode: "88",
+      SubAccountDescription: "sub99",
+      BranchDescription: "branch66",
+      DepartmentDescription: "dept12",
+      Description: "description",
+      Status: true,
+      View: <SvgEditIcon />
+    },
+    {
+      id: 2,
+      TransactionCode: "TC788",
+      TransactionName: "TNAys",
+      TransactionBasis: "TB123",
+      BranchCode: "B123",
+      DepartmentCode: "Dept123",
+      MainAccountCode: "12",
+      MainAccountDescription: "hii",
+      SubAccountCode: "88",
+      SubAccountDescription: "sub99",
+      BranchDescription: "branch66",
+      DepartmentDescription: "dept12",
+      Description: "description",
+      Status: true,
+      View: <SvgEditIcon />
+    }
+  ],
+  TransactioncodeListsearch: [],
+  TrascationcodeDetailsView: [],
   AddTransaction: {},
   Status: {},
-  TransactionCodeSetup: [],
-  UserGroupAccess: [],
+  TransactionCodeSetup: [
+    {
+      id: 1,
+      AccountingPeriodStart: "12/1/2023",
+      AccountingPeriodEnd: "12/1/2023",
+      TransactionNumberFrom: "123",
+      TransactionNumberTo: "12",
+
+    }
+  ],
+  UserGroupAccessList: [
+    {
+      id: 1,
+      UserRole: "UR",
+      MinimumTransaction: "333",
+      MaximumTransaction: "663",
+
+    }
+  ],
   AddTransactionCodeSetup: {},
   AddUserGroupAccess: {},
   TrascationcodeDetailsView: {},
   TrascationcodeDetailsEdit: {},
 };
+let nextId = 2;
+let nextId2 = 2
 const transactionCodeMasterReducer = createSlice({
   name: "transactioncodeList",
   initialState,
@@ -39,7 +95,7 @@ const transactionCodeMasterReducer = createSlice({
       getTransactioncodeListMiddleware.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.TransactioncodeList = action.payload;
+        state.TransactioncodeList = [action.payload];
       }
     );
     builder.addCase(
@@ -59,12 +115,12 @@ const transactionCodeMasterReducer = createSlice({
     });
     builder.addCase(getTransactioncodeListsearch.fulfilled, (state, action) => {
       state.loading = false;
-      state.TransactioncodeListsearch = action.payload;
+      state.TransactioncodeList = [action.payload];
     });
     builder.addCase(getTransactioncodeListsearch.rejected, (state, action) => {
       state.loading = false;
 
-      state.TransactioncodeListsearch = {};
+      // state.TransactioncodeList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
@@ -86,17 +142,20 @@ const transactionCodeMasterReducer = createSlice({
 
     //AddTransaction
 
+
     builder.addCase(postAddTransaction.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(postAddTransaction.fulfilled, (state, action) => {
       state.loading = false;
-      state.AddTransaction = action.payload;
+      const newItem2 = { ...action.payload, id: nextId++ };
+      state.TransactioncodeList = [...state.TransactioncodeList, newItem2];
+      console.log(state.TransactioncodeList, "g")
     });
     builder.addCase(postAddTransaction.rejected, (state, action) => {
       state.loading = false;
 
-      state.AddTransaction = {};
+      // state.postTCdata = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
@@ -107,7 +166,7 @@ const transactionCodeMasterReducer = createSlice({
     });
     builder.addCase(getTransactionCodeSetup.fulfilled, (state, action) => {
       state.loading = false;
-      state.TransactionCodeSetup = action.payload;
+      state.TransactionCodeSetup = [action.payload];
     });
     builder.addCase(getTransactionCodeSetup.rejected, (state, action) => {
       state.loading = false;
@@ -123,28 +182,29 @@ const transactionCodeMasterReducer = createSlice({
     });
     builder.addCase(getUserGroupAccess.fulfilled, (state, action) => {
       state.loading = false;
-      state.UserGroupAccess = action.payload;
+      state.UserGroupAccessList = [action.payload];
     });
     builder.addCase(getUserGroupAccess.rejected, (state, action) => {
       state.loading = false;
 
-      state.UserGroupAccess = {};
+      state.UserGroupAccessList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
     //AddTransactionCodeSetup
-
     builder.addCase(postAddTransactionCodeSetup.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(postAddTransactionCodeSetup.fulfilled, (state, action) => {
       state.loading = false;
-      state.AddTransactionCodeSetup = action.payload;
+      const newItem2 = { ...action.payload, id: nextId++ };
+      state.TransactionCodeSetup = [...state.TransactionCodeSetup, newItem2];
+      console.log(state.TransactionCodeSetup, "g")
     });
     builder.addCase(postAddTransactionCodeSetup.rejected, (state, action) => {
       state.loading = false;
 
-      state.AddTransactionCodeSetup = {};
+      // state.postTCdata = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
@@ -155,17 +215,17 @@ const transactionCodeMasterReducer = createSlice({
     });
     builder.addCase(postAddUserGroupAccess.fulfilled, (state, action) => {
       state.loading = false;
-      state.AddUserGroupAccess = action.payload;
+      const newItem2 = { ...action.payload, id: nextId2++ };
+      state.UserGroupAccessList = [...state.UserGroupAccessList, newItem2];
+      console.log(state.UserGroupAccessList, "jj")
     });
     builder.addCase(postAddUserGroupAccess.rejected, (state, action) => {
       state.loading = false;
 
-      state.AddUserGroupAccess = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
     //TrascationcodeDetailsView
-
     builder.addCase(getTrascationcodeDetailsView.pending, (state) => {
       state.loading = true;
     });
@@ -182,6 +242,55 @@ const transactionCodeMasterReducer = createSlice({
 
     //TrascationcodeDetailsEdit
 
+
+    // builder.addCase(patchTrascationcodeDetailsEdit.pending, (state) => {
+    //   state.loading = true;
+    // });
+    // builder.addCase(
+    //   patchTrascationcodeDetailsEdit.fulfilled,
+    //   (state, action) => {
+
+    //     state.loading = false;
+    //     state.TransactioncodeList = [action.payload];
+    //   }
+    // );
+    // builder.addCase(
+    //   patchTrascationcodeDetailsEdit.rejected,
+    //   (state, action) => {
+    //     state.loading = false;
+
+    //     state.TransactioncodeList = {};
+    //     state.error = typeof action.payload === "string" ? action.payload : "";
+    //   }
+    // );
+    // builder.addCase(patchTrascationcodeDetailsEdit.pending, (state) => {
+    //   state.loading = true;
+    // });
+    // builder.addCase(
+    //   patchTrascationcodeDetailsEdit.fulfilled,
+    //   (state, action) => {
+    //     state.loading = false;
+    //     console.log(state.TransactioncodeList, "state.AddDisbursmentTable");
+    //     const updatedIndex = state.TransactioncodeList.findIndex(
+    //       (item) => item.id === action.payload.id
+    //     );
+    //     if (updatedIndex !== -1) {
+    //       const updatedTransactioncodeList = [...state.TransactioncodeList];
+    //       updatedTransactioncodeList[updatedIndex] = action.payload;
+    //       state.TransactioncodeList = updatedTransactioncodeList;
+    //     } else {
+    //       state.TransactioncodeList = [...state.TransactioncodeList, action.payload];
+    //     }
+    //   }
+    // );
+
+
+    // builder.addCase(patchTrascationcodeDetailsEdit.rejected, (state, action) => {
+    //   state.loading = false;
+
+    //   state.EditDisbursment = {};
+    //   state.error = typeof action.payload === "string" ? action.payload : "";
+    // });
     builder.addCase(patchTrascationcodeDetailsEdit.pending, (state) => {
       state.loading = true;
     });
@@ -189,7 +298,7 @@ const transactionCodeMasterReducer = createSlice({
       patchTrascationcodeDetailsEdit.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.TrascationcodeDetailsEdit = action.payload;
+        state.BankDetailEdit = action.payload;
       }
     );
     builder.addCase(
@@ -197,10 +306,12 @@ const transactionCodeMasterReducer = createSlice({
       (state, action) => {
         state.loading = false;
 
-        state.TrascationcodeDetailsEdit = {};
+        state.BankDetailEdit = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
+
+
   },
 });
 

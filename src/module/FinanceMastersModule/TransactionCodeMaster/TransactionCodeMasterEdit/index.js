@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./index.scss";
 import { useFormik } from "formik";
 import { BreadCrumb } from "primereact/breadcrumb";
@@ -13,25 +13,27 @@ import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import TransactionCodeMasterEdit from "./TransactionCodeMasterEditTableview";
 import NavBar from "../../../../components/NavBar";
 import { Button } from "primereact/button";
+import { patchTrascationcodeDetailsEdit } from "../store/transactionCodeMasterMiddleware";
+import { useDispatch, useSelector } from "react-redux";
+import { PATCH_TRANSACTION_CODE_DETAILS_EDIT } from "../../../../redux/actionTypes";
 
-const initialValue = {
-  TransactionCode: "",
-  TransactionName: "",
-  Description:"",
-  TransactionBasis:"",
-  MainAccountCode:"",
-  MainAccountDescription:"",
-  SubAccountCode:"",
-  SubAccountDescription:"",
-  BranchCode:"",
-  BranchDescription:"",
-  Department:"",
-  DepartmentDescription:"",
-};
+
+
 
 const TransactionCodeEdit = () => {
+
+  const { TransactioncodeList, loading } = useSelector(({ transactionCodeMasterReducer }) => {
+    return {
+      loading: transactionCodeMasterReducer?.loading,
+      TransactioncodeList: transactionCodeMasterReducer?.TransactioncodeList,
+    };
+  });
+  console.log(TransactioncodeList, "TransactioncodeList")
+
   const toastRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const items = [
     {
       label: "Transaction code",
@@ -39,32 +41,77 @@ const TransactionCodeEdit = () => {
     },
     {
       label: "Edit Transaction Code",
-      // url: "/master/finance/transactioncode/transactioncodedetails",
     },
   ];
+
   const Initiate = { label: "Master" };
 
   const handleClick = () => {
     navigate("/master/finance/transactioncode");
   };
 
-  const validate = () => {};
-
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
+    console.log(values, "valuesvalues")
+    dispatch(patchTrascationcodeDetailsEdit(values));
     navigate("/master/finance/transactioncode");
   };
 
+  const SetFormikValue = () => {
+    const updatedValues = {
+      TransactionCode: TransactioncodeList?.TransactionCode || "",
+      TransactionName: TransactioncodeList?.TransactionName || "",
+      Description: TransactioncodeList?.Description || "",
+      TransactionBasis: TransactioncodeList?.TransactionBasis || "",
+      MainAccountCode: TransactioncodeList?.MainAccountCode || "",
+      MainAccountDescription: TransactioncodeList?.MainAccountDescription || "",
+      SubAccountCode: TransactioncodeList?.SubAccountCode || "",
+      SubAccountDescription: TransactioncodeList?.SubAccountDescription || "",
+      BranchCode: TransactioncodeList?.BranchCode || "",
+      BranchDescription: TransactioncodeList?.BranchDescription || "",
+      Department: TransactioncodeList?.Department || "",
+      DepartmentDescription: TransactioncodeList?.DepartmentDescription || "",
+    };
+    formik.setValues({ ...formik.values, ...updatedValues });
+    console.log(updatedValues, "updatedValues")
+  };
+
   const formik = useFormik({
-    initialValues: initialValue,
-    validate,
+    initialValues: {
+      TransactionCode: "",
+      TransactionName: "",
+      Description: "",
+      TransactionBasis: "",
+      MainAccountCode: "",
+      MainAccountDescription: "",
+      SubAccountCode: "",
+      SubAccountDescription: "",
+      BranchCode: "",
+      BranchDescription: "",
+      Department: "",
+      DepartmentDescription: "",
+    },
+    validate: (values) => {
+      const errors = {};
+      // Add your validation logic here
+      if (!values.TransactionCode) {
+        errors.TransactionCode = "Transaction Code is required";
+      }
+      // Add more validations as needed
+
+      return errors;
+    },
     onSubmit: (values) => {
       handleSubmit(values);
     },
   });
 
+  useEffect(() => {
+    SetFormikValue();
+  }, [TransactioncodeList]);
+
   return (
     <div className="transactioncode__master__Edit__view">
-      <NavBar/>
+      <NavBar />
       {/* <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully"/> */}
       <div className="grid  m-0">
         <div className="col-12 md:col-12 lg:col-12">
@@ -98,7 +145,7 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+                // disabled={true}
                 value={formik.values.TransactionCode}
                 onChange={formik.handleChange("TransactionCode")}
                 error={
@@ -115,7 +162,7 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+
                 value={formik.values.TransactionName}
                 onChange={formik.handleChange("TransactionName")}
                 error={
@@ -158,7 +205,7 @@ const TransactionCodeEdit = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("TransactionBasis", e.value);
-                //   handleAccountcode(e.value.TransactionBasis);
+                  //   handleAccountcode(e.value.TransactionBasis);
                 }}
                 // optionLabel="Description"
                 error={
@@ -184,7 +231,7 @@ const TransactionCodeEdit = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("MainAccountCode", e.value);
-                //   handleAccountcode(e.value.MainAccountCode);
+                  //   handleAccountcode(e.value.MainAccountCode);
                 }}
                 // optionLabel="MainAccountCode"
                 error={
@@ -222,18 +269,18 @@ const TransactionCodeEdit = () => {
                 textWeight={500}
                 disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                // value={formik.values.Description}
-                // options={BankAccountCode}
-                // onChange={(e) => {
-                //   console.log(e.value);
-                //   formik.setFieldValue("Description", e.value);
-                //   handleAccountcode(e.value.);
-                // }}
-                // optionLabel="Description"
-                // error={
-                //   formik.touched.BankAccountNumber &&
-                //   formik.errors.BankAccountNumber
-                // }
+              // value={formik.values.Description}
+              // options={BankAccountCode}
+              // onChange={(e) => {
+              //   console.log(e.value);
+              //   formik.setFieldValue("Description", e.value);
+              //   handleAccountcode(e.value.);
+              // }}
+              // optionLabel="Description"
+              // error={
+              //   formik.touched.BankAccountNumber &&
+              //   formik.errors.BankAccountNumber
+              // }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -245,12 +292,12 @@ const TransactionCodeEdit = () => {
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                // value={formik.values.TransactionName}
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+              // value={formik.values.TransactionName}
+              // onChange={formik.handleChange("TransactionName")}
+              // error={
+              //   formik.touched.TransactionName &&
+              //   formik.errors.TransactionName
+              // }
               />
             </div>
           </div>
@@ -265,18 +312,18 @@ const TransactionCodeEdit = () => {
                 textWeight={500}
                 disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                // value={formik.values.Description}
-                // options={BankAccountCode}
-                // onChange={(e) => {
-                //   console.log(e.value);
-                //   formik.setFieldValue("Description", e.value);
-                //   handleAccountcode(e.value.);
-                // }}
-                // optionLabel="Description"
-                // error={
-                //   formik.touched.BankAccountNumber &&
-                //   formik.errors.BankAccountNumber
-                // }
+              // value={formik.values.Description}
+              // options={BankAccountCode}
+              // onChange={(e) => {
+              //   console.log(e.value);
+              //   formik.setFieldValue("Description", e.value);
+              //   handleAccountcode(e.value.);
+              // }}
+              // optionLabel="Description"
+              // error={
+              //   formik.touched.BankAccountNumber &&
+              //   formik.errors.BankAccountNumber
+              // }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -288,12 +335,12 @@ const TransactionCodeEdit = () => {
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                // value={formik.values.TransactionName}
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+              // value={formik.values.TransactionName}
+              // onChange={formik.handleChange("TransactionName")}
+              // error={
+              //   formik.touched.TransactionName &&
+              //   formik.errors.TransactionName
+              // }
               />
             </div>
           </div>
@@ -308,18 +355,18 @@ const TransactionCodeEdit = () => {
                 textWeight={500}
                 disabled={true}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                // value={formik.values.Description}
-                // options={BankAccountCode}
-                // onChange={(e) => {
-                //   console.log(e.value);
-                //   formik.setFieldValue("Description", e.value);
-                //   handleAccountcode(e.value.);
-                // }}
-                // optionLabel="Description"
-                // error={
-                //   formik.touched.BankAccountNumber &&
-                //   formik.errors.BankAccountNumber
-                // }
+              // value={formik.values.Description}
+              // options={BankAccountCode}
+              // onChange={(e) => {
+              //   console.log(e.value);
+              //   formik.setFieldValue("Description", e.value);
+              //   handleAccountcode(e.value.);
+              // }}
+              // optionLabel="Description"
+              // error={
+              //   formik.touched.BankAccountNumber &&
+              //   formik.errors.BankAccountNumber
+              // }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -331,29 +378,29 @@ const TransactionCodeEdit = () => {
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                // value={formik.values.TransactionName}
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+              // value={formik.values.TransactionName}
+              // onChange={formik.handleChange("TransactionName")}
+              // error={
+              //   formik.touched.TransactionName &&
+              //   formik.errors.TransactionName
+              // }
               />
             </div>
           </div>
         </Card>
       </form>
       {/* <TransactionCodeMasterDetailViewTable/> */}
-<TransactionCodeMasterEdit/>
-<div className="btn__container">
-          <Button
-            label="Update"
-            className="add__btn"
-            onClick={()=>{formik.handleSubmit();}} 
-            disabled={!formik.isValid}
-          />
-        </div>
+      <TransactionCodeMasterEdit />
+      <div className="btn__container">
+        <Button
+          label="Update"
+          className="add__btn"
+          onClick={formik.handleSubmit}
+          disabled={!formik.isValid}
+        />
+      </div>
     </div>
   );
 };
 
-export default TransactionCodeEdit;
+export default TransactionCodeEdit

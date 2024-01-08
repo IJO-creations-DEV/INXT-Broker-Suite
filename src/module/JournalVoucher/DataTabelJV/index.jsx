@@ -8,42 +8,21 @@ import SvgTable from "../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import { useNavigate } from "react-router-dom";
 import SvgIconeye from "../../../assets/icons/SvgIconeye";
+import { getJournalVoucherViewData } from "../store/journalVoucherMiddleware";
+import { useDispatch } from "react-redux";
 const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
     console.log(journalVoucherList, "journalVoucherList")
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const dispatch = useDispatch()
     const handleView = (rowData) => {
-        console.log(rowData.id,"rowdata")
+        console.log(rowData.id, "rowdata")
+        dispatch(getJournalVoucherViewData(rowData))
         // const serializedData = JSON.stringify(rowData);
         navigate(`/accounts/journalvoucher/detailsjournalvocture/${rowData.id}`);
     };
-    // const handleNavigate = () => {
-    //     const serializedData = JSON.stringify(journalVoucherList);
-    //     navigate('/accounts/journalvoucher/detailsjournalvocture', { state: { journalVoucherList: serializedData } });
-    // }
 
-    // console.log(newDataTable, "find newDataTable");
-    // let newProduct;
-    // let updatedProductData;
-
-    // if (newDataTable.length > 0) {
-    //     updatedProductData = [
-    //         ...Productdata,
-    //         (newProduct = {
-    //             id: 11,
-    //             mainAC: newDataTable[0].mainAccount,
-    //             subAC: newDataTable[0].subAccount,
-    //             Currency: newDataTable[0].currencyCode,
-    //             foreignAmount: newDataTable[0].foreignAmount,
-    //             localAmount: "500.00",
-    //             Remarks: "New credit voucher",
-    //             Entry: newDataTable[0].entryType,
-    //         }),
-    //     ];
-    // } else {
-    //     updatedProductData = Productdata;
-    // }
     const onPageChange = (event) => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
@@ -86,14 +65,6 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
         },
     };
 
-    // const renderEditButton = (rowData) => {
-    //     return (
-    //         <div className="centercontent" onClick={handleNavigate}>
-    //             <SvgEyeIcon />
-
-    //         </div>
-    //     );
-    // };
 
     const header__style = {
         display: 'flex',
@@ -122,7 +93,7 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
-                // onRowClick={(event) => handleNavigate(event.data)}
+            // onRowClick={(event) => handleNavigate(event.data)}
 
             >
                 <Column
@@ -133,7 +104,7 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
 
                 ></Column>
                 <Column
-                    field="totalCredit"
+                    field="transactionNumber"
                     header="Transaction Number"
                     className="fieldvalue_container"
 
@@ -143,6 +114,13 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
                     field="date"
                     header="Date"
                     className="fieldvalue_container"
+
+                ></Column>
+                <Column
+                    field="transationDescription"
+                    header="Date"
+                    className="fieldvalue_container"
+                    hidden
 
                 ></Column>
 

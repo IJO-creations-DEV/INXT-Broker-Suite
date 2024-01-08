@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import {  GET_TRANSACTION_CODE_LIST,GET_TRANSACTION_CODE_LIST_SEARCH,POST_STATUS,POST_ADD_TRANSACTION,GET_TRANSACTION_CODE_SETUP,GET_USER_GROUP_ACCESS,POST_ADD_TRANSACTION_CODE_SETUP,POST_ADD_USER_GROUP_ACCESS,PATCH_TRANSACTION_CODE_DETAILS_EDIT,GET_TRANSACTION_CODE_DETAILS_VIEW } from "../../../../redux/actionTypes";
+import { GET_TRANSACTION_CODE_LIST, GET_TRANSACTION_CODE_LIST_SEARCH, POST_STATUS, POST_ADD_TRANSACTION, GET_TRANSACTION_CODE_SETUP, GET_USER_GROUP_ACCESS, POST_ADD_TRANSACTION_CODE_SETUP, POST_ADD_USER_GROUP_ACCESS, PATCH_TRANSACTION_CODE_DETAILS_EDIT, GET_TRANSACTION_CODE_DETAILS_VIEW } from "../../../../redux/actionTypes";
 
 
 export const getTransactioncodeListMiddleware = createAsyncThunk(
@@ -17,14 +17,29 @@ export const getTransactioncodeListMiddleware = createAsyncThunk(
 );
 
 
+
 export const getTransactioncodeListsearch = createAsyncThunk(
     GET_TRANSACTION_CODE_LIST_SEARCH,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        const { textSearch } = payload;
+        console.log(textSearch, "textSearch")
+        const { transactionCodeMasterReducer } = getState();
+
+        const { TransactioncodeList } = transactionCodeMasterReducer;
+        console.log(TransactioncodeList, "1234")
+
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            if (textSearch.trim() !== "") {
+                const searchResults = TransactioncodeList.filter(item => {
+                    return item.TransactionName.toLowerCase().includes(textSearch.toLowerCase());
+                });
+                console.log(searchResults, "searchResults")
+                return searchResults;
+            } else {
+                return TransactioncodeList;
+            }
         } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
+            return rejectWithValue(error?.response?.data?.error?.message);
         }
     },
 );
@@ -42,16 +57,28 @@ export const postStatus = createAsyncThunk(
     },
 );
 
+
 export const postAddTransaction = createAsyncThunk(
-    POST_ADD_TRANSACTION ,
-    async (payload, { rejectWithValue }) => {
+    POST_ADD_TRANSACTION,
+    async (payload, { rejectWithValue, getState }) => {
+        console.log(payload, "payload");
+
+        let bodyTableData = {
+            TransactionCode: payload?.TransactionCode,
+            TransactionName: payload?.TransactionName,
+            TransactionBasis: payload?.TransactionBasis,
+            TransactionDescription: payload?.TransactionDescription,
+            MainAccountCode: payload?.MainAccountCode,
+
+        };
         try {
-            // const { data } = await postRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            console.log(bodyTableData, "find middleware");
+
+            return bodyTableData;
         } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
+            return rejectWithValue(error?.response?.data?.error?.message);
         }
-    },
+    }
 );
 
 
@@ -81,35 +108,64 @@ export const getUserGroupAccess = createAsyncThunk(
     },
 );
 
+
+
 export const postAddTransactionCodeSetup = createAsyncThunk(
     POST_ADD_TRANSACTION_CODE_SETUP,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        console.log(payload, "payload");
+
+        let bodyTableData = {
+            AccountingPeriodStart: payload?.AccountingPeriodStart.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+            AccountingPeriodEnd: payload?.AccountingPeriodEnd.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+            TransactionNumberFrom: payload?.TransactionNumberFrom,
+            TransactionNumberTo: payload?.TransactionNumberTo,
+
+        };
         try {
-            // const { data } = await postRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            console.log(bodyTableData, "find middleware");
+
+            return bodyTableData;
         } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
+            return rejectWithValue(error?.response?.data?.error?.message);
         }
-    },
+    }
 );
 
 
 export const postAddUserGroupAccess = createAsyncThunk(
     POST_ADD_USER_GROUP_ACCESS,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        console.log(payload, "payload");
+
+        let bodyTableData = {
+            UserRole: payload?.UserRole,
+            MinimumTransaction: payload?.MinimumTransaction,
+            MaximumTransaction: payload?.MaximumTransaction,
+        };
         try {
-            // const { data } = await postRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            console.log(bodyTableData, "find middleware");
+
+            return bodyTableData;
         } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
+            return rejectWithValue(error?.response?.data?.error?.message);
         }
-    },
+    }
 );
 
 
 export const getTrascationcodeDetailsView = createAsyncThunk(
     GET_TRANSACTION_CODE_DETAILS_VIEW,
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
@@ -121,14 +177,52 @@ export const getTrascationcodeDetailsView = createAsyncThunk(
 
 
 
+
 export const patchTrascationcodeDetailsEdit = createAsyncThunk(
     PATCH_TRANSACTION_CODE_DETAILS_EDIT,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        console.log(payload, "payload");
+        const { transactionCodeMasterReducer } = getState();
         try {
+            const { TransactioncodeList } = transactionCodeMasterReducer;
+            const updatedObject = TransactioncodeList.findIndex(item => item.TransactionCode === payload?.TransactionCode);
+            console.log(updatedObject, "updatedObject")
+            let newArr = [...TransactioncodeList]
+            newArr[updatedObject] = {
+                id: payload?.id,
+                bankBranch: payload?.bankBranch,
+                TransactionCode: payload?.TransactionCode,
+                TransactionCode: payload?.TransactionCode,
+                TransactionName: payload?.TransactionName,
+                TransactionBasis: payload?.TransactionBasis,
+                BranchCode: payload?.BranchCode,
+                DepartmentCode: payload?.DepartmentCode,
+                MainAccountCode: payload?.MainAccountCode,
+                MainAccountDescription: payload?.MainAccountDescription,
+                SubAccountCode: payload?.SubAccountCode,
+                SubAccountDescription: payload?.SubAccountDescription,
+                BranchDescription: payload?.BranchDescription,
+                DepartmentDescription: payload?.DepartmentDescription,
+                Description: payload?.Description,
+
+
+                email
+                    :
+                    payload?.email,
+                ifscCode
+                    :
+                    payload?.ifscCode,
+                mobile
+                    :
+                    payload?.mobile,
+                status
+                    :
+                    true
+            }
             // const { data } = await patchRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            return newArr;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }
-    },
+    }
 );

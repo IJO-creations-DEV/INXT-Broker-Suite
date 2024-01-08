@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getJournalVoucherSearchList, journalVoucherMiddleware, journalVoucherPostTabel, journalVoucherPostTabelData, patchJVMiddleware, postAddJournalVoucher, postJournalVoucher, postTCJournalVoucher } from "./journalVoucherMiddleware";
+import { getJournalVoucherSearchList, getJournalVoucherViewData, journalVoucherMiddleware, journalVoucherPostTabel, journalVoucherPostTabelData, patchJVMiddleware, postAddJournalVoucher, postJournalVoucher, postTCJournalVoucher } from "./journalVoucherMiddleware";
 
 const initialState = {
   loading: false,
@@ -36,15 +36,15 @@ const initialState = {
     {
       id: 1,
       transationCode: "0102",
-      totalCredit: "ayesha",
+      transactionNumber: "123",
       totalDebit: "payload?.totalDebit",
-      transationDescription: " payload?.transationDescription",
+      transationDescription: "transationDescription123",
       date: '10/10/2023',
     },
     {
       id: 2,
       transationCode: "022",
-      totalCredit: "sindhu",
+      transactionNumber: "888",
       totalDebit: "payload?.totalDebit",
       transationDescription: " payload?.transationDescription",
       date: '10/10/2023',
@@ -147,6 +147,22 @@ const journalVoucherReducer = createSlice({
       state.error = typeof action.payload === "string" ? action.payload : "";
     }
     );
+
+
+    builder.addCase(getJournalVoucherViewData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getJournalVoucherViewData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.journalVoucherView = action.payload;
+      console.log(state.journalVoucherView, "state.journalVoucherView ")
+    });
+    builder.addCase(getJournalVoucherViewData.rejected, (state, action) => {
+      state.loading = false;
+
+      state.journalVoucherView = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
 
 

@@ -221,6 +221,9 @@ const initialState = {
     }
   ]
   ,
+  BankAccountList: [
+    
+  ],
   BankSearchList: [],
   BankStatus: {},
   AddBank: {},
@@ -322,7 +325,7 @@ const bankMasterReducer = createSlice({
     );
 
     //BankDetailEdit
-    
+
     builder.addCase(patchBankDetailEdit.pending, (state) => {
       state.loading = true;
     });
@@ -343,7 +346,7 @@ const bankMasterReducer = createSlice({
         }
       }
     );
-    
+
     builder.addCase(
       patchBankDetailEdit.rejected,
       (state, action) => {

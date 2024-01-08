@@ -24,10 +24,10 @@ import ToggleButton from "../../../../components/ToggleButton";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const { paymentVocherList, loading } = useSelector(({ paymentVoucherReducers }) => {
+  const { paymentVocherList, loading } = useSelector(({ bankMasterReducer }) => {
     return {
-      loading: paymentVoucherReducers?.loading,
-      paymentVocherList: paymentVoucherReducers?.paymentVocherList,
+      loading: bankMasterReducer?.loading,
+      paymentVocherList: bankMasterReducer?.paymentVocherList,
     // const [products, setProducts] = useState([]);
     
 // const handleView=()=>{

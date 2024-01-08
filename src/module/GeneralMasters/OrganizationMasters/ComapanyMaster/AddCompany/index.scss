@@ -181,7 +181,18 @@ font-weight: 500;
     // min-width: 3rem;
 }
 Svg.p-icon{
-    display: inline-block;
+    display: none;
+}
+.p-input-icon-right > i:last-of-type, .p-input-icon-right > svg:last-of-type, .p-input-icon-right > .p-input-suffix {
+    right: 0.75rem;
+    color: #6b7280;
+    top: 24px;
+}
+.uploadbutton_container{
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inter var;
+    padding: 2px 2px;
 }
 .label_text{
     font-size: 16px;

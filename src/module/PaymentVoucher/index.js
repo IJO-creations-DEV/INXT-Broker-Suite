@@ -101,10 +101,12 @@ const Index = () => {
   const [rows, setRows] = useState(5);
   const [globalFilter, setGlobalFilter] = useState("");
 
-  const onPageChange = (event) => {
-    setFirst(event.first);
-    setRows(event.rows);
-  };
+  const [selectedCity, setSelectedCity] = useState(null);
+  const cities = [
+      { name: 'Name', code: 'NY' },
+      { name: 'Edit', code: 'RM' },
+      { name: 'Voucher Number', code: 'LDN' },
+  ];
 
   const onGlobalFilterChange = (event) => {
     setGlobalFilter(event.target.value);
@@ -156,14 +158,23 @@ const Index = () => {
           </div>
           {/* </div> */}
           <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button
+            {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" /> */}
+
+
+            <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
+                placeholder="Search by"  
+                className="sorbyfilter_container"
+                dropdownIcon={<SvgDropdownicon/>}
+                />
+
+
+            {/* <Button
               label="Search by"
               outlined
               icon={<SvgDropdownicon />}
               className="sorbyfilter_container"
               onClick={(e) => menu.current.toggle(e)}
-            />
+            /> */}
           </div>
         </div>
         <div className="headlist_lable">Payment voucher history</div>

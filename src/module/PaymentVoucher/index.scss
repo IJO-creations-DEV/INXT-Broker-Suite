@@ -108,8 +108,12 @@ gap:10px
     width: 100%;
     margin-bottom: 20px;
 }
+.p-dropdown .p-dropdown-label.p-placeholder {
+    color: #6366F1;
+    text-align: center;
+}
 .sorbyfilter_container{
-    flex-direction: row-reverse;
+    // flex-direction: row-reverse;
     // gap:10px;
     height: 46px;
     border-color: #d1d5db;
@@ -117,10 +121,11 @@ gap:10px
     // margin-left: 8px;
     font-family: Inter var;
 font-size: 16px;
-padding: 10px;
+// padding: 10px;
 font-weight: 500;
     width:100%;
-    
+    color: #6366F1;
+    margin: 0px !important;
 }
 .pagedropdown_container{
     margin-right: 30%;

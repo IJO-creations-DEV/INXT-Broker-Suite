@@ -15,8 +15,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
-
+import { postInsuranceCompanyMiddleWare } from "../store/insuranceCompanyMiddleware";
+import { useSelector, useDispatch } from "react-redux";
 const InsuranceDetailsAction = ({ action }) => {
+  const dispatch = useDispatch();
+  const { InsuranceCompanyList, loading } = useSelector(
+    ({ insuranceCompanyReducers }) => {
+      return {
+        loading: insuranceCompanyReducers?.loading,
+        InsuranceCompanyList: insuranceCompanyReducers?.InsuranceCompanyList,
+      };
+    }
+  );
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -28,7 +38,7 @@ const InsuranceDetailsAction = ({ action }) => {
       setFormikValues();
     }
   }, [action]);
-  
+
   const items = [
     {
       label: "Insurance Management",
@@ -115,6 +125,12 @@ const InsuranceDetailsAction = ({ action }) => {
   const handleSubmit = (values) => {
     // Handle form submission
     if (action === "add") {
+      const valueWithId = {
+        ...values,
+        id: InsuranceCompanyList?.length + 1,
+      };
+      dispatch(postInsuranceCompanyMiddleWare(valueWithId));
+
       toastRef.current.showToast();
 
       {
@@ -126,8 +142,6 @@ const InsuranceDetailsAction = ({ action }) => {
     } else {
       navigation("/master/generals/insurancemanagement/insurancecompany");
     }
-
-    console.log(values, "find values");
   };
   const setFormikValues = () => {
     const insuranceCompanyCode = "Inscom00123";

@@ -10,6 +10,11 @@
         font-family: 'Inter var';
         margin-bottom: 10px;
     }
+    .p-calendar {
+        position: relative;
+        display: inline-flex;
+        width: 100%;
+    }
 
     .breadCrums__view__addPolicy{
         border: none;

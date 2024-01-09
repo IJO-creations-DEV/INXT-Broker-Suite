@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef} from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import InputField from "../../../components/InputField";
@@ -14,9 +14,13 @@ import SvgBack from "../../../assets/icons/SvgBack";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import DropDowns from "../../../components/DropDowns";
 import { useFormik } from "formik";
+import CustomToast from "../../../components/Toast";
+
 
 function PolicyReceipts() {
+  const toastRef = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState(false);
+  const [products, setProducts] = useState("Approve");
   const navigate = useNavigate();
   const [errors, setErrors] = useState("");
 
@@ -29,6 +33,7 @@ function PolicyReceipts() {
     paymentType: "",
     cardNumber: "1234 5678 9874 5632",
   };
+
   const validate = (values) => {
     console.log(values, "sss");
     const errors = {};
@@ -51,13 +56,27 @@ function PolicyReceipts() {
     const formErrors = validate(formik.values);
     setErrors(formErrors);
     console.log(formErrors, "iiiii");
-    
+    toastRef.current.showToast();
+    // navigate('')
+    setProducts("Print")
   };
+  // const handleSubmit2 = () => {
+  //   const formErrors = validate(formik.values);
+  //   setErrors(formErrors);
+  //   console.log(formErrors, "iiiii");
+  //   toastRef.current.showToast();
+  //   // navigate('')
+  //   // setProducts("Print")
+  // };
 
   const formik = useFormik({
     initialValues: initialValue,
     validate,
-    onSubmit: handleSubmit,
+    // onSubmit: handleSubmit,handleSubmit2
+    onSubmit: ()=>{
+      handleSubmit();
+      //  handleSubmit2()
+    }
   });
   const items = [
     { label: "Receipts", url: "/accounts/receipts" },
@@ -122,7 +141,12 @@ function PolicyReceipts() {
   return (
     <div className="overall__payment_details_container">
       <NavBar />
+
+      
+      <CustomToast ref={toastRef} message={products == "Approve" ? "Approved Successfully":"Printed Successfully"}/>
+      <span onClick={()=>navigate(-1)}>
       <SvgBack />
+      </span>
       <label className="label_header">Payment Details</label>
       <BreadCrumb
         model={items}
@@ -153,7 +177,7 @@ function PolicyReceipts() {
               <DropDowns
                 value={formik.values.bankcode}
                 onChange={formik.handleChange("bankcode")}
-                error={formik.errors.bankcode}
+                // error={formik.errors.bankcode}
                 className="dropdown__container"
                 label="Bank code"
                 options={data}
@@ -161,6 +185,11 @@ function PolicyReceipts() {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
+               {formik.touched.bankcode && formik.errors.bankcode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.bankcode}
+                </div>
+              )}
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
@@ -182,7 +211,7 @@ function PolicyReceipts() {
               <DropDowns
                 value={formik.values.bankAccount}
                 onChange={formik.handleChange("bankAccount")}
-                error={formik.errors.bankAccount}
+                // error={formik.errors.bankAccount}
                 className="dropdown__container"
                 label="Bank Account"
                 options={data1}
@@ -190,6 +219,11 @@ function PolicyReceipts() {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
+               {formik.touched.bankAccount && formik.errors.bankAccount && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.bankAccount}
+                </div>
+              )}
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
@@ -211,7 +245,7 @@ function PolicyReceipts() {
               <DropDowns
                 value={formik.values.paymentType}
                 onChange={formik.handleChange("paymentType")}
-                error={formik.errors.paymentType}
+                // error={formik.errors.paymentType}
                 className="dropdown__container"
                 label="Payment Type"
                 options={data2}
@@ -219,6 +253,11 @@ function PolicyReceipts() {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
+               {formik.touched.paymentType && formik.errors.paymentType && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.paymentType}
+                </div>
+              )}
             </div>
           </div>
           <div class="col-4 md:col-4 lg-col-4">
@@ -235,7 +274,7 @@ function PolicyReceipts() {
           </div>
         </div>
       </Card>
-      <div className="exit_print_buttons">
+      {/* <div className="exit_print_buttons">
         <Button
           label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
           className="print"
@@ -244,7 +283,30 @@ function PolicyReceipts() {
           }}
           disabled={!formik.isValid}
         />
+      </div> */}
+
+      <div className="exit_print_buttons">
+        {products =="Print" ?( <Button
+          // label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
+          label="Print"
+          className="print"
+          onClick={() => {
+            formik.handleSubmit();
+          }}
+          disabled={!formik.isValid}
+        />):  <Button
+        // label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
+        label="Approve"
+        className="print"
+        onClick={() => {
+          formik.handleSubmit();
+        }}
+        disabled={!formik.isValid}
+      />
+        }
+        
       </div>
+
     </div>
   );
 }

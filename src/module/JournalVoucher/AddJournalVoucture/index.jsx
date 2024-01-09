@@ -128,7 +128,7 @@ const AddJournalVocture = () => {
             totalCredit: '',
             totalDebit: '',
             net: '',
-            date: ""
+            date: new Date()
 
         },
         validate: customValidation,

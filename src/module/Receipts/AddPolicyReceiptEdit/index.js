@@ -113,6 +113,7 @@ console.log(total,"find patchReceipEditMiddleware")
   
   const handleSubmit = (values) => {
     dispatch(patchReceipEditMiddleware(values));
+    setVisiblePopup(false);
     console.log(values,"find checking")
     
   };
@@ -182,7 +183,9 @@ console.log(total,"find patchReceipEditMiddleware")
   return (
     <div className="overall__add_policy_edit__container">
       <NavBar />
+      <span onClick={()=>navigate(-1)}>
       <SvgBack />
+      </span>
       <label className="label_header">Add Receipts</label>
       <BreadCrumb
         model={items}
@@ -198,9 +201,9 @@ console.log(total,"find patchReceipEditMiddleware")
         <div className="card">
           <DataTable
             value={receivableTableList}
-            style={{width:'74vw'}}
+            // style={{width:'100%'}}
             tableStyle={{
-              width:"50vw",
+              // width:"50vw",
               // minWidth: "50rem",
               color: "#1C2536",
               // maxHeight: "50vh",
@@ -216,7 +219,6 @@ console.log(total,"find patchReceipEditMiddleware")
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             className="datatable_container"
-           
             selectionMode="checkbox"
           >
             <Column selectionMode="multiple" exportable={false}></Column>

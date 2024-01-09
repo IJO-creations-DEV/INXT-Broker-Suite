@@ -131,7 +131,9 @@ function BranchAdding() {
     <div className="overall_add_policy_receipts_container">
       <NavBar />
       <div>
+        <span onClick={()=>navigate(-1)}>
         <SvgBack />
+        </span>
         <label className="label_header">Add Receipts</label>
       </div>
       <BreadCrumb
@@ -156,8 +158,13 @@ function BranchAdding() {
                 formik.setFieldValue("receiptDate", e.target.value);
               }}
               dateFormat="yy-mm-dd"
-              error={formik.errors.receiptDate}
+              disabled={true}
             />
+            {formik.touched.receiptDate && formik.errors.receiptDate && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.receiptDate}
+                </div>
+              )}
           </div>
         </div>
         <div class="grid">
@@ -166,11 +173,16 @@ function BranchAdding() {
               <InputField
                 value={formik.values.receiptNumber}
                 onChange={formik.handleChange("receiptNumber")}
-                error={formik.errors.receiptNumber}
+                // error={formik.errors.receiptNumber}
                 classNames="field__container"
                 label="Receipt Number"
                 placeholder={"Enter"}
               />
+              {formik.touched.receiptNumber && formik.errors.receiptNumber && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.receiptNumber}
+                </div>
+              )}
             </div>
           </div>
           <div class="sm-col-12  md:col-3 lg-col-4">
@@ -178,7 +190,7 @@ function BranchAdding() {
               <DropDowns
                 value={formik.values.receiptType}
                 onChange={formik.handleChange("receiptType")}
-                error={formik.errors.receiptType}
+                // error={formik.errors.receiptType}
                 className="dropdown__container"
                 label="Receipt Type"
                 options={item}
@@ -186,6 +198,11 @@ function BranchAdding() {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
+              {formik.touched.receiptType && formik.errors.receiptType && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.receiptType}
+                </div>
+              )}
             </div>
           </div>
           <div class="sm-col-12  md:col-3 lg-col-4">
@@ -193,7 +210,7 @@ function BranchAdding() {
               <DropDowns
                 value={formik.values.branchCode}
                 onChange={formik.handleChange("branchCode")}
-                error={formik.errors.branchCode}
+                // error={formik.errors.branchCode}
                 className="dropdown__container"
                 label="Branch Code"
                 options={item1}
@@ -201,6 +218,11 @@ function BranchAdding() {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
+              {formik.touched.branchCode && formik.errors.branchCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.branchCode}
+                </div>
+              )}
             </div>
           </div>
           <div class="sm-col-12  md:col-3 lg-col-4">
@@ -208,7 +230,7 @@ function BranchAdding() {
               <DropDowns
                 value={formik.values.departmentCode}
                 onChange={formik.handleChange("departmentCode")}
-                error={formik.errors.departmentCode}
+                // error={formik.errors.departmentCode}
                 className="dropdown__container"
                 label="Department Code"
                 options={item2}
@@ -216,6 +238,11 @@ function BranchAdding() {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
+              {formik.touched.departmentCode && formik.errors.departmentCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.departmentCode}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -225,7 +252,7 @@ function BranchAdding() {
             <DropDowns
               value={formik.values.customerCode}
               onChange={formik.handleChange("customerCode")}
-              error={formik.errors.customerCode}
+              // error={formik.errors.customerCode}
               className="dropdown__container"
               label="Customer Code"
               options={item3}
@@ -233,12 +260,17 @@ function BranchAdding() {
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.customerCode && formik.errors.customerCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.customerCode}
+                </div>
+              )}
           </div>
           <div class="col-3 md:col-3 lg-col-3">
             <DropDowns
               value={formik.values.currencyCode}
               onChange={formik.handleChange("currencyCode")}
-              error={formik.errors.currencyCode}
+              // error={formik.errors.currencyCode}
               className="dropdown__container"
               label="Currency Code"
               options={item4}
@@ -246,12 +278,17 @@ function BranchAdding() {
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.currencyCode && formik.errors.currencyCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.currencyCode}
+                </div>
+              )}
           </div>
           <div class="sm-col-12 col-12 md:col-3 lg-col-4">
             <DropDowns
               value={formik.values.transactionCode}
               onChange={formik.handleChange("transactionCode")}
-              error={formik.errors.transactionCode}
+              // error={formik.errors.transactionCode}
               className="dropdown__container"
               label="Transaction Code"
               options={item5}
@@ -259,6 +296,11 @@ function BranchAdding() {
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.transactionCode && formik.errors.transactionCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.transactionCode}
+                </div>
+              )}
           </div>
         </div>
         <div class="grid">
@@ -267,11 +309,16 @@ function BranchAdding() {
               <InputField
                 value={formik.values.remarks}
                 onChange={formik.handleChange("remarks")}
-                error={formik.errors.remarks}
+                // error={formik.errors.remarks}
                 classNames="field__container"
                 label="Remarks (Optional)"
                 placeholder={"Enter"}
               />
+              {formik.touched.remarks && formik.errors.remarks && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.remarks}
+                </div>
+              )}
             </div>
           </div>
         </div>

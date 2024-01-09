@@ -110,6 +110,17 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
         setVisibleEdit(true)
     }
 
+    const headerStyle = {
+        // width: "19%",
+        // backgroundColor: 'red',
+        fontSize: 16,
+        fontFamily: "Inter var",
+        fontWeight: 500,
+        padding: 6,
+        color: "#000",
+        border: "none",
+      };
+
 
     const codeOptionsMain = [
         { label: "Option 1", value: "Main00123" },
@@ -261,45 +272,45 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     field="mainAccount"
                     header="Main A/c"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="subAccount"
                     header="Sub A/c"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
 
                 <Column
                     field="remarks"
                     header="Remarks"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="foreignAmount"
                     header="Foreign Amount"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="currencyCode"
                     header="Currency"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
 
                 <Column
                     field="localAmount"
                     header="Local Amount"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="entryType"
                     header="Entry"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     body={(columnData) => (
@@ -307,7 +318,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     )}
                     header="Action"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
 
             </DataTable>

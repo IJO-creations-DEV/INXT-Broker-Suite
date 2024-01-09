@@ -9,18 +9,27 @@
       width: 100%;
       border-radius: 8px;
     }
-    .sorbyfilter_container {
-      flex-direction: row-reverse;
-      // gap:10px;
-      height: 46px;
-      border-color: #d1d5db;
-      width: 100%;
-    }
+    // .sorbyfilter_container {
+      
+    //   // gap:10px;
+    //   height: 46px;
+    //   border-color: #d1d5db;
+    //   width: 100%;
+    // }
     .fieldvalue_container {
-      font-size: 14px;
+      font-size: 16px;
       font-family: Inter var;
       font-weight: 400;
+      margin: 0 10px;
     }
+    .p-dropdown .p-dropdown-label.p-placeholder {
+      color: #6366F1;
+      text-align: center;
+      font-family: Inter var;
+  font-size: 16px;
+   
+  font-weight: 500;
+  }
     span.p-button-label.p-c {
       font-size: 16px;
     }
@@ -85,11 +94,9 @@
       transition: background-color 0.2s, color 0.2s, border-color 0.2s,
         box-shadow 0.2s;
       border-radius: 10px !important;
+      
     }
-    .sorbyfilter_container {
-      background: #fff !important;
-      color: #6366f1 !important;
-    }
+   
     .save__btn {
       color: #ffffff;
       background: #6366f1 !important;
@@ -112,7 +119,7 @@
     .sub__title {
       color: #111927;
       font-family:  Inter var;
-      font-size: 20px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -148,16 +155,17 @@
     text-align: left;
     border: 1px solid #e5e7eb;
     border-width: 0 0 1px 0;
-    padding: 1rem 0.4rem;
+    padding: 1rem 0.5rem !important;
+    font-size: 16px;
 }
 .sorbyfilter_container{
-  flex-direction: row-reverse;
+
   // gap:5px;
   height: 46px;
   border-color: #d1d5db;
   font-family: Inter var;
 font-size: 16px;
-padding: 5px;
+
 font-weight: 500;
   width:100%;
   

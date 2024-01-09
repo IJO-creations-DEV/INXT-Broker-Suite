@@ -11,14 +11,15 @@ import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
-import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useDispatch, useSelector } from "react-redux";
 import { getInitiateDetailsMiddleware } from "../store/pettyCashInitiateMiddleware";
+import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
 const InitiateTable = () => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [search,setSearch]=useState("")
 
   
   const { InitiateList, loading } = useSelector(({ pettyCashInitiateReducer }) => {
@@ -27,6 +28,13 @@ const InitiateTable = () => {
       InitiateList: pettyCashInitiateReducer?.InitiateList,
     };
   });
+
+  const searchs =[
+    { name: 'Name', code: 'NY' },
+    { name: 'Date', code: 'RM' },
+    { name: 'Transaction Number', code: 'LDN' },
+    { name: 'Receipts Number', code: 'LDN' }]
+  
 
   const isEmpty = InitiateList.length === 0;
 
@@ -131,18 +139,25 @@ dispatch(getInitiateDetailsMiddleware(rowData));
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button label="Search by" outlined icon={<SvgDropdownicon />}
+            {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" /> */}
+            <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={searchs} optionLabel="name" 
+                placeholder="Search by"  
+                className="sorbyfilter_container"
+                dropdownIcon={<SvgDropdownicon/>}
+                />
+
+            {/* <Button label="Search by" outlined icon={<SvgDropdownicon />}
               className="sorbyfilter_container"
               onClick={(e) => menu.current.toggle(e)}
-            /></div>
+            /> */}
+            </div>
           <div className="sub__title">Petty Cash Code history</div>
         </div>
         <div className="card">
           <DataTable
             value={InitiateList}
             tableStyle={{
-              minWidth: "50rem",
+              
               color: "#1C2536",
             }}
             scrollable={true} 

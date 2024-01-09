@@ -15,9 +15,16 @@ import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
 import { getViewDisbursmentMiddleware } from "../store/pettyCashDisbursementMiddleware";
 
+
 const DisbursementTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [search,setSearch]=useState("")
+  
+  const searchs = [
+    { name: 'Name', code: 'NY' },
+    { name: 'Date', code: 'RM' },
+    { name: 'Voucher Number', code: 'LDN' }]
   const { DisbursmentList, loading } = useSelector(({ pettyCashDisbursementReducers }) => {
     return {
       loading: pettyCashDisbursementReducers?.loading,
@@ -119,18 +126,19 @@ const DisbursementTable = () => {
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button label="Search by" outlined icon={<SvgDropdownicon />}
-              className="sorbyfilter_container"
-              onClick={(e) => menu.current.toggle(e)}
-            /></div>
+          <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={searchs} optionLabel="name" 
+                placeholder="Search by"  
+                className="sorbyfilter_container"
+                dropdownIcon={<SvgDropdownicon/>}
+                />
+           </div>
           <div className="sub__title">Disbursement history</div>
         </div>
         <div className="card">
           <DataTable
             value={DisbursmentList}
             tableStyle={{
-              minWidth: "50rem",
+              
               color: "#1C2536",
             }}
             scrollable={true} 

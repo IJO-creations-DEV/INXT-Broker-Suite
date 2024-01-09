@@ -192,7 +192,7 @@ console.log(total,"find receiptsTableList")
           <div class="col-12 md:col-3 lg:col-2">
           {/* <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" /> */}
 
-          <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={searches} optionLabel="name" 
+          <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={search} optionLabel="name" 
                 placeholder="Search by"  
                 className="sorbyfilter_container"
                 dropdownIcon={<SvgDropdownicon/>}

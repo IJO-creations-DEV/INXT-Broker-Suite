@@ -9,17 +9,26 @@
       width: 100%;
       border-radius: 8px;
     }
-    .sorbyfilter_container {
-      flex-direction: row-reverse;
+    .sorbyfilter_container{
+      // flex-direction: row-reverse;
       // gap:10px;
       height: 46px;
       border-color: #d1d5db;
-      width: 100%;
+      // width: 85%;
+      // margin-left: 8px;
+      font-family: Inter var;
+    font-size: 16px;
+    // padding: 10px;
+    font-weight: 500;
+      width:100%;
+      color: #6366F1;
+      margin: 0px !important;
     }
     .fieldvalue_container {
       font-size: 16px;
       font-family: "Inter var";
       font-weight: 400;
+      padding:0rem 0.5rem;
     }
     span.p-button-label.p-c {
       font-size: 16px;
@@ -30,7 +39,7 @@
       border: none !important;
       display: flex;
       align-items: center;
-      margin-top: 5px;
+      margin-top: 2px;
     }
     .input__view__request {
       padding-bottom: 0;
@@ -86,10 +95,15 @@
         box-shadow 0.2s;
       border-radius: 10px !important;
     }
-    .sorbyfilter_container {
-      background: #fff !important;
-      color: #6366f1 !important;
-    }
+   
+    .p-dropdown .p-dropdown-label.p-placeholder {
+      color: #6366F1;
+      text-align: center;
+      font-family: Inter var;
+  font-size: 16px;
+   
+  font-weight: 500;
+  }
     .save__btn {
       color: #ffffff;
       background: #6366f1 !important;
@@ -112,7 +126,7 @@
     .sub__title {
       color: #111927;
       font-family:  Inter var;
-      font-size: 20px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;

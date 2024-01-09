@@ -57,25 +57,25 @@ const Reversals = () => {
   //   // Handle form submission
   //   console.log(values, "find values");
   // };
-  const dispatch=useDispatch()
-  const [errors,setErrors]=useState("")
+  const dispatch = useDispatch()
+  const [errors, setErrors] = useState("")
   const { reversalJVList, loading, reversalJVGetDataList } = useSelector(({ reversalMainReducers }) => {
     return {
       loading: reversalMainReducers?.loading,
       reversalJVList: reversalMainReducers?.reversalJVList,
-      reversalJVGetDataList:reversalMainReducers?.reversalJVGetDataList
+      reversalJVGetDataList: reversalMainReducers?.reversalJVGetDataList
 
     };
   });
   // const reversalJVList = useSelector(state => state.reversalJVList);
-console.log(reversalJVGetDataList,"reversalJVGetDataList")
+  console.log(reversalJVGetDataList, "reversalJVGetDataList")
   const handleSubmit = (values) => {
-   
+
 
     dispatch(postReversalJVData(formik.values));
-    
+
     // navigate("/accounts/receipts");
- 
+
 
   };
 
@@ -277,7 +277,7 @@ console.log(reversalJVGetDataList,"reversalJVGetDataList")
               className="correction__btn__reversal"
               disabled={!formik.isValid}
               // onClick={formik.handleSubmit}
-              onClick={handleSubmit}
+              onClick={formik.handleSubmit}
             />
           )}
 

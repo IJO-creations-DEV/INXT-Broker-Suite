@@ -26,7 +26,7 @@ import CustomToast from "../../../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import SvgTable from "../../../assets/icons/SvgTable";
 import { useFormik } from "formik";
-import { getSubAccountView, postSubAccount } from "./store/subAccountMiddleWare";
+import { getSubAccountEdit, getSubAccountView, postSubAccount } from "./store/subAccountMiddleWare";
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
@@ -141,7 +141,10 @@ const SubAccountMaster = () => {
   //     setVisiblePopup(false)
   //   }, 3000);
   // }
-  const handlEdit = () => {
+  const handlEdit = (rowData) => {
+    console.log(rowData, "rowData")
+
+    dispatch(getSubAccountEdit(rowData))
     navigate("/master/finance/subaccount/subaccountedit")
   }
   const handleDetail = (rowData) => {

@@ -25,11 +25,11 @@ const PettyCashDetail = () => {
     return {
       loading: pettyCashMainReducers?.loading,
       pettyCashView: pettyCashMainReducers?.pettyCashView,
-      pettyCashSearchList: pettyCashMainReducers?.pettyCashSearchList
+      // pettyCashSearchList: pettyCashMainReducers?.pettyCashSearchList
 
     };
   });
-  
+
   console.log(pettyCashView, "pettyCashView")
   const handleGoBack = () => {
     navigate("/master/finance/pettycash")
@@ -117,7 +117,7 @@ const PettyCashDetail = () => {
             label="Petty Cash Code"
             placeholder="Enter"
             value={
-              formik.values.prttycashcode
+              pettyCashView.pettycashcode
 
             }
             disabled={true}
@@ -138,7 +138,7 @@ const PettyCashDetail = () => {
             label="Petty Cash Name"
             placeholder="Enter"
             value={
-              formik.values.pettycashname
+              pettyCashView.pettycashname
             }
             disabled={true}
           // onChange={(e) =>
@@ -157,7 +157,7 @@ const PettyCashDetail = () => {
             label="Petty Cash Size"
             placeholder="Enter"
             value={
-              formik.values.pettycashsize
+              pettyCashView.pettycashsize
 
             }
             disabled={true}
@@ -177,7 +177,7 @@ const PettyCashDetail = () => {
             label="Available Cash"
             placeholder="Enter"
             value={
-              formik.values.avilabelcash
+              pettyCashView.avilabelcash
 
             }
             disabled={true}
@@ -197,7 +197,7 @@ const PettyCashDetail = () => {
             label="Minimum Cash Box"
             placeholder="Enter"
             value={
-              formik.values.mincashback
+              pettyCashView.minicashbox
 
             }
             disabled={true}
@@ -217,7 +217,7 @@ const PettyCashDetail = () => {
             label="Transaction Limit"
             placeholder="Enter"
             value={
-              formik.values.transactionlimit
+              pettyCashView.transactionlimit
 
             }
             disabled={true}

@@ -185,7 +185,7 @@ export const GET_SUB_ACCOUNT_SEARCH_LIST =
 export const POST_SUB__ACCOUNT = "subaccount/POST_SUB__ACCOUNT";
 export const GET_SUB__ACCOUNT_VIEW = "subaccount/GET_SUB__ACCOUNT_VIEW";
 export const PATCH_SUB__ACCOUNT_EDIT = "subaccount/PATCH_SUB__ACCOUNT_EDIT";
-export const GET_PATCH_SUB_ACCOUNT_EDIT="subaccount/GET_PATCH_SUB_ACCOUNT_EDIT"
+export const GET_PATCH_SUB_ACCOUNT_EDIT = "subaccount/GET_PATCH_SUB_ACCOUNT_EDIT"
 
 export const GET_RECEIPT_DETAILS = "receipts/GET_RECEIPT_DETAILS";
 export const GET_RECEIPT_DETAILS_BY_ID = "receipts/GET_RECEIPT_DETAILS_BY_ID";
@@ -216,17 +216,17 @@ export const GET_REVERSAL_JV_LIST = "reversal/GET_REVERSAL_JV_LIST";
 export const POST_REVERSAL_JV = "reversal/POST_REVERSAL_JV";
 export const GET_REVERSAL_JV_VIEW = "reversal/GET_REVERSAL_JV_VIEW";
 export const PATCH_REVERSAL_JV_EDIT = "reversal/PATCH_REVERSAL_JV_EDIT";
-export const GET_DESIGNATION_DETAILS ="designation/GET_DESIGNATION_DETAILS";
-export const GET_DESIGNATION_BY_ID ="designation/GET_DESIGNATION_BY_ID";
-export const POST_ADD_DESIGNATION ="designation/POST_ADD_DESIGNATION";
-export const PATCH_DESIGNATION_EDIT ="designation/GET_DESIGNATION_DETAILS";
-export const GET_SEARCH_DESIGNATION ="designation/GET_DESIGNATION_DETAILS";
+export const GET_DESIGNATION_DETAILS = "designation/GET_DESIGNATION_DETAILS";
+export const GET_DESIGNATION_BY_ID = "designation/GET_DESIGNATION_BY_ID";
+export const POST_ADD_DESIGNATION = "designation/POST_ADD_DESIGNATION";
+export const PATCH_DESIGNATION_EDIT = "designation/GET_DESIGNATION_DETAILS";
+export const GET_SEARCH_DESIGNATION = "designation/GET_DESIGNATION_DETAILS";
 
-export const GET_EMPLOYEE_DETAILS ="employee/GET_EMPLOYEE_DETAILS";
-export const GET_EMPLOYEE_BY_ID ="employee/GET_EMPLOYEE_BY_ID";
-export const POST_ADD_EMPLOYEE ="employee/POST_ADD_EMPLOYEE";
-export const PATCH_EMPLOYEE_EDIT ="employee/PATCH_EMPLOYEE_EDIT";
-export const GET_SERACH_EMPLOYEE ="employee/GET_SERACH_EMPLOYEE";
+export const GET_EMPLOYEE_DETAILS = "employee/GET_EMPLOYEE_DETAILS";
+export const GET_EMPLOYEE_BY_ID = "employee/GET_EMPLOYEE_BY_ID";
+export const POST_ADD_EMPLOYEE = "employee/POST_ADD_EMPLOYEE";
+export const PATCH_EMPLOYEE_EDIT = "employee/PATCH_EMPLOYEE_EDIT";
+export const GET_SERACH_EMPLOYEE = "employee/GET_SERACH_EMPLOYEE";
 
 export const GET_HIERARCHY_DETAILS ="hierarchy/GET_HIERARCHY_DETAILS";
 export const GET_HIERARCHY_BY_ID="hierarchy/GET_HIERARCHY_BY_ID";
@@ -234,48 +234,53 @@ export const POST_ADD_HIERARCHY ="hierarchy/POST_ADD_HIERARCHY";
 export const PATCH_HIERARCHY_EDIT ="hierarchy/PATCH_HIERARCHY_EDIT";
 export const GET_SERACH_HIERARCHY ="hierarchy/GET_SERACH_HIERARCHY";
 
-export const GET_ROLE_DETAILS ="role/GET_ROLE_DETAILS";
-export const GET_ROLE_BY_ID ="role/GET_ROLE_BY_ID";
-export const POST_ADD_ROLE ="role/POST_ADD_ROLE";
-export const PATCH_ROLE_EDIT ="role/PATCH_ROLE_EDIT";
-export const GET_SERACH_ROLE ="role/GET_SERACH_ROLE";
+export const GET_ROLE_DETAILS = "role/GET_ROLE_DETAILS";
+export const GET_ROLE_BY_ID = "role/GET_ROLE_BY_ID";
+export const POST_ADD_ROLE = "role/POST_ADD_ROLE";
+export const PATCH_ROLE_EDIT = "role/PATCH_ROLE_EDIT";
+export const GET_SERACH_ROLE = "role/GET_SERACH_ROLE";
 
-export const GET_USER_DETAILS ="user/GET_USER_DETAILS";
-export const GET_USER_BY_ID ="user/GET_USER_BY_ID";
-export const POST_ADD_USER ="user/POST_ADD_USER";
-export const PATCH_USER_EDIT ="user/PATCH_USER_EDIT";
-export const GET_SERACH_USER ="user/GET_SERACH_USER";
-export const GET_ADD_BRANCH_USER ="user/GET_SERACH_ROLE";
+export const GET_USER_DETAILS = "user/GET_USER_DETAILS";
+export const GET_USER_BY_ID = "user/GET_USER_BY_ID";
+export const POST_ADD_USER = "user/POST_ADD_USER";
+export const PATCH_USER_EDIT = "user/PATCH_USER_EDIT";
+export const GET_SERACH_USER = "user/GET_SERACH_USER";
+export const GET_ADD_BRANCH_USER = "user/GET_SERACH_ROLE";
 
-export const GET_BRANCH_DETAILS ="branch/GET_BRANCH_DETAILS";
-export const GET_BRANCH_BY_ID ="branch/GET_BRANCH_BY_ID";
-export const POST_ADD_BRANCH ="branch/POST_ADD_BRANCH";
-export const PATCH_BRANCH_EDIT ="branch/PATCH_BRANCH_EDIT";
-export const GET_SERACH_BRANCH ="branch/GET_SERACH_BRANCH";
+export const GET_BRANCH_DETAILS = "branch/GET_BRANCH_DETAILS";
+export const GET_BRANCH_BY_ID = "branch/GET_BRANCH_BY_ID";
+export const POST_ADD_BRANCH = "branch/POST_ADD_BRANCH";
+export const PATCH_BRANCH_EDIT = "branch/PATCH_BRANCH_EDIT";
+export const GET_SERACH_BRANCH = "branch/GET_SERACH_BRANCH";
+export const GET_ORGANIZATION_BRANCH_VIEW = "branch/GET_ORGANIZATION_BRANCH_VIEW";
+export const GET_DEPARTMENT_LUST_DETAILS = "branch/GET_DEPARTMENT_LUST_DETAILS";
+export const POST_ADD_DEPARTMENT = "branch/POST_ADD_DEPARTMENT";
+export const GET_DEPARTMENT_VIEW = "branch/GET_DEPARTMENT_VIEW"
 
-export const GET_COMPANY_DETAILS ="company/GET_COMPANY_DETAILS";
-export const GET_COMPANY_BY_ID ="company/GET_COMPANY_BY_ID";
-export const POST_ADD_COMPANY ="company/POST_ADD_COMPANY";
-export const PATCH_COMPANY_EDIT ="company/PATCH_COMPANY_EDIT";
-export const GET_SERACH_COMPANY="company/GET_SERACH_COMPANY";
+export const GET_COMPANY_DETAILS = "company/GET_COMPANY_DETAILS";
+export const GET_COMPANY_BY_ID = "company/GET_COMPANY_BY_ID";
+export const POST_ADD_COMPANY = "company/POST_ADD_COMPANY";
+export const PATCH_COMPANY_EDIT = "company/PATCH_COMPANY_EDIT";
+export const GET_SERACH_COMPANY = "company/GET_SERACH_COMPANY";
+export const GET_COMPANY_VIEW="company/GET_COMPANY_VIEW"
 
-export const GET_CITY_DETAILS ="city/GET_CITY_DETAILS";
-export const GET_CITY_BY_ID ="city/GET_CITY_BY_ID";
-export const POST_ADD_CITY ="city/POST_ADD_CITY";
-export const PATCH_CITY_EDIT ="city/PATCH_CITY_EDIT";
-export const GET_SERACH_CITY="city/GET_SERACH_CITY";
+export const GET_CITY_DETAILS = "city/GET_CITY_DETAILS";
+export const GET_CITY_BY_ID = "city/GET_CITY_BY_ID";
+export const POST_ADD_CITY = "city/POST_ADD_CITY";
+export const PATCH_CITY_EDIT = "city/PATCH_CITY_EDIT";
+export const GET_SERACH_CITY = "city/GET_SERACH_CITY";
 
-export const GET_STATE_DETAILS ="state/GET_STATE_DETAILS";
-export const GET_STATE_BY_ID ="state/GET_STATE_BY_ID";
-export const POST_ADD_STATE ="state/POST_ADD_STATE";
-export const PATCH_STATE_EDIT ="state/PATCH_STATE_EDIT";
-export const GET_SERACH_STATE="state/GET_SERACH_STATE";
+export const GET_STATE_DETAILS = "state/GET_STATE_DETAILS";
+export const GET_STATE_BY_ID = "state/GET_STATE_BY_ID";
+export const POST_ADD_STATE = "state/POST_ADD_STATE";
+export const PATCH_STATE_EDIT = "state/PATCH_STATE_EDIT";
+export const GET_SERACH_STATE = "state/GET_SERACH_STATE";
 
-export const GET_COUNTRY_DETAILS ="country/GET_COUNTRY_DETAILS";
-export const GET_COUNTRY_BY_ID ="country/GET_COUNTRY_BY_ID";
-export const POST_ADD_COUNTRY ="country/POST_ADD_COUNTRY";
-export const PATCH_COUNTRY_EDIT ="country/PATCH_COUNTRY_EDIT";
-export const GET_SERACH_COUNTRY="country/GET_SERACH_COUNTRY";
+export const GET_COUNTRY_DETAILS = "country/GET_COUNTRY_DETAILS";
+export const GET_COUNTRY_BY_ID = "country/GET_COUNTRY_BY_ID";
+export const POST_ADD_COUNTRY = "country/POST_ADD_COUNTRY";
+export const PATCH_COUNTRY_EDIT = "country/PATCH_COUNTRY_EDIT";
+export const GET_SERACH_COUNTRY = "country/GET_SERACH_COUNTRY";
 
 export const GET_INSURANCE_COMPANY_SEARCH_LIST =
   "insurancecompany/GET_INSURANCE_COMPANY_SEARCH_LIST";

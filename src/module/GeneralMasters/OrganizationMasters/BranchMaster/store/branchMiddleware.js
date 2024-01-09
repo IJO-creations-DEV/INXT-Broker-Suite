@@ -1,17 +1,43 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getRequest } from "../../../utility/commonServices";
-import { APIROUTES } from "../../../routes/apiRoutes";
+
 import {
   GET_BRANCH_DETAILS,
   GET_BRANCH_BY_ID,
   POST_ADD_BRANCH,
   PATCH_BRANCH_EDIT,
   GET_SERACH_BRANCH,
+  GET_ORGANIZATION_BRANCH_VIEW,
+  GET_DEPARTMENT_LUST_DETAILS,
+  POST_ADD_DEPARTMENT,
+  GET_DEPARTMENT_VIEW,
 } from "../../../../../redux/actionTypes";
 
 export const getBranchListMiddleware = createAsyncThunk(
   GET_BRANCH_DETAILS,
   async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const getDepartmentListMiddleware = createAsyncThunk(
+  GET_DEPARTMENT_LUST_DETAILS,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const postAddDepartment = createAsyncThunk(
+  POST_ADD_DEPARTMENT,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload")
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -34,6 +60,32 @@ export const getBranchListByIdMiddleware = createAsyncThunk(
 export const postAddBranchMiddleware = createAsyncThunk(
   POST_ADD_BRANCH,
   async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload")
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const getOrganizationBranchView = createAsyncThunk(
+  GET_ORGANIZATION_BRANCH_VIEW,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload")
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getDepatmentView = createAsyncThunk(
+  GET_DEPARTMENT_VIEW,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload")
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;

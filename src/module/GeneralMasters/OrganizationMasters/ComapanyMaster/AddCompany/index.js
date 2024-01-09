@@ -21,6 +21,8 @@ import { InputText } from "primereact/inputtext";
 import { FileUpload } from "primereact/fileupload";
 import DepartMentList from "../../BranchMaster/AddBranch/DepartMentList";
 import SvgUploadCancelIcon from "../../../../../assets/icons/SvgUploadCancelIcon";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddCompanyMiddleware } from "../store/companyMiddleware";
 
 const initialValues = {
   CompanyCode: "",
@@ -42,76 +44,78 @@ const initialValues = {
 };
 
 function AddCompany({ action }) {
+  const { companyView, loading } = useSelector(
+    ({ organizationCompanyMainReducers }) => {
+      return {
+        loading: organizationCompanyMainReducers?.loading,
+        companyView: organizationCompanyMainReducers?.companyView,
+      };
+    }
+  );
+  console.log(companyView, "companyView");
   const toastRef = useRef(null);
   const { id } = useParams();
   const [date, setDate] = useState(null);
   const Navigate = useNavigate();
-
+  const organizationBranchView = {}
   const currencyCode = [
-    { name: "INR", code: "NY" },
-    { name: "USD", code: "RM" },
+    {
+      label: action === 'add' ? "INR" : companyView.CompanyName,
+      value: action === 'add' ? "NY" : companyView.CompanyName,
+    }
+  ];
+
+  const City = [
+    {
+      label: action === 'add' ? "INR" : companyView.City,
+      value: action === 'add' ? "NY" : companyView.City,
+    }
+
   ];
   const State = [
-    { name: "Davio", code: "NY" },
-    { name: "Albay", code: "RM" },
+    {
+      label: action === 'add' ? "INR" : companyView.State,
+      value: action === 'add' ? "NY" : companyView.State,
+    }
   ];
-  const City = [
-    { name: "Camalig", code: "NY" },
-    { name: "cama", code: "RM" },
+  const Country = [
+    {
+      label: action === 'add' ? "INR" : companyView.Country,
+      value: action === 'add' ? "NY" : companyView.Country,
+    }
+
   ];
-  const Criteria = [
-    { name: "Specific", code: "NY" },
-    { name: "payall", code: "RM" },
-  ];
-  const CustomerCode = [
-    { name: "Cus00123", code: "NY" },
-    { name: "Cus001234", code: "RM" },
-  ];
-  const Transactioncode = [
-    { name: "Trans00123", code: "NY" },
-    { name: "Trans001234", code: "RM" },
-  ];
-  const SelectInstrumentCurrency = [
-    { name: "INR", code: "NY" },
-    { name: "CSE", code: "RM" },
-  ];
+
 
   const home = { label: "Master" };
   const items = [
     { label: "Company", url: "/master/generals/organization/companymaster" },
     {
-      label: `${
-        action === "add"
-          ? " Add Company"
-          : action === "edit"
+      label: `${action === "add"
+        ? " Add Company"
+        : action === "edit"
           ? "Edit Company"
           : "Company details"
-      }`,
+        }`,
     },
   ];
 
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
 
-  // const handleSubmit=(value)=>{
-
-  //     Navigate("/master/finance/exchangerate")
-  // }
-
-  // const toastRef = useRef(null);
-
+  const dispatch = useDispatch()
   const handleSubmit = (values) => {
-    // Handle form submission
-    console.log(values, "find values");
 
+    console.log(values, "find values");
+    dispatch(postAddCompanyMiddleware(formik.values))
     toastRef.current.showToast();
-    // {
+
     setTimeout(() => {
       Navigate("/master/generals/organization/companymaster");
     }, 3000);
   };
 
-  // };
+
 
   const customValidation = (values) => {
     const errors = {};
@@ -128,9 +132,6 @@ function AddCompany({ action }) {
     if (!values.EmailID) {
       errors.EmailID = "This field is required";
     }
-    // if (!values.Logo) {
-    //   errors.Logo = "This field is required";
-    // }
     if (!values.Websitelink) {
       errors.Websitelink = "This field is required";
     }
@@ -159,12 +160,12 @@ function AddCompany({ action }) {
     if (!values.Country) {
       errors.Country = "This field is required";
     }
-    // if (!values.PhoneNumber) {
-    //   errors.PhoneNumber = "This field is required";
-    // }
-    // if (!values.Fax) {
-    //   errors.Fax = "This field is required";
-    // }
+    if (!values.PhoneNumber) {
+      errors.PhoneNumber = "This field is required";
+    }
+    if (!values.Fax) {
+      errors.Fax = "This field is required";
+    }
 
     return errors;
   };
@@ -172,21 +173,13 @@ function AddCompany({ action }) {
   const formik = useFormik({
     initialValues: initialValues,
     validate: customValidation,
-    // onSubmit: (values) => {
-    //   // Handle form submission
-    //    handleSubmit(values);
 
-    // },
     onSubmit: handleSubmit,
   });
 
   return (
     <div className="overall__addcompany__container">
       <NavBar />
-      {/* <CustomToast ref={toastRef} 
-            // detail="Some detail text"
-            // content={"Voucher Details Save Successfully"}
-            /> */}
       <CustomToast ref={toastRef} message="Company code CC1234 added" />
       <div>
         <span onClick={() => Navigate(-1)}>
@@ -196,8 +189,8 @@ function AddCompany({ action }) {
           {action === "add"
             ? " Add Company"
             : action === "edit"
-            ? "Edit Company"
-            : "Company details"}
+              ? "Edit Company"
+              : "Company details"}
         </label>
       </div>
       <BreadCrumb
@@ -215,7 +208,7 @@ function AddCompany({ action }) {
               label="Company Code"
               placeholder={"Enter"}
               //   value={formik.values.CurrencyDescription}
-              value={formik.values.CompanyCode}
+              value={action == "add" ? formik.values.CompanyCode : companyView.CompanyCode}
               onChange={formik.handleChange("CompanyCode")}
             />
             {formik.touched.CompanyCode && formik.errors.CompanyCode && (
@@ -230,7 +223,7 @@ function AddCompany({ action }) {
               label="Company Name"
               placeholder={"Enter"}
               //   value={formik.values.CurrencyDescription}
-              value={formik.values.CompanyName}
+              value={action == "add" ? formik.values.CompanyName : companyView.CompanyName}
               onChange={formik.handleChange("CompanyName")}
             />
             {formik.touched.CompanyName && formik.errors.CompanyName && (
@@ -245,7 +238,7 @@ function AddCompany({ action }) {
               label="License Number"
               placeholder={"Enter"}
               //   value={formik.values.CurrencyDescription}
-              value={formik.values.LicenseNumber}
+              value={action == "add" ? formik.values.LicenseNumber : companyView.LicenseNumber}
               onChange={formik.handleChange("LicenseNumber")}
             />
             {formik.touched.LicenseNumber && formik.errors.LicenseNumber && (
@@ -260,7 +253,7 @@ function AddCompany({ action }) {
               label="Email ID"
               placeholder={"Enter"}
               //   value={formik.values.CurrencyDescription}
-              value={formik.values.EmailID}
+              value={action == "add" ? formik.values.EmailID : companyView.EmailID}
               onChange={formik.handleChange("EmailID")}
             />
             {formik.touched.EmailID && formik.errors.EmailID && (
@@ -274,22 +267,7 @@ function AddCompany({ action }) {
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <label className="uploadtext_container">Logo</label>
-            {/* <div className="p-inputgroup flex-1">
-              <InputText value="hello" classNames="field_extra__container">img</InputText>
-              <span className="p-inputgroup-addon">
-                <FileUpload
-                  mode="basic"
-                  name="demo[]"
-                  url="/api/upload"
-                  accept="image/*"
-                  maxFileSize={1000000}
-                  // onUpload={onUpload}
-                  emptyTemplate={<p>wer</p>}
-                  chooseLabel="Upload"
-                />
-              </span>
 
-            </div> */}
             <span className="p-input-icon-right">
               <i>
                 {
@@ -329,7 +307,7 @@ function AddCompany({ action }) {
                 label="Website link"
                 placeholder={"Enter"}
                 //   value={formik.values.CurrencyDescription}
-                value={formik.values.Websitelink}
+                value={action == "add" ? formik.values.Websitelink : companyView.Websitelink}
                 onChange={formik.handleChange("Websitelink")}
               />
               {formik.touched.Websitelink && formik.errors.Websitelink && (
@@ -346,7 +324,7 @@ function AddCompany({ action }) {
                 label="Description"
                 placeholder={"Enter"}
                 //   value={formik.values.CurrencyDescription}
-                value={formik.values.Description}
+                value={action == "add" ? formik.values.Description : companyView.Description}
                 onChange={formik.handleChange("Description")}
               />
               {formik.touched.Description && formik.errors.Description && (
@@ -365,7 +343,7 @@ function AddCompany({ action }) {
               label="Address Line 1"
               placeholder={"Enter"}
               //   value={formik.values.CurrencyDescription}
-              value={formik.values.AddressLine1}
+              value={action == "add" ? formik.values.AddressLine1 : companyView.AddressLine1}
               onChange={formik.handleChange("AddressLine1")}
             />
             {formik.touched.AddressLine1 && formik.errors.AddressLine1 && (
@@ -380,7 +358,7 @@ function AddCompany({ action }) {
               label="Address Line 2"
               placeholder={"Enter"}
               //   value={formik.values.CurrencyDescription}
-              value={formik.values.AddressLine2}
+              value={action == "add" ? formik.values.AddressLine2 : companyView.AddressLine2}
               onChange={formik.handleChange("AddressLine2")}
             />
             {formik.touched.AddressLine2 && formik.errors.AddressLine2 && (
@@ -395,7 +373,7 @@ function AddCompany({ action }) {
               label="Address Line 3"
               placeholder={"Enter"}
               //   value={formik.values.CurrencyDescription}
-              value={formik.values.AddressLine3}
+              value={action == "add" ? formik.values.AddressLine3 : companyView.AddressLine3}
               onChange={formik.handleChange("AddressLine3")}
             />
             {formik.touched.AddressLine3 && formik.errors.AddressLine3 && (
@@ -410,7 +388,7 @@ function AddCompany({ action }) {
               label="Pin Code"
               placeholder={"Enter"}
               //   value={formik.values.CurrencyDescription}
-              value={formik.values.PinCode}
+              value={action == "add" ? formik.values.PinCode : companyView.PinCode}
               onChange={formik.handleChange("PinCode")}
             />
             {formik.touched.PinCode && formik.errors.PinCode && (
@@ -428,10 +406,10 @@ function AddCompany({ action }) {
               label="City"
               // value={departmentcode}
               // onChange={(e) => setDepartmentCode(e.value)}
-              value={formik.values.City}
+              value={action == "add" ? formik.values.City : companyView.City}
               onChange={(e) => formik.setFieldValue("City", e.value)}
               options={City}
-              optionLabel="name"
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -447,10 +425,10 @@ function AddCompany({ action }) {
               label="State"
               // value={departmentcode}
               // onChange={(e) => setDepartmentCode(e.value)}
-              value={formik.values.State}
+              value={action == "add" ? formik.values.State : companyView.State}
               onChange={(e) => formik.setFieldValue("State", e.value)}
               options={State}
-              optionLabel="name"
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -466,10 +444,10 @@ function AddCompany({ action }) {
               label="Country"
               // value={departmentcode}
               // onChange={(e) => setDepartmentCode(e.value)}
-              value={formik.values.Country}
+              value={action == "add" ? formik.values.Country : companyView.Country}
               onChange={(e) => formik.setFieldValue("Country", e.value)}
-              options={currencyCode}
-              optionLabel="name"
+              options={Country}
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -488,15 +466,15 @@ function AddCompany({ action }) {
               </span>
               <InputText
                 placeholder="Enter"
-                value={formik.values.PhoneNumber}
+                value={action == "add" ? formik.values.PhoneNumber : companyView.PhoneNumber}
                 onChange={formik.handleChange("PhoneNumber")}
               />
             </div>
-            {/* {formik.touched.PhoneNumber && formik.errors.PhoneNumber && (
+            {formik.touched.PhoneNumber && formik.errors.PhoneNumber && (
               <div style={{ fontSize: 12, color: "red" }}>
                 {formik.errors.PhoneNumber}
               </div>
-            )} */}
+            )}
           </div>
         </div>
 
@@ -510,15 +488,15 @@ function AddCompany({ action }) {
               </span>
               <InputText
                 placeholder="Enter"
-                value={formik.values.Fax}
+                value={action == "add" ? formik.values.Fax : companyView.Fax}
                 onChange={formik.handleChange("Fax")}
               />
             </div>
-            {/* {formik.touched.Fax && formik.errors.Fax && (
+            {formik.touched.Fax && formik.errors.Fax && (
               <div style={{ fontSize: 12, color: "red" }}>
                 {formik.errors.Fax}
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </Card>
@@ -541,7 +519,7 @@ function AddCompany({ action }) {
             className="submit_button p-0"
             label="update"
             disabled={!formik.isValid}
-            // onClick={()=>{formik.handleSubmit();}}
+          // onClick={()=>{formik.handleSubmit();}}
           />
         )}
       </div>

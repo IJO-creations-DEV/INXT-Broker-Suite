@@ -358,11 +358,11 @@ const Maincomponent = () => {
               path="master/generals/organization/companymaster"
               element={<CompanyMasters />}
             />
-           
 
-<Route
+
+            <Route
               path="master/generals/organization/companymaster/addcompany/add/:id"
-              element={<AddCompany  action="add"/>}
+              element={<AddCompany action="add" />}
             />
             <Route
               path="master/generals/organization/companymaster/addcompany/edit/:id"
@@ -380,7 +380,7 @@ const Maincomponent = () => {
             />
             <Route
               path="master/generals/organization/branchmaster/addbranchmaster/add/:id"
-              element={<AddBranch action="add"/>}
+              element={<AddBranch action="add" />}
             />
             <Route
               path="master/generals/organization/branchmaster/addbranchmaster/edit/:id"
@@ -510,15 +510,15 @@ const Maincomponent = () => {
               path="master/generals/location/country"
               element={<AddCountry />}
             />
-             <Route
+            <Route
               path="master/generals/location/country/edit/1"
               element={<AddCountry />}
             />
-             <Route
+            <Route
               path="master/generals/location/country/view/2"
               element={<AddCountry />}
             />
-             <Route
+            <Route
               path="master/generals/location/country/add/3"
               element={<Country />}
             />
@@ -535,11 +535,11 @@ const Maincomponent = () => {
             />
 
             {/* Employee Management */}
-           
-          
+
+
             {/* Hierarchy */}
-            
-            <Route path="master/generals/employeemanagement/hierarchy" element={<HierarchyMaster/>}/>
+
+            <Route path="master/generals/employeemanagement/hierarchy" element={<HierarchyMaster />} />
             <Route
               path="master/generals/employeemanagement/hierarchy/add/:id"
               element={<AddHierarchy action="add" />}
@@ -552,13 +552,13 @@ const Maincomponent = () => {
               path="master/generals/employeemanagement/hierarchy/view/:id"
               element={<AddHierarchy action="view" />}
             />
-            <Route path="master/generals/employeemanagement/:id" element={<AddHierarchy/>}/>
-            
+            <Route path="master/generals/employeemanagement/:id" element={<AddHierarchy />} />
+
             <Route
               path="master/generals/employeemanagement/designation"
               element={<Designation />}
             />
-             <Route
+            <Route
               path="master/generals/employeemanagement/designation/add/:id"
               element={<AddDesignation action="add" />}
             />
@@ -571,15 +571,15 @@ const Maincomponent = () => {
               element={<AddDesignation action="view" />}
             />
 
-             <Route
+            <Route
               path="master/generals/employeemanagement/adddesignation"
-              element={<AddDesignation/>}
+              element={<AddDesignation />}
             />
             <Route
               path="master/generals/employeemanagement/employee"
               element={<Employee />}
             />
-             <Route
+            <Route
               path="master/generals/employeemanagement/employee/add/:id"
               element={<AddEmployee action="add" />}
             />
@@ -593,17 +593,17 @@ const Maincomponent = () => {
             />
             <Route
               path="master/generals/employeemanagement/addemployee"
-              element={<AddEmployee/>}
+              element={<AddEmployee />}
             />
 
             {/* User Management */}
             <Route
               path="master/generals/usermanagement/user"
-              element={<User/>}
+              element={<User />}
             />
-             <Route
+            <Route
               path="master/generals/usermanagement/useredit"
-              element={<UserEdit/>}
+              element={<UserEdit />}
             />
             <Route
               path="master/generals/usermanagement/user/add/:id"
@@ -618,15 +618,15 @@ const Maincomponent = () => {
               element={<AddUser action="view" />}
             />
             <Route
-             
+
               path="master/generals/usermanagement/adduser"
-              element={<AddUser/>}
+              element={<AddUser />}
             />
-  <Route
+            <Route
               path="master/generals/usermanagement/role"
               element={<Role />}
             />
-             <Route
+            <Route
               path="master/generals/usermanagement/role/add/:id"
               element={<AddRole action="add" />}
             />
@@ -638,9 +638,9 @@ const Maincomponent = () => {
               path="master/generals/usermanagement/role/view/:id"
               element={<AddRole action="view" />}
             />
-             <Route
+            <Route
               path="master/generals/usermanagement/addrole"
-              element={<AddRole/>}
+              element={<AddRole />}
             />
 
             {/* Branch Master Module */}

@@ -1,0 +1,69 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { getRequest } from "../../../utility/commonServices";
+import { APIROUTES } from "../../../routes/apiRoutes";
+import {
+  GET_COUNTRY_DETAILS,
+  GET_COUNTRY_BY_ID,
+  POST_ADD_COUNTRY,
+  PATCH_COUNTRY_EDIT,
+  GET_SERACH_COUNTRY,
+  
+} from "../../../../../redux/actionTypes";
+
+export const getCountryMiddleware = createAsyncThunk(
+  GET_COUNTRY_DETAILS,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const getCountryListByIdMiddleware = createAsyncThunk(
+  GET_COUNTRY_BY_ID,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const postAddCountryMiddleware = createAsyncThunk(
+  POST_ADD_COUNTRY,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const patchCountryEditMiddleware = createAsyncThunk(
+  PATCH_COUNTRY_EDIT,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const getSearchCountryMiddleware = createAsyncThunk(
+  GET_SERACH_COUNTRY,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+

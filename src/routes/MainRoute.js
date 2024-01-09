@@ -508,8 +508,21 @@ const Maincomponent = () => {
             {/* Location */}
             <Route
               path="master/generals/location/country"
+              element={<AddCountry />}
+            />
+             <Route
+              path="master/generals/location/country/edit/1"
+              element={<AddCountry />}
+            />
+             <Route
+              path="master/generals/location/country/view/2"
+              element={<AddCountry />}
+            />
+             <Route
+              path="master/generals/location/country/add/3"
               element={<Country />}
             />
+
             <Route path="master/generals/location/state" element={<State />} />
             <Route path="master/generals/location/city" element={<City />} />
             <Route

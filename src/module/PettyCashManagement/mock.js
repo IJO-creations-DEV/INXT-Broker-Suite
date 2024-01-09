@@ -1,20 +1,19 @@
 export const PettyCashCode = [
-  { pettycashcode: "PC0128" },
-  { pettycashcode: "PC0129" },
-  { pettycashcode: "PC0130" },
-  { pettycashcode: "PC0131" },
+  { pettycashcode: "PC001" },
+  { pettycashcode: "PC002" },
+  { pettycashcode: "PC003" },
+  { pettycashcode: "PC004" },
 ];
 export const BankAccountCode = [
-  { BankAccountCode: "1929920128" },
-  { BankAccountCode: "8299201291" },
-  { BankAccountCode: "9920010130" },
-  { BankAccountCode: "1818810131" },
+  { BankAccountCode: "Bk001" },
+  { BankAccountCode: "Bk002" },
+  { BankAccountCode: "Bk003" },
 ];
 export const SubAccount = [
-  { SubAccount: "Sub1929920" },
-  { SubAccount: "Sub8299201" },
-  { SubAccount: "Sub9920010" },
-  { SubAccount: "Sub1818811" },
+  { SubAccount: "SAC001" },
+  { SubAccount: "SAC002" },
+  { SubAccount: "SAC003" },
+ 
 ];
 export const CurrencyType = [
   { CurrencyType: "INR" },
@@ -23,22 +22,22 @@ export const CurrencyType = [
   { CurrencyType: "AD" },
 ];
 export const Transcode = [
-  { Transcode: "Trans00123" },
-  { Transcode: "Trans00322" },
-  { Transcode: "Trans00923" },
-  { Transcode: "Trans00123" },
+  { Transcode: "PRM" },
+  { Transcode: "COMM" },
+  { Transcode: "REMT" },
+ 
 ];
 export const Branchcode = [
-  { Branchcode: "Branch00123" },
-  { Branchcode: "Branch00322" },
-  { Branchcode: "Branch00923" },
-  { Branchcode: "Branch00123" },
+  { Branchcode: "PHP001" },
+  { Branchcode: "PHP002" },
+  { Branchcode: "PHP003" },
+  { Branchcode: "PHP004" },
 ];
 export const Departcode = [
-  { Departcode: "Depart00123" },
-  { Departcode: "Depart00322" },
-  { Departcode: "Depart00923" },
-  { Departcode: "Depart00123" },
+  { Departcode: "FIN" },
+  { Departcode: "MKT" },
+  { Departcode: "IT" },
+  { Departcode: "SLS" },
 ];
 export const Name = [
   { Name: "Leo" },
@@ -48,10 +47,10 @@ export const Name = [
   { Name: "Pandi" },
 ];
 export const Maincode = [
-  { Maincode: "192992" },
-  { Maincode: "199191" },
-  { Maincode: "101019" },
-  { Maincode: "181929" },
+  { Maincode: "MAC001" },
+  { Maincode: "MAC002" },
+  { Maincode: "MAC003" },
+ 
 ];
 export const Pettycashdescription = [
   { Pettycashdescription: "PCD192992" },

@@ -34,8 +34,9 @@ const Reversals = () => {
   ];
   const home = { label: "Accounts" };
   const codeOptions = [
-    { label: "Option 1", value: "Trans00123" },
-    { label: "Option 2", value: "Trans00124" },
+    { label: "Option 1", value: "PRM" },
+    { label: "Option 2", value: "COMM" },
+    { label: "Option 2", value: "REMT" },
   ];
   const customValidation = (values) => {
     const errors = {};

@@ -166,8 +166,9 @@ const AddJournalVocture = () => {
         setVisible(true);
     };
     const mainAccountOptions = [
-        { label: 'Trans00123', value: 'Trans00123' },
-        { label: 'Trans00124', value: 'Trans00124' },
+        { label: 'PRM', value: 'Trans00123' },
+        { label: 'COMM', value: 'Trans00124' },
+        { label: 'REMT', value: 'Trans00124' },
 
     ];
     const totalForeignAmount = journalVoucherPostTabelData.reduce((total, item) => {

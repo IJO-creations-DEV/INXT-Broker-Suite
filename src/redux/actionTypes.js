@@ -227,7 +227,7 @@ export const PATCH_EMPLOYEE_EDIT ="employee/PATCH_EMPLOYEE_EDIT";
 export const GET_SERACH_EMPLOYEE ="employee/GET_SERACH_EMPLOYEE";
 
 export const GET_HIERARCHY_DETAILS ="hierarchy/GET_HIERARCHY_DETAILS";
-export const GET_HIERARCHU_BY_ID ="hierarchy/GET_HIERARCHU_BY_ID";
+export const GET_HIERARCHY_BY_ID="hierarchy/GET_HIERARCHY_BY_ID";
 export const POST_ADD_HIERARCHY ="hierarchy/POST_ADD_HIERARCHY";
 export const PATCH_HIERARCHY_EDIT ="hierarchy/PATCH_HIERARCHY_EDIT";
 export const GET_SERACH_HIERARCHY ="hierarchy/GET_SERACH_HIERARCHY";

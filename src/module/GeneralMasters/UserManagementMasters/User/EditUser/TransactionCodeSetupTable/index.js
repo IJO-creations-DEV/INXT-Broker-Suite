@@ -203,6 +203,7 @@ const TransactionCodeSetupTable = ({action}) => {
         visible={show}
         style={{ width: "50vw" }}
         onHide={() => setShow(false)}
+        className="dialogue_style"
       >
         <div className="grid mt-1">
        

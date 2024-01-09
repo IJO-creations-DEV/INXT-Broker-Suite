@@ -25,6 +25,7 @@ import editReducers from "../module/Receipts/store/receiptsReducers";
 import reversalMainReducers from "../module/Reversals/store/reversalReducers";
 import correctionJVMainReducers from "../module/CorrectionJV/store/correctionJVReducers";
 import insuranceCompanyReducers from "../module/GeneralMasters/InsuranceManagementMasters/InsuranceCompany/store/insuranceCompanyReducers";
+import hierarchyTableReducers from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/store/hierarchyReducers"
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -49,6 +50,7 @@ const reducers = {
   editReducers,
   correctionJVMainReducers,
   insuranceCompanyReducers,
+  hierarchyTableReducers,
 };
 
 export default reducers;

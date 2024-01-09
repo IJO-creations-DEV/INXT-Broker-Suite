@@ -1,9 +1,110 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getHirarchyListMiddleware, getHirarchyListByIdMiddleware,postAddHirarchyMiddleware,patchHirarchyEditMiddleware,getSearchHirarchyMiddleware } from "./hierarchyMiddleware";
-import SvgIconeye from "../../../assets/icons/SvgIconeye";
+import SvgIconeye from "../../../../../assets/icons/SvgIconeye";
 const initialState = {
     loading: false,
     error: "",
+    hierarchTableList:[
+      {
+        id: 1,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+      {
+        id: 2,
+        rankCode: "RC1237",
+        rankName: "RankName",
+        levelNumber: "60",
+        modifiedBy: "Johnson",
+        modifiedOn: "2/1/24",
+        status:"",
+        action:""
+      }, {
+        id: 3,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+      {
+        id: 4,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+      {
+        id: 5,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+      {
+        id: 6,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+      {
+        id: 7,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+      {
+        id: 8,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+      {
+        id: 9,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+      {
+        id: 10,
+        rankCode: "RC1234",
+        rankName: "RankName",
+        levelNumber: "50",
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status:"",
+        action:""
+      },
+    ]
 };
 const receiptsReducer = createSlice({
     name: "designation",
@@ -15,7 +116,7 @@ const receiptsReducer = createSlice({
         });
         builder.addCase(getHirarchyListMiddleware.fulfilled, (state, action) => {
             state.loading = false;
-            state.hierarchyTableList = action.payload;
+            state.hierarchTableList = action.payload;
         });
         builder.addCase(getHirarchyListMiddleware.rejected, (state, action) => {
             state.loading = false;

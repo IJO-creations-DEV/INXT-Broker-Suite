@@ -72,7 +72,7 @@ const PettyCashReceiptsTable = () => {
       <div className="center-content">
         <Button
           icon={<SvgEyeIcon />}
-          className="eye__btn"
+          className="eye__btn p-0"
           onClick={() => handleView(rowData)}
         />
       </div>
@@ -88,7 +88,7 @@ const PettyCashReceiptsTable = () => {
     fontSize: 16,
     fontFamily: "Inter var",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem 0",
     color: "#000",
     border: "none",
   };
@@ -162,6 +162,7 @@ const PettyCashReceiptsTable = () => {
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            className="receipt__table__parent"
           >
             <Column
               field="ReceiptNo"

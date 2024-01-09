@@ -5,6 +5,7 @@ import {
     postCurrencyStatus,
     postAddCurrency,
     patchCurrencyDetailEdit,
+    getCurrencyDetailEdit,
     getCurrencyDetailView
 } from "./currencyMasterMiddlewar";
 const initialState = {
@@ -12,12 +13,12 @@ const initialState = {
   error: "",
   CurrencyList: [
     {
-      id: 1,
-      Currencycode: "IND",
-      ISOcode: "ISO-1",
-      CurrencyFormat: "RUPES",
-      SmallestUnit: "RUPES",
-      UnitDescription: "UNI-01",
+      "id": 1,
+      "Currencycode": "IND",
+      "ISOcode": "ISO-1",
+      "CurrencyFormat": "RUPES",
+      "SmallestUnit": "RUPES",
+      "UnitDescription": "UNI-01",
       "CurrencyName": "Rupes"
     },
     {
@@ -114,6 +115,7 @@ const initialState = {
   CurrencyStatus:{},
   AddCurrency:{},
   CurrencyDetailEdit:{},
+  getCurrecyDetailEdit:{},
   CurrencyDetailView:{}
 };
 const currencyMasterReducer = createSlice({
@@ -197,7 +199,8 @@ const currencyMasterReducer = createSlice({
       postAddCurrency.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.AddCurrency = action.payload;
+        // state.AddCurrency = action.payload;
+        state.CurrencyList = [...state.CurrencyList, action.payload];
       }
     );
     builder.addCase(
@@ -219,9 +222,19 @@ const currencyMasterReducer = createSlice({
       patchCurrencyDetailEdit.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.CurrencyDetailEdit = action.payload;
+        const updatedIndex = state.CurrencyList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.CurrencyList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.CurrencyList = updatedCurrencyList; 
+        } else {
+          state.CurrencyList = [...state.CurrencyList, action.payload];
+        }
       }
     );
+    
     builder.addCase(
       patchCurrencyDetailEdit.rejected,
       (state, action) => {
@@ -232,6 +245,26 @@ const currencyMasterReducer = createSlice({
       }
     );
 
+    //getCurrecyDetailEdit
+    builder.addCase(getCurrencyDetailEdit.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getCurrencyDetailEdit.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.getCurrecyDetailEdit = action.payload;
+      }
+    );
+    builder.addCase(
+      getCurrencyDetailEdit.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getCurrecyDetailEdit = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
     //CurrencyDetailView
 
     builder.addCase(getCurrencyDetailView.pending, (state) => {

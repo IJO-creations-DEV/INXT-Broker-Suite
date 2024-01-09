@@ -3,12 +3,20 @@ import "./index.scss";
 import SvgTable from "../../../../../assets/icons/SvgTable";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { useSelector } from "react-redux";
 
 const DisbursementDetailviewTable = () => {
-  const [data, setData] = useState([]);
-  const isEmpty = data.length === 0;
  
-
+  const { AddDisbursmentTable, loading } = useSelector(
+    ({ pettyCashDisbursementReducers }) => {
+      return {
+        loading: pettyCashDisbursementReducers?.loading,
+        AddDisbursmentTable: pettyCashDisbursementReducers?.AddDisbursmentTable,
+      };
+    }
+  );
+  console.log(AddDisbursmentTable,"AddDisbursmentTable")
+  const isEmpty = AddDisbursmentTable.length === 0;
   const emptyTableIcon = (
     <div className="empty-table-icon">
       <SvgTable />
@@ -29,7 +37,7 @@ const DisbursementDetailviewTable = () => {
     <div className="add__disbursement__table">
         <div className="table__container">
           <DataTable
-            value={data}
+            value={AddDisbursmentTable}
             tableStyle={{ minWidth: "50rem" }}
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
@@ -39,7 +47,7 @@ const DisbursementDetailviewTable = () => {
               headerStyle={headerStyle}
             ></Column>
             <Column
-              field="Requester"
+              field="RequesterName"
               header="Requester"
               headerStyle={headerStyle}
             ></Column>

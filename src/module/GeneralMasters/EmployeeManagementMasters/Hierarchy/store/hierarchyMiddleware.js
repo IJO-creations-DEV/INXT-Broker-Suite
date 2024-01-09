@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getRequest } from "../../../utility/commonServices";
-import { APIROUTES } from "../../../routes/apiRoutes";
+import { getRequest } from "../../../../../utility/commonServices";
+import { APIROUTES } from "../../../../../routes/apiRoutes";
 import {
   GET_HIERARCHY_DETAILS,
   GET_HIERARCHY_BY_ID,
@@ -9,12 +9,17 @@ import {
   GET_SERACH_HIERARCHY,
 } from "../../../../../redux/actionTypes";
 
-export const getHierarchyListMiddleware = createAsyncThunk(
+export const getHirarchyListMiddleware = createAsyncThunk(
   GET_HIERARCHY_DETAILS,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, getState }) => {
+    const { hierarchyTableReducers } = getState();
+    console.log(hierarchyTableReducers, "dta");
+    const { receiptsTableList } = hierarchyTableReducers;
+    const filteredData = receiptsTableList.filter((item) => item.id === 1);
+
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return filteredData[0];
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

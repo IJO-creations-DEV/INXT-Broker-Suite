@@ -22,26 +22,27 @@
         padding-bottom: 0.6rem;
       }
 
+      .p-card .p-card-content {
+        padding: 0rem 0 !important; 
+    }
+    .p-tabview .p-tabview-nav {
+        background: #ffffff;
+        border: 1px solid #fff !important; 
+        border-width: 0 0 2px 0;
+    }
+    .tab-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem; 
+      }
+      .p-dropdown {
+        background: #ffffff;
+        border: 1px solid #d1d5db;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        border-radius: 6px;
+        margin-top: 0.5rem !important;
+        width: 100%;
+      }
+
 }
-.p-card .p-card-content {
-    padding: 0rem 0 !important; 
-}
-.p-tabview .p-tabview-nav {
-    background: #ffffff;
-    border: 1px solid #fff !important; 
-    border-width: 0 0 2px 0;
-}
-.tab-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem; 
-  }
-  .p-dropdown {
-    background: #ffffff;
-    border: 1px solid #d1d5db;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: 6px;
-    margin-top: 0.5rem !important;
-    width: 100%;
-  }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../../../assets/icons/SvgAdd";
 import "./index.scss";
@@ -15,13 +15,29 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
+import { useSelector } from "react-redux";
 
 const HierarchyMaster = () => {
+  const [products,setProducts]=useState([])
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("/master/generals/employeemanagement/hierarchy/add/1");
    
   };
+
+  useEffect(() => {
+  
+   setProducts()
+  }, [])
+  
+  const { hierarchTableList, loading,total } = useSelector(({ hierarchyTableReducers }) => {
+    return {
+      loading: hierarchyTableReducers?.loading,
+      hierarchTableList: hierarchyTableReducers?.hierarchTableList,
+      total:hierarchyTableReducers
+
+    };
+  });
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
@@ -172,7 +188,7 @@ const handlEdit =()=>{
           >
             <div className="card">
               <DataTable
-                value={Productdata}
+                value={hierarchTableList}
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"

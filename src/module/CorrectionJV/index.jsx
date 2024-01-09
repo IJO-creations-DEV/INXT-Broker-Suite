@@ -33,7 +33,7 @@ const Reversals = () => {
       };
     }
   );
-  console.log(correctionJVList, "correctionJVList")
+  console.log(correctionJVList, "correctionJVList");
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(false);
   const [creditTotal, setCreditTotal] = useState(2600);
@@ -73,12 +73,11 @@ const Reversals = () => {
 
     return errors;
   };
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
     // Handle form submission
     // console.log(values, "find values");
     dispatch(postCorrectionJVData(formik.values));
-    
   };
   const formik = useFormik({
     initialValues: {
@@ -110,8 +109,6 @@ const Reversals = () => {
     formik.resetForm();
     setStep(0);
   };
-
-  
 
   const totalForeignAmount = correctionJVList.reduce((total, item) => {
     const foreignAmount = parseFloat(item.foreignAmount);
@@ -179,7 +176,7 @@ const Reversals = () => {
           />
 
           {formik.touched.transactionCode && formik.errors.transactionCode && (
-            <div style={{ fontSize: 12, color: "red" }}>
+            <div style={{ fontSize: 12, color: "red" }} className="mt-3">
               {formik.errors.transactionCode}
             </div>
           )}
@@ -260,7 +257,7 @@ const Reversals = () => {
             formik.errors.correctionJVTransactionCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
+                className="formik__errror__JV mt-3"
               >
                 {formik.errors.correctionJVTransactionCode}
               </div>
@@ -344,32 +341,33 @@ const Reversals = () => {
         <div className="col-12 button__view__corrections__reversal">
           {step === 0 && (
             <Button
-              label="Next"
               className="correction__btn__reversal"
               disabled={!formik.isValid}
               onClick={formik.handleSubmit}
-            />
+            >
+              Next
+            </Button>
           )}
 
           {step === 1 && (
             <Button
-              label="Approve"
               className="correction__btn__reversal"
               onClick={handleApproval}
-              disabled={totalForeignAmount - totalLocalAmount === 0 ? false : true}
-            />
+              disabled={
+                totalForeignAmount - totalLocalAmount === 0 ? false : true
+              }
+            >
+              Approve
+            </Button>
           )}
 
           {step === 2 && (
-            <Button
-              label="Print"
-              className="correction__btn__reversal"
-              onClick={handlePrint}
-            />
+            <Button className="correction__btn__reversal" onClick={handlePrint}>
+              Print
+            </Button>
           )}
         </div>
       </div>
-    
     </div>
   );
 };

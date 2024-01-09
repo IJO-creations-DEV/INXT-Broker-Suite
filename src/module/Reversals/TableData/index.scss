@@ -1,16 +1,13 @@
 .reversal__table__container {
-  //   padding: 20px 0;
+  padding: 1.25rem;
   .reversal__table__main {
-    tr {
-      height: 50px;
-    }
     thead {
       tr {
         th {
           border: 0 !important;
+          padding: 0 !important;
         }
         .p-column-header-content {
-          justify-content: center;
           .p-column-title {
             color: #111927;
             font-family: "Inter var";
@@ -18,6 +15,8 @@
             font-style: normal;
             font-weight: 500;
             line-height: normal;
+            padding: 15px 16px;
+            width: 100%;
           }
         }
       }
@@ -31,7 +30,7 @@
           font-style: normal;
           font-weight: 400;
           line-height: normal;
-          text-align: center !important;
+          padding: 15px 16px !important;
         }
       }
     }
@@ -60,64 +59,65 @@
         line-height: normal;
       }
       .table__selector {
-        padding-right: 25%;
+        text-align: center;
+        flex: 1 0;
         .pagedropdown_container {
           border: none;
           margin: 0 !important;
         }
       }
     }
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
-      thead {
-        tr {
-          th {
-            padding: 0.5rem 0.5rem;
-          }
-          .p-column-header-content {
-            .p-column-title {
-              font-size: 12px;
-            }
-          }
-        }
-      }
-      tbody {
-        tr {
-          td {
-            font-size: 12px;
-          }
-        }
-      }
-      .p-paginator-bottom {
-        span {
-          font-size: 12px;
-        }
-      }
-    }
-    @media only screen and (min-width: 992px) and (max-width: 1440px) {
-        thead {
-          tr {
-            th {
-              padding: 0.5rem 0.5rem;
-            }
-            .p-column-header-content {
-              .p-column-title {
-                font-size: 14px;
-              }
-            }
-          }
-        }
-        tbody {
-          tr {
-            td {
-              font-size: 14px;
-            }
-          }
-        }
-        .p-paginator-bottom {
-          span {
-            font-size: 14px;
-          }
-        }
-      }
+    // @media only screen and (min-width: 768px) and (max-width: 991px) {
+    //   thead {
+    //     tr {
+    //       th {
+    //         padding: 0.5rem 0.5rem;
+    //       }
+    //       .p-column-header-content {
+    //         .p-column-title {
+    //           font-size: 12px;
+    //         }
+    //       }
+    //     }
+    //   }
+    //   tbody {
+    //     tr {
+    //       td {
+    //         font-size: 12px;
+    //       }
+    //     }
+    //   }
+    //   .p-paginator-bottom {
+    //     span {
+    //       font-size: 12px;
+    //     }
+    //   }
+    // }
+    // @media only screen and (min-width: 992px) and (max-width: 1440px) {
+    //   thead {
+    //     tr {
+    //       th {
+    //         padding: 0.5rem 0.5rem;
+    //       }
+    //       .p-column-header-content {
+    //         .p-column-title {
+    //           font-size: 14px;
+    //         }
+    //       }
+    //     }
+    //   }
+    //   tbody {
+    //     tr {
+    //       td {
+    //         font-size: 14px;
+    //       }
+    //     }
+    //   }
+    //   .p-paginator-bottom {
+    //     span {
+    //       font-size: 14px;
+    //     }
+    //   }
+    // }
   }
 }

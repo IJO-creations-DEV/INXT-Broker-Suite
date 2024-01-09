@@ -57,29 +57,24 @@ const Reversals = () => {
   //   // Handle form submission
   //   console.log(values, "find values");
   // };
-  const dispatch = useDispatch()
-  const [errors, setErrors] = useState("")
-  const { reversalJVList, loading, reversalJVGetDataList } = useSelector(({ reversalMainReducers }) => {
-    return {
-      loading: reversalMainReducers?.loading,
-      reversalJVList: reversalMainReducers?.reversalJVList,
-      reversalJVGetDataList: reversalMainReducers?.reversalJVGetDataList
-
-    };
-  });
+  const dispatch = useDispatch();
+  const [errors, setErrors] = useState("");
+  const { reversalJVList, loading, reversalJVGetDataList } = useSelector(
+    ({ reversalMainReducers }) => {
+      return {
+        loading: reversalMainReducers?.loading,
+        reversalJVList: reversalMainReducers?.reversalJVList,
+        reversalJVGetDataList: reversalMainReducers?.reversalJVGetDataList,
+      };
+    }
+  );
   // const reversalJVList = useSelector(state => state.reversalJVList);
-  console.log(reversalJVGetDataList, "reversalJVGetDataList")
+  console.log(reversalJVGetDataList, "reversalJVGetDataList");
   const handleSubmit = (values) => {
-
-
     dispatch(postReversalJVData(formik.values));
 
     // navigate("/accounts/receipts");
-
-
   };
-
-
 
   const formik = useFormik({
     initialValues: {
@@ -159,7 +154,7 @@ const Reversals = () => {
           />
 
           {formik.touched.transactionCode && formik.errors.transactionCode && (
-            <div style={{ fontSize: 12, color: "red" }}>
+            <div style={{ fontSize: 12, color: "red" }} className="mt-3">
               {formik.errors.transactionCode}
             </div>
           )}
@@ -236,7 +231,7 @@ const Reversals = () => {
             formik.errors.reversalJVTransactionCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
-                className="formik__errror__JV"
+                className="formik__errror__JV mt-3"
               >
                 {formik.errors.reversalJVTransactionCode}
               </div>
@@ -264,7 +259,10 @@ const Reversals = () => {
       {step !== 0 && (
         <div className="grid m-0 table__container">
           <div className="col-12 p-0">
-            <TableData reversalJVGetDataList={reversalJVGetDataList} reversalJVList={reversalJVList} />
+            <TableData
+              reversalJVGetDataList={reversalJVGetDataList}
+              reversalJVList={reversalJVList}
+            />
           </div>
         </div>
       )}

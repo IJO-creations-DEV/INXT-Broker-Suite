@@ -1,5 +1,5 @@
 import React from "react";
-import "../PettyCashManagement/index.scss";
+import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../assets/icons/SvgDot";
 import InitiateComponent from "./Initiate";

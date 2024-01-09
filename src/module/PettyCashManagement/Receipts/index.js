@@ -25,7 +25,7 @@ const PettyCashReceipts = () => {
 
   return (
     <div className="pettycash__management">
-       <NavBar />
+      <NavBar />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div className="pettycash__title">Petty Cash Receipts</div>
@@ -41,8 +41,8 @@ const PettyCashReceipts = () => {
         <div className="col-12 md:col-6 lg:col-6">
           <div className="btn__container">
             <Button
-              label="Add"
-              icon={<SvgAdd color={"#fff"}/>}
+              label="Receipts"
+              icon={<SvgAdd color={"#fff"} />}
               className="add__btn"
               onClick={() => {
                 handleClick();
@@ -52,7 +52,7 @@ const PettyCashReceipts = () => {
         </div>
       </div>
       <div>
-        <PettyCashReceiptsTable/>
+        <PettyCashReceiptsTable />
       </div>
     </div>
   );

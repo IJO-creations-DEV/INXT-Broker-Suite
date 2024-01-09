@@ -11,9 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const navigation = useNavigate();
-  const [visible, setVisible] = useState(false);
-
-  const [popUpAction, setpopUpAction] = useState(null);
 
   const items = [
     {

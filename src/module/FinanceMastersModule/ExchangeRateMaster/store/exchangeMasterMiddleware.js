@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import {  GET_EXCHANGE_LIST,GET_EXCHANGE_SEARCH_LIST, POST_EXCHANGE_STATUS ,GET_EXCHANGE_DETAIL_VIEW, GET_ADD_EXCHANGE,PATCH_EXCHANGE_DETAIL_EDIT } from "../../../../redux/actionTypes";
+import { GET_EXCHANGE_LIST, GET_EXCHANGE_SEARCH_LIST, POST_EXCHANGE_STATUS, GET_EXCHANGE_DETAIL_VIEW, GET_ADD_EXCHANGE, PATCH_EXCHANGE_DETAIL_EDIT } from "../../../../redux/actionTypes";
 
 
 export const getExchangeList = createAsyncThunk(
@@ -29,16 +29,48 @@ export const getExchangeSearchList = createAsyncThunk(
     },
 );
 
+// export const postExchangeStatus = createAsyncThunk(
+//     POST_EXCHANGE_STATUS,
+//     async (payload, { rejectWithValue }) => {
+//         try {
+//             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+//             return payload;
+//         } catch (error) {
+//             return rejectWithValue(error?.response.data.error.message);
+//         }
+//     },
+// );
 export const postExchangeStatus = createAsyncThunk(
     POST_EXCHANGE_STATUS,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        console.log(payload, "payload");
+
+        let bodyTableData = {
+            id: payload?.id,
+            EffectiveFrom: payload?.EffectiveFrom.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+            EffectiveTo:payload?.EffectiveTo.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+            CurrencyCode: payload?.CurrencyCode,
+            ToCurrencyCode: payload?.ToCurrencyCode,
+            ExchangeRate: payload?.ExchangeRate,
+            CurrencyDescription: payload?.CurrencyDescription,
+            ToCurrencyDescription: payload?.ToCurrencyDescription
+        };
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            console.log(bodyTableData, "find middleware");
+
+            return bodyTableData;
         } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
+            return rejectWithValue(error?.response?.data?.error?.message);
         }
-    },
+    }
 );
 
 

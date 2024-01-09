@@ -23,8 +23,10 @@ import DropDowns from '../../../components/DropDowns';
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import { MultiSelect } from 'primereact/multiselect';
 import CustomToast from "../../../components/Toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SvgTable from "../../../assets/icons/SvgTable";
+import { useFormik } from "formik";
+import { getSubAccountView, postSubAccount } from "./store/subAccountMiddleWare";
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
@@ -38,14 +40,22 @@ const SubAccountMaster = () => {
   const handleDropdownChange1 = (e) => {
     setSelectedOption1(e.value);
   };
- 
+
   const handleClick = () => {
-  
+
   };
- 
- 
+
+  const { subAccountList, loading } = useSelector(({ subAccountMainReducers }) => {
+    return {
+      loading: subAccountMainReducers?.loading,
+      subAccountList: subAccountMainReducers?.subAccountList,
+
+    };
+  });
+  console.log(subAccountList, "subAccountList");
+
   const items = [
-    { label: 'Sub Account', url: '/master/finance/subaccount'},
+    { label: 'Sub Account', url: '/master/finance/subaccount' },
   ];
   const home = { label: "Master" };
   const headerStyle = {
@@ -70,8 +80,8 @@ const SubAccountMaster = () => {
   const columns = [
     { field: 'tax', headerName: 'Tax Code', flex: 1 },
     { field: 'taxName', headerName: ' Tax Name', flex: 1 },
-   
- 
+
+
     { field: 'desc', headerName: 'Tax Rate', flex: 1 },
     { field: 'effective', headerName: 'Effective From', flex: 1 },
     { field: 'effectiveTo', headerName: 'Effective To', flex: 1 },
@@ -87,8 +97,8 @@ const SubAccountMaster = () => {
     setRowsPerPage(event.rows);
   };
   const item = [{ name: "Main00123 - Main Account Description" }, { name: "Main00125 - Main Account Description" }, { name: "Main00128 - Main Account Description" }];
-const item1 =[{name:"INR-Indian Currency",name:"EUR-Euro",name:"HKD-Hong Kong Dollar"}]
-const toastRef = useRef(null);
+  const item1 = [{ name: "INR-Indian Currency", name: "EUR-Euro", name: "HKD-Hong Kong Dollar" }]
+  const toastRef = useRef(null);
   const renderViewButton = (rowData) => {
     return (
       <div className="center-content">
@@ -109,7 +119,7 @@ const toastRef = useRef(null);
   const renderToggleButton = () => {
     return (
       <div>
-   <ToggleButton/>
+        <ToggleButton />
       </div>
     );
   };
@@ -119,31 +129,33 @@ const toastRef = useRef(null);
     setVisiblePopup(true);
 
   };
-  
 
-  const handleToast = (values) => {
-    // Handle form submission
-    console.log(values, "find values");
-    
-    toastRef.current.showToast();
-    // {
-      setTimeout(() => {
-        setVisiblePopup(false)
-      }, 3000);
-    }
-  const handlEdit =()=>{
+
+  // const handleToast = (values) => {
+  //   // Handle form submission
+  //   console.log(values, "find values");
+
+  //   toastRef.current.showToast();
+  //   // {
+  //   setTimeout(() => {
+  //     setVisiblePopup(false)
+  //   }, 3000);
+  // }
+  const handlEdit = () => {
     navigate("/master/finance/subaccount/subaccountedit")
   }
-  const handleDetail =()=>{
+  const handleDetail = (rowData) => {
+    console.log(rowData, "rowData")
+    dispatch(getSubAccountView(rowData))
     navigate("/master/finance/subaccount/subaccountdetails")
   }
 
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable />
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
   const isEmpty = Productdata.length === 0;
@@ -169,14 +181,62 @@ const toastRef = useRef(null);
     },
 
   };
-  const { subAccountList, loading } = useSelector(({ subAccountMainReducers }) => {
-    return {
-      loading: subAccountMainReducers?.loading,
-      subAccountList: subAccountMainReducers?.subAccountList,
 
-    };
+
+
+
+
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    console.log(values, "values")
+    dispatch(postSubAccount(formik.values))
+      .then(() => {
+        toastRef.current.showToast();
+        setTimeout(() => {
+          setVisiblePopup(false)
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const customValidation = (values) => {
+    const errors = {};
+
+    if (!values.subAccountCode) {
+      errors.subAccountCode = "This Field is Required"
+    }
+    if (!values.description) {
+      errors.description = "This Field is Required"
+    }
+    if (!values.subAccountName) {
+      errors.subAccountName = "This Field is Required"
+    }
+    if (!values.mainAccount) {
+      errors.mainAccount = "This Field is Required"
+    }
+    if (!values.currencyCode) {
+      errors.currencyCode = "This Field is Required"
+    }
+    return errors;
+  }
+
+
+  const formik = useFormik({
+    initialValues: {
+      subAccountCode: "",
+      description: "",
+      subAccountName: "",
+      mainAccount: "",
+      currencyCode: "",
+    },
+    validate: customValidation,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
   });
-  console.log(subAccountList, "subAccountList");
+
+
   return (
     <div className='grid  container__subaccount'>
       <div className='col-12'>
@@ -188,193 +248,251 @@ const toastRef = useRef(null);
           <BreadCrumb home={home} className='breadCrums__view__reversal__taxation' model={items} separatorIcon={<SvgDot color={"#000"} />} />
         </div>
       </div>
-     
-          <div className="col-12 md:col-6 lg:col-6 mb-1">
-          <div className="btn__container">
+
+      <div className="col-12 md:col-6 lg:col-6 mb-1">
+        <div className="btn__container">
           <Button
-          outlined
-              label="Upload"
-              icon={<SvgUploade color={"#fff"} />}
-              className="upload__btn"
-              onClick={() => {
-                handleClick();
-              }}
-            />
-            <Button
-              label="Add"
-              icon={<SvgAdd color={"#fff"} />}
-              className="add__btn"
-              onClick={() => {
-                handleView();
-              }}
-            />
-          </div>
+            outlined
+            label="Upload"
+            icon={<SvgUploade color={"#fff"} />}
+            className="upload__btn"
+            onClick={() => {
+              handleClick();
+            }}
+          />
+          <Button
+            label="Add"
+            icon={<SvgAdd color={"#fff"} />}
+            className="add__btn"
+            onClick={() => {
+              handleView();
+            }}
+          />
         </div>
+      </div>
       <div className='col-12 m-0 '>
         <div className='sub__account__sub__container__taxation'>
-        <div className='col-12 search__filter__view__taxation'>
+          <div className='col-12 search__filter__view__taxation'>
             <div className='col-12 md:col-10 lg:col-10'>
               <div className='searchIcon__view__input__taxation'>
                 <span className='p-3'> <SvgSearchIcon /></span>
                 <InputText
-                 style={{width:'100%'}}
+                  style={{ width: '100%' }}
                   classNames='input__sub__account__taxation'
                   placeholder='Search By Sub Account Code'
                 />
               </div>
             </div>
-       
+
           </div>
           <div className='col-12 '>
             <div className='main__tabel__title__taxation p-2'>Main Account List</div>
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
-            <DataTable
-      value={Productdata}
-      style={{ overflowY: 'auto', maxWidth: '100%' }}
-      responsive={true}
-      className='table__view__taxation'
-      paginator
-      paginatorLeft
-      rows={5}
-      rowsPerPageOptions={[5, 10, 25, 50]}
-      currentPageReportTemplate="{first} - {last} of {totalRecords}"
-      paginatorTemplate={template2}
-      onPage={onPageChange}
-      onPageChange={onPageChange}
-      emptyMessage={isEmpty ? emptyTableIcon : null}
-    >
+              <DataTable
+                value={subAccountList}
+                style={{ overflowY: 'auto', maxWidth: '100%' }}
+                responsive={true}
+                className='table__view__taxation'
+                paginator
+                paginatorLeft
+                rows={5}
+                rowsPerPageOptions={[5, 10, 25, 50]}
+                currentPageReportTemplate="{first} - {last} of {totalRecords}"
+                paginatorTemplate={template2}
+                onPage={onPageChange}
+                onPageChange={onPageChange}
+                emptyMessage={isEmpty ? emptyTableIcon : null}
+              >
 
-<Column
-              field="subAccountCode"
-              header="Sub Account Code"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-              sortable
-            ></Column>
-            <Column
-              field="description"
-              header="Description"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-            
-            ></Column>
-           
-           
-            <Column
-            field="status"
-              body={renderToggleButton}
-              header="Status"
-              headerStyle={{ textAlign: 'center', ...headerStyle }}
-              className="fieldvalue_container"
-            ></Column>
-            <Column
-            field="action"
-              body={renderViewButton}
-              header="Action"
-              headerStyle={{ ...ViewheaderStyle }}
-              className="fieldvalue_container centered"
-            ></Column>
-                
+                <Column
+                  field="subAccountCode"
+                  header="Sub Account Code"
+                  headerStyle={headerStyle}
+                  className="fieldvalue_container"
+                  sortable
+                ></Column>
+                <Column
+                  field="description"
+                  header="Description"
+                  headerStyle={headerStyle}
+                  className="fieldvalue_container"
+
+                ></Column>
+
+
+                <Column
+                  field="status"
+                  body={renderToggleButton}
+                  header="Status"
+                  headerStyle={{ textAlign: 'center', ...headerStyle }}
+                  className="fieldvalue_container"
+                ></Column>
+                <Column
+                  field="action"
+                  body={renderViewButton}
+                  header="Action"
+                  headerStyle={{ ...ViewheaderStyle }}
+                  className="fieldvalue_container centered"
+                ></Column>
+
               </DataTable>
 
               <div className="col-12">
-      
-      <Dialog
-        header="Add Sub Account"
-        visible={visiblePopup}
-        className="dialog_fields"
-        onHide={() => setVisiblePopup(false)}
-        style={{ width: '60vw' }}
-      >
-        <div class="grid">
-          <div class="sm-col-12  md:col-4 lg-col-4">
-            <InputField
-              classNames="field__container"
-              label="Sub Account Code"
-              placeholder={"Enter"}
-              textWeight="400"
-              //   value={selectedRowData.policy}
-            />
-          </div>
-          <div class="sm-col-12  md:col-8 lg-col-8">
-            <InputField
-              classNames="field__container"
-              label="Sub Account Name"
-              placeholder={"Enter"}
-              textWeight="400"
-            />
-          </div>
-        </div>
-        <div class="grid">
-          <div class="sm-col-12  md:col-8 lg-col-8">
-            <InputField
-              classNames="field__container"
-              label="Description"
-              placeholder={"Enter"}
-              textWeight="400"
-            />
-          </div>
-         
-        </div>
-        <div class="grid">
-          <div class="sm-col-12  md:col-8 lg-col-8">
-            <label className='main_acc_text'>Main Account</label>
-           <MultiSelect
-              value={selectedOption}
-              options={item}
-              onChange={handleDropdownChange}
-              className="dropdown__add__sub"
-              label="Main Account"
-              display="chip"
-              optionLabel="name"
-              classNames="label__sub__add"
-              placeholder={"Select"}
-              
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />  
-         
-          </div>
-         
-        </div>
-        <div class="grid">
-         
-                 <div class="sm-col-12  md:col-8 lg-col-8">
-            <label className='main_acc_text'>Currency Code</label>
-           <MultiSelect
-              value={selectedOption1}
-              options={item1}
-              onChange={handleDropdownChange1}
-              className="dropdown__add__sub"
-              
-              display="chip"
-              optionLabel="name"
-              classNames="label__sub__add"
-              placeholder={"Select"}
-              
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />  
-         
-          </div>
-         
-        </div>
-       
-        <div className="update_btn">
-          <Button
-         
-            label="Save"
-            className="update_btnlabel"
-            onClick={() => handleToast()}
-            
-          />
-        </div>
-      </Dialog>
-      <CustomToast
-          ref={toastRef}
-          message="Sub Account Code SAC1234 is added"
-        />
-    </div>
+
+                <Dialog
+                  header="Add Sub Account"
+                  visible={visiblePopup}
+                  className="dialog_fields"
+                  onHide={() => setVisiblePopup(false)}
+                  style={{ width: '60vw' }}
+                >
+                  <div class="grid">
+                    <div class="sm-col-12  md:col-4 lg-col-4">
+                      <InputField
+                        classNames="field__container"
+                        label="Sub Account Code"
+                        placeholder={"Enter"}
+                        textWeight="400"
+                        value={
+                          formik.values.subAccountCode
+
+                        }
+                        onChange={(e) =>
+                          formik.setFieldValue("subAccountCode", e.target.value)
+                        }
+
+                      />
+                      {formik.touched.subAccountCode && formik.errors.subAccountCode && (
+                        <div style={{ fontSize: 12, color: "red" }}>
+                          {formik.errors.subAccountCode}
+                        </div>
+                      )}
+
+                    </div>
+                    <div class="sm-col-12  md:col-8 lg-col-8">
+                      <InputField
+                        classNames="field__container"
+                        label="Sub Account Name"
+                        placeholder={"Enter"}
+                        textWeight="400"
+                        value={
+                          formik.values.subAccountName
+
+                        }
+                        onChange={(e) =>
+                          formik.setFieldValue("subAccountName", e.target.value)
+                        }
+
+                      />
+                      {formik.touched.subAccountName && formik.errors.subAccountName && (
+                        <div style={{ fontSize: 12, color: "red" }}>
+                          {formik.errors.subAccountName}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div class="grid">
+                    <div class="sm-col-12  md:col-8 lg-col-8">
+                      <InputField
+                        classNames="field__container"
+                        label="Description"
+                        placeholder={"Enter"}
+                        textWeight="400"
+                        value={
+                          formik.values.description
+
+                        }
+                        onChange={(e) =>
+                          formik.setFieldValue("description", e.target.value)
+                        }
+
+                      />
+                      {formik.touched.description && formik.errors.description && (
+                        <div style={{ fontSize: 12, color: "red" }}>
+                          {formik.errors.description}
+                        </div>
+                      )}
+                    </div>
+
+                  </div>
+                  <div class="grid">
+                    <div class="sm-col-12  md:col-8 lg-col-8">
+                      <label className='main_acc_text'>Main Account</label>
+                      <MultiSelect
+                        // value={selectedOption}
+                        options={item}
+                        // onChange={handleDropdownChange}
+
+                        value={formik.values.mainAccount}
+                        onChange={(e) => formik.setFieldValue("mainAccount", e.value)}
+                        className="dropdown__add__sub"
+                        label="Main Account"
+                        display="chip"
+                        optionLabel="name"
+                        classNames="label__sub__add"
+                        placeholder={"Select"}
+                        dropdownIcon={<SvgDropdown color={"#000"} />}
+                      />
+
+                      {formik.touched.mainAccount && formik.errors.mainAccount && (
+                        <div
+                          style={{ fontSize: 12, color: "red" }}
+                          className="formik__errror__JV"
+                        >
+                          {formik.errors.mainAccount}
+                        </div>
+                      )}
+                    </div>
+
+                  </div>
+                  <div class="grid">
+
+                    <div class="sm-col-12  md:col-8 lg-col-8">
+                      <label className='main_acc_text'>Currency Code</label>
+                      <MultiSelect
+                        value={formik.values.currencyCode}
+                        onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
+                        // value={selectedOption1}
+                        options={item1}
+                        // onChange={handleDropdownChange1}
+                        className="dropdown__add__sub"
+                        display="chip"
+                        optionLabel="name"
+                        classNames="label__sub__add"
+                        placeholder={"Select"}
+                        dropdownIcon={<SvgDropdown color={"#000"} />}
+                      />
+                      {formik.touched.currencyCode && formik.errors.currencyCode && (
+                        <div
+                          style={{ fontSize: 12, color: "red" }}
+                          className="formik__errror__JV"
+                        >
+                          {formik.errors.currencyCode}
+                        </div>
+                      )}
+
+                    </div>
+
+                  </div>
+
+                  <div className="update_btn">
+                    <Button
+
+                      label="Save"
+                      className="update_btnlabel"
+                      // onClick={() => handleToast()}
+                      onClick={formik.handleSubmit}
+
+                    />
+                  </div>
+                </Dialog>
+                <CustomToast
+                  ref={toastRef}
+                  message="Sub Account Code SAC1234 is added"
+                />
+              </div>
             </div>
           </div>
 
@@ -387,4 +505,4 @@ const toastRef = useRef(null);
 }
 
 export default SubAccountMaster
- 
+

@@ -1,22 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    getMainAccountList,
-    getMainAccountSearchList,
-    postMainAccountStatus,
-    getAddMainAccount,
-    patchMainAccountDetailEdit,
-    getMainAccountDetailView
+  getMainAccountList,
+  getMainAccountSearchList,
+  postMainAccountStatus,
+  getAddMainAccount,
+  patchMainAccountDetailEdit,
+  getMainAccountDetailView
 } from "./mainAccountReducer";
 const initialState = {
   loading: false,
   error: "",
-  MainAccountList: [],
-  MainAccountSearchList:[],
-  MainAccountStatus:{},
-  AddMainAccount:{},
-  MainAccountDetailEdit:{},
-  MainAccountDetailView:{}
+  MainAccountList: [
+    {
+      id: "1",
+      mainAccountCode: "main123",
+      mainAccountName: "mainAccountName",
+      description: "description",
+      accountType: "Credit",
+      openEntry: "123",
+      openEntryType: "credit",
+      accountCategoryCode: "acc123",
+      companyCode:"cc123",
+      currencyCode:"cc112"
+    }
+  ],
+  MainAccountSearchList: [],
+  MainAccountStatus: {},
+  AddMainAccount: {},
+  MainAccountDetailEdit: {},
+  MainAccountDetailView: {}
 };
+let nextId = 2
 const mainAccountMasterReducer = createSlice({
   name: "mainAccountMaster",
   initialState,
@@ -29,14 +43,14 @@ const mainAccountMasterReducer = createSlice({
       state.loading = true;
     });
     builder.addCase(
-        getMainAccountList.fulfilled,
+      getMainAccountList.fulfilled,
       (state, action) => {
         state.loading = false;
         state.MainAccountList = action.payload;
       }
     );
     builder.addCase(
-        getMainAccountList.rejected,
+      getMainAccountList.rejected,
       (state, action) => {
         state.loading = false;
 
@@ -68,15 +82,16 @@ const mainAccountMasterReducer = createSlice({
     );
 
     //MainAccountStatus
-    
+
     builder.addCase(postMainAccountStatus.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(
-      postMainAccountStatus.fulfilled,
-      (state, action) => {
+      postMainAccountStatus.fulfilled, (state, action) => {
         state.loading = false;
-        state.MainAccountStatus = action.payload;
+        const newItem2 = { ...action.payload, id: nextId++ };
+        state.MainAccountList = [...state.MainAccountList, newItem2];
+        console.log(state.MainAccountList, "kkk")
       }
     );
     builder.addCase(
@@ -154,7 +169,7 @@ const mainAccountMasterReducer = createSlice({
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
-},
+  },
 });
 
 export default mainAccountMasterReducer.reducer;

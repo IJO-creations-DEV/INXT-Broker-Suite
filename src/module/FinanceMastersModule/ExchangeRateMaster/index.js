@@ -17,43 +17,41 @@ import { TieredMenu } from 'primereact/tieredmenu';
 import SvgIconeye from "../../../assets/icons/SvgIconeye";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SvgEditicon from "../../../assets/icons/SvgEdit";
 import SvgEdit from "../../../assets/icons/SvgEdits";
 import ToggleButton from "../../../components/ToggleButton";
 import SvgEditicons from "../../../assets/icons/SvgEdit";
 import SvgTable from "../../../assets/icons/SvgTable";
+import { getExchangeDetailView } from "./store/exchangeMasterMiddleware";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const { paymentVocherList, loading } = useSelector(({ paymentVoucherReducers }) => {
+  const { ExchangeList, loading } = useSelector(({ exchangeMasterReducer }) => {
     return {
-      loading: paymentVoucherReducers?.loading,
-      paymentVocherList: paymentVoucherReducers?.paymentVocherList,
-    // const [products, setProducts] = useState([]);
-    
-// const handleView=()=>{
-//   navigate('/accounts/paymentvoucher/detailview')
-// }
-
+      loading: exchangeMasterReducer?.loading,
+      ExchangeList: exchangeMasterReducer?.ExchangeList,
     };
   });
+  console.log(ExchangeList, "ExchangeList")
+  const dispatch=useDispatch()
   const handleView = (columnData) => {
+    dispatch(getExchangeDetailView(columnData))
     navigate("/master/finance/exchangerate/viewexchange")
   }
   const handleEdit = (columnData) => {
     navigate("/master/finance/exchangerate/saveandeditexchange")
   }
-  console.log("first",paymentVocherList)
 
-  const isEmpty = paymentVocherList.length === 0;
+
+  const isEmpty = ExchangeList.length === 0;
 
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable/>
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
 
@@ -97,7 +95,7 @@ const Index = () => {
   const renderToggleButton = () => {
     return (
       <div>
-   <ToggleButton/>
+        <ToggleButton />
       </div>
     );
   };
@@ -118,8 +116,8 @@ const Index = () => {
       id: 1,
       label: "Exchange Rate",
       // url: '/accounts/paymentvoucher'
-     },
-    
+    },
+
   ];
   const home = { label: "Master" };
 
@@ -136,8 +134,8 @@ const Index = () => {
   const onGlobalFilterChange = (event) => {
     setGlobalFilter(event.target.value);
   };
- 
-  const handlePolicy =()=>{
+
+  const handlePolicy = () => {
     navigate('/master/finance/exchangerate/addexchange')
   }
 
@@ -195,30 +193,28 @@ const Index = () => {
         {/* </div> */}
 
         <div >
-          <DataTable value={paymentVocherList} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
+          <DataTable
+            value={ExchangeList} 
+            tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
             paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
-            // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+              currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2} scrollable={true}
             scrollHeight="40vh"
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
 
-            <Column field="VoucherNumber" header="Effective From"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="TransactionNumber" header="Effective To"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="CustomerCode" header="Currency Code"  sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="VoucheDate" header="To Currency Code"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="Amount" header="Exchange Rate" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
+            <Column field="EffectiveFrom" header="Effective From" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="EffectiveTo" header="Effective To" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="CurrencyCode" header="Currency Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="ToCurrencyCode" header="To Currency Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="ExchangeRate" header="Exchange Rate" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column body={renderToggleButton} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column
               body={(columnData) => (
                 <div className="action_icons">
 
-                <SvgIconeye onClick={() => handleView(columnData)} />
-                <SvgEditicons onClick={() => handleEdit(columnData)}/>
+                  <SvgIconeye onClick={() => handleView(columnData)} />
+                  <SvgEditicons onClick={() => handleEdit(columnData)} />
                 </div>
               )}
               header="Action"

@@ -14,8 +14,18 @@ import { SelectButton } from "primereact/selectbutton";
 import { useNavigate } from "react-router-dom";
 import SvgBack from "../../../../assets/icons/SvgBack";
 import SvgBackicon from "../../../../assets/icons/SvgBackicon";
+import { useSelector } from "react-redux";
 
 const ViewMainAccount = () => {
+
+  const { MainAccountDetailView, loading } = useSelector(({ mainAccoutMiddleware }) => {
+    return {
+      loading: mainAccoutMiddleware?.loading,
+      MainAccountDetailView: mainAccoutMiddleware?.MainAccountDetailView,
+
+    };
+  });
+  console.log(MainAccountDetailView, "MainAccountDetailView");
   const navigation = useNavigate();
   const items = [
     {
@@ -33,24 +43,19 @@ const ViewMainAccount = () => {
   const [entrySwitch, setentrySwitch] = useState(EntrySwitchoptions[0]);
 
   const codeOptionsType = [
-    { label: "Option 1", value: "Income" },
-    { label: "Option 2", value: "Expense" },
-    { label: "Option 3", value: "Asset" },
-    { label: "Option 4", value: "Liability" },
+    { label: MainAccountDetailView.accountType, value: MainAccountDetailView.accountType },
+
   ];
   const categoryOptionsCode = [
-    { label: "Option 1", value: "Debtor" },
-    { label: "Option 2", value: "Debtor" },
+    { label: MainAccountDetailView.accountCategoryCode, value: MainAccountDetailView.accountCategoryCode },
   ];
   const companyCodeDatas = [
-    { name: "Option 1", value: "Comp00123" },
-    { name: "Option 2", value: "Comp00124" },
-    { name: "Option 3", value: "Comp00125" },
+    { label: MainAccountDetailView.companyCode, value: MainAccountDetailView.companyCode },
+
   ];
   const currencyCodeDatas = [
-    { name: "EUR - Euro", value: "INR" },
-    { name: "ISK - Iceland Krona", value: "ISK" },
-    { name: "AUD - Australian Dollar", value: "AUS" },
+    { label: MainAccountDetailView.currencyCode, value: MainAccountDetailView.currencyCode },
+
   ];
 
   const home = { label: "Master" };
@@ -91,10 +96,10 @@ const ViewMainAccount = () => {
         <div className="col-12 p-0">
           <div className="svgback_container">
             <span onClick={() => navigation(-1)}>
-            <SvgBackicon/>
+              <SvgBackicon />
             </span>
-          
-          <div className="main__account__title">Main Account Details</div>
+
+            <div className="main__account__title">Main Account Details</div>
           </div>
         </div>
         <div className="col-12 p-0">
@@ -114,10 +119,12 @@ const ViewMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Main Account Code"
-              value={formik.values.mainaccountode}
-              onChange={(e) =>
-                formik.setFieldValue("mainaccountode", e.target.value)
-              }
+
+              value={MainAccountDetailView.mainAccountCode}
+            // value={formik.values.mainaccountode}
+            // onChange={(e) =>
+            //   formik.setFieldValue("mainaccountode", e.target.value)
+            // }
             />
             {formik.touched.mainaccountode && formik.errors.mainaccountode && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -131,7 +138,8 @@ const ViewMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Main Account Name"
-              value={formik.values.mainaccountname}
+
+              value={MainAccountDetailView.mainAccountName}
               onChange={(e) =>
                 formik.setFieldValue("mainaccountname", e.target.value)
               }
@@ -151,7 +159,8 @@ const ViewMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Description"
-              value={formik.values.description}
+
+              value={MainAccountDetailView.description}
               onChange={(e) =>
                 formik.setFieldValue("description", e.target.value)
               }
@@ -170,7 +179,7 @@ const ViewMainAccount = () => {
               classNames="select__label__corrections"
               optionLabel="value"
               label="Account Type"
-              value={formik.values.accounttype}
+              value={MainAccountDetailView.accountType}
               onChange={(e) => formik.setFieldValue("accounttype", e.value)}
               options={codeOptionsType}
             />
@@ -210,8 +219,9 @@ const ViewMainAccount = () => {
               }
               optionLabel="value"
               label="Open Entry type"
-              value={formik.values.openentrytype}
-              onChange={(e) => formik.setFieldValue("openentrytype", e.value)}
+              // value={formik.values.openentrytype}
+              value={MainAccountDetailView.codeOptionsType}
+              // onChange={(e) => formik.setFieldValue("openentrytype", e.value)}
               options={codeOptionsType}
             />
           </div>
@@ -237,10 +247,14 @@ const ViewMainAccount = () => {
               classNames="select__label__corrections"
               optionLabel="value"
               label="Account Category Code"
-              value={formik.values.accountcategorycode}
-              onChange={(e) =>
-                formik.setFieldValue("accountcategorycode", e.value)
-              }
+
+              // value={MainAccountDetailView.accountCategoryCode}
+
+
+              // onChange={(e) =>
+              //   formik.setFieldValue("accountcategorycode", e.value)
+              // }
+              value={MainAccountDetailView.accountCategoryCode}
               options={categoryOptionsCode}
             />
             {formik.touched.accountcategorycode &&

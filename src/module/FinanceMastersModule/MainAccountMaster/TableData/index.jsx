@@ -10,10 +10,12 @@ import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import SvgEdit from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import { InputSwitch } from "primereact/inputswitch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ToggleButton from "../../../../components/ToggleButton";
+import { useDispatch } from "react-redux";
+import { getMainAccountDetailView } from "../store/mainAccountReducer";
 
-const TableData = ({ handleAction }) => {
+const TableData = ({ MainAccountList }) => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
   const tableView = location.state?.tableView || false;
@@ -21,10 +23,10 @@ const TableData = ({ handleAction }) => {
 
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable />
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
   const template2 = {
@@ -55,12 +57,20 @@ const TableData = ({ handleAction }) => {
       );
     },
   };
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const handleAction = (rowData) => {
+    console.log(rowData, "rowData")
+    dispatch(getMainAccountDetailView(rowData))
+    navigate("/master/finance/mainaccount/viewmainaccount")
+
+  }
   const renderActionButton = (rowData) => {
     return (
       <div className="action__button__container">
         <Button
           icon={<SvgIconeye />}
-          onClick={() => handleAction(rowData.id, "View")}
+          onClick={() => handleAction(rowData)}
           className="action__button p-0"
         />
         <Button
@@ -110,7 +120,8 @@ const TableData = ({ handleAction }) => {
         </div>
       </div>
       <DataTable
-        value={tableView ? Productdata : []}
+        // value={tableView ? Productdata : []}
+        value={MainAccountList}
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}

@@ -1,22 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    getExchangeList,
-    getExchangeSearchList,
-    postExchangeStatus,
-    getAddExchange,
-    patchExchangeDetailEdit,
-    getExchangeDetailView
+  getExchangeList,
+  getExchangeSearchList,
+  postExchangeStatus,
+  getAddExchange,
+  patchExchangeDetailEdit,
+  getExchangeDetailView
 } from "./exchangeMasterMiddleware";
 const initialState = {
   loading: false,
   error: "",
-  ExchangeList: [],
-  ExchangeSearchList:[],
-  ExchangeStatus:{},
-  AddExchange:{},
-  ExchangeDetailEdit:{},
-  ExchangeDetailView:{}
+  ExchangeList: [
+    {
+      id: "1",
+      EffectiveFrom: '1/24/2023',
+      EffectiveTo: '1/23/2023',
+      CurrencyCode: "C123",
+      ToCurrencyCode: "TC123",
+      ExchangeRate: "99",
+      CurrencyDescription: "CurrencyDescription",
+      ToCurrencyDescription: "ToCurrencyDescription"
+    }
+  ],
+  ExchangeSearchList: [],
+  ExchangeStatus: {},
+  AddExchange: {},
+  ExchangeDetailEdit: {},
+  ExchangeDetailView: {}
 };
+let nextId = 2
 const exchangeMasterReducer = createSlice({
   name: "exchangeMaster",
   initialState,
@@ -29,14 +41,14 @@ const exchangeMasterReducer = createSlice({
       state.loading = true;
     });
     builder.addCase(
-        getExchangeList.fulfilled,
+      getExchangeList.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.ExchangeList = action.payload;
+        state.ExchangeList = [action.payload];
       }
     );
     builder.addCase(
-        getExchangeList.rejected,
+      getExchangeList.rejected,
       (state, action) => {
         state.loading = false;
 
@@ -68,17 +80,16 @@ const exchangeMasterReducer = createSlice({
     );
 
     //ExchangeStatus
-    
+
     builder.addCase(postExchangeStatus.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      postExchangeStatus.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.ExchangeStatus = action.payload;
-      }
-    );
+    builder.addCase(postExchangeStatus.fulfilled, (state, action) => {
+      state.loading = false;
+      const newItem2 = { ...action.payload, id: nextId++ };
+      state.ExchangeList = [...state.ExchangeList, newItem2];
+      console.log(state.ExchangeList, "kkk")
+    });
     builder.addCase(
       postExchangeStatus.rejected,
       (state, action) => {
@@ -154,7 +165,7 @@ const exchangeMasterReducer = createSlice({
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
-},
+  },
 });
 
 export default exchangeMasterReducer.reducer;

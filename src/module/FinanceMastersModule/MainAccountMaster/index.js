@@ -8,9 +8,19 @@ import { Button } from "primereact/button";
 import TableData from "./TableData/index";
 import SvgUploade from "../../../assets/icons/SvgUploade";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import ModalData from "./PopUpData/ModalData";
 
 const MainAccountMaster = () => {
+  
+  const { MainAccountList, loading } = useSelector(({ mainAccoutMiddleware }) => {
+    return {
+      loading: mainAccoutMiddleware?.loading,
+      MainAccountList: mainAccoutMiddleware?.MainAccountList,
+
+    };
+  });
+  console.log(MainAccountList, "MainAccountList");
   const navigation = useNavigate();
   const [visible, setVisible] = useState(false);
 
@@ -79,7 +89,7 @@ const MainAccountMaster = () => {
       </div>
       <div className="grid m-0 table__container">
         <div className="col-12 p-0">
-          <TableData handleAction={handleAction} />
+          <TableData handleAction={handleAction} MainAccountList={MainAccountList} />
         </div>
       </div>
     </div>

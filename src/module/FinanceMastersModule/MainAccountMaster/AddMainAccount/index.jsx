@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import CustomToast from "../../../../components/Toast";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../assets/icons/SvgBackicon";
+import { postMainAccountStatus } from "../store/mainAccountReducer";
+import { useDispatch } from "react-redux";
 
 const AddMainAccount = () => {
   const toastRef = useRef(null);
@@ -59,8 +61,8 @@ const AddMainAccount = () => {
   const customValidation = (values) => {
     const errors = {};
 
-    if (!values.mainaccountode) {
-      errors.mainaccountode = "This field is required";
+    if (!values.mainAccountCode) {
+      errors.mainAccountCode = "This field is required";
     }
     if (!values.mainaccountname) {
       errors.mainaccountname = "This field is required";
@@ -85,29 +87,40 @@ const AddMainAccount = () => {
 
     return errors;
   };
+  const dispatch = useDispatch()
   const handleSubmit = (values) => {
     // Handle form submission
-    toastRef.current.showToast();
-    {
-      setTimeout(() => {
-        navigation("/master/finance/mainaccount", {
-          state: { tableView: true },
-        });
-      }, 3000);
-    }
+    // toastRef.current.showToast();
+    // {
+    //   setTimeout(() => {
+    //     navigation("/master/finance/mainaccount", {
+    //       state: { tableView: true },
+    //     });
+    //   }, 3000);
+    // }
+    dispatch(postMainAccountStatus(formik.values))
+      .then(() => {
+        toastRef.current.showToast();
+        setTimeout(() => {
+          navigation("/master/finance/mainaccount")
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
 
     console.log(values, "find values");
   };
   const formik = useFormik({
     initialValues: {
-      mainaccountode: "",
+      mainAccountCode: "",
       mainaccountname: "",
       description: "",
       accountcategorycode: "",
       accounttype: "",
       companyCode: [],
       currencyCode: [],
-      openentrytype: "",
+      openEntryType: "",
     },
     validate: customValidation,
     onSubmit: (values) => {
@@ -150,16 +163,17 @@ const AddMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Main Account Code"
-              value={formik.values.mainaccountode}
+              value={formik.values.mainAccountCode}
               onChange={(e) =>
-                formik.setFieldValue("mainaccountode", e.target.value)
+                formik.setFieldValue("mainAccountCode", e.target.value)
               }
             />
-            {formik.touched.mainaccountode && formik.errors.mainaccountode && (
+            {formik.touched.mainAccountCode && formik.errors.mainAccountCode && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.mainaccountode}
+                {formik.errors.mainAccountCode}
               </div>
             )}
+
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
             <InputField
@@ -167,6 +181,7 @@ const AddMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Main Account Name"
+
               value={formik.values.mainaccountname}
               onChange={(e) =>
                 formik.setFieldValue("mainaccountname", e.target.value)
@@ -187,6 +202,7 @@ const AddMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Description"
+
               value={formik.values.description}
               onChange={(e) =>
                 formik.setFieldValue("description", e.target.value)
@@ -206,6 +222,7 @@ const AddMainAccount = () => {
               classNames="select__label__corrections"
               optionLabel="value"
               label="Account Type"
+
               value={formik.values.accounttype}
               onChange={(e) => formik.setFieldValue("accounttype", e.value)}
               options={codeOptionsType}
@@ -245,9 +262,10 @@ const AddMainAccount = () => {
                   : "select__label__corrections"
               }
               optionLabel="value"
+
               label="Open Entry type"
-              value={formik.values.openentrytype}
-              onChange={(e) => formik.setFieldValue("openentrytype", e.value)}
+              value={formik.values.openEntryType}
+              onChange={(e) => formik.setFieldValue("openEntryType", e.value)}
               options={codeOptionsType}
             />
           </div>

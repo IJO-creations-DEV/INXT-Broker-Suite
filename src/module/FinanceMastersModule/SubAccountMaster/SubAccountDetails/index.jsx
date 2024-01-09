@@ -8,8 +8,19 @@ import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
 import { ScrollPanel } from "primereact/scrollpanel";
 import SvgBackicon from "../../../../assets/icons/SvgBackicon";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
+import LabelWrapper from "../../../../components/LabelWrapper";
 
 const SubAdd = () => {
+  const { subAccountView, loading } = useSelector(({ subAccountMainReducers }) => {
+    return {
+      loading: subAccountMainReducers?.loading,
+      subAccountView: subAccountMainReducers?.subAccountView,
+
+    };
+  });
+  console.log(subAccountView, "subAccountView");
   const navigation = useNavigate();
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -36,22 +47,23 @@ const SubAdd = () => {
     },
   ];
   const texts = [
-    "Main00123 - Main Account Description",
-    "Main00123 - Main Account Description",
-    "Main00123 - Main Account Description",
-    "Main00123 - Main Account Description",
-    "Main00123 - Main Account Description",
-    "Main00123 - Main Account Description",
-    "Main00123 - Main Account Description",
-    "Main00123 - Main Account Description",
+    { label: subAccountView.mainAccount, value: subAccountView.mainAccount }
   ];
   const texts1 = [
-    "INR - Indian Currency",
-    "EUR - Euro",
-    "HKD - 	Hong Kong Dollar",
-    "AUD - 	Australian Dollar",
-    "AUD - 	Australian Dollar",
+    { label: subAccountView.currencyCode, value: subAccountView.currencyCode }
   ];
+
+
+  const formik = useFormik({
+    initialValues: {
+      subAccountCode: "",
+      description: "",
+      subAccountName: "",
+      mainAccount: "",
+      currencyCode: "",
+    },
+
+  });
 
   const home = { label: "Master" };
   useEffect(() => {
@@ -68,11 +80,11 @@ const SubAdd = () => {
         <NavBar />
       </div>
       <div className="col-12 mb-2">
-      <div className="svgback_container">
-        <span onClick={() => navigation(-1)}>
-            <SvgBackicon/>
-            </span>
-        <div className="add__sub__title">Sub Account Details</div>
+        <div className="svgback_container">
+          <span onClick={() => navigation(-1)}>
+            <SvgBackicon />
+          </span>
+          <div className="add__sub__title">Sub Account Details</div>
         </div>
         <div className="mt-3">
           <BreadCrumb
@@ -91,7 +103,8 @@ const SubAdd = () => {
               label="Sub Account Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
-              value="Sub00123"
+              value={subAccountView.subAccountCode}
+
             />
           </div>
 
@@ -100,7 +113,8 @@ const SubAdd = () => {
               label="Sub Account Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
-              value="Sub account Name"
+
+              value={subAccountView.subAccountName}
             />
           </div>
         </div>
@@ -110,7 +124,7 @@ const SubAdd = () => {
               label="Description"
               classNames="dropdown__add__sub"
               className="label__sub__add"
-              value="Description"
+              value={subAccountView.description}
             />
           </div>
         </div>
@@ -120,31 +134,39 @@ const SubAdd = () => {
             <label className="main_acc_text">Main Account Code</label>
 
             <div>
-              
-              
-                <ScrollPanel  className="scrollpanal_container">
-                  <div>
-                    {texts.map((text, index) => (
-                      <div key={index}>{text}</div>
-                    ))}
-                  </div>
-                </ScrollPanel>
-              
+
+
+              {/* <ScrollPanel className="scrollpanal_container"> */}
+              {/* <div>
+                  {texts.map((text, index) => (
+                    <div key={index}>{text}</div>
+                  ))}
+                </div> */}
+              {/* <div className="scrollpanal_container"> */}
+              <ScrollPanel className="scrollpanal_container">
+                <div className="selected__data__view mt-2">
+                  {texts?.map((item, index) => {
+                    return <div className="data__content">{item.value}</div>;
+                  })}
+                </div>
+
+              </ScrollPanel>
+
             </div>
           </div>
           <div class="sm-col-12  md:col-6 lg-col-6">
             <label className="main_acc_text">Currency</label>
 
             <div>
-             
-                <ScrollPanel  className="scrollpanal_container">
-                  <div>
-                    {texts1.map((text, index) => (
-                      <div key={index}>{texts1}</div>
-                    ))}
-                  </div>
-                </ScrollPanel>
-              
+
+              <ScrollPanel className="scrollpanal_container">
+                <div className="selected__data__view mt-2">
+                  {texts1.map((text, index) => (
+                    <div key={index}>{text.label}</div>
+                  ))}
+                </div>
+              </ScrollPanel>
+
             </div>
           </div>
         </div>

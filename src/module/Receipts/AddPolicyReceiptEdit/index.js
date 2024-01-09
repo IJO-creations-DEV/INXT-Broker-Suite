@@ -298,6 +298,7 @@ console.log(total,"find patchReceipEditMiddleware")
               header="Action"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              style={{textAlign:'center'}}
             ></Column>
           </DataTable>
         </div>

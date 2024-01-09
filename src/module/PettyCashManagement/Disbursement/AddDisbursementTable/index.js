@@ -178,6 +178,17 @@ const AddDisbursementTable = () => {
     }
     formik.setFieldValue("MainAccountDescription", description);
   };
+  const headaction ={
+    justifyContent: 'center',
+// textalign: center,
+fontSize: 16,
+fontFamily: "Inter var",
+fontWeight: 500,
+padding: 6,
+color: "#000",
+border:" none",
+display: "flex"
+  }
 
   const SetFormikValue = () => {
     const updatedValues = {
@@ -236,8 +247,9 @@ const AddDisbursementTable = () => {
             emptyMessage={isEmpty ? emptyTableIcon : null}
             selection={selectedRows}
             onSelectionChange={(e) => setSelectedRows(e.value)}
+            selectionMode="checkbox"
           >
-            <Column
+            {/* <Column
               header={<input type="checkbox" />}
               body={(rowData) => (
                 <input
@@ -249,7 +261,15 @@ const AddDisbursementTable = () => {
               )}
               headerStyle={headerStyle}
               style={{ textAlign: "center" }}
-            />
+            /> */}
+
+<Column
+headerStyle={headaction}
+              selectionMode="multiple"
+              selectedItem
+              style={{textAlign:'center'}}
+              // headerStyle={{ width: "4rem" }}
+            ></Column>
             <Column
               field="RequestNumber"
               header="Request Number"
@@ -307,7 +327,8 @@ const AddDisbursementTable = () => {
             <Column
               field="Action"
               header="Action"
-              headerStyle={headerStyle}
+              headerStyle={headaction}
+              style={{textAlign:'center'}}
               body={(rowData) => (
                 <Button
                   icon={<SvgEditIcon />}

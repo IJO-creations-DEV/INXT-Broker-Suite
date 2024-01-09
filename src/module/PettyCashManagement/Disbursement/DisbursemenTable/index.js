@@ -61,7 +61,7 @@ const DisbursementTable = () => {
           </span>
           <Dropdown
             value={options.value}
-            className="pagedropdown_container"
+            className="pagedropdownunique_container"
             options={dropdownOptions}
             onChange={options.onChange}
           />

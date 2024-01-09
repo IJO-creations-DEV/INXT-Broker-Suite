@@ -3,7 +3,16 @@
         background: transparent;
         border: none;
     }
+    .pagedropdown_container{
+        margin-right: 30%;
+        border-style: hidden;
+        background-color: #FAFAFA;
+    }
 
+    .p-dialog .p-dialog-header .p-dialog-title {
+        font-weight: 500;
+        font-size: 24px;
+    }
 
     .reversal__table__main {
         tr {
@@ -78,6 +87,7 @@
                 .pagedropdown_container {
                     border: none;
                     margin: 0 !important;
+                    // width:30%
                 }
             }
         }

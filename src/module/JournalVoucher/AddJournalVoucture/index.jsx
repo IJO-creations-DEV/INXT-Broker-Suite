@@ -273,6 +273,7 @@ const AddJournalVocture = () => {
                                 classNames="label__sub__add__JV"
                             >
                                 <Calendar
+                                disabled={true}
                                     value={
                                         formik.values.date
                                             ? new Date(formik.values.date)
@@ -300,7 +301,7 @@ const AddJournalVocture = () => {
             </div>
             <div className='col-12 m-0'>
                 <div className='sub__account__sub__container__JV'>
-                    <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
+                    <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%',padding:0 }}>
                         <div className="card">
                             <AddDataTabel setVisibleEdit={setVisibleEdit} handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} journalVoucherPostTabelData={journalVoucherPostTabelData} />
 

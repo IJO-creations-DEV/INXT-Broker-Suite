@@ -2,15 +2,18 @@
     .breadCrums {
       padding: 0;
       border: none;
-      font-weight: 500;
+      font-weight: 400;
       color: #000;
       font-size: 16px;
+    }
+    .multipleicon_container{
+      padding: 1.5rem;
     }
     .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
       // color: #4b5563;
       color: #000;
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 400;
       font-family: Inter var;
     }
     .pettycash__title {
@@ -48,7 +51,7 @@
     .sub__request__title {
       color: #111927;
       font-family: "Inter var";
-      font-size: 20px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
@@ -112,7 +115,14 @@
 }
 .paginator__container{
     margin-right: 30%;
+   
   }
+  
+  .pagedropdown_container{
+   
+    border-style: hidden;
+    background-color: #FAFAFA;
+}
   .p-paginator-bottom.p-paginator.p-component {
     display: flex !important;
     justify-content: flex-end !important;

@@ -153,9 +153,13 @@ font-weight: 500;
   }
   //   .pagedropdown_container{
   //     margin-right: 20%;
-  //     border-style: hidden;
-  //     background-color: #FAFAFA;
+      // border-style: hidden;
+      // background-color: #FAFAFA;
   // }
+  .pagedropdowninner_container{
+    border-style: hidden;
+    background-color: #FAFAFA
+  }
   .eye__btn {
     color: #ffffff;
     background: #ffff !important;
@@ -171,8 +175,11 @@ font-weight: 500;
     justify-content: flex-end;
     align-items: center;
   }
-  .paginator__container{
-    margin-right: 30%;
+  .paginatoroverall__container{
+    // margin-right: 30%;
+    flex:1 0;
+    text-align: center;
+    
   }
   .p-paginator-bottom.p-paginator.p-component {
     display: flex !important;

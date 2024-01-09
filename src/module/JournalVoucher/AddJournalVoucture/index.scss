@@ -14,8 +14,12 @@
         font-family: Inter var;
         color: #111927;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 400;
 
+    }
+    .p-datatable .p-paginator-bottom {
+         border-width: 0 0 0 0; 
+        border-radius: 0;
     }
 
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {

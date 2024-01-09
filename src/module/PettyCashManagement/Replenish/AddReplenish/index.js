@@ -264,8 +264,8 @@ const AddReplenish = () => {
         </div>
       </div>
       <form onSubmit={formik.handleSubmit}>
-        <Card className="mt-3">
-          <div className="grid mt-1">
+        <Card className="mt-6" >
+          <div className="grid ">
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
@@ -307,7 +307,7 @@ const AddReplenish = () => {
               />
             </div>
           </div>
-          <div className="grid mt-1">
+          <div className="grid ">
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
@@ -346,7 +346,7 @@ const AddReplenish = () => {
               />
             </div>
           </div>
-          <div className="grid mt-1">
+          <div className="grid ">
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
@@ -387,7 +387,7 @@ const AddReplenish = () => {
               />
             </div>
           </div>
-          <div className="grid mt-1">
+          <div className="grid ">
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
@@ -429,7 +429,7 @@ const AddReplenish = () => {
               />
             </div>
           </div>
-          <div className="grid mt-1">
+          <div className="grid ">
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
@@ -468,7 +468,7 @@ const AddReplenish = () => {
               />
             </div>
           </div>
-          <div className="grid mt-1">
+          <div className="grid ">
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"

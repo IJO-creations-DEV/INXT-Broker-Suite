@@ -93,6 +93,23 @@ const PettyCashReplenishTable = () => {
     color: "#000",
     border: "none",
   };
+  const [selectedCity, setSelectedCity] = useState(null);
+  const cities = [
+      { name: 'Name', code: 'NY' },
+      { name: 'Edit', code: 'RM' },
+      { name: 'Voucher Number', code: 'LDN' },
+  ];
+  const headeraction ={
+    justifyContent: 'center',
+    // textalign: center,
+    fontSize: 16,
+    fontfamily: "Inter var",
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border:" none",
+    display: "flex"
+  }
   const menu = useRef(null);
   const menuitems = [
     {
@@ -108,7 +125,7 @@ const PettyCashReplenishTable = () => {
 
   return (
     <div className="petty__cash__replenish__table">
-      <Card className="mt-1">
+      <Card className="mt-4">
         <div className="header_search_container grid">
           <div class="col-12 md:col-6 lg:col-10">
             <span className="p-input-icon-left" style={{ width: "100%" }}>
@@ -120,11 +137,15 @@ const PettyCashReplenishTable = () => {
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button label="Search by" outlined icon={<SvgDropdownicon />}
-              className="sorbyfilter_container"
-              onClick={(e) => menu.current.toggle(e)}
-            /></div>
+            {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" /> */}
+
+            <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
+                placeholder="Search by"  
+                className="sorbyfilter_container"
+                dropdownIcon={<SvgDropdownicon/>}
+                />
+
+            </div>
           <div className="sub__title">Replenish history</div>
         </div>
         <div className="card">
@@ -197,7 +218,8 @@ const PettyCashReplenishTable = () => {
               field="View"
               header="View"
               body={renderViewButton}
-              headerStyle={headerStyle}
+              headerStyle={headeraction}
+              style={{textAlign:'center'}}
               className="fieldvalue_container_date"
             ></Column>
           </DataTable>

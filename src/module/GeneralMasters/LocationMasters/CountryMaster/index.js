@@ -41,15 +41,15 @@ const Country = () => {
     }, []);
 
     const handleEdit = (id) => {
-      navigate(`/master/generals/location/country/addcountry/edit/:${id}`)
+      navigate(`/master/generals/location/country/edit/:${id}`)
     }
 
     const handleadd =(id)=>{
-      navigate(`/master/generals/location/country/addcountry/add/:${id}`)
+      navigate(`/master/generals/location/country/add/:${id}`)
     }
 
     const handleView =(id)=>{
-      navigate(`/master/generals/location/country/addcountry/view/:${id}`)
+      navigate(`/master/generals/location/country/view/:${id}`)
     }
     const isEmpty = products.length === 0;
 

@@ -49,7 +49,7 @@ const RequestTable = () => {
       ];
 
       return (
-        <div className="paginator__container">
+        <div className="paginatoroverall__container">
         <React.Fragment>
           <span
             className="mx-1"
@@ -59,7 +59,7 @@ const RequestTable = () => {
           </span>
           <Dropdown
             value={options.value}
-            className="pagedropdown_container"
+            className="pagedropdowninner_container"
             options={dropdownOptions}
             onChange={options.onChange}
           />

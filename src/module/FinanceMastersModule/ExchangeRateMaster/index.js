@@ -35,10 +35,12 @@ const Index = () => {
   });
   console.log(ExchangeList, "ExchangeList")
   const dispatch=useDispatch()
+
   const handleView = (columnData) => {
     dispatch(getExchangeDetailView(columnData))
     navigate("/master/finance/exchangerate/viewexchange")
   }
+  
   const handleEdit = (columnData) => {
     navigate("/master/finance/exchangerate/saveandeditexchange")
   }

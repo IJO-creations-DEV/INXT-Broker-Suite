@@ -72,7 +72,7 @@ const AddReceipts = () => {
     // toastRef.current.showToast();
     // {
     //   setTimeout(() => {
-    // navigate("/accounts/pettycash/addreceiptstable");
+    navigate("/accounts/pettycash/addreceiptstable");
     //   }, 3000);
     // }
   };
@@ -301,7 +301,8 @@ const AddReceipts = () => {
                   Requester(e.value.Name);
                 }}
                 optionLabel="Name"
-                error={formik.touched.Requester && formik.errors.Requester}
+                // error={formik.touched.Requester && formik.errors.Requester}
+                
               />
             </div>
           </div>

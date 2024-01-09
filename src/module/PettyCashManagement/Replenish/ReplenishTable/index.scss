@@ -20,6 +20,7 @@
         font-size: 16px;
         font-family: "Inter var";
         font-weight: 400;
+        padding: 1rem 6px;
       }
     span.p-button-label.p-c {
       font-size: 16px;
@@ -112,12 +113,45 @@
     .sub__title {
       color: #111927;
       font-family:  Inter var;
-      font-size: 20px;
+      font-size: 18px;
       font-style: normal;
       font-weight: 600;
       line-height: normal;
       padding: 10px;
     }
+    .pagedropdown_container {
+      border: none;
+      margin: 0 !important;
+      background-color: #FAFAFA;
+  }
+
+  .p-dropdown .p-dropdown-label.p-placeholder {
+    color: #6366F1;
+    text-align: center;
+    font-family: Inter var;
+font-size: 16px;
+
+font-weight: 500;
+}
+.sorbyfilter_container{
+    flex-direction: row !important;
+    // gap:10px;
+    height: 46px;
+    border-color: #d1d5db;
+    // width: 85%;
+    // margin-left: 8px;
+    font-family: Inter var;
+font-size: 16px;
+// padding: 10px;
+font-weight: 500;
+    width:100%;
+    color: #6366F1;
+    margin: 0px !important;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+}
+
   //   .pagedropdown_container{
   //     margin-right: 20%;
   //     border-style: hidden;
@@ -133,9 +167,9 @@
       border-radius: 10px !important;
   }
   .fieldvalue_container.centered {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      // display: flex;
+      // justify-content: flex-end;
+      // align-items: center;
     }
     .paginator__container{
         margin-right: 30%;

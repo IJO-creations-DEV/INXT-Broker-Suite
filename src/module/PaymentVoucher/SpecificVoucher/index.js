@@ -148,7 +148,7 @@ function SpecificVoucher() {
   };
 
   const headerStyle = {
-    width: "4rem",
+    width: "9rem",
     // backgroundColor: 'red',
     fontSize: 16,
     fontFamily: "Inter var",
@@ -156,6 +156,7 @@ function SpecificVoucher() {
     // padding: 4,
     color: "#000",
     border: "none",
+    paddingLeft:0,
     margin: 20,
   };
 
@@ -200,6 +201,7 @@ function SpecificVoucher() {
           <Column
             selectionMode="multiple"
             headerStyle={{ width: "4rem" }}
+            style={{textAlign:'center'}}
           ></Column>
           <Column
             field="VoucherNumber"

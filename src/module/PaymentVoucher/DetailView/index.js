@@ -109,6 +109,7 @@ function Detailview() {
     padding: 6,
     color: "#000",
     border: "none",
+    paddingLeft:0
   };
   const status = [
     { name: "Active", code: "NY" },

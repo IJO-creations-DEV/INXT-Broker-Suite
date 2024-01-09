@@ -174,10 +174,12 @@ console.log(total,"find patchReceipEditMiddleware")
 
   const headerStyle = {
     fontSize: 16,
+    paddingLeft:0,
     fontFamily: "Inter var",
     fontWeight: 500,
     color: "#000",
     border: "none",
+    
   };
 
   return (
@@ -221,7 +223,10 @@ console.log(total,"find patchReceipEditMiddleware")
             className="datatable_container"
             selectionMode="checkbox"
           >
-            <Column selectionMode="multiple" exportable={false}></Column>
+            <Column selectionMode="multiple" exportable={false}
+            style={{textAlign:'center'}}
+            headerStyle={{paddingLeft:20}}
+            ></Column>
             <Column
               field="policies"
               header="Policies"

@@ -6,7 +6,7 @@
       background: transparent;
       border: none;
       width: max-content;
-      padding-right: 4px;
+      padding: 0 4px 0 0;
     }
   }
   .corrections__table__main {
@@ -24,7 +24,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: normal;
-            padding: 15px 16px;
+            padding: 1rem 1rem;
             width: 100%;
           }
         }
@@ -39,7 +39,7 @@
           font-style: normal;
           font-weight: 400;
           line-height: normal;
-          padding: 15px 16px !important;
+          padding: 1rem 1rem !important;
         }
       }
     }

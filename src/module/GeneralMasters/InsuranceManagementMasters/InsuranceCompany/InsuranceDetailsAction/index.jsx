@@ -35,7 +35,12 @@ const InsuranceDetailsAction = ({ action }) => {
 
   useEffect(() => {
     if (action === "edit" || action === "view") {
-      setFormikValues();
+      if (id != null) {
+        const filteredInsuranceCompanyList = InsuranceCompanyList.filter(
+          (data) => data.id === parseInt(id)
+        );
+        setFormikValues(filteredInsuranceCompanyList);
+      }
     }
   }, [action]);
 
@@ -143,9 +148,9 @@ const InsuranceDetailsAction = ({ action }) => {
       navigation("/master/generals/insurancemanagement/insurancecompany");
     }
   };
-  const setFormikValues = () => {
-    const insuranceCompanyCode = "Inscom00123";
-    const insuranceCompanyName = "Zeal Insurance";
+  const setFormikValues = (data) => {
+    const insuranceCompanyCode = data[0]?.insuranceCompanyCode;
+    const insuranceCompanyName = data[0]?.insuranceCompanyName;
     const insuranceCompanyDescription = "Insurance Company Description";
     const addressLine1 = "addressLine1";
     const addressLine2 = "addressLine2";
@@ -153,10 +158,10 @@ const InsuranceDetailsAction = ({ action }) => {
     const city = { label: "Option 1", value: "City 1" };
     const state = { label: "Option 1", value: "State 1" };
     const country = { label: "Option 1", value: "Country 1" };
-    const email = "email";
-    const phoneNumber = "phoneNumber";
-    const modifiedBy = "modifiedBy";
-    const modifiedOn = "modifiedOn";
+    const email = data[0]?.email;
+    const phoneNumber = data[0]?.phoneNumber;
+    const modifiedBy = data[0]?.modifiedby;
+    const modifiedOn = data[0]?.modifiedOn;
 
     const updatedValues = {
       insuranceCompanyCode: `${insuranceCompanyCode}`,

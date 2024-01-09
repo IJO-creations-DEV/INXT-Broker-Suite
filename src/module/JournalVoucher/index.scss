@@ -21,6 +21,21 @@
         display: flex;
         align-items: center;
     }
+    .sorbyfilter_container{
+        // flex-direction: row-reverse;
+        // gap:10px;
+        height: 46px;
+        border-color: #d1d5db;
+        // width: 85%;
+        // margin-left: 8px;
+        font-family: Inter var;
+    font-size: 16px;
+    // padding: 10px;
+    font-weight: 500;
+        width:100%;
+        color: #6366F1;
+        margin: 0px !important;
+    }
 
     .breadCrums__view__reversal__Journal__Voture {
         border: none;

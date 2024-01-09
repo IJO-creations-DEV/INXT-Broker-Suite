@@ -38,7 +38,7 @@ const AddReplenishTable = () => {
       }, 2000);
     }
   };
-
+  const [selectedProducts, setSelectedProducts] = useState([]);
   const emptyTableIcon = (
     <div className="empty-table-icon">
       <SvgTable />
@@ -147,13 +147,19 @@ const AddReplenishTable = () => {
             // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
+            selectionMode="checkbox"
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            selection={selectedProducts}
+            onSelectionChange={(e) => setSelectedProducts(e.value)}
+           
+            // rowClassName={(rowData) => getStatusClassName(rowData.status)}
           >
-            <Column
+            {/* <Column
               header={<input type="checkbox" />}
               body={(rowData) => (
                 <input
                   type="checkbox"
+                  style={{}}
                    onClick={() => {
                     handleClick(rowData); 
                   }}
@@ -162,7 +168,18 @@ const AddReplenishTable = () => {
               headerStyle={headerStyle}
               style={{ textAlign: "start" }}
               
-            />
+            /> */}
+
+
+            <Column
+              selectionMode="multiple"
+              selectedItem
+              className="multipleicon_container"
+              
+              headerStyle={{ width: "4rem" ,paddingLeft:10}}
+            ></Column>
+         
+
             <Column
               field="TransactionCode"
               header="Transaction Code"

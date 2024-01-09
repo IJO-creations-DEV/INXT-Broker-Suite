@@ -265,6 +265,7 @@ function SpecificVoucher() {
             body={renderViewButton}
             header="Action"
             headerStyle={headerStyle}
+            style={{textAlign:'center'}}
             className="fieldvalue_container"
           ></Column>
         </DataTable>

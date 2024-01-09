@@ -505,7 +505,9 @@ const Maincomponent = () => {
               element={<VehicleDetailsAction action="view" />}
             />
 
-            {/* Location */}
+ {/* Location */}
+
+ {/* {Country} */}
             <Route
               path="master/generals/location/country"
               element={<AddCountry />}
@@ -522,17 +524,49 @@ const Maincomponent = () => {
               path="master/generals/location/country/add/3"
               element={<Country />}
             />
-
+             <Route
+              path="master/generals/location/country/edit/:id"
+              element={<AddCountry action="edit" />}
+            />
+             <Route
+              path="master/generals/location/country/view/:id"
+              element={<AddCountry action="view"/>}
+            />
+             <Route
+              path="master/generals/location/country/add/:id"
+              element={<AddCountry action="add"/>}
+            />
+{/* {State} */}
             <Route path="master/generals/location/state" element={<State />} />
+
+            <Route
+              path="master/generals/location/state/edit/:id"
+              element={<AddState action="edit" />}
+            />
+             <Route
+              path="master/generals/location/state/view/:id"
+              element={<AddState action="view"/>}
+            />
+             <Route
+              path="master/generals/location/state/add/:id"
+              element={<AddState  action="add"/>}/>
+
+
+
+{/* {City} */}
             <Route path="master/generals/location/city" element={<City />} />
+            
             <Route
-              path="master/generals/location/state"
-              element={<State />}
+              path="master/generals/location/city/edit/:id"
+              element={<AddCity action="edit" />}
             />
-            <Route
-              path="master/generals/location/city"
-              element={<City />}
+             <Route
+              path="master/generals/location/city/view/:id"
+              element={<AddCity action="view"/>}
             />
+             <Route
+              path="master/generals/location/city/add/:id"
+              element={<AddCity  action="add"/>}/>
 
             {/* Employee Management */}
 

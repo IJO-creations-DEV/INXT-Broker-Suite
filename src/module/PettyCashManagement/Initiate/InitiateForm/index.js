@@ -352,13 +352,20 @@ const InitiateForm = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("PettyCashCode", e.value);
-                  handlePettyCashDescribtion(e.value);
+                   handlePettyCashDescribtion(e.value);
                 }}
                 optionLabel="pettycashcode"
                 error={
                   formik.touched.PettyCashCode && formik.errors.PettyCashCode
                 }
               />
+              {/* {formik.touched.PettyCashCode &&
+              formik.errors.PettyCashCode && (
+                <div style={{ fontSize: 8, color: "red",marginTop:4 }}>
+                  {formik.errors.PettyCashCode}
+                </div>
+              )} */}
+
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
               <InputField
@@ -371,10 +378,10 @@ const InitiateForm = () => {
                 textWeight={500}
                 value={formik.values.PettyCashdescription}
                 onChange={formik.handleChange("PettyCashdescription")}
-                error={
-                  formik.touched.PettyCashdescription &&
-                  formik.errors.PettyCashdescription
-                }
+                // error={
+                //   formik.touched.PettyCashdescription &&
+                //   formik.errors.PettyCashdescription
+                // }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">

@@ -25,7 +25,21 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
         padding: 6,
         color: "#000",
         border: "none",
+    //     display:' flex',
+    // justifycontent: 'center'
       };
+
+      const headaction ={
+        justifyContent: 'center',
+    // textalign: center,
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border:" none",
+    display: "flex"
+      }
       
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -143,9 +157,12 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
                     // body={renderEditButton}
 
                     body={(columnData) => (
+                        
                         <SvgIconeye onClick={() => handleView(columnData)} />
+                        
                     )}
-                    headerStyle={headerStyle}
+                    style={{textAlign:'center'}}
+                    headerStyle={headaction}
                     header="View"
                     className="fieldvalue_container"
                     // headerStyle={header__style}

@@ -122,7 +122,7 @@ const JournalVoucher = () => {
         </div>
       </div>
       <div className="menu-container">
-        <TieredMenu className='mt-2' model={menuitems} popup ref={menu} breakpoint="767px" />
+        {/* <TieredMenu className='mt-2' model={menuitems} popup ref={menu} breakpoint="767px" /> */}
       </div>
       <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__Journal__Voture mb-3'>
         <div className='add__icon__view__Journal__Voture' onClick={handleNavigate}>

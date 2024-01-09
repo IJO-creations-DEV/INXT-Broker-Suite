@@ -14,6 +14,18 @@ const ViewDataTabel = ({ handleEdit, newDataTable }) => {
     let newProduct;
     let updatedProductData;
 
+
+    const headerStyle = {
+        // width: "19%",
+        // backgroundColor: 'red',
+        fontSize: 16,
+        fontFamily: "Inter var",
+        fontWeight: 500,
+        padding: 6,
+        color: "#000",
+        border: "none",
+      };
+
     if (newDataTable.length > 0) {
         updatedProductData = [
             ...Productdata,
@@ -55,7 +67,7 @@ const ViewDataTabel = ({ handleEdit, newDataTable }) => {
 
             return (
                 <div
-                    style={{ width: '40%' }}
+                    style={{ width: '44%' }}
                     className="table__selector">
                     <React.Fragment>
                         <span style={{ color: "var(--text-color)", userSelect: "none" }}>
@@ -96,32 +108,32 @@ const ViewDataTabel = ({ handleEdit, newDataTable }) => {
                     field="mainAC"
                     header="Main A/c"
                     className="fieldvalue_container"
-                    
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="subAC"
                     header="Sub A/c"
                     className="fieldvalue_container"
-                    
+                    headerStyle={headerStyle}
                 ></Column>
 
                 <Column
                     field="Remarks"
                     header="Remarks"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="Currency"
                     header="Currency"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="foreignAmount"
                     header="Foreign Amount"
                     className="fieldvalue_container"
-                   
+                    headerStyle={headerStyle}
                 ></Column>
 
 
@@ -129,13 +141,13 @@ const ViewDataTabel = ({ handleEdit, newDataTable }) => {
                     field="localAmount"
                     header="Local Amount"
                     className="fieldvalue_container"
-                    
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="Entry"
                     header="Entry"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
                 ></Column>
             </DataTable>
         </div>

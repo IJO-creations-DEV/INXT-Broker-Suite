@@ -79,7 +79,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
 
             return (
                 <div
-                    style={{ width: '40%' }}
+                    style={{ width: '46%' }}
                     className="table__selector">
                     <React.Fragment>
                         <span style={{ color: "var(--text-color)", userSelect: "none" }}>
@@ -116,10 +116,22 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
         fontSize: 16,
         fontFamily: "Inter var",
         fontWeight: 500,
-        padding: 6,
+        padding: 10,
         color: "#000",
         border: "none",
       };
+
+    const headaction ={
+        justifyContent: 'center',
+    // textalign: center,
+    fontsize: 16,
+    fontfamily: "Inter var",
+    fontWeight: 500,
+    padding: 10,
+    color: "#000",
+    border:" none",
+    display: "flex"
+      }
 
 
     const codeOptionsMain = [
@@ -318,7 +330,8 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     )}
                     header="Action"
                     className="fieldvalue_container"
-                    headerStyle={headerStyle}
+                    headerStyle={headaction}
+                    style={{textAlign:'center'}}
                 ></Column>
 
             </DataTable>
@@ -334,10 +347,11 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     <div className="grid m-0">
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <DropDowns
-                                className="input__field__jv"
+                                // className="input__field__jv"
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
                                 placeholder="Select "
-                                classNames="select__label__jv"
+                                className="dropdown__container"
+                                // classNames="select__label__jv"
                                 optionLabel="value"
                                 label="Main Account"
                                 value={formik.values.mainAccount}
@@ -355,8 +369,9 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                         <div className="col-12 md:col-6 lg:col-6 xl:col-6">
                             <InputField
-                                classNames="input__field__jv"
-                                className="input__label__jv"
+                                // classNames="input__field__jv"
+                                // className="input__label__jv"
+                                classNames="field__container"
                                 label="Main Account Description"
                                 value={
                                     formik.values.mainAccount
@@ -368,10 +383,11 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
 
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <DropDowns
-                                className="input__field__jv"
+                                // className="input__field__jv"
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
                                 placeholder="Select "
-                                classNames="select__label__jv"
+                                className="dropdown__container"
+                                // classNames="select__label__jv"
                                 optionLabel="value"
                                 label="Entry Type"
                                 value={formik.values.entryType}
@@ -389,14 +405,15 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                     </div>
                     <div
-                        className="grid m-0 p-0 add__journal__vocture__add__JV"
-                        style={{ alignItems: "center" }}
+                        className="grid m-0 "
+                        // style={{ alignItems: "center" }}
                     >
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <DropDowns
-                                className="input__field__jv"
+                                // className="input__field__jv"
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                                classNames="select__label__jv"
+                                // classNames="select__label__jv"
+                                className="dropdown__container"
                                 optionLabel="value"
                                 label="Sub Account"
                                 value={formik.values.subAccount}
@@ -415,8 +432,9 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                         <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
                             <InputField
-                                classNames="input__field__jv"
-                                className="input__label__jv"
+                                // classNames="input__field__jv"
+                                // className="input__label__jv"
+                                classNames="field__container"
                                 label="Sub Account Description"
                                 value={
                                     formik.values.subAccount
@@ -427,15 +445,16 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                     </div>
                     <div
-                        className="grid m-0 p-0 add__journal__vocture__add__JV"
-                        style={{ alignItems: "center" }}
+                        className="grid m-0 "
+                      
                     >
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
                             <DropDowns
-                                className="input__field__jv"
+                                // className="input__field__jv"
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                                classNames="select__label__jv"
+                                // classNames="select__label__jv"
                                 optionLabel="value"
+                                className="dropdown__container"
                                 label="Branch Code"
                                 value={formik.values.branchCode}
                                 onChange={(e) => formik.setFieldValue("branchCode", e.value)}
@@ -453,8 +472,9 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                         <div className="col-12 md:col-6 lg:col-6 xl:col-6">
                             <InputField
-                                classNames="input__field__jv"
-                                className="input__label__jv"
+                                // classNames="input__field__jv"
+                                // className="input__label__jv"
+                                classNames="field__container"
                                 label="Branch Code Description"
                                 value={
                                     formik.values.branchCode
@@ -474,14 +494,15 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                     </div>
                     <div
-                        className="grid m-0 p-0 add__journal__vocture__add__JV"
-                        style={{ alignItems: "center" }}
+                        className="grid m-0 "
+                       
                     >
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <DropDowns
-                                className="input__field__jv"
+                                // className="input__field__jv"
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                                classNames="select__label__jv"
+                                // classNames="select__label__jv"
+                                className="dropdown__container"
                                 optionLabel="value"
                                 label="Department Code"
                                 value={formik.values.departmentCode}
@@ -500,8 +521,9 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                         <div className="col-12 md:col-6 lg:col-6 xl:col-6">
                             <InputField
-                                classNames="input__field__jv"
-                                className="input__label__jv"
+                                // classNames="input__field__jv"
+                                // className="input__label__jv"
+                                classNames="field__container"
                                 label="Department Description"
                                 value={
                                     formik.values.departmentCode
@@ -521,15 +543,16 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                     </div>
                     <div
-                        className="grid m-0 p-0 add__journal__vocture__add__JV"
-                        style={{ alignItems: "center" }}
+                        className="grid m-0 "
+                        // style={{ alignItems: "center" }}
                     >
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <DropDowns
-                                className="input__field__jv"
+                                // className="input__field__jv"
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                                classNames="select__label__jv"
+                                // classNames="select__label__jv"
                                 optionLabel="value"
+                                className="dropdown__container"
                                 label="Currency Code"
                                 value={formik.values.currencyCode}
                                 onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
@@ -547,8 +570,9 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                         <div className="col-12 md:col-6 lg:col-6 xl:col-6">
                             <InputField
-                                classNames="input__field__jv"
-                                className="input__label__jv"
+                                // classNames="input__field__jv"
+                                // className="input__label__jv"
+                                classNames="field__container"
                                 label="Currency Description"
                                 value={
                                     formik.values.currencyCode
@@ -568,8 +592,9 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         </div>
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <InputField
-                                classNames="input__field__jv"
-                                className="select__label__jv"
+                                // classNames="input__field__jv"
+                                // className="select__label__jv"
+                                classNames="field__container"
                                 label="Foreign Amount"
                                 value={formik.values.foreignAmount}
                                 onChange={(e) =>
@@ -589,10 +614,11 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                         <div className="col-12 md:col-6">
                             <div className="select__label__jv">Remarks <span style={{ color: '#B1B1B1' }}>(Options)</span></div>
                             <InputField
-                                classNames="input__field__jv"
+                                // classNames="input__field__jv"
                                 // className="select__label__jv"
                                 // label="Remarks (Options)"
                                 value={formik.values.remarks}
+                                classNames="field__container"
                                 onChange={(e) =>
                                     formik.setFieldValue("remarks", e.target.value)
                                 }

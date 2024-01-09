@@ -53,8 +53,11 @@ const AddRequestTable = () => {
   };
 
   const emptyTableIcon = (
-    <div className="empty-table-icon">
-      <SvgTable />
+    <div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
 
@@ -236,22 +239,23 @@ const AddRequestTable = () => {
         headerStyle={{
           color: "#343434",
           fontFamily: "Inter var",
-          fontSize: "24px",
-          fontWeight: "600",
-          lineHeight: "150%",
+          fontSize: 16,
+          fontWeight: 500,
+          // lineHeight: "150%",
         }}
         className="dailog__container"
       >
         <form onSubmit={formik.handleSubmit}>
           <div className="grid">
-            <div className="col-12 md:col-7 lg:col-7">
+            <div className="col-12 md:col-8 lg:col-8">
               <InputField
-                classNames="input__filed"
+                // classNames="input__filed"
+                classNames="fielduniqueone__container"
                 label="Narration"
                 placeholder="Enter"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
+                textWeight={500}
                 value={formik.values.Narration}
                 onChange={formik.handleChange("Narration")}
                 error={
@@ -260,14 +264,14 @@ const AddRequestTable = () => {
                 }
               />
             </div>
-            <div className="col-12 md:col-5 lg:col-5">
+            <div className="col-12 md:col-4 lg:col-4">
               <InputField
-                classNames="input__filed"
+                classNames="fielduniqueone__container"
                 label="Amount"
                 placeholder="Enter"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
+                textWeight={500}
                 value={formik.values.Amount}
                 onChange={formik.handleChange("Amount")}
                 error={

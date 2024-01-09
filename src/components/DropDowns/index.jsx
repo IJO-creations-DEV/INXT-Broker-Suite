@@ -46,8 +46,12 @@ function DropDowns({
           filter
           dropdownIcon={dropdownIcon}
           defaultValue={defaultValue}
+          style={{
+            borderRadius:10
+          }}
         />
         {error && <div className="formik__error">{error}</div>}
+        
       </LabelWrapper>
     </div>
   );

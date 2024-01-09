@@ -58,7 +58,7 @@ const InitiateTable = () => {
       ];
 
       return (
-        <div className="paginator__container">
+        <div className="paginatoroverall__container">
         <React.Fragment>
           <span
             className="mx-1"
@@ -68,7 +68,7 @@ const InitiateTable = () => {
           </span>
           <Dropdown
             value={options.value}
-            className="pagedropdown_container"
+            className="pagedropdowninner_container"
             options={dropdownOptions}
             onChange={options.onChange}
           />
@@ -105,13 +105,15 @@ dispatch(getInitiateDetailsMiddleware(rowData));
     border: "none",
   };
   const ViewheaderStyle = {
-    // width: "5rem",
+    justifyContent: 'center',
+    // textalign: center,
     fontSize: 16,
     fontFamily: "Inter var",
     fontWeight: 500,
     padding: 6,
     color: "#000",
-    border: "none",
+    border:" none",
+    display: "flex"
   };
   const menu = useRef(null);
   const menuitems = [
@@ -222,7 +224,7 @@ dispatch(getInitiateDetailsMiddleware(rowData));
             <Column
               body={renderViewButton}
               header="View"
-              headerStyle={{ ...headerStyle, }}
+              headerStyle={ViewheaderStyle}
               className="fieldvalue_container centered"
             ></Column>
           </DataTable>

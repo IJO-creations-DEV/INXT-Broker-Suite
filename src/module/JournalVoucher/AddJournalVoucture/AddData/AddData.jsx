@@ -16,20 +16,22 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
     { label: "Option 2", value: "00124" },
   ];
   const codeOptionsMain = [
-    { label: "Option 1", value: "Main00123" },
-    { label: "Option 2", value: "Main00124" },
+    { label: "Option 1", value: "MAC001" },
+    { label: "Option 2", value: "MAC001" },
   ];
   const codeOptionsSub = [
     { label: "Option 1", value: "Sub00123" },
     { label: "Option 2", value: "Sub00124" },
   ];
   const codeOptionsDept = [
-    { label: "Option 1", value: "Dep00123" },
-    { label: "Option 2", value: "Dep00124" },
+    { label: "Option 1", value: "FIN" },
+    { label: "Option 2", value: "MKT" },
+    { label: "Option 1", value: "IT" },
+    { label: "Option 2", value: "SLS" },
   ];
   const codeOptionsBranch = [
-    { label: "Option 1", value: "Branch00123" },
-    { label: "Option 2", value: "Branch00124" },
+    { label: "Option 1", value: "PH001" },
+    { label: "Option 2", value: "PH002" },
   ];
 
   const codeOptionsType = [

@@ -29,34 +29,36 @@ function BranchAdding() {
   const items = [{ label: "Receipts",url:"/accounts/receipts" }, { label: "Add Receipts",url:"/accounts/receipts/addreceipts" }];
   const home = { label: "Accounts " };
   const item = [
-    { name: "Policy", code: "PL" },
-    { name: "Policy1", code: "P1" },
-    { name: "Policy2", code: "P2" },
+    { name: "Premium", code: "PR" },
+    { name: "Endorsement", code: "ER" },
+    
   ];
   const item1 = [
-    { name: "Branch00123", code: "BH" },
-    { name: "Branch00345", code: "B1" },
-    { name: "Branch00678", code: "B2" },
+    { name: "PHP001", code: "PH1" },
+    { name: "PHP002", code: "PH2" },
+    { name: "PHP003", code: "PH3" },
   ];
   const item2 = [
-    { name: "Depart00123", code: "DP" },
-    { name: "Depart00345", code: "D1" },
-    { name: "Depart00678", code: "D2" },
+    { name: "FIN", code: "FN" },
+    { name: "MKT", code: "MK" },
+    { name: "IT", code: "I" },
+    { name: "SLS", code: "SL" },
   ];
   const item3 = [
-    { name: "00123", code: "C1" },
-    { name: "00345", code: "C2" },
-    { name: "00678", code: "C3" },
+    { name: "CL001", code: "C1" },
+    { name: "CL002", code: "C2" },
+    { name: "INS001", code: "IN1" },
+    { name: "INS002", code: "IN2" },
   ];
   const item4 = [
     { name: "INR", code: "IR" },
-    { name: "INR1", code: "IR1" },
-    { name: "INR2", code: "IR2" },
+    { name: "USD", code: "US" },
+   
   ];
   const item5 = [
-    { name: "Trans0123", code: "TR1" },
-    { name: "Trans345", code: "TR2" },
-    { name: "Trans456", code: "TR3" },
+    { name: "PRM", code: "PR" },
+    { name: "COMM", code: "CM" },
+    { name: "REMT", code: "RT" },
   ];
 
   const initialValue = {
@@ -177,6 +179,7 @@ function BranchAdding() {
                 classNames="field__container"
                 label="Receipt Number"
                 placeholder={"Enter"}
+                type="numeric"
               />
               {formik.touched.receiptNumber && formik.errors.receiptNumber && (
                 <div style={{ fontSize: 12, color: "red" }}>

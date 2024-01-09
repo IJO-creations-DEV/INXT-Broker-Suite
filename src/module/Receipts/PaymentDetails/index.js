@@ -114,9 +114,9 @@ function PolicyReceipts() {
     },
   };
   const data = [
-    { name: "Bank00123", code: "B1" },
-    { name: "Bank00256", code: "B2" },
-    { name: "Bank00134", code: "B3" },
+    { name: "Bk001", code: "B1" },
+    { name: "Bk002", code: "B2" },
+    { name: "Bk003", code: "B3" },
   ];
   const data1 = [
     { name: "678945678902", code: "01" },
@@ -125,8 +125,8 @@ function PolicyReceipts() {
   ];
   const data2 = [
     { name: "Card", code: "C1" },
-    { name: "Card1", code: "C2" },
-    { name: "Card2", code: "C3" },
+    { name: "Cash", code: "CH" },
+    { name: "Bank transfer", code: "BT" },
   ];
 
   const headerStyle = {

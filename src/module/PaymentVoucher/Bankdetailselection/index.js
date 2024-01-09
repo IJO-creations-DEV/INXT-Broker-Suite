@@ -92,12 +92,13 @@ function Bankdetailselection() {
     border: "none",
   };
   const status = [
-    { name: "bnk0123", code: "NY" },
-    { name: "bnk0124", code: "RM" },
+    { name: "bk001", code: "bk1" },
+    { name: "bk002", code: "bk2" },
+    { name: "bk003", code: "bk3" },
   ];
   const bankaccount = [
-    { name: "acc0123", code: "NY" },
-    { name: "acc0124", code: "RM" },
+    { name: "678882222256", code: "NY" },
+    { name: "678882222279", code: "RM" },
   ];
   const item = [
     { name: "New York", code: "NY" },

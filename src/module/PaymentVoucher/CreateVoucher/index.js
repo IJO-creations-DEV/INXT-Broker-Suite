@@ -37,12 +37,14 @@ function Createvoucher() {
   const Navigate = useNavigate();
 
   const DepartmentCode = [
-    { name: "Doc00123", code: "NY" },
-    { name: "Doc001234", code: "RM" },
+    { name: "FIN", code: "FI" },
+    { name: "MKT", code: "MK" },
+    { name: "IT", code: "IT" },
+    { name: "SLS", code: "SL" },
   ];
   const BranchCode = [
-    { name: "Branch00123", code: "NY" },
-    { name: "Branch001234", code: "RM" },
+    { name: "PHP001", code: "PH" },
+    { name: "PHP002", code: "PH2" },
   ];
   const PayeeType = [
     { name: "Customer", code: "NY" },
@@ -53,16 +55,20 @@ function Createvoucher() {
     { name: "payall", code: "RM" },
   ];
   const CustomerCode = [
-    { name: "Cus00123", code: "NY" },
-    { name: "Cus001234", code: "RM" },
+    { name: "CL001", code: "CL" },
+    { name: "CL002", code: "CL2" },
+    { name: "INS001", code: "IS" },
+    { name: "INS002", code: "IN" },
   ];
   const Transactioncode = [
-    { name: "Trans00123", code: "NY" },
-    { name: "Trans001234", code: "RM" },
+    { name: "PRM", code: "NY" },
+    { name: "COMM", code: "RM" },
+    { name: "REMT", code: "RM" },
   ];
   const SelectInstrumentCurrency = [
-    { name: "INR", code: "NY" },
-    { name: "CSE", code: "RM" },
+    { name: "700001234", code: "NY" },
+    { name: "700001235", code: "RM" },
+    { name: "700001236", code: "RM" },
   ];
 
   const home = { label: "Accounts" };

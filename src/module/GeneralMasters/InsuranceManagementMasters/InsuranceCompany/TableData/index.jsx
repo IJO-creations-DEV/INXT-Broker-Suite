@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -11,10 +10,16 @@ import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../../assets/icons/SvgTable";
 import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../../components/ToggleButton";
-
+import { useSelector } from "react-redux";
 const TableData = ({ navigate }) => {
-  // const navigate = useNavigation();
-  const [products, setProducts] = useState([]);
+  const { InsuranceCompanyList, loading } = useSelector(
+    ({ insuranceCompanyReducers }) => {
+      return {
+        loading: insuranceCompanyReducers?.loading,
+        InsuranceCompanyList: insuranceCompanyReducers?.InsuranceCompanyList,
+      };
+    }
+  );
 
   const emptyTableIcon = (
     <div>
@@ -104,7 +109,7 @@ const TableData = ({ navigate }) => {
         </div>
       </div>
       <DataTable
-        value={Productdata}
+        value={InsuranceCompanyList}
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}

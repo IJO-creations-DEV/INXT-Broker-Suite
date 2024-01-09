@@ -52,7 +52,7 @@ function AddCompany({ action }) {
       };
     }
   );
-  console.log(companyView, "companyView");
+  console.log(companyView.CompanyName, "companyView");
   const toastRef = useRef(null);
   const { id } = useParams();
   const [date, setDate] = useState(null);

@@ -88,7 +88,7 @@ const PettyCashReceiptsTable = () => {
     fontSize: 16,
     fontFamily: "Inter var",
     fontWeight: 500,
-    padding: "1rem 0",
+    padding: 6,
     color: "#000",
     border: "none",
   };

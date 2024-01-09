@@ -88,16 +88,29 @@ const AddDisbursementTable = () => {
   const handleBack = () => {
     navigate("/accounts/pettycash/adddisbursement");
   };
+  const headaction ={
+    justifyContent: 'center',
+// textalign: center,
+fontSize: 16,
+fontFamily: "Inter var",
+fontWeight: 500,
+padding: 10,
+// paddingTop:4,
+color: "#000",
+border:" none",
+display: "flex"
+  }
 
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
     fontFamily: "Inter var",
     fontWeight: 500,
-    padding: 6,
+    padding: 8,
     color: "#000",
     border: "none",
     textAlign: "center",
+    paddingLeft:0
   };
   const handleEdit = (data) => {
     console.log(data, "sata");
@@ -178,17 +191,7 @@ const AddDisbursementTable = () => {
     }
     formik.setFieldValue("MainAccountDescription", description);
   };
-  const headaction ={
-    justifyContent: 'center',
-// textalign: center,
-fontSize: 16,
-fontFamily: "Inter var",
-fontWeight: 500,
-padding: 6,
-color: "#000",
-border:" none",
-display: "flex"
-  }
+ 
 
   const SetFormikValue = () => {
     const updatedValues = {

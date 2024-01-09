@@ -101,6 +101,7 @@ dispatch(getInitiateDetailsMiddleware(rowData));
     fontFamily: "Inter var",
     fontWeight: 500,
     padding: 6,
+    paddingLeft:0,
     color: "#000",
     border: "none",
   };

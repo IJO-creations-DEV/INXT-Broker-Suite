@@ -22,10 +22,11 @@ import ToggleButton from "../../../components/ToggleButton";
 import SvgEditicon from "../../../assets/icons/SvgEdit";
 // import { useNavigation } from '';
 import { TieredMenu } from 'primereact/tieredmenu';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrencyDetailEdit, getCurrencyDetailView } from "./store/currencyMasterMiddlewar";
 
 const CurrencyMaster = () => {
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { CurrencyList, loading } = useSelector(({ currencyMasterReducer }) => {
@@ -34,7 +35,6 @@ const CurrencyMaster = () => {
       CurrencyList: currencyMasterReducer?.CurrencyList,
     };
   });
-
   const isEmpty = CurrencyList.length === 0;
 
   const emptyTableIcon = (
@@ -77,6 +77,7 @@ const CurrencyMaster = () => {
   };
 
   const renderViewButton = (rowData) => {
+   
     return (
       <div className="center-content">
         <Button
@@ -87,7 +88,7 @@ const CurrencyMaster = () => {
         <Button
           icon={<SvgEditicon />}
           className="eye__btn"
-          onClick={() => handleEdit()}
+          onClick={() => handleEdit(rowData)}
         />
       </div>
     );
@@ -102,10 +103,12 @@ const CurrencyMaster = () => {
   };
 
   const handleView = (rowData) => {
+     dispatch(getCurrencyDetailView(rowData));
     navigate("/master/finance/currency/viewcurrency");
   };
 
   const handleEdit = (rowData) => {
+    dispatch(getCurrencyDetailEdit(rowData));
     navigate("/master/finance/currency/editcurrency");
   };
   const headerStyle = {

@@ -12,6 +12,7 @@ import { useFormik } from "formik";
 import SvgBack from '../../../../assets/icons/SvgBack';
 import NavBar from '../../../../components/NavBar';
 import { postAddCurrency } from "../store/currencyMasterMiddlewar";
+import { useDispatch, useSelector } from 'react-redux';
 
 const initialValues ={
     CurrencyCode: "",
@@ -28,6 +29,15 @@ const initialValues ={
 const AddCurrency = () => {
     const toastRef = useRef(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    // const toastRef = useRef(null);
+  
+    const { CurrencyList, loading } = useSelector(({ currencyMasterReducer }) => {
+      return {
+        loading: currencyMasterReducer?.loading,
+        CurrencyList: currencyMasterReducer?.CurrencyList,
+      };
+    });
     const items = [
         { label: 'Currency', url: '/master/finance/currency' },
         { label: 'Add Currency', url: '/master/finance/currency/addcurrency' },
@@ -40,7 +50,12 @@ const AddCurrency = () => {
       ];
     const home = { label: "Master" };
 
-    const handleSubmit = () => {
+    const handleSubmit = (value) => {
+    const valueWithId = {
+      ...value,
+      id: CurrencyList?.length + 1,
+    };
+    dispatch(postAddCurrency(valueWithId));
         toastRef.current.showToast();
         setTimeout(() => {
           navigate("/master/finance/currency");

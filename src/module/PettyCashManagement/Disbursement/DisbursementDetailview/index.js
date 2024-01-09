@@ -10,10 +10,30 @@ import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
 import DisbursementDetailviewTable from "./DisbursementDetailviewTable";
+import { useSelector } from "react-redux";
+import { useFormik } from "formik";
+
+// const initialValue = {
+//   PettyCashCode: "",
+//   TransactionCode: "",
+//   BranchCode: "",
+//   DepartmentCode: "",
+// };
 
 const DisbursementDetailview = () => {
   const navigate = useNavigate();
   // const toastRef = useRef(null);
+  const { ViewDisbursment, loading } = useSelector(
+    ({ pettyCashDisbursementReducers }) => {
+      return {
+        loading: pettyCashDisbursementReducers?.loading,
+        ViewDisbursment: pettyCashDisbursementReducers?.ViewDisbursment,
+      };
+    }
+  );
+
+  console.log(ViewDisbursment, "ViewDisbursment");
+
   const items = [
     { label: "Petty Cash", url: "/accounts/pettycash/disbursementdetailview" },
     {
@@ -27,9 +47,41 @@ const DisbursementDetailview = () => {
     navigate("/accounts/pettycash/disbursement");
   };
 
+  // const formik = useFormik({
+  //   initialValues: initialValue,
+  // });
+
+  const PettycashCodetOptions = [
+    {
+      label: ViewDisbursment?.PettycashCode,
+      value: ViewDisbursment?.PettycashCode,
+    },
+  ];
+
+  const TransactioncodeOptions = [
+    {
+      label: ViewDisbursment?.Transactioncode,
+      value: ViewDisbursment?.Transactioncode,
+    },
+  ];
+
+  const BranchcodeOptions = [
+    {
+      label: ViewDisbursment?.Branchcode,
+      value: ViewDisbursment?.Branchcode,
+    },
+  ];
+
+  const DepartmentcodeOptions = [
+    {
+      label: ViewDisbursment?.Departmentcode,
+      value: ViewDisbursment?.Departmentcode,
+    },
+  ];
+
   return (
     <div className="add__disbursement__view__container">
-        {/* <CustomToast ref={toastRef} /> */}
+      {/* <CustomToast ref={toastRef} /> */}
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div
@@ -62,19 +114,23 @@ const DisbursementDetailview = () => {
               textSize={"16"}
               disabled={true}
               textWeight={400}
-              optionLabel="name"
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              optionValue="value"
+              optionLabel="label"
+              value={ViewDisbursment?.PettycashCode}
+              options={PettycashCodetOptions}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
             <InputField
               classNames="input__filed"
               label="Petty Cash Description"
-               // placeholder="Enter"
-               disabled={true}
+              // placeholder="Enter"
+              disabled={true}
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"PettyCashDescription"}
             />
           </div>
         </div>
@@ -88,8 +144,11 @@ const DisbursementDetailview = () => {
               disabled={true}
               textSize={"16"}
               textWeight={400}
-              optionLabel="name"
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              optionValue="value"
+              optionLabel="label"
+              value={ViewDisbursment?.Transactioncode}
+              options={TransactioncodeOptions}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -101,6 +160,7 @@ const DisbursementDetailview = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"TransactionDescription"}
             />
           </div>
         </div>
@@ -114,19 +174,23 @@ const DisbursementDetailview = () => {
               disabled={true}
               textSize={"16"}
               textWeight={400}
-              optionLabel="name"
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              optionValue="value"
+              optionLabel="label"
+              value={ViewDisbursment?.Branchcode}
+              options={BranchcodeOptions}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
             <InputField
               classNames="input__filed"
               label="Branch Description"
-               // placeholder="Enter"
-               disabled={true}
+              // placeholder="Enter"
+              disabled={true}
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"BranchDescription"}
             />
           </div>
         </div>
@@ -140,25 +204,29 @@ const DisbursementDetailview = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={400}
-              optionLabel="name"
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              optionValue="value"
+              optionLabel="label"
+              value={ViewDisbursment?.Departmentcode}
+              options={DepartmentcodeOptions}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
             <InputField
               classNames="input__filed"
               label="Department Description"
-               // placeholder="Enter"
-               disabled={true}
+              // placeholder="Enter"
+              disabled={true}
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={"DepartmentDescription"}
             />
           </div>
         </div>
       </Card>
       <Card className="mt-3">
-        <DisbursementDetailviewTable/>
+        <DisbursementDetailviewTable />
       </Card>
     </div>
   );

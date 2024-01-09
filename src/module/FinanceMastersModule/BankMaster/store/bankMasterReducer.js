@@ -5,7 +5,8 @@ import {
   postBankStatus,
   getAddBank,
   patchBankDetailEdit,
-  getBankDetailView
+  getBankDetailView,
+  postAddBank
 } from "./bankMasterMiddleware";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 const initialState = {
@@ -227,6 +228,7 @@ const initialState = {
   BankSearchList: [],
   BankStatus: {},
   AddBank: {},
+  PostAddBank:{},
   BankDetailEdit: {},
   BankDetailView: {}
 };
@@ -320,6 +322,28 @@ const bankMasterReducer = createSlice({
         state.loading = false;
 
         state.AddBank = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    //PostAdd
+
+    builder.addCase(postAddBank.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      postAddBank.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.PostAddBank = action.payload;
+      }
+    );
+    builder.addCase(
+      postAddBank.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.PostAddBank = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

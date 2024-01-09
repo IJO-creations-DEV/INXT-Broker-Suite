@@ -1,126 +1,214 @@
-import { BreadCrumb } from 'primereact/breadcrumb'
-import React, { useRef } from 'react'
-import SvgDot from '../../../../assets/icons/SvgDot';
-import "../AddCurrency/index.scss"
-import DropDowns from '../../../../components/DropDowns';
-import InputField from '../../../../components/InputField';
-import { Button } from 'primereact/button';
-import SvgDropdown from '../../../../assets/icons/SvgDropdown';
-import CustomToast from '../../../../components/Toast';
-import { useNavigate } from 'react-router-dom';
-import SvgBack from '../../../../assets/icons/SvgBack';
+import { BreadCrumb } from "primereact/breadcrumb";
+import React, { useEffect, useRef, useState } from "react";
+import SvgDot from "../../../../assets/icons/SvgDot";
+import "../AddCurrency/index.scss";
+import { useFormik } from "formik";
+import DropDowns from "../../../../components/DropDowns";
+import InputField from "../../../../components/InputField";
+import { Button } from "primereact/button";
+import SvgDropdown from "../../../../assets/icons/SvgDropdown";
+import CustomToast from "../../../../components/Toast";
+import { useNavigate } from "react-router-dom";
+import SvgBack from "../../../../assets/icons/SvgBack";
+import { useDispatch, useSelector } from "react-redux";
+import { patchCurrencyDetailEdit } from "../store/currencyMasterMiddlewar";
+
+const initialValues = {
+  id: "",
+  CurrencyCode: "",
+  ISOcode: "",
+  SmallestUnit: "",
+  UnitDescription: "",
+  CurrencyName: "",
+  Description: "",
+  CurrencyFormat: "",
+  NumberofDecimals: "",
+};
 
 const EditCurrency = () => {
-    const toastRef = useRef(null);
-    const navigate = useNavigate();
-    const items = [
-        { label: 'Currency', url: '/master/finance/currency' },
-        { label: 'Edit Currency', url: '/master/finance/currency/editcurrency' },
-
-    ];
-    const home = { label: "Master" };
-    const handleSubmit = () => {
-        toastRef.current.showToast();
-        setTimeout(() => {
-          navigate("/master/finance/currency");
-        }, 2000);
+  const toastRef = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isocode, setISOcodeData] = useState([]);
+  const [ID, setID] = useState("");
+  const { CurrencyDetailEdit, loading } = useSelector(
+    ({ currencyMasterReducer }) => {
+      return {
+        loading: currencyMasterReducer?.loading,
+        CurrencyDetailEdit: currencyMasterReducer?.getCurrecyDetailEdit,
       };
+    }
+  );
 
-    return (
-        <div className='grid sub__add__container'>
-              <CustomToast ref={toastRef} message="Add Currency Successfully"/>
-            <div className='col-12 mb-2'>
-                <div className='back_container'>
-<span onClick={()=>navigate(-1)}><SvgBack/></span>
-                <div className='add__sub__title'>Edit Currency</div>
-                </div>
-                <div className='mt-3'>
-                    <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
-                </div>
-            </div>
-            <div className='add__account__sub__container p-3 '>
-                <div className='grid'>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="Currency Code"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <DropDowns
-                            label="ISO code"
-                            className='dropdown__add__sub'
-                            classNames='label__sub__add'
-                            placeholder={"Select"}
-                            dropdownIcon={<SvgDropdown color={"#000"} />}
-                        />
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="Smallest Unit"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="Unit Description"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                    </div>
-                    <div className='grid'>
-                    <div className='col-12 md:col-6 lg:col-6'>
-                        <InputField
-                            label="Currency Name"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                            
-                        />
-                    </div>
-                    <div className='col-12 md:col-6 lg:col-6'>
-                        <InputField
-                            label="Description"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                    </div>
-                    <div className='grid '>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="Currency Format"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                    <div className='col-12 md:col-3 lg:col-3'>
-                        <InputField
-                            label="Number of Decimals"
-                            classNames='dropdown__add__sub'
-                            className='label__sub__add'
-                            placeholder="Enter"
-                        />
-                    </div>
-                </div>
-            </div>
-            <div className='col-12 btn__view__Add mt-2'>
-                <Button
-                    label='Save'
-                    className='save__add__btn'
-                    onClick={()=>{handleSubmit()}}
-                />
-            </div>
+  const items = [
+    { label: "Currency", url: "/master/finance/currency" },
+    { label: "Edit Currency", url: "/master/finance/currency/editcurrency" },
+  ];
+  const setFormikValues = () => {
+    const IsoCode = CurrencyDetailEdit?.ISOcode;
+    const updatedValues = {
+      CurrencyCode: CurrencyDetailEdit?.Currencycode,
+      ISOcode: IsoCode,
+      SmallestUnit: CurrencyDetailEdit?.SmallestUnit,
+      UnitDescription: CurrencyDetailEdit?.UnitDescription,
+      CurrencyName: CurrencyDetailEdit?.CurrencyName,
+      Description: "Description",
+      CurrencyFormat: CurrencyDetailEdit?.CurrencyFormat,
+      NumberofDecimals: "1000",
+      id: CurrencyDetailEdit.id 
+    };
+
+    if (IsoCode) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setISOcodeData([{ label: IsoCode, value: IsoCode }]);
+    }
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
+  const home = { label: "Master" };
+
+  const handleSubmit = (value) => {
+    dispatch(patchCurrencyDetailEdit(value));
+    toastRef.current.showToast();
+    setTimeout(() => {
+      navigate("/master/finance/currency");
+    }, 2000);
+  };
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
+  });
+
+  console.log(formik.values.id, "idleo");
+  useEffect(() => {
+    setFormikValues();
+  }, [CurrencyDetailEdit]);
+  return (
+    <div className="grid sub__add__container">
+      <CustomToast ref={toastRef} message="Add Currency Successfully" />
+      <div className="col-12 mb-2">
+        <div className="back_container">
+          <span onClick={() => navigate(-1)}>
+            <SvgBack />
+          </span>
+          <div className="add__sub__title">Edit Currency</div>
         </div>
-    )
-
-}
-export default EditCurrency
+        <div className="mt-3">
+          <BreadCrumb
+            home={home}
+            className="breadCrums__view__add__screen"
+            model={items}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
+        </div>
+      </div>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="add__account__sub__container p-3 ">
+          <div className="grid">
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                label="Currency Code"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+                value={formik.values.CurrencyCode}
+                onChange={formik.handleChange("CurrencyCode")}
+              />
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <DropDowns
+                label="ISO code"
+                className="dropdown__add__sub"
+                classNames="label__sub__add"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.ISOcode}
+                options={isocode}
+                onChange={(e) => {
+                  formik.setFieldValue("ISOcode", e.value);
+                }}
+                optionLabel="value"
+              />
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                label="Smallest Unit"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+                value={formik.values.SmallestUnit}
+                onChange={formik.handleChange("SmallestUnit")}
+              />
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                label="Unit Description"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+                value={formik.values.UnitDescription}
+                onChange={formik.handleChange("UnitDescription")}
+              />
+            </div>
+          </div>
+          <div className="grid">
+            <div className="col-12 md:col-6 lg:col-6">
+              <InputField
+                label="Currency Name"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+                value={formik.values.CurrencyName}
+                onChange={formik.handleChange("CurrencyName")}
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6">
+              <InputField
+                label="Description"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+                value={formik.values.Description}
+                onChange={formik.handleChange("Description")}
+              />
+            </div>
+          </div>
+          <div className="grid ">
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                label="Currency Format"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+                value={formik.values.CurrencyFormat}
+                onChange={formik.handleChange("CurrencyFormat")}
+              />
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                label="Number of Decimals"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+                value={formik.values.NumberofDecimals}
+                onChange={formik.handleChange("NumberofDecimals")}
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+      <div className="col-12 btn__view__Add mt-2">
+        <Button
+          label="Save"
+          className="save__add__btn"
+          onClick={() => {
+            formik.handleSubmit();
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+export default EditCurrency;

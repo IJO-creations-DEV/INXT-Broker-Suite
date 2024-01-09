@@ -1,5 +1,5 @@
 import { BreadCrumb } from 'primereact/breadcrumb'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import SvgDot from '../../../../assets/icons/SvgDot';
 import "../AddCurrency/index.scss"
 import DropDowns from '../../../../components/DropDowns';
@@ -9,10 +9,19 @@ import SvgDropdown from '../../../../assets/icons/SvgDropdown';
 import CustomToast from '../../../../components/Toast';
 import { useNavigate } from 'react-router-dom';
 import SvgBack from '../../../../assets/icons/SvgBack';
+import { useSelector } from 'react-redux';
 
 const ViewCurrency = () => {
     const toastRef = useRef(null);
     const navigate = useNavigate();
+
+    const { CurrencyDetailView, loading } = useSelector(({ currencyMasterReducer }) => {
+        return {
+          loading: currencyMasterReducer?.loading,
+          CurrencyDetailView: currencyMasterReducer?.CurrencyDetailView,
+        };
+      });
+      
     const items = [
         { label: 'Currency', url: '/master/finance/currency' },
         { label: 'Currency Details', url: '/master/finance/currency/viewcurrency' },
@@ -20,6 +29,12 @@ const ViewCurrency = () => {
     ];
     const home = { label: "Master" };
 
+    const ISROOptions = [
+        {
+          label: CurrencyDetailView?.ISOcode,
+          value: CurrencyDetailView?.ISOcode,
+        },
+      ];  
 
     return (
         <div className='grid sub__add__container'>
@@ -41,6 +56,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
+                            value={CurrencyDetailView?.Currencycode}
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -51,6 +67,10 @@ const ViewCurrency = () => {
                             placeholder={"Select"}
                             dropdownIcon={<SvgDropdown color={"#000"} />}
                             disabled={true}
+                            optionValue="value"
+                            optionLabel="label"
+                            value={CurrencyDetailView?.ISOcode}
+                            options={ISROOptions}
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -60,6 +80,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
+                            value={CurrencyDetailView?.SmallestUnit}
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -69,6 +90,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
+                            value={CurrencyDetailView?.UnitDescription}
                         />
                     </div>
                     </div>
@@ -80,7 +102,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
-                            
+                            value={CurrencyDetailView?.CurrencyName}
                         />
                     </div>
                     <div className='col-12 md:col-6 lg:col-6'>
@@ -90,6 +112,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
+                            value={"Description"}
                         />
                     </div>
                     </div>
@@ -101,6 +124,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
+                            value={CurrencyDetailView?.CurrencyFormat}
                         />
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
@@ -110,6 +134,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
+                            value={"1000"}
                         />
                     </div>
                 </div>

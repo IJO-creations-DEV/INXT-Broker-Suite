@@ -12,11 +12,12 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { TieredMenu } from "primereact/tieredmenu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getViewDisbursmentMiddleware } from "../store/pettyCashDisbursementMiddleware";
 
 const DisbursementTable = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const { DisbursmentList, loading } = useSelector(({ pettyCashDisbursementReducers }) => {
     return {
       loading: pettyCashDisbursementReducers?.loading,
@@ -76,6 +77,7 @@ const DisbursementTable = () => {
   };
 
   const handleView = (rowData) => {
+    dispatch(getViewDisbursmentMiddleware(rowData));
     console.log("View clicked:", rowData);
     navigate("/accounts/pettycash/disbursementdetailview");
   };

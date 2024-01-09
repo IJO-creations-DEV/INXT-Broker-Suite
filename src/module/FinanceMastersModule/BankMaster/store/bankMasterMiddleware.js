@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT } from "../../../../redux/actionTypes";
+import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT, POST_ADD_BANK } from "../../../../redux/actionTypes";
 import SvgEye from "../../../../assets/icons/SvgEye";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 
@@ -46,6 +46,19 @@ export const postBankStatus = createAsyncThunk(
 
 export const getAddBank = createAsyncThunk(
     GET_ADD_BANK,
+    async (payload, { rejectWithValue }) => {
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+
+
+export const postAddBank = createAsyncThunk(
+    POST_ADD_BANK,
     async (payload, { rejectWithValue }) => {
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);

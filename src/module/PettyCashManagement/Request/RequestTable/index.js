@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 const RequestTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [search,setSearch]=useState("")
 
   const { RequestList, loading } = useSelector(({ pettyCashRequestReducer }) => {
     return {
@@ -24,6 +25,10 @@ const RequestTable = () => {
       RequestList: pettyCashRequestReducer?.RequestList,
     };
   });
+  const searchs = [
+    { name: 'Name', code: 'NY' },
+    { name: 'Date', code: 'RM' },
+    { name: 'Voucher Number', code: 'LDN' }]
 
   const isEmpty = RequestList.length === 0;
 
@@ -77,17 +82,7 @@ const RequestTable = () => {
   };
 
   const menu = useRef(null);
-  const menuitems = [
-    {
-      label: 'Name',
-    },
-    {
-      label: 'Date',
-    },
-    {
-      label: 'Voucher Number',
-    },
-  ];
+ 
 
 
   const handleView = (rowData) => {
@@ -117,11 +112,13 @@ const RequestTable = () => {
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button label="Search by" outlined icon={<SvgDropdownicon />}
-              className="sorbyfilter_container"
-              onClick={(e) => menu.current.toggle(e)}
-            /></div>
+          <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={searchs} optionLabel="name" 
+                placeholder="Search by"  
+                className="sorbyfilter_container"
+                dropdownIcon={<SvgDropdownicon/>}
+                />
+
+            </div>
           <div className="sub__title">Petty Cash Code history</div>
         </div>
         <div className="card">

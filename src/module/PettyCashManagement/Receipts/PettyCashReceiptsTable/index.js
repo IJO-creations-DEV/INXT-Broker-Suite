@@ -18,6 +18,7 @@ import { getViewReceiptMiddleware } from "../store/pettyCashReceiptsMiddleware";
 const PettyCashReceiptsTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [filterData, setFilterData] = useState(null);
 
   const { ReceiptList, loading } = useSelector(
     ({ pettyCashReceiptsReducer }) => {
@@ -46,21 +47,21 @@ const PettyCashReceiptsTable = () => {
       ];
 
       return (
-        <div className="paginator__container">
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdown_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+        <div className="paginator__container__receipt">
+          <React.Fragment>
+            <span
+              className="mx-1"
+              style={{ color: "var(--text-color)", userSelect: "none" }}
+            >
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdown_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          </React.Fragment>
         </div>
       );
     },
@@ -95,16 +96,20 @@ const PettyCashReceiptsTable = () => {
   const menu = useRef(null);
   const menuitems = [
     {
-      label: 'Name',
+      label: "Name",
     },
     {
-      label: 'Date',
+      label: "Date",
     },
     {
-      label: 'Voucher Number',
+      label: "Voucher Number",
     },
   ];
-
+  const cities = [
+    { name: "Name", code: "name" },
+    { name: "Date", code: "date" },
+    { name: "Receipt No", code: "code" },
+  ];
 
   return (
     <div className="petty__cash__receipts__table">
@@ -119,12 +124,26 @@ const PettyCashReceiptsTable = () => {
               />
             </span>
           </div>
-          <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button label="Search by" outlined icon={<SvgDropdownicon />}
+          <div class="col-12 md:col-6 lg:col-2 search__container">
+            <Dropdown
+              value={filterData}
+              onChange={(e) => setFilterData(e.value)}
+              options={cities}
+              optionLabel="name"
+              placeholder="Search by"
+              className="sorbyfilter_container"
+              dropdownIcon={<SvgDropdownicon />}
+            />
+
+            {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
+            <Button
+              label="Search by"
+              outlined
+              icon={<SvgDropdownicon />}
               className="sorbyfilter_container"
               onClick={(e) => menu.current.toggle(e)}
-            /></div>
+            /> */}
+          </div>
           <div className="sub__title">Receipts history</div>
         </div>
         <div className="card">
@@ -163,28 +182,24 @@ const PettyCashReceiptsTable = () => {
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
             ></Column>
             <Column
               field="Transactioncode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
             ></Column>
             <Column
               field="BankCode"
               header="Bank Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
             ></Column>
             <Column
               field="SubAccount"
               header="Sub Account"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
             ></Column>
             <Column
               field="TransactionNumber"

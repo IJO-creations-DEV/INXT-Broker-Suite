@@ -5,9 +5,9 @@ import { Column } from "primereact/column";
 import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
 
-const TableData = ({reversalJVList,reversalJVGetDataList}) => {
+const TableData = ({ reversalJVList, reversalJVGetDataList }) => {
   const [products, setProducts] = useState([]);
-  console.log(reversalJVGetDataList,"reversalJVGetDataList")
+  console.log(reversalJVGetDataList, "reversalJVGetDataList");
 
   const template2 = {
     layout:
@@ -49,6 +49,8 @@ const TableData = ({reversalJVList,reversalJVGetDataList}) => {
         currentPageReportTemplate="{first} - {last} of {totalRecords}"
         paginatorTemplate={template2}
         className="reversal__table__main"
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="mainAccount"
@@ -73,7 +75,7 @@ const TableData = ({reversalJVList,reversalJVGetDataList}) => {
         <Column
           field="entryType"
           header="Entry"
-          className="fieldvalue_container"
+          className="fieldvalue_container last_chlid"
         ></Column>
       </DataTable>
     </div>

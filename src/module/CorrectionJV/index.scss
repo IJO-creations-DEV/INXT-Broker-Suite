@@ -18,8 +18,8 @@
   }
   .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
     color: #000;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 400;
     font-family: Inter var;
   }
   .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
@@ -245,9 +245,6 @@
       padding: 0 40px;
       margin: 10px;
       font-family: "Inter var";
-      .p-button-label {
-        font-weight: 500 !important;
-      }
     }
   }
 
@@ -260,59 +257,59 @@
   .input__view__reversal .col-12 {
     width: 100% !important;
   }
-  @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .correction__title__reversal {
-      font-size: 26px;
-    }
-    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
-      font-size: 12px;
-    }
-    .input__field__reversal {
-      font-size: 12px;
-      .p-dropdown-label {
-        font-size: 12px;
-      }
-    }
-    .input__field__reversal__inactive {
-      font-size: 12px;
-    }
+  // @media only screen and (min-width: 768px) and (max-width: 991px) {
+  //   .correction__title__reversal {
+  //     font-size: 26px;
+  //   }
+  //   .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+  //     font-size: 12px;
+  //   }
+  //   .input__field__reversal {
+  //     font-size: 12px;
+  //     .p-dropdown-label {
+  //       font-size: 12px;
+  //     }
+  //   }
+  //   .input__field__reversal__inactive {
+  //     font-size: 12px;
+  //   }
 
-    .input__label__reversal {
-      font-size: 12px !important;
-    }
-    .input__label__reversal__inactive {
-      font-size: 12px !important;
-    }
-    .button__view__corrections__reversal {
-      .correction__btn__reversal {
-        font-size: 16px;
-      }
-    }
-  }
-  @media only screen and (min-width: 992px) and (max-width: 1440px) {
-    .correction__title__reversal {
-      font-size: 28px;
-    }
-    .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
-      font-size: 14px;
-    }
-    .input__field__reversal {
-      font-size: 14px;
-    }
-    .input__field__reversal__inactive {
-      font-size: 14px;
-    }
+  //   .input__label__reversal {
+  //     font-size: 12px !important;
+  //   }
+  //   .input__label__reversal__inactive {
+  //     font-size: 12px !important;
+  //   }
+  //   .button__view__corrections__reversal {
+  //     .correction__btn__reversal {
+  //       font-size: 16px;
+  //     }
+  //   }
+  // }
+  // @media only screen and (min-width: 992px) and (max-width: 1440px) {
+  //   .correction__title__reversal {
+  //     font-size: 28px;
+  //   }
+  //   .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
+  //     font-size: 14px;
+  //   }
+  //   .input__field__reversal {
+  //     font-size: 14px;
+  //   }
+  //   .input__field__reversal__inactive {
+  //     font-size: 14px;
+  //   }
 
-    .input__label__reversal {
-      font-size: 14px !important;
-    }
-    .input__label__reversal__inactive {
-      font-size: 14px !important;
-    }
-    .button__view__corrections__reversal {
-      .correction__btn__reversal {
-        font-size: 16px;
-      }
-    }
-  }
+  //   .input__label__reversal {
+  //     font-size: 14px !important;
+  //   }
+  //   .input__label__reversal__inactive {
+  //     font-size: 14px !important;
+  //   }
+  //   .button__view__corrections__reversal {
+  //     .correction__btn__reversal {
+  //       font-size: 16px;
+  //     }
+  //   }
+  // }
 }

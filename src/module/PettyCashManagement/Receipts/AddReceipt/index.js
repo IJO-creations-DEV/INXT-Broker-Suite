@@ -17,7 +17,7 @@ import {
   Transcode,
   Branchcode,
   Departcode,
-  SubAccount
+  SubAccount,
 } from "../../mock";
 import { useDispatch, useSelector } from "react-redux";
 import { postAddReceiptMiddleware } from "../store/pettyCashReceiptsMiddleware";
@@ -280,8 +280,7 @@ const AddReceipts = () => {
                 value={formik.values.ReceiptNumber}
                 onChange={formik.handleChange("ReceiptNumber")}
                 error={
-                  formik.touched.ReceiptNumber &&
-                  formik.errors.ReceiptNumber
+                  formik.touched.ReceiptNumber && formik.errors.ReceiptNumber
                 }
               />
             </div>
@@ -299,7 +298,7 @@ const AddReceipts = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("Requester", e.value);
-                  Requester(e.value.Name)
+                  Requester(e.value.Name);
                 }}
                 optionLabel="Name"
                 error={formik.touched.Requester && formik.errors.Requester}
@@ -321,7 +320,7 @@ const AddReceipts = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("BankCode", e.value);
-                  handleBankcode(e.value.BankAccountCode)
+                  handleBankcode(e.value.BankAccountCode);
                 }}
                 optionLabel="BankAccountCode"
                 error={formik.touched.BankCode && formik.errors.BankCode}
@@ -360,7 +359,7 @@ const AddReceipts = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("SubAccountCode", e.value);
-                  handleSubAccount(e.value.SubAccount)
+                  handleSubAccount(e.value.SubAccount);
                 }}
                 optionLabel="SubAccount"
                 error={
@@ -401,11 +400,12 @@ const AddReceipts = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("TransactionCode", e.value);
-                  handleTrans(e.value.Transcode)
+                  handleTrans(e.value.Transcode);
                 }}
                 optionLabel="Transcode"
                 error={
-                  formik.touched.TransactionCode && formik.errors.TransactionCode
+                  formik.touched.TransactionCode &&
+                  formik.errors.TransactionCode
                 }
               />
             </div>
@@ -442,7 +442,7 @@ const AddReceipts = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("BranchCode", e.value);
-                  handleBranch(e.value.Branchcode)
+                  handleBranch(e.value.Branchcode);
                 }}
                 optionLabel="Branchcode"
                 error={formik.touched.BranchCode && formik.errors.BranchCode}
@@ -481,7 +481,7 @@ const AddReceipts = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("DepartmentCode", e.value);
-                  handleDepart(e.value.Departcode)
+                  handleDepart(e.value.Departcode);
                 }}
                 optionLabel="Departcode"
                 error={
@@ -513,12 +513,13 @@ const AddReceipts = () => {
         <div className="col-12 md:col-12 lg:col-12">
           <div className="btn__container">
             <Button
-              label="Next"
               className="add__btn"
               onClick={() => {
                 formik.handleSubmit();
               }}
-            />
+            >
+              Next
+            </Button>
           </div>
         </div>
       </div>

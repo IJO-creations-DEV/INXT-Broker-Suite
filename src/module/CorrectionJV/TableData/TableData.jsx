@@ -28,9 +28,9 @@ const TableData = ({ newDataTable, editID }) => {
       };
     }
   );
-  console.log(correctionJVList, "correctionJVList")
+  console.log(correctionJVList, "correctionJVList");
   // const editId = editID;
-  console.log(correctionJVList)
+  console.log(correctionJVList);
 
   const template2 = {
     layout:
@@ -42,7 +42,6 @@ const TableData = ({ newDataTable, editID }) => {
         { label: 20, value: 20 },
         { label: 120, value: 120 },
       ];
-
 
       return (
         <div className="table__selector">
@@ -61,14 +60,14 @@ const TableData = ({ newDataTable, editID }) => {
       );
     },
   };
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   // const handleEdit = () => {
   //   setVisible(true)
   // }
   const renderEditButton = (rowData) => {
-    console.log(rowData, "rowData")
+    console.log(rowData, "rowData");
     return (
-      <div className="center-content">
+      <div className="action__icon">
         <Button
           icon={<SvgEditIcon />}
           onClick={() => handleEdit(rowData.id)}
@@ -77,6 +76,10 @@ const TableData = ({ newDataTable, editID }) => {
       </div>
     );
   };
+  const headerStyle = {
+    textAlign: "end",
+  };
+
   const codeOptions = [
     { label: "Option 1", value: "00123" },
     { label: "Option 2", value: "00124" },
@@ -139,13 +142,13 @@ const TableData = ({ newDataTable, editID }) => {
 
     return errors;
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [EditID, setEditID] = useState(null);
   const handleEdit = (rowData) => {
-    console.log(rowData.id, "rown")
+    console.log(rowData.id, "rown");
     setEditID(rowData.id);
-    setVisible(true)
-  }
+    setVisible(true);
+  };
   const handleSubmit = (values) => {
     console.log(values, "find values in formik");
     const valueWithId = {
@@ -155,7 +158,6 @@ const TableData = ({ newDataTable, editID }) => {
     dispatch(patchCorrectionJVEdit(valueWithId));
     setVisible(false);
   };
-
 
   const formik = useFormik({
     initialValues: {
@@ -207,10 +209,8 @@ const TableData = ({ newDataTable, editID }) => {
     formik.setValues({ ...formik.values, ...updatedValues });
   };
 
-
-
   return (
-    <div className="reversal__table__container">
+    <div className="corrections__table__container">
       <DataTable
         value={correctionJVList}
         paginator
@@ -218,7 +218,9 @@ const TableData = ({ newDataTable, editID }) => {
         rowsPerPageOptions={[5, 10, 25, 50]}
         currentPageReportTemplate="{first} - {last} of {totalRecords}"
         paginatorTemplate={template2}
-        className="reversal__table__main"
+        className="corrections__table__main"
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="mainAccount"
@@ -257,13 +259,10 @@ const TableData = ({ newDataTable, editID }) => {
         ></Column>
         <Column
           field="id"
-          body={(columnData) => (
-
-            <SvgEditIcon onClick={() => handleEdit(columnData)} />
-          )}
-          // body={renderEditButton}
+          body={renderEditButton}
           header="Edit"
-          className="fieldvalue_container"
+          className="fieldvalue_container last__div__table"
+          headerStyle={headerStyle}
         ></Column>
       </DataTable>
       <Dialog
@@ -431,18 +430,21 @@ const TableData = ({ newDataTable, editID }) => {
                 optionLabel="value"
                 label="Department Code"
                 value={formik.values.departmentCode}
-                onChange={(e) => formik.setFieldValue("departmentCode", e.value)}
+                onChange={(e) =>
+                  formik.setFieldValue("departmentCode", e.value)
+                }
                 options={codeOptionsDept}
                 placeholder="Select "
               />
-              {formik.touched.departmentCode && formik.errors.departmentCode && (
-                <div
-                  style={{ fontSize: 12, color: "red" }}
-                  className="formik__errror__JV"
-                >
-                  {formik.errors.departmentCode}
-                </div>
-              )}
+              {formik.touched.departmentCode &&
+                formik.errors.departmentCode && (
+                  <div
+                    style={{ fontSize: 12, color: "red" }}
+                    className="formik__errror__JV"
+                  >
+                    {formik.errors.departmentCode}
+                  </div>
+                )}
             </div>
             <div className="col-12 md:col-6 lg:col-6 xl:col-6">
               <InputField
@@ -545,7 +547,7 @@ const TableData = ({ newDataTable, editID }) => {
             >
               <Button
                 label="Update"
-                className="correction__btn__reversal"
+                className="correction__btn__corrections"
                 disabled={!formik.isValid}
                 onClick={formik.handleSubmit}
               />
@@ -553,10 +555,8 @@ const TableData = ({ newDataTable, editID }) => {
           </div>
         </div>
       </Dialog>
-
     </div>
   );
 };
 
 export default TableData;
-

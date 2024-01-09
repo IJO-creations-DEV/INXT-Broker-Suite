@@ -22,7 +22,7 @@
       font-family: "Inter var";
       font-size: 16px !important;
       font-style: normal !important;
-      font-weight: 400 !important;
+      font-weight: 500 !important;
       line-height: normal !important;
     }
     .select__label__corrections {
@@ -38,14 +38,15 @@
       font-family: "Inter var";
       font-size: 14px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
       line-height: normal;
       width: 100%;
+      margin-bottom: 0 !important;
       .p-dropdown-label {
         color: #111927;
         font-family: "Inter var";
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 500;
       }
     }
     .input__field__corrections__inactive {
@@ -53,14 +54,15 @@
       font-family: "Inter var";
       font-size: 14px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
       line-height: normal;
       width: 100%;
+      margin-bottom: 0 !important;
       .p-dropdown-label {
         color: #b1b1b1;
         font-family: "Inter var";
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 500;
       }
       .p-component:disabled {
         opacity: 1 !important;
@@ -80,37 +82,37 @@
       }
     }
 
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
-      .input__label__corrections {
-        font-size: 12px !important;
-        color: #111927 !important;
-        font-family: "Inter var";
-        font-style: normal !important;
-        font-weight: 400 !important;
-        line-height: normal !important;
-      }
-      .select__label__corrections {
-        font-size: 12px !important;
-        color: #111927 !important;
-        font-family: "Inter var";
-        font-style: normal !important;
-        font-weight: 500 !important;
-        line-height: normal !important;
-      }
-      .input__field__corrections {
-        font-size: 12px;
-        .p-dropdown-label {
-          font-size: 12px;
-        }
-      }
-    }
+    // @media only screen and (min-width: 768px) and (max-width: 991px) {
+    //   .input__label__corrections {
+    //     font-size: 12px !important;
+    //     color: #111927 !important;
+    //     font-family: "Inter var";
+    //     font-style: normal !important;
+    //     font-weight: 500 !important;
+    //     line-height: normal !important;
+    //   }
+    //   .select__label__corrections {
+    //     font-size: 12px !important;
+    //     color: #111927 !important;
+    //     font-family: "Inter var";
+    //     font-style: normal !important;
+    //     font-weight: 500 !important;
+    //     line-height: normal !important;
+    //   }
+    //   .input__field__corrections {
+    //     font-size: 12px;
+    //     .p-dropdown-label {
+    //       font-size: 12px;
+    //     }
+    //   }
+    // }
   }
-  @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .form__container {
-      padding: 30px;
-      width: 90%;
-      height: 80%;
-      overflow-y: scroll;
-    }
-  }
+  // @media only screen and (min-width: 768px) and (max-width: 991px) {
+  //   .form__container {
+  //     padding: 30px;
+  //     width: 90%;
+  //     height: 80%;
+  //     overflow-y: scroll;
+  //   }
+  // }
 }

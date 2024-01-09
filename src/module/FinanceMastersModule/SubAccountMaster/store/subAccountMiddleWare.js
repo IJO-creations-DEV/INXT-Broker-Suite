@@ -1,6 +1,6 @@
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_SUB_ACCOUNT_SEARCH_LIST, GET_SUB__ACCOUNT, GET_SUB__ACCOUNT_BY_ID, GET_SUB__ACCOUNT_VIEW, PATCH_SUB__ACCOUNT_EDIT, POST_SUB__ACCOUNT } from "../../../../redux/actionTypes";
+import { GET_PATCH_SUB_ACCOUNT_EDIT, GET_SUB_ACCOUNT_SEARCH_LIST, GET_SUB__ACCOUNT, GET_SUB__ACCOUNT_BY_ID, GET_SUB__ACCOUNT_VIEW, PATCH_SUB__ACCOUNT_EDIT, POST_SUB__ACCOUNT } from "../../../../redux/actionTypes";
 
 
 
@@ -50,7 +50,7 @@ export const getSubAccountView = createAsyncThunk(
     GET_SUB__ACCOUNT_VIEW,
 
     async (payload, { rejectWithValue }) => {
-        console.log(payload,"payload")
+        console.log(payload, "payload")
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
@@ -58,12 +58,34 @@ export const getSubAccountView = createAsyncThunk(
             return rejectWithValue(error?.response.data.error.message);
         }
     },)
-export const patchSubAccountEdit = createAsyncThunk(
-    PATCH_SUB__ACCOUNT_EDIT,
+export const getSubAccountEdit = createAsyncThunk(
+    GET_PATCH_SUB_ACCOUNT_EDIT,
+
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },)
+
+export const patchSubAccountEdit = createAsyncThunk(
+    PATCH_SUB__ACCOUNT_EDIT,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
+        const TableData = {
+            id: payload?.id,
+            subAccountCode: payload?.subAccountCode,
+            description: payload?.description,
+            subAccountName: payload?.subAccountName,
+            mainAccount: payload?.mainAccount,
+            currencyCode: payload?.currencyCode,
+        }
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return TableData;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

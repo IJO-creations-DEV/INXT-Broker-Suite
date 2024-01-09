@@ -26,18 +26,18 @@ const SubAdd = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOption1, setSelectedOption1] = useState(null);
 
-  const item = [
-    { name: "Main00123 - Main Account Description" },
-    { name: "Main00125 - Main Account Description" },
-    { name: "Main00128 - Main Account Description" },
-  ];
-  const item1 = [
-    {
-      name: "INR-Indian Currency",
-      name: "EUR-Euro",
-      name: "HKD-Hong Kong Dollar",
-    },
-  ];
+  // const item = [
+  //   { name: "Main00123 - Main Account Description" },
+  //   { name: "Main00125 - Main Account Description" },
+  //   { name: "Main00128 - Main Account Description" },
+  // ];
+  // const item1 = [
+  //   {
+  //     name: "INR-Indian Currency",
+  //     name: "EUR-Euro",
+  //     name: "HKD-Hong Kong Dollar",
+  //   },
+  // ];
 
   const items = [
     { label: "Sub Account", url: "/master/finance/subaccount" },
@@ -54,16 +54,16 @@ const SubAdd = () => {
   ];
 
 
-  const formik = useFormik({
-    initialValues: {
-      subAccountCode: "",
-      description: "",
-      subAccountName: "",
-      mainAccount: "",
-      currencyCode: "",
-    },
+  // const formik = useFormik({
+  //   initialValues: {
+  //     subAccountCode: "",
+  //     description: "",
+  //     subAccountName: "",
+  //     mainAccount: "",
+  //     currencyCode: "",
+  //   },
 
-  });
+  // });
 
   const home = { label: "Master" };
   useEffect(() => {
@@ -104,6 +104,7 @@ const SubAdd = () => {
               classNames="dropdown__add__sub"
               className="label__sub__add"
               value={subAccountView.subAccountCode}
+              
 
             />
           </div>
@@ -136,20 +137,13 @@ const SubAdd = () => {
             <div>
 
 
-              {/* <ScrollPanel className="scrollpanal_container"> */}
-              {/* <div>
-                  {texts.map((text, index) => (
-                    <div key={index}>{text}</div>
-                  ))}
-                </div> */}
-              {/* <div className="scrollpanal_container"> */}
+
               <ScrollPanel className="scrollpanal_container">
                 <div className="selected__data__view mt-2">
-                  {texts?.map((item, index) => {
-                    return <div className="data__content">{item.value}</div>;
-                  })}
+                  {texts.map((selectedValue, index) => (
+                    <div key={index}>{selectedValue.value}</div>
+                  ))}
                 </div>
-
               </ScrollPanel>
 
             </div>
@@ -161,11 +155,12 @@ const SubAdd = () => {
 
               <ScrollPanel className="scrollpanal_container">
                 <div className="selected__data__view mt-2">
-                  {texts1.map((text, index) => (
-                    <div key={index}>{text.label}</div>
+                  {texts1.map((selectedValue, index) => (
+                    <div key={index}>{selectedValue.value}</div>
                   ))}
                 </div>
               </ScrollPanel>
+
 
             </div>
           </div>

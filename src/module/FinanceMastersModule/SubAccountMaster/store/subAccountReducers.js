@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
-import { getSubAccount, getSubAccountSearchList, getSubAccountView, patchSubAccountEdit, postSubAccount } from "./subAccountMiddleWare";
+import { getSubAccount, getSubAccountEdit, getSubAccountSearchList, getSubAccountView, patchSubAccountEdit, postSubAccount } from "./subAccountMiddleWare";
 const initialState = {
     loading: false,
     error: "",
@@ -22,6 +22,7 @@ const initialState = {
 
 
     ],
+    getSubDetailEdit: {}
 
 
 };
@@ -88,27 +89,58 @@ const subAccaountReducers = createSlice({
         );
 
 
-        // //subAccountEdit
 
-        // builder.addCase(patchSubAccountEdit.pending, (state) => {
-        //     state.loading = true;
-        // });
-        // builder.addCase(
-        //     patchSubAccountEdit, (state, action) => {
-        //         state.loading = false;
-        //         state.subAccountEdit = action.payload;
-        //     }
-        // );
-        // builder.addCase(
-        //     patchSubAccountEdit.rejected, (state, action) => {
-        //         state.loading = false;
+        builder.addCase(patchSubAccountEdit.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            patchSubAccountEdit.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                const updatedIndex = state.subAccountList.findIndex(
+                    (item) => item.id === action.payload.id
+                );
+                if (updatedIndex !== -1) {
+                    const updatedCurrencyList = [...state.subAccountList];
+                    updatedCurrencyList[updatedIndex] = action.payload;
+                    state.subAccountList = updatedCurrencyList;
+                    console.log(state.subAccountList, "state.subAccountList")
+                } else {
+                    state.subAccountList = [...state.subAccountList, action.payload];
+                }
+            }
+        );
 
-        //         state.subAccountEdit = {};
-        //         state.error = typeof action.payload === "string" ? action.payload : "";
-        //     }
-        // );
+        builder.addCase(
+            patchSubAccountEdit.rejected,
+            (state, action) => {
+                state.loading = false;
 
-        // //subAccountView
+                state.subAccountEdit = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
+        //getCurrecyDetailEdit
+        builder.addCase(getSubAccountEdit.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            getSubAccountEdit.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                state.getSubDetailEdit = action.payload;
+            }
+        );
+        builder.addCase(
+            getSubAccountEdit.rejected,
+            (state, action) => {
+                state.loading = false;
+
+                state.getSubDetailEdit = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
 
         builder.addCase(getSubAccountView.pending, (state) => {
             state.loading = true;

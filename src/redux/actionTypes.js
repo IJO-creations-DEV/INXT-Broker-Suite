@@ -183,6 +183,7 @@ export const GET_SUB_ACCOUNT_SEARCH_LIST =
 export const POST_SUB__ACCOUNT = "subaccount/POST_SUB__ACCOUNT";
 export const GET_SUB__ACCOUNT_VIEW = "subaccount/GET_SUB__ACCOUNT_VIEW";
 export const PATCH_SUB__ACCOUNT_EDIT = "subaccount/PATCH_SUB__ACCOUNT_EDIT";
+export const GET_PATCH_SUB_ACCOUNT_EDIT="subaccount/GET_PATCH_SUB_ACCOUNT_EDIT"
 
 export const GET_RECEIPT_DETAILS = "receipts/GET_RECEIPT_DETAILS";
 export const GET_RECEIPT_DETAILS_BY_ID = "receipts/GET_RECEIPT_DETAILS_BY_ID";

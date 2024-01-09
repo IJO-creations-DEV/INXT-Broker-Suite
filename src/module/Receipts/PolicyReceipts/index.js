@@ -16,6 +16,9 @@ import { Dropdown } from "primereact/dropdown";
 import SvgEye from "../../../assets/icons/SvgEye";
 import { TieredMenu } from 'primereact/tieredmenu';
 import { useSelector } from "react-redux";
+import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
+
+        
 
 const PolicyReceipts = () => {
   const [products, setProducts] = useState([]);
@@ -31,6 +34,16 @@ const PolicyReceipts = () => {
     },
    
   ];
+
+
+
+  const [searches, setSearch] = useState(null);
+  const search = [
+      { name: 'Name', code: 'NY' },
+      { name: 'Date', code: 'RM' },
+      { name: 'Transaction Number', code: 'LDN' },
+      { name: 'Receipts Number', code: 'LDN' }]
+
   const { receiptsTableList, loading,total } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
@@ -177,14 +190,14 @@ console.log(total,"find receiptsTableList")
           </div>
           
           <div class="col-12 md:col-3 lg:col-2">
-          <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" />
-            <Button 
-              label="Search by"
-              outlined
-              icon={<SvgFilters />}
-              className="sorbyfilter_container"
-              onClick={(e) => menu.current.toggle(e)}
-            />
+          {/* <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" /> */}
+
+          <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={searches} optionLabel="name" 
+                placeholder="Search by"  
+                className="sorbyfilter_container"
+                dropdownIcon={<SvgDropdownicon/>}
+                />
+
           </div>
         </div>
         <div className="listlable_textcontainer">

@@ -105,9 +105,9 @@ function Createvoucher() {
     if (!values.Criteria) {
       errors.Criteria = "This field is required";
     }
-    if (!values.CustomerCode) {
-      errors.CustomerCode = "This field is required";
-    }
+    // if (!values.CustomerCode) {
+    //   errors.CustomerCode = "This field is required";
+    // }
     if (!values.Transactioncode) {
       errors.Transactioncode = "This field is required";
     }
@@ -125,7 +125,7 @@ function Createvoucher() {
     validate: customValidation,
     onSubmit: handleSubmit,
   });
-
+console.log("first", formik.values.Criteria?.name)
   return (
     <div className="overall__createvoucher__container">
       <NavBar />
@@ -165,6 +165,7 @@ function Createvoucher() {
                 formik.setFieldValue("VoucherDate", e.target.value);
               }}
               dateFormat="yy-mm-dd"
+              disabled={true}
             />
           </div>
         </div>
@@ -254,21 +255,23 @@ function Createvoucher() {
 
         <div class="grid">
           <div class="col-3 md:col-3 lg-col-3">
-            <DropDowns
-              className="dropdown__container"
-              label="Customer Code"
-              value={formik.values.CustomerCode}
-              onChange={(e) => formik.setFieldValue("CustomerCode", e.value)}
-              options={CustomerCode}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-            {formik.touched.CustomerCode && formik.errors.CustomerCode && (
+           { formik.values.Criteria == "" || formik.values.Criteria?.name == "Specific"  ? 
+           <DropDowns
+           className="dropdown__container"
+           label="Customer Code"
+           value={formik.values.CustomerCode}
+           onChange={(e) => formik.setFieldValue("CustomerCode", e.value)}
+           options={CustomerCode}
+           optionLabel="name"
+           placeholder={"Select"}
+           dropdownIcon={<SvgDropdown color={"#000"} />}
+         /> : null
+           } 
+            {/* {formik.touched.CustomerCode && formik.errors.CustomerCode && (
               <div style={{ fontSize: 12, color: "red" }}>
                 {formik.errors.CustomerCode}
               </div>
-            )}
+            )} */}
           </div>
           <div class="col-3 md:col-3 lg-col-3">
             <DropDowns
@@ -355,11 +358,7 @@ function Createvoucher() {
       </Card>
 
       <div className="next_container">
-        <Button
-          className="history_button"
-          label="Go to history"
-          onClick={() => Navigate("/accounts/paymentvoucher")}
-        />
+        {/*  */}
         <Button
           className="submit_button p-0"
           label="Next"

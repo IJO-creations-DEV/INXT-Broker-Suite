@@ -170,7 +170,7 @@ function SpecificVoucher() {
         <span onClick={() => Navigate(-1)}>
           <SvgBackicon />
         </span>
-        <label className="label_header">Payment Voucher</label>
+        <label className="label_header">Create Voucher</label>
       </div>
       <BreadCrumb
         model={items}

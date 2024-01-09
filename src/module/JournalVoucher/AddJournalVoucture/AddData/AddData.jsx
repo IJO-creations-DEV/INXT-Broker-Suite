@@ -110,7 +110,16 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
   };
 
 
-
+  const headerStyle = {
+    // width: "19%",
+    // backgroundColor: 'red',
+    fontSize: 16,
+    fontFamily: "Inter var",
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border: "none",
+  };
 
 
   const formik = useFormik({
@@ -146,18 +155,21 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
       dismissableMask={true}
     >
       <div className="form__container">
-        <div className="grid m-0">
+        <div className="grid">
           <div className="col-12 md:col-3 lg:col-3 xl:col-3">
             <DropDowns
-              className="input__field__jv"
+              // className="input__field__jv"
               dropdownIcon={<SvgDropdown color={"#000"} />}
               placeholder="Select "
-              classNames="select__label__jv"
+              // classNames="select__label__jv"
+              className="input__field__jv"
+              classNames="input__label__jv"
               optionLabel="value"
               label="Main Account"
               value={formik.values.mainAccount}
               onChange={(e) => formik.setFieldValue("mainAccount", e.value)}
               options={codeOptionsMain}
+              
             />
             {formik.touched.mainAccount && formik.errors.mainAccount && (
               <div
@@ -179,6 +191,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
                   ? `Main Account Description ${formik.values.mainAccount}`
                   : ""
               }
+              
             />
           </div>
 
@@ -191,6 +204,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               optionLabel="value"
               label="Entry Type"
               value={formik.values.entryType}
+             
               onChange={(e) => formik.setFieldValue("entryType", e.value)}
               options={codeOptionsType}
             />
@@ -215,6 +229,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               classNames="select__label__jv"
               optionLabel="value"
               label="Sub Account"
+             
               value={formik.values.subAccount}
               onChange={(e) => formik.setFieldValue("subAccount", e.value)}
               options={codeOptionsSub}
@@ -235,6 +250,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               className="input__label__jv"
               label="Sub Account Description"
               disabled={true}
+             
               value={
                 formik.values.subAccount
                   ? `Sub Account Description ${formik.values.subAccount}`
@@ -254,6 +270,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               classNames="select__label__jv"
               optionLabel="value"
               label="Branch Code"
+             
               value={formik.values.branchCode}
               onChange={(e) => formik.setFieldValue("branchCode", e.value)}
               options={codeOptionsBranch}
@@ -274,6 +291,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               className="input__label__jv"
               label="Branch Code Description"
               disabled={true}
+              
               value={
                 formik.values.branchCode
                   ? `Branch Code Description ${formik.values.branchCode}`
@@ -303,6 +321,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               optionLabel="value"
               label="Department Code"
               value={formik.values.departmentCode}
+             
               onChange={(e) => formik.setFieldValue("departmentCode", e.value)}
               options={codeOptionsDept}
               placeholder="Select "
@@ -322,6 +341,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               className="input__label__jv"
               label="Department Description"
               disabled={true}
+             
               value={
                 formik.values.departmentCode
                   ? `Department Description ${formik.values.departmentCode}`
@@ -351,6 +371,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               optionLabel="value"
               label="Currency Code"
               value={formik.values.currencyCode}
+             
               onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
               options={codeCurrencyType}
               placeholder="Select "
@@ -370,6 +391,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               className="input__label__jv"
               label="Currency Description"
               disabled={true}
+           
               value={
                 formik.values.currencyCode
                   ? `Currency Description ${formik.values.currencyCode}`
@@ -392,6 +414,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               className="select__label__jv"
               label="Foreign Amount"
               value={formik.values.foreignAmount}
+             
               onChange={(e) =>
                 formik.setFieldValue("foreignAmount", e.target.value)
               }
@@ -413,7 +436,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
               // className="select__label__jv"
               // label="Remarks (Options)"
               value={formik.values.remarks}
-
+              
               onChange={(e) =>
                 formik.setFieldValue("remarks", e.target.value)
               }

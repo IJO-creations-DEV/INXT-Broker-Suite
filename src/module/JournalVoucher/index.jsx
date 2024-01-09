@@ -17,6 +17,8 @@ import DataTabelJV from './DataTabelJV';
 import { getJournalVoucherSearchList, journalVoucherMiddleware } from './store/journalVoucherMiddleware';
 import { useFormik } from 'formik';
 import { data } from './DetailsJournalVocture/data';
+import SvgDropdown from '../../assets/icons/SvgDropdown';
+import SvgDropdownicon from '../../assets/icons/SvgDropdownicon';
 
 const JournalVoucher = () => {
   const { journalVoucherList, journalVoucherSearchList, loading} = useSelector(({ journalVoucherMainReducers }) => {
@@ -30,7 +32,12 @@ const JournalVoucher = () => {
   });
   console.log(journalVoucherList, "journalVoucherList")
  
-
+  const [selectedCity, setSelectedCity] = useState(null);
+  const cities = [
+      { name: 'Name', code: 'NY' },
+      { name: 'Edit', code: 'RM' },
+      { name: 'Voucher Number', code: 'LDN' },
+  ];
 
   const [products, setProducts] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -143,19 +150,25 @@ const JournalVoucher = () => {
               </div>
             </form>
             <div className='col-12 md:col-2 lg:col-2'>
-              <div className='sort__filter__view__Journal__Voture' onClick={(e) => menu.current.toggle(e)}>
+              {/* <div className='sort__filter__view__Journal__Voture' onClick={(e) => menu.current.toggle(e)}>
                 <div className='sort__by__text__Journal__Voture'>Search By</div>
                 <div>
                   <SvgFilters />
                 </div>
-              </div>
+              </div> */}
+           <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
+                placeholder="Search by"  
+                className="sorbyfilter_container"
+                dropdownIcon={<SvgDropdownicon/>}
+                />
+
 
             </div>
           </div>
           <div className='col-12 '>
             <div className='main__tabel__title__Journal__Voture p-2'>Journal Voucher history</div>
           </div>
-          <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
+          <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%', maxHeight:'40vh'}}>
             <div className="card p-1">
               <DataTabelJV
                 handleEdit={handleEdit}

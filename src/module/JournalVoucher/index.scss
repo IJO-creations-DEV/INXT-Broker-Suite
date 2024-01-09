@@ -15,7 +15,7 @@
 
     .add__icon__title__Journal__Voture {
         color: #111927;
-        font-size: 28px;
+        font-size: 30px;
         font-weight: 600;
         font-family: Inter var;
         display: flex;
@@ -32,6 +32,29 @@
 
 
     }
+    .p-dropdown .p-dropdown-label.p-placeholder {
+        color: #6366F1;
+        text-align: center;
+        font-family: Inter var;
+font-size: 16px;
+
+font-weight: 500;
+    }
+    .sorbyfilter_container{
+        // flex-direction: row-reverse;
+        // gap:10px;
+        height: 46px;
+        border-color: #d1d5db;
+        // width: 85%;
+        // margin-left: 8px;
+        font-family: Inter var;
+    font-size: 16px;
+    // padding: 10px;
+    font-weight: 500;
+        width:100%;
+        color: #6366F1;
+        margin: 0px !important;
+    }
 
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
         color: #B1B1B1;
@@ -43,7 +66,7 @@
         font-family: Inter var;
         color: red !important;
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 400;
     }
 
     .empty-table-icon {
@@ -99,9 +122,9 @@
         color: #4b5563;
         box-shadow: none !important;
         border-radius: 6px !important;
-        fill: #fff !important;
-        stroke-width: 1px !important;
-        stroke: #fff !important;
+        // fill: #fff !important;
+        // stroke-width: 1px !important;
+        // stroke: #fff !important;
         filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
         .sort__filter__view__Journal__Voture {
             display: flex;
@@ -154,7 +177,7 @@
 
     .main__tabel__title__Journal__Voture {
         font-family: Inter var;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 600;
         line-height: 24px;
         letter-spacing: 0em;

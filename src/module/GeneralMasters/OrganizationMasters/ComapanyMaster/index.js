@@ -4,44 +4,34 @@ import { BreadCrumb } from "primereact/breadcrumb";
 import NavBar from "../../../../components/NavBar";
 import { useNavigate } from "react-router-dom";
 import SvgDot from "../../../../assets/icons/SvgDot";
-import SvgFilters from "../../../../assets/icons/SvgFilters";
 import SvgAdd from "../../../../assets/icons/SvgAdd";
 import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-import Productdata from "./mock";
-import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
-import { TieredMenu } from "primereact/tieredmenu";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
-import SvgDropdown from "../../../../assets/icons/SvgDropdown";
-import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
-import { useSelector } from "react-redux";
-import SvgEditicon from "../../../../assets/icons/SvgEdit";
-import SvgEdit from "../../../../assets/icons/SvgEdits";
+import { useDispatch, useSelector } from "react-redux";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditicons from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
+import { getCompanyViewMiddleWare } from "./store/companyMiddleware";
 
 const Index = () => {
-  const [products, setProducts] = useState([]);
-  const { paymentVocherList, loading } = useSelector(
-    ({ paymentVoucherReducers }) => {
+  const { companyTableList, loading } = useSelector(
+    ({ organizationCompanyMainReducers }) => {
       return {
-        loading: paymentVoucherReducers?.loading,
-        paymentVocherList: paymentVoucherReducers?.paymentVocherList,
-        // const [products, setProducts] = useState([]);
-
-        // const handleView=()=>{
-        //   navigate('/accounts/paymentvoucher/detailview')
-        // }
+        loading: organizationCompanyMainReducers?.loading,
+        companyTableList: organizationCompanyMainReducers?.companyTableList,
       };
     }
   );
-  const handleView = (id) => {
+  console.log(companyTableList, "companyTableList");
+  const dispatch = useDispatch()
+  const handleView = (columnData) => {
+    dispatch(getCompanyViewMiddleWare(columnData))
     navigate(
-      `/master/generals/organization/companymaster/addcompany/view/${id}`
+      `/master/generals/organization/companymaster/addcompany/view/${columnData.id}`
     );
   };
   const handleEdit = (id) => {
@@ -55,9 +45,9 @@ const Index = () => {
     );
   };
 
-  console.log("first", paymentVocherList);
+  console.log("first", companyTableList);
 
-  const isEmpty = paymentVocherList.length === 0;
+  const isEmpty = companyTableList.length === 0;
 
   const emptyTableIcon = (
     <div>
@@ -193,14 +183,7 @@ const Index = () => {
               />
             </span>
           </div>
-          {/* </div> */}
-          {/* <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button label="Search by" outlined icon={<SvgDropdownicon />}
-              className="sorbyfilter_container"
-              onClick={(e) => menu.current.toggle(e)}
-            />
-            </div> */}
+
         </div>
         <div className="headlist_lable">Company List</div>
 
@@ -208,12 +191,11 @@ const Index = () => {
 
         <div>
           <DataTable
-            value={paymentVocherList}
+            value={companyTableList}
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}
             rowsPerPageOptions={[5, 10, 25, 50]}
-            // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             scrollable={true}
@@ -221,39 +203,36 @@ const Index = () => {
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
             <Column
-              field="VoucherNumber"
+              field="CompanyCode"
               header="Company Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="TransactionNumber"
+              field="CompanyName"
               header="Company Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="CustomerCode"
+              field="LicenseNumber"
               header="License Number"
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="VoucheDate"
+              field="Country"
               header="Country"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="Amount"
+              field="EmailID"
               header="Email"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
-            {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
             <Column
               body={renderToggleButton}
               header="Status"
@@ -263,7 +242,7 @@ const Index = () => {
             <Column
               body={(columnData) => (
                 <div className="action_icons">
-                  <SvgIconeye onClick={() => handleView(columnData.id)} />
+                  <SvgIconeye onClick={() => handleView(columnData)} />
                   <SvgEditicons onClick={() => handleEdit(columnData.id)} />
                 </div>
               )}

@@ -119,7 +119,7 @@ const PettyCashReceiptsTable = () => {
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
-                placeholder="Search customers"
+                placeholder="Search by Petty cash Code"
                 className="searchinput_left"
               />
             </span>

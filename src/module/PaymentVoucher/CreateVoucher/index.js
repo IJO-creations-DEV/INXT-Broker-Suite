@@ -48,11 +48,11 @@ function Createvoucher() {
   ];
   const PayeeType = [
     { name: "Customer", code: "NY" },
-    { name: "owner", code: "RM" },
+    { name: "Owner", code: "RM" },
   ];
   const Criteria = [
     { name: "Specific", code: "NY" },
-    { name: "payall", code: "RM" },
+    { name: "Payall", code: "RM" },
   ];
   const CustomerCode = [
     { name: "CL001", code: "CL" },
@@ -66,9 +66,8 @@ function Createvoucher() {
     { name: "REMT", code: "RM" },
   ];
   const SelectInstrumentCurrency = [
-    { name: "700001234", code: "NY" },
-    { name: "700001235", code: "RM" },
-    { name: "700001236", code: "RM" },
+    { name: "INR", code: "NY" },
+    { name: "USD", code: "RM" },
   ];
 
   const home = { label: "Accounts" };

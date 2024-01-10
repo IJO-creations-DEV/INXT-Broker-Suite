@@ -15,14 +15,16 @@ import { useDispatch, useSelector } from "react-redux";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditicons from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
-import { getCompanyViewMiddleWare } from "./store/companyMiddleware";
+import { getCompanyViewMiddleWare, getSearchCompanyMiddleware } from "./store/companyMiddleware";
+import { useFormik } from "formik";
 
 const Index = () => {
-  const { companyTableList, loading } = useSelector(
+  const { companyTableList, loading, companySearchList } = useSelector(
     ({ organizationCompanyMainReducers }) => {
       return {
         loading: organizationCompanyMainReducers?.loading,
         companyTableList: organizationCompanyMainReducers?.companyTableList,
+        companySearchList: organizationCompanyMainReducers?.companySearchList
       };
     }
   );
@@ -133,7 +135,6 @@ const Index = () => {
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
   const [globalFilter, setGlobalFilter] = useState("");
-
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
@@ -142,6 +143,20 @@ const Index = () => {
   const onGlobalFilterChange = (event) => {
     setGlobalFilter(event.target.value);
   };
+
+  const handleSubmit = (values) => {
+    console.log(values.search, "getSearchCompanyMiddleware");
+    dispatch(getSearchCompanyMiddleware({ textSearch: values.search }));
+  }
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+      dispatch(getSearchCompanyMiddleware({ textSearch: formik.values.search }));
+    }
+  }, [formik.values.search]);
 
   return (
     <div className="overall__company__container">
@@ -180,6 +195,8 @@ const Index = () => {
               <InputText
                 placeholder="Search By company code/ Name"
                 className="searchinput_left"
+                value={formik.values.search}
+                onChange={formik.handleChange("search")}
               />
             </span>
           </div>
@@ -191,7 +208,7 @@ const Index = () => {
 
         <div>
           <DataTable
-            value={companyTableList}
+            value={formik.values.search !== "" ? companySearchList : companyTableList}
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}

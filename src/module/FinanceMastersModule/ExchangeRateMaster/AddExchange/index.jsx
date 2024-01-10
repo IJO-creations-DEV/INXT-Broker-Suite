@@ -245,15 +245,6 @@ function AddExchange() {
             <Calendar
               classNames="calender__container"
               showIcon
-
-              // EffectiveFrom: '23/01/2023',
-              // EffectiveTo: '25/01/2023',
-              // CurrencyCode: "C123",
-              // ToCurrencyCode: "TC123",
-              // ExchangeRate: "99",
-              // CurrencyDescription: "CurrencyDescription",
-              // ToCurrencyDescription: "ToCurrencyDescription"
-
               value={formik.values.EffectiveFrom}
               minDate={minDate}
               onChange={(e) => {
@@ -268,8 +259,6 @@ function AddExchange() {
             <Calendar
               classNames="calender__container"
               showIcon
-
-
               value={formik.values.EffectiveTo}
               minDate={minDate}
 

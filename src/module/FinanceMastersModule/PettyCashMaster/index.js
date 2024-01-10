@@ -74,6 +74,7 @@ const PettyCashMaster = ({ response }) => {
       loading: pettyCashMainReducers?.loading,
       pettyCashList: pettyCashMainReducers?.pettyCashList,
       pettyCashSearchList:pettyCashMainReducers?.pettyCashSearchList
+      
 
     };
   });

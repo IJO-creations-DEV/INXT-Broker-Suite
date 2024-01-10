@@ -39,6 +39,7 @@ const initialState = {
     },
 
   ],
+  branchTabelSearchList: [],
   organizationBranchView: {},
   departmentList: [
     {
@@ -56,7 +57,7 @@ const initialState = {
       Description: "test purpose",
     }
   ],
-  depatmentView:{}
+  depatmentView: {}
 };
 let nextId = 3
 let nextId2 = 3
@@ -93,20 +94,25 @@ const organizationBranchReducers = createSlice({
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
-
     builder.addCase(getSearchBranchMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getSearchBranchMiddleware.fulfilled, (state, action) => {
-      state.loading = false;
-      state.branchDetailList = action.payload;
-    });
-    builder.addCase(getSearchBranchMiddleware.rejected, (state, action) => {
-      state.loading = false;
+    builder.addCase(
+      getSearchBranchMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.branchTabelSearchList = action.payload;
+      }
+    );
+    builder.addCase(
+      getSearchBranchMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
 
-      state.branchDetailList = {};
-      state.error = typeof action.payload === "string" ? action.payload : "";
-    });
+        state.branchTabelSearchList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
 
 
 

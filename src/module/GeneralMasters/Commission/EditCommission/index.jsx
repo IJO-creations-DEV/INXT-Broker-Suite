@@ -26,13 +26,26 @@ import CustomToast from '../../../../components/Toast';
 import { SelectButton } from 'primereact/selectbutton';
 import data from './data';
 import SvgEditIcon from '../../../../assets/icons/SvgEditIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import { patchCommissionEdit } from '../store/commissionMiddleWare';
 
 const EditCommission = () => {
+    const { commissionList, loading, commissionSearchList, getCommissionEdit } = useSelector(({ commissionMianReducers }) => {
+        return {
+            loading: commissionMianReducers?.loading,
+            getCommissionEdit: commissionMianReducers?.getCommissionEdit
+
+        };
+    });
+    console.log(getCommissionEdit, "getCommissionEdit")
+
+
     const toastRef = useRef(null);
     const [visiblePopup, setVisiblePopup] = useState(false);
 
     const selectSwitchoptions = ["Yes", "No"];
-
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [selectSwitch, setselectSwitch] = useState(selectSwitchoptions[0]);
     const [date, setDate] = useState(new Date());
     const items = [
@@ -86,37 +99,76 @@ const EditCommission = () => {
         { label: "Option 1", value: "Trans00123" },
         { label: "Option 2", value: "Trans00124" },
     ];
-    const handleSubmit = (values) => {
-        toastRef.current.showToast();
-        setTimeout(() => {
-            navigate("/master/generals/Commission");
-        }, 2000);
+    const handleSubmit = (value) => {
+        console.log(value, "value")
+        dispatch(patchCommissionEdit(value));
+        navigate("/master/finance/mainaccount")
     };
-    const handleGoBack = () => {
-        navigate("/master/generals/Commission");
-    }
+    const setFormikValues = () => {
+        const updatedValues = {
+            id: getCommissionEdit?.id,
+            commissioncode: getCommissionEdit?.commissioncode,
+            product: getCommissionEdit?.product,
+            desc: getCommissionEdit?.desc,
+            selectCovers: getCommissionEdit?.selectCovers,
+            effectiveFrom: getCommissionEdit?.effectiveFrom,
+            effectiveTo: getCommissionEdit?.effectiveTo,
+            maxRate: getCommissionEdit?.maxRate
+        };
+        formik.setValues({ ...formik.values, ...updatedValues });
+    };
     const formik = useFormik({
         initialValues: {
             commissioncode: "",
             desc: "",
-            // pettycashname: "",
             product: "",
             selectCovers: "",
             maxRate: "",
             selectAgent: "",
             effectiveFrom: "",
             effectiveTo: ""
-
-
         },
         validate: customValidation,
-
         onSubmit: (values) => {
             handleSubmit(values);
             setStep(1);
         },
     });
-    const navigate = useNavigate()
+
+    console.log(formik.values.id, "idd");
+    useEffect(() => {
+        setFormikValues();
+    }, [getCommissionEdit]);
+    // const handleSubmit = (values) => {
+    //     toastRef.current.showToast();
+    //     setTimeout(() => {
+    //         navigate("/master/generals/Commission");
+    //     }, 2000);
+    // };
+    const handleGoBack = () => {
+        navigate("/master/generals/Commission");
+    }
+    // const formik = useFormik({
+    //     initialValues: {
+    //         commissioncode: "",
+    //         desc: "",
+    //         // pettycashname: "",
+    //         product: "",
+    //         selectCovers: "",
+    //         maxRate: "",
+    //         selectAgent: "",
+    //         effectiveFrom: "",
+    //         effectiveTo: ""
+
+
+    //     },
+    //     validate: customValidation,
+
+    //     onSubmit: (values) => {
+    //         handleSubmit(values);
+    //         setStep(1);
+    //     },
+    // });
     const handlePolicy = () => {
         setVisible(true)
     }
@@ -180,7 +232,7 @@ const EditCommission = () => {
     const renderEditButton = (rowData) => {
         return (
             <div className="centercontent" >
-               
+
                 <div onClick={handleEditNavigate}>
                     <SvgEditIcon />
                 </div>

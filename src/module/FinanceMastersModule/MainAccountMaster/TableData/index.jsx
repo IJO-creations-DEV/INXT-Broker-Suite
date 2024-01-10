@@ -13,7 +13,7 @@ import { InputSwitch } from "primereact/inputswitch";
 import { useLocation, useNavigate } from "react-router-dom";
 import ToggleButton from "../../../../components/ToggleButton";
 import { useDispatch } from "react-redux";
-import { getMainAccountDetailView } from "../store/mainAccountReducer";
+import { getMainAccountDetailView, getPatchMainAccountDetailEdit } from "../store/mainAccountReducer";
 
 const TableData = ({ MainAccountList }) => {
   const [products, setProducts] = useState([]);
@@ -65,6 +65,11 @@ const TableData = ({ MainAccountList }) => {
     navigate("/master/finance/mainaccount/viewmainaccount")
 
   }
+  const handleEdit = (rowData) => {
+    console.log(rowData, "rowDatarowData");
+    dispatch(getPatchMainAccountDetailEdit(rowData))
+    navigate("/master/finance/mainaccount/editmainaccount");
+  }
   const renderActionButton = (rowData) => {
     return (
       <div className="action__button__container">
@@ -75,7 +80,7 @@ const TableData = ({ MainAccountList }) => {
         />
         <Button
           icon={<SvgEdit />}
-          onClick={() => handleAction(rowData.id, "Edit")}
+          onClick={() => handleEdit(rowData, "Edit")}
           className="action__button p-0 w-auto"
         />
       </div>

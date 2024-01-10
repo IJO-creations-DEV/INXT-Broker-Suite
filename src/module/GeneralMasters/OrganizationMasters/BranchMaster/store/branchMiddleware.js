@@ -105,15 +105,29 @@ export const patchBranchEditMiddleware = createAsyncThunk(
     }
   }
 );
+
 export const getSearchBranchMiddleware = createAsyncThunk(
   GET_SERACH_BRANCH,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, getState }) => {
+    const { textSearch } = payload;
+    const { organizationBranchMainReducers } = getState();
+
+    const { branchTableList } = organizationBranchMainReducers;
+    console.log(branchTableList, "1234")
+
     try {
-      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      if (textSearch.trim() !== "") {
+        const searchResults = branchTableList.filter(item => {
+          return item.BranchName.toLowerCase().includes(textSearch.toLowerCase());
+        });
+        console.log(searchResults, "searchResults")
+        return searchResults;
+      } else {
+        return branchTableList;
+      }
     } catch (error) {
-      return rejectWithValue(error?.response.data.error.message);
+      return rejectWithValue(error?.response?.data?.error?.message);
     }
-  }
+  },
 );
 

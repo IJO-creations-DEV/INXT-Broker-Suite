@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import { getRequest } from "../../../utility/commonServices";
 // import { APIROUTES } from "../../../routes/apiRoutes";
-import { GET_COMMISSION, GET_COMMISSION_BY_ID, GET_COMMISSION_SEARCH_LIST, GET_COMMISSION_SHARING, GET_COMMISSION_VIEW, PATCH_COMMISSION_EDIT, POST_ADD_SHARINGRATE_COMMISSION, POST_COMMISSION } from "../../../../redux/actionTypes";
+import { GET_COMMISSION, GET_COMMISSION_BY_ID, GET_COMMISSION_SEARCH_LIST, GET_COMMISSION_SHARING, GET_COMMISSION_VIEW, GET_PATCH_COMMISSION_EDIT, PATCH_COMMISSION_EDIT, POST_ADD_SHARINGRATE_COMMISSION, POST_COMMISSION } from "../../../../redux/actionTypes";
 
 
 
@@ -52,9 +52,7 @@ export const postAddCommission = createAsyncThunk(
         console.log(payload, "payload");
 
         let bodyTableData = {
-            // reversalJVTransactionCode: payload?.reversalJVTransactionCode,
-            // transactionNumber: payload?.transactionNumber,
-            // transactionCode: payload?.transactionCode,
+            id: payload?.id,
             commissionCode: payload?.commissionCode,
             product: payload?.product,
             selectCover: payload?.product,
@@ -97,17 +95,7 @@ export const getCommissionSearchList = createAsyncThunk(
         }
     },
 );
-// export const getCommissionSearchList = createAsyncThunk(
-//     GET_COMMISSION_SEARCH_LIST,
-//     async (payload, { rejectWithValue }) => {
-//         try {
-//             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-//             return payload;
-//         } catch (error) {
-//             return rejectWithValue(error?.response.data.error.message);
-//         }
-//     },
-// )
+
 
 export const getCommissionView = createAsyncThunk(
     GET_COMMISSION_VIEW,
@@ -122,6 +110,28 @@ export const getCommissionView = createAsyncThunk(
 )
 export const patchCommissionEdit = createAsyncThunk(
     PATCH_COMMISSION_EDIT,
+    async (payload, { rejectWithValue }) => {
+        const data = {
+            id: payload?.id,
+            commissioncode: payload?.commissioncode,
+            product: payload?.product,
+            desc: payload?.desc,
+            selectCovers: payload?.selectCovers,
+            effectiveFrom: payload?.effectiveFrom,
+            effectiveTo: payload?.effectiveTo,
+            maxRate: payload?.maxRate
+        }
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+)
+
+export const getPatchCommissionEditMiddleware = createAsyncThunk(
+    GET_PATCH_COMMISSION_EDIT,
     async (payload, { rejectWithValue }) => {
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);

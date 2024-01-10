@@ -899,8 +899,8 @@ const Maincomponent = () => {
             />
             <Route path="master/generals/commission" element={<Commission />} />
             <Route path="master/generals/commission/addcommission" element={<AddCommission />} />
-            <Route path="master/generals/commission/editcommission/id:" element={<EditCommission />} />
-            <Route path="/master/generals/commission/viewcommission/id:" element={<ViewCommission />} />
+            <Route path="master/generals/commission/editcommission" element={<EditCommission />} />
+            <Route path="/master/generals/commission/viewcommission" element={<ViewCommission />} />
           </Route>
         </Routes>
       </div>

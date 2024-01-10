@@ -11,9 +11,12 @@ import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
+import { useDispatch } from "react-redux";
+import  { getPatchCommissionEditMiddleware } from "../store/commissionMiddleWare"
 
-const CommissionTabel = ({ handleEdit, newDataTable, commissionList }) => {
+const CommissionTabel = ({ handleEdit, newDataTable, commissionList,getCommissionEdit }) => {
     console.log(commissionList, "commissionList")
+    const dispatch=useDispatch()
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -24,7 +27,9 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList }) => {
         navigate(`/master/generals/commission/viewcommission/${columnData.id}`)
     }
     const handleEditNavigate = (columnData) => {
-        // navigate(`/master/generals/commission/editcommission/${columnData.id}`)
+        console.log(columnData,"columnData")
+        dispatch(getPatchCommissionEditMiddleware(columnData))
+        navigate(`/master/generals/commission/editcommission`)
     }
     // console.log(newDataTable, "find newDataTable");
     // let newProduct;

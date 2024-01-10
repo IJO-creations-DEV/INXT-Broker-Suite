@@ -12,11 +12,17 @@ import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 import { useDispatch, useSelector } from "react-redux";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import SvgEditicon from "../../../../assets/icons/SvgEdit";
-import { getPettyCashView } from "../store/pettyCashMasterMiddleWare";
+import { getPatchPettyCashEdit, getPettyCashView } from "../store/pettyCashMasterMiddleWare";
 const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
-    // console.log(addPettyCash.data,"addPettyCash")
 
-    console.log(pettyCashList.pettycashcode, "pettyCashList");
+    const { getPettyCashEdit, loading } = useSelector(({ pettyCashMainReducers }) => {
+        return {
+            loading: pettyCashMainReducers?.loading,
+            getPettyCashEdit: pettyCashMainReducers?.getPettyCashEdit
+
+        };
+    });
+    console.log(getPettyCashEdit, "getPettyCashEdit");
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -50,25 +56,25 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
     const template2 = {
         layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
         RowsPerPageDropdown: (options) => {
-          const dropdownOptions = [
-            { label: 5, value: 5 },
-            { label: 10, value: 10 },
-            { label: 20, value: 20 },
-            { label: 120, value: 120 }
-          ];
-    
-          return (
-            <React.Fragment >
-              <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-                Row count :{' '}
-              </span>
-              <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
-            </React.Fragment>
-          );
+            const dropdownOptions = [
+                { label: 5, value: 5 },
+                { label: 10, value: 10 },
+                { label: 20, value: 20 },
+                { label: 120, value: 120 }
+            ];
+
+            return (
+                <React.Fragment >
+                    <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+                        Row count :{' '}
+                    </span>
+                    <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+                </React.Fragment>
+            );
         },
-    
-      };
-const dispatch=useDispatch()
+
+    };
+    const dispatch = useDispatch()
     const handleView = (columnData) => {
         console.log(columnData.id, "columnData")
         dispatch(getPettyCashView(columnData))
@@ -76,6 +82,8 @@ const dispatch=useDispatch()
 
     }
     const handleEdit = (columnData) => {
+        console.log(columnData,"columnData");
+        dispatch(getPatchPettyCashEdit(columnData))
         // alert(columnData.id, "hiii")
         navigate(`/master/finance/pettycash/editpettycash/${columnData.id}`)
     }

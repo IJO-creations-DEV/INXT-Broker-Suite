@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import {  GET_MAIN_ACCOUNT_LIST,GET_MAIN_ACCOUNT_SEARCH_LIST, POST_MAIN_ACCOUNT_STATUS ,GET_MAIN_ACCOUNT_DETAIL_VIEW, GET_ADD_MAIN_ACCOUNT,PATCH_MAIN_ACCOUNT_DETAIL_EDIT } from "../../../../redux/actionTypes";
+import { GET_MAIN_ACCOUNT_LIST, GET_MAIN_ACCOUNT_SEARCH_LIST, POST_MAIN_ACCOUNT_STATUS, GET_MAIN_ACCOUNT_DETAIL_VIEW, GET_ADD_MAIN_ACCOUNT, PATCH_MAIN_ACCOUNT_DETAIL_EDIT, GET_PATCH_MAIN_ACCOUNT_DETAIL_EDIT } from "../../../../redux/actionTypes";
 
 
 export const getMainAccountList = createAsyncThunk(
@@ -54,10 +54,10 @@ export const getAddMainAccount = createAsyncThunk(
     },
 );
 
-
-export const patchMainAccountDetailEdit = createAsyncThunk(
-    PATCH_MAIN_ACCOUNT_DETAIL_EDIT,
+export const getPatchMainAccountDetailEdit = createAsyncThunk(
+    GET_PATCH_MAIN_ACCOUNT_DETAIL_EDIT,
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
         try {
             // const { data } = await patchRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
@@ -66,6 +66,29 @@ export const patchMainAccountDetailEdit = createAsyncThunk(
         }
     },
 );
+export const patchMainAccountDetailEdit = createAsyncThunk(
+    PATCH_MAIN_ACCOUNT_DETAIL_EDIT,
+    async (payload, { rejectWithValue }) => {
+        const data = {
+            id: payload?.id,
+            mainAccountCode: payload?.mainAccountCode,
+            mainaccountname: payload?.mainaccountname,
+            description: payload?.description,
+            accountcategorycode: payload?.accountcategorycode,
+            accounttype: payload?.accounttype,
+            companyCode: payload?.companyCode,
+            currencyCode: payload?.currencyCode,
+            openentrytype: payload?.openentrytype
+        }
+        try {
+            return data;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+
+
 
 
 export const getMainAccountDetailView = createAsyncThunk(

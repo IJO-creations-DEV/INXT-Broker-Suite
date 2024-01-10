@@ -1,6 +1,6 @@
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_TAXATION, GET_TAXATION_BY_ID, GET_TAXATION_SEARCH_LIST, GET_TAXATION_VIEW, PATCH_TAXATION_EDIT, POST_TAXATION } from "../../../../redux/actionTypes";
+import { GET_PATCH_TAXATION_EDIT, GET_TAXATION, GET_TAXATION_BY_ID, GET_TAXATION_SEARCH_LIST, GET_TAXATION_VIEW, PATCH_TAXATION_EDIT, POST_TAXATION } from "../../../../redux/actionTypes";
 
 export const getTaxationData = createAsyncThunk(
     GET_TAXATION_BY_ID,
@@ -21,20 +21,32 @@ export const getTaxationData = createAsyncThunk(
 
 
 export const postAddTaxationMiddileware = createAsyncThunk(
+
     POST_TAXATION,
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
         let bodyTableData = {
-            id: 8,
-            taxationCode: `Tax${8}`,
-            taxationName: payload?.taxationName?.name,
-            taxationRate:payload?.taxationRate?.name,
-            effectiveFrom: payload?.effectiveFrom?.name,
-            effectiveTo: payload?.effectiveTo?.name,
-           
+            id: payload?.id,
+            taxCode: payload?.taxCode,
+            taxName: payload?.taxName,
+            taxRate: payload?.taxRate,
+            basis: payload?.basis,
+            remarks: payload?.remarks,
+            taxationDescription: payload?.taxationDescription,
+            effectiveFrom: payload?.effectiveFrom.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+            effectiveTo: payload?.effectiveTo.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
             status: "500.00",
             action: 8,
-          };
-          console.log(payload?.taxationName?.name,"find tax")
+        };
+
         try {
             console.log(bodyTableData, "find middleware taxation");
 
@@ -62,6 +74,7 @@ export const getTaxationView = createAsyncThunk(
     GET_TAXATION_VIEW,
 
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
@@ -72,6 +85,36 @@ export const getTaxationView = createAsyncThunk(
 export const patchTaxationEdit = createAsyncThunk(
     PATCH_TAXATION_EDIT,
     async (payload, { rejectWithValue }) => {
+        const data = {
+            id: payload?.id,
+            taxCode: payload?.taxCode,
+            taxName: payload?.taxName,
+            taxRate: payload?.taxRate,
+            basis: payload?.basis,
+            remarks: payload?.remarks,
+            taxationDescription: payload?.taxationDescription,
+            effectiveFrom: payload?.effectiveFrom.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+            effectiveTo: payload?.effectiveTo.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+        }
+        try {
+
+            return data;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },)
+export const getpatchTaxationEdit = createAsyncThunk(
+    GET_PATCH_TAXATION_EDIT,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;

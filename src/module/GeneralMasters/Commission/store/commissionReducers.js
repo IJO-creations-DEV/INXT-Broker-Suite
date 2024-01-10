@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCommission, getCommissionSearchList, getCommissionView, getLevelCommissionSharing, patchCommissionEdit, postAddCommission, postAddLevelShareRatingCommission } from "./commissionMiddleWare";
+import { getCommission, getCommissionSearchList, getCommissionView, getLevelCommissionSharing, getPatchCommissionEdit, getPatchCommissionEditMiddleware, patchCommissionEdit, postAddCommission, postAddLevelShareRatingCommission } from "./commissionMiddleWare";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
     loading: false,
@@ -8,6 +8,7 @@ const initialState = {
     commissionSearchList: [],
     commissionView: {},
     CommissionEdit: {},
+    getCommissionEdit: {},
     commissionList: [
         {
             id: 1,
@@ -42,7 +43,7 @@ const initialState = {
 
 };
 let nextId = 2
-let nextIdd=3
+let nextIdd = 3
 const commissionReducers = createSlice({
     name: "commission",
     initialState,
@@ -138,25 +139,56 @@ const commissionReducers = createSlice({
 
         //CommissionDetail
 
-        // builder.addCase(patchCommissionEdit.pending, (state) => {
-        //     state.loading = true;
-        // });
-        // builder.addCase(
-        //     patchCommissionEdit,
-        //     (state, action) => {
-        //         state.loading = false;
-        //         state.CommissionEdit = action.payload;
-        //     }
-        // );
-        // builder.addCase(
-        //     patchCommissionEdit.rejected,
-        //     (state, action) => {
-        //         state.loading = false;
+        builder.addCase(getPatchCommissionEditMiddleware.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            getPatchCommissionEditMiddleware.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                state.getCommissionEdit = action.payload;
+            }
+        );
+        builder.addCase(
+            getPatchCommissionEditMiddleware.rejected,
+            (state, action) => {
+                state.loading = false;
 
-        //         state.CommissionEdit = {};
-        //         state.error = typeof action.payload === "string" ? action.payload : "";
-        //     }
-        // );
+                state.getCommissionEdit = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
+        builder.addCase(patchCommissionEdit.pending, (state) => {
+            state.loading = true;
+        });
+
+        builder.addCase(
+            patchCommissionEdit.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                const updatedIndex = state.commissionList.findIndex(
+                    (item) => item.id === action.payload.id
+                );
+                if (updatedIndex !== -1) {
+                    const updatedCurrencyList = [...state.commissionList];
+                    updatedCurrencyList[updatedIndex] = action.payload;
+                    state.commissionList = updatedCurrencyList;
+                } else {
+                    state.commissionList = [...state.commissionList, action.payload];
+                }
+            }
+        );
+        builder.addCase(
+            patchCommissionEdit.rejected,
+            (state, action) => {
+                state.loading = false;
+                state.CommissionEdit = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+
+            }
+        );
+
 
         //getCommissionView
 

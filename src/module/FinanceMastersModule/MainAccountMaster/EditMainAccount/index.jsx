@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import NavBar from "../../../../components/NavBar";
 import { BreadCrumb } from "primereact/breadcrumb";
@@ -13,8 +13,21 @@ import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
 import { useNavigate } from "react-router-dom";
 import SvgBackicon from "../../../../assets/icons/SvgBackicon";
+import { useDispatch, useSelector } from "react-redux";
+import { patchMainAccountDetailEdit } from "../store/mainAccountReducer";
 
 const EditMainAccount = () => {
+  const initialValues = {
+    mainAccountCode: "",
+    mainaccountname: "",
+    description: "",
+    accountcategorycode: "",
+    accounttype: "",
+    companyCode: [],
+    currencyCode: [],
+    openEntryType: "",
+  }
+  const dispatch = useDispatch()
   const navigation = useNavigate();
   const items = [
     {
@@ -26,6 +39,47 @@ const EditMainAccount = () => {
       url: "/master/finance/mainaccount/editmainaccount",
     },
   ];
+
+
+  const { getMainAccountDetailEdit, loading } = useSelector(
+    ({ mainAccoutMiddleware }) => {
+      return {
+        loading: mainAccoutMiddleware?.loading,
+        getMainAccountDetailEdit: mainAccoutMiddleware?.getMainAccountDetailEdit,
+      };
+    }
+  );
+  console.log(getMainAccountDetailEdit, "getMainAccountDetailEdit")
+  const handleSubmit = (value) => {
+    console.log(value, "value")
+    dispatch(patchMainAccountDetailEdit(value));
+    navigation("/master/finance/mainaccount")
+  };
+  const setFormikValues = () => {
+    const updatedValues = {
+      id: getMainAccountDetailEdit?.id,
+      mainAccountCode: getMainAccountDetailEdit?.mainAccountCode,
+      mainaccountname: getMainAccountDetailEdit?.mainaccountname,
+      description: getMainAccountDetailEdit?.description,
+      accountcategorycode: getMainAccountDetailEdit?.accountcategorycode,
+      accounttype: getMainAccountDetailEdit?.accounttype,
+      companyCode: getMainAccountDetailEdit?.companyCode,
+      currencyCode: getMainAccountDetailEdit?.currencyCode,
+      openentrytype: getMainAccountDetailEdit?.openentrytype
+    };
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
+  });
+
+  console.log(formik.values.id, "idd");
+  useEffect(() => {
+    setFormikValues();
+  }, [getMainAccountDetailEdit]);
   const selectSwitchoptions = ["Yes", "No"];
   const [selectSwitch, setselectSwitch] = useState(selectSwitchoptions[0]);
   const EntrySwitchoptions = ["Yes", "No"];
@@ -57,30 +111,30 @@ const EditMainAccount = () => {
     const errors = {};
     return errors;
   };
-  const handleSubmit = (values) => {
-    // Handle form submission
-    navigation("/master/finance/mainaccount", {
-      state: { tableView: true },
-    });
-    console.log(values, "find values");
-  };
-  const formik = useFormik({
-    initialValues: {
-      mainaccountode: "",
-      mainaccountname: "",
-      description: "",
-      accountcategorycode: "",
-      accounttype: "",
-      companyCode: [],
-      currencyCode: [],
-      openentrytype: "",
-    },
-    validate: customValidation,
-    onSubmit: (values) => {
-      handleSubmit(values);
-      formik.resetForm();
-    },
-  });
+  // const handleSubmit = (values) => {
+  //   // Handle form submission
+  //   navigation("/master/finance/mainaccount", {
+  //     state: { tableView: true },
+  //   });
+  //   console.log(values, "find values");
+  // };
+  // const formik = useFormik({
+  //   initialValues: {
+  //     mainaccountode: "",
+  //     mainaccountname: "",
+  //     description: "",
+  //     accountcategorycode: "",
+  //     accounttype: "",
+  //     companyCode: [],
+  //     currencyCode: [],
+  //     openentrytype: "",
+  //   },
+  //   validate: customValidation,
+  //   onSubmit: (values) => {
+  //     handleSubmit(values);
+  //     formik.resetForm();
+  //   },
+  // });
   return (
     <div className="add__main__container">
       <div className="grid m-0 top-container">
@@ -89,10 +143,10 @@ const EditMainAccount = () => {
         </div >
         <div className="col-12 p-0">
           <div className="svgback_container">
-        <span onClick={() => navigation(-1)}>
-            <SvgBackicon/>
+            <span onClick={() => navigation(-1)}>
+              <SvgBackicon />
             </span>
-          <div className="main__account__title">Edit Main Account</div>
+            <div className="main__account__title">Edit Main Account</div>
           </div>
         </div>
         <div className="col-12 p-0">
@@ -271,7 +325,7 @@ const EditMainAccount = () => {
               label="Company Code"
               classNames="input__label__corrections"
             />
-            <MultiSelect
+            {/* <MultiSelect
               className="input__field__corrections mt-2"
               value={formik.values.companyCode}
               onChange={(e) => formik.setFieldValue("companyCode", e.value)}
@@ -279,8 +333,8 @@ const EditMainAccount = () => {
               optionLabel="value"
               display="chip"
               placeholder="Select"
-              dropdownIcon={<SvgDropdown/>}
-            />
+              dropdownIcon={<SvgDropdown />}
+            /> */}
             {formik.touched.companyCode && formik.errors.companyCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
@@ -300,7 +354,7 @@ const EditMainAccount = () => {
                     : "input__label__corrections"
                 }
               />
-              <MultiSelect
+              {/* <MultiSelect
                 disabled={entrySwitch === "No" ? true : false}
                 className="input__field__corrections mt-2"
                 value={formik.values.currencyCode}
@@ -309,8 +363,8 @@ const EditMainAccount = () => {
                 optionLabel="value"
                 display="chip"
                 placeholder="Select"
-                dropdownIcon={<SvgDropdown/>}
-              />
+                dropdownIcon={<SvgDropdown />}
+              /> */}
             </div>
           )}
         </div>

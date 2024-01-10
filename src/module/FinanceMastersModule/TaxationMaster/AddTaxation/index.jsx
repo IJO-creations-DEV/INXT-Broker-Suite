@@ -27,7 +27,7 @@ const AddTaxation = () => {
   ];
   const home = { label: "Master" };
 
-  const item = [{ name: "30%" }, { name: "40%" }, { name: "70%" }];
+  const item = [{ label: "30%", value: "30%" }, { label: "40%", value: "40%" }, { label: "70%", value: "70%" }];
   const initialValue = {
     taxCode: "",
     taxName: "",
@@ -64,38 +64,28 @@ const AddTaxation = () => {
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-  // const handleSubmit = () => {
-  //   const formErrors = validate(formik.values);
-  //   setErrors(formErrors);
-  //   console.log(formErrors, "iiiii");
 
-  //   toastRef.current.showToast();
-  //   setTimeout(()=>{
-  //     navigate('/master/finance/taxation')
-  //   },2000)
-  // };
 
-  
-  
-    const handleSubmit = (values) => {
-      const formErrors = validate(formik.values);
-      setErrors(formErrors);
-      console.log(formErrors, "iiiii");
-    
-      const valueWithId = {
-        ...values,
-        id: addTaxationList?.length + 1,
-      };
-      console.log(valueWithId,'find valueWithId')
-    
-      dispatch(postAddTaxationMiddileware(valueWithId));
-      navigate("/master/finance/taxation");
-  
-    };
-   
- 
 
-  
+  const handleSubmit = (values) => {
+    // const formErrors = validate(formik.values);
+    // setErrors(formErrors);
+    // console.log(formErrors, "iiiii");
+
+    // const valueWithId = {
+    //   ...values,
+    //   id: addTaxationList?.length + 1,
+    // };
+    // console.log(valueWithId, 'find valueWithId')
+
+    dispatch(postAddTaxationMiddileware(formik.values));
+    navigate("/master/finance/taxation");
+
+  };
+
+
+
+
 
   const formik = useFormik({
     initialValues: initialValue,
@@ -108,8 +98,8 @@ const AddTaxation = () => {
         <NavBar />
       </div>
       <div>
-        <span onClick={()=>navigate(-1)}>
-        <SvgBack />
+        <span onClick={() => navigate(-1)}>
+          <SvgBack />
         </span>
         <label className="label_header">Add Taxation</label>
       </div>
@@ -155,6 +145,8 @@ const AddTaxation = () => {
               className="dropdown__add__sub"
               label="Tax Rate"
               classNames="label__sub__add"
+              optionLabel="label"
+
               placeholder={"Select"}
               options={item}
               dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -203,12 +195,19 @@ const AddTaxation = () => {
               <Calendar
                 classNames="calender__container"
                 showIcon
+                // value={formik.values.effectiveFrom}
+                // minDate={minDate}
+                // onChange={(e) => {
+                //   formik.setFieldValue("effectiveFrom", e.target.value);
+                // }}
+                // dateFormat="yy-mm-dd"
                 value={formik.values.effectiveFrom}
                 minDate={minDate}
                 onChange={(e) => {
                   formik.setFieldValue("effectiveFrom", e.target.value);
                 }}
                 dateFormat="yy-mm-dd"
+
                 error={formik.errors.effectiveFrom}
               />
             </div>
@@ -222,6 +221,12 @@ const AddTaxation = () => {
               <Calendar
                 classNames="calender__container"
                 showIcon
+                // value={formik.values.effectiveTo}
+                // minDate={minDate}
+                // onChange={(e) => {
+                //   formik.setFieldValue("effectiveTo", e.target.value);
+                // }}
+                // dateFormat="yy-mm-dd"
                 value={formik.values.effectiveTo}
                 minDate={minDate}
                 onChange={(e) => {

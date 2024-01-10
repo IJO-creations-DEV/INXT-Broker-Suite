@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_EXCHANGE_LIST, GET_EXCHANGE_SEARCH_LIST, POST_EXCHANGE_STATUS, GET_EXCHANGE_DETAIL_VIEW, GET_ADD_EXCHANGE, PATCH_EXCHANGE_DETAIL_EDIT } from "../../../../redux/actionTypes";
+import { GET_EXCHANGE_LIST, GET_EXCHANGE_SEARCH_LIST, POST_EXCHANGE_STATUS, GET_EXCHANGE_DETAIL_VIEW, GET_ADD_EXCHANGE, PATCH_EXCHANGE_DETAIL_EDIT, GET_EXCHANGE_EDIT } from "../../../../redux/actionTypes";
 
 
 export const getExchangeList = createAsyncThunk(
@@ -52,7 +52,7 @@ export const postExchangeStatus = createAsyncThunk(
                 day: "2-digit",
                 year: "numeric",
             }),
-            EffectiveTo:payload?.EffectiveTo.toLocaleDateString("en-US", {
+            EffectiveTo: payload?.EffectiveTo.toLocaleDateString("en-US", {
                 month: "numeric",
                 day: "2-digit",
                 year: "numeric",
@@ -87,11 +87,35 @@ export const getAddExchange = createAsyncThunk(
 );
 
 
+
 export const patchExchangeDetailEdit = createAsyncThunk(
     PATCH_EXCHANGE_DETAIL_EDIT,
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "patchExchangeDetailEdit")
+        const Tabledata = {
+            id: payload?.id,
+            EffectiveFrom: payload?.EffectiveFrom,
+            EffectiveTo: payload?.EffectiveTo,
+            CurrencyCode: payload?.CurrencyCode,
+            ToCurrencyCode: payload?.ToCurrencyCode,
+            ExchangeRate: payload?.ExchangeRate,
+            CurrencyDescription: payload?.CurrencyDescription,
+            ToCurrencyDescription: payload?.ToCurrencyDescription,
+        }
         try {
-            // const { data } = await patchRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+
+            return Tabledata;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+export const getExchangeDetailEdit = createAsyncThunk(
+    GET_EXCHANGE_EDIT,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload");
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);

@@ -8,6 +8,7 @@ import {
   POST_ADD_RECEIPTS,
   POST_PAYMENT_DETAILS,
   PATCH_RECEIPT_EDIT,
+  GET_RECEIPT_SEARCH,
 } from "../../../redux/actionTypes";
 
 export const getReceiptsListMiddleware = createAsyncThunk(
@@ -16,6 +17,30 @@ export const getReceiptsListMiddleware = createAsyncThunk(
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const getReceiptsListBySearchMiddleware = createAsyncThunk(
+  GET_RECEIPT_SEARCH,
+  async ({ field, value }, { rejectWithValue, getState }) => {
+    const { receiptsTableReducers } = getState();
+    const { receiptsTableList } = receiptsTableReducers;
+    console.log(receiptsTableList, field, value, "dta");
+    function filterReceiptsByField(receipts, field, value) {
+      const lowercasedValue = value.toLowerCase();
+      return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
+      }
+
+    // Example usage:
+
+    // const filteredData = receiptsTableList.filter((item) => item.id === 1);
+    try {
+      const filteredReceipts = filterReceiptsByField(receiptsTableList, field, value);
+
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return filteredReceipts;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -55,7 +80,7 @@ export const getReceiptsReceivableMiddleware = createAsyncThunk(
 export const postAddReceiptsMiddleware = createAsyncThunk(
   POST_ADD_RECEIPTS,
   async (payload, { rejectWithValue, getState }) => {
-   
+
     let bodyTableData = {
       id: 8,
       receiptNumber: `Rep${8}`,

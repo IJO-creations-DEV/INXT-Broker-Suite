@@ -15,8 +15,9 @@ import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import SvgEye from "../../../assets/icons/SvgEye";
 import { TieredMenu } from 'primereact/tieredmenu';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
+import { getReceiptsListBySearchMiddleware } from "../store/receiptsMiddleware";
 
 
 
@@ -37,27 +38,24 @@ const PolicyReceipts = () => {
 
 
 
-  const [searches, setSearch] = useState(null);
   const search = [
-    { name: 'Name', code: 'NY' },
-    { name: 'Date', code: 'RM' },
-    { name: 'Transaction Number', code: 'LDN' },
-    { name: 'Receipts Number', code: 'LDN' }]
+    { name: 'Name', value: 'name' },
+    { name: 'Customer Code', value: 'customerCode' },
+    { name: 'Transaction Number', value: 'transactionNumber' },
+    { name: 'Transaction Code', value: 'transactionCode' }]
 
-  const { receiptsTableList, loading, total } = useSelector(({ receiptsTableReducers }) => {
+  const { receiptsTableList, loading, total, receiptsSearchTable } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptsTableList: receiptsTableReducers?.receiptsTableList,
-      total: receiptsTableReducers
+      total: receiptsTableReducers,
+      receiptsSearchTable: receiptsTableReducers?.receiptsSearchTable
 
     };
   });
 
-  
+
   console.log(receiptsTableList, "receiptsTableListreceiptsTableList")
-  useEffect(() => {
-    console.log(total, "sd")
-  }, [total])
   console.log(total, "find receiptsTableList")
   const template2 = {
     layout:
@@ -140,15 +138,28 @@ const PolicyReceipts = () => {
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
   const [globalFilter, setGlobalFilter] = useState("");
+  const dispatch = useDispatch();
+  const [searches, setSearch] = useState("");
+
+  useEffect(() => {
+    console.log(globalFilter, "as")
+    if (searches?.length > 0) {
+      dispatch(getReceiptsListBySearchMiddleware({
+        field: globalFilter,
+        value: searches
+      }))
+
+    }
+  }, [searches])
 
   const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
   };
 
-  const onGlobalFilterChange = (event) => {
-    setGlobalFilter(event.target.value);
-  };
+  // const onGlobalFilterChange = (event) => {
+  //   setGlobalFilter(event.target.value);
+  // };
 
   const handlePolicy = () => {
     navigate("/accounts/receipts/addreceipts");
@@ -188,6 +199,7 @@ const PolicyReceipts = () => {
               <InputText
                 placeholder="Search by Customer Code"
                 className="searchinput_left"
+                onChange={(e) => setSearch(e.target.value)}
               />
             </span>
           </div>
@@ -195,7 +207,7 @@ const PolicyReceipts = () => {
           <div class="col-12 md:col-3 lg:col-2">
             {/* <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" /> */}
 
-            <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={search} optionLabel="name"
+            <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={search} optionLabel="name" optionValue="value"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}
@@ -209,7 +221,7 @@ const PolicyReceipts = () => {
 
         <div className="card">
           <DataTable
-            value={receiptsTableList}
+            value={searches ? receiptsSearchTable : receiptsTableList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",

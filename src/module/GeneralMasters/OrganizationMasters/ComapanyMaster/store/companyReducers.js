@@ -43,7 +43,8 @@ const initialState = {
       PhoneNumber: "8296571254",
       Fax: "77",
     }
-  ]
+  ],
+  companySearchList: []
 };
 let nextId = 3
 const receiptsReducer = createSlice({
@@ -78,20 +79,27 @@ const receiptsReducer = createSlice({
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
+
+
     builder.addCase(getSearchCompanyMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getSearchCompanyMiddleware.fulfilled, (state, action) => {
-      state.loading = false;
-      state.companyDetailList = action.payload;
-    });
-    builder.addCase(getSearchCompanyMiddleware.rejected, (state, action) => {
-      state.loading = false;
+    builder.addCase(
+      getSearchCompanyMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.companySearchList = action.payload;
+      }
+    );
+    builder.addCase(
+      getSearchCompanyMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
 
-      state.companuDetailList = {};
-      state.error = typeof action.payload === "string" ? action.payload : "";
-    });
-
+        state.companySearchList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
 
 
     builder.addCase(postAddCompanyMiddleware.pending, (state) => {

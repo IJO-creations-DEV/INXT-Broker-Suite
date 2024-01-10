@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './index.scss';
 import { BreadCrumb } from 'primereact/breadcrumb';
 import InputField from '../../../../components/InputField';
@@ -17,193 +17,227 @@ import LabelWrapper from '../../../../components/LabelWrapper';
 import { useFormik } from "formik";
 import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../components/Toast";
+import { useDispatch, useSelector } from 'react-redux';
+import { patchExchangeDetailEdit } from '../store/exchangeMasterMiddleware';
 
-const initialValues ={
-    EffectiveFrom: new Date(),
-    EffectiveTo:new Date(),
-  CurrencyCode:"",
-  ToCurrencyCode:"",
-  ExchangeRate:"",
-  CurrencyDescription:"",
-  ToCurrencyDescription:""
- 
+const initialValues = {
+  EffectiveFrom: "",
+  EffectiveTo: "",
+  CurrencyCode: "",
+  ToCurrencyCode: "",
+  ExchangeRate: "",
+  CurrencyDescription: "",
+  ToCurrencyDescription: ""
+
 }
 
 function EditExchange() {
-    const [date, setDate] = useState(null);
-    const Navigate=useNavigate()
-    const [departmentcode, setDepartmentCode] = useState(null);
-    const [branchcode, setBranchCode] = useState(null);
-    const [payeetype, setPayeeType] = useState(null);
-    const [criteria, setCriteria] = useState(null);
-    const [customercode, setCustomerCode] = useState(null);
-    const [transactioncode, setTransactioncode] = useState(null);
-    const [selectinstrumentcurrency, setSelectInstrumentCurrency] = useState(null);
-    
-    const currencyCode = [
-        { name: "INR", code: "NY" },
-        { name: "USD", code: "RM" },
-      ];
-      const ToCurrencyCode = [
-        { name: "INR", code: "NY" },
-        { name: "USD", code: "RM" },
-      ];
-      const PayeeType = [
-        { name: "Customer", code: "NY" },
-        { name: "owner", code: "RM" },
-      ];
-      const Criteria = [
-        { name: "Specific", code: "NY" },
-        { name: "payall", code: "RM" },
-      ];
-      const CustomerCode = [
-        { name: "Cus00123", code: "NY" },
-        { name: "Cus001234", code: "RM" },
-      ];
-      const Transactioncode = [
-        { name: "Trans00123", code: "NY" },
-        { name: "Trans001234", code: "RM" },
-      ];
-      const SelectInstrumentCurrency = [
-        { name: "INR", code: "NY" },
-        { name: "CSE", code: "RM" },
-      ];
-    
-    const home = { label: "Master" };
-    const items = [
-        { label: 'Exchange Rate' ,url:'/master/finance/exchangerate'},
-        { label: 'Edit Exchange Rate'}
-    ];
+  const toastRef = useRef(null);
+  const [date, setDate] = useState(null);
+  const Navigate = useNavigate()
+  const [departmentcode, setDepartmentCode] = useState(null);
+  const [branchcode, setBranchCode] = useState(null);
+  const [payeetype, setPayeeType] = useState(null);
+  const [criteria, setCriteria] = useState(null);
+  const [customercode, setCustomerCode] = useState(null);
+  const [transactioncode, setTransactioncode] = useState(null);
+  const [selectinstrumentcurrency, setSelectInstrumentCurrency] = useState(null);
 
-    const minDate = new Date();
-    minDate.setDate(minDate.getDate() + 1);
+  const currencyCode = [
+    { name: "INR", code: "NY" },
+    { name: "USD", code: "RM" },
+  ];
+  const ToCurrencyCode = [
+    { name: "INR", code: "NY" },
+    { name: "USD", code: "RM" },
+  ];
+  const PayeeType = [
+    { name: "Customer", code: "NY" },
+    { name: "owner", code: "RM" },
+  ];
+  const Criteria = [
+    { name: "Specific", code: "NY" },
+    { name: "payall", code: "RM" },
+  ];
+  const CustomerCode = [
+    { name: "Cus00123", code: "NY" },
+    { name: "Cus001234", code: "RM" },
+  ];
+  const Transactioncode = [
+    { name: "Trans00123", code: "NY" },
+    { name: "Trans001234", code: "RM" },
+  ];
+  const SelectInstrumentCurrency = [
+    { name: "INR", code: "NY" },
+    { name: "CSE", code: "RM" },
+  ];
 
-const handleSubmit=(value)=>{
+  const home = { label: "Master" };
+  const items = [
+    { label: 'Exchange Rate', url: '/master/finance/exchangerate' },
+    { label: 'Edit Exchange Rate' }
+  ];
+
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
+
+
+  const dispatch = useDispatch()
+
+  const { getExchangeEdit, loading } = useSelector(
+    ({ exchangeMasterReducer }) => {
+      return {
+        loading: exchangeMasterReducer?.loading,
+        getExchangeEdit: exchangeMasterReducer?.getExchangeEdit,
+      };
+    }
+  );
+  console.log(getExchangeEdit, "exchangeDetailEdit")
+  const handleSubmit = (value) => {
+    console.log(value, "value")
+    dispatch(patchExchangeDetailEdit(value));
     Navigate("/master/finance/exchangerate")
-}
 
-// const toastRef = useRef(null);
+    // toastRef.current.showToast();
+    // setTimeout(() => {
+    //   Navigate("/master/finance/exchangerate")
+    // }, 2000);
+  };
+  const setFormikValues = () => {
+    const IsoCode = getExchangeEdit?.ISOcode;
+    const updatedValues = {
+      id: getExchangeEdit.id,
+      EffectiveFrom: getExchangeEdit?.EffectiveFrom,
+      EffectiveTo: getExchangeEdit?.EffectiveTo,
+      CurrencyCode: getExchangeEdit?.CurrencyCode,
+      ToCurrencyCode: getExchangeEdit?.ToCurrencyCode,
+      ExchangeRate: getExchangeEdit?.ExchangeRate,
+      CurrencyDescription: getExchangeEdit?.CurrencyDescription,
+      ToCurrencyDescription: getExchangeEdit?.ToCurrencyDescription,
+    };
 
-// const handleSubmit = (values) => {
-//   // Handle form submission
-//   console.log(values, "find values");
-  
-//   // toastRef.current.showToast();
-//   // {
-//   //   setTimeout(() => {
-//       Navigate("/accounts/pettycash/pettycashcodeinitiate");
-//     // }, 3000);
-//   }
-  
-// };
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
 
 
 
-const formik = useFormik({
-  initialValues:initialValues,
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
+  });
 
-   onSubmit:handleSubmit
-});
+  console.log(formik.values.id, "idleo");
+  useEffect(() => {
+    setFormikValues();
+  }, [getExchangeEdit]);
 
-    return (
-        <div className='overall__editexchange__container'>
+  // const formik = useFormik({
+  //   initialValues:initialValues,
 
-            <NavBar/>
-            {/* <CustomToast ref={toastRef} 
+  //    onSubmit:handleSubmit
+  // });
+
+  return (
+    <div className='overall__editexchange__container'>
+
+      <NavBar />
+      {/* <CustomToast ref={toastRef} 
             // detail="Some detail text"
             // content={"Voucher Details Save Successfully"}
             /> */}
-            <div>
-              <span onClick={() => Navigate(-1)}>
-                <SvgBackicon/></span>
-            <label className='label_header'>Edit Exchange Rate</label>
-            </div>
-            <BreadCrumb
-                model={items}
-                home={home}
-                className='breadcrumbs_container'
-                separatorIcon={<SvgDot color={"#000"} />} />
+      <div>
+        <span onClick={() => Navigate(-1)}>
+          <SvgBackicon /></span>
+        <label className='label_header'>Edit Exchange Rate</label>
+      </div>
+      <BreadCrumb
+        model={items}
+        home={home}
+        className='breadcrumbs_container'
+        separatorIcon={<SvgDot color={"#000"} />} />
 
-<Card>
-        
+      <Card>
+
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <div>
-               <DropDowns
-              className="dropdown__container"
-              label="Currency Code"
-              // value={departmentcode}
-              // onChange={(e) => setDepartmentCode(e.value)}
-              value={formik.values.CurrencyCode}
-              onChange={(e) =>
-                formik.setFieldValue("CurrencyCode", e.value)
-              }
-              options={currencyCode}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-            
+              <DropDowns
+                className="dropdown__container"
+                label="Currency Code"
+                // value={departmentcode}
+                // onChange={(e) => setDepartmentCode(e.value)}
+                value={formik.values.CurrencyCode}
+                onChange={(e) =>
+                  formik.setFieldValue("CurrencyCode", e.value)
+                }
+                options={currencyCode}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+
             </div>
           </div>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Currency  Description"
-              placeholder={"Enter"}
-            //   value={formik.values.CurrencyDescription}
-            value={
-                formik.values.CurrencyCode
-                  ? `CurrencyCode ${formik.values.CurrencyDescription}`
-                  : ""
-              }
-              onChange={formik.handleChange("CurrencyDescription")}
-              
-            />
-           
+              <InputField
+                classNames="field__container"
+                label="Currency  Description"
+                placeholder={"Enter"}
+                //   value={formik.values.CurrencyDescription}
+                value={
+                  formik.values.CurrencyCode
+                    ? `CurrencyCode ${formik.values.CurrencyDescription}`
+                    : ""
+                }
+                onChange={formik.handleChange("CurrencyDescription")}
+
+              />
+
             </div>
           </div>
         </div>
 
-        
+
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <div>
-               <DropDowns
-              className="dropdown__container"
-              label="To Currency Code"
-              // value={departmentcode}
-              // onChange={(e) => setDepartmentCode(e.value)}
-              value={formik.values.ToCurrencyCode}
-              onChange={(e) =>
-                formik.setFieldValue("ToCurrencyCode", e.value)
-              }
+              <DropDowns
+                className="dropdown__container"
+                label="To Currency Code"
+                // value={departmentcode}
+                // onChange={(e) => setDepartmentCode(e.value)}
+                value={formik.values.ToCurrencyCode}
+                onChange={(e) =>
+                  formik.setFieldValue("ToCurrencyCode", e.value)
+                }
 
-              options={ToCurrencyCode}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-            
+                options={ToCurrencyCode}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+
             </div>
           </div>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
-            <InputField
-              classNames="field__container"
-              label="To Currency  Description"
-              placeholder={"Enter"}
-            //   value={formik.values.ToCurrencyDescription}
-            value={
-                formik.values.ToCurrencyCode
-                  ? `ToCurrencyCode ${formik.values.ToCurrencyDescription}`
-                  : ""
-              }
-              onChange={formik.handleChange("ToCurrencyDescription")}
-              
-            />
-           
+              <InputField
+                classNames="field__container"
+                label="To Currency  Description"
+                placeholder={"Enter"}
+                //   value={formik.values.ToCurrencyDescription}
+                value={
+                  formik.values.ToCurrencyCode
+                    ? `ToCurrencyCode ${formik.values.ToCurrencyDescription}`
+                    : ""
+                }
+                onChange={formik.handleChange("ToCurrencyDescription")}
+
+              />
+
             </div>
           </div>
         </div>
@@ -211,65 +245,65 @@ const formik = useFormik({
 
         <div class="grid">
           <div class="col-3 md:col-3 lg-col-3">
-           
-          <LabelWrapper className="calenderlable__container">Effective From</LabelWrapper>
-             <Calendar 
-             classNames="calender__container"
-               showIcon
-              
+
+            <LabelWrapper className="calenderlable__container">Effective From</LabelWrapper>
+            <Calendar
+              classNames="calender__container"
+              showIcon
+
 
               value={formik.values.EffectiveFrom}
-          minDate={minDate}
+              minDate={minDate}
 
               onChange={(e) => {
                 formik.setFieldValue("EffectiveFrom", e.target.value);
               }}
-                dateFormat="yy-mm-dd"
-              
-              />
+              dateFormat="yy-mm-dd"
+
+            />
           </div>
           <div class="col-3 md:col-3 lg-col-3">
-          <LabelWrapper className="calenderlable__container">Effective To</LabelWrapper>
-             <Calendar 
-             classNames="calender__container"
-               showIcon
-              
+            <LabelWrapper className="calenderlable__container">Effective To</LabelWrapper>
+            <Calendar
+              classNames="calender__container"
+              showIcon
+
 
               value={formik.values.EffectiveTo}
-          minDate={minDate}
+              minDate={minDate}
 
               onChange={(e) => {
                 formik.setFieldValue("EffectiveTo", e.target.value);
               }}
-                dateFormat="yy-mm-dd"
-              
-              />
+              dateFormat="yy-mm-dd"
+
+            />
           </div>
           <div class="col-3 md:col-3 lg-col-3">
-          <InputField
+            <InputField
               classNames="field__container"
               label="Exchange Rate"
               placeholder={"Enter"}
               value={formik.values.ExchangeRate}
               onChange={formik.handleChange("ExchangeRate")}
-              
+
             />
-            
+
           </div>
-          
+
         </div>
-        
+
       </Card>
 
 
-            <div className="next_container">
-               
-                <Button className="submit_button p-0" label="Update"  
-                // disabled={!formik.isValid}
-                // onClick={()=>{formik.handleSubmit();}} 
-                onClick={handleSubmit()}
-                />
-            </div>
+      <div className="next_container">
+
+        <Button className="submit_button p-0" label="Update"
+          // disabled={!formik.isValid}
+          // onClick={()=>{formik.handleSubmit();}} 
+          onClick={formik.handleSubmit}
+        />
+      </div>
 
 
 
@@ -277,8 +311,8 @@ const formik = useFormik({
 
 
 
-        </div>
-    );
+    </div>
+  );
 }
 
 export default EditExchange;

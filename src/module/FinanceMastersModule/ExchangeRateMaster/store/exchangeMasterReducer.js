@@ -5,7 +5,8 @@ import {
   postExchangeStatus,
   getAddExchange,
   patchExchangeDetailEdit,
-  getExchangeDetailView
+  getExchangeDetailView,
+  getExchangeDetailEdit
 } from "./exchangeMasterMiddleware";
 const initialState = {
   loading: false,
@@ -25,8 +26,10 @@ const initialState = {
   ExchangeSearchList: [],
   ExchangeStatus: {},
   AddExchange: {},
-  ExchangeDetailEdit: {},
-  ExchangeDetailView: {}
+  ExchangeDetailView: {},
+  exchangeDetailEdit: {},
+  getExchangeEdit: {},
+
 };
 let nextId = 2
 const exchangeMasterReducer = createSlice({
@@ -124,6 +127,25 @@ const exchangeMasterReducer = createSlice({
 
     //ExchangeDetailEdit
 
+    // builder.addCase(patchExchangeDetailEdit.pending, (state) => {
+    //   state.loading = true;
+    // });
+    // builder.addCase(
+    //   patchExchangeDetailEdit.fulfilled,
+    //   (state, action) => {
+    //     state.loading = false;
+    //     state.ExchangeDetailEdit = action.payload;
+    //   }
+    // );
+    // builder.addCase(
+    //   patchExchangeDetailEdit.rejected,
+    //   (state, action) => {
+    //     state.loading = false;
+
+    //     state.ExchangeDetailEdit = {};
+    //     state.error = typeof action.payload === "string" ? action.payload : "";
+    //   }
+    // );
     builder.addCase(patchExchangeDetailEdit.pending, (state) => {
       state.loading = true;
     });
@@ -131,15 +153,47 @@ const exchangeMasterReducer = createSlice({
       patchExchangeDetailEdit.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.ExchangeDetailEdit = action.payload;
+        const updatedIndex = state.ExchangeList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.ExchangeList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.ExchangeList = updatedCurrencyList;
+        } else {
+          state.ExchangeList = [...state.ExchangeList, action.payload];
+        }
       }
     );
+
     builder.addCase(
       patchExchangeDetailEdit.rejected,
       (state, action) => {
         state.loading = false;
 
-        state.ExchangeDetailEdit = {};
+        state.exchangeDetailEdit = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    //getExchangeDetailEdit
+    builder.addCase(getExchangeDetailEdit.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getExchangeDetailEdit.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.getExchangeEdit = action.payload;
+        console.log(state.getExchangeEdit, "")
+      }
+    );
+    builder.addCase(
+      getExchangeDetailEdit.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getExchangeEdit = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

@@ -92,6 +92,7 @@ export const GET_COMMISSION_SEARCH_LIST =
 export const POST_COMMISSION = "commission/POST_COMMISSION";
 export const GET_COMMISSION_VIEW = "commission/GET_COMMISSION_VIEW";
 export const PATCH_COMMISSION_EDIT = "commission/PATCH_COMMISSION_EDIT";
+export const GET_PATCH_COMMISSION_EDIT="commission/GET_PATCH_COMMISSION_EDIT"
 export const GET_COMMISSION_SHARING = "commission/GET_COMMISSION_SHARING";
 export const POST_ADD_SHARINGRATE_COMMISSION =
   "commission/POST_ADD_SHARINGRATE_COMMISSION";
@@ -101,6 +102,7 @@ export const GET_TAXATION_SEARCH_LIST = "taxation/GET_TAXATION_SEARCH_LIST";
 export const POST_TAXATION = "taxation/POST_TAXATION";
 export const GET_TAXATION_VIEW = "taxation/GET_TAXATION_VIEW";
 export const PATCH_TAXATION_EDIT = "taxation/PATCH_TAXATION_EDIT";
+export const GET_PATCH_TAXATION_EDIT = "taxation/GET_PATCH_TAXATION_EDIT"
 
 export const GET_PETTY_CASH_BY_ID = "pettycash/GET_PETTY_CASH_BY_ID";
 export const GET_PETTY_CASH_SEARCH_LIST =
@@ -108,13 +110,8 @@ export const GET_PETTY_CASH_SEARCH_LIST =
 export const POST_PETTY_CASH = "pettycash/POST_PETTY_CASH";
 export const GET_PETTY_CASH_VIEW = "pettycash/GET_PETTY_CASH_VIEW";
 export const PATCH_PETTY_CASH_EDIT = "pettycash/PATCH_PETTY_CASH_EDIT";
-
+export const GET_PATCH_PETTY_CASH_EDIT = "pettycash/GET_PATCH_PETTY_CASH_EDIT"
 export const GET_SUB__ACCOUNT_BY_ID = "subaccount/GET_SUB__ACCOUNT_BY_ID";
-// export const GET_PETTY_CASH_BY_ID="pettycash/GET_PETTY_CASH_BY_ID"
-// export const GET_SUB_ACCOUNT_SEARCH_LIST = 'subaccount/GET_SUB_ACCOUNT_SEARCH_LIST'
-// export const  POST_SUB__ACCOUNT = 'subaccount/POST_SUB__ACCOUNT'
-// export const  GET_SUB__ACCOUNT_VIEW = 'subaccount/GET_SUB__ACCOUNT_VIEW'
-// export const  PATCH_SUB__ACCOUNT_EDIT = 'subaccount/PATCH_SUB__ACCOUNT_EDIT'
 
 export const GET_TRANSACTION_CODE_LIST =
   "transaction/GET_TRANSACTION_CODE_LIST";
@@ -147,6 +144,7 @@ export const POST_EXCHANGE_STATUS = "exchange/POST_EXCHANGE_STATUS";
 export const GET_EXCHANGE_DETAIL_VIEW = "exchange/GET_EXCHANGE_DETAIL_VIEW";
 export const GET_ADD_EXCHANGE = "exchange/GET_ADD_EXCHANGE";
 export const PATCH_EXCHANGE_DETAIL_EDIT = "exchange/PATCH_EXCHANGE_DETAIL_EDIT";
+export const GET_EXCHANGE_EDIT = "exchange/GET_EXCHANGE_EDIT"
 
 export const GET_BANK_LIST = "bank/GET_BANK_LIST";
 export const GET_BANK_SEARCH_LIST = "bank/GET_BANK_SEARCH_LIST";
@@ -180,6 +178,7 @@ export const GET_MAIN_ACCOUNT_DETAIL_VIEW =
 export const GET_ADD_MAIN_ACCOUNT = "mainAccout/GET_ADD_MAIN_ACCOUNT";
 export const PATCH_MAIN_ACCOUNT_DETAIL_EDIT =
   "mainAccout/PATCH_MAIN_ACCOUNT_DETAIL_EDIT";
+export const GET_PATCH_MAIN_ACCOUNT_DETAIL_EDIT = "mainAccout/GET_PATCH_MAIN_ACCOUNT_DETAIL_EDIT"
 export const GET_SUB_ACCOUNT_SEARCH_LIST =
   "subaccount/GET_SUB_ACCOUNT_SEARCH_LIST";
 export const POST_SUB__ACCOUNT = "subaccount/POST_SUB__ACCOUNT";
@@ -228,11 +227,11 @@ export const POST_ADD_EMPLOYEE = "employee/POST_ADD_EMPLOYEE";
 export const PATCH_EMPLOYEE_EDIT = "employee/PATCH_EMPLOYEE_EDIT";
 export const GET_SERACH_EMPLOYEE = "employee/GET_SERACH_EMPLOYEE";
 
-export const GET_HIERARCHY_DETAILS ="hierarchy/GET_HIERARCHY_DETAILS";
-export const GET_HIERARCHY_BY_ID="hierarchy/GET_HIERARCHY_BY_ID";
-export const POST_ADD_HIERARCHY ="hierarchy/POST_ADD_HIERARCHY";
-export const PATCH_HIERARCHY_EDIT ="hierarchy/PATCH_HIERARCHY_EDIT";
-export const GET_SERACH_HIERARCHY ="hierarchy/GET_SERACH_HIERARCHY";
+export const GET_HIERARCHY_DETAILS = "hierarchy/GET_HIERARCHY_DETAILS";
+export const GET_HIERARCHY_BY_ID = "hierarchy/GET_HIERARCHY_BY_ID";
+export const POST_ADD_HIERARCHY = "hierarchy/POST_ADD_HIERARCHY";
+export const PATCH_HIERARCHY_EDIT = "hierarchy/PATCH_HIERARCHY_EDIT";
+export const GET_SERACH_HIERARCHY = "hierarchy/GET_SERACH_HIERARCHY";
 
 export const GET_ROLE_DETAILS = "role/GET_ROLE_DETAILS";
 export const GET_ROLE_BY_ID = "role/GET_ROLE_BY_ID";
@@ -262,7 +261,7 @@ export const GET_COMPANY_BY_ID = "company/GET_COMPANY_BY_ID";
 export const POST_ADD_COMPANY = "company/POST_ADD_COMPANY";
 export const PATCH_COMPANY_EDIT = "company/PATCH_COMPANY_EDIT";
 export const GET_SERACH_COMPANY = "company/GET_SERACH_COMPANY";
-export const GET_COMPANY_VIEW="company/GET_COMPANY_VIEW"
+export const GET_COMPANY_VIEW = "company/GET_COMPANY_VIEW"
 
 export const GET_CITY_DETAILS = "city/GET_CITY_DETAILS";
 export const GET_CITY_BY_ID = "city/GET_CITY_BY_ID";

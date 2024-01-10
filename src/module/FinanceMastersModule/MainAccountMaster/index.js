@@ -8,11 +8,12 @@ import { Button } from "primereact/button";
 import TableData from "./TableData/index";
 import SvgUploade from "../../../assets/icons/SvgUploade";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getPatchMainAccountDetailEdit } from "./store/mainAccountReducer";
 // import ModalData from "./PopUpData/ModalData";
 
 const MainAccountMaster = () => {
-  
+
   const { MainAccountList, loading } = useSelector(({ mainAccoutMiddleware }) => {
     return {
       loading: mainAccoutMiddleware?.loading,
@@ -33,16 +34,17 @@ const MainAccountMaster = () => {
     },
   ];
   const home = { label: "Master" };
-
+  const dispatch = useDispatch()
   const handleAction = (id, navigationPath) => {
     if (navigationPath === "Add") {
       navigation("/master/finance/mainaccount/addmainaccount");
     }
     if (navigationPath === "Edit") {
-      navigation("/master/finance/mainaccount/editmainaccount");
+      // navigation("/master/finance/mainaccount/editmainaccount");
     }
     if (navigationPath === "View") {
-      navigation("/master/finance/mainaccount/viewmainaccount");
+     
+      // navigation("/master/finance/mainaccount/viewmainaccount");
     }
   };
   return (

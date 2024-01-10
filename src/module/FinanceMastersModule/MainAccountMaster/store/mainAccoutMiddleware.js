@@ -5,7 +5,8 @@ import {
   postMainAccountStatus,
   getAddMainAccount,
   patchMainAccountDetailEdit,
-  getMainAccountDetailView
+  getMainAccountDetailView,
+  getPatchMainAccountDetailEdit
 } from "./mainAccountReducer";
 const initialState = {
   loading: false,
@@ -20,14 +21,15 @@ const initialState = {
       openEntry: "123",
       openEntryType: "credit",
       accountCategoryCode: "acc123",
-      companyCode:"cc123",
-      currencyCode:"cc112"
+      companyCode: "cc123",
+      currencyCode: "cc112"
     }
   ],
   MainAccountSearchList: [],
   MainAccountStatus: {},
   AddMainAccount: {},
-  MainAccountDetailEdit: {},
+  mainAccountDetailEdit: {},
+  getMainAccountDetailEdit: {},
   MainAccountDetailView: {}
 };
 let nextId = 2
@@ -135,15 +137,47 @@ const mainAccountMasterReducer = createSlice({
       patchMainAccountDetailEdit.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.MainAccountDetailEdit = action.payload;
+        const updatedIndex = state.MainAccountList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.MainAccountList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.MainAccountList = updatedCurrencyList;
+        } else {
+          state.MainAccountList = [...state.MainAccountList, action.payload];
+        }
       }
     );
+
     builder.addCase(
       patchMainAccountDetailEdit.rejected,
       (state, action) => {
         state.loading = false;
 
-        state.MainAccountDetailEdit = {};
+        state.mainAccountDetailEdit = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    //getPatchMainAccountDetailEdit
+    builder.addCase(getPatchMainAccountDetailEdit.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getPatchMainAccountDetailEdit.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.getMainAccountDetailEdit = action.payload;
+        console.log(state.getMainAccountDetailEdit, "ll")
+      }
+    );
+    builder.addCase(
+      getPatchMainAccountDetailEdit.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getMainAccountDetailEdit = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

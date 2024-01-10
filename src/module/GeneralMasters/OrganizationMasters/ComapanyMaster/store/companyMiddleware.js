@@ -23,7 +23,7 @@ export const getCompanyListMiddleware = createAsyncThunk(
 export const getComapnyListByIdMiddleware = createAsyncThunk(
   GET_COMPANY_BY_ID,
   async (payload, { rejectWithValue }) => {
-    console.log(payload,"payload")
+    console.log(payload, "payload")
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -46,7 +46,7 @@ export const postAddCompanyMiddleware = createAsyncThunk(
 export const getCompanyViewMiddleWare = createAsyncThunk(
   GET_COMPANY_VIEW,
   async (payload, { rejectWithValue }) => {
-    console.log(payload,"payload")
+    console.log(payload, "payload")
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -66,15 +66,31 @@ export const patchCompanyEditMiddleware = createAsyncThunk(
     }
   }
 );
+
+
 export const getSearchCompanyMiddleware = createAsyncThunk(
   GET_SERACH_COMPANY,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, getState }) => {
+    const { textSearch } = payload;
+    const { organizationCompanyMainReducers } = getState();
+
+    const { companyTableList } = organizationCompanyMainReducers;
+    console.log(companyTableList, "1234")
+
     try {
-      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      if (textSearch.trim() !== "") {
+        const searchResults = companyTableList.filter(item => {
+          return item.CompanyName.toLowerCase().includes(textSearch.toLowerCase());
+        });
+        console.log(searchResults, "searchResults")
+        return searchResults;
+      } else {
+        return companyTableList;
+      }
     } catch (error) {
-      return rejectWithValue(error?.response.data.error.message);
+      return rejectWithValue(error?.response?.data?.error?.message);
     }
-  }
+  },
 );
+
 

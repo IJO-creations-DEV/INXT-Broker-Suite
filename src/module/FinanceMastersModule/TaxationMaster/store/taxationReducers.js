@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
-import { getTaxationData, getTaxationSearchList, getTaxationView, patchTaxationEdit, postAddTaxationMiddileware } from "./taxationMiddleWare";
+import { getTaxationData, getTaxationSearchList, getTaxationView, getpatchTaxationEdit, patchTaxationEdit, postAddTaxationMiddileware } from "./taxationMiddleWare";
 const initialState = {
     loading: false,
     error: "",
@@ -8,52 +8,39 @@ const initialState = {
     taxationSearchList: [],
     taxationView: {},
     taxationEdit: {},
+    getTaxationEdit: {},
     taxationList: [
         {
-            id: 1,
-            taxationCode: "Tax0123",
-            taxationName: "Income Tax",
-            taxationRate: '30%',
-            effectiveFrom: "11/12/2023",
-            effectiveTo: "11/12/2023",
-            status: "true",
-            action: <SvgIconeye />,
+            id: "1",
+            taxCode: "Tax0123",
+            taxName: "Income Tax",
+            taxRate: "30%",
+            basis: "basic",
+            remarks: "remarks",
+            taxationDescription: "hh",
+            effectiveFrom: '1/24/2023',
+            effectiveTo: '1/23/2023',
+            action: <SvgIconeye />
         },
         {
             id: 2,
-            taxationCode: "Tax983",
-            taxationName: "Income Tax",
-            taxationRate: '40%',
-            effectiveFrom: "11/12/2023",
-            effectiveTo: "11/12/2023",
-            status: "true",
-            action: <SvgIconeye />,
+            taxCode: "Tax0123",
+            taxName: "Income Tax",
+            taxRate: "30%",
+            basis: "basic",
+            remarks: "remarks",
+            taxationDescription: "",
+            effectiveFrom: '1/24/2023',
+            effectiveTo: '1/23/2023',
+            action: <SvgIconeye />
         },
-        {
-            id: 3,
-            taxationCode: "Tax0120",
-            taxationName: "Income Tax1",
-            taxationRate: '60%',
-            effectiveFrom: "11/12/2023",
-            effectiveTo: "11/12/2023",
-            status: "true",
-            action: <SvgIconeye />,
-        },
-        {
-            id: 4,
-            taxationCode: "Tax145",
-            taxationName: "Income Tax",
-            taxationRate: '80%',
-            effectiveFrom: "11/12/2023",
-            effectiveTo: "11/12/2023",
-            status: "true",
-            action: <SvgIconeye />,
-        },
+
 
     ],
 
 
 };
+let nextId = 3
 const taxationReducers = createSlice({
     name: "commission",
     initialState,
@@ -64,12 +51,11 @@ const taxationReducers = createSlice({
         });
         builder.addCase(getTaxationData.fulfilled, (state, action) => {
             state.loading = false;
-            state.taxationList = action.payload;
+            state.taxationList = [action.payload];
             console.log(state.taxationList, "taxt")
         });
         builder.addCase(getTaxationData.rejected, (state, action) => {
             state.loading = false;
-
             state.taxationList = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
         });
@@ -79,16 +65,17 @@ const taxationReducers = createSlice({
         builder.addCase(postAddTaxationMiddileware.pending, (state) => {
             state.loading = true;
         });
+        builder.addCase(postAddTaxationMiddileware.fulfilled, (state, action) => {
+            state.loading = false;
+            const newItem2 = { ...action.payload, id: nextId++ };
+            state.taxationList = [...state.taxationList, newItem2];
+            console.log(state.taxationList, "taxationListtaxationList")
+        });
+
         builder.addCase(
-            postAddTaxationMiddileware.fulfilled,(state, action) => {
+            postAddTaxationMiddileware.rejected, (state, action) => {
                 state.loading = false;
-                state.taxationList = [...state.taxationList,action.payload];
-            }
-        );
-        builder.addCase(
-            postAddTaxationMiddileware.rejected,(state, action) => {
-                state.loading = false;
-               
+                state.addTaxation = {}
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );
@@ -98,13 +85,13 @@ const taxationReducers = createSlice({
             state.loading = true;
         });
         builder.addCase(
-            getTaxationSearchList.fulfilled,(state, action) => {
+            getTaxationSearchList.fulfilled, (state, action) => {
                 state.loading = false;
                 state.taxationSearchList = action.payload;
             }
         );
         builder.addCase(
-            getTaxationSearchList.rejected,(state, action) => {
+            getTaxationSearchList.rejected, (state, action) => {
                 state.loading = false;
 
                 state.taxationSearchList = {};
@@ -115,23 +102,50 @@ const taxationReducers = createSlice({
 
         //patchTaxationEdit
 
-        // builder.addCase(patchTaxationEdit.pending, (state) => {
-        //     state.loading = true;
-        // });
-        // builder.addCase(
-        //     patchTaxationEdit,(state, action) => {
-        //         state.loading = false;
-        //         state.taxationEdit = action.payload;
-        //     }
-        // );
-        // builder.addCase(
-        //     patchTaxationEdit.rejected,(state, action) => {
-        //         state.loading = false;
+        builder.addCase(patchTaxationEdit.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            patchTaxationEdit.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                const updatedIndex = state.taxationList.findIndex(
+                    (item) => item.id === action.payload.id
+                );
+                if (updatedIndex !== -1) {
+                    const updatedCurrencyList = [...state.taxationList];
+                    updatedCurrencyList[updatedIndex] = action.payload;
+                    state.taxationList = updatedCurrencyList;
+                } else {
+                    state.taxationList = [...state.taxationList, action.payload];
+                }
+            }
+        );
+        builder.addCase(
+            patchTaxationEdit.rejected, (state, action) => {
+                state.loading = false;
+                state.taxationEdit = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
 
-        //         state.taxationEdit = {};
-        //         state.error = typeof action.payload === "string" ? action.payload : "";
-        //     }
-        // );
+        builder.addCase(getpatchTaxationEdit.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            getpatchTaxationEdit.fulfilled, (state, action) => {
+                state.loading = false;
+                state.getTaxationEdit = action.payload;
+            }
+        );
+        builder.addCase(
+            getpatchTaxationEdit.rejected, (state, action) => {
+                state.loading = false;
+
+                state.getTaxationEdit = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
 
         //getTaxationView
 
@@ -146,7 +160,7 @@ const taxationReducers = createSlice({
             }
         );
         builder.addCase(
-            getTaxationView.rejected,(state, action) => {
+            getTaxationView.rejected, (state, action) => {
                 state.loading = false;
 
                 state.taxationView = {};

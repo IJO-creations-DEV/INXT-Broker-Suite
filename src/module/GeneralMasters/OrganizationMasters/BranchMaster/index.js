@@ -16,14 +16,15 @@ import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditicons from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrganizationBranchView } from "./store/branchMiddleware";
+import { getOrganizationBranchView, getSearchBranchMiddleware } from "./store/branchMiddleware";
+import { useFormik } from "formik";
 
 const Index = () => {
-  const { branchTableList, loading } = useSelector(({ organizationBranchMainReducers }) => {
+  const { branchTableList, loading, branchTabelSearchList } = useSelector(({ organizationBranchMainReducers }) => {
     return {
       loading: organizationBranchMainReducers?.loading,
       branchTableList: organizationBranchMainReducers?.branchTableList,
-
+      branchTabelSearchList: organizationBranchMainReducers?.branchTabelSearchList
     };
   });
   console.log(branchTableList, "branchTableList");
@@ -34,6 +35,19 @@ const Index = () => {
     );
   };
   const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    console.log(values.search, "getSearchBranchMiddleware");
+    dispatch(getSearchBranchMiddleware({ textSearch: values.search }));
+  }
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+      dispatch(getSearchBranchMiddleware({ textSearch: formik.values.search }));
+    }
+  }, [formik.values.search]);
   const handleView = (columnData) => {
     dispatch(getOrganizationBranchView(columnData))
     console.log(columnData, "columnData")
@@ -177,6 +191,8 @@ const Index = () => {
               <InputText
                 placeholder="Search By company code/ Name"
                 className="searchinput_left"
+                value={formik.values.search}
+                onChange={formik.handleChange("search")}
               />
             </span>
           </div>
@@ -185,7 +201,7 @@ const Index = () => {
         <div className="headlist_lable">Company List</div>
         <div>
           <DataTable
-            value={branchTableList}
+            value={formik.values.search !== "" ? branchTabelSearchList : branchTableList}
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}
@@ -204,7 +220,7 @@ const Index = () => {
             ></Column>
             <Column
               field="CompanyName"
-              header="Company Name"
+              header="Branch Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>

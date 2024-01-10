@@ -23,7 +23,7 @@ import SvgEdit from "../../../assets/icons/SvgEdits";
 import ToggleButton from "../../../components/ToggleButton";
 import SvgEditicons from "../../../assets/icons/SvgEdit";
 import SvgTable from "../../../assets/icons/SvgTable";
-import { getExchangeDetailView } from "./store/exchangeMasterMiddleware";
+import { getExchangeDetailEdit, getExchangeDetailView } from "./store/exchangeMasterMiddleware";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
@@ -42,6 +42,8 @@ const Index = () => {
   }
   
   const handleEdit = (columnData) => {
+    console.log(columnData, "columnData")
+    dispatch(getExchangeDetailEdit(columnData))
     navigate("/master/finance/exchangerate/saveandeditexchange")
   }
 
@@ -167,10 +169,7 @@ const Index = () => {
 
       <Card
 
-      //   className="overallcard_container"
       >
-        {/* <div className="searchiput_container"> */}
-
 
         <div className="header_search_container">
           <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 0 }}>
@@ -180,26 +179,18 @@ const Index = () => {
               <InputText placeholder="Search By Currency code " className="searchinput_left" />
             </span>
           </div>
-          {/* </div> */}
-          {/* <div class="col-12 md:col-6 lg:col-2">
-            <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
-            <Button label="Search by" outlined icon={<SvgDropdownicon />}
-              className="sorbyfilter_container"
-              onClick={(e) => menu.current.toggle(e)}
-            />
-            </div> */}
+
 
         </div>
         <div className="headlist_lable">Exchange Rate List</div>
 
-        {/* </div> */}
 
         <div >
           <DataTable
-            value={ExchangeList} 
+            value={ExchangeList}
             tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
             paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
-              currentPageReportTemplate="{first} - {last} of {totalRecords}"
+            currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2} scrollable={true}
             scrollHeight="40vh"
             emptyMessage={isEmpty ? emptyTableIcon : null}

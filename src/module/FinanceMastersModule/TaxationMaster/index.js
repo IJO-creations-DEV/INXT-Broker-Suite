@@ -16,7 +16,8 @@ import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../assets/icons/SvgEditicons";
 import ToggleButton from "../../../components/ToggleButton";
 import Productdata from './mock'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTaxationView, getpatchTaxationEdit } from './store/taxationMiddleWare'
 
 const TaxationMaster = () => {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ const TaxationMaster = () => {
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+  
   const onPageChange = (event) => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
@@ -105,12 +106,16 @@ const TaxationMaster = () => {
       </div>
     );
   };
-
+  const dispatch = useDispatch()
   const handleView = (rowData) => {
+    console.log(rowData, "rowData")
+    dispatch(getTaxationView(rowData))
     console.log("View clicked:", rowData);
     navigate("/master/finance/taxation/taxationdetails")
   };
-  const handlEdit = () => {
+  const handlEdit = (rowData) => {
+    console.log(rowData,"rowData");
+    dispatch(getpatchTaxationEdit(rowData))
     navigate("/master/finance/taxation/taxationedit")
   }
   const template2 = {
@@ -192,21 +197,21 @@ const TaxationMaster = () => {
               >
 
                 <Column
-                  field="taxationCode"
+                  field="taxCode"
                   header="Tax Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                   sortable
                 ></Column>
                 <Column
-                  field="taxationName"
+                  field="taxName"
                   header="Tax Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                 //   sortable
                 ></Column>
                 <Column
-                  field="taxationRate"
+                  field="taxRate"
                   header="Tax Rate"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
@@ -225,44 +230,20 @@ const TaxationMaster = () => {
                   className="fieldvalue_container"
                 ></Column>
                 <Column
-                field='status'
+                  field='status'
                   body={renderToggleButton}
                   header="Status"
                   headerStyle={{ textAlign: 'center', ...headerStyle }}
                   className="fieldvalue_container"
                 ></Column>
                 <Column
-                field='action'
+                  field='action'
                   body={renderViewButton}
                   header="Action"
                   headerStyle={{ ...ViewheaderStyle }}
                   className="fieldvalue_container centered"
                 ></Column>
-                {/* {columns.map((column) => (
-                  <Column
-                    style={{
-                      width: column.field === 'rowcount' ? '10%' : `${90 / (columns.length - 1)}%`, 
-                      boxSizing: 'border-box',
-                      fontSize: 14,
-                      fontWeight: 500,
-                    }}
-                    key={column.field}
-                    field={column.field}
-                    header={column.headerName}
-                    paginator
-                    rows={5}
-                    rowsPerPageOptions={[5, 10, 25, 50]}
-                    currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                    paginatorTemplate={template2}
-                    bodyStyle={{
-                      fontSize: 14,
-                      height: 50,
-                      padding: 18,
-                      ...(column.field === 'status' && { color: 'green' }),
-                    }}
-                    body={column.field === 'view' ? <div onClick={() => handleNavigateedit()}><SvgArrow /></div> : column.field == 'status' ? 'Active' : column.field && 'A012'}
-                  />
-                ))} */}
+
               </DataTable>
 
 

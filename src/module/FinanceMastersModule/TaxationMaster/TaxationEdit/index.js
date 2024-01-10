@@ -1,5 +1,5 @@
 import { BreadCrumb } from "primereact/breadcrumb";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../../../components/NavBar";
 import SvgDot from "../../../../assets/icons/SvgDot";
 import "../AddTaxation/index.scss";
@@ -12,14 +12,30 @@ import LabelWrapper from "../../../../components/LabelWrapper";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import SvgBack from "../../../../assets/icons/SvgBack";
+import { useDispatch, useSelector } from "react-redux";
+import { patchTaxationEdit } from "../store/taxationMiddleWare";
 
 const AddTaxation = () => {
-  const [errors, setErrors] = useState("");
+  const { getTaxationEdit, loading } = useSelector(({ taxationMainReducers }) => {
+    return {
+      loading: taxationMainReducers?.loading,
+      getTaxationEdit: taxationMainReducers?.getTaxationEdit,
+
+    };
+  });
+  console.log(getTaxationEdit, "getTaxationEdit");
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("30%");
   const handleDropdownChange = (e) => {
     setSelectedOption(e.value);
   };
+  const ToCurrencyCode = [
+    { label: "INR", value: "NY" },
+    { label: "USD", value: "RM" },
+  ];
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
   const items = [
     { label: "Taxation", url: "/master/finance/taxation" },
     { label: "Edit Taxation ", url: "/master/finance/taxation/taxationedit" },
@@ -27,16 +43,7 @@ const AddTaxation = () => {
   const home = { label: "Master" };
 
   const item = [{ name: "30%" }, { name: "40%" }, { name: "70%" }];
-  const initialValue = {
-    taxCode: "",
-    taxName: "",
-    taxRate: "",
-    basis: "",
-    remarks: "",
-    taxationDescription: "",
-    effectiveFrom: new Date(),
-    effectiveTo: new Date(),
-  };
+  const [isocode, setISOcodeData] = useState([]);
   const validate = (values) => {
     const errors = {};
     console.log(values, errors, "values");
@@ -61,28 +68,65 @@ const AddTaxation = () => {
 
     return errors;
   };
-  const minDate = new Date();
-  minDate.setDate(minDate.getDate() + 1);
-  const handleSubmit = () => {
-    const formErrors = validate(formik.values);
-    setErrors(formErrors);
-    console.log(formErrors, "iiiii");
-    navigate("/addpolicyedit");
+  const handleSubmit = (value) => {
+    console.log(value, "value")
+    dispatch(patchTaxationEdit(value));
+    navigate("/master/finance/taxation")
+  };
+  const setFormikValues = () => {
+    const taxRatee = getTaxationEdit?.taxRate;
+    const updatedValues = {
+      id: getTaxationEdit.id,
+      taxCode: getTaxationEdit?.taxCode,
+      taxName: getTaxationEdit?.taxName,
+      remarks:getTaxationEdit?.remarks,
+      taxRate: taxRatee,
+      basis: getTaxationEdit?.basis,
+      taxationDescription: getTaxationEdit?.taxationDescription,
+      effectiveFrom: new Date(getTaxationEdit?.effectiveFrom),
+      effectiveTo: new Date(getTaxationEdit?.effectiveTo),
+    };
+    console.log(getTaxationEdit?.effectiveTo, "getTaxationEdit?.effectiveTo");
+    if (taxRatee) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setISOcodeData([{ label: taxRatee, value: taxRatee }]);
+    }
+    formik.setValues({ ...formik.values, ...updatedValues });
   };
 
   const formik = useFormik({
-    initialValues: initialValue,
+    initialValues: {
+      taxCode: "",
+      taxName: "",
+      taxRate: "",
+      basis: "",
+      remarks: "",
+      taxationDescription: "",
+      effectiveFrom: '1/24/2023',
+      effectiveTo: '1/25/2023',
+
+    },
     validate,
-    onSubmit: handleSubmit,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
   });
+
+  console.log(formik.values.id, "idleo");
+  useEffect(() => {
+    setFormikValues();
+  }, [getTaxationEdit]);
+
+
+
   return (
     <div className="grid sub__add__container">
       <div className="col-12">
         <NavBar />
       </div>
       <div>
-      <span onClick={()=>navigate(-1)}>
-        <SvgBack />
+        <span onClick={() => navigate(-1)}>
+          <SvgBack />
         </span>
         <label className="label_header">Edit Taxation </label>
       </div>
@@ -100,7 +144,8 @@ const AddTaxation = () => {
         <div className="grid add__account__sub__container p-3">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-              value={"0102"}
+              value={formik.values.taxCode}
+              onChange={formik.handleChange("taxCode")}
               label="Tax Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -109,7 +154,8 @@ const AddTaxation = () => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-              value={"Name"}
+              value={formik.values.taxName}
+              onChange={formik.handleChange("taxName")}
               label="Tax Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -118,20 +164,26 @@ const AddTaxation = () => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
-              value={selectedOption}
-              options={item}
-              onChange={handleDropdownChange}
               className="dropdown__add__sub"
               label="Tax Rate"
               classNames="label__sub__add"
-              placeholder={"30%"}
+              value={formik.values.taxRate}
+              options={isocode}
+              onChange={(e) => {
+                formik.setFieldValue("taxRate", e.value);
+              }}
+              optionLabel="label"
+
+              placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
+
             />
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-              value={"0102"}
+              value={formik.values.basis}
+              onChange={formik.handleChange("basis")}
               label="Basis"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -140,7 +192,8 @@ const AddTaxation = () => {
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <InputField
-              value={"Remarks to be entered here"}
+              value={formik.values.remarks}
+              onChange={formik.handleChange("remarks")}
               label="Remarks"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -149,9 +202,8 @@ const AddTaxation = () => {
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <InputField
-              value={
-                "A description is a detailed and informative explanation or portrayal of something"
-              }
+              value={formik.values.taxationDescription}
+              onChange={formik.handleChange("taxationDescription")}
               label="Taxation Description"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -169,11 +221,11 @@ const AddTaxation = () => {
                 showIcon
                 value={formik.values.effectiveFrom}
                 minDate={minDate}
+
                 onChange={(e) => {
                   formik.setFieldValue("effectiveFrom", e.target.value);
                 }}
                 dateFormat="yy-mm-dd"
-                error={formik.errors.effectiveFrom}
               />
             </div>
           </div>
@@ -188,11 +240,12 @@ const AddTaxation = () => {
                 showIcon
                 value={formik.values.effectiveTo}
                 minDate={minDate}
+
                 onChange={(e) => {
                   formik.setFieldValue("effectiveTo", e.target.value);
                 }}
                 dateFormat="yy-mm-dd"
-                error={formik.errors.effectiveTo}
+
               />
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
-import { getPettyCashSearchList, getPettyCashView, patchPettyCashEdit, pettyCashMaster, postAddPettyCash } from "./pettyCashMasterMiddleWare";
+import { getPatchPettyCashEdit, getPettyCashSearchList, getPettyCashView, patchPettyCashEdit, pettyCashMaster, postAddPettyCash } from "./pettyCashMasterMiddleWare";
 const initialState = {
     loading: false,
     error: "",
@@ -8,6 +8,7 @@ const initialState = {
     pettyCashSearchList: [],
     pettyCashView: {},
     pettyCashEdit: {},
+    getPettyCashEdit: {},
     pettyCashList: [
         {
             id: 1,
@@ -16,7 +17,7 @@ const initialState = {
             pettycashsize: "23",
             minicashbox: "222",
             transactionlimit: "500.00",
-            availabelCash:"777",
+            availabelCash: "777",
             status: "true",
             action: <SvgIconeye />,
         },
@@ -27,7 +28,7 @@ const initialState = {
             pettycashsize: "77",
             minicashbox: "99",
             transactionlimit: "800.00",
-            availabelCash:"00",
+            availabelCash: "00",
             status: "true",
             action: <SvgIconeye />,
         },
@@ -72,6 +73,7 @@ const pettyCashMasterReducers = createSlice({
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );
+
         //getPettyCashSearchList
 
         builder.addCase(getPettyCashSearchList.pending, (state) => {
@@ -97,14 +99,42 @@ const pettyCashMasterReducers = createSlice({
         builder.addCase(patchPettyCashEdit.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(patchPettyCashEdit.fulfilled, (state, action) => {
+       
+        builder.addCase(
+            patchPettyCashEdit.fulfilled,
+            (state, action) => {
+              state.loading = false;
+              const updatedIndex = state.pettyCashList.findIndex(
+                (item) => item.id === action.payload.id
+              );
+              if (updatedIndex !== -1) {
+                const updatedCurrencyList = [...state.pettyCashList];
+                updatedCurrencyList[updatedIndex] = action.payload;
+                state.pettyCashList = updatedCurrencyList;
+              } else {
+                state.pettyCashList = [...state.pettyCashList, action.payload];
+              }
+            }
+          );
+          builder.addCase(patchPettyCashEdit.rejected, (state, action) => {
             state.loading = false;
-            state.pettyCashList = action.payload;
+            state.pettyCashEdit = {};
+            state.error = typeof action.payload === "string" ? action.payload : "";
         }
         );
-        builder.addCase(patchPettyCashEdit.rejected, (state, action) => {
+      
+
+        builder.addCase(getPatchPettyCashEdit.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(getPatchPettyCashEdit.fulfilled, (state, action) => {
             state.loading = false;
-            state.pettyCashList = {};
+            state.getPettyCashEdit = action.payload;
+        }
+        );
+        builder.addCase(getPatchPettyCashEdit.rejected, (state, action) => {
+            state.loading = false;
+            state.getPettyCashEdit = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
         }
         );
@@ -118,7 +148,7 @@ const pettyCashMasterReducers = createSlice({
             getPettyCashView.fulfilled, (state, action) => {
                 state.loading = false;
                 state.pettyCashView = action.payload;
-                
+
             }
         );
         builder.addCase(

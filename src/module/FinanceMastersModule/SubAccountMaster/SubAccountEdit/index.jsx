@@ -35,14 +35,14 @@ const SubAdd = () => {
         mainAccount: "",
         currencyCode: "",
     }
-    const { subAccountEdit, loading } = useSelector(({ subAccountMainReducers }) => {
+    const { getSubDetailEdit, loading } = useSelector(({ subAccountMainReducers }) => {
         return {
             loading: subAccountMainReducers?.loading,
-            subAccountEdit: subAccountMainReducers?.subAccountEdit,
+            getSubDetailEdit: subAccountMainReducers?.getSubDetailEdit,
 
         };
     });
-    console.log(subAccountEdit, "subAccountEdit");
+    console.log(getSubDetailEdit, "getSubDetailEdit");
 
 
     const item = [{ name: "Main00123 - Main Account Description" }, { name: "Main00125 - Main Account Description" }, { name: "Main00128 - Main Account Description" }];
@@ -56,34 +56,32 @@ const SubAdd = () => {
     const home = { label: "Master" };
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
+    const handleSubmit = (value) => {
+        dispatch(patchSubAccountEdit(value));
+        navigate("/master/finance/subaccount");
+        // toastRef.current.showToast();
+        // setTimeout(() => {
+        //     navigate("/master/finance/subaccount");
+        // }, 2000);
+    };
     const setFormikValues = () => {
-        const IsoCode = subAccountEdit?.ISOcode;
+
         const updatedValues = {
-            subAccountCode: subAccountEdit?.subAccountCode,
-            description: subAccountEdit?.description,
-            subAccountName: subAccountEdit?.subAccountName,
-            mainAccount: subAccountEdit?.mainAccount,
-            currencyCode: subAccountEdit?.currencyCode,
-            id: subAccountEdit.id
+            subAccountCode: getSubDetailEdit?.subAccountCode,
+            description: getSubDetailEdit?.description,
+            subAccountName: getSubDetailEdit?.subAccountName,
+            mainAccount: getSubDetailEdit?.mainAccount,
+            currencyCode: getSubDetailEdit?.currencyCode,
+            id: getSubDetailEdit.id
         };
 
 
-        if (IsoCode) {
-            formik.setValues({ ...formik.values, ...updatedValues });
-            setIsoCode([{ label: IsoCode, value: IsoCode }]);
-        }
+
         formik.setValues({ ...formik.values, ...updatedValues });
     };
 
     const toastRef = useRef(null);
-    const handleSubmit = (value) => {
-        dispatch(patchSubAccountEdit(value));
-        toastRef.current.showToast();
-        setTimeout(() => {
-            navigate("/master/finance/subaccount");
-        }, 2000);
-    };
+
 
     const formik = useFormik({
         initialValues: initialValues,
@@ -95,15 +93,9 @@ const SubAdd = () => {
     console.log(formik.values.id, "idleo");
     useEffect(() => {
         setFormikValues();
-    }, [subAccountEdit]);
+    }, [getSubDetailEdit]);
 
-    // useEffect(() => {
-    //     const timerId = setTimeout(() => {
-    //         setVisiblePopup(false);
-    //     }, 2000);
 
-    //     return () => clearTimeout(timerId);
-    // }, [visiblePopup]);
     console.log(formik.values.id, "iii")
 
     return (
@@ -132,10 +124,6 @@ const SubAdd = () => {
                             className='label__sub__add'
                             value={formik.values.subAccountCode}
                             onChange={formik.handleChange("subAccountCode")}
-                        // onChange={(e) =>
-                        //     formik.setFieldValue("subAccountCode", e.target.value)
-                        // }
-
                         />
                     </div>
 
@@ -147,10 +135,6 @@ const SubAdd = () => {
 
                             value={formik.values.subAccountName}
                             onChange={formik.handleChange("subAccountName")}
-                        // onChange={(e) =>
-                        //     formik.setFieldValue("subAccountName", e.target.value)
-                        // }
-
                         />
                     </div>
                 </div>
@@ -162,8 +146,6 @@ const SubAdd = () => {
                             className='label__sub__add'
                             value={formik.values.description}
                             onChange={formik.handleChange("description")}
-
-
                         />
                     </div>
 
@@ -173,7 +155,7 @@ const SubAdd = () => {
                 <div class="grid">
                     <div class="sm-col-12  md:col-8 lg-col-8">
                         <label className='main_acc_text'>Main Account</label>
-                        <MultiSelect
+                        {/* <MultiSelect
                             value={formik.values.mainAccount}
                             // options={item}
                             onChange={(e) => {
@@ -188,7 +170,7 @@ const SubAdd = () => {
                             placeholder={"Select"}
 
                             dropdownIcon={<SvgDropdown color={"#000"} />}
-                        />
+                        /> */}
 
                     </div>
 
@@ -197,7 +179,7 @@ const SubAdd = () => {
 
                     <div class="sm-col-12  md:col-8 lg-col-8">
                         <label className='main_acc_text'>Currency Code</label>
-                        <MultiSelect
+                        {/* <MultiSelect
                             value={formik.values.currencyCode}
                             // options={item}
                             onChange={(e) => {
@@ -212,7 +194,8 @@ const SubAdd = () => {
                             placeholder={"Select"}
 
                             dropdownIcon={<SvgDropdown color={"#000"} />}
-                        />
+                        /> */}
+
 
                     </div>
 
@@ -225,7 +208,8 @@ const SubAdd = () => {
                 <Button
                     label='Update'
                     className='save__add__btn'
-                    onClick={() => setVisiblePopup(true)}
+                    onClick={formik.handleSubmit}
+                // onClick={() => setVisiblePopup(true)}
                 />
             </div>
 

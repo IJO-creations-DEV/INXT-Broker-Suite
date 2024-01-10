@@ -20,6 +20,7 @@ const AddReplenishTable = () => {
   const toastRef = useRef(null);
   const navigate = useNavigate();
 
+  const [selectedRows, setSelectedRows] = useState([]);
   const { AddReplenishTable, loading } = useSelector(
     ({ pettyCashReplenishReducer }) => {
       return {
@@ -29,7 +30,12 @@ const AddReplenishTable = () => {
     }
   );
   const isEmpty = AddReplenishTable.length === 0;
-
+  console.log(AddReplenishTable.Amount,"AddReceiptTable")
+  const totalAmount = selectedRows.reduce((total, item) => {
+    const Amount = parseFloat(item.Amount);
+    return !isNaN(Amount) ? total + Amount : total;
+  }, 0);
+  console.log(totalAmount, "totalAmount");
   const handleSubmit = () => {
     toastRef.current.showToast();
     {
@@ -149,8 +155,8 @@ const AddReplenishTable = () => {
             paginatorTemplate={template2}
             selectionMode="checkbox"
             emptyMessage={isEmpty ? emptyTableIcon : null}
-            selection={selectedProducts}
-            onSelectionChange={(e) => setSelectedProducts(e.value)}
+            selection={selectedRows}
+            onSelectionChange={(e) => setSelectedRows(e.value)}
            
             // rowClassName={(rowData) => getStatusClassName(rowData.status)}
           >
@@ -235,7 +241,7 @@ const AddReplenishTable = () => {
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
-            value={100}
+            value={totalAmount}
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3">
@@ -247,7 +253,7 @@ const AddReplenishTable = () => {
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
-            value={totalAmounts}
+            value={totalAmount}
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3">

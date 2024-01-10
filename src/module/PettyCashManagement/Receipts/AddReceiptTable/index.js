@@ -40,7 +40,7 @@ color: "#000",
 border:" none",
 display: "flex"
   }
-
+  const [selectedRows, setSelectedRows] = useState([]);
   const { AddReceiptTable, loading } = useSelector(
     ({ pettyCashReceiptsReducer }) => {
       return {
@@ -49,6 +49,13 @@ display: "flex"
       };
     }
   );
+  console.log(AddReceiptTable.Amount,"AddReceiptTable")
+  const totalAmount = selectedRows.reduce((total, item) => {
+    const Amount = parseFloat(item.Amount);
+    return !isNaN(Amount) ? total + Amount : total;
+  }, 0);
+  console.log(totalAmount, "totalAmount");
+
   const isEmpty = AddReceiptTable?.length === 0;
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -161,8 +168,8 @@ display: "flex"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             emptyMessage={isEmpty ? emptyTableIcon : null}
-            selection={selectedProducts}
-            onSelectionChange={(e) => setSelectedProducts(e.value)}
+            selection={selectedRows}
+            onSelectionChange={(e) => setSelectedRows(e.value)}
             selectionMode="checkbox"
             // rowClas/
           >
@@ -235,7 +242,7 @@ className="fieldvalue_container"
             textColor={"#111927"}
             textSize={"16"}
             textWeight={500}
-            value={totalAmounts}
+            value={totalAmount}
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3">

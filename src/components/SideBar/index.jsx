@@ -263,8 +263,13 @@ const ResponsiveDrawer = () => {
                   ) : data.name === "Reports" ? (
                     <SvgReportsIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
+                    /> 
+                  ) 
+                  : data.name === "Brokerage" ? (
+                    <SvgReportsIcon
+                      color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />
-                  ) : undefined
+                  ): undefined
                 }
                 onClick={() => handleClick(data.name)}
               >

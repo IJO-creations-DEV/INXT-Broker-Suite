@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { useFormik } from "formik";
 import { BreadCrumb } from "primereact/breadcrumb";
@@ -22,13 +22,13 @@ import { PATCH_TRANSACTION_CODE_DETAILS_EDIT } from "../../../../redux/actionTyp
 
 const TransactionCodeEdit = () => {
 
-  const { TransactioncodeList, loading } = useSelector(({ transactionCodeMasterReducer }) => {
+  const { getTrascationcodeDetailsEdit, loading } = useSelector(({ transactionCodeMasterReducer }) => {
     return {
       loading: transactionCodeMasterReducer?.loading,
-      TransactioncodeList: transactionCodeMasterReducer?.TransactioncodeList,
+      getTrascationcodeDetailsEdit: transactionCodeMasterReducer?.getTrascationcodeDetailsEdit,
     };
   });
-  console.log(TransactioncodeList, "TransactioncodeList")
+  console.log(getTrascationcodeDetailsEdit, "getTrascationcodeDetailsEdit")
 
   const toastRef = useRef(null);
   const navigate = useNavigate();
@@ -50,27 +50,58 @@ const TransactionCodeEdit = () => {
     navigate("/master/finance/transactioncode");
   };
 
-  const handleSubmit = (values) => {
-    console.log(values, "valuesvalues")
-    dispatch(patchTrascationcodeDetailsEdit(values));
+  const handleSubmit = (value) => {
+    console.log(value, "valuesvalues")
+    dispatch(patchTrascationcodeDetailsEdit(value));
     navigate("/master/finance/transactioncode");
   };
+  const [basicc, setBasiscodeData] = useState([])
+  const [mainAccountC, setMainAccountcodeData] = useState([])
+  const [subAcc, setSubAccountData] = useState([])
+  const [branchC, setBranchCodeData] = useState([])
+  const [deptC, setDeptData] = useState([])
 
   const SetFormikValue = () => {
+    const Basis = getTrascationcodeDetailsEdit?.TransactionBasis
+    const MainAccount = getTrascationcodeDetailsEdit?.MainAccountCode
+    const subAccount = getTrascationcodeDetailsEdit?.SubAccountCode
+    const branchCode = getTrascationcodeDetailsEdit?.BranchCode
+    const dept = getTrascationcodeDetailsEdit?.Department
     const updatedValues = {
-      TransactionCode: TransactioncodeList?.TransactionCode || "",
-      TransactionName: TransactioncodeList?.TransactionName || "",
-      Description: TransactioncodeList?.Description || "",
-      TransactionBasis: TransactioncodeList?.TransactionBasis || "",
-      MainAccountCode: TransactioncodeList?.MainAccountCode || "",
-      MainAccountDescription: TransactioncodeList?.MainAccountDescription || "",
-      SubAccountCode: TransactioncodeList?.SubAccountCode || "",
-      SubAccountDescription: TransactioncodeList?.SubAccountDescription || "",
-      BranchCode: TransactioncodeList?.BranchCode || "",
-      BranchDescription: TransactioncodeList?.BranchDescription || "",
-      Department: TransactioncodeList?.Department || "",
-      DepartmentDescription: TransactioncodeList?.DepartmentDescription || "",
+      TransactionCode: getTrascationcodeDetailsEdit?.TransactionCode || "",
+      TransactionName: getTrascationcodeDetailsEdit?.TransactionName || "",
+      Description: getTrascationcodeDetailsEdit?.Description || "",
+      TransactionBasis: Basis || "",
+      MainAccountCode: MainAccount || "",
+      MainAccountDescription: getTrascationcodeDetailsEdit?.MainAccountDescription || "",
+      SubAccountCode: subAccount || "",
+      SubAccountDescription: getTrascationcodeDetailsEdit?.SubAccountDescription || "",
+      BranchCode: branchCode || "",
+      BranchDescription: getTrascationcodeDetailsEdit?.BranchDescription || "",
+      Department: dept || "",
+      DepartmentDescription: getTrascationcodeDetailsEdit?.DepartmentDescription || "",
     };
+    console.log(updatedValues.SubAccountCode, subAccount, "updatedValues.TransactionBasis")
+    if (Basis) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setBasiscodeData([{ label: Basis, value: Basis }]);
+    }
+    if (MainAccount) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setMainAccountcodeData([{ label: MainAccount, value: MainAccount }]);
+    }
+    if (subAccount) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setSubAccountData([{ label: subAccount, value: subAccount }]);
+    }
+    if (branchCode) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setBranchCodeData([{ label: branchCode, value: branchCode }]);
+    }
+    if (dept) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setDeptData([{ label: dept, value: dept }]);
+    }
     formik.setValues({ ...formik.values, ...updatedValues });
     console.log(updatedValues, "updatedValues")
   };
@@ -107,7 +138,7 @@ const TransactionCodeEdit = () => {
 
   useEffect(() => {
     SetFormikValue();
-  }, [TransactioncodeList]);
+  }, [getTrascationcodeDetailsEdit]);
 
   return (
     <div className="transactioncode__master__Edit__view">
@@ -145,7 +176,7 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                // disabled={true}
+                //
                 value={formik.values.TransactionCode}
                 onChange={formik.handleChange("TransactionCode")}
                 error={
@@ -181,7 +212,7 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+
                 value={formik.values.Description}
                 onChange={formik.handleChange("Description")}
                 error={
@@ -198,16 +229,16 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 value={formik.values.TransactionBasis}
-                // options={BankAccountCode}
+                options={basicc}
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("TransactionBasis", e.value);
                   //   handleAccountcode(e.value.TransactionBasis);
                 }}
-                // optionLabel="Description"
+                optionLabel="label"
                 error={
                   formik.touched.TransactionBasis &&
                   formik.errors.TransactionBasis
@@ -224,16 +255,16 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 value={formik.values.MainAccountCode}
-                // options={BankAccountCode}
+                options={mainAccountC}
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("MainAccountCode", e.value);
                   //   handleAccountcode(e.value.MainAccountCode);
                 }}
-                // optionLabel="MainAccountCode"
+                optionLabel="label"
                 error={
                   formik.touched.MainAccountCode &&
                   formik.errors.MainAccountCode
@@ -248,7 +279,7 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+
                 value={formik.values.MainAccountDescription}
                 onChange={formik.handleChange("MainAccountDescription")}
                 error={
@@ -267,16 +298,17 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value={formik.values.Description}
-              // options={BankAccountCode}
-              // onChange={(e) => {
-              //   console.log(e.value);
-              //   formik.setFieldValue("Description", e.value);
-              //   handleAccountcode(e.value.);
-              // }}
-              // optionLabel="Description"
+
+                value={formik.values.SubAccountCode}
+                options={subAcc}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("SubAccountCode", e.target.value);
+
+                }}
+                optionLabel="label"
               // error={
               //   formik.touched.BankAccountNumber &&
               //   formik.errors.BankAccountNumber
@@ -291,13 +323,13 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
-              // value={formik.values.TransactionName}
-              // onChange={formik.handleChange("TransactionName")}
-              // error={
-              //   formik.touched.TransactionName &&
-              //   formik.errors.TransactionName
-              // }
+
+                value={formik.values.SubAccountDescription}
+                onChange={formik.handleChange("SubAccountDescription")}
+                error={
+                  formik.touched.SubAccountDescription &&
+                  formik.errors.SubAccountDescription
+                }
               />
             </div>
           </div>
@@ -310,16 +342,24 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value={formik.values.Description}
-              // options={BankAccountCode}
-              // onChange={(e) => {
-              //   console.log(e.value);
-              //   formik.setFieldValue("Description", e.value);
-              //   handleAccountcode(e.value.);
-              // }}
-              // optionLabel="Description"
+
+
+                value={formik.values.BranchCode}
+
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("BranchCode", e.target.value);
+
+                }}
+                options={branchC}
+                // onChange={(e) => {
+                //   console.log(e.value);
+                //   formik.setFieldValue("Description", e.value);
+                //   handleAccountcode(e.value.);
+                // }}
+                optionLabel="label"
               // error={
               //   formik.touched.BankAccountNumber &&
               //   formik.errors.BankAccountNumber
@@ -334,13 +374,10 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
-              // value={formik.values.TransactionName}
-              // onChange={formik.handleChange("TransactionName")}
-              // error={
-              //   formik.touched.TransactionName &&
-              //   formik.errors.TransactionName
-              // }
+
+                value={formik.values.BranchDescription}
+                onChange={formik.handleChange("BranchDescription")}
+
               />
             </div>
           </div>
@@ -353,16 +390,17 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
+
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value={formik.values.Description}
-              // options={BankAccountCode}
-              // onChange={(e) => {
-              //   console.log(e.value);
-              //   formik.setFieldValue("Description", e.value);
-              //   handleAccountcode(e.value.);
-              // }}
-              // optionLabel="Description"
+                value={formik.values.Department}
+                options={deptC}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("Department", e.target.value);
+
+                }}
+
+                optionLabel="label"
               // error={
               //   formik.touched.BankAccountNumber &&
               //   formik.errors.BankAccountNumber
@@ -377,9 +415,9 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                disabled={true}
-              // value={formik.values.TransactionName}
-              // onChange={formik.handleChange("TransactionName")}
+
+                value={formik.values.DepartmentDescription}
+                onChange={formik.handleChange("DepartmentDescription")}
               // error={
               //   formik.touched.TransactionName &&
               //   formik.errors.TransactionName

@@ -12,7 +12,7 @@ import "./index.scss";
 import SvgEditIcon from "../../../../assets/icons/SvgEdit";
 import ToggleButton from "../../../../components/ToggleButton";
 import { useFormik } from "formik";
-import { getTransactioncodeListsearch, getTrascationcodeDetailsView, patchTrascationcodeDetailsEdit } from "../store/transactionCodeMasterMiddleware";
+import { getTransactioncodeListsearch, getTrascationcodeDetailsView, getpatchTrascationcodeDetailsEdit, patchTrascationcodeDetailsEdit } from "../store/transactionCodeMasterMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 
 const TransactionCodeMasterTable = () => {
@@ -98,10 +98,10 @@ const TransactionCodeMasterTable = () => {
     dispatch(getTrascationcodeDetailsView(rowData))
     navigate(`/master/finance/transactioncode/transactioncodedetails`)
   };
-  // const [moduleData, setModuleData] = useState();
+
   const handleEdit = (rowData) => {
-    console.log(rowData,"rowData")
-    dispatch(patchTrascationcodeDetailsEdit(rowData));
+    console.log(rowData, "rowData")
+    dispatch(getpatchTrascationcodeDetailsEdit(rowData));
     navigate(`/master/finance/transactioncode/transactioncodeedit`);
   }
 
@@ -174,7 +174,7 @@ const TransactionCodeMasterTable = () => {
               />
             </span>
           </form>
-          
+
           <div className="sub__title">Transaction code List</div>
         </div>
         <div className="card">

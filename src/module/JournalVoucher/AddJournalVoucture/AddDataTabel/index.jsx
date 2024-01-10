@@ -19,11 +19,8 @@ import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import { patchJVMiddleware } from "../../store/journalVoucherMiddleware";
 
-// const AddDataTabel = ({ handleEdit, newDataTable, setVisibleEdit,journalVoucherPostTabelData }) => {
 const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
 
-
-    // console.log(addJournalVoucher,"ayesha")
     const [first, setFirst] = useState(0);
     const [visibleEdit, setVisibleEdit] = useState(false)
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -34,26 +31,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
         // setVisibleEdit(true)
     };
     console.log(journalVoucherPostTabelData, "jv");
-    // let newProduct;
-    // let updatedProductData;
 
-    // if (newDataTable.length > 0) {
-    //     updatedProductData = [
-    //         ...Productdata,
-    //         (newProduct = {
-    //             id: 11,
-    //             mainAC: newDataTable[0].mainAccount,
-    //             subAC: newDataTable[0].subAccount,
-    //             Currency: newDataTable[0].currencyCode,
-    //             foreignAmount: newDataTable[0].foreignAmount,
-    //             localAmount: "500.00",
-    //             Remarks: "New credit voucher",
-    //             Entry: newDataTable[0].entryType,
-    //         }),
-    //     ];
-    // } else {
-    //     updatedProductData = Productdata;
-    // }
     const onPageChange = (event) => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
@@ -96,42 +74,32 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
             );
         },
     };
-    // const renderEditButton = (rowData) => {
-    //     return (
-    //         <div className="centercontent">
-    //             <div onClick={handleNavigate(rowData)}><SvgEditIcon /></div>
-    //             <div><SvgDeleteIcon /></div>
 
-    //         </div>
-    //     );
-    // };updatedProductData
     const handleEdit = (rowData) => {
         setEditID(rowData?.id);
         setVisibleEdit(true)
     }
 
     const headerStyle = {
-        // width: "19%",
-        // backgroundColor: 'red',
+
         fontSize: 16,
         fontFamily: "Inter var",
         fontWeight: 500,
         padding: 10,
         color: "#000",
         border: "none",
-      };
+    };
 
-    const headaction ={
+    const headaction = {
         justifyContent: 'center',
-    // textalign: center,
-    fontsize: 16,
-    fontfamily: "Inter var",
-    fontWeight: 500,
-    padding: 10,
-    color: "#000",
-    border:" none",
-    display: "flex"
-      }
+        fontsize: 16,
+        fontfamily: "Inter var",
+        fontWeight: 500,
+        padding: 10,
+        color: "#000",
+        border: " none",
+        display: "flex"
+    }
 
 
     const codeOptionsMain = [
@@ -227,7 +195,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
             currencyCode: targetInvoice?.currencyCode || "",
             currencyDescription: targetInvoice?.currencyDescription || "",
             foreignAmount: targetInvoice?.foreignAmount || "",
-          };
+        };
         formik.setValues({ ...formik.values, ...updatedValues });
     };
 
@@ -248,10 +216,8 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
         },
         validate: customValidation,
         onSubmit: (values) => {
-            // Handle form submission
             handleSubmit(values);
             formik.resetForm();
-            // handleUpdate(values);
             setVisibleEdit(false);
         },
     });
@@ -331,7 +297,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     header="Action"
                     className="fieldvalue_container"
                     headerStyle={headaction}
-                    style={{textAlign:'center'}}
+                    style={{ textAlign: 'center' }}
                 ></Column>
 
             </DataTable>
@@ -406,7 +372,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     </div>
                     <div
                         className="grid m-0 "
-                        // style={{ alignItems: "center" }}
+                    // style={{ alignItems: "center" }}
                     >
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <DropDowns
@@ -446,7 +412,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     </div>
                     <div
                         className="grid m-0 "
-                      
+
                     >
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3 ">
                             <DropDowns
@@ -495,7 +461,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     </div>
                     <div
                         className="grid m-0 "
-                       
+
                     >
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <DropDowns
@@ -544,7 +510,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     </div>
                     <div
                         className="grid m-0 "
-                        // style={{ alignItems: "center" }}
+                    // style={{ alignItems: "center" }}
                     >
                         <div className="col-12 md:col-3 lg:col-3 xl:col-3">
                             <DropDowns

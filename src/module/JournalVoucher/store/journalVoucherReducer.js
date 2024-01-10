@@ -18,7 +18,10 @@ const initialState = {
       currencyCode: "cu123",
       foreignAmount: "500",
       localAmount: '600',
-      entryType: "Credit"
+      entryType: "Credit",
+      departmentCode:"departmentCode",
+      departmentDescription:"departmentDescription"
+      
     },
     {
       id: 2,
@@ -28,7 +31,9 @@ const initialState = {
       currencyCode: "cu77",
       foreignAmount: "800",
       localAmount: '600',
-      entryType: "Debit"
+      entryType: "Debit",
+      departmentCode:"departmentCode",
+      departmentDescription:"departmentDescription"
     }
   ],
 

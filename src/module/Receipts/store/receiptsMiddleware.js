@@ -9,10 +9,22 @@ import {
   POST_PAYMENT_DETAILS,
   PATCH_RECEIPT_EDIT,
   GET_RECEIPT_SEARCH,
+  GET_PAYMENT_DETAILS,
 } from "../../../redux/actionTypes";
 
 export const getReceiptsListMiddleware = createAsyncThunk(
   GET_RECEIPT_DETAILS,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const getPaymentDetails= createAsyncThunk(
+  GET_PAYMENT_DETAILS,
   async (payload, { rejectWithValue }) => {
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);

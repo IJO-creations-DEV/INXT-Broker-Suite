@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getReceiptsListMiddleware, getReceiptsListByIdMiddleware, getReceiptsReceivableMiddleware, postAddReceiptsMiddleware, postPaymentDetailsMiddleware, patchReceipEditMiddleware, getReceiptsListBySearchMiddleware } from "./receiptsMiddleware";
+import { getReceiptsListMiddleware, getReceiptsListByIdMiddleware, getReceiptsReceivableMiddleware, postAddReceiptsMiddleware, postPaymentDetailsMiddleware, patchReceipEditMiddleware, getReceiptsListBySearchMiddleware, getPaymentDetails } from "./receiptsMiddleware";
 import SvgIconeye from "../../../assets/icons/SvgIconeye";
 const initialState = {
   loading: false,
@@ -146,48 +146,7 @@ const initialState = {
       fcAmount: "00.00",
       lcAmount: "00.00"
     },
-    // {
-    //   id: 3,
-    //   policies: "Motor",
-    //   netPremium: "4000.00",
-    //   paid: "000.00",
-    //   unPaid: "4000.00",
-    //   discounts: "200.00",
-    //   dst: "200.00",
-    //   lgt: "200.00",
-    //   vat: "200.00",
-    //   other: "200.00",
-    //   fcAmount:"00.00",
-    //   lcAmount:"00.00"
-    // },
-    // {
-    //   id: 4,
-    //   policies: "Motor",
-    //   netPremium: "4000.00",
-    //   paid: "000.00",
-    //   unPaid: "4000.00",
-    //   discounts: "200.00",
-    //   dst: "200.00",
-    //   lgt: "200.00",
-    //   vat: "200.00",
-    //   other: "200.00",
-    //   fcAmount:"00.00",
-    //   lcAmount:"00.00"
-    // },
-    // {
-    //   id: 5,
-    //   policies: "Motor",
-    //   netPremium: "4000.00",
-    //   paid: "000.00",
-    //   unPaid: "4000.00",
-    //   discounts: "200.00",
-    //   dst: "200.00",
-    //   lgt: "200.00",
-    //   vat: "200.00",
-    //   other: "200.00",
-    //   fcAmount:"00.00",
-    //   lcAmount:"00.00"
-    // },
+
   ],
   receiptDetailList: [
     {
@@ -218,6 +177,18 @@ const initialState = {
       fcAmount: "00.00",
       lcAmount: "00.00"
     },
+  ],
+  paymentDetails: [
+    {
+      id: "1",
+      totalPayment: 1600,
+      bankcode: "bank123",
+      bankName: "Money Bank",
+      bankAccount: "bandAccount123",
+      bankAccountName: "Business Account",
+      paymentType: "Card",
+      cardNumber: "1234 5678 9874 5632",
+    }
   ]
 };
 const receiptsReducer = createSlice({
@@ -336,6 +307,27 @@ const receiptsReducer = createSlice({
         state.loading = false;
 
         state.editList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    builder.addCase(getPaymentDetails.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getPaymentDetails.fulfilled,
+      (state, action) => {
+        state.loading = false;
+
+        state.paymentDetails = action.payload;
+      }
+    );
+    builder.addCase(
+      getPaymentDetails.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.paymentDetails = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

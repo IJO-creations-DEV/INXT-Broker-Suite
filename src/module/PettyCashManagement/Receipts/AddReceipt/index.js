@@ -42,7 +42,7 @@ const AddReceipts = () => {
   const dispatch = useDispatch();
   // const toastRef = useRef(null);
   const items = [
-    { label: "Petty Cash",command: () => navigate( "/accounts/pettycash/receipts" )},
+    { label: "Petty Cash", command: () => navigate("/accounts/pettycash/receipts") },
     {
       label: "Add Receipt",
       to: "/accounts/pettycash/addreceipts",
@@ -297,14 +297,14 @@ const AddReceipts = () => {
                 options={Name}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("Requester", e.value).then (()=>{
+                  formik.setFieldValue("Requester", e.value).then(() => {
                     Requester(e.value.Name);
                   })
-                  
+
                 }}
                 optionLabel="Name"
-                 error={formik.touched.Requester && formik.errors.Requester}
-                
+                error={formik.touched.Requester && formik.errors.Requester}
+
               />
             </div>
           </div>
@@ -322,10 +322,10 @@ const AddReceipts = () => {
                 options={BankAccountCode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("BankCode", e.value).then(()=>{
+                  formik.setFieldValue("BankCode", e.value).then(() => {
                     handleBankcode(e.value.BankAccountCode);
                   })
-                  
+
                 }}
                 optionLabel="BankAccountCode"
                 error={formik.touched.BankCode && formik.errors.BankCode}
@@ -363,10 +363,10 @@ const AddReceipts = () => {
                 options={SubAccount}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("SubAccountCode", e.value).then(()=>{
+                  formik.setFieldValue("SubAccountCode", e.value).then(() => {
                     handleSubAccount(e.value.SubAccount);
                   })
-                  
+
                 }}
                 optionLabel="SubAccount"
                 error={
@@ -406,10 +406,10 @@ const AddReceipts = () => {
                 options={Transcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("TransactionCode", e.value).then(()=>{
+                  formik.setFieldValue("TransactionCode", e.value).then(() => {
                     handleTrans(e.value.Transcode);
                   })
-                  
+
                 }}
                 optionLabel="Transcode"
                 error={
@@ -450,10 +450,10 @@ const AddReceipts = () => {
                 options={Branchcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("BranchCode", e.value).then(()=>{
+                  formik.setFieldValue("BranchCode", e.value).then(() => {
                     handleBranch(e.value.Branchcode);
                   })
-                 
+
                 }}
                 optionLabel="Branchcode"
                 error={formik.touched.BranchCode && formik.errors.BranchCode}
@@ -491,10 +491,10 @@ const AddReceipts = () => {
                 options={Departcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("DepartmentCode", e.value).then(()=>{
+                  formik.setFieldValue("DepartmentCode", e.value).then(() => {
                     handleDepart(e.value.Departcode);
                   })
-                  
+
                 }}
                 optionLabel="Departcode"
                 error={
@@ -530,8 +530,8 @@ const AddReceipts = () => {
               onClick={() => {
                 formik.handleSubmit();
               }}
-              
-disabled={!formik.isValid}
+
+              disabled={!formik.isValid}
             >
               Next
             </Button>

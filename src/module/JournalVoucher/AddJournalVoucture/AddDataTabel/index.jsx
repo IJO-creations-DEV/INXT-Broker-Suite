@@ -177,25 +177,63 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
             setFormikValues();
         }
     }, [EditID]);
+    const [mainAc, setMainAccountcodeData] = useState([])
+    const [subAcc, setSubAccountData] = useState([])
+    const [entrytypp, setEnteryTypeData] = useState([])
+    const [branchh, setBranchCodeData] = useState([])
+    const [currencyyy, setCurrencyData] = useState([])
+    const [deptt, setDeptData] = useState([])
+
     const setFormikValues = () => {
         console.log("find action");
         const targetInvoice = journalVoucherPostTabelData.find((item) => item.id === EditID);
         console.log(targetInvoice, "find data");
-
+        const mainAcc = targetInvoice?.mainAccount;
+        const subAc = targetInvoice?.subAccount;
+        const entryT = targetInvoice?.entryType;
+        const branchC = targetInvoice?.branchCode;
+        const deptC = targetInvoice?.departmentCode;
+        const currencyC = targetInvoice?.currencyCode;
         const updatedValues = {
-            mainAccount: targetInvoice?.mainAccount || "",
+            mainAccount: mainAcc || "",
             mainAccountDescription: targetInvoice?.mainAccountDescription || "",
-            entryType: targetInvoice?.entryType || "",
-            subAccount: targetInvoice?.subAccount || "",
+            entryType: entryT || "",
+            subAccount: subAc || "",
             subAccountDescription: targetInvoice?.subAccountDescription || "",
-            branchCode: targetInvoice?.branchCode || "",
+            branchCode: branchC || "",
             branchCodeDescription: targetInvoice?.branchCodeDescription || "",
-            departmentCode: targetInvoice?.departmentCode || "",
+            departmentCode: deptC || "",
             departmentDescription: targetInvoice?.departmentDescription || "",
-            currencyCode: targetInvoice?.currencyCode || "",
+            currencyCode: currencyC || "",
             currencyDescription: targetInvoice?.currencyDescription || "",
             foreignAmount: targetInvoice?.foreignAmount || "",
         };
+
+
+        if (mainAcc) {
+            formik.setValues({ ...formik.values, ...updatedValues });
+            setMainAccountcodeData([{ label: mainAcc, value: mainAcc }]);
+        }
+        if (subAc) {
+            formik.setValues({ ...formik.values, ...updatedValues });
+            setSubAccountData([{ label: subAc, value: subAc }]);
+        }
+        if (entryT) {
+            formik.setValues({ ...formik.values, ...updatedValues });
+            setEnteryTypeData([{ label: entryT, value: entryT }]);
+        }
+        if (branchC) {
+            formik.setValues({ ...formik.values, ...updatedValues });
+            setBranchCodeData([{ label: branchC, value: branchC }]);
+        }
+        if (currencyC) {
+            formik.setValues({ ...formik.values, ...updatedValues });
+            setCurrencyData([{ label: currencyC, value: currencyC }]);
+        }
+        if (deptC) {
+            formik.setValues({ ...formik.values, ...updatedValues });
+            setDeptData([{ label: deptC, value: deptC }]);
+        }
         formik.setValues({ ...formik.values, ...updatedValues });
     };
 
@@ -322,7 +360,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                                 label="Main Account"
                                 value={formik.values.mainAccount}
                                 onChange={(e) => formik.setFieldValue("mainAccount", e.value)}
-                                options={codeOptionsMain}
+                                options={mainAc}
                             />
                             {formik.touched.mainAccount && formik.errors.mainAccount && (
                                 <div
@@ -358,7 +396,8 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                                 label="Entry Type"
                                 value={formik.values.entryType}
                                 onChange={(e) => formik.setFieldValue("entryType", e.value)}
-                                options={codeOptionsType}
+                                options={entrytypp
+                                }
                             />
                             {formik.touched.entryType && formik.errors.entryType && (
                                 <div
@@ -384,7 +423,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                                 label="Sub Account"
                                 value={formik.values.subAccount}
                                 onChange={(e) => formik.setFieldValue("subAccount", e.value)}
-                                options={codeOptionsSub}
+                                options={subAcc}
                                 placeholder="Select "
                             />
                             {formik.touched.subAccount && formik.errors.subAccount && (
@@ -424,7 +463,8 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                                 label="Branch Code"
                                 value={formik.values.branchCode}
                                 onChange={(e) => formik.setFieldValue("branchCode", e.value)}
-                                options={codeOptionsBranch}
+                                options={branchh
+                                }
                                 placeholder="Select "
                             />
                             {formik.touched.branchCode && formik.errors.branchCode && (
@@ -473,7 +513,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                                 label="Department Code"
                                 value={formik.values.departmentCode}
                                 onChange={(e) => formik.setFieldValue("departmentCode", e.value)}
-                                options={codeOptionsDept}
+                                options={deptt}
                                 placeholder="Select "
                             />
                             {formik.touched.departmentCode && formik.errors.departmentCode && (
@@ -522,7 +562,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                                 label="Currency Code"
                                 value={formik.values.currencyCode}
                                 onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
-                                options={codeCurrencyType}
+                                options={currencyyy}
                                 placeholder="Select "
                             />
                             {formik.touched.currencyCode && formik.errors.currencyCode && (

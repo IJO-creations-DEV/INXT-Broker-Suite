@@ -81,7 +81,7 @@ function PolicyReceipts() {
   console.log(total, "find patchReceipEditMiddleware")
 
   const navigate = useNavigate();
-  const items = [{ label: "Receipts", command: () => navigate( "/accounts/receipts" )}, { label: "Add Receipts", to: "/accounts/receipts/addreceipts" }];
+  const items = [{ label: "Receipts", command: () => navigate("/accounts/receipts") }, { label: "Add Receipts", to: "/accounts/receipts/addreceipts" }];
 
   const home = { label: "Accounts " };
 
@@ -99,7 +99,7 @@ function PolicyReceipts() {
     setVisiblePopup(true);
   };
   const setFormikValues = (rowData) => {
-    console.log(rowData, "find action");
+    console.log(rowData.fcAmount, "find action");
     const policy = rowData?.policies;
     const id = rowData?.id;
     const netPremium = rowData?.netPremium;
@@ -145,7 +145,7 @@ function PolicyReceipts() {
     lgt: editedData?.lgt || "",
     vat: editedData?.vat || "",
     other: editedData?.other || "",
-    fCAmount: editedData?.fCAmount || "",
+    fcAmount: editedData?.fcAmount || "",
     lcAmount: editedData?.lcAmount || "",
   };
 
@@ -497,9 +497,9 @@ function PolicyReceipts() {
             </div>
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-                value={formik.values.fCAmount}
-                onChange={formik.handleChange("fCAmount")}
-                error={formik.errors.fCAmount}
+                value={formik.values.fcAmount}
+                onChange={formik.handleChange("fcAmount")}
+                error={formik.errors.fcAmount}
                 classNames="field__container"
                 label="FC Amount"
                 placeholder={"Enter"}

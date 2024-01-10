@@ -29,8 +29,9 @@ const AddReplenishTable = () => {
       };
     }
   );
+
   const isEmpty = AddReplenishTable.length === 0;
-  console.log(AddReplenishTable.Amount,"AddReceiptTable")
+  console.log(AddReplenishTable.Transactioncode,"AddReceiptTable")
   const totalAmount = selectedRows.reduce((total, item) => {
     const Amount = parseFloat(item.Amount);
     return !isNaN(Amount) ? total + Amount : total;
@@ -187,7 +188,7 @@ const AddReplenishTable = () => {
          
 
             <Column
-              field="TransactionCode"
+              field="Transactioncode"
               header="Transaction Code"
               headerStyle={headerStyle}
               

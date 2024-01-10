@@ -119,6 +119,7 @@ const initialState = {
       Transactioncode: "Trans00123",
       RequestNumber: "00765",
       MainAccount: "Main00765",
+      Transactioncode: "Trans00123",
       SubAccount: "Sub00345",
       Date: "16/01/2023",
       Amount: "100",
@@ -126,7 +127,7 @@ const initialState = {
     },
     {
       id: 2,
-      Transactioncode: "Trans00987",
+      Transactioncode: "Trans00123",
       RequestNumber: "00456",
       MainAccount: "Main00456",
       SubAccount: "Sub00987",
@@ -136,7 +137,7 @@ const initialState = {
     },
     {
       id: 3,
-      Transactioncode: "Trans00567",
+      Transactioncode: "Trans00123",
       RequestNumber: "00234",
       MainAccount: "Main00234",
       SubAccount: "Sub00567",
@@ -146,7 +147,7 @@ const initialState = {
     },
     {
       id: 4,
-      Transactioncode: "Trans00789",
+      Transactioncode: "Trans00123",
       RequestNumber: "00987",
       MainAccount: "Main00987",
       SubAccount: "Sub00765",

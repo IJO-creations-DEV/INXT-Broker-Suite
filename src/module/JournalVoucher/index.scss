@@ -152,6 +152,13 @@ font-weight: 500;
 
 
         }
+        .searchinput_left{
+            width:100%;
+            border-radius: 10px;
+            font-size: 16px;
+           font-weight: 400;
+           font-family: Inter var;
+          }
 
         .sort__by__text__Journal__Voture {
             font-family: Inter var;
@@ -167,6 +174,8 @@ font-weight: 500;
             width: 100% !important;
             position: relative;
             border-radius: 10px;
+            font-size: 16px;
+            font-weight: 400;
         }
 
         .table__view__Journal__Voture {
@@ -249,6 +258,7 @@ font-weight: 500;
         border: 1px solid #d1d5db;
         border-radius: 10px;
         height: 45px;
+        
     }
 
     .p-inputtext {

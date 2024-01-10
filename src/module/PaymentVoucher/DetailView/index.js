@@ -287,6 +287,7 @@ function Detailview() {
             <Column
               selectionMode="single"
               headerStyle={{ width: "4rem" }}
+              style={{textAlign:'center'}}
             ></Column>
           )}
           <Column

@@ -127,19 +127,20 @@ const InitiateForm = () => {
   });
 
   const handlePettyCashDescribtion = (value) => {
+    console.log("first",value.pettycashcode)
     let description = "";
     let pettycashsize = "";
     switch (value.pettycashcode) {
-      case "PC0128":
+      case "PC001":
         description = "PC-1";
         break;
-      case "PC0129":
+      case "PC002":
         description = "PC-2";
         break;
-      case "PC0130":
+      case "PC003":
         description = "PC-3";
         break;
-      case "PC0131":
+      case "PC004":
         description = "PC-4";
         break;
       default:
@@ -147,16 +148,16 @@ const InitiateForm = () => {
         break;
     }
     switch (value.pettycashcode) {
-      case "PC0128":
+      case "PC001":
         pettycashsize = "1000";
         break;
-      case "PC0129":
+      case "PC002":
         pettycashsize = "2000";
         break;
-      case "PC0130":
+      case "PC003":
         pettycashsize = "3000";
         break;
-      case "PC0131":
+      case "PC004":
         pettycashsize = "4000";
         break;
       default:
@@ -191,18 +192,18 @@ const InitiateForm = () => {
   const handleTrans = (value) => {
     let Trans = "";
     switch (value.Transcode) {
-      case "Trans00322":
+      case "PRM":
         Trans = "Trans-1";
         break;
-      case "Trans00123":
+      case "COMM":
         Trans = "Trans-2";
         break;
-      case "Trans00923":
+      case "REMT":
         Trans = "Trans-3";
         break;
-      case "Trans00123":
-        Trans = "Trans-4";
-        break;
+      // case "Trans00123":
+      //   Trans = "Trans-4";
+      //   break;
       default:
         Trans = "Unknown";
         break;
@@ -212,16 +213,16 @@ const InitiateForm = () => {
   const handleBranch = (value) => {
     let Branch = "";
     switch (value) {
-      case "Branch00322":
+      case "PHP001":
         Branch = "Branch-1";
         break;
-      case "Branch00123":
+      case "PHP002":
         Branch = "Branch-2";
         break;
-      case "Branch00923":
+      case "PHP003":
         Branch = "Branch-3";
         break;
-      case "Branch00123":
+      case "PHP004":
         Branch = "Branch-4";
         break;
       default:
@@ -233,16 +234,16 @@ const InitiateForm = () => {
   const handleDepart = (value) => {
     let Depart = "";
     switch (value) {
-      case "Depart00322":
+      case "FIN":
         Depart = "Depart-1";
         break;
-      case "Depart00123":
+      case "MKT":
         Depart = "Depart-2";
         break;
-      case "Depart00923":
+      case "IT":
         Depart = "Depart-3";
         break;
-      case "Depart00123":
+      case "SLS":
         Depart = "Depart-4";
         break;
       default:
@@ -256,52 +257,52 @@ const InitiateForm = () => {
     let translimit = "";
     let maxlimit = "";
     switch (value) {
-      case "1929920128":
+      case "Bk001":
         Availablecash = "10,000";
         break;
-      case "8299201291":
+      case "Bk002":
         Availablecash = "20,000";
         break;
-      case "9920010130":
+      case "Bk003":
         Availablecash = "30,000";
         break;
-      case "1818810131":
-        Availablecash = "40,000";
-        break;
+      // case "1818810131":
+      //   Availablecash = "40,000";
+      //   break;
       default:
         Availablecash = "Unknown";
         break;
     }
     switch (value) {
-      case "1929920128":
+      case "Bk001":
         maxlimit = "1000";
         break;
-      case "8299201291":
+      case "Bk002":
         maxlimit = "2000";
         break;
-      case "9920010130":
+      case "Bk003":
         maxlimit = "3000";
         break;
-      case "1818810131":
-        maxlimit = "4000";
-        break;
+      // case "1818810131":
+      //   maxlimit = "4000";
+      //   break;
       default:
         maxlimit = "Unknown";
         break;
     }
     switch (value) {
-      case "1929920128":
+      case "Bk001":
         translimit = "10,000";
         break;
-      case "8299201291":
+      case "Bk002":
         translimit = "20,000";
         break;
-      case "9920010130":
+      case "Bk003":
         translimit = "30,000";
         break;
-      case "1818810131":
-        translimit = "40,000";
-        break;
+      // case "1818810131":
+      //   translimit = "40,000";
+      //   break;
       default:
         translimit = "Unknown";
         break;
@@ -492,7 +493,7 @@ const InitiateForm = () => {
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
-                textWeight={400}
+                textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 value={formik.values.TransactionCode}
                 options={Transcode}
@@ -668,6 +669,7 @@ const InitiateForm = () => {
               onClick={() => {
                 formik.handleSubmit();
               }}
+              disabled={!formik.isValid}
             />
           </div>
         </div>

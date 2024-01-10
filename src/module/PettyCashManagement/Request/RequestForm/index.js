@@ -54,7 +54,7 @@ const RequestForm = () => {
   };
 
   const validate = (values) => {
-    const errors = {};
+    let errors = {};
 
     if (!values.PettyCashCode) {
       errors.PettyCashCode = "Petty Cash Code is required";
@@ -97,38 +97,40 @@ const RequestForm = () => {
   });
 
   const handlePettyCashDescribtion = (value) => {
+    formik.setFieldValue("PettyCashCode", value);
+
     let description = "";
     let Requestnumber = "";
     switch (value.pettycashcode) {
-      case "PC0128":
+      case "PC001":
         description = "PC-1";
         break;
-      case "PC0129":
+      case "PC002":
         description = "PC-2";
         break;
-      case "PC0130":
+      case "PC003":
         description = "PC-3";
         break;
-      case "PC0131":
-        description = "PC-4";
-        break;
+      // case "PC0131":
+      //   description = "PC-4";
+      //   break;
       default:
         description = "Unknown";
         break;
     }
     switch (value.pettycashcode) {
-      case "PC0128":
+      case "PC001":
         Requestnumber = "29292";
         break;
-      case "PC0129":
+      case "PC002":
         Requestnumber = "20202";
         break;
-      case "PC0130":
+      case "PC003":
         Requestnumber = "29292";
         break;
-      case "PC0131":
-        Requestnumber = "19292";
-        break;
+      // case "PC0131":
+      //   Requestnumber = "19292";
+      //   break;
       default:
         Requestnumber = "Unknown";
         break;
@@ -140,18 +142,18 @@ const RequestForm = () => {
   const handleBranch = (value) => {
     let Branch = "";
     switch (value) {
-      case "Branch00322":
+      case "PHP001":
         Branch = "Branch-1";
         break;
-      case "Branch00123":
+      case "PHP002":
         Branch = "Branch-2";
         break;
-      case "Branch00923":
+      case "PHP003":
         Branch = "Branch-3";
         break;
-      case "Branch00123":
-        Branch = "Branch-4";
-        break;
+      // case "Branch00123":
+      //   Branch = "Branch-4";
+      //   break;
       default:
         Branch = "Unknown";
         break;
@@ -161,16 +163,16 @@ const RequestForm = () => {
   const handleDepart = (value) => {
     let Depart = "";
     switch (value) {
-      case "Depart00322":
+      case "FIN":
         Depart = "Depart-1";
         break;
-      case "Depart00123":
+      case "MKT":
         Depart = "Depart-2";
         break;
-      case "Depart00923":
+      case "IT":
         Depart = "Depart-3";
         break;
-      case "Depart00123":
+      case "SLS":
         Depart = "Depart-4";
         break;
       default:
@@ -218,11 +220,13 @@ const RequestForm = () => {
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 value={formik.values.PettyCashCode}
                 options={PettyCashCode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("PettyCashCode", e.value);
-                  handlePettyCashDescribtion(e.value);
-                }}
+                name="PettyCashCode"
+                onChange={(e) =>{ 
+                  formik.setFieldValue("PettyCashCode",e.value).then(()=>{
+                    handlePettyCashDescribtion(e.value)
+                  })
+                  }
+                }
                 optionLabel="pettycashcode"
                 error={
                   formik.touched.PettyCashCode && formik.errors.PettyCashCode
@@ -277,7 +281,7 @@ const RequestForm = () => {
                 options={Name}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("RequesterName", e.value);
+                  formik.setFieldValue("RequesterName", e.value)
                 }}
                 optionLabel="Name"
                 error={
@@ -298,8 +302,10 @@ const RequestForm = () => {
                 options={Branchcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("BranchCode", e.value);
-                  handleBranch(e.value.Branchcode);
+                  formik.setFieldValue("BranchCode", e.value).then(()=>{
+                    handleBranch(e.value.Branchcode);
+                  })
+                  
                 }}
                 optionLabel="Branchcode"
                 error={formik.touched.BranchCode && formik.errors.BranchCode}
@@ -337,8 +343,10 @@ const RequestForm = () => {
                 options={Departcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("DepartmentCode", e.value);
-                  handleDepart(e.value.Departcode);
+                  formik.setFieldValue("DepartmentCode", e.value).then(()=>{
+                    handleDepart(e.value.Departcode);
+                  })
+                 
                 }}
                 optionLabel="Departcode"
                 error={
@@ -382,6 +390,8 @@ const RequestForm = () => {
               onClick={() => {
                 formik.handleSubmit();
               }}
+              disabled={!formik.isValid}
+
             />
           </div>
         </div>

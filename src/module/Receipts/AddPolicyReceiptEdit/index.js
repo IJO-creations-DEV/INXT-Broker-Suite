@@ -247,8 +247,8 @@ function PolicyReceipts() {
           // onSelectionChange={(e) => setSelectedRows(e.value)}
           >
             <Column selectionMode="multiple" exportable={false}
-              style={{ textAlign: 'center' }}
-              headerStyle={{ paddingLeft: 20 }}
+            style={{textAlign:'center'}}
+            headerStyle={{paddingLeft:20,display:'flex',justifyContent:'center',paddingBottom: 32,border:'none'}}
             ></Column>
             <Column
               field="policies"

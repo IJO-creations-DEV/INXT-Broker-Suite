@@ -92,9 +92,9 @@ function Bankdetailselection() {
     border: "none",
   };
   const status = [
-    { name: "bk001", code: "bk1" },
-    { name: "bk002", code: "bk2" },
-    { name: "bk003", code: "bk3" },
+    { name: "Bk001", code: "bk1" },
+    { name: "Bk002", code: "bk2" },
+    { name: "Bk003", code: "bk3" },
   ];
   const bankaccount = [
     { name: "678882222256", code: "NY" },
@@ -229,6 +229,7 @@ function Bankdetailselection() {
               selectionMode="single"
               selectedItem
               headerStyle={{ width: "4rem" }}
+              style={{textAlign:'center'}}
             ></Column>
           )}
           <Column

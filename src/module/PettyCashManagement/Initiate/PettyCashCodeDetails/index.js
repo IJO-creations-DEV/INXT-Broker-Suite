@@ -106,10 +106,10 @@ const PettyCashCodeDetails = () => {
 
   const navigate = useNavigate();
   const items = [
-    { label: "Petty Cash", url: "Petty Cash Management" },
+    { label: "Petty Cash", command: () => navigate("/accounts/pettycash/pettycashcodeinitiate") },
     {
       label: "Petty Cash Code Details",
-      url: "/accounts/pettycash/PettyCashCodeDetails",
+      to: "/accounts/pettycash/PettyCashCodeDetails",
       color: "red",
     },
   ];

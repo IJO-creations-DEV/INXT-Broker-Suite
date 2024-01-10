@@ -41,10 +41,10 @@ const AddDisbursement = () => {
   });
 
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/adddisbursement" },
+    { label: "Petty Cash",command: () => navigate( "/accounts/pettycash/disbursement" )},
     {
       label: "Add Disbursement",
-      url: "/accounts/pettycash/adddisbursement",
+      to: "/accounts/pettycash/adddisbursement",
     },
   ];
   const Initiate = { label: "Accounts" };

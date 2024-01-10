@@ -12,22 +12,28 @@ import { Dropdown } from "primereact/dropdown";
 import { Card } from "primereact/card";
 import SvgBack from "../../../assets/icons/SvgBack";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function PolicyReceipts() {
-  const { receiptDetailList, loading,total } = useSelector(({ receiptsTableReducers }) => {
+  const { receiptDetailList, loading, total } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptDetailList: receiptsTableReducers?.receiptDetailList,
-      total:receiptsTableReducers
+      total: receiptsTableReducers
 
     };
   });
-  useEffect(()=>{
-    console.log(total,"sd")
-  },[total])
-console.log(total,"find receivableTableList")
-
-  const items = [{ label: "Receipts",url:'accounts/receipts/policyreceipts'}, { label: "Receipt Detail View" }];
+  useEffect(() => {
+    console.log(total, "sd")
+  }, [total])
+  console.log(total, "find receivableTableList")
+  const navigate = useNavigate()
+  const items = [{
+    label: "Receipts",
+    command: () => navigate('/accounts/receipts/policyreceipts')
+  }, {
+    label: "Receipt Detail View"
+  }];
 
   const home = { label: "Accounts " };
   const template2 = {
@@ -67,13 +73,13 @@ console.log(total,"find receivableTableList")
     color: "#000",
     border: "none",
     textalign: "center",
-   
+
   };
 
   return (
     <div className="overall__policy_receipts_view__container">
       <NavBar />
-      <SvgBack/>
+      <SvgBack />
       <label className="label_header">Receipt Detail View</label>
       <BreadCrumb
         model={items}

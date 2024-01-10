@@ -49,7 +49,7 @@ const JournalVoucher = () => {
   const [newDataTable, setnewDataTable] = useState([]);
   const navigate = useNavigate();
   const items = [
-    { id: 1, label: "Journal Voucher", url: "/accounts/journalvoucher" },
+    { id: 1, label: "Journal Voucher", to: "/accounts/journalvoucher" },
   ];
   const home = { label: "Accounts " };
   const handleNavigate = () => {

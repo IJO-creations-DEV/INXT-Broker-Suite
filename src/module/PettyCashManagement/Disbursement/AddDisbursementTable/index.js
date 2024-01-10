@@ -71,10 +71,10 @@ const AddDisbursementTable = () => {
   );
 
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/adddisbursementtable" },
+    { label: "Petty Cash", command: () => navigate( "/accounts/pettycash/disbursement" )},
     {
       label: "Add Disbursement",
-      url: "/accounts/pettycash/adddisbursementtable",
+      to: "/accounts/pettycash/adddisbursementtable",
     },
   ];
   const Initiate = { label: "Accounts" };

@@ -45,11 +45,11 @@ const Reversals = () => {
   const items = [
     {
       label: "Corrections JV",
-      url: "/accounts/correctionsjv/correctionsjvdetails",
+      to: "/accounts/correctionsjv/correctionsjvdetails",
     },
     {
       label: "Corrections JV Details",
-      url: "/accounts/correctionsjv/correctionsjvdetails",
+      to: "/accounts/correctionsjv/correctionsjvdetails",
     },
   ];
   const home = { label: "Accounts" };

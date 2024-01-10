@@ -81,7 +81,7 @@ function PolicyReceipts() {
   console.log(total, "find patchReceipEditMiddleware")
 
   const navigate = useNavigate();
-  const items = [{ label: "Receipts", url: "/accounts/receipts" }, { label: "Add Receipts", url: "/accounts/receipts/addreceipts" }];
+  const items = [{ label: "Receipts", command: () => navigate( "/accounts/receipts" )}, { label: "Add Receipts", to: "/accounts/receipts/addreceipts" }];
 
   const home = { label: "Accounts " };
 

@@ -11,10 +11,10 @@ import NavBar from "../../../components/NavBar";
 const PettyCashReceipts = () => {
   const navigate = useNavigate();
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/receipts" },
+    { label: "Petty Cash", to: "/accounts/pettycash/receipts" },
     {
       label: "Petty Cash Receipts",
-      url: "/accounts/pettycash/receipts",
+      to: "/accounts/pettycash/receipts",
     },
   ];
   const Initiate = { label: "Accounts" };

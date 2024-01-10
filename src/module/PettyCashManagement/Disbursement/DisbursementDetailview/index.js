@@ -35,10 +35,10 @@ const DisbursementDetailview = () => {
   console.log(ViewDisbursment, "ViewDisbursment");
 
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/disbursementdetailview" },
+    { label: "Petty Cash", command: () => navigate("/accounts/pettycash/disbursement") },
     {
       label: "Disbursement Detail view",
-      url: "/accounts/pettycash/disbursementdetailview",
+      to: "/accounts/pettycash/disbursementdetailview",
     },
   ];
   const Initiate = { label: "Accounts" };

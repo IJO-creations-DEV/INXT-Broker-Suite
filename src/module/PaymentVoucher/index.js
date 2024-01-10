@@ -92,7 +92,7 @@ const Index = () => {
     {
       id: 1,
       label: "Payment Voucher",
-      url: "/accounts/paymentvoucher",
+      to: "/accounts/paymentvoucher",
     },
   ];
   const home = { label: "Accounts" };

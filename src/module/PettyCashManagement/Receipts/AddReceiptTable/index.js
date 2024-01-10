@@ -45,10 +45,10 @@ const AddReceiptsTable = () => {
   );
 
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/addreceiptstable" },
+    { label: "Petty Cash",command: () => navigate( "/accounts/pettycash/receipts" )},
     {
       label: "Add Receipt",
-      url: "/accounts/pettycash/addreceiptstable",
+      to: "/accounts/pettycash/addreceiptstable",
     },
   ];
   const Initiate = { label: "Accounts" };

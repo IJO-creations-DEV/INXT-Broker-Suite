@@ -30,7 +30,7 @@ const PolicyReceipts = () => {
   const items = [
 
     {
-      label: 'Receipts', url: "/accounts/receipts"
+      label: 'Receipts', to: "/accounts/receipts"
     },
 
   ];

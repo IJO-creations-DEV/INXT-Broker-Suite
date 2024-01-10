@@ -50,11 +50,20 @@ function Detailview() {
 
   const Navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
+  // const home = { label: "Accounts" };
+  
   const items = [
     {
-      label: "Payment Voucher Details",
-      url: "/accounts/paymentvoucher/detailview",
+     
+      label: "Payment Voucher",
+      command:()=>Navigate("/accounts/paymentvoucher/"),
+      
+     
     },
+    {
+      label: "Payment Voucher Details",
+      to: "/accounts/paymentvoucher/detailview",
+    }
   ];
   const statusBodyTemplate = (rowData) => {
     return (

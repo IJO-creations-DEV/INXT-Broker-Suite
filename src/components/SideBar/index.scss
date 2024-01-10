@@ -51,6 +51,10 @@ body .css-dip3t8 {
   .ps-menu-button {
     color: #9DA4AE !important;
   }
+  .ps-menu-button:focus-visible {
+    outline: none !important; 
+    border: none !important; 
+  }
   // .ps-menu-button :hover{
   //   color: #9DA4AE !important;
   // }

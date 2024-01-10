@@ -26,18 +26,6 @@ const SubAdd = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOption1, setSelectedOption1] = useState(null);
 
-  // const item = [
-  //   { name: "Main00123 - Main Account Description" },
-  //   { name: "Main00125 - Main Account Description" },
-  //   { name: "Main00128 - Main Account Description" },
-  // ];
-  // const item1 = [
-  //   {
-  //     name: "INR-Indian Currency",
-  //     name: "EUR-Euro",
-  //     name: "HKD-Hong Kong Dollar",
-  //   },
-  // ];
 
   const items = [
     { label: "Sub Account", url: "/master/finance/subaccount" },
@@ -53,17 +41,6 @@ const SubAdd = () => {
     { label: subAccountView.currencyCode, value: subAccountView.currencyCode }
   ];
 
-
-  // const formik = useFormik({
-  //   initialValues: {
-  //     subAccountCode: "",
-  //     description: "",
-  //     subAccountName: "",
-  //     mainAccount: "",
-  //     currencyCode: "",
-  //   },
-
-  // });
 
   const home = { label: "Master" };
   useEffect(() => {
@@ -140,6 +117,7 @@ const SubAdd = () => {
 
               <ScrollPanel className="scrollpanal_container">
                 <div className="selected__data__view mt-2">
+                  
                   {texts.map((selectedValue, index) => (
                     <div key={index}>{selectedValue.value}</div>
                   ))}

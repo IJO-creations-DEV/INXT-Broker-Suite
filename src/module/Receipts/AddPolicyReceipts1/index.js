@@ -26,7 +26,7 @@ function BranchAdding() {
  
 
   const navigate = useNavigate();
-  const items = [{ label: "Receipts",url:"/accounts/receipts" }, { label: "Add Receipts",url:"/accounts/receipts/addreceipts" }];
+  const items = [{ label: "Receipts",command: () => navigate("/accounts/receipts" )}, { label: "Add Receipts",to:"/accounts/receipts/addreceipts" }];
   const home = { label: "Accounts " };
   const item = [
     { name: "Premium", code: "PR" },

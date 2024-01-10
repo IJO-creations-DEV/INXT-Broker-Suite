@@ -48,11 +48,10 @@ const DetailsJournalVocture = () => {
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [sortField, setSortField] = useState(null);
     const [sortOrder, setSortOrder] = useState(null);
-
     const [date, setDate] = useState(new Date());
     const items = [
-        { label: 'Journal Voucher', url: '/accounts/journalvoucher' },
-        { id: 1, label: 'Journal Voucher Details', url: '/accounts/journalvoucher/detailsjournalvocture' },
+        { label: 'Journal Voucher', command: () => navigate('/accounts/journalvoucher') },
+        { id: 1, label: 'Journal Voucher Details', to: '/accounts/journalvoucher/detailsjournalvocture' },
 
     ];
     const home = { label: "Account" };
@@ -141,7 +140,7 @@ const DetailsJournalVocture = () => {
         padding: 6,
         color: "#000",
         border: "none",
-      };
+    };
 
     useEffect(() => {
         const timerId = setTimeout(() => {

@@ -96,8 +96,8 @@ const SubAccountMaster = () => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
-  const item = [{ name: "Main00123 - Main Account Description" }, { name: "Main00125 - Main Account Description" }, { name: "Main00128 - Main Account Description" }];
-  const item1 = [{ name: "INR-Indian Currency", name: "EUR-Euro", name: "HKD-Hong Kong Dollar" }]
+  const item = [{ label: "Main00123 - Main Account Description", value: "Main00123 - Main Account Description" }, { label: "Main00125 - Main Account Description", value: "Main00125 - Main Account Description" }, { label: "Main00128 - Main Account Description", value: "Main00128 - Main Account Description" }];
+  const item1 = [{ label: "INR-Indian Currency", value: "INR-Indian Currency" }, { label: "EUR-Euro", value: "EUR-Euro" }, { label: "HKD-Hong Kong Dollar", value: "HKD-Hong Kong Dollar" }]
   const toastRef = useRef(null);
   const renderViewButton = (rowData) => {
     return (
@@ -433,7 +433,7 @@ const SubAccountMaster = () => {
                         className="dropdown__add__sub"
                         label="Main Account"
                         display="chip"
-                        optionLabel="name"
+                        optionLabel="value"
                         classNames="label__sub__add"
                         placeholder={"Select"}
                         dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -457,12 +457,10 @@ const SubAccountMaster = () => {
                       <MultiSelect
                         value={formik.values.currencyCode}
                         onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
-                        // value={selectedOption1}
                         options={item1}
-                        // onChange={handleDropdownChange1}
                         className="dropdown__add__sub"
                         display="chip"
-                        optionLabel="name"
+                        optionLabel="value"
                         classNames="label__sub__add"
                         placeholder={"Select"}
                         dropdownIcon={<SvgDropdown color={"#000"} />}

@@ -43,14 +43,7 @@ function EditExchange() {
   const [transactioncode, setTransactioncode] = useState(null);
   const [selectinstrumentcurrency, setSelectInstrumentCurrency] = useState(null);
 
-  const currencyCode = [
-    { name: "INR", code: "NY" },
-    { name: "USD", code: "RM" },
-  ];
-  const ToCurrencyCode = [
-    { name: "INR", code: "NY" },
-    { name: "USD", code: "RM" },
-  ];
+
   const PayeeType = [
     { name: "Customer", code: "NY" },
     { name: "owner", code: "RM" },
@@ -103,12 +96,18 @@ function EditExchange() {
     //   Navigate("/master/finance/exchangerate")
     // }, 2000);
   };
+  const currencyCode = [
+    { label: getExchangeEdit?.CurrencyCode, value: getExchangeEdit?.CurrencyCode },
+  ];
+  const ToCurrencyCode = [
+    { label: getExchangeEdit?.ToCurrencyCode, value: getExchangeEdit?.ToCurrencyCode },
+  ];
   const setFormikValues = () => {
     const IsoCode = getExchangeEdit?.ISOcode;
     const updatedValues = {
       id: getExchangeEdit.id,
-      EffectiveFrom: getExchangeEdit?.EffectiveFrom,
-      EffectiveTo: getExchangeEdit?.EffectiveTo,
+      EffectiveFrom: new Date(getExchangeEdit?.EffectiveFrom),
+      EffectiveTo: new Date(getExchangeEdit?.EffectiveTo),
       CurrencyCode: getExchangeEdit?.CurrencyCode,
       ToCurrencyCode: getExchangeEdit?.ToCurrencyCode,
       ExchangeRate: getExchangeEdit?.ExchangeRate,
@@ -173,7 +172,7 @@ function EditExchange() {
                   formik.setFieldValue("CurrencyCode", e.value)
                 }
                 options={currencyCode}
-                optionLabel="name"
+                optionLabel="label"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
@@ -215,7 +214,7 @@ function EditExchange() {
                 }
 
                 options={ToCurrencyCode}
-                optionLabel="name"
+                optionLabel="label"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />

@@ -79,8 +79,8 @@ function PolicyReceipts() {
     }
   });
   const items = [
-    { label: "Receipts", url: "/accounts/receipts" },
-    { label: "Add Receipts", url: "/accounts/receipts/addreceipts" },
+    { label: "Receipts", command: () => navigate("/accounts/receipts") },
+    { label: "Add Receipts", to: "/accounts/receipts/addreceipts" },
   ];
 
   const home = { label: "Accounts " };

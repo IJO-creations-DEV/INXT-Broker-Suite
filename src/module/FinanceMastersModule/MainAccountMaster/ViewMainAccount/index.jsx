@@ -43,7 +43,7 @@ const ViewMainAccount = () => {
   const [entrySwitch, setentrySwitch] = useState(EntrySwitchoptions[0]);
 
   const codeOptionsType = [
-    { label: MainAccountDetailView.accountType, value: MainAccountDetailView.accountType },
+    { label: MainAccountDetailView.openEntryType, value: MainAccountDetailView.openEntryType },
 
   ];
   const categoryOptionsCode = [
@@ -121,10 +121,7 @@ const ViewMainAccount = () => {
               label="Main Account Code"
 
               value={MainAccountDetailView.mainAccountCode}
-            // value={formik.values.mainaccountode}
-            // onChange={(e) =>
-            //   formik.setFieldValue("mainaccountode", e.target.value)
-            // }
+
             />
             {formik.touched.mainaccountode && formik.errors.mainaccountode && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -220,7 +217,7 @@ const ViewMainAccount = () => {
               optionLabel="value"
               label="Open Entry type"
               // value={formik.values.openentrytype}
-              value={MainAccountDetailView.codeOptionsType}
+              value={selectSwitch == "Yes" && MainAccountDetailView.openEntryType}
               // onChange={(e) => formik.setFieldValue("openentrytype", e.value)}
               options={codeOptionsType}
             />
@@ -273,11 +270,12 @@ const ViewMainAccount = () => {
               classNames="input__field__corrections__inactive"
               className="input__label__corrections"
               label="Description"
-              value={
-                formik.values.accountcategorycode
-                  ? `descrption ${formik.values.accountcategorycode}`
-                  : ""
-              }
+              value={MainAccountDetailView.description}
+            // value={
+            //   MainAccountDetailView.accountcategorycode
+            //     ? `descrption ${MainAccountDetailView.description}`
+            //     : ""
+            // }
             />
           </div>
         </div>

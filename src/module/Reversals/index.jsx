@@ -26,10 +26,10 @@ const Reversals = () => {
   };
   const [step, setStep] = useState(0);
   const items = [
-    { label: "Reversal JV", url: "/accounts/reversaljv/reversaljvdetails" },
+    { label: "Reversal JV", to: "/accounts/reversaljv/reversaljvdetails" },
     {
       label: "Reversal JV Details",
-      url: "/accounts/reversaljv/reversaljvdetails",
+      to: "/accounts/reversaljv/reversaljvdetails",
     },
   ];
   const home = { label: "Accounts" };

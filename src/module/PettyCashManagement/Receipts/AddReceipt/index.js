@@ -42,10 +42,10 @@ const AddReceipts = () => {
   const dispatch = useDispatch();
   // const toastRef = useRef(null);
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/addreceipts" },
+    { label: "Petty Cash",command: () => navigate( "/accounts/pettycash/receipts" )},
     {
       label: "Add Receipt",
-      url: "/accounts/pettycash/addreceipts",
+      to: "/accounts/pettycash/addreceipts",
     },
   ];
   const Initiate = { label: "Accounts" };

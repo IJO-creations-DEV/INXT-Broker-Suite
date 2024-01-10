@@ -69,11 +69,11 @@ function Createvoucher() {
     { name: "INR", code: "NY" },
     { name: "USD", code: "RM" },
   ];
-
+  const navigate = useNavigate()
   const home = { label: "Accounts" };
   const items = [
-    { label: "Payment Voucher", url: "/accounts/paymentvoucher" },
-    { label: "Create Voucher", url: "/accounts/paymentvoucher/createvoucher" },
+    { label: "Payment Voucher", command: () => navigate("/accounts/paymentvoucher") },
+    { label: "Create Voucher", to: "/accounts/paymentvoucher/createvoucher" },
   ];
 
   const minDate = new Date();
@@ -130,7 +130,7 @@ function Createvoucher() {
     validate: customValidation,
     onSubmit: handleSubmit,
   });
-console.log("first", formik.values.Criteria?.name)
+  console.log("first", formik.values.Criteria?.name)
   return (
     <div className="overall__createvoucher__container">
       <NavBar />
@@ -260,18 +260,18 @@ console.log("first", formik.values.Criteria?.name)
 
         <div class="grid">
           <div class="col-3 md:col-3 lg-col-3">
-           { formik.values.Criteria == "" || formik.values.Criteria?.name == "Specific"  ? 
-           <DropDowns
-           className="dropdown__container"
-           label="Customer Code"
-           value={formik.values.CustomerCode}
-           onChange={(e) => formik.setFieldValue("CustomerCode", e.value)}
-           options={CustomerCode}
-           optionLabel="name"
-           placeholder={"Select"}
-           dropdownIcon={<SvgDropdown color={"#000"} />}
-         /> : null
-           } 
+            {formik.values.Criteria == "" || formik.values.Criteria?.name == "Specific" ?
+              <DropDowns
+                className="dropdown__container"
+                label="Customer Code"
+                value={formik.values.CustomerCode}
+                onChange={(e) => formik.setFieldValue("CustomerCode", e.value)}
+                options={CustomerCode}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              /> : null
+            }
             {/* {formik.touched.CustomerCode && formik.errors.CustomerCode && (
               <div style={{ fontSize: 12, color: "red" }}>
                 {formik.errors.CustomerCode}

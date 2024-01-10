@@ -94,8 +94,16 @@ export const patchExchangeDetailEdit = createAsyncThunk(
         console.log(payload, "patchExchangeDetailEdit")
         const Tabledata = {
             id: payload?.id,
-            EffectiveFrom: payload?.EffectiveFrom,
-            EffectiveTo: payload?.EffectiveTo,
+            EffectiveFrom: payload?.EffectiveFrom.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+            EffectiveTo: payload?.EffectiveTo.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
             CurrencyCode: payload?.CurrencyCode,
             ToCurrencyCode: payload?.ToCurrencyCode,
             ExchangeRate: payload?.ExchangeRate,

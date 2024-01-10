@@ -62,10 +62,10 @@ const AddRequestTable = () => {
   );
 
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/addrequesttable" },
+    { label: "Petty Cash", command: () => navigate( "/accounts/pettycash/pettycashrequest" )},
     {
       label: "Add Request",
-      url: "/accounts/pettycash/addrequesttable",
+      to: "/accounts/pettycash/addrequesttable",
     },
   ];
   const Initiate = { label: "Accounts" };

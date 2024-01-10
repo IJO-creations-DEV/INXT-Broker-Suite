@@ -11,18 +11,18 @@ import NavBar from "../../../components/NavBar";
 const Initiate = () => {
   const navigate = useNavigate();
   const items = [
-    { label: "Petty Cash", url: "Petty Cash Management" },
-    { label: "Petty Cash Initiate", url: "/accounts/pettycash/pettycashcodeinitiate" },
+    { label: "Petty Cash", to: "Petty Cash Management" },
+    { label: "Petty Cash Initiate", to: "/accounts/pettycash/pettycashcodeinitiate" },
   ];
   const Initiate = { label: "Accounts" };
 
-  const handleClick =()=>{
+  const handleClick = () => {
     navigate('/accounts/pettycash/pettycashcodeinitiate/initiate')
   }
 
   return (
     <div className="pettycash__management">
-       <NavBar />
+      <NavBar />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div className="pettycash__title">Petty Cash Initiate</div>
@@ -39,15 +39,15 @@ const Initiate = () => {
           <div className="btn__container">
             <Button
               label="Initiate"
-              icon={<SvgAdd  color={"#fff"}/>}
+              icon={<SvgAdd color={"#fff"} />}
               className="add__btn"
-              onClick={() => {handleClick()}}
+              onClick={() => { handleClick() }}
             />
           </div>
         </div>
       </div>
       <div>
-        <InitiateTable/>
+        <InitiateTable />
       </div>
     </div>
   );

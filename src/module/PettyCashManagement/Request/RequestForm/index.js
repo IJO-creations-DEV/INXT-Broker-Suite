@@ -76,10 +76,10 @@ const RequestForm = () => {
 
 
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/addrequest" },
+    { label: "Petty Cash", command: () => navigate("/accounts/pettycash/pettycashrequest") },
     {
       label: "Add Request",
-      url: "/accounts/pettycash/addrequest",
+      to: "/accounts/pettycash/addrequest",
     },
   ];
   const Initiate = { label: "Accounts" };

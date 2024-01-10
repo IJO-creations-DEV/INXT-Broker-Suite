@@ -51,10 +51,10 @@ const AddReplenish = () => {
     }
   );
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/addreplenish" },
+    { label: "Petty Cash", command: () => navigate(  "/accounts/pettycash/replenish") },
     {
       label: "Add Replenish",
-      url: "/accounts/pettycash/addreplenish",
+      to: "/accounts/pettycash/addreplenish",
     },
   ];
   const Initiate = { label: "Accounts" };

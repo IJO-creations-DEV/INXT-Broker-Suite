@@ -26,10 +26,10 @@ const ReceiptList = () => {
   console.log(ViewReceipt,"ViewReceipt")
 
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/receiptlist" },
+    { label: "Petty Cash", command: () => navigate( "/accounts/pettycash/receipts") },
     {
       label: "Receipts Detail View",
-      url: "/accounts/pettycash/receiptlist",
+      to: "/accounts/pettycash/receiptlist",
     },
   ];
   const Initiate = { label: "Accounts" };

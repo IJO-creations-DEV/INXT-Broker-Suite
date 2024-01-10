@@ -102,14 +102,14 @@ const InitiateForm = () => {
     }, 2000);
   };
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/pettycashcodeinitiate" },
+    { label: "Petty Cash", command: () => navigate("/accounts/pettycash/pettycashcodeinitiate") },
     {
       label: "Petty Cash Code Initiate",
-      url: "/accounts/pettycash/pettycashcodeinitiate",
+      command: () => navigate("/accounts/pettycash/pettycashcodeinitiate"),
     },
     {
       label: "Initiate",
-      url: "/accounts/pettycash/pettycashcodeinitiate/initiate",
+      to: "/accounts/pettycash/pettycashcodeinitiate/initiate",
     },
   ];
   const Initiate = { label: "Accounts" };
@@ -352,7 +352,7 @@ const InitiateForm = () => {
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("PettyCashCode", e.value);
-                   handlePettyCashDescribtion(e.value);
+                  handlePettyCashDescribtion(e.value);
                 }}
                 optionLabel="pettycashcode"
                 error={
@@ -378,10 +378,10 @@ const InitiateForm = () => {
                 textWeight={500}
                 value={formik.values.PettyCashdescription}
                 onChange={formik.handleChange("PettyCashdescription")}
-                // error={
-                //   formik.touched.PettyCashdescription &&
-                //   formik.errors.PettyCashdescription
-                // }
+              // error={
+              //   formik.touched.PettyCashdescription &&
+              //   formik.errors.PettyCashdescription
+              // }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">

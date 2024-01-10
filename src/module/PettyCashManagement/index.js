@@ -9,8 +9,8 @@ import { TabView, TabPanel } from "primereact/tabview";
 
 const Pettycashmanagement = () => {
   const items = [
-    { label: "Accounts", url: "/accounts" },
-    { label: "Petty Cash Management", url: "Petty Cash Management" },
+    { label: "Accounts", to: "/accounts" },
+    { label: "Petty Cash Management", to: "Petty Cash Management" },
   ];
   const Initiate = { label: "Dashboard" };
   return (

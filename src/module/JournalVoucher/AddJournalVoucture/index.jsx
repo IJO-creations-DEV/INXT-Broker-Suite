@@ -46,8 +46,8 @@ const AddJournalVocture = () => {
     const [visibleEdit, setVisibleEdit] = useState(false)
     const [date, setDate] = useState(new Date());
     const items = [
-        { label: 'Journal Voucher', url: '/accounts/journalvoucher' },
-        { label: 'Add Journal Voucher', url: '/accounts/journalvoucher/addjournalvoucture' },
+        { label: 'Journal Voucher', command:()=>navigate( '/accounts/journalvoucher') },
+        { label: 'Add Journal Voucher', to:'/accounts/journalvoucher/addjournalvoucture' },
 
     ];
     const home = { label: "Accounts" };

@@ -14,12 +14,14 @@ import { dataa } from './data';
 import { mock } from './mock';
 import SvgEdit from '../../../assets/icons/SvgEdit';
 import NavBar from '../../../components/NavBar';
+import { useNavigate } from 'react-router-dom';
 
 const AddPolicyReceipts = () => {
+    const navigate=useNavigate()
     const items = [
-        { label: 'Accounts', url: '/accounts' },
-        { label: 'Receipts', url: '/accounts/receipts' },
-        { label: 'Add Receipts', url: '/accounts/receipts/addpolicyreceipts' },
+        { label: 'Accounts', to: '/accounts' },
+        { label: 'Receipts', command: () => navigate( '/accounts/receipts') },
+        { label: 'Add Receipts', to: '/accounts/receipts/addpolicyreceipts' },
     ];
 
     const home = { label: "Dashboard" };

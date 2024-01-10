@@ -27,10 +27,10 @@ const ReplenishtDetailView = () => {
 
 //   const toastRef = useRef(null);
   const items = [
-    { label: "Petty Cash", url: "/accounts/pettycash/replenishtdetailview" },
+    { label: "Petty Cash", command: () => navigate( "/accounts/pettycash/replenish") },
     {
       label: "Replenish Detail view",
-      url: "/accounts/pettycash/replenishtdetailview",
+      to: "/accounts/pettycash/replenishtdetailview",
     },
   ];
   const Initiate = { label: "Accounts" };

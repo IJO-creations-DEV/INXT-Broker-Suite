@@ -12,7 +12,7 @@ const Initiate = () => {
   const navigate = useNavigate();
   const items = [
     { label: "Petty Cash", url: "Petty Cash Management" },
-    { label: "Petty Cash Code Initiate", url: "/accounts/pettycash/pettycashcodeinitiate" },
+    { label: "Petty Cash Initiate", url: "/accounts/pettycash/pettycashcodeinitiate" },
   ];
   const Initiate = { label: "Accounts" };
 
@@ -25,7 +25,7 @@ const Initiate = () => {
        <NavBar />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
-          <div className="pettycash__title">Petty Cash Code Initiate</div>
+          <div className="pettycash__title">Petty Cash Initiate</div>
           <div>
             <BreadCrumb
               model={items}

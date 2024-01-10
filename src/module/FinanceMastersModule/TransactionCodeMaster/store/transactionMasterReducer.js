@@ -10,6 +10,7 @@ import {
   postAddUserGroupAccess,
   getTrascationcodeDetailsView,
   patchTrascationcodeDetailsEdit,
+  getpatchTrascationcodeDetailsEdit,
 } from "./transactionCodeMasterMiddleware";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 const initialState = {
@@ -78,6 +79,7 @@ const initialState = {
   AddUserGroupAccess: {},
   TrascationcodeDetailsView: {},
   TrascationcodeDetailsEdit: {},
+  getTrascationcodeDetailsEdit:{}
 };
 let nextId = 2;
 let nextId2 = 2
@@ -243,54 +245,7 @@ const transactionCodeMasterReducer = createSlice({
     //TrascationcodeDetailsEdit
 
 
-    // builder.addCase(patchTrascationcodeDetailsEdit.pending, (state) => {
-    //   state.loading = true;
-    // });
-    // builder.addCase(
-    //   patchTrascationcodeDetailsEdit.fulfilled,
-    //   (state, action) => {
 
-    //     state.loading = false;
-    //     state.TransactioncodeList = [action.payload];
-    //   }
-    // );
-    // builder.addCase(
-    //   patchTrascationcodeDetailsEdit.rejected,
-    //   (state, action) => {
-    //     state.loading = false;
-
-    //     state.TransactioncodeList = {};
-    //     state.error = typeof action.payload === "string" ? action.payload : "";
-    //   }
-    // );
-    // builder.addCase(patchTrascationcodeDetailsEdit.pending, (state) => {
-    //   state.loading = true;
-    // });
-    // builder.addCase(
-    //   patchTrascationcodeDetailsEdit.fulfilled,
-    //   (state, action) => {
-    //     state.loading = false;
-    //     console.log(state.TransactioncodeList, "state.AddDisbursmentTable");
-    //     const updatedIndex = state.TransactioncodeList.findIndex(
-    //       (item) => item.id === action.payload.id
-    //     );
-    //     if (updatedIndex !== -1) {
-    //       const updatedTransactioncodeList = [...state.TransactioncodeList];
-    //       updatedTransactioncodeList[updatedIndex] = action.payload;
-    //       state.TransactioncodeList = updatedTransactioncodeList;
-    //     } else {
-    //       state.TransactioncodeList = [...state.TransactioncodeList, action.payload];
-    //     }
-    //   }
-    // );
-
-
-    // builder.addCase(patchTrascationcodeDetailsEdit.rejected, (state, action) => {
-    //   state.loading = false;
-
-    //   state.EditDisbursment = {};
-    //   state.error = typeof action.payload === "string" ? action.payload : "";
-    // });
     builder.addCase(patchTrascationcodeDetailsEdit.pending, (state) => {
       state.loading = true;
     });
@@ -298,7 +253,16 @@ const transactionCodeMasterReducer = createSlice({
       patchTrascationcodeDetailsEdit.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.BankDetailEdit = action.payload;
+        const updatedIndex = state.TransactioncodeList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.TransactioncodeList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.TransactioncodeList = updatedCurrencyList;
+        } else {
+          state.TransactioncodeList = [...state.TransactioncodeList, action.payload];
+        }
       }
     );
     builder.addCase(
@@ -306,11 +270,23 @@ const transactionCodeMasterReducer = createSlice({
       (state, action) => {
         state.loading = false;
 
-        state.BankDetailEdit = {};
+        state.TrascationcodeDetailsEdit = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
+    builder.addCase(getpatchTrascationcodeDetailsEdit.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getpatchTrascationcodeDetailsEdit.fulfilled, (state, action) => {
+      state.loading = false;
+      state.getTrascationcodeDetailsEdit = action.payload;
+    });
+    builder.addCase(getpatchTrascationcodeDetailsEdit.rejected, (state, action) => {
+      state.loading = false;
 
+      state.getTrascationcodeDetailsEdit = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
   },
 });

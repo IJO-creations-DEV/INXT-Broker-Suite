@@ -66,12 +66,11 @@ const AddJournalVocture = () => {
     const { loading, journalVoucherPostTabelData } = useSelector(({ journalVoucherMainReducers }) => {
         return {
             loading: journalVoucherMainReducers?.loading,
-            // addJournalVoucher: journalVoucherMainReducers?.addJournalVoucher,
             journalVoucherPostTabelData: journalVoucherMainReducers?.journalVoucherPostTabelData
 
         };
     });
-    console.log(journalVoucherPostTabelData, "journalVoucherPostTabelData")
+    console.log(journalVoucherPostTabelData.entryType, "journalVoucherPostTabelData")
 
 
     const customValidation = (values) => {
@@ -100,10 +99,10 @@ const AddJournalVocture = () => {
     const [errors, setErrors] = useState("")
 
 
-    
+
     const dispatch = useDispatch()
     const handleSubmit = (values) => {
-        
+
         dispatch(postTCJournalVoucher(formik.values));
     };
 
@@ -113,14 +112,7 @@ const AddJournalVocture = () => {
     useEffect(() => {
         handleSubmit()
     }, [])
-    // console.log(total, "find receiptsTableList")
 
-    // const handleSubmit = (values) => {
-    //     // Handle form submission
-    //     console.log(values);
-    //     setVisible(false);
-    //     setVisiblePopup(true);
-    // }
     const formik = useFormik({
         initialValues: {
             transationCode: '',
@@ -172,14 +164,26 @@ const AddJournalVocture = () => {
 
     ];
     const totalForeignAmount = journalVoucherPostTabelData.reduce((total, item) => {
-        const foreignAmount = parseFloat(item.foreignAmount);
-        return !isNaN(foreignAmount) ? total + foreignAmount : total;
-      }, 0);
-    
-      const totalLocalAmount = journalVoucherPostTabelData.reduce((total, item) => {
-        const localAmount = parseFloat(item.localAmount);
-        return !isNaN(localAmount) ? total + localAmount : total;
-      }, 0);
+        if (item.entryType === "Credit") {
+            const foreignAmount = parseFloat(item.foreignAmount);
+            return !isNaN(foreignAmount) ? total + foreignAmount : total;
+        }
+        return total; // Important: Return the total for each iteration.
+    }, 0);
+
+
+    const totalLocalAmount = journalVoucherPostTabelData.reduce((total, item) => {
+        if (item.entryType === "Debit") {
+            const localAmount = parseFloat(item.foreignAmount);
+            return !isNaN(localAmount) ? total + localAmount : total;
+        }
+        return total;
+    }, 0);
+
+    // const totalLocalAmount = journalVoucherPostTabelData.reduce((total, item) => {
+    //     const localAmount = parseFloat(item.localAmount);
+    //     return !isNaN(localAmount) ? total + localAmount : total;
+    // }, 0);
 
     const handlePrint = () => {
         setVisibleSuccess(true)
@@ -190,7 +194,6 @@ const AddJournalVocture = () => {
 
     return (
         <div className='grid add__JV__container'>
-            {/* <CustomToast ref={toastRef} /> */}
             {buttonshow === 0 ? (
                 <CustomToast
                     ref={toastRef}
@@ -273,7 +276,7 @@ const AddJournalVocture = () => {
                                 classNames="label__sub__add__JV"
                             >
                                 <Calendar
-                                disabled={true}
+                                    disabled={true}
                                     value={
                                         formik.values.date
                                             ? new Date(formik.values.date)
@@ -301,7 +304,7 @@ const AddJournalVocture = () => {
             </div>
             <div className='col-12 m-0'>
                 <div className='sub__account__sub__container__JV'>
-                    <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%',padding:0 }}>
+                    <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%', padding: 0 }}>
                         <div className="card">
                             <AddDataTabel setVisibleEdit={setVisibleEdit} handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} journalVoucherPostTabelData={journalVoucherPostTabelData} />
 
@@ -365,8 +368,7 @@ const AddJournalVocture = () => {
                                 classNames='dropdown__add__sub__JV'
                                 className='label__sub__add__JV'
                                 placeholder="Enter"
-                                value={totalForeignAmount-totalLocalAmount}
-
+                                value={totalForeignAmount - totalLocalAmount}
                             />
                             {formik.touched.net && formik.errors.net && (
                                 <div
@@ -405,14 +407,10 @@ const AddJournalVocture = () => {
                 </div>
             )}
             <div className="col-12" >
-
                 <AddData visible={visible} setVisible={setVisible} handleUpdate={handleUpdate} setCreditTotal={setCreditTotal} setDebitTotal={setCreditTotal} setNetTotal={setNetTotal} />
-
             </div>
             <div className="col-12" >
-
                 <EditData visibleEdit={visibleEdit} setVisibleEdit={setVisibleEdit} handleUpdate={handleUpdate} setCreditTotal={setCreditTotal} setDebitTotal={setCreditTotal} setNetTotal={setNetTotal} />
-
             </div>
 
 

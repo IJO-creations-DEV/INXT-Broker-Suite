@@ -20,14 +20,16 @@ import { patchReceipEditMiddleware } from "../store/receiptsMiddleware";
 import { useFormik } from "formik";
 
 function PolicyReceipts() {
+  console.log("hiiii", "receiptsTableListreceiptsTableList");
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState(null);
+  const [selectedRows, setSelectedRows] = useState([]);
+
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [visible, setVisible] = useState(false);
   const [editedData, setEditedData] = useState(null);
-  const [errors,setErrors]=useState("")
+  const [errors, setErrors] = useState("")
   const dispatch = useDispatch();
-  //   const popupRef = useRef(null);
   const { receivableTableList, loading, total } = useSelector(
     ({ editReducers }) => ({
       loading: editReducers?.loading,
@@ -35,17 +37,54 @@ function PolicyReceipts() {
       total: editReducers?.total,
     })
   );
- 
+  console.log(receivableTableList, "receivableTableListreceivableTableList")
+
+  const totalNetAmount = selectedRows.reduce((total, item) => {
+    const netAmount = parseFloat(item.netPremium);
+    return !isNaN(netAmount) ? total + netAmount : total;
+  }, 0);
+  console.log(totalNetAmount, "totalForeignAmount");
+
+  const totalPaid = selectedRows.reduce((total, item) => {
+    const paidAmount = parseFloat(item.paid);
+    return !isNaN(paidAmount) ? total + paidAmount : total;
+  }, 0);
+  console.log(totalPaid, "totalPaid");
+
+  const totalUnPaid = selectedRows.reduce((total, item) => {
+    const unPaidAmount = parseFloat(item.unPaid);
+    return !isNaN(unPaidAmount) ? total + unPaidAmount : total;
+  }, 0);
+  console.log(totalUnPaid, "totalUnPaid");
+
+  const totalFC = selectedRows.reduce((total, item) => {
+    const fcAmount = parseFloat(item.fcAmount);
+    return !isNaN(fcAmount) ? total + fcAmount : total;
+  }, 0);
+  console.log(totalFC, "totalUnPaid");
+
+  const totall = selectedRows.reduce((total, item) => {
+    const dst = parseFloat(item.dst);
+    const vat = parseFloat(item.vat);
+    const lgt = parseFloat(item.lgt);
+    const other = parseFloat(item.other)
+    const subTotalAll = (dst + lgt + vat + other)
+    return !isNaN(subTotalAll) ? total + subTotalAll : total;
+  }, 0);
+  console.log(totall, "totall");
+
+
+
   useEffect(() => {
     console.log(total, "Total");
   }, [total]);
-console.log(total,"find patchReceipEditMiddleware")
- 
+  console.log(total, "find patchReceipEditMiddleware")
+
   const navigate = useNavigate();
-  const items = [{ label: "Receipts",url:"/accounts/receipts" }, { label: "Add Receipts",url:"/accounts/receipts/addreceipts" }];
+  const items = [{ label: "Receipts", url: "/accounts/receipts" }, { label: "Add Receipts", url: "/accounts/receipts/addreceipts" }];
 
   const home = { label: "Accounts " };
- 
+
   const renderViewButton = (rowData) => {
     return (
       <div onClick={() => handleView(rowData)}>
@@ -60,43 +99,43 @@ console.log(total,"find patchReceipEditMiddleware")
     setVisiblePopup(true);
   };
   const setFormikValues = (rowData) => {
-    console.log(rowData,"find action");
-    const policy =rowData?.policies;
-    const id =rowData?.id;
-    const netPremium=rowData?.netPremium;
-    const paid=rowData?.paid;
-    const unPaid=rowData?.unPaid;
-    const dst =rowData?.dst;
-    const vat =rowData?.vat;
-    const lgt =rowData?.lgt;
-    const other =rowData?.other;
-    const fcAmount =rowData?.fcAmount;
-    const lcAmount =rowData?.lcAmount;
-    const discounts =rowData?.discounts
-   
+    console.log(rowData, "find action");
+    const policy = rowData?.policies;
+    const id = rowData?.id;
+    const netPremium = rowData?.netPremium;
+    const paid = rowData?.paid;
+    const unPaid = rowData?.unPaid;
+    const dst = rowData?.dst;
+    const vat = rowData?.vat;
+    const lgt = rowData?.lgt;
+    const other = rowData?.other;
+    const fcAmount = rowData?.fcAmount;
+    const lcAmount = rowData?.lcAmount;
+    const discounts = rowData?.discounts
 
-   
+
+
 
     const updatedValues = {
-      id:`${id}`,
+      id: `${id}`,
       policy: `${policy}`,
-      netPremium:`${netPremium}`,
-      paid:`${paid}`,
-      unPaid:`${unPaid}`,
-      discounts:`${discounts}`,
-      dst:`${dst}`,
-      vat:`${vat}`,
-      lgt:`${lgt}`,
-      other:`${other}`,
-      fcAmount:`${fcAmount}`,
-      lcAmount:`${lcAmount}`
-     
+      netPremium: `${netPremium}`,
+      paid: `${paid}`,
+      unPaid: `${unPaid}`,
+      discounts: `${discounts}`,
+      dst: `${dst}`,
+      vat: `${vat}`,
+      lgt: `${lgt}`,
+      other: `${other}`,
+      fcAmount: `${fcAmount}`,
+      lcAmount: `${lcAmount}`
+
     };
     formik.setValues({ ...formik.values, ...updatedValues });
   };
 
   const initialValues = {
-    id:"",
+    id: "",
     policy: "",
     netPremium: editedData?.netPremium || "",
     paid: editedData?.paid || "",
@@ -109,39 +148,25 @@ console.log(total,"find patchReceipEditMiddleware")
     fCAmount: editedData?.fCAmount || "",
     lcAmount: editedData?.lcAmount || "",
   };
-  
-  
+
+
   const handleSubmit = (values) => {
     dispatch(patchReceipEditMiddleware(values));
     setVisiblePopup(false);
-    console.log(values,"find checking")
-    
+    console.log(values, "find checking")
+
   };
 
   const formik = useFormik({
     initialValues,
-   
+
     onSubmit: handleSubmit,
   });
-  
-  // const handleUpdate = () => {
-  //   dispatch(patchReceipEditMiddleware(formik.values));
-  //   setEditedData(null);
-  //   setVisiblePopup(false);
-  // };
 
 
   const handleClick = () => {
     navigate("/accounts/receipts/paymentdetails");
   };
-  // const handleUpdate = () => {
-   
-  //   dispatch(patchReceipEditMiddleware(editedData));
-  
-    
-  //   setEditedData(null);
-  //   setVisiblePopup(false);
-  // };
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -155,38 +180,38 @@ console.log(total,"find patchReceipEditMiddleware")
 
       return (
         <React.Fragment>
-        <span
-          className="mx-1"
-          style={{ color: "var(--text-color)", userSelect: "none" }}
-        >
-          Row count :{" "}
-        </span>
-        <Dropdown
-          value={options.value}
-          className="pagedropdown_container"
-          options={dropdownOptions}
-          onChange={options.onChange}
-        />
-      </React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Row count :{" "}
+          </span>
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
+        </React.Fragment>
       );
     },
   };
 
   const headerStyle = {
     fontSize: 16,
-    paddingLeft:0,
+    paddingLeft: 0,
     fontFamily: "Inter var",
     fontWeight: 500,
     color: "#000",
     border: "none",
-    
+
   };
 
   return (
     <div className="overall__add_policy_edit__container">
       <NavBar />
-      <span onClick={()=>navigate(-1)}>
-      <SvgBack />
+      <span onClick={() => navigate(-1)}>
+        <SvgBack />
       </span>
       <label className="label_header">Add Receipts</label>
       <BreadCrumb
@@ -203,18 +228,14 @@ console.log(total,"find patchReceipEditMiddleware")
         <div className="card">
           <DataTable
             value={receivableTableList}
-            // style={{width:'100%'}}
             tableStyle={{
-              // width:"50vw",
-              // minWidth: "50rem",
               color: "#1C2536",
-              // maxHeight: "50vh",
-              // overflowy: "auto",
             }}
-            // scrollable={true}
-            // scrollHeight="40vh"
-            selection={selectedProducts}
-            onSelectionChange={(e) => setSelectedProducts(e.value)}
+            selection={selectedRows}
+            onSelectionChange={(e) => setSelectedRows(e.value)}
+            // selection={selectedProducts}
+
+            // onSelectionChange={(e) => setSelectedProducts(e.value)}
             paginator
             rows={5}
             rowsPerPageOptions={[5, 10, 25, 50]}
@@ -222,10 +243,12 @@ console.log(total,"find patchReceipEditMiddleware")
             paginatorTemplate={template2}
             className="datatable_container"
             selectionMode="checkbox"
+          // selection={selectedRows}
+          // onSelectionChange={(e) => setSelectedRows(e.value)}
           >
             <Column selectionMode="multiple" exportable={false}
-            style={{textAlign:'center'}}
-            headerStyle={{paddingLeft:20}}
+              style={{ textAlign: 'center' }}
+              headerStyle={{ paddingLeft: 20 }}
             ></Column>
             <Column
               field="policies"
@@ -234,21 +257,21 @@ console.log(total,"find patchReceipEditMiddleware")
               className="fieldvalue_container"
             ></Column>
             <Column
-            sortable
+              sortable
               field="netPremium"
               header="Net Premium"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-            sortable
+              sortable
               field="paid"
               header="Paid"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-            sortable
+              sortable
               field="unPaid"
               header="UnPaid"
               headerStyle={headerStyle}
@@ -303,7 +326,7 @@ console.log(total,"find patchReceipEditMiddleware")
               header="Action"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              style={{textAlign:'center'}}
+              style={{ textAlign: 'center' }}
             ></Column>
           </DataTable>
         </div>
@@ -315,7 +338,7 @@ console.log(total,"find patchReceipEditMiddleware")
             <InputField
               classNames="policy_input"
               label="Net Premium"
-              value={"00.00"}
+              value={totalNetAmount}
             />
           </div>
         </div>
@@ -324,7 +347,7 @@ console.log(total,"find patchReceipEditMiddleware")
             <InputField
               classNames="policy_input"
               label="Paid Premium"
-              value={"00.00"}
+              value={totalPaid}
             />
           </div>
         </div>
@@ -333,7 +356,7 @@ console.log(total,"find patchReceipEditMiddleware")
             <InputField
               classNames="policy_input"
               label="Actual Payment"
-              value={"00.00"}
+              value={totalFC}
             />
           </div>
         </div>
@@ -342,7 +365,7 @@ console.log(total,"find patchReceipEditMiddleware")
             <InputField
               classNames="policy_input"
               label="Total Taxes"
-              value={"00.00"}
+              value={totall}
             />
           </div>
         </div>
@@ -351,43 +374,44 @@ console.log(total,"find patchReceipEditMiddleware")
             <InputField
               classNames="policy_input"
               label="Outstanding Premium"
-              value={"00.00"}
+              value={totalUnPaid}
             />
           </div>
         </div>
       </div>
       <div className="next_container">
         <div className="exit_print_buttons">
-          <Button label="Next" className="print" onClick={handleClick} disabled={!selectedProducts }/>
+          <Button label="Next" className="print" onClick={handleClick} disabled={!selectedProducts} />
         </div>
       </div>
       <div className="col-12">
-      
+
         <Dialog
           header="Policy details"
           visible={visiblePopup}
           className="dialog_fields"
           onHide={() => {
             setVisiblePopup(false);
-            setEditedData(null); 
+            setEditedData(null);
           }}
         >
+
           <div class="grid">
             <div class="sm-col-12  md:col-6 lg-col-6">
-            <InputField
-  value={formik.values.policy}
-  onChange={formik.handleChange("policy")}
-  error={formik.errors.policy}
-  classNames="field__container"
-  label="Policy"
-  placeholder={"Enter"}
-/>
+              <InputField
+                value={formik.values.policy}
+                onChange={formik.handleChange("policy")}
+                error={formik.errors.policy}
+                classNames="field__container"
+                label="Policy"
+                placeholder={"Enter"}
+              />
             </div>
             <div class="sm-col-12  md:col-6 lg-col-6">
               <InputField
-               value={formik.values.netPremium}
-               onChange={formik.handleChange("netPremium")}
-               error={formik.errors.netPremium}
+                value={formik.values.netPremium}
+                onChange={formik.handleChange("netPremium")}
+                error={formik.errors.netPremium}
                 classNames="field__container"
                 label="Net Premium"
                 placeholder={"Enter"}
@@ -397,9 +421,9 @@ console.log(total,"find patchReceipEditMiddleware")
           <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-               value={formik.values.paid}
-               onChange={formik.handleChange("paid")}
-               error={formik.errors.paid}
+                value={formik.values.paid}
+                onChange={formik.handleChange("paid")}
+                error={formik.errors.paid}
                 classNames="field__container"
                 label="Paid"
                 placeholder={"Enter"}
@@ -407,9 +431,9 @@ console.log(total,"find patchReceipEditMiddleware")
             </div>
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-               value={formik.values.unPaid}
-               onChange={formik.handleChange("unPaid")}
-               error={formik.errors.unPaid}
+                value={formik.values.unPaid}
+                onChange={formik.handleChange("unPaid")}
+                error={formik.errors.unPaid}
                 classNames="field__container"
                 label="Unpaid"
                 placeholder={"Enter"}
@@ -419,9 +443,9 @@ console.log(total,"find patchReceipEditMiddleware")
           <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-               value={formik.values.discounts}
-               onChange={formik.handleChange("discounts")}
-               error={formik.errors.discounts}
+                value={formik.values.discounts}
+                onChange={formik.handleChange("discounts")}
+                error={formik.errors.discounts}
                 classNames="field__container"
                 label="Discounts"
                 placeholder={"Enter"}
@@ -429,9 +453,9 @@ console.log(total,"find patchReceipEditMiddleware")
             </div>
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-               value={formik.values.dst}
-               onChange={formik.handleChange("dst")}
-               error={formik.errors.dst}
+                value={formik.values.dst}
+                onChange={formik.handleChange("dst")}
+                error={formik.errors.dst}
                 classNames="field__container"
                 label="DST"
                 placeholder={"Enter"}
@@ -441,9 +465,9 @@ console.log(total,"find patchReceipEditMiddleware")
           <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-               value={formik.values.lgt}
-               onChange={formik.handleChange("lgt")}
-               error={formik.errors.lgt}
+                value={formik.values.lgt}
+                onChange={formik.handleChange("lgt")}
+                error={formik.errors.lgt}
                 classNames="field__container"
                 label="LGT"
                 placeholder={"Enter"}
@@ -451,9 +475,9 @@ console.log(total,"find patchReceipEditMiddleware")
             </div>
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-               value={formik.values.vat}
-               onChange={formik.handleChange("vat")}
-               error={formik.errors.vat}
+                value={formik.values.vat}
+                onChange={formik.handleChange("vat")}
+                error={formik.errors.vat}
                 classNames="field__container"
                 label="VAT"
                 placeholder={"Enter"}
@@ -463,9 +487,9 @@ console.log(total,"find patchReceipEditMiddleware")
           <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-               value={formik.values.other}
-               onChange={formik.handleChange("other")}
-               error={formik.errors.other}
+                value={formik.values.other}
+                onChange={formik.handleChange("other")}
+                error={formik.errors.other}
                 classNames="field__container"
                 label="Other"
                 placeholder={"Enter"}
@@ -473,23 +497,23 @@ console.log(total,"find patchReceipEditMiddleware")
             </div>
             <div class="col-12 md:col-6 lg:col-6">
               <InputField
-               value={formik.values.fCAmount}
-               onChange={formik.handleChange("fCAmount")}
-               error={formik.errors.fCAmount}
+                value={formik.values.fCAmount}
+                onChange={formik.handleChange("fCAmount")}
+                error={formik.errors.fCAmount}
                 classNames="field__container"
                 label="FC Amount"
                 placeholder={"Enter"}
               />
             </div>
           </div>
-         
+
           <div className="update_btn">
             <Button
-           
+
               label="Update"
               className="update_btnlabel"
               onClick={formik.handleSubmit}
-              
+
             />
           </div>
         </Dialog>{" "}

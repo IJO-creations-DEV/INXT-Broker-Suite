@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_TRANSACTION_CODE_LIST, GET_TRANSACTION_CODE_LIST_SEARCH, POST_STATUS, POST_ADD_TRANSACTION, GET_TRANSACTION_CODE_SETUP, GET_USER_GROUP_ACCESS, POST_ADD_TRANSACTION_CODE_SETUP, POST_ADD_USER_GROUP_ACCESS, PATCH_TRANSACTION_CODE_DETAILS_EDIT, GET_TRANSACTION_CODE_DETAILS_VIEW } from "../../../../redux/actionTypes";
+import { GET_TRANSACTION_CODE_LIST, GET_TRANSACTION_CODE_LIST_SEARCH, POST_STATUS, POST_ADD_TRANSACTION, GET_TRANSACTION_CODE_SETUP, GET_USER_GROUP_ACCESS, POST_ADD_TRANSACTION_CODE_SETUP, POST_ADD_USER_GROUP_ACCESS, PATCH_TRANSACTION_CODE_DETAILS_EDIT, GET_TRANSACTION_CODE_DETAILS_VIEW, GET_PATCH_TRANSACTION_EDIT } from "../../../../redux/actionTypes";
 
 
 export const getTransactioncodeListMiddleware = createAsyncThunk(
@@ -176,49 +176,47 @@ export const getTrascationcodeDetailsView = createAsyncThunk(
 );
 
 
-
+export const getpatchTrascationcodeDetailsEdit = createAsyncThunk(
+    GET_PATCH_TRANSACTION_EDIT,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
 
 export const patchTrascationcodeDetailsEdit = createAsyncThunk(
     PATCH_TRANSACTION_CODE_DETAILS_EDIT,
     async (payload, { rejectWithValue, getState }) => {
         console.log(payload, "payload");
-        const { transactionCodeMasterReducer } = getState();
+        const newArr = {
+            id: payload?.id,
+            bankBranch: payload?.bankBranch,
+            TransactionCode: payload?.TransactionCode,
+            TransactionCode: payload?.TransactionCode,
+            TransactionName: payload?.TransactionName,
+            TransactionBasis: payload?.TransactionBasis,
+            BranchCode: payload?.BranchCode,
+            DepartmentCode: payload?.DepartmentCode,
+            MainAccountCode: payload?.MainAccountCode,
+            MainAccountDescription: payload?.MainAccountDescription,
+            SubAccountCode: payload?.SubAccountCode,
+            SubAccountDescription: payload?.SubAccountDescription,
+            BranchDescription: payload?.BranchDescription,
+            DepartmentDescription: payload?.DepartmentDescription,
+            Description: payload?.Description,
+        }
+        // const { transactionCodeMasterReducer } = getState();
         try {
-            const { TransactioncodeList } = transactionCodeMasterReducer;
-            const updatedObject = TransactioncodeList.findIndex(item => item.TransactionCode === payload?.TransactionCode);
-            console.log(updatedObject, "updatedObject")
-            let newArr = [...TransactioncodeList]
-            newArr[updatedObject] = {
-                id: payload?.id,
-                bankBranch: payload?.bankBranch,
-                TransactionCode: payload?.TransactionCode,
-                TransactionCode: payload?.TransactionCode,
-                TransactionName: payload?.TransactionName,
-                TransactionBasis: payload?.TransactionBasis,
-                BranchCode: payload?.BranchCode,
-                DepartmentCode: payload?.DepartmentCode,
-                MainAccountCode: payload?.MainAccountCode,
-                MainAccountDescription: payload?.MainAccountDescription,
-                SubAccountCode: payload?.SubAccountCode,
-                SubAccountDescription: payload?.SubAccountDescription,
-                BranchDescription: payload?.BranchDescription,
-                DepartmentDescription: payload?.DepartmentDescription,
-                Description: payload?.Description,
+            // const { TransactioncodeList } = transactionCodeMasterReducer;
+            // const updatedObject = TransactioncodeList.findIndex(item => item.TransactionCode === payload?.TransactionCode);
+            // console.log(updatedObject, "updatedObject")
+            // let newArr = [...TransactioncodeList]
 
-
-                email
-                    :
-                    payload?.email,
-                ifscCode
-                    :
-                    payload?.ifscCode,
-                mobile
-                    :
-                    payload?.mobile,
-                status
-                    :
-                    true
-            }
             // const { data } = await patchRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return newArr;
         } catch (error) {

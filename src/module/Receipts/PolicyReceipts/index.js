@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import NavBar from "../../../components/NavBar";
@@ -18,7 +18,7 @@ import { TieredMenu } from 'primereact/tieredmenu';
 import { useSelector } from "react-redux";
 import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
 
-        
+
 
 const PolicyReceipts = () => {
   const [products, setProducts] = useState([]);
@@ -28,34 +28,37 @@ const PolicyReceipts = () => {
   }, []);
   const menu = useRef(null);
   const items = [
-  
+
     {
-      label: 'Receipts',url:"/accounts/receipts"
+      label: 'Receipts', url: "/accounts/receipts"
     },
-   
+
   ];
 
 
 
   const [searches, setSearch] = useState(null);
   const search = [
-      { name: 'Name', code: 'NY' },
-      { name: 'Date', code: 'RM' },
-      { name: 'Transaction Number', code: 'LDN' },
-      { name: 'Receipts Number', code: 'LDN' }]
+    { name: 'Name', code: 'NY' },
+    { name: 'Date', code: 'RM' },
+    { name: 'Transaction Number', code: 'LDN' },
+    { name: 'Receipts Number', code: 'LDN' }]
 
-  const { receiptsTableList, loading,total } = useSelector(({ receiptsTableReducers }) => {
+  const { receiptsTableList, loading, total } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptsTableList: receiptsTableReducers?.receiptsTableList,
-      total:receiptsTableReducers
+      total: receiptsTableReducers
 
     };
   });
-  useEffect(()=>{
-    console.log(total,"sd")
-  },[total])
-console.log(total,"find receiptsTableList")
+
+  
+  console.log(receiptsTableList, "receiptsTableListreceiptsTableList")
+  useEffect(() => {
+    console.log(total, "sd")
+  }, [total])
+  console.log(total, "find receiptsTableList")
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -94,7 +97,7 @@ console.log(total,"find receiptsTableList")
     color: "#000",
     border: "none",
     textalign: "center",
-    
+
   };
   const headerStyle1 = {
     width: "10%",
@@ -108,7 +111,7 @@ console.log(total,"find receiptsTableList")
     textalign: "center",
   };
   const headerStyle2 = {
-   
+
 
     fontSize: 16,
     fontFamily: "Inter var",
@@ -130,7 +133,7 @@ console.log(total,"find receiptsTableList")
     textalign: "center",
   };
 
-  const itemss = [{ label: "Name" },{ label: "Date" },{ label: "Transaction Number" },{ label: "Receipt Number" }];
+  const itemss = [{ label: "Name" }, { label: "Date" }, { label: "Transaction Number" }, { label: "Receipt Number" }];
   const home = { label: "Accounts " };
 
   const navigate = useNavigate();
@@ -179,7 +182,7 @@ console.log(total,"find receiptsTableList")
 
       <Card>
         <div className="header_search_container">
-          <div class="col-12 md:col-6 lg:col-10" style={{paddingLeft:'0'}}>
+          <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: '0' }}>
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
@@ -188,15 +191,15 @@ console.log(total,"find receiptsTableList")
               />
             </span>
           </div>
-          
-          <div class="col-12 md:col-3 lg:col-2">
-          {/* <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" /> */}
 
-          <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={search} optionLabel="name" 
-                placeholder="Search by"  
-                className="sorbyfilter_container"
-                dropdownIcon={<SvgDropdownicon/>}
-                />
+          <div class="col-12 md:col-3 lg:col-2">
+            {/* <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" /> */}
+
+            <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={search} optionLabel="name"
+              placeholder="Search by"
+              className="sorbyfilter_container"
+              dropdownIcon={<SvgDropdownicon />}
+            />
 
           </div>
         </div>
@@ -212,7 +215,7 @@ console.log(total,"find receiptsTableList")
               color: "#1C2536",
               maxHeight: "50vh",
               overflowy: "auto",
-            
+
             }}
             scrollable={true}
             scrollHeight="40vh"
@@ -231,42 +234,42 @@ console.log(total,"find receiptsTableList")
               className="fieldvalue_container"
             ></Column>
             <Column
-            
+
               field="transactionCode"
               header="Transaction Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-            sortable
+              sortable
               field="transactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-            sortable
+              sortable
               field="name"
               header="Name"
               headerStyle={headerStyle1}
               className="fieldvalue_container"
             ></Column>
             <Column
-            sortable
+              sortable
               field="customerCode"
               header="Customer Code"
               headerStyle={headerStyle2}
               className="fieldvalue_container"
             ></Column>
             <Column
-            sortable
+              sortable
               field="date"
               header="Date"
               headerStyle={headerStyle1}
               className="fieldvalue_container"
             ></Column>
             <Column
-            
+
               field="amount"
               header="Amount"
               headerStyle={headerStyle3}
@@ -274,7 +277,7 @@ console.log(total,"find receiptsTableList")
             ></Column>
 
             <Column
-            // sortable
+              // sortable
               body={() => <SvgEye onClick={() => handleArrowClick()} />}
               header="Action"
               headerStyle={headerStyle}

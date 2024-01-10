@@ -95,7 +95,7 @@ const RequestTable = () => {
     fontFamily: "Inter var",
     fontWeight: 500,
     padding: 6,
-    paddingLeft:0,
+    paddingLeft:"0.5rem",
     color: "#000",
     border: "none",
   };

@@ -238,6 +238,7 @@ const Index = () => {
                 <SvgIconeye onClick={() => handleView(columnData)} />
               )}
               header="Action"
+              style={{textAlign:'center'}}
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>

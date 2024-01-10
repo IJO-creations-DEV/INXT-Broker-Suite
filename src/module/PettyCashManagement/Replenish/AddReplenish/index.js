@@ -79,8 +79,8 @@ const AddReplenish = () => {
   const validate = (values) => {
     const errors = {};
 
-    if (!values.PettycashDescription) {
-      errors.PettycashDescription = "Receipt Number is required";
+    if (!values.PettycashCode) {
+      errors.PettycashCode = "Receipt Number is required";
     }
 
     if (!values.BankCode) {
@@ -114,16 +114,16 @@ const AddReplenish = () => {
   const handlePettyCashDescribtion = (value) => {
     let description = "";
     switch (value.pettycashcode) {
-      case "PC0128":
+      case "PC001":
         description = "PC-1";
         break;
-      case "PC0129":
+      case "PC002":
         description = "PC-2";
         break;
-      case "PC0130":
+      case "PC003":
         description = "PC-3";
         break;
-      case "PC0131":
+      case "PC004":
         description = "PC-4";
         break;
       default:
@@ -136,18 +136,18 @@ const AddReplenish = () => {
   const handleTrans = (value) => {
     let Trans = "";
     switch (value) {
-      case "Trans00322":
+      case "PRM":
         Trans = "Trans-1";
         break;
-      case "Trans00123":
+      case "COMM":
         Trans = "Trans-2";
         break;
-      case "Trans00923":
+      case "REMT":
         Trans = "Trans-3";
         break;
-      case "Trans00123":
-        Trans = "Trans-4";
-        break;
+      // case "Trans00123":
+      //   Trans = "Trans-4";
+      //   break;
       default:
         Trans = "Unknown";
         break;
@@ -157,18 +157,18 @@ const AddReplenish = () => {
   const handleBankcode = (value) => {
     let Branch = "";
     switch (value) {
-      case "1929920128":
+      case "Bk001":
         Branch = "Bank-1";
         break;
-      case "8299201291":
+      case "Bk002":
         Branch = "Bank-1";
         break;
-      case "9920010130":
+      case "Bk003":
         Branch = "Bank-1";
         break;
-      case "1818810131":
-        Branch = "Bank-1";
-        break;
+      // case "1818810131":
+      //   Branch = "Bank-1";
+      //   break;
       default:
         Branch = "Unknown";
         break;
@@ -178,16 +178,16 @@ const AddReplenish = () => {
   const handleDepart = (value) => {
     let Depart = "";
     switch (value) {
-      case "Depart00322":
+      case "FIN":
         Depart = "Depart-1";
         break;
-      case "Depart00123":
+      case "MKT":
         Depart = "Depart-2";
         break;
-      case "Depart00923":
+      case "IT":
         Depart = "Depart-3";
         break;
-      case "Depart00123":
+      case "SLS":
         Depart = "Depart-4";
         break;
       default:
@@ -199,16 +199,16 @@ const AddReplenish = () => {
   const handleBranch = (value) => {
     let Depart = "";
     switch (value) {
-      case "Branch00322":
+      case "PHP001":
         Depart = "Branch-1";
         break;
-      case "Branch00123":
+      case "PHP002":
         Depart = "Branch-2";
         break;
-      case "Branch00923":
+      case "PHP003":
         Depart = "Branch-3";
         break;
-      case "Branch00123":
+      case "PHP004":
         Depart = "Branch-4";
         break;
       default:
@@ -220,18 +220,18 @@ const AddReplenish = () => {
   const handleSubAccount = (value) => {
     let Depart = "";
     switch (value) {
-      case "Sub1929920":
+      case "SAC001":
         Depart = "Sub-1";
         break;
-      case "Sub8299201":
+      case "SAC002":
         Depart = "Sub-2";
         break;
-      case "Sub9920010":
+      case "SAC003":
         Depart = "Sub-3";
         break;
-      case "Sub1818811":
-        Depart = "Sub-4";
-        break;
+      // case "Sub1818811":
+      //   Depart = "Sub-4";
+      //   break;
       default:
         Depart = "Unknown";
         break;
@@ -279,8 +279,10 @@ const AddReplenish = () => {
                 options={PettyCashCode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("PettycashCode", e.value);
-                  handlePettyCashDescribtion(e.value);
+                  formik.setFieldValue("PettycashCode", e.value).then(()=>{
+                    handlePettyCashDescribtion(e.value);
+                  })
+                  
                 }}
                 optionLabel="pettycashcode"
                 error={
@@ -300,10 +302,10 @@ const AddReplenish = () => {
                 textWeight={500}
                 value={formik.values.PettycashDescription}
                 onChange={formik.handleChange("PettycashDescription")}
-                error={
-                  formik.touched.PettycashDescription &&
-                  formik.errors.PettycashDescription
-                }
+                // error={
+                //   formik.touched.PettycashDescription &&
+                //   formik.errors.PettycashDescription
+                // }
               />
             </div>
           </div>
@@ -321,8 +323,10 @@ const AddReplenish = () => {
                 options={BankAccountCode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("BankCode", e.value);
-                  handleBankcode(e.value.BankAccountCode);
+                  formik.setFieldValue("BankCode", e.value).then(()=>{
+                    handleBankcode(e.value.BankAccountCode);
+                  })
+                 
                 }}
                 optionLabel="BankAccountCode"
                 error={formik.touched.BankCode && formik.errors.BankCode}
@@ -360,8 +364,10 @@ const AddReplenish = () => {
                 options={SubAccount}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("SubAccountCode", e.value);
-                  handleSubAccount(e.value.SubAccount);
+                  formik.setFieldValue("SubAccountCode", e.value).then(()=>{
+                    handleSubAccount(e.value.SubAccount);
+                  })
+                 
                 }}
                 optionLabel="SubAccount"
                 error={
@@ -401,8 +407,10 @@ const AddReplenish = () => {
                 options={Transcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("TransactionCode", e.value);
-                  handleTrans(e.value.Transcode);
+                  formik.setFieldValue("TransactionCode", e.value).then(()=>{
+                    handleTrans(e.value.Transcode);
+                  })
+                
                 }}
                 optionLabel="Transcode"
                 error={
@@ -443,8 +451,10 @@ const AddReplenish = () => {
                 options={Branchcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("BranchCode", e.value);
-                  handleBranch(e.value.Branchcode);
+                  formik.setFieldValue("BranchCode", e.value).then(()=>{
+                    handleBranch(e.value.Branchcode);
+                  })
+                  
                 }}
                 optionLabel="Branchcode"
                 error={formik.touched.BranchCode && formik.errors.BranchCode}
@@ -482,8 +492,10 @@ const AddReplenish = () => {
                 options={Departcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("DepartmentCode", e.value);
-                  handleDepart(e.value.Departcode);
+                  formik.setFieldValue("DepartmentCode", e.value).then(()=>{
+                    handleDepart(e.value.Departcode);
+                  })
+                 
                 }}
                 optionLabel="Departcode"
                 error={

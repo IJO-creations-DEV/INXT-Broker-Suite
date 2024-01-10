@@ -149,15 +149,20 @@ const JournalVoucher = () => {
                 <span className="p-input-icon-left" style={{ width: "100%" }}>
                   <i className="pi pi-search" />
                   {/* <span className='p-1'> <SvgSearchIcon /></span> */}
-                  <InputText
+                  {/* <InputText
                     style={{ width: "100%" }}
                     classNames="input__sub__account__Journal__Voture"
                     placeholder="Search by Transaction Code"
                     value={formik.values.search}
                     onChange={formik.handleChange("search")}
-                  />
+                  /> */}
+                   <InputText
+                placeholder="Search customers"
+                className="searchinput_left"
+              />
                 </span>
               </div>
+
             </form>
             <div className="col-12 md:col-2 lg:col-2">
               {/* <div className='sort__filter__view__Journal__Voture' onClick={(e) => menu.current.toggle(e)}>

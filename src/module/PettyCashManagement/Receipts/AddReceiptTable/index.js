@@ -29,6 +29,18 @@ const AddReceiptsTable = () => {
     }
   };
 
+  const headaction ={
+    justifyContent: 'center',
+// textalign: center,
+fontSize: 16,
+fontFamily: "Inter var",
+fontWeight: 500,
+padding: 6,
+color: "#000",
+border:" none",
+display: "flex"
+  }
+
   const { AddReceiptTable, loading } = useSelector(
     ({ pettyCashReceiptsReducer }) => {
       return {
@@ -59,7 +71,7 @@ const AddReceiptsTable = () => {
     setTotalAmounts((prevTotalAmounts) => prevTotalAmounts + clickedAmount);
   };
   
-
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   const handleBack = () => {
     navigate("/accounts/pettycash/addreceipts");
@@ -149,8 +161,12 @@ const AddReceiptsTable = () => {
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            selection={selectedProducts}
+            onSelectionChange={(e) => setSelectedProducts(e.value)}
+            selectionMode="checkbox"
+            // rowClas/
           >
-            <Column
+            {/* <Column
               header={<input type="checkbox" />}
               body={(rowData) => (
                 <input
@@ -164,36 +180,47 @@ const AddReceiptsTable = () => {
               headerStyle={headerStyle}
               style={{ textAlign: "start" }}
 
-            />
+            /> */}
+
+<Column
+              selectionMode="multiple"
+              // selectedItem
+              headerStyle={headaction}
+              style={{textAlign:'center'}}
+            ></Column>
+
             <Column
               field="TransactionCode"
               header="Transaction Code"
               headerStyle={headerStyle}
-
+className="fieldvalue_container"
             ></Column>
             <Column
               field="RequestNumber"
               header="Request Number"
               headerStyle={headerStyle}
+              className="fieldvalue_container"
               sortable
             ></Column>
             <Column
               field="Date"
               header="Date"
               headerStyle={headerStyle}
+              className="fieldvalue_container"
               sortable
             ></Column>
             <Column
               field="Amount"
               header="Amount"
               headerStyle={headerStyle}
+              className="fieldvalue_container"
               sortable
             ></Column>
             <Column
               field="Remarks"
               header="Remarks"
               headerStyle={headerStyle}
-
+              className="fieldvalue_container"
             ></Column>
           </DataTable>
         </div>

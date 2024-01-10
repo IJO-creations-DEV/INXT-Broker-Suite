@@ -180,6 +180,7 @@ import { Link } from "react-router-dom";
 import SvgAccountIcon from "../../assets/icons/SvgAccountIcon";
 import SvgMassterIcon from "../../assets/icons/SvgMassterIcon";
 import SvgReportsIcon from "../../assets/icons/SvgReportsIcon";
+import SvgFinalLogo from "../../assets/icons/SvgFinalLogo";
 
 const ResponsiveDrawer = () => {
   const [findPath, setPath] = useState(null);
@@ -227,8 +228,9 @@ const ResponsiveDrawer = () => {
       onHide={() => setVisible(false)}
     >
       <div style={{ padding: "20px" }}>
-        <div style={{ marginBottom: "20px", marginTop: "20px" }}>
-          <SvgLogo color={"#fff"} />
+        <div style={{ marginBottom: "20px", marginTop: "20px" ,marginLeft:"28px"}}>
+          {/* <SvgLogo color={"#fff"} /> */}
+          <SvgFinalLogo/>
         </div>
         <Menu style={{ backgroundColor: "#1C2536 !important", border: "none" }}>
           {menuList.map((data, index) => (

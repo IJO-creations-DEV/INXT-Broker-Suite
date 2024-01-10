@@ -381,7 +381,7 @@ function PolicyReceipts() {
       </div>
       <div className="next_container">
         <div className="exit_print_buttons">
-          <Button label="Next" className="print" onClick={handleClick} disabled={!selectedProducts} />
+          <Button label="Next" className="print" onClick={handleClick} disabled={!selectedRows} />
         </div>
       </div>
       <div className="col-12">

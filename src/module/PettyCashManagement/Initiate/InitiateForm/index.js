@@ -352,8 +352,10 @@ const InitiateForm = () => {
                 options={PettyCashCode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("PettyCashCode", e.value);
-                  handlePettyCashDescribtion(e.value);
+                  formik.setFieldValue("PettyCashCode", e.value).then(()=>{
+                    handlePettyCashDescribtion(e.value);
+                  })
+                 
                 }}
                 optionLabel="pettycashcode"
                 error={
@@ -416,8 +418,10 @@ const InitiateForm = () => {
                 options={BankAccountCode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("BankAccountNumber", e.value);
-                  handleAccountcode(e.value.BankAccountCode);
+                  formik.setFieldValue("BankAccountNumber", e.value).then(()=>{
+                    handleAccountcode(e.value.BankAccountCode);
+                  })
+                 
                 }}
                 optionLabel="BankAccountCode"
                 error={
@@ -460,8 +464,10 @@ const InitiateForm = () => {
                 options={CurrencyType}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("Currency", e.value);
-                  handlecurrency(e.value);
+                  formik.setFieldValue("Currency", e.value).then(()=>{
+                    handlecurrency(e.value);
+                  })
+                 
                 }}
                 optionLabel="CurrencyType"
                 error={formik.touched.Currency && formik.errors.Currency}
@@ -499,8 +505,10 @@ const InitiateForm = () => {
                 options={Transcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("TransactionCode", e.value);
-                  handleTrans(e.value);
+                  formik.setFieldValue("TransactionCode", e.value).then(()=>{
+                    handleTrans(e.value);
+                  })
+                  
                 }}
                 optionLabel="Transcode"
                 error={
@@ -541,8 +549,10 @@ const InitiateForm = () => {
                 options={Branchcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("BranchCode", e.value);
-                  handleBranch(e.value.Branchcode);
+                  formik.setFieldValue("BranchCode", e.value).then(()=>{
+                    handleBranch(e.value.Branchcode);
+                  })
+                 
                 }}
                 optionLabel="Branchcode"
                 error={formik.touched.BranchCode && formik.errors.BranchCode}
@@ -580,8 +590,10 @@ const InitiateForm = () => {
                 options={Departcode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("DepartmentCode", e.value);
-                  handleDepart(e.value.Departcode);
+                  formik.setFieldValue("DepartmentCode", e.value).then(()=>{
+                    handleDepart(e.value.Departcode);
+                  })
+                  
                 }}
                 optionLabel="Departcode"
                 error={

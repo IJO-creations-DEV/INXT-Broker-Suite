@@ -273,10 +273,10 @@ const AddReplenishTable = () => {
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">
           <div className="btn__container">
-            <Button
+          <Button
               label="Approve"
               className="add__btn"
-              disabled={visible === true ? false : true}
+              disabled={selectedRows.length === 0}
               onClick={() => {
                 handleSubmit();
               }}

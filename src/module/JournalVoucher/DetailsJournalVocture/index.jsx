@@ -88,11 +88,7 @@ const DetailsJournalVocture = () => {
             icon: 'pi pi-check-circle',
         });
     };
-    const mainAccountOptions = [
-        { label: 'Option 1', value: 'option1' },
-        { label: 'Option 2', value: 'option2' },
-        // Add more options as needed
-    ];
+    
     const customValidation = (values) => {
         const errors = {};
 
@@ -116,6 +112,11 @@ const DetailsJournalVocture = () => {
         // setVisible(false);
         // setVisiblePopup(true);
     }
+    const mainAccountOptions = [
+        { label: journalVoucherView.transationCode, value:journalVoucherView.transationCode },
+       
+        // Add more options as needed
+    ];
     const formik = useFormik({
         initialValues: {
             transactioncode: `${journalVoucherView.transationCode}`,

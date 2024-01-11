@@ -94,11 +94,13 @@ const AddDisbursementTable = () => {
 fontSize: 16,
 fontFamily: "Inter var",
 fontWeight: 500,
-padding: 10,
+// padding: "18px 8px",
 // paddingTop:4,
 color: "#000",
 border:" none",
-display: "flex"
+display: "flex",
+// paddingBottom:"28px",
+// paddingTop:"8px"
   }
 
   const headerStyle = {

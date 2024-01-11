@@ -141,7 +141,7 @@ const JournalVoucher = () => {
       <div className="col-12 m-0 ">
         <div className="sub__container__Journal__Voture">
           <div className="col-12 search__filter__view__Journal__Voture">
-            <form
+            {/* <form
               onSubmit={formik.handleSubmit}
               className="col-12 md:col-10 lg:col-10"
             >
@@ -156,14 +156,26 @@ const JournalVoucher = () => {
                     value={formik.values.search}
                     onChange={formik.handleChange("search")}
                   /> */}
-                   <InputText
+                   {/* <InputText
                 placeholder="Search customers"
                 className="searchinput_left"
               />
                 </span>
               </div>
 
-            </form>
+            // </form> */} 
+            <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 10 ,paddingRight:10}}>
+            {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
+            <span className="p-input-icon-left" style={{ width: "100%" }}>
+              <i className="pi pi-search" />
+              <InputText
+                placeholder="Search customers"
+                className="searchinput_left"
+              />
+            </span>
+          </div>
+
+
             <div className="col-12 md:col-2 lg:col-2">
               {/* <div className='sort__filter__view__Journal__Voture' onClick={(e) => menu.current.toggle(e)}>
                 <div className='sort__by__text__Journal__Voture'>Search By</div>
@@ -183,13 +195,13 @@ const JournalVoucher = () => {
             </div>
           </div>
           <div className="col-12 ">
-            <div className="main__tabel__title__Journal__Voture p-2">
+            <div className="main__tabel__title__Journal__Voture " style={{ paddingLeft: 10,paddingRight:10 }}>
               Journal Voucher history
             </div>
           </div>
           <div
             className="col-12 md:col-12 lg-col-12"
-            style={{ maxWidth: "100%", maxHeight: "40vh" }}
+            style={{ maxWidth: "100%", maxHeight: "40vh" ,paddingLeft:16,paddingRight:16}}
           >
             <div className="card p-1">
               <DataTabelJV

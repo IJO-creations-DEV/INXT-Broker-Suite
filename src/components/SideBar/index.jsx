@@ -239,6 +239,7 @@ const ResponsiveDrawer = () => {
                 style={{
                   color: "#fff",
                   width: "100%",
+                  paddingLeft:"8px",
                   backgroundColor:
                     data.name === openSubMenu ||
                     data.submenu.some((subItem) => subItem.path === findPath)
@@ -246,6 +247,7 @@ const ResponsiveDrawer = () => {
                       : "#1C2536",
                 }}
                 color="#fff"
+
                 label={data.name}
                 icon={
                   data.name === "Accounts" ? (
@@ -280,14 +282,16 @@ const ResponsiveDrawer = () => {
                     {subItem.submenu ? (
                       <SubMenu
                         label={subItem.name}
-                        style={{ /* Style for nested submenu */ }}
+                        style={{ marginLeft:-8 }}
                       >
                         {subItem.submenu.map((nestedItem, nestedIndex) => (
                           <React.Fragment key={nestedIndex}>
                             {nestedItem.submenu ? (
                               <SubMenu
                                 label={nestedItem.name}
-                                style={{ /* Style for nested submenu */ }}
+                                style={{ 
+                                 
+                                  /* Style for nested submenu */ }}
                               >
                                 {nestedItem.submenu.map((subsubmenuItem, subsubmenuIndex) => (
                                   <MenuItem
@@ -309,6 +313,7 @@ const ResponsiveDrawer = () => {
                                             subsubmenuItem.path === findPath
                                               ? "#fff"
                                               : "#9DA4AE",
+                                             
                                         }}
                                         className="menu__text"
                                       >

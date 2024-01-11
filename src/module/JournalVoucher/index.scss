@@ -68,7 +68,9 @@ font-weight: 500;
     font-weight: 500;
         width:100%;
         color: #6366F1;
+        border-radius: 10px;
         margin: 0px !important;
+        border-radius: 10px;
     }
 
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
@@ -155,9 +157,16 @@ font-weight: 500;
         .searchinput_left{
             width:100%;
             border-radius: 10px;
+            
+           font-family: Inter var;
+           border: 1px solid #d1d5db;
+           height:46px
+          }
+          .searchinput_left::placeholder{
+            color: #4b5563;
             font-size: 16px;
            font-weight: 400;
-           font-family: Inter var;
+           
           }
 
         .sort__by__text__Journal__Voture {
@@ -206,7 +215,7 @@ font-weight: 500;
         line-height: 24px;
         letter-spacing: 0em;
         text-align: left;
-
+color: #000;
     }
 
     .addbutton_container__Journal__Voture {

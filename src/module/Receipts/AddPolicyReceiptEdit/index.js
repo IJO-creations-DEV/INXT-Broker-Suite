@@ -248,7 +248,7 @@ function PolicyReceipts() {
           >
             <Column selectionMode="multiple" exportable={false}
             style={{textAlign:'center'}}
-            headerStyle={{paddingLeft:20,display:'flex',justifyContent:'center',paddingBottom: 32,border:'none'}}
+            headerStyle={{paddingLeft:18,display:'flex',justifyContent:'center',paddingTop: 20,paddingBottom: 20,border:'none'}}
             ></Column>
             <Column
               field="policies"
@@ -405,6 +405,7 @@ function PolicyReceipts() {
                 classNames="field__container"
                 label="Policy"
                 placeholder={"Enter"}
+                disabled={true}
               />
             </div>
             <div class="sm-col-12  md:col-6 lg-col-6">
@@ -415,6 +416,7 @@ function PolicyReceipts() {
                 classNames="field__container"
                 label="Gross Premium"
                 placeholder={"Enter"}
+                disabled={true}
               />
             </div>
           </div>
@@ -427,6 +429,7 @@ function PolicyReceipts() {
                 classNames="field__container"
                 label="Paid"
                 placeholder={"Enter"}
+                disabled={true}
               />
             </div>
             <div class="col-12 md:col-6 lg:col-6">
@@ -437,6 +440,7 @@ function PolicyReceipts() {
                 classNames="field__container"
                 label="Unpaid"
                 placeholder={"Enter"}
+                disabled={true}
               />
             </div>
           </div>
@@ -458,6 +462,7 @@ function PolicyReceipts() {
                 error={formik.errors.dst}
                 classNames="field__container"
                 label="DST"
+                disabled={true}
                 placeholder={"Enter"}
               />
             </div>
@@ -470,6 +475,7 @@ function PolicyReceipts() {
                 error={formik.errors.lgt}
                 classNames="field__container"
                 label="LGT"
+                disabled={true}
                 placeholder={"Enter"}
               />
             </div>
@@ -480,6 +486,7 @@ function PolicyReceipts() {
                 error={formik.errors.vat}
                 classNames="field__container"
                 label="VAT"
+                disabled={true}
                 placeholder={"Enter"}
               />
             </div>
@@ -492,6 +499,7 @@ function PolicyReceipts() {
                 error={formik.errors.other}
                 classNames="field__container"
                 label="Other"
+                disabled={true}
                 placeholder={"Enter"}
               />
             </div>

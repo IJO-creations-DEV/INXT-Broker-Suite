@@ -83,7 +83,7 @@ const Index = () => {
     fontFamily: "Inter var",
     fontWeight: 500,
     padding: 6,
-    paddingLeft:0,
+    paddingLeft:6,
     color: "#000",
     border: "none",
   };

@@ -22,11 +22,12 @@ import { getReceiptsListBySearchMiddleware } from "../store/receiptsMiddleware";
 
 
 const PolicyReceipts = () => {
+  
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    setProducts(data);
-  }, []);
+  // useEffect(() => {
+  //   setProducts(data);
+  // }, []);
   const menu = useRef(null);
   const items = [
 
@@ -223,7 +224,7 @@ const PolicyReceipts = () => {
 
         <div className="card">
           <DataTable
-            value={searches ? receiptsSearchTable : receiptsTableList}
+            value={ receiptsTableList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",

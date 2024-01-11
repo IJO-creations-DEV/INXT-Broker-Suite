@@ -15,11 +15,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function PolicyReceipts() {
-  const { receiptDetailList, loading, total } = useSelector(({ receiptsTableReducers }) => {
+  const { receiptDetailList, loading, total,paymentDetails } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptDetailList: receiptsTableReducers?.receiptDetailList,
-      total: receiptsTableReducers
+      total: receiptsTableReducers,
+      paymentDetails: receiptsTableReducers?.paymentDetails
 
     };
   });
@@ -184,7 +185,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy "
                 label="Total Payment"
-                value={"16000.00"}
+                value={paymentDetails.totalPayment}
               />
             </div>
           </div>
@@ -196,7 +197,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy "
                 label="Bank code"
-                value={"Bank00123"}
+                value={paymentDetails.bankcode}
               />
             </div>
           </div>
@@ -205,7 +206,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy "
                 label="Bank Name"
-                value={"Money bank"}
+                value={'bankcode'}
               />
             </div>
           </div>
@@ -216,7 +217,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy "
                 label="Bank Account"
-                value={"265478932107"}
+                value={paymentDetails?.bankAccount}
               />
             </div>
           </div>
@@ -225,7 +226,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy"
                 label="Bank Account Name"
-                value={"Business Account"}
+                value={'bankAccount'}
               />
             </div>
           </div>
@@ -236,7 +237,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy"
                 label="Payment Type"
-                value={"Card"}
+                value={paymentDetails?.paymentType}
               />
             </div>
           </div>
@@ -245,7 +246,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy "
                 label="Card Number"
-                value={"1234 5678 9874 5632"}
+                value={paymentDetails?.cardNumber}
               />
             </div>
           </div>

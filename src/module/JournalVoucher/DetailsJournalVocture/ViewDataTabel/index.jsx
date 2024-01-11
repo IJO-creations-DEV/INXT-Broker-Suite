@@ -7,7 +7,7 @@ import { Dropdown } from "primereact/dropdown";
 import SvgEditIcon from "../../../../assets/icons/SvgEditicons";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgDeleteIcon from "../../../../assets/icons/SvgDeleteIcon";
-const ViewDataTabel = ({ handleEdit, newDataTable }) => {
+const ViewDataTabel = ({ handleEdit, newDataTable ,journalVoucherPostTabelData}) => {
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     console.log(newDataTable, "find newDataTable");
@@ -47,7 +47,7 @@ const ViewDataTabel = ({ handleEdit, newDataTable }) => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
     };
-    const isEmpty = updatedProductData.length === 0;
+    const isEmpty = journalVoucherPostTabelData.length === 0;
     const emptyTableIcon = (
         <div className="empty-table-icon">
             <SvgTable />
@@ -84,6 +84,8 @@ const ViewDataTabel = ({ handleEdit, newDataTable }) => {
             );
         },
     };
+
+
 
 
 

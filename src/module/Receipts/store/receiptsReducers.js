@@ -9,7 +9,7 @@ const initialState = {
       id: 1,
       receiptNumber: "01Rep012302",
       transactionCode: "123456",
-      transactionNumber: "Transac00123",
+      transactionNumber: 1145,
       name: "Name",
       customerCode: "CC0102",
       date: "11/12/2023",
@@ -20,101 +20,14 @@ const initialState = {
       id: 2,
       receiptNumber: "01Rep012302",
       transactionCode: "123456",
-      transactionNumber: "Transac00123",
+      transactionNumber: 1245,
       name: "Name",
       customerCode: "CC0102",
       date: "11/12/2023",
       amount: "500.37",
       action: "Action",
     },
-    // {
-    //   id: 3,
-    //   receiptNumber: "01Rep012302",
-    //   transactionCode: "123456",
-    //   transactionNumber: "Transac00123",
-    //   name: "Name",
-    //   customerCode: "CC0102",
-    //   date: "11/12/2023",
-    //   amount: "500.37",
-    //   action: "Action",
-    // },
-    // {
-    //   id: 4,
-    //   receiptNumber: "01Rep012303",
-    //   transactionCode: "123457",
-    //   transactionNumber: "Transac00124",
-    //   name: "Name",
-    //   customerCode: "CC0102",
-    //   date: "11/12/2023",
-    //   amount: "500.37",
-    //   action: "Action",
-    // },
-    // {
-    //   id: 5,
-    //   receiptNumber: "01Rep012307",
-    //   transactionCode: "123456",
-    //   transactionNumber: "Transac00129",
-    //   name: "Name",
-    //   customerCode: "CC0102",
-    //   date: "11/12/2023",
-    //   amount: "500.37",
-    //   action: "Action",
-    // },
-    // {
-    //   id: 6,
-    //   receiptNumber: "01Rep012307",
-    //   transactionCode: "123456",
-    //   transactionNumber: "Transac00123",
-    //   name: "Name",
-    //   customerCode: "CC0102",
-    //   date: "11/12/2023",
-    //   amount: "500.37",
-    //   action: "Action",
-    // },
-    // {
-    //   id: 7,
-    //   receiptNumber: "01Rep012302",
-    //   transactionCode: "123456",
-    //   transactionNumber: "Transac00123",
-    //   name: "Name",
-    //   customerCode: "CC0102",
-    //   date: "11/12/2023",
-    //   amount: "500.37",
-    //   action: "Action",
-    // },
-    // {
-    //   id: 8,
-    //   receiptNumber: "01Rep012301",
-    //   transactionCode: "123456",
-    //   transactionNumber: "Transac00123",
-    //   name: "Name",
-    //   customerCode: "CC0102",
-    //   date: "11/12/2023",
-    //   amount: "500.37",
-    //   action: "Action",
-    // },
-    // {
-    //   id: 9,
-    //   receiptNumber: "01Rep012302",
-    //   transactionCode: "123456",
-    //   transactionNumber: "Transac00123",
-    //   name: "Name",
-    //   customerCode: "CC0102",
-    //   date: "11/12/2023",
-    //   amount: "500.37",
-    //   action: "Action",
-    // },
-    // {
-    //   id: 10,
-    //   receiptNumber: "01Rep012302",
-    //   transactionCode: "123456",
-    //   transactionNumber: "Transac00123",
-    //   name: "Name",
-    //   customerCode: "CC0102",
-    //   date: "11/12/2023",
-    //   amount: "500.37",
-    //   action: "Action",
-    // },
+
   ],
   receiptsSearchTable: [],
   receivableTableList: [
@@ -178,19 +91,20 @@ const initialState = {
       lcAmount: "00.00"
     },
   ],
-  paymentDetails: [
-    {
-      id: "1",
-      totalPayment: 1600,
-      bankcode: "bank123",
-      bankName: "Money Bank",
-      bankAccount: "bandAccount123",
-      bankAccountName: "Business Account",
-      paymentType: "Card",
-      cardNumber: "1234 5678 9874 5632",
-    }
-  ]
+  paymentDetails: {}
+  //   // {
+  //   //   id: "",
+  //   //   totalPayment: "",
+  //   //   bankcode: "",
+  //   //   bankName: "",
+  //   //   bankAccount: "bandAccount123",
+  //   //   bankAccountName: "Business Account",
+  //   //   paymentType: "Card",
+  //   //   cardNumber: "1234 5678 9874 5632",
+  //   // }
+  // ]
 };
+let nextId = 3
 const receiptsReducer = createSlice({
   name: "receipts",
   initialState,
@@ -262,7 +176,11 @@ const receiptsReducer = createSlice({
     builder.addCase(postAddReceiptsMiddleware.fulfilled, (state, action) => {
       console.log(action.payload, 'find action.payload')
       state.loading = false;
-      state.receiptsTableList = [...state.receiptsTableList, action.payload];
+      const newItem2 = { ...action.payload, id: nextId++ };
+      state.receiptsTableList = [...state.receiptsTableList, newItem2];
+      console.log(state.receiptsTableList, "paylll")
+      // state.receiptsTableList = [...state.receiptsTableList, action.payload];
+      // console.log(state.receiptsTableList, "lll");
     });
     builder.addCase(postAddReceiptsMiddleware.rejected, (state, action) => {
       state.loading = false;

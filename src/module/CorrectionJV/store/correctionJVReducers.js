@@ -7,26 +7,49 @@ const initialState = {
     addCorrectionJV: {},
     correctionJVView: {},
     correctionEdit: {},
+    correctionTabelList: [
+        {
+            correctionJVTransactionCode: "PRM",
+            id: "1",
+            transactionCode: "PRM",
+            transactionNumber: "00"
+        }
+    ],
     correctionJVList: [
         {
             id: 1,
-            mainAccount: "main044",
-            subAccount: "sub0123",
-            branchCode: "branch012",
-            currencyCode: "cu123",
-            foreignAmount: "5100",
-            localAmount: "200",
-            entryType: "Credit"
+            branchCode: "PHP001",
+            branchCodeDescription: "branchCodeDescription",
+            remarks: "-",
+            currencyCode: "INR",
+            currencyDescription: "currencyDescription",
+            departmentCode: "SLS",
+            departmentDescription: "departmentDescription",
+            entryType: "Credit",
+            foreignAmount: "66",
+            localAmount:"00",
+            mainAccount: "MAC001",
+            mainAccountDescription: "mainAccountDescription",
+            subAccount: "SAC001",
+            subAccountDescription: "subAccountDescription",
+
         },
         {
             id: 2,
-            mainAccount: "main0123",
-            subAccount: "sub0123",
-            branchCode: "branch88",
-            currencyCode: "cu77",
-            foreignAmount: "200",
-            localAmount: "5100",
-            entryType: "Debit"
+            branchCode: "PHP001",
+            branchCodeDescription: "branchCodeDescription",
+            remarks: "-",
+            currencyCode: "INR",
+            currencyDescription: "currencyDescription",
+            departmentCode: "SLS",
+            departmentDescription: "departmentDescription",
+            entryType: "Debit",
+            foreignAmount: "66",
+            localAmount:"00",
+            mainAccount: "MAC001",
+            mainAccountDescription: "mainAccountDescription",
+            subAccount: "SAC001",
+            subAccountDescription: "subAccountDescription",
         }
     ],
     getCorrectionJVEdit: []
@@ -42,8 +65,7 @@ const correctioneversalJVReducers = createSlice({
         });
         builder.addCase(getCorrectionJVTabelData.fulfilled, (state, action) => {
             state.loading = false;
-            // state.correctionJVList = action.payload.data;
-            // console.log("qqq",action.payload.data)
+            state.correctionJVList = [action.payload];
         });
         builder.addCase(getCorrectionJVTabelData.rejected, (state, action) => {
             state.loading = false;
@@ -61,7 +83,7 @@ const correctioneversalJVReducers = createSlice({
         builder.addCase(postCorrectionJVData.fulfilled, (state, action) => {
             state.loading = false;
             const newItem = { ...action.payload, id: nextId++ };
-            state.correctionJVList = [...state.correctionJVList, newItem];
+            state.correctionTabelList = [...state.correctionTabelList, newItem];
         })
         builder.addCase(postCorrectionJVData.rejected, (state, action) => {
             state.loading = false;
@@ -91,7 +113,8 @@ const correctioneversalJVReducers = createSlice({
         });
         builder.addCase(getPatchCorrectionJVEdit.fulfilled, (state, action) => {
             state.loading = false;
-            state.getCorrectionJVEdit = action.payload.data;
+            state.getCorrectionJVEdit = action.payload;
+            console.log(state.getCorrectionJVEdit, " state.getCorrectionJVEdit ");
         });
         builder.addCase(getPatchCorrectionJVEdit.rejected, (state, action) => {
             state.loading = false;
@@ -106,9 +129,19 @@ const correctioneversalJVReducers = createSlice({
             }
         );
         builder.addCase(
-            patchCorrectionJVEdit.fulfilled, (state, action) => {
+            patchCorrectionJVEdit.fulfilled,
+            (state, action) => {
                 state.loading = false;
-                state.correctionJVList = action.payload
+                const updatedIndex = state.correctionJVList.findIndex(
+                    (item) => item.id === action.payload.id
+                );
+                if (updatedIndex !== -1) {
+                    const updatedCurrencyList = [...state.correctionJVList];
+                    updatedCurrencyList[updatedIndex] = action.payload;
+                    state.correctionJVList = updatedCurrencyList;
+                } else {
+                    state.correctionJVList = [...state.correctionJVList, action.payload];
+                }
             }
         );
         builder.addCase(patchCorrectionJVEdit.rejected, (state, action) => {

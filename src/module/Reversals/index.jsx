@@ -23,7 +23,7 @@ const Reversals = () => {
     {
       setTimeout(() => {
         setStep(2);
-      }, 3000);
+      }, 1000);
     }
   };
   const [step, setStep] = useState(0);
@@ -95,7 +95,7 @@ const Reversals = () => {
   });
   const handlePrint = () => {
     toastRef.current.showToast();
-    formik.resetForm();
+    // formik.resetForm();
     setStep(0);
   };
   return (
@@ -272,7 +272,7 @@ const Reversals = () => {
 
       <div className="grid m-0 bottom__container">
         <div className="col-12 button__view__corrections__reversal">
-          {step === 0 && (
+          {step == 0 && (
             <Button
               label="Next"
               className="correction__btn__reversal"
@@ -282,7 +282,7 @@ const Reversals = () => {
             />
           )}
 
-          {step === 1 && (
+          {step == 1 && (
             <Button
               label="Approve"
               className="correction__btn__reversal"
@@ -290,7 +290,7 @@ const Reversals = () => {
             />
           )}
 
-          {step === 2 && (
+          {step == 2 && (
             <Button
               label="Print"
               className="correction__btn__reversal"

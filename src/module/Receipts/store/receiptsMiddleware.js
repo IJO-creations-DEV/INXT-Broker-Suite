@@ -23,12 +23,22 @@ export const getReceiptsListMiddleware = createAsyncThunk(
     }
   }
 );
-export const getPaymentDetails= createAsyncThunk(
+export const getPaymentDetails = createAsyncThunk(
   GET_PAYMENT_DETAILS,
   async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
+    const data = {
+      totalPayment: payload?.totalPayment,
+      bankcode: payload?.bankcode,
+      bankName: payload?.bankName,
+      bankAccount: payload?.bankAccount,
+      bankAccountName: payload?.bankAccountName,
+      paymentType: payload?.paymentType,
+      cardNumber: payload?.cardNumber,
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -43,7 +53,7 @@ export const getReceiptsListBySearchMiddleware = createAsyncThunk(
     function filterReceiptsByField(receipts, field, value) {
       const lowercasedValue = value.toLowerCase();
       return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
-      }
+    }
 
     // Example usage:
 
@@ -92,24 +102,42 @@ export const getReceiptsReceivableMiddleware = createAsyncThunk(
 export const postAddReceiptsMiddleware = createAsyncThunk(
   POST_ADD_RECEIPTS,
   async (payload, { rejectWithValue, getState }) => {
+    console.log(payload, "find payloadpayload");
 
+    const generateRandomName = () => {
+      const names = ['Ayesha', 'Sindhu', 'John', 'Doe', 'Alice', 'Bob'];
+      const randomIndex = Math.floor(Math.random() * names.length);
+      return names[randomIndex];
+    };
+
+
+    const generateRandomTransaction = () => {
+      const transactions = ['Transaction1', 'Transaction2', 'Transaction3'];
+      const randomIndex = Math.floor(Math.random() * transactions.length);
+      return { name: transactions[randomIndex] };
+    };
+
+
+    const generateRandomAmount = () => {
+      return (Math.random() * 1000).toFixed(2);
+    };
     let bodyTableData = {
-      id: 8,
-      receiptNumber: `Rep${8}`,
-      transactionNumber: payload?.transactionNumber?.name,
-      transactionCode: payload?.transactionCode?.name,
-      customerCode: payload?.customerCode?.name,
-      name: payload?.name,
+      id: payload.id,
+      receiptNumber: payload?.receiptNumber,
+      transactionCode: payload?.transactionCode.code,
+      customerCode: payload?.customerCode.code,
       date: payload?.receiptDate.toLocaleDateString("en-US", {
         month: "numeric",
         day: "2-digit",
         year: "numeric",
       }),
-      amount: "500.00",
+      transactionNumber: generateRandomTransaction().name,
+      name: generateRandomName(),
+      amount: generateRandomAmount(),
       action: 8,
     };
     try {
-      console.log(bodyTableData, "find middleware");
+      console.log(bodyTableData, "find bodyTableData");
 
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return bodyTableData;

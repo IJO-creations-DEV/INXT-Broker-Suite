@@ -109,9 +109,9 @@ const AddJournalVocture = () => {
 
 
 
-    useEffect(() => {
-        handleSubmit()
-    }, [])
+    // useEffect(() => {
+    //     handleSubmit()
+    // }, [])
 
     const formik = useFormik({
         initialValues: {
@@ -390,7 +390,7 @@ const AddJournalVocture = () => {
                         label="Approve"
                         className='save__add__btn__JV'
                         onClick={handleApproval}
-                        disabled={netTotal === 0 ? false : true}
+                        disabled={totalForeignAmount - totalLocalAmount === 0 ? false : true}
                     />
                 </div>
             )}

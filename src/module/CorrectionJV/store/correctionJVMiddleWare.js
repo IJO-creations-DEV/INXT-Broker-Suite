@@ -29,7 +29,7 @@ export const postCorrectionJVData = createAsyncThunk(
     POST_CORRECTION_JV,
     async (payload, { rejectWithValue }) => {
         try {
-            console.log(payload, "payload")
+
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
         } catch (error) {
@@ -54,6 +54,7 @@ export const getCorrectionJVView = createAsyncThunk(
 export const getPatchCorrectionJVEdit = createAsyncThunk(
     GET_PATCH_CORRECTION_JV_EDIT,
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
@@ -67,24 +68,24 @@ export const getPatchCorrectionJVEdit = createAsyncThunk(
 export const patchCorrectionJVEdit = createAsyncThunk(
     PATCH_CORRECTION_JV_EDIT,
     async (payload, { rejectWithValue, getState }) => {
-        const { correctionJVMainReducers } = getState();
-        const { correctionJVList } = correctionJVMainReducers;
+        console.log(payload, "payload");
+        const data = {
+            mainAccount: payload?.mainAccount || "",
+            mainAccountDescription: payload?.mainAccountDescription || "",
+            entryType: payload?.entryType || "",
+            subAccount: payload?.subAccount || "",
+            subAccountDescription: payload?.subAccountDescription || "",
+            branchCode: payload?.branchCode || "",
+            branchCodeDescription: payload?.branchCodeDescription || "",
+            departmentCode: payload?.departmentCode || "",
+            departmentDescription: payload?.departmentDescription || "",
+            currencyCode: payload?.currencyCode || "",
+            currencyDescription: payload?.currencyDescription || "",
+            foreignAmount: payload?.foreignAmount || "",
+        }
         try {
-            const editData = correctionJVList?.map((item) => {
-                if (item.id === parseInt(payload?.id)) {
-                    return {
-                        ...item,
-                        mainAccount: payload?.mainAccount,
-                        subAccount: payload?.subAccount,
-                        branchCode: payload?.branchCode,
-                        currencyCode: payload?.currencyCode,
-                        foreignAmount: payload?.foreignAmount,
-                        entryType: payload?.entryType,
-                    };
-                }
-                return item;
-            });
-            return editData;
+console.log(data,"data");
+            return data;
         } catch (error) {
             return rejectWithValue(error?.response?.data?.error?.message || "An error occurred");
         }

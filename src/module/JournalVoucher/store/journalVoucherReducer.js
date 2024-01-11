@@ -19,9 +19,9 @@ const initialState = {
       foreignAmount: "500",
       localAmount: '600',
       entryType: "Credit",
-      departmentCode:"departmentCode",
-      departmentDescription:"departmentDescription"
-      
+      departmentCode: "departmentCode",
+      departmentDescription: "departmentDescription"
+
     },
     {
       id: 2,
@@ -32,8 +32,8 @@ const initialState = {
       foreignAmount: "800",
       localAmount: '600',
       entryType: "Debit",
-      departmentCode:"departmentCode",
-      departmentDescription:"departmentDescription"
+      departmentCode: "departmentCode",
+      departmentDescription: "departmentDescription"
     }
   ],
 
@@ -41,22 +41,24 @@ const initialState = {
     {
       id: 1,
       transationCode: "0102",
-      transactionNumber: "123",
-      totalDebit: "payload?.totalDebit",
-      transationDescription: "transationDescription123",
+      transactionNumber: 1145,
+      totalDebit: "totalDebit",
+      transationDescription: "transation123",
       date: '10/10/2023',
     },
     {
       id: 2,
       transationCode: "022",
-      transactionNumber: "888",
+      transactionNumber: 1245,
       totalDebit: "payload?.totalDebit",
-      transationDescription: " payload?.transationDescription",
+      transationDescription: "transation89",
       date: '10/10/2023',
-    }
+    },
+
 
   ],
 };
+let transactionNumber = 1345
 let nextId = 2;
 let nextId2 = 2
 const journalVoucherReducer = createSlice({
@@ -83,8 +85,9 @@ const journalVoucherReducer = createSlice({
     });
     builder.addCase(postTCJournalVoucher.fulfilled, (state, action) => {
       state.loading = false;
-      const newItem2 = { ...action.payload, id: nextId2++ };
+      const newItem2 = { ...action.payload, id: nextId2++, transactionNumber: transactionNumber++ };
       state.journalVoucherList = [...state.journalVoucherList, newItem2];
+      console.log(state.journalVoucherList ,"state.journalVoucherList ");
     });
     builder.addCase(postTCJournalVoucher.rejected, (state, action) => {
       state.loading = false;
@@ -130,7 +133,7 @@ const journalVoucherReducer = createSlice({
     })
       .addCase(postAddJournalVoucher.fulfilled, (state, action) => {
         state.loading = false;
-        const newItem = { ...action.payload, id: nextId++ };
+        const newItem = { ...action.payload, id: nextId++, transactionNumber: transactionNumber++ };
         state.journalVoucherPostTabelData = [...state.journalVoucherPostTabelData, newItem];
       })
       .addCase(postAddJournalVoucher.rejected, (state, action) => {

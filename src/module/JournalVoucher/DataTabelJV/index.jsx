@@ -13,8 +13,9 @@ import { useDispatch } from "react-redux";
 
 
 const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
-    console.log(journalVoucherList, "journalVoucherList")
+    console.log(journalVoucherList, "find a journalVoucherList")
     const navigate = useNavigate()
+
 
     const headerStyle = {
         // width: "19%",
@@ -23,25 +24,25 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
         fontFamily: "Inter var",
         fontWeight: 500,
         padding: 6,
-        paddingLeft:0,
+        paddingLeft: 0,
         color: "#000",
         border: "none",
-    //     display:' flex',
-    // justifycontent: 'center'
-      };
+        //     display:' flex',
+        // justifycontent: 'center'
+    };
 
-      const headaction ={
+    const headaction = {
         justifyContent: 'center',
-    // textalign: center,
-    fontSize: 16,
-    fontFamily: "Inter var",
-    fontWeight: 500,
-    padding: 6,
-    color: "#000",
-    border:" none",
-    display: "flex"
-      }
-      
+        // textalign: center,
+        fontSize: 16,
+        fontFamily: "Inter var",
+        fontWeight: 500,
+        padding: 6,
+        color: "#000",
+        border: " none",
+        display: "flex"
+    }
+
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const dispatch = useDispatch()
@@ -122,9 +123,9 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
-            // onRowClick={(event) => handleNavigate(event.data)}
-            scrollable={true}
-            scrollHeight="40vh"
+                // onRowClick={(event) => handleNavigate(event.data)}
+                scrollable={true}
+                scrollHeight="40vh"
             >
                 <Column
                     field="transationCode"
@@ -134,7 +135,7 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
 
                 ></Column>
                 <Column
-                    field="transactionNumber"
+                    field='transactionNumber'
                     header="Transaction Number"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
@@ -158,16 +159,16 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
                     // body={renderEditButton}
 
                     body={(columnData) => (
-                        
+
                         <SvgIconeye onClick={() => handleView(columnData)} />
-                        
+
                     )}
-                    style={{textAlign:'center'}}
+                    style={{ textAlign: 'center' }}
                     headerStyle={headaction}
                     header="View"
                     className="fieldvalue_container"
-                    // headerStyle={header__style}
-                    // bodyStyle={body__style}
+                // headerStyle={header__style}
+                // bodyStyle={body__style}
 
                 ></Column>
             </DataTable>

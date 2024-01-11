@@ -34,16 +34,34 @@ const DetailsJournalVocture = () => {
     //   dispatch(getpaymentVocherByIdMiddleware(id));
     // }, [id]);
 
-    const { journalVoucherView, loading } = useSelector(
+    const { journalVoucherView, loading ,journalVoucherPostTabelData} = useSelector(
         ({ journalVoucherMainReducers }) => {
             return {
                 loading: journalVoucherMainReducers?.loading,
                 journalVoucherView: journalVoucherMainReducers?.journalVoucherView,
+                journalVoucherPostTabelData:journalVoucherMainReducers?.journalVoucherPostTabelData
             };
         }
     );
     console.log(journalVoucherView, "journalVoucherView")
 
+    const totalForeignAmount = journalVoucherPostTabelData.reduce((total, item) => {
+        if (item.entryType === "Credit") {
+            const foreignAmount = parseFloat(item.foreignAmount);
+            return !isNaN(foreignAmount) ? total + foreignAmount : total;
+        }
+        return total; // Important: Return the total for each iteration.
+    }, 0);
+
+
+    const totalLocalAmount = journalVoucherPostTabelData.reduce((total, item) => {
+        if (item.entryType === "Debit") {
+            const localAmount = parseFloat(item.foreignAmount);
+            return !isNaN(localAmount) ? total + localAmount : total;
+        }
+        return total;
+    }, 0);
+   
 
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [sortField, setSortField] = useState(null);
@@ -88,7 +106,6 @@ const DetailsJournalVocture = () => {
             icon: 'pi pi-check-circle',
         });
     };
-    
     const customValidation = (values) => {
         const errors = {};
 
@@ -113,16 +130,16 @@ const DetailsJournalVocture = () => {
         // setVisiblePopup(true);
     }
     const mainAccountOptions = [
-        { label: journalVoucherView.transationCode, value:journalVoucherView.transationCode },
+        { label: journalVoucherView?.transationCode, value: journalVoucherView?.transationCode },
+
        
-        // Add more options as needed
     ];
     const formik = useFormik({
         initialValues: {
             transactioncode: `${journalVoucherView.transationCode}`,
             transactionDescription: `${journalVoucherView.totalCredit}`,
             transactionNumber: `${journalVoucherView.transationCode}`,
-            date: `${journalVoucherView.date}`,
+            date: `${new Date(journalVoucherView.date)}`,
             totalCredit: '500',
             totalDebit: '500',
             net: '00.00'
@@ -133,8 +150,7 @@ const DetailsJournalVocture = () => {
     });
 
     const headerStyle = {
-        // width: "19%",
-        // backgroundColor: 'red',
+        
         fontSize: 16,
         fontFamily: "Inter var",
         fontWeight: 500,
@@ -285,7 +301,7 @@ const DetailsJournalVocture = () => {
                     <div className='sub__account__details__jV'>
                         <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
                             <div className="card">
-                                <ViewDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
+                                <ViewDataTabel journalVoucherPostTabelData={journalVoucherPostTabelData}  handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} />
                             </div>
                         </div>
                     </div>
@@ -297,7 +313,7 @@ const DetailsJournalVocture = () => {
                                     classNames='dropdown__add__sub'
                                     className='label__sub__add'
                                     placeholder="Enter"
-                                    value={formik.values.totalCredit}
+                                    value={totalForeignAmount}
                                     disabled={true}
                                     onChange={(e) => formik.setFieldValue('totalCredit', e.target.value)}
 

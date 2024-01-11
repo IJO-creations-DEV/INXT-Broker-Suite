@@ -257,10 +257,9 @@ function Createvoucher() {
             </div>
           </div>
         </div>
-
-        <div class="grid">
-          <div class="col-3 md:col-3 lg-col-3">
-            {formik.values.Criteria == "" || formik.values.Criteria?.name == "Specific" ?
+        <div className="grid">
+          {formik.values.Criteria === "" || formik.values.Criteria?.name === "Specific" ? (
+            <div className="col-3 md:col-3 lg-col-3">
               <DropDowns
                 className="dropdown__container"
                 label="Customer Code"
@@ -270,14 +269,15 @@ function Createvoucher() {
                 optionLabel="name"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-              /> : null
-            }
-            {/* {formik.touched.CustomerCode && formik.errors.CustomerCode && (
-              <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.CustomerCode}
-              </div>
-            )} */}
-          </div>
+              />
+              {formik.touched.CustomerCode && formik.errors.CustomerCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.CustomerCode}
+                </div>
+              )}
+            </div>
+          ) : null}
+          {/* <div className={`col-12  `}> */}
           <div class="col-3 md:col-3 lg-col-3">
             <DropDowns
               className="dropdown__container"
@@ -321,14 +321,10 @@ function Createvoucher() {
               </div>
             )} */}
           </div>
-          {/* <div class="sm-col-12  md:col-3 lg-col-4">
-            <InputField
-              classNames="field__container"
-              label="Currency Description"
-              placeholder={"Enter"}
-            />
-          </div> */}
+          {/* </div> */}
         </div>
+
+
         <div class="grid">
           <div class="sm-col-12  md:col-3 lg-col-4">
             <DropDowns

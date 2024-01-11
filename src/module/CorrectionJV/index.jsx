@@ -14,6 +14,7 @@ import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import CustomToast from "../../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import { postCorrectionJVData } from "./store/correctionJVMiddleWare";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Reversals = () => {
   const toastRef = useRef(null);
@@ -106,29 +107,31 @@ const Reversals = () => {
     setNetTotal(0);
     setDebitTotal(2600);
   };
+  const navigate = useNavigate()
   const handlePrint = () => {
     toastRef.current.showToast();
-    formik.resetForm();
+    // formik.resetForm();
     setStep(0);
+    // navigate("/accounts/correctionsjv/correctionsjvdetails")
   };
   const totalForeignAmount = correctionJVList.reduce((total, item) => {
     if (item.entryType === "Credit") {
-        const foreignAmount = parseFloat(item.foreignAmount);
-        return !isNaN(foreignAmount) ? total + foreignAmount : total;
+      const foreignAmount = parseFloat(item.foreignAmount);
+      return !isNaN(foreignAmount) ? total + foreignAmount : total;
     }
     return total; // Important: Return the total for each iteration.
-}, 0);
+  }, 0);
 
 
-const totalLocalAmount = correctionJVList.reduce((total, item) => {
+  const totalLocalAmount = correctionJVList.reduce((total, item) => {
     if (item.entryType === "Debit") {
-        const localAmount = parseFloat(item.foreignAmount);
-        return !isNaN(localAmount) ? total + localAmount : total;
+      const localAmount = parseFloat(item.foreignAmount);
+      return !isNaN(localAmount) ? total + localAmount : total;
     }
     return total;
-}, 0);
+  }, 0);
 
-  
+
   return (
     <div className="container__corrections__jv">
       {step === 1 ? (
@@ -349,7 +352,7 @@ const totalLocalAmount = correctionJVList.reduce((total, item) => {
       )}
       <div className="grid m-0 bottom__container">
         <div className="col-12 button__view__corrections__reversal">
-          {step === 0 && (
+          {step == 0 && (
             <Button
               className="correction__btn__reversal"
               disabled={!formik.isValid}
@@ -359,7 +362,7 @@ const totalLocalAmount = correctionJVList.reduce((total, item) => {
             </Button>
           )}
 
-          {step === 1 && (
+          {step == 1 && (
             <Button
               className="correction__btn__reversal"
               onClick={handleApproval}
@@ -371,7 +374,7 @@ const totalLocalAmount = correctionJVList.reduce((total, item) => {
             </Button>
           )}
 
-          {step === 2 && (
+          {step == 2 && (
             <Button className="correction__btn__reversal" onClick={handlePrint}>
               Print
             </Button>

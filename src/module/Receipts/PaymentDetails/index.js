@@ -15,7 +15,8 @@ import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import DropDowns from "../../../components/DropDowns";
 import { useFormik } from "formik";
 import CustomToast from "../../../components/Toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getPaymentDetails } from "../store/receiptsMiddleware";
 
 
 function PolicyReceipts() {
@@ -33,13 +34,13 @@ function PolicyReceipts() {
 
     };
   });
-  console.log(paymentDetails[0].bankAccount, "paymentDetails")
+  // console.log(paymentDetails[0].bankAccount, "paymentDetails")
   const initialValue = {
-    totalPayment: 1600,
+    totalPayment: "",
     bankcode: "",
-    bankName: "Money Bank",
+    bankName: "",
     bankAccount: "",
-    bankAccountName: "Business Account",
+    bankAccountName: "",
     paymentType: "",
     cardNumber: "",
   };
@@ -60,13 +61,15 @@ function PolicyReceipts() {
 
     return errors;
   };
+  const dispatch = useDispatch()
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-  const handleSubmit = () => {
-    const formErrors = validate(formik.values);
-    setErrors(formErrors);
-    console.log(formErrors, "iiiii");
-    toastRef.current.showToast();
+  const handleSubmit = (values) => {
+    // const formErrors = validate(formik.values);
+    // setErrors(formErrors);
+    // console.log(formErrors, "iiiii");
+    // toastRef.current.showToast();
+    dispatch(getPaymentDetails(formik.values))
     // navigate('')
     setProducts("Print")
     if (products == "Print") {
@@ -193,7 +196,7 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-                value={paymentDetails[0].totalPayment}
+                value={formik?.values?.totalPayment}
                 onChange={formik.handleChange("totalPayment")}
                 error={formik.errors.totalPayment}
                 classNames="field__policy "
@@ -209,7 +212,10 @@ function PolicyReceipts() {
             <div>
               <DropDowns
                 value={formik.values.bankcode}
-                onChange={formik.handleChange("bankcode")}
+
+                onChange={(e) =>
+                  formik.setFieldValue("bankcode", e.target.value)
+                }
                 // error={formik.errors.bankcode}
                 className="dropdown__container"
                 label="Bank code"
@@ -228,18 +234,23 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-                value={
-                  formik.values.bankcode
-                    ? `1234${formik.values.bankcode}`
-                    : ""
-                }
-                // value={paymentDetails[0].bankcode && paymentDetails[0].bankName}
+                value={formik.values.bankcode ? `bankcode ${formik.values.bankcode}` : ""}
+                // onChange={formik.handleChange("bankName")}
+                error={formik.errors.bankName}
+                classNames="field__policy "
+                label="Bank Name"
+              />
+
+              {/* <InputField  
+                value={ formik.values.bankcode
+                  ? `bankcode ${formik.values.bankcode}`
+                  : ""}
                 onChange={formik.handleChange("bankName")}
                 error={formik.errors.bankName}
                 classNames="field__policy "
                 label="Bank Name"
               // value={"Money bank"}
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -248,7 +259,9 @@ function PolicyReceipts() {
             <div>
               <DropDowns
                 value={formik.values.bankAccount}
-                onChange={formik.handleChange("bankAccount")}
+                onChange={(e) =>
+                  formik.setFieldValue("bankAccount", e.target.value)
+                }
                 // error={formik.errors.bankAccount}
                 className="dropdown__container"
                 label="Bank Account"
@@ -267,11 +280,12 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-                value={
-                  formik.values.bankAccount
-                    ? `654${formik.values.bankAccount}`
-                    : ""
-                }
+              value={formik.values.bankAccount ? `bankAccount ${formik.values.bankAccount}` : ""}
+                // value={
+                //   formik.values.bankAccount
+                //     ? `654${formik.values.bankAccount}`
+                //     : ""
+                // }
                 // value={paymentDetails[0].bankAccount && paymentDetails[0].bankAccountName}
                 onChange={formik.handleChange("bankAccountName")}
                 error={formik.errors.bankAccountName}
@@ -287,7 +301,9 @@ function PolicyReceipts() {
             <div>
               <DropDowns
                 value={formik.values.paymentType}
-                onChange={formik.handleChange("paymentType")}
+                onChange={(e) =>
+                  formik.setFieldValue("paymentType", e.target.value)
+                }
                 // error={formik.errors.paymentType}
                 className="dropdown__container"
                 label="Payment Type"

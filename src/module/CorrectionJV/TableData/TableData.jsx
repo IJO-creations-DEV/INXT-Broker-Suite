@@ -14,17 +14,18 @@ import InputField from "../../../components/InputField";
 // import { Button } from "primereact/button";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { patchCorrectionJVEdit } from "../store/correctionJVMiddleWare";
+import { getPatchCorrectionJVEdit, patchCorrectionJVEdit } from "../store/correctionJVMiddleWare";
 // import SvgModalClose from "../../../assets/icons/SvgNodalClose";
 // import { useDispatch } from "react-redux";
 // import { patchCorrectionJVEdit } from "../store/correctionJVMiddleWare";
 
 const TableData = ({ newDataTable, editID }) => {
-  const { correctionJVList, loading } = useSelector(
+  const { correctionJVList, getCorrectionJVEdit, loading } = useSelector(
     ({ correctionJVMainReducers }) => {
       return {
         loading: correctionJVMainReducers?.loading,
         correctionJVList: correctionJVMainReducers?.correctionJVList,
+        getCorrectionJVEdit: correctionJVMainReducers?.getCorrectionJVEdit
       };
     }
   );
@@ -70,7 +71,7 @@ const TableData = ({ newDataTable, editID }) => {
       <div className="action__icon">
         <Button
           icon={<SvgEditIcon />}
-          onClick={() => handleEdit(rowData.id)}
+          onClick={() => handleEdit(rowData)}
           className="action__button"
         />
       </div>
@@ -149,6 +150,7 @@ const TableData = ({ newDataTable, editID }) => {
   const [EditID, setEditID] = useState(null);
   const handleEdit = (rowData) => {
     console.log(rowData.id, "rown");
+    dispatch(getPatchCorrectionJVEdit(rowData))
     setEditID(rowData.id);
     setVisible(true);
   };
@@ -191,23 +193,22 @@ const TableData = ({ newDataTable, editID }) => {
     }
   }, [EditID]);
   const setFormikValues = () => {
-    console.log(correctionJVList, "find action");
-    const targetInvoice = correctionJVList.find((item) => item.id === EditID);
-    console.log(targetInvoice, "find data");
+    // const getCorrectionJVEdit = correctionJVList.find((item) => item.id === EditID);
+    console.log(getCorrectionJVEdit, "find data");
 
     const updatedValues = {
-      mainAccount: targetInvoice?.mainAccount || "",
-      mainAccountDescription: targetInvoice?.mainAccountDescription || "",
-      entryType: targetInvoice?.entryType || "",
-      subAccount: targetInvoice?.subAccount || "",
-      subAccountDescription: targetInvoice?.subAccountDescription || "",
-      branchCode: targetInvoice?.branchCode || "",
-      branchCodeDescription: targetInvoice?.branchCodeDescription || "",
-      departmentCode: targetInvoice?.departmentCode || "",
-      departmentDescription: targetInvoice?.departmentDescription || "",
-      currencyCode: targetInvoice?.currencyCode || "",
-      currencyDescription: targetInvoice?.currencyDescription || "",
-      foreignAmount: targetInvoice?.foreignAmount || "",
+      mainAccount: getCorrectionJVEdit?.mainAccount || "",
+      mainAccountDescription: getCorrectionJVEdit?.mainAccountDescription || "",
+      entryType: getCorrectionJVEdit?.entryType || "",
+      subAccount: getCorrectionJVEdit?.subAccount || "",
+      subAccountDescription: getCorrectionJVEdit?.subAccountDescription || "",
+      branchCode: getCorrectionJVEdit?.branchCode || "",
+      branchCodeDescription: getCorrectionJVEdit?.branchCodeDescription || "",
+      departmentCode: getCorrectionJVEdit?.departmentCode || "",
+      departmentDescription: getCorrectionJVEdit?.departmentDescription || "",
+      currencyCode: getCorrectionJVEdit?.currencyCode || "",
+      currencyDescription: getCorrectionJVEdit?.currencyDescription || "",
+      foreignAmount: getCorrectionJVEdit?.foreignAmount || "",
     };
     formik.setValues({ ...formik.values, ...updatedValues });
   };

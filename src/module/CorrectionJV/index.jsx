@@ -111,16 +111,24 @@ const Reversals = () => {
     formik.resetForm();
     setStep(0);
   };
-
   const totalForeignAmount = correctionJVList.reduce((total, item) => {
-    const foreignAmount = parseFloat(item.foreignAmount);
-    return !isNaN(foreignAmount) ? total + foreignAmount : total;
-  }, 0);
+    if (item.entryType === "Credit") {
+        const foreignAmount = parseFloat(item.foreignAmount);
+        return !isNaN(foreignAmount) ? total + foreignAmount : total;
+    }
+    return total; // Important: Return the total for each iteration.
+}, 0);
 
-  const totalLocalAmount = correctionJVList.reduce((total, item) => {
-    const localAmount = parseFloat(item.localAmount);
-    return !isNaN(localAmount) ? total + localAmount : total;
-  }, 0);
+
+const totalLocalAmount = correctionJVList.reduce((total, item) => {
+    if (item.entryType === "Debit") {
+        const localAmount = parseFloat(item.foreignAmount);
+        return !isNaN(localAmount) ? total + localAmount : total;
+    }
+    return total;
+}, 0);
+
+  
   return (
     <div className="container__corrections__jv">
       {step === 1 ? (

@@ -214,6 +214,7 @@ export const GET_CORRECTION_JV_LIST = "correction/GET_CORRECTION_JV_LIST";
 export const POST_CORRECTION_JV = "correction/POST_CORRECTION_JV";
 export const GET_CORRECTION_JV_VIEW = "correction/GET_CORRECTION_JV_VIEW";
 export const PATCH_CORRECTION_JV_EDIT = "correction/PATCH_CORRECTION_JV_EDIT";
+export const GET_PATCH_CORRECTION_JV_EDIT="correction/GET_PATCH_CORRECTION_JV_EDIT"
 
 export const GET_REVERSAL_JV_LIST = "reversal/GET_REVERSAL_JV_LIST";
 export const POST_REVERSAL_JV = "reversal/POST_REVERSAL_JV";

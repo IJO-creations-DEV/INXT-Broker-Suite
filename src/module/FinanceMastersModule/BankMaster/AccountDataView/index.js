@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import SvgEdit from "../../../../assets/icons/SvgEdits";
 import ToggleButton from "../../../../components/ToggleButton";
+import SvgTable from "../../../../assets/icons/SvgTable";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
@@ -123,6 +124,16 @@ const Index = () => {
     setFirst(event.first);
     setRows(event.rows);
   };
+  const isEmpty = paymentVocherList?.length === 0 || "undefined";
+console.log("first",paymentVocherList)
+    const emptyTableIcon = (
+      <div>
+      <div className="empty-table-icon">
+        <SvgTable/>
+      </div>
+      <div style={{textAlign:'center'}}>No data entered</div>
+      </div>
+    );
 
   const onGlobalFilterChange = (event) => {
     setGlobalFilter(event.target.value);
@@ -164,7 +175,7 @@ const Index = () => {
 
 
         <div className="header_search_container">
-          <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 0 }}>
+          <div class="col-12 md:col-12 lg:col-12" style={{ paddingLeft: 0 }}>
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
@@ -186,7 +197,7 @@ const Index = () => {
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2} scrollable={true}
             scrollHeight="40vh"
-           
+            emptyMessage={isEmpty ? emptyTableIcon : null}
           >
 
             <Column field="VoucherNumber" header="Account Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>

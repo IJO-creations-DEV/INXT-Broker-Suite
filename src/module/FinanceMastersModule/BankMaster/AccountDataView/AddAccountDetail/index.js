@@ -26,6 +26,7 @@ import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import { Dialog } from "primereact/dialog";
 import ToggleButton from "../../../../../components/ToggleButton";
 import { postAddBank } from "../../store/bankMasterMiddleware";
+import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 
 const initialValues = {
   AccountNumber: "",
@@ -134,6 +135,11 @@ function AddAccountDetail() {
     color: "#000",
     border: "none",
   };
+  const headeraction={
+display:'flex',
+justifyContent:'center',
+alignItem:'center'
+  }
   const status = [
     { name: "Active", code: "NY" },
     { name: "Deactive", code: "RM" },
@@ -148,7 +154,7 @@ function AddAccountDetail() {
   const home = { label: "Master" };
 
   const handlesaveTable = () => {
-    setVisible(true);
+    setVisible(false)
   };
 
   const handlesave = (value) => {
@@ -317,7 +323,7 @@ function AddAccountDetail() {
             label="Add"
             className="addbutton_container"
             icon={<SvgAdd />}
-            // onClick={() => setVisible(true)}
+            onClick={() => setVisible(true)}
           />
         </div>
 
@@ -361,26 +367,30 @@ function AddAccountDetail() {
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
-            <Column
+            {/* <Column
               body={(columnData) => <SvgEdit />}
               header="Action"
-              headerStyle={headerStyle}
+              headerStyle={headeraction}
               className="fieldvalue_container"
-            ></Column>
+              style={{textAlign:'center'}}
+            ></Column> */}
 
             {/* <Column field="Amount" header="Total Amount" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
             {/* <Column field="action" header="Action" headerStyle={headerStyle} className='fieldvalue_container'
         onClick={() => setVisible(true)}
         ></Column> */}
 
-            {/* <Column
+            <Column
             body={(params) => (
-                <SvgEditIcon onClick={() => setVisible(true)}/>
+              <div onClick={() => setVisible(true)}>
+                <SvgEditIcon />
+                </div>
             )}
             header="Action"
-            headerStyle={headerStyle}
+            headerStyle={headeraction}
             className="fieldvalue_container"
-        ></Column> */}
+            style={{textAlign:'center'}}
+        ></Column>
           </DataTable>
         </div>
       </Card>

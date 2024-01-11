@@ -158,6 +158,14 @@ const AddCurrency = () => {
               options={ISOcode}
               optionLabel="name"
                         />
+                           {formik.touched.ISOcode && formik.errors.ISOcode && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                
+              >
+                {formik.errors.ISOcode}
+              </div>
+            )}
                     </div>
                     <div className='col-12 md:col-3 lg:col-3'>
                         <InputField

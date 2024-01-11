@@ -43,7 +43,7 @@ margin: 8px;
 .breadcrumbs_container{
     // margin-bottom: 60px;
     
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     font-family: Inter var;
     border: 1px solid #fff !important; 
@@ -58,7 +58,7 @@ margin: 8px;
     cursor: pointer;
     background-color: #fff;
     color: #6366f1;
-    padding: 8px 20px;
+    padding: 8px 10px;
     font-size: 18px;
     font-weight: 500;
     gap:8px
@@ -130,11 +130,13 @@ margin: 8px;
     font-size: 16px;
     font-family: Inter var;
     font-weight: 400;
+    padding: 1rem 6px !important;
    
 }
 .menubutton_popup{
     background-color: #fff;
-    border-style: hidden
+    border-style: hidden;
+    padding: 0px;
 }
 // .p-button:not(:disabled):hover {
 //      background: #fff; 

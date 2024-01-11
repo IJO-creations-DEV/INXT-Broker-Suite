@@ -175,10 +175,10 @@ const CurrencyMaster = () => {
       <div className="col-12 m-0 ">
         <div className="sub__account__sub__container">
           <div className="col-12 search__filter__view">
-            <div className="col-12 md:col-10 lg:col-10">
+            <div className="col-12 md:col-12 lg:col-12">
               <div className="searchIcon__view__input mt-2">
-                <span className="pl-2">
-                  <SvgSearchIcon />
+                <span className="pl-3" style={{color:'gray'}}>
+                <i className="pi pi-search" />
                 </span>
                 <InputText
                   style={{ width: "100%" }}
@@ -269,7 +269,7 @@ const CurrencyMaster = () => {
                   body={renderViewButton}
                   header="View"
                   headerStyle={{ ...ViewheaderStyle }}
-                  className="fieldvalue_container centered"
+                  className="fieldvalue_container_centered"
                 ></Column>
               </DataTable>
             </div>

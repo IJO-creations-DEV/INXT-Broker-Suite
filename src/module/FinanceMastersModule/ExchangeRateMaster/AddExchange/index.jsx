@@ -21,8 +21,8 @@ import { postExchangeStatus } from '../store/exchangeMasterMiddleware';
 import { useDispatch } from 'react-redux';
 
 const initialValues = {
-  EffectiveFrom: "",
-  EffectiveTo: "",
+  EffectiveFrom: new Date(),
+  EffectiveTo: new Date(),
   CurrencyCode: "",
   ToCurrencyCode: "",
   ExchangeRate: "",
@@ -176,7 +176,7 @@ function AddExchange() {
                 placeholder={"Enter"}
                 //   value={formik.values.CurrencyDescription}
                 value={
-                  formik.values.CurrencyDescription
+                  formik.values.CurrencyCode
                     ? `CurrencyCode ${formik.values.CurrencyDescription}`
                     : ""
                 }

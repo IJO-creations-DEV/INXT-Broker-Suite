@@ -196,7 +196,7 @@ const BankMaster = () => {
     fontSize: 16,
     fontFamily: 'Inter var',
     fontWeight: 500,
-    padding: 6,
+    padding: "10px 6px",
     color: '#000',
     border: 'none'
   };
@@ -271,7 +271,7 @@ const BankMaster = () => {
 
 
         <div className="header_search_container">
-          <div class="col-12 md:col-6 lg:col-10">
+          <div class="col-12 md:col-12 lg:col-12">
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />

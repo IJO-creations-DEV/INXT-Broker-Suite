@@ -103,6 +103,14 @@ const Index = () => {
       </div>
     );
   };
+  const headeraction ={
+    fontSize: 16,
+    fontFamily: 'Inter var',
+    fontWeight: 500,
+    display:"flex",
+    justifyContent:'center',
+    border:"none"
+  }
 
   const headerStyle = {
     // width: '19%',
@@ -172,7 +180,7 @@ const Index = () => {
       >
 
         <div className="header_search_container">
-          <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 0 }}>
+          <div class="col-12 md:col-12 lg:col-12" style={{ paddingLeft: 0 }}>
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
@@ -211,7 +219,7 @@ const Index = () => {
                 </div>
               )}
               header="Action"
-              headerStyle={headerStyle}
+              headerStyle={headeraction}
               className="fieldvalue_container"
             ></Column>
 

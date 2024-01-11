@@ -31,7 +31,7 @@ const Index = () => {
 
   const handlePolicy = (id) => {
     navigate(
-      `/master/generals/organization/branchmaster/addbranchmaster/add/${id}`
+      `/master/generals/organization/branchmaster/add/${id}`
     );
   };
   const dispatch = useDispatch()
@@ -52,12 +52,12 @@ const Index = () => {
     dispatch(getOrganizationBranchView(columnData))
     console.log(columnData, "columnData")
     navigate(
-      `/master/generals/organization/branchmaster/addbranchmaster/view/${columnData.id}`
+      `/master/generals/organization/branchmaster/view/${columnData.id}`
     );
   };
   const handleEdit = (id) => {
     navigate(
-      `/master/generals/organization/branchmaster/addbranchmaster/edit/${id}`
+      `/master/generals/organization/branchmaster/edit/${id}`
     );
   };
 

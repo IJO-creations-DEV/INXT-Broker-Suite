@@ -28,7 +28,7 @@ const DepartMentList = () => {
   console.log(departmentList, "departmentList");
   const [visible, setVisible] = useState(false);
   const [visibleView, setVisibleView] = useState(false)
-
+  const [visibleedit, setVisibleEdit] = useState(false)
   const isEmpty = Productdata.length === 0;
 
   const emptyTableIcon = (
@@ -67,6 +67,7 @@ const DepartMentList = () => {
     setVisibleView(true)
   }
   const handleEdit = (columnData) => {
+    setVisibleEdit(true)
   }
   const headerStyle = {
     fontSize: 16,
@@ -214,7 +215,7 @@ const DepartMentList = () => {
 
         </div>
       </Dialog>
-      <Dialog header="Add Department" visible={visibleView} style={{ width: '40vw' }} onHide={() => setVisibleView(false)}>
+      <Dialog header="Department Details" visible={visibleView} style={{ width: '40vw' }} onHide={() => setVisibleView(false)}>
         <div class='grid'>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
@@ -249,6 +250,52 @@ const DepartMentList = () => {
             </div>
           </div>
         </div>
+      </Dialog>
+
+      <Dialog header="Edit Details" visible={visibleedit} style={{ width: '40vw' }} onHide={() => setVisibleEdit(false)}>
+      <div class='grid'>
+          <div class="sm-col-12 col-12 md:col-6 lg-col-6">
+            <div>
+              <InputField
+                classNames="field__container"
+                label="Department Code"
+                placeholder={"Enter"}
+                value={depatmentView.DepartmentCode}
+              />
+            </div>
+          </div>
+          <div class="sm-col-12 col-12 md:col-6 lg-col-6">
+            <div>
+              <InputField
+                classNames="field__container"
+                label="Department Name"
+                placeholder={"Enter"}
+                value={depatmentView.DepartmentName}
+              />
+            </div>
+          </div>
+        </div>
+        <div class='grid'>
+          <div class="sm-col-12 col-12 md:col-12 lg-col-12">
+            <div>
+              <InputField
+                classNames="field__container"
+                label="Description"
+                placeholder={"Enter"}
+                value={depatmentView.Description}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="nexttextlable_container">
+
+            <Button
+              className="submittextlabel_button p-2"
+              label="Update"
+              onClick={formik.handleSubmit}
+
+            />
+          </div>
       </Dialog>
     </div>
   )

@@ -215,10 +215,11 @@ const AddUser = ({action}) => {
           </div>
         </div>
       </div>
+{action === "edit" && (
       <div style={{width:"100%"}}>
-
       <EditUser/>
       </div>
+      )}
       
       <div className="col-12 btn__view__Add mt-2">
       {action === "add" && (

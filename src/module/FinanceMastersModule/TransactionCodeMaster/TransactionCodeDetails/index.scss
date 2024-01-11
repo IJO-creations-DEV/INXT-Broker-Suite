@@ -80,6 +80,12 @@
       }
       .p-tabview .p-tabview-nav li .p-tabview-nav-link {
         border: none !important;
+        font-size: 16px;
+        font-weight: 400;
+     }
+     .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+      font-size: 16px;
+      font-weight: 500;
      }
       .p-dropdown {
         background: #ffffff;

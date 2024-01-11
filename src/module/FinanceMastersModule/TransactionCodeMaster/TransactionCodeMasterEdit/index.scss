@@ -40,6 +40,15 @@
         font-size: 16px;
         font-weight: 500;
       }
+      .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border: none !important;
+        font-size: 16px;
+        font-weight: 400;
+     }
+     .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+      font-size: 16px;
+      font-weight: 500;
+     }
       .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
         color: #000;
         font-size: 16px;
@@ -86,9 +95,7 @@
         margin-top: 0.5rem !important;
         width: 100% !important;
       }
-      .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-        border: none !important;
-    }
+      
     .no__data__found {
         color: #b1b1b1;
         font-family: "Inter var";

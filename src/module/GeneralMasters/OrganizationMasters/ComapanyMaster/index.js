@@ -33,17 +33,17 @@ const Index = () => {
   const handleView = (columnData) => {
     dispatch(getCompanyViewMiddleWare(columnData))
     navigate(
-      `/master/generals/organization/companymaster/addcompany/view/${columnData.id}`
+      `/master/generals/organization/companymaster/view/${columnData.id}`
     );
   };
   const handleEdit = (id) => {
     navigate(
-      `/master/generals/organization/companymaster/addcompany/edit/${id}`
+      `/master/generals/organization/companymaster/edit/${id}`
     );
   };
   const handlePolicy = (id) => {
     navigate(
-      `/master/generals/organization/companymaster/addcompany/add/${id}`
+      `/master/generals/organization/companymaster/add/${id}`
     );
   };
 

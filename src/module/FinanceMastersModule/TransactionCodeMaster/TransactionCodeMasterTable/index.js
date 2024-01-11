@@ -163,7 +163,7 @@ const TransactionCodeMasterTable = () => {
     <div className="transactioncode__master__table">
       <Card className="mt-4">
         <div className="header__search__container grid">
-          <form onSubmit={formik.handleSubmit} class="col-12 md:col-6 lg:col-10">
+          <form onSubmit={formik.handleSubmit} class="col-12 md:col-12 lg:col-12">
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
@@ -194,8 +194,9 @@ const TransactionCodeMasterTable = () => {
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            selectionMode="checkbox"
           >
-            <Column
+            {/* <Column
               header={<input type="checkbox" />}
               body={(rowData) => (
                 <input
@@ -206,7 +207,15 @@ const TransactionCodeMasterTable = () => {
               )}
               headerStyle={headerStyle}
               style={{ textAlign: "center" }}
-            />
+            /> */}
+ <Column
+              selectionMode="multiple"
+              selectedItem
+              headerStyle={{ width: "2rem" }}
+              style={{textAlign:'center'}}
+            ></Column>
+
+
             <Column
               field="TransactionCode"
               header="Transaction Code"
@@ -249,7 +258,7 @@ const TransactionCodeMasterTable = () => {
               body={renderViewButton}
               header="View"
               headerStyle={{ ...ViewheaderStyle }}
-              className="fieldvalue_container centered"
+              className="fieldvalue_container_centered "
             ></Column>
           </DataTable>
         </div>

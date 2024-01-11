@@ -37,14 +37,14 @@ const City = () => {
     }, []);
 
     const handleEdit = (id) => {
-      navigate(`/master/generals/location/city/addcity/edit/${id}`)
+      navigate(`/master/generals/location/city/edit/${id}`)
     }
 
     const handleadd =(id)=>{
-      navigate (`/master/generals/location/city/addcity/add/${id}`)
+      navigate (`/master/generals/location/city/add/${id}`)
     }
     const handleView =(id)=>{
-      navigate(`/master/generals/location/city/addcity/view/${id}`)
+      navigate(`/master/generals/location/city/view/${id}`)
     }
     const isEmpty = products.length === 0;
 

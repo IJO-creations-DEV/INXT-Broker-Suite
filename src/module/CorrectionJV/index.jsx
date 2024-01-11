@@ -24,7 +24,7 @@ const Reversals = () => {
     {
       setTimeout(() => {
         setStep(2);
-      }, 3000);
+      }, 1000);
     }
   };
   const { correctionJVList, loading } = useSelector(

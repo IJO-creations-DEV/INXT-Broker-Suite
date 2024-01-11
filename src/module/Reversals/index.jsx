@@ -23,7 +23,7 @@ const Reversals = () => {
     {
       setTimeout(() => {
         setStep(2);
-      }, 3000);
+      }, 1000);
     }
   };
   const [step, setStep] = useState(0);

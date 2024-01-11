@@ -137,7 +137,7 @@ const DetailsJournalVocture = () => {
     const formik = useFormik({
         initialValues: {
             transactioncode: `${journalVoucherView.transationCode}`,
-            transactionDescription: `${journalVoucherView.totalCredit}`,
+            transactionDescription: `${journalVoucherView.transactionDescription}`,
             transactionNumber: `${journalVoucherView.transationCode}`,
             date: `${new Date(journalVoucherView.date)}`,
             totalCredit: '500',

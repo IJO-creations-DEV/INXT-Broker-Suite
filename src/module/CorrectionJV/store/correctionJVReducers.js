@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCorrectionJVTabelData, getCorrectionJVView, patchCorrectionJVEdit, postCorrectionJVData } from "./correctionJVMiddleWare";
+import { getCorrectionJVTabelData, getCorrectionJVView, getPatchCorrectionJVEdit, patchCorrectionJVEdit, postCorrectionJVData } from "./correctionJVMiddleWare";
 
 const initialState = {
     loading: false,
@@ -16,7 +16,7 @@ const initialState = {
             currencyCode: "cu123",
             foreignAmount: "5100",
             localAmount: "200",
-            entryType: "credit"
+            entryType: "Credit"
         },
         {
             id: 2,
@@ -26,9 +26,10 @@ const initialState = {
             currencyCode: "cu77",
             foreignAmount: "200",
             localAmount: "5100",
-            entryType: "debit"
+            entryType: "Debit"
         }
     ],
+    getCorrectionJVEdit: []
 };
 let nextId = 2
 const correctioneversalJVReducers = createSlice({
@@ -82,6 +83,20 @@ const correctioneversalJVReducers = createSlice({
 
 
 
+        builder.addCase(getPatchCorrectionJVEdit.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(getPatchCorrectionJVEdit.fulfilled, (state, action) => {
+            state.loading = false;
+            state.getCorrectionJVEdit = action.payload.data;
+        });
+        builder.addCase(getPatchCorrectionJVEdit.rejected, (state, action) => {
+            state.loading = false;
+            state.getCorrectionJVEdit = {};
+            state.error = typeof action.payload === "string" ? action.payload : "";
+        });
+
+
         builder.addCase(patchCorrectionJVEdit.pending,
             (state) => {
                 state.loading = true;
@@ -90,7 +105,7 @@ const correctioneversalJVReducers = createSlice({
         builder.addCase(
             patchCorrectionJVEdit.fulfilled, (state, action) => {
                 state.loading = false;
-                state.correctionJVList=action.payload
+                state.correctionJVList = action.payload
             }
         );
         builder.addCase(patchCorrectionJVEdit.rejected, (state, action) => {

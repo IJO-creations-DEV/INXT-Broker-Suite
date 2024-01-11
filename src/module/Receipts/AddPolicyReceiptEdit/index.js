@@ -259,7 +259,7 @@ function PolicyReceipts() {
             <Column
               sortable
               field="netPremium"
-              header="Net Premium"
+              header="Gross Premium"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
@@ -337,7 +337,7 @@ function PolicyReceipts() {
           <div>
             <InputField
               classNames="policy_input"
-              label="Net Premium"
+              label="Gross Premium"
               value={totalNetAmount}
             />
           </div>
@@ -413,7 +413,7 @@ function PolicyReceipts() {
                 onChange={formik.handleChange("netPremium")}
                 error={formik.errors.netPremium}
                 classNames="field__container"
-                label="Net Premium"
+                label="Gross Premium"
                 placeholder={"Enter"}
               />
             </div>

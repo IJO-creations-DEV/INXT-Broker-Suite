@@ -27,15 +27,15 @@ export const postReversalJVData = createAsyncThunk(
     async (payload, { rejectWithValue, getState }) => {
         console.log(payload, "payload");
 
-        let bodyTableData = {
-            reversalJVTransactionCode: payload?.reversalJVTransactionCode,
-            transactionNumber: payload?.transactionNumber,
-            transactionCode: payload?.transactionCode,
-        };
+        // let bodyTableData = {
+        //     reversalJVTransactionCode: payload?.reversalJVTransactionCode,
+        //     transactionNumber: payload?.transactionNumber,
+        //     transactionCode: payload?.transactionCode,
+        // };
         try {
-            console.log(bodyTableData, "find middleware");
+            // console.log(bodyTableData, "find middleware");
 
-            return bodyTableData;
+            return payload;
         } catch (error) {
             return rejectWithValue(error?.response?.data?.error?.message);
         }

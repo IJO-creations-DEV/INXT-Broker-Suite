@@ -24,7 +24,7 @@ function PolicyReceipts() {
   const [products, setProducts] = useState("Approve");
   const navigate = useNavigate();
   const [errors, setErrors] = useState("");
-  
+
   const { paymentDetails, loading, total } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
@@ -33,7 +33,7 @@ function PolicyReceipts() {
 
     };
   });
-  console.log(paymentDetails[0].bankAccount,"paymentDetails")
+  console.log(paymentDetails[0].bankAccount, "paymentDetails")
   const initialValue = {
     totalPayment: 1600,
     bankcode: "",
@@ -41,7 +41,7 @@ function PolicyReceipts() {
     bankAccount: "",
     bankAccountName: "Business Account",
     paymentType: "",
-    cardNumber: "1234 5678 9874 5632",
+    cardNumber: "",
   };
 
   const validate = (values) => {
@@ -69,6 +69,9 @@ function PolicyReceipts() {
     toastRef.current.showToast();
     // navigate('')
     setProducts("Print")
+    if (products == "Print") {
+      navigate("/accounts/receipts")
+    }
   };
   // const handleSubmit2 = () => {
   //   const formErrors = validate(formik.values);
@@ -123,17 +126,32 @@ function PolicyReceipts() {
       );
     },
   };
-  const dataa= [
-    { label:paymentDetails[0].bankcode, value:paymentDetails[0].bankcode},
-  
+  // const dataa= [
+  //   { label:paymentDetails[0].bankcode, value:paymentDetails[0].bankcode},
+
+  // ];
+  // const data1 = [
+  //   { label: paymentDetails[0].bankAccount, value:paymentDetails[0].bankAccount},
+
+  // ];
+  // const data2 = [
+  //   { label:paymentDetails[0].paymentType, value: paymentDetails[0].paymentType },
+
+  // ];
+  const dataa = [
+    { label: "bank123", value: "bank123" },
+    { label: "bank7844", value: "bank7844" },
+
   ];
   const data1 = [
-    { label: paymentDetails[0].bankAccount, value:paymentDetails[0].bankAccount},
-   
+    { label: "ICIC", value: "ICIC" },
+    { label: "SBI", value: "SBI" },
+
   ];
   const data2 = [
-    { label:paymentDetails[0].paymentType, value: paymentDetails[0].paymentType },
-  
+    { label: "Credit Card", value: "Credit Card" },
+    { label: "Debit Card", value: "Debit Card" },
+
   ];
 
   const headerStyle = {
@@ -182,7 +200,7 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <DropDowns
-                value={paymentDetails[0].bankcode}
+                value={formik.values.bankcode}
                 onChange={formik.handleChange("bankcode")}
                 // error={formik.errors.bankcode}
                 className="dropdown__container"
@@ -202,7 +220,12 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-                value={paymentDetails[0].bankcode && paymentDetails[0].bankName}
+                value={
+                  formik.values.bankcode
+                    ? `1234${formik.values.bankcode}`
+                    : ""
+                }
+                // value={paymentDetails[0].bankcode && paymentDetails[0].bankName}
                 onChange={formik.handleChange("bankName")}
                 error={formik.errors.bankName}
                 classNames="field__policy "
@@ -216,7 +239,7 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <DropDowns
-                value={paymentDetails[0].bankAccount}
+                value={formik.values.bankAccount}
                 onChange={formik.handleChange("bankAccount")}
                 // error={formik.errors.bankAccount}
                 className="dropdown__container"
@@ -236,7 +259,12 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-                value={paymentDetails[0].bankAccount && paymentDetails[0].bankAccountName}
+                value={
+                  formik.values.bankAccount
+                    ? `654${formik.values.bankAccount}`
+                    : ""
+                }
+                // value={paymentDetails[0].bankAccount && paymentDetails[0].bankAccountName}
                 onChange={formik.handleChange("bankAccountName")}
                 error={formik.errors.bankAccountName}
                 classNames="field__policy"
@@ -250,7 +278,7 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <DropDowns
-                value={paymentDetails[0].paymentType}
+                value={formik.values.paymentType}
                 onChange={formik.handleChange("paymentType")}
                 // error={formik.errors.paymentType}
                 className="dropdown__container"
@@ -270,7 +298,10 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-                value={paymentDetails[0].paymentType && paymentDetails[0].cardNumber}
+                // value={paymentDetails[0].paymentType && paymentDetails[0].cardNumber}
+                value={
+                  formik.values.cardNumber
+                }
                 onChange={formik.handleChange("cardNumber")}
                 error={formik.errors.cardNumber}
                 classNames="field__policy "

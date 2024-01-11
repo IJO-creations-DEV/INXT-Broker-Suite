@@ -13,7 +13,7 @@ body .css-dip3t8 {
     }
     .menu__text{
        text-align: center !important;
-       margin-left: 10px;
+       margin-left: 4px;
     }
     .css-z5rm24 {
         background-color: #1C2536;
@@ -72,6 +72,10 @@ body .css-dip3t8 {
   }
   ::-webkit-scrollbar {
     display: none;
+  }
+  .css-x3jz15 >.ps-menu-button {
+    margin-left: 48px !important;
+    padding-left: 0px !important;
   }
   .css-1ffbfs >.ps-menu-button {
     display: -webkit-box;

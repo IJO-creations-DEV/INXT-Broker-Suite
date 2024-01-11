@@ -85,7 +85,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
         fontSize: 16,
         fontFamily: "Inter var",
         fontWeight: 500,
-        padding: 10,
+        padding: "6px 6px 6px 2px",
         color: "#000",
         border: "none",
     };
@@ -289,12 +289,14 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     header="Main A/c"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    style={{paddingLeft:"0.5rem"}}
                 ></Column>
                 <Column
                     field="subAccount"
                     header="Sub A/c"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    style={{paddingLeft:"0.5rem"}}
                 ></Column>
 
                 <Column
@@ -302,18 +304,21 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     header="Remarks"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    style={{paddingLeft:"0.5rem"}}
                 ></Column>
                 <Column
                     field="foreignAmount"
                     header="Foreign Amount"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    style={{paddingLeft:"0.5rem"}}
                 ></Column>
                 <Column
                     field="currencyCode"
                     header="Currency"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    style={{paddingLeft:"0.5rem"}}
                 ></Column>
 
                 <Column
@@ -321,12 +326,14 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
                     header="Local Amount"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    style={{paddingLeft:"0.5rem"}}
                 ></Column>
                 <Column
                     field="entryType"
                     header="Entry"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    style={{paddingLeft:"0.5rem !important"}}
                 ></Column>
                 <Column
                     body={(columnData) => (

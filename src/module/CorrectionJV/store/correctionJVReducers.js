@@ -42,7 +42,8 @@ const correctioneversalJVReducers = createSlice({
         });
         builder.addCase(getCorrectionJVTabelData.fulfilled, (state, action) => {
             state.loading = false;
-            state.correctionJVList = action.payload.data;
+            // state.correctionJVList = action.payload.data;
+            // console.log("qqq",action.payload.data)
         });
         builder.addCase(getCorrectionJVTabelData.rejected, (state, action) => {
             state.loading = false;
@@ -66,6 +67,8 @@ const correctioneversalJVReducers = createSlice({
             state.loading = false;
             state.error = typeof action.payload === "string" ? action.payload : "";
         });
+
+
         //view
         builder.addCase(getCorrectionJVView.pending, (state) => {
             state.loading = true;

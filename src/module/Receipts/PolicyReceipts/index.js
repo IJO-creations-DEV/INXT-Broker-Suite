@@ -143,12 +143,14 @@ const PolicyReceipts = () => {
 
   useEffect(() => {
     console.log(globalFilter, "as")
-    if (searches?.length > 0) {
-      dispatch(getReceiptsListBySearchMiddleware({
-        field: globalFilter,
-        value: searches
-      }))
-
+    if(globalFilter.length > 0 ){
+      if (searches?.length > 0) {
+        dispatch(getReceiptsListBySearchMiddleware({
+          field: globalFilter,
+          value: searches
+        }))
+  
+      }
     }
   }, [searches])
 

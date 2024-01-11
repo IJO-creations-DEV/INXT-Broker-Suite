@@ -70,7 +70,15 @@ function PolicyReceipts() {
     // navigate('')
     setProducts("Print")
     if (products == "Print") {
-      navigate("/accounts/receipts")
+      // toastRef.current.showToast();
+      // setTimeout=()=>{
+        // navigate("/accounts/receipts")
+    //  ,2000 }
+    toastRef.current.showToast();
+    setTimeout(() => {
+      navigate("/accounts/receipts");
+    }, 2000);
+     
     }
   };
   // const handleSubmit2 = () => {

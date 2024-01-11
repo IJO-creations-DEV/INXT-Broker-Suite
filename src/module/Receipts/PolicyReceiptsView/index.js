@@ -79,7 +79,10 @@ function PolicyReceipts() {
   return (
     <div className="overall__policy_receipts_view__container">
       <NavBar />
+      <span onClick={()=>navigate(-1)}>
       <SvgBack />
+      </span>
+      
       <label className="label_header">Receipt Detail View</label>
       <BreadCrumb
         model={items}

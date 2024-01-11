@@ -120,7 +120,7 @@ const RequestTable = () => {
                 />
 
             </div>
-          <div className="sub__title">Petty Cash Code history</div>
+          <div className="sub__title">Petty Request history</div>
         </div>
         <div className="card">
           <DataTable

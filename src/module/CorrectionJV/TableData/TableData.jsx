@@ -30,8 +30,6 @@ const TableData = ({ newDataTable, editID }) => {
     }
   );
   console.log(correctionJVList, "correctionJVList");
-  // const editId = editID;
-  console.log(correctionJVList);
 
   const template2 = {
     layout:
@@ -160,7 +158,7 @@ const TableData = ({ newDataTable, editID }) => {
       ...values,
       id: EditID,
     };
-    dispatch(patchCorrectionJVEdit(valueWithId));
+    // dispatch(patchCorrectionJVEdit(valueWithId));
     setVisible(false);
   };
 

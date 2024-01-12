@@ -130,8 +130,8 @@ const Index = () => {
     setFirst(event.first);
     setRows(event.rows);
   };
-  const isEmpty = paymentVocherList?.length === 0 || "undefined";
-console.log("first",paymentVocherList)
+  const isEmpty = AccountDetailsList?.length === 0 || "undefined";
+console.log("first",AccountDetailsList)
     const emptyTableIcon = (
       <div>
       <div className="empty-table-icon">

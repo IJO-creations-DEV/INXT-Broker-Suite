@@ -27,7 +27,7 @@ import { Dialog } from "primereact/dialog";
 import ToggleButton from "../../../../../components/ToggleButton";
 import { postAddBank } from "../../store/bankMasterMiddleware";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
-import { postAddAccountDetails, postAddBank } from "../../store/bankMasterMiddleware";
+import { postAddAccountDetails } from "../../store/bankMasterMiddleware";
 
 const initialValues = {
   AccountNumber: "",

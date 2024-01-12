@@ -23,7 +23,7 @@ export const getCompanyListMiddleware = createAsyncThunk(
 export const getComapnyListByIdMiddleware = createAsyncThunk(
   GET_COMPANY_BY_ID,
   async (payload, { rejectWithValue }) => {
-    console.log(payload, "payload")
+    console.log(payload, "payload");
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -46,7 +46,7 @@ export const postAddCompanyMiddleware = createAsyncThunk(
 export const getCompanyViewMiddleWare = createAsyncThunk(
   GET_COMPANY_VIEW,
   async (payload, { rejectWithValue }) => {
-    console.log(payload, "payload")
+    console.log(payload, "payload");
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -57,16 +57,45 @@ export const getCompanyViewMiddleWare = createAsyncThunk(
 );
 export const patchCompanyEditMiddleware = createAsyncThunk(
   PATCH_COMPANY_EDIT,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, getState }) => {
+    console.log(payload, "find payload in midd");
+    const { organizationCompanyMainReducers } = getState();
+    const { companyTableList } = organizationCompanyMainReducers;
+    console.log(companyTableList, "find companyTableList");
+    const updatedData = companyTableList?.map((item) => {
+      if (parseInt(item.id) === parseInt(payload?.id)) {
+        return {
+          ...item,
+          CompanyCode: payload?.CompanyCode,
+          CompanyName: payload?.CompanyName,
+          LicenseNumber: payload?.LicenseNumber,
+          EmailID: payload?.EmailID,
+          Logo: payload?.Logo,
+          Websitelink: payload?.Websitelink,
+          Description: payload?.Description,
+          AddressLine1: payload?.AddressLine1,
+          AddressLine2: payload?.AddressLine2,
+          AddressLine3: payload?.AddressLine3,
+          PinCode: payload?.PinCode,
+          City: payload?.CompanyCode,
+          State: payload?.State,
+          Country: payload?.Country,
+          PhoneNumber: payload?.PhoneNumber,
+          Fax: payload?.Fax,
+        };
+      }
+      return item;
+    });
+    console.log(updatedData, "find updatedData");
+
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return updatedData;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
   }
 );
-
 
 export const getSearchCompanyMiddleware = createAsyncThunk(
   GET_SERACH_COMPANY,
@@ -75,14 +104,16 @@ export const getSearchCompanyMiddleware = createAsyncThunk(
     const { organizationCompanyMainReducers } = getState();
 
     const { companyTableList } = organizationCompanyMainReducers;
-    console.log(companyTableList, "1234")
+    console.log(companyTableList, "1234");
 
     try {
       if (textSearch.trim() !== "") {
-        const searchResults = companyTableList.filter(item => {
-          return item.CompanyName.toLowerCase().includes(textSearch.toLowerCase());
+        const searchResults = companyTableList.filter((item) => {
+          return item.CompanyName.toLowerCase().includes(
+            textSearch.toLowerCase()
+          );
         });
-        console.log(searchResults, "searchResults")
+        console.log(searchResults, "searchResults");
         return searchResults;
       } else {
         return companyTableList;
@@ -90,7 +121,5 @@ export const getSearchCompanyMiddleware = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error?.response?.data?.error?.message);
     }
-  },
+  }
 );
-
-

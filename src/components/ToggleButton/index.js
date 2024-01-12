@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
-import "./index.scss"
-const ToggleButton = () => {
+import React, { useState } from "react";
+import "./index.scss";
+const ToggleButton = ({ id }) => {
   const [isChecked, setIsChecked] = useState(true);
 
   const handleToggle = () => {
     setIsChecked(!isChecked);
   };
   return (
-    <div className='toggle__container'>
-      <label htmlFor="toggle" className="toggle">
+    <div className="toggle__container">
+      <label htmlFor={`toggle-${id}`} className="toggle">
         <input
           type="checkbox"
-          id="toggle"
+          id={`toggle-${id}`}
           className="input"
           checked={isChecked}
           onChange={handleToggle}
@@ -27,7 +27,7 @@ const ToggleButton = () => {
         </div>
       </label>
     </div>
-  )
-}
+  );
+};
 
-export default ToggleButton
+export default ToggleButton;

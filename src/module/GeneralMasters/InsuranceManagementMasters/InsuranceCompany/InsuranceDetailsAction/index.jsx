@@ -17,6 +17,7 @@ import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
 import { postInsuranceCompanyMiddleWare } from "../store/insuranceCompanyMiddleware";
 import { useSelector, useDispatch } from "react-redux";
+
 const InsuranceDetailsAction = ({ action }) => {
   const dispatch = useDispatch();
   const { InsuranceCompanyList, loading } = useSelector(

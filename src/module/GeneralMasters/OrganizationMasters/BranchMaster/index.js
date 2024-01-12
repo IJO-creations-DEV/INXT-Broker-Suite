@@ -185,7 +185,7 @@ const Index = () => {
 
 
         <div className="header_search_container">
-          <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 0 }}>
+          <div class="col-12 md:col-12 lg:col-12" style={{ paddingLeft: 0 }}>
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText

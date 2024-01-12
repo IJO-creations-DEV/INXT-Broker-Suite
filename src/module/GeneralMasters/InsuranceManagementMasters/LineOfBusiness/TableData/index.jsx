@@ -90,7 +90,7 @@ const TableData = ({ navigate }) => {
   return (
     <div className="line__business__compnay_container">
       <div className="grid m-0 header_search_container">
-        <div class="col-12 md:col-10 lg:col-10 xl:col-10 p-0">
+        <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-0">
           <span className="p-input-icon-left w-full">
             <i className="pi pi-search" />
             <InputText
@@ -142,13 +142,13 @@ const TableData = ({ navigate }) => {
           body={renderToggleButton}
         ></Column>
         <Column
-          style={{
-            padding: "20px 1rem 17px 0px",
-          }}
+          
           field="id"
           body={renderActionButton}
           header="Action"
-          className="fieldvalue_container"
+          headerStyle={{textAlign:'center'}}
+          className="fieldvalueaction_container"
+          // style={{textAlign:'center'}}
         ></Column>
       </DataTable>
     </div>

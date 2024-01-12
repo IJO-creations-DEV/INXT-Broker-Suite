@@ -209,7 +209,7 @@ const Index = () => {
             <Column field="CurrencyCode" header="Currency Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="ToCurrencyCode" header="To Currency Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="ExchangeRate" header="Exchange Rate" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column body={renderToggleButton} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column
               body={(columnData) => (
                 <div className="action_icons">

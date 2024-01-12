@@ -249,7 +249,7 @@ const TransactionCodeMasterTable = () => {
               className="fieldvalue_container"
             ></Column>
             <Column
-              body={renderToggleButton}
+             body={(columnData) => <ToggleButton id={columnData.id} />}
               header="Status"
               headerStyle={{ textAlign: 'center', ...headerStyle }}
               className="fieldvalue_container"

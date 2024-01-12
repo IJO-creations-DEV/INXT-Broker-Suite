@@ -138,7 +138,7 @@ const TableData = ({ navigate }) => {
           field="status"
           header="status"
           className="fieldvalue_container"
-          body={renderToggleButton}
+          body={(columnData) => <ToggleButton id={columnData.id} />}
         ></Column>
         <Column
           style={{

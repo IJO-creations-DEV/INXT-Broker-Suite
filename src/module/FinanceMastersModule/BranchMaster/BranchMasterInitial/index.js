@@ -10,6 +10,7 @@ import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
+import ToggleButton from "../../../../components/ToggleButton";
 // import  {data} from "../BranchMasterInitial/mock"
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 import { Button } from "primereact/button";
@@ -167,6 +168,7 @@ const Index = () => {
               header="Status"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(columnData) => <ToggleButton id={columnData.id} />}
             ></Column>
             <Column
               header="View"

@@ -12,6 +12,7 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import  {data} from "../CategoryMasterInitial/mock"
 import SvgArrow from "../../../../assets/icons/SvgArrow";
+import ToggleButton from "../../../../components/ToggleButton";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 
@@ -161,6 +162,7 @@ const Index = () => {
               header="Status"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(columnData) => <ToggleButton id={columnData.id} />}
             ></Column>
            
             <Column

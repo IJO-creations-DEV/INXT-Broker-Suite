@@ -303,7 +303,7 @@ const BankMaster = () => {
             <Column field="ifscCode" header="IFSC Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="email" header="Email" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="mobile" header="Phone" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column body={renderToggleButton} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
 
             <Column body={(columnData) => (
               //         <div className="card flex justify-content-center">

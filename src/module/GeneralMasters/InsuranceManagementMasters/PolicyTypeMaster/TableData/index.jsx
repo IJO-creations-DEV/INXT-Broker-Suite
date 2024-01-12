@@ -90,7 +90,7 @@ const TableData = ({ navigate }) => {
           <span className="p-input-icon-left w-full">
             <i className="pi pi-search" />
             <InputText
-              placeholder="Search By Policy type Code"
+              placeholder="Search By policy type code"
               className="searchinput__field"
             />
           </span>
@@ -140,7 +140,7 @@ const TableData = ({ navigate }) => {
           field="status"
           header="status"
           className="fieldvalue_container"
-          body={renderToggleButton}
+          body={(columnData) => <ToggleButton id={columnData.id} />}
         ></Column>
         <Column
           style={{

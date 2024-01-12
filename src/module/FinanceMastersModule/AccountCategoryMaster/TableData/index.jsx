@@ -138,7 +138,7 @@ const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
           field="status"
           header="Status"
           className="fieldvalue_container"
-          body={renderToggleButton}
+          body={(columnData) => <ToggleButton id={columnData.id} />}
         ></Column>
         <Column
           style={{

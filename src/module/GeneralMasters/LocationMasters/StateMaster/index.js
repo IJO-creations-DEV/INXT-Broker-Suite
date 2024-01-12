@@ -178,7 +178,7 @@ onClick={handleadd}
                     <Column field="quantity" header="Modified by"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="name" header="Modified On" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     {/* <Column field="name" header="Phone" headerStyle={headerStyle}  className='fieldvalue_container'></Column> */}
-                    <Column body={renderToggleButton} header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column
               body={(columnData) => (
                 <div className="action_icons">

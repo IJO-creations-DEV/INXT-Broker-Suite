@@ -233,7 +233,7 @@ const TaxationMaster = () => {
                 ></Column>
                 <Column
                   field='status'
-                  body={renderToggleButton}
+                  body={(columnData) => <ToggleButton id={columnData.id} />}
                   header="Status"
                   headerStyle={{ textAlign: 'center', ...headerStyle }}
                   className="fieldvalue_container"

@@ -1,23 +1,99 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCityListMiddleware, getCityListByIdMiddleware,postAddCityMiddleware,patchCityEditMiddleware,getSearchCityMiddleware} from "./cityMiddleware";
-import SvgIconeye from "../../../assets/icons/SvgIconeye";
+import { getCityMiddleware, getCityListByIdMiddleware,postAddCityMiddleware,patchCityEditMiddleware,getSearchCityMiddleware} from "./cityMiddleware";
+
 const initialState = {
     loading: false,
     error: "",
+    cityTableList:[
+      {
+        "Citycode": "C001",
+        "CityName": "New York",
+        "State": "NY",
+        "Modifiedby": "Admin1",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C002",
+        "CityName": "Los Angeles",
+        "State": "CA",
+        "Modifiedby": "Admin2",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C003",
+        "CityName": "London",
+        "State": "ENG",
+        "Modifiedby": "Admin3",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C004",
+        "CityName": "Berlin",
+        "State": "BE",
+        "Modifiedby": "Admin4",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C005",
+        "CityName": "Sydney",
+        "State": "NSW",
+        "Modifiedby": "Admin5",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C006",
+        "CityName": "Mumbai",
+        "State": "MH",
+        "Modifiedby": "Admin6",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C007",
+        "CityName": "Rio de Janeiro",
+        "State": "RJ",
+        "Modifiedby": "Admin7",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C008",
+        "CityName": "Tokyo",
+        "State": "13",
+        "Modifiedby": "Admin8",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C009",
+        "CityName": "Cape Town",
+        "State": "WC",
+        "Modifiedby": "Admin9",
+        "ModifiedOn": "2024-01-12"
+      },
+      {
+        "Citycode": "C010",
+        "CityName": "Mexico City",
+        "State": "CMX",
+        "Modifiedby": "Admin10",
+        "ModifiedOn": "2024-01-12"
+      }
+    ]
+    ,
+    CityListById:"",
+    SearchCity:"",
+    CityEdit:""
 };
-const receiptsReducer = createSlice({
+const cityReducer = createSlice({
     name: "employee",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getCityListMiddleware.pending, (state) => {
+        builder.addCase(getCityMiddleware.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(getCityListMiddleware.fulfilled, (state, action) => {
+        builder.addCase(getCityMiddleware.fulfilled, (state, action) => {
             state.loading = false;
             state.cityTableList = action.payload;
         });
-        builder.addCase(getCityListMiddleware.rejected, (state, action) => {
+        builder.addCase(getCityMiddleware.rejected, (state, action) => {
             state.loading = false;
 
             state.userTableList = {};
@@ -28,12 +104,12 @@ const receiptsReducer = createSlice({
         });
         builder.addCase(getCityListByIdMiddleware.fulfilled, (state, action) => {
             state.loading = false;
-            state.userDetailList = action.payload;
+            state.CityListById = action.payload;
         });
         builder.addCase(getCityListByIdMiddleware.rejected, (state, action) => {
             state.loading = false;
 
-            state.userDetailList = {};
+            state.CityListById = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
         });
 
@@ -42,24 +118,22 @@ const receiptsReducer = createSlice({
       });
       builder.addCase(getSearchCityMiddleware.fulfilled, (state, action) => {
           state.loading = false;
-          state.userDetailList = action.payload;
+          state.SearchCity = action.payload;
       });
       builder.addCase(getSearchCityMiddleware.rejected, (state, action) => {
           state.loading = false;
 
-          state.userDetailList = {};
+          state.SearchCity = {};
           state.error = typeof action.payload === "string" ? action.payload : "";
       });
      
-     
-
           builder.addCase(postAddCityMiddleware.pending, (state) => {
             state.loading = true;
           });
           builder.addCase(postAddCityMiddleware.fulfilled, (state, action) => {
             console.log(action.payload,'find action.payload')
             state.loading = false;
-            state.userTableList = [...state.receiptsTableList, action.payload];
+            state.cityTableList = [...state.cityTableList, action.payload];
           });
           builder.addCase(postAddCityMiddleware.rejected, (state, action) => {
             state.loading = false;
@@ -77,7 +151,7 @@ const receiptsReducer = createSlice({
             (state, action) => {
               state.loading = false;
             
-              state.userTableList = action.payload;
+              state.CityEdit = action.payload;
             }
           );
           builder.addCase(
@@ -85,7 +159,7 @@ const receiptsReducer = createSlice({
             (state, action) => {
               state.loading = false;
       
-              state.editList = {};
+              state.CityEdit = {};
               state.error = typeof action.payload === "string" ? action.payload : "";
             }
           );
@@ -95,4 +169,4 @@ const receiptsReducer = createSlice({
     },
 });
 
-export default receiptsReducer.reducer;
+export default cityReducer.reducer;

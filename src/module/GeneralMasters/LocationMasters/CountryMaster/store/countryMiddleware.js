@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getRequest } from "../../../utility/commonServices";
-import { APIROUTES } from "../../../routes/apiRoutes";
+// import { getRequest } from "../../../utility/commonServices";
+// import { APIROUTES } from "../../../routes/apiRoutes";
 import {
   GET_COUNTRY_DETAILS,
   GET_COUNTRY_BY_ID,
@@ -24,6 +24,7 @@ export const getCountryMiddleware = createAsyncThunk(
 export const getCountryListByIdMiddleware = createAsyncThunk(
   GET_COUNTRY_BY_ID,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"getCountryListByIdMiddleware");
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -35,9 +36,18 @@ export const getCountryListByIdMiddleware = createAsyncThunk(
 export const postAddCountryMiddleware = createAsyncThunk(
   POST_ADD_COUNTRY,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"postAddCountryMiddleware");
+    
+    const dataTable =     {
+      "CountryName": payload.CountryName,
+      "ISOCode": payload.ISOCode,
+      "PhoneCode": payload.PhoneCode,
+      "Modifiedby": payload.ModifiedBy,
+      "ModifiedOn": payload.ModifiedOn
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return dataTable;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

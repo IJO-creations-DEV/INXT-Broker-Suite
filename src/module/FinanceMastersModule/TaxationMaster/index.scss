@@ -14,8 +14,8 @@
         padding: 0;
         font-family: 'Inter', sans-serif;
         color: #111927;
-        font-size: 14px;
-        font-weight: 600;
+        font-size: 16px;
+        font-weight: 500;
 
 
     }
@@ -113,7 +113,7 @@
 
     .main__tabel__title__taxation {
         font-family: 'Inter', sans-serif;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 600;
         line-height: 24px;
         letter-spacing: 0em;
@@ -166,6 +166,7 @@
         border: 1px solid #d1d5db;
         border-radius: 10px;
         height: 45px;
+        color: #B1B1B1;
     }
     .p-inputtext{
         border-color: transparent;
@@ -235,6 +236,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      .fieldvalue_container{
+        font-size: 16px;
+        font-weight: 400;
+        font-family: Inter var;
+        padding: 1rem 6px !important;
       }
 
 }

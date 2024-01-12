@@ -7,10 +7,10 @@
     padding-bottom: 2%;
   }
   
-  .paginator__container {
-    margin-right: 30%;
-    display: flex;
-  }
+  // .paginator__container {
+  //   margin-right: 30%;
+  //   display: flex;
+  // }
   .no__data__found {
     color: #b1b1b1;
     font-family: 'Inter', sans-serif;
@@ -20,20 +20,32 @@
     line-height: normal;
     text-align: center;
   }
+  .pagedropdown_container{
+    margin-right: 30%;
+    border-style: hidden;
+    background-color: #FAFAFA;
+}
   
-  .p-paginator-bottom.p-paginator.p-component {
-    display: flex !important;
-    justify-content: flex-end !important;
-  }
-  .p-dropdown {
-    background: #ffffff;
-    border: 1px solid #d1d5db;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
-      box-shadow 0.2s;
-    border-radius: 6px;
-    margin-top: 0.5rem !important;
-    width: 100% !important;
-  }
+  
+// .pagedropdown_container{
+//   margin-right: 30%;
+//   border-style: hidden;
+//   background-color: #FAFAFA;
+// }
+  // .p-paginator-bottom.p-paginator.p-component {
+  //   display: flex !important;
+  //   justify-content: flex-end !important;
+  // }
+  // .p-dropdown {
+  //   background: #ffffff;
+  //   border: 0px solid #d1d5db;
+  //   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+  //     box-shadow 0.2s;
+  //   border-radius: 6px;
+  //   margin-top: 0.5rem !important;
+  //   width: 6% !important;
+  //   background-color: #FAFAFA;
+  // }
   .input__block .p-inputtext {
     font-family: var(--font-family);
     font-feature-settings: var(--font-feature-settings, normal);
@@ -60,16 +72,16 @@
   .p-button {
     color:#6366F1;
     border-bottom: 1px solid #d1d5db !important;
-    border-left: none !important;
+    border-left: 0px solid #FFF !important;
     border-right:1px solid #d1d5db !important ;
     border-top:1px solid #d1d5db !important ;
     padding: 0rem 0rem !important;
     font-size: 1rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     background-color: #fff !important;
-    border-top-right-radius: 6px;
+    border-top-right-radius: 10px !important;
     border-bottom-left-radius: 0px !important;
-    border-bottom-right-radius: 6px;
+    border-bottom-right-radius: 10px !important;
     border-top-left-radius: 0px !important;
 }
 }
@@ -87,6 +99,7 @@
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-color: #d1d5db;
+  border-right: hidden;
   // border-right: none;
 }
 

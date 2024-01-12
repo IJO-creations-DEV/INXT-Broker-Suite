@@ -45,6 +45,7 @@
         width: 100%;
         margin: 6px 0;
         border-radius: 10px;
+        font-weight: 500 !important;
     }
 
     .label__sub__add {
@@ -156,13 +157,16 @@
     }
 
     .main__tabel__title__taxation {
-        font-family: 'Inter', sans-serif;
-        font-size: 20px;
+        font-family: 'Inter', sans-serif;;
+        font-size: 18px;
         font-weight: 600;
         line-height: 24px;
         letter-spacing: 0em;
         text-align: left;
 
+    }
+    .fieldvalue_container{
+        padding: 1rem 6px !important;
     }
     .addbutton_container__taxation{
         background-color: #6366f1;
@@ -210,6 +214,7 @@
         border: 1px solid #d1d5db;
         border-radius: 10px;
         height: 45px;
+        color:#B1B1B1;
     }
     .p-inputtext{
         border-color: transparent;
@@ -290,6 +295,11 @@
     margin-top: 8px;
 
 }
+.fieldAccountCode__container{
+    font-size:16px;
+    font-weight: 500;
+    font-family: Inter var;
+}
 .add__btn {
     color: #fff;
     font-size: 18px;
@@ -322,16 +332,17 @@
     font-weight: 500 !important;
     background-color: #fff;
     border-radius: 60px !important;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    // padding-right: 1rem;
+    // padding-left: 1rem;
+    // padding-top: 0.5rem;
+    // padding-bottom: 0.5rem;
     margin: 10px;
     font-family: 'Inter', sans-serif;
     column-gap: 0.4rem;
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
     border-color: #6366f1;
+    padding: 8px 10px;
   }
   .btn__container{
     display: flex;

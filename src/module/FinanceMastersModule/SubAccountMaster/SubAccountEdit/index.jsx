@@ -158,9 +158,9 @@ const SubAdd = () => {
                         {/* <MultiSelect
                             value={formik.values.mainAccount}
                             // options={item}
-                            onChange={(e) => {
-                                formik.setFieldValue("mainAccount", e.value)
-                            }}
+                            // onChange={(e) => {
+                            //     formik.setFieldValue("mainAccount", e.value)
+                            // }}
                             options={isoCode}
                             className="dropdown__add__sub"
                             label="Main Account"
@@ -172,6 +172,9 @@ const SubAdd = () => {
                             dropdownIcon={<SvgDropdown color={"#000"} />}
                         /> */}
 
+
+
+
                     </div>
 
                 </div>
@@ -182,9 +185,9 @@ const SubAdd = () => {
                         {/* <MultiSelect
                             value={formik.values.currencyCode}
                             // options={item}
-                            onChange={(e) => {
-                                formik.setFieldValue("currencyCode", e.value)
-                            }}
+                            // onChange={(e) => {
+                            //     formik.setFieldValue("currencyCode", e.value)
+                            // }}
                             options={isoCode}
                             className="dropdown__add__sub"
 

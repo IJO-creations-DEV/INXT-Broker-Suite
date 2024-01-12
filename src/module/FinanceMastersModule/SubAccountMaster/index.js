@@ -276,9 +276,10 @@ const SubAccountMaster = () => {
       <div className='col-12 m-0 '>
         <div className='sub__account__sub__container__taxation'>
           <div className='col-12 search__filter__view__taxation'>
-            <div className='col-12 md:col-10 lg:col-10'>
+            <div className='col-12 md:col-12 lg:col-12'>
               <div className='searchIcon__view__input__taxation'>
-                <span className='p-3'> <SvgSearchIcon /></span>
+                {/* <span className='p-3'> <SvgSearchIcon /></span> */}
+                <i className="pi pi-search pl-3" />
                 <InputText
                   style={{ width: '100%' }}
                   classNames='input__sub__account__taxation'
@@ -354,10 +355,10 @@ const SubAccountMaster = () => {
                   <div class="grid">
                     <div class="sm-col-12  md:col-4 lg-col-4">
                       <InputField
-                        classNames="field__container"
+                        classNames="dropdown__add__sub"
                         label="Sub Account Code"
                         placeholder={"Enter"}
-                        textWeight="400"
+                        textWeight="500"
                         value={
                           formik.values.subAccountCode
 
@@ -376,10 +377,10 @@ const SubAccountMaster = () => {
                     </div>
                     <div class="sm-col-12  md:col-8 lg-col-8">
                       <InputField
-                        classNames="field__container"
+                        classNames="dropdown__add__sub"
                         label="Sub Account Name"
                         placeholder={"Enter"}
-                        textWeight="400"
+                        textWeight="500"
                         value={
                           formik.values.subAccountName
 
@@ -399,10 +400,10 @@ const SubAccountMaster = () => {
                   <div class="grid">
                     <div class="sm-col-12  md:col-8 lg-col-8">
                       <InputField
-                        classNames="field__container"
+                        classNames="dropdown__add__sub"
                         label="Description"
                         placeholder={"Enter"}
-                        textWeight="400"
+                        textWeight="500"
                         value={
                           formik.values.description
 

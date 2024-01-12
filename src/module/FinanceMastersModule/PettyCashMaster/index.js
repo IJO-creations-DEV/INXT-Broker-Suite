@@ -1,5 +1,5 @@
 import { BreadCrumb } from 'primereact/breadcrumb';
-import React, { useState, useRef ,useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import NavBar from '../../../components/NavBar';
 import SvgDot from '../../../assets/icons/SvgDot';
 import "../PettyCashMaster/index.scss"
@@ -65,16 +65,16 @@ const PettyCashMaster = ({ response }) => {
   });
   useEffect(() => {
     if (formik.values.search !== "") {
-     
+
       dispatch(getPettyCashSearchList({ textSearch: formik.values.search }));
     }
   }, [formik.values.search]);
-  const { pettyCashList,pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
+  const { pettyCashList, pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
     return {
       loading: pettyCashMainReducers?.loading,
       pettyCashList: pettyCashMainReducers?.pettyCashList,
-      pettyCashSearchList:pettyCashMainReducers?.pettyCashSearchList
-      
+      pettyCashSearchList: pettyCashMainReducers?.pettyCashSearchList
+
 
     };
   });
@@ -142,7 +142,7 @@ const PettyCashMaster = ({ response }) => {
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}   pettyCashList={formik.values.search !== "" ? pettyCashSearchList : pettyCashList} />
+              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} pettyCashList={formik.values.search !== "" ? pettyCashSearchList : pettyCashList} />
             </div>
           </div>
         </div>

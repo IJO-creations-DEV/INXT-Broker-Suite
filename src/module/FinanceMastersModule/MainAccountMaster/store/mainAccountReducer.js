@@ -69,24 +69,27 @@ export const getPatchMainAccountDetailEdit = createAsyncThunk(
 export const patchMainAccountDetailEdit = createAsyncThunk(
     PATCH_MAIN_ACCOUNT_DETAIL_EDIT,
     async (payload, { rejectWithValue }) => {
+        console.log(payload,"accountType");
         const data = {
             id: payload?.id,
             mainAccountCode: payload?.mainAccountCode,
             mainaccountname: payload?.mainaccountname,
             description: payload?.description,
-            accountcategorycode: payload?.accountcategorycode,
-            accounttype: payload?.accounttype,
+            accountCategoryCode: payload?.accountCategoryCode,
+            accountType: payload?.accountType, 
             companyCode: payload?.companyCode,
             currencyCode: payload?.currencyCode,
-            openentrytype: payload?.openentrytype
-        }
+            openEntryType: payload?.openEntryType ,
+            openEntry:payload?.openEntry
+        };
         try {
             return data;
         } catch (error) {
-            return rejectWithValue(error?.response.data.error.message);
+            return rejectWithValue(error?.response?.data?.error?.message);
         }
     },
 );
+
 
 
 

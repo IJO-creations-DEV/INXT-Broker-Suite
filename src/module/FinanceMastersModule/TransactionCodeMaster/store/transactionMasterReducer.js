@@ -63,6 +63,7 @@ const initialState = {
       AccountingPeriodEnd: "12/1/2023",
       TransactionNumberFrom: "123",
       TransactionNumberTo: "12",
+      lastUsed:"0"
 
     }
   ],
@@ -72,6 +73,7 @@ const initialState = {
       UserRole: "UR",
       MinimumTransaction: "333",
       MaximumTransaction: "663",
+     
 
     }
   ],

@@ -25,30 +25,45 @@ import { useDispatch, useSelector } from 'react-redux';
 import SvgEdit from '../../../../../assets/icons/SvgEdits';
 import { Dialog } from 'primereact/dialog';
 import ToggleButton from '../../../../../components/ToggleButton';
+import { postPatchAccountDetailEdit } from '../../store/bankMasterMiddleware';
 
-const initialValues ={
-    AccountNumber: "",
-    AccountName:"",
-    AccountType:"",
-    MainAccount:"",
-    MainAccountDescription:"",
-    TransactionLimit:"",
-    
+const initialValues = {
+  AccountNumber: "",
+  AccountName: "",
+  AccountType: "",
+  MainAccount: "",
+  MainAccountDescription: "",
+  TransactionLimit: "",
+
 }
 
 function EditAccountDetail() {
-    // const [visible, setVisible] = useState(false);
-    const navigate = useNavigate();
+  // const [visible, setVisible] = useState(false);
+
+  const { AccountPatchDetailView, loading } = useSelector(({ bankMasterReducer }) => {
+    return {
+      loading: bankMasterReducer?.loading,
+      AccountPatchDetailView: bankMasterReducer?.AccountPatchDetailView,
+      // const [products, setProducts] = useState([]);
+
+      // const handleView=()=>{
+      //   navigate('/accounts/paymentvoucher/detailview')
+      // }
+
+    };
+  });
+  console.log(AccountPatchDetailView, "columnData");
+  const navigate = useNavigate();
   const [date, setDate] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState(false);
   const [visible, setVisible] = useState(false);
   const { id } = useParams()
   const dispatch = useDispatch();
-  
-  
+
+
   // const customValidation = (values) => {
   //   const errors = {};
-  
+
   //   if (!values.AccountNumber) {
   //     errors.AccountNumber = "This field Code is required";
   //   }
@@ -67,15 +82,15 @@ function EditAccountDetail() {
   //   if (!values.TransactionLimit) {
   //     errors.TransactionLimit = "This field is required";
   //   }
-   
+
   //   return errors;
   // };
 
   const Navigate = useNavigate()
   const [selectedItem, setSelectedItem] = useState(null);
   const items = [
-    { label: 'Bank',url:'/master/finance/bank' },
-    {label:'Edit Account details'}
+    { label: 'Bank', url: '/master/finance/bank' },
+    { label: 'Edit Account details' }
   ];
   const statusBodyTemplate = (rowData) => {
     return (
@@ -141,36 +156,75 @@ function EditAccountDetail() {
     { name: 'Paris', code: 'PRS' }
   ];
   const home = { label: "Master" };
-
-  const handleSubmit =()=>{
+  const handleSubmit = (value) => {
+    console.log(value,"columnData");
     setVisible(true)
+    dispatch(postPatchAccountDetailEdit(value))
+    navigate("/master/finance/bank/accountdataview")
+
+
   }
-   
-  const handlesavebutton =()=>{
+
+  const [accType, setAccType] = useState([])
+
+  console.log(accType,"accType");
+  const setFormikValues = () => {
+    const AccountTypeData = AccountPatchDetailView?.AccountType
+    const updatedValues = {
+      id: AccountPatchDetailView?.id,
+      AccountNumber: AccountPatchDetailView?.AccountNumber,
+      AccountName: AccountPatchDetailView?.AccountName,
+      AccountType: AccountTypeData,
+      MainAccount: AccountPatchDetailView?.MainAccount,
+      MainAccountDescription: AccountPatchDetailView?.MainAccountDescription,
+      TransactionLimit: AccountPatchDetailView?.TransactionLimit,
+    };
+    console.log(updatedValues, "uu");
+    if (AccountTypeData) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setAccType([{ label: AccountTypeData, value: AccountTypeData }]);
+    }
+
+    formik.setValues({ ...formik.values, ...updatedValues });
+  }
+ 
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
+  });
+
+  console.log(formik.values.id, "idd");
+  useEffect(() => {
+    setFormikValues();
+  }, [AccountPatchDetailView]);
+
+  const handlesavebutton = () => {
     setVisible(false)
   }
-  const handleNavigation =()=>{
+  const handleNavigation = () => {
     navigate("/master/finance/bank/accountdataview")
   }
 
   // const handleNavigation = () => {
   //   Navigate("/SpecificVoucher")
   // }
-  const formik = useFormik({
-    initialValues:initialValues,
-    // validate: customValidation,
-    // onSubmit: (values) => {
-    //   // Handle form submission
-    //    handleSubmit(values);
-      
-    // },
-     onSubmit:handleSubmit
-  });
+  // const formik = useFormik({
+  //   initialValues: initialValues,
+  //   // validate: customValidation,
+  //   // onSubmit: (values) => {
+  //   //   // Handle form submission
+  //   //    handleSubmit(values);
+
+  //   // },
+  //   onSubmit: handleSubmit
+  // });
 
   const renderToggleButton = () => {
     return (
       <div>
-   <ToggleButton/>
+        <ToggleButton />
       </div>
     );
   };
@@ -179,10 +233,10 @@ function EditAccountDetail() {
     <div className='overall__editaccountdetail__container'>
       <NavBar />
       <div>
-      <span  onClick={() => Navigate(-1)}>
-                <SvgBackicon/>
-                </span>
-        
+        <span onClick={() => Navigate(-1)}>
+          <SvgBackicon />
+        </span>
+
         <label className='label_header'>Edit Account details</label>
       </div>
       <BreadCrumb
@@ -200,69 +254,69 @@ function EditAccountDetail() {
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Account Number"
-              placeholder={"Enter"}
-              value={formik.values.AccountNumber}
-              onChange={formik.handleChange("AccountNumber")}
-              
-            />
-             {formik.touched.AccountNumber && formik.errors.AccountNumber && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                
-              >
-                {formik.errors.AccountNumber}
-              </div>
-            )}
+              <InputField
+                classNames="field__container"
+                label="Account Number"
+                placeholder={"Enter"}
+                value={formik.values.AccountNumber}
+                onChange={formik.handleChange("AccountNumber")}
+
+              />
+              {formik.touched.AccountNumber && formik.errors.AccountNumber && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+
+                >
+                  {formik.errors.AccountNumber}
+                </div>
+              )}
             </div>
           </div>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Account Name"
-              placeholder={"Enter"}
-              value={formik.values.AccountName}
-              onChange={formik.handleChange("AccountName")}
-              
-            />
-             {formik.touched.AccountName && formik.errors.AccountName && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                
-              >
-                {formik.errors.AccountName}
-              </div>
-            )}
+              <InputField
+                classNames="field__container"
+                label="Account Name"
+                placeholder={"Enter"}
+                value={formik.values.AccountName}
+                onChange={formik.handleChange("AccountName")}
+
+              />
+              {formik.touched.AccountName && formik.errors.AccountName && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+
+                >
+                  {formik.errors.AccountName}
+                </div>
+              )}
             </div>
           </div>
           <div class="sm-col-12  md:col-3 lg-col-3">
             <div>
-            <DropDowns
-              className="dropdown__container"
-              label="Account Type"
-              value={formik.values.AccountType}
-              onChange={(e) =>
-                formik.setFieldValue("AccountType", e.value)
-              }
-              options={Type}
-              optionLabel="name"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-             {formik.touched.AccountType && formik.errors.AccountType && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                
-              >
-                {formik.errors.AccountType}
-              </div>
-            )}
+              <DropDowns
+                className="dropdown__container"
+                label="Account Type"
+                value={formik.values.AccountType}
+                onChange={(e) =>
+                  formik.setFieldValue("AccountType", e.value)
+                }
+                options={accType}
+                optionLabel="label"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+              {formik.touched.AccountType && formik.errors.AccountType && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+
+                >
+                  {formik.errors.AccountType}
+                </div>
+              )}
             </div>
           </div>
-         
+
         </div>
 
 
@@ -270,111 +324,111 @@ function EditAccountDetail() {
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Main Account"
-              placeholder={"Enter"}
-              value={formik.values.MainAccount}
-              onChange={formik.handleChange("MainAccount")}
-              
-            />
-             {formik.touched.MainAccount && formik.errors.MainAccount && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                
-              >
-                {formik.errors.MainAccount}
-              </div>
-            )}
+              <InputField
+                classNames="field__container"
+                label="Main Account"
+                placeholder={"Enter"}
+                value={formik.values.MainAccount}
+                onChange={formik.handleChange("MainAccount")}
+
+              />
+              {formik.touched.MainAccount && formik.errors.MainAccount && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+
+                >
+                  {formik.errors.MainAccount}
+                </div>
+              )}
             </div>
           </div>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Main Account Description"
-              placeholder={"Enter"}
-              value={formik.values.MainAccountDescription}
-              onChange={formik.handleChange("MainAccountDescription")}
-              
-            />
-            {formik.touched.MainAccountDescription && formik.errors.MainAccountDescription && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                
-              >
-                {formik.errors.MainAccountDescription}
-              </div>
-            )}
-             
+              <InputField
+                classNames="field__container"
+                label="Main Account Description"
+                placeholder={"Enter"}
+                value={formik.values.MainAccountDescription}
+                onChange={formik.handleChange("MainAccountDescription")}
+
+              />
+              {formik.touched.MainAccountDescription && formik.errors.MainAccountDescription && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+
+                >
+                  {formik.errors.MainAccountDescription}
+                </div>
+              )}
+
             </div>
           </div>
 
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Transaction Limit"
-              placeholder={"Enter"}
-              value={formik.values.TransactionLimit}
-              onChange={formik.handleChange("TransactionLimit")}
-              
-            />
-             {formik.touched.TransactionLimit && formik.errors.TransactionLimit && (
-              <div
-                style={{ fontSize: 12, color: "red" }}
-                
-              >
-                {formik.errors.TransactionLimit}
-              </div>
-            )}
+              <InputField
+                classNames="field__container"
+                label="Transaction Limit"
+                placeholder={"Enter"}
+                value={formik.values.TransactionLimit}
+                onChange={formik.handleChange("TransactionLimit")}
+
+              />
+              {formik.touched.TransactionLimit && formik.errors.TransactionLimit && (
+                <div
+                  style={{ fontSize: 12, color: "red" }}
+
+                >
+                  {formik.errors.TransactionLimit}
+                </div>
+              )}
             </div>
           </div>
-         
+
         </div>
-        
+
       </Card>
-<Card >
-<div className='cardheader_flex'>
-      <label className='headlist_lable'>Cheque Book Details</label>
-      <Button type="button" label="Add" className="addbutton_container"  icon= {<SvgAdd/> }
-// onClick={() => setVisible(true)} 
-onClick={()=>{formik.handleSubmit();}}
-disabled={!formik.isValid}
-/>
-      </div>
+      <Card >
+        <div className='cardheader_flex'>
+          <label className='headlist_lable'>Cheque Book Details</label>
+          <Button type="button" label="Add" className="addbutton_container" icon={<SvgAdd />}
+            // onClick={() => setVisible(true)} 
+            onClick={() => { formik.handleSubmit(); }}
+            disabled={!formik.isValid}
+          />
+        </div>
 
-      <div className='tablegap_container' >
-        <DataTable
-        disabled={!formik.isValid}
-        value={Productdata} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
-          paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
-          // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-          currentPageReportTemplate="{first} - {last} of {totalRecords}"
-          paginatorTemplate={template2} scrollable={true}
-          scrollHeight="40vh"
-          selection={selectedProducts}
-          onSelectionChange={(e) => setSelectedProducts(e.value)}
-         
-        >
-          
-          <Column field="VoucherNumber" header="Cheque Book Number" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-          <Column field="TransactionNumber" header="Cheque Leaf Beginning" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-          <Column field="CustomerCode" header="Cheque Leaf End" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-          <Column body={renderToggleButton} header="Statas" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-          <Column 
-          body={(columnData) => (
-            <SvgEdit/>
-          )}
-           header="Action" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-          
+        <div className='tablegap_container' >
+          <DataTable
+            disabled={!formik.isValid}
+            value={Productdata} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
+            paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
+            // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+            paginatorTemplate={template2} scrollable={true}
+            scrollHeight="40vh"
+            selection={selectedProducts}
+            onSelectionChange={(e) => setSelectedProducts(e.value)}
 
-          {/* <Column field="Amount" header="Total Amount" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
-          {/* <Column field="action" header="Action" headerStyle={headerStyle} className='fieldvalue_container'
+          >
+
+            <Column field="VoucherNumber" header="Cheque Book Number" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="TransactionNumber" header="Cheque Leaf Beginning" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="CustomerCode" header="Cheque Leaf End" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column body={renderToggleButton} header="Statas" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column
+              body={(columnData) => (
+                <SvgEdit />
+              )}
+              header="Action" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+
+
+            {/* <Column field="Amount" header="Total Amount" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
+            {/* <Column field="action" header="Action" headerStyle={headerStyle} className='fieldvalue_container'
         onClick={() => setVisible(true)}
         ></Column> */}
 
-          {/* <Column
+            {/* <Column
             body={(params) => (
                 <SvgEditIcon onClick={() => setVisible(true)}/>
             )}
@@ -383,10 +437,10 @@ disabled={!formik.isValid}
             className="fieldvalue_container"
         ></Column> */}
 
-        </DataTable>
+          </DataTable>
 
 
-      </div>
+        </div>
 
 
 
@@ -396,9 +450,10 @@ disabled={!formik.isValid}
       <div className="next_container">
 
         <Button className="submit_button p-0" label="Update"
-          onClick={handleNavigation}
-        //   disabled={!selectedProducts}
-        disabled={!formik.isValid}
+          onClick={formik.handleSubmit}
+          //   disabled={!selectedProducts}
+
+          disabled={!formik.isValid}
         />
       </div>
 
@@ -407,57 +462,59 @@ disabled={!formik.isValid}
       <Dialog header="Add Cheque book" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
 
 
-      <div class="grid">
+        <div class="grid">
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Cheque Book Number"
-              placeholder={"Enter"}
-              value={formik.values.AccountNumber}
-              onChange={formik.handleChange("AccountNumber")}
-              
-            />
-            
+              <InputField
+                classNames="field__container"
+                label="Cheque Book Number"
+                placeholder={"Enter"}
+                value={formik.values.AccountNumber}
+                onChange={formik.handleChange("AccountNumber")}
+
+              />
+
             </div>
           </div>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Cheque Leaf Beginning"
-              placeholder={"Enter"}
-              value={formik.values.AccountName}
-              onChange={formik.handleChange("AccountName")}
-              
-            />
-             
+              <InputField
+                classNames="field__container"
+                label="Cheque Leaf Beginning"
+                placeholder={"Enter"}
+                value={formik.values.AccountName}
+                onChange={formik.handleChange("AccountName")}
+
+              />
+
             </div>
           </div>
-        
+
         </div>
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
-            <InputField
-              classNames="field__container"
-              label="Cheque Leaf End"
-              placeholder={"Enter"}
-              value={formik.values.AccountNumber}
-              onChange={formik.handleChange("AccountNumber")}
-              
-            />
-            
+              <InputField
+                classNames="field__container"
+                label="Cheque Leaf End"
+                placeholder={"Enter"}
+                value={formik.values.AccountNumber}
+                onChange={formik.handleChange("AccountNumber")}
+
+              />
+
             </div>
           </div>
-          </div>
+        </div>
 
-          <div style={{display:'flex',
-        justifyContent:'flex-end'}}>
-            <Button label='Save' className='savebutton_container' onClick={handlesavebutton}/>
-          </div>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'flex-end'
+        }}>
+          <Button label='Save' className='savebutton_container' onClick={handlesavebutton} />
+        </div>
 
-            </Dialog>
+      </Dialog>
 
 
 
@@ -465,4 +522,4 @@ disabled={!formik.isValid}
   );
 }
 
-export default  EditAccountDetail;
+export default EditAccountDetail;

@@ -17,18 +17,19 @@ import { TieredMenu } from 'primereact/tieredmenu';
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import SvgEdit from "../../../../assets/icons/SvgEdits";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgTable from "../../../../assets/icons/SvgTable";
+import { getAccountDetailsView, getPatchAccountDetailsView } from "../store/bankMasterMiddleware";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const { paymentVocherList, loading } = useSelector(({ bankMasterReducer }) => {
+  const { AccountDetailsList, loading } = useSelector(({ bankMasterReducer }) => {
     return {
       loading: bankMasterReducer?.loading,
-      paymentVocherList: bankMasterReducer?.paymentVocherList,
+      AccountDetailsList: bankMasterReducer?.AccountDetailsList,
     // const [products, setProducts] = useState([]);
     
 // const handleView=()=>{
@@ -37,10 +38,15 @@ const Index = () => {
 
     };
   });
+  console.log(AccountDetailsList,"AccountDetailsList");
+  const dispatch=useDispatch()
   const handleView = (columnData) => {
+       dispatch(getAccountDetailsView(columnData))
     navigate("/master/finance/bank/accountdataview/viewaccountdetail")
   }
   const handleEdit = (columnData) => {
+    console.log(columnData,"columnData");
+    dispatch(getPatchAccountDetailsView(columnData))
     navigate("/master/finance/bank/accountdataview/editaccountdetail")
   }
 
@@ -191,7 +197,7 @@ console.log("first",paymentVocherList)
         {/* </div> */}
 
         <div >
-          <DataTable value={paymentVocherList} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
+          <DataTable value={AccountDetailsList} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
             paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
             // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
@@ -200,11 +206,11 @@ console.log("first",paymentVocherList)
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
 
-            <Column field="VoucherNumber" header="Account Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="TransactionNumber" header="Account Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="CustomerCode" header="Account Type"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="VoucheDate" header="Main Account"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="Amount" header="Max Transaction Limit" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="AccountNumber" header="Account Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="AccountName" header="Account Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="AccountType" header="Account Type"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="MainAccount" header="Main Account"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="TransactionLimit" header="Max Transaction Limit" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}

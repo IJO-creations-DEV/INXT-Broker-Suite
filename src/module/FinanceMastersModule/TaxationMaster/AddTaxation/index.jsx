@@ -83,10 +83,6 @@ const AddTaxation = () => {
 
   };
 
-
-
-
-
   const formik = useFormik({
     initialValues: initialValue,
     validate,
@@ -119,7 +115,9 @@ const AddTaxation = () => {
             <InputField
               value={formik.values.taxCode}
               onChange={formik.handleChange("taxCode")}
-              error={formik.errors.taxCode}
+              error={
+                formik.touched.taxCode &&
+                formik.errors.taxCode}
               label="Tax Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -130,7 +128,9 @@ const AddTaxation = () => {
             <InputField
               value={formik.values.taxName}
               onChange={formik.handleChange("taxName")}
-              error={formik.errors.taxName}
+              error={
+                formik.touched.taxName &&
+                formik.errors.taxName}
               label="Tax Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -141,7 +141,9 @@ const AddTaxation = () => {
             <DropDowns
               value={formik.values.taxRate}
               onChange={formik.handleChange("taxRate")}
-              error={formik.errors.taxRate}
+              error={
+                formik.touched.taxRate &&
+                formik.errors.taxRate}
               className="dropdown__add__sub"
               label="Tax Rate"
               classNames="label__sub__add"
@@ -157,7 +159,9 @@ const AddTaxation = () => {
             <InputField
               value={formik.values.basis}
               onChange={formik.handleChange("basis")}
-              error={formik.errors.basis}
+              error={
+                formik.touched.basis &&
+                formik.errors.basis}
               label="Basis"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -168,7 +172,9 @@ const AddTaxation = () => {
             <InputField
               value={formik.values.remarks}
               onChange={formik.handleChange("remarks")}
-              error={formik.errors.remarks}
+              error={
+                formik.touched.TransactionNumberFrom &&
+                formik.errors.remarks}
               label="Remarks"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -179,7 +185,9 @@ const AddTaxation = () => {
             <InputField
               value={formik.values.taxationDescription}
               onChange={formik.handleChange("taxationDescription")}
-              error={formik.errors.taxationDescription}
+              error={
+                formik.touched.taxationDescription &&
+                formik.errors.taxationDescription}
               label="Taxation Description"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -208,7 +216,9 @@ const AddTaxation = () => {
                 }}
                 dateFormat="yy-mm-dd"
 
-                error={formik.errors.effectiveFrom}
+                error={
+                  formik.touched.effectiveFrom &&
+                  formik.errors.effectiveFrom}
               />
             </div>
           </div>
@@ -233,7 +243,9 @@ const AddTaxation = () => {
                   formik.setFieldValue("effectiveTo", e.target.value);
                 }}
                 dateFormat="yy-mm-dd"
-                error={formik.errors.effectiveTo}
+                error={
+                  formik.touched.effectiveTo &&
+                  formik.errors.effectiveTo}
               />
             </div>
           </div>

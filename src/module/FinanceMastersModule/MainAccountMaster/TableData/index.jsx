@@ -19,7 +19,7 @@ const TableData = ({ MainAccountList }) => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
   const tableView = location.state?.tableView || false;
-  console.log(tableView, "find tableView");
+  console.log(MainAccountList, "MainAccountListMainAccountList");
 
   const emptyTableIcon = (
     <div>

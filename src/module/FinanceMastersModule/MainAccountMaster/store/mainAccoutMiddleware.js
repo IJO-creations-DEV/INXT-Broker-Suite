@@ -18,8 +18,20 @@ const initialState = {
       mainAccountName: "mainAccountName",
       description: "description",
       accountType: "Credit",
-      openEntry: "123",
-      openEntryType: "credit",
+      openEntry: "No",
+      openEntryType: "Credit",
+      accountCategoryCode: "acc123",
+      companyCode: "cc123",
+      currencyCode: "cc112"
+    },
+    {
+      id: "2",
+      mainAccountCode: "main999",
+      mainAccountName: "mainAccount88",
+      description: "description",
+      accountType: "Debit",
+      openEntry: "Yes",
+      openEntryType: "Debit",
       accountCategoryCode: "acc123",
       companyCode: "cc123",
       currencyCode: "cc112"

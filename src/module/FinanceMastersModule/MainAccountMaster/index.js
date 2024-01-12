@@ -21,7 +21,7 @@ const MainAccountMaster = () => {
 
     };
   });
-  console.log(MainAccountList, "MainAccountList");
+  console.log(MainAccountList[0].mainAccountCode, "MainAccountList");
   const navigation = useNavigate();
   const [visible, setVisible] = useState(false);
 

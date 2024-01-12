@@ -14,6 +14,7 @@ const initialState = {
   error: "",
   BankList: [
     {
+      id: 1,
       bankCode: 'Bank42588',
       // code: <SvgArrow />,
       bankName: 'Johnson Finance',
@@ -23,7 +24,7 @@ const initialState = {
       status: true,
       mobile: 9791669887
     },
-    {
+    { id :2,
       bankCode: 'Bank12345',
       // code: <SvgArrow />,
       bankName: 'Miller Investments',
@@ -34,7 +35,7 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {
+    {id :3,
       bankCode: 'Bank78901',
       // code: <SvgArrow />,
       bankName: 'Smith and Sons Banking',
@@ -45,7 +46,7 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {
+    {id :3,
       bankCode: 'Bank23456',
       // code: <SvgArrow />,
       bankName: 'Johnson Finance',
@@ -56,7 +57,7 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {
+    {id:4,
       bankCode: 'Bank67890',
       // code: <SvgArrow />,
       bankName: 'Miller Investments',
@@ -67,7 +68,7 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {
+    {id:5,
       bankCode: 'Bank78912',
       // code: <SvgArrow />,
       bankName: 'Smith and Sons Banking',
@@ -77,7 +78,7 @@ const initialState = {
       status: false, mobile: 9791669887
 
     },
-    {
+    {id:6,
       bankCode: 'Bank34567',
       // code: <SvgArrow />,
       bankName: 'Johnson Finance',
@@ -88,7 +89,7 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {
+    {id:7,
       bankCode: 'Bank89012',
       // code: <SvgArrow />,
       bankName: 'Miller Investments',
@@ -99,7 +100,7 @@ const initialState = {
 
 
     },
-    {
+    {id:8,
       bankCode: 'Bank45678',
       // code: <SvgArrow />,
       bankName: 'Smith and Sons Banking',
@@ -110,7 +111,7 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {
+    {id:9,
       bankCode: 'Bank56789',
       // code: <SvgArrow />,
       bankName: 'Johnson Finance',
@@ -121,7 +122,7 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {
+    {id:10,
       bankCode: 'Bank89012',
       // code: <SvgArrow />,
       bankName: 'Miller Investments',
@@ -132,103 +133,15 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {
-      bankCode: 'Bank12345',
-      // code: <SvgArrow />,
-      bankName: 'Smith and Sons Banking',
-      bankBranch: 'New Danielhaven',
-      ifscCode: 'mb89012',
-      email: 'mia@example.com',
-      status: false,
-      mobile: 9791669887
-
-    },
-    {
-      bankCode: 'Bank23456',
-      // code: <SvgArrow />,
-      bankName: 'Johnson Finance',
-      bankBranch: 'East Sarahburgh',
-      ifscCode: 'mb45678',
-      email: 'benjamin@gmail.com',
-      status: true,
-      mobile: 9791669887
-
-    },
-    {
-      bankCode: 'Bank78901',
-      // code: <SvgArrow />,
-      bankName: 'Miller Investments',
-      bankBranch: 'Port Karlibury',
-      ifscCode: 'mb12345',
-      email: 'emma@example.com',
-      status: false,
-      mobile: 9791669887
-
-    },
-    {
-      bankCode: 'Bank34567',
-      // code: <SvgArrow />,
-      bankName: 'Smith and Sons Banking',
-      bankBranch: 'West Alexfort',
-      ifscCode: 'mb56789',
-      email: 'oliver@gmail.com',
-      status: true,
-      mobile: 9791669887
-
-    },
-    {
-      bankCode: 'Bank89012',
-      // code: <SvgArrow />,
-      bankName: 'Johnson Finance',
-      bankBranch: 'New Danielhaven',
-      ifscCode: 'mb23456',
-      email: 'amelia@example.com',
-      status: false,
-      mobile: 9791669887
-
-    },
-    {
-      bankCode: 'Bank45678',
-      // code: <SvgArrow />,
-      bankName: 'Miller Investments',
-      bankBranch: 'East Sarahburgh',
-      ifscCode: 'mb78901',
-      email: 'henry@gmail.com',
-      status: true,
-      mobile: 9791669887
-
-    },
-    {
-      bankCode: 'Bank56789',
-      // code: <SvgArrow />,
-      bankName: 'Smith and Sons Banking',
-      bankBranch: 'Port Karlibury',
-      ifscCode: 'mb34567',
-      email: 'ava@example.com',
-      status: false,
-      mobile: 9791669887
-
-    },
-    {
-      bankCode: 'Bank12345',
-      // code: <SvgArrow />,
-      bankName: 'Johnson Finance',
-      bankBranch: 'West Alexfort',
-      ifscCode: 'mb45678',
-      email: 'jackson@gmail.com',
-      status: true,
-      mobile: 9791669887
-
-    }
   ]
   ,
   BankAccountList: [
-    
+
   ],
   BankSearchList: [],
   BankStatus: {},
   AddBank: {},
-  PostAddBank:{},
+  PostAddBank: {},
   BankDetailEdit: {},
   BankDetailView: {}
 };
@@ -313,7 +226,8 @@ const bankMasterReducer = createSlice({
       getAddBank.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.AddBank = action.payload;
+        // state.AddBank = action.payload;
+        state.BankList = [...state.BankList, action.payload];
       }
     );
     builder.addCase(
@@ -335,7 +249,7 @@ const bankMasterReducer = createSlice({
       postAddBank.fulfilled,
       (state, action) => {
         state.loading = false;
-        state.PostAddBank = action.payload;
+        state.BankList = [...state.BankList, action.payload];
       }
     );
     builder.addCase(

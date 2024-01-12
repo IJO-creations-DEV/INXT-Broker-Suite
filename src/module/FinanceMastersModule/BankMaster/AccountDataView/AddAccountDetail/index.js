@@ -46,6 +46,15 @@ function AddAccountDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const { BankList, loading } = useSelector(({ bankMasterReducer }) => {
+    return {
+      loading: bankMasterReducer?.loading,
+      BankList: bankMasterReducer?.BankList,
+
+    };
+  });
+  console.log(BankList,"BankList");
+
   const customValidation = (values) => {
     const errors = {};
 
@@ -158,12 +167,7 @@ alignItem:'center'
   };
 
   const handlesave = (value) => {
-    // console.log(value, "value");
-    // const valueWithId = {
-    //   ...value,
-    //   // id: BankList?.length + 1,
-    // };
-    // dispatch(postAddBank(valueWithId));
+
       navigate("/master/finance/bank/accountdataview");
   };
   const handleNavigation = () => {

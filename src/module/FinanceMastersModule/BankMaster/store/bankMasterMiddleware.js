@@ -60,9 +60,23 @@ export const getAddBank = createAsyncThunk(
 export const postAddBank = createAsyncThunk(
     POST_ADD_BANK,
     async (payload, { rejectWithValue }) => {
+        console.log(payload,"postAddBank");
+        const tabledata = {
+            id: payload.id,
+            bankCode: payload.BankCode,
+            // code: <SvgArrow />,
+            bankName: payload?.BankName,
+            bankBranch: payload?.BankBranch,
+            ifscCode:payload?.IFSCCode,
+            email: payload?.EmailID,
+            status: true,
+            mobile: payload?.PhoneNumber
+
+        }
+        console.log(payload, "leo________");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            return tabledata;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

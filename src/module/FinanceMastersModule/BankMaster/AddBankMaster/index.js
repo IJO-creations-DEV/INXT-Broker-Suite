@@ -18,6 +18,8 @@ import { useFormik } from "formik";
 import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../components/Toast";
 import { InputText } from "primereact/inputtext";
+import { postAddBank } from '../store/bankMasterMiddleware';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const initialValues ={
@@ -38,6 +40,7 @@ const initialValues ={
 
 function AddBankMaster() {
     const [date, setDate] = useState(null);
+    const dispatch = useDispatch();
     const Navigate=useNavigate()
     const [departmentcode, setDepartmentCode] = useState(null);
     const [branchcode, setBranchCode] = useState(null);
@@ -48,6 +51,14 @@ function AddBankMaster() {
     const [selectinstrumentcurrency, setSelectInstrumentCurrency] = useState(null);
     const toastRef = useRef(null);
     
+    const { BankList, loading } = useSelector(({ bankMasterReducer }) => {
+      return {
+        loading: bankMasterReducer?.loading,
+        BankList: bankMasterReducer?.BankList,
+  
+      };
+    });
+
       const City = [
         { name: "Davio", code: "NY" },
         { name: "UK", code: "RM" },
@@ -79,7 +90,12 @@ function AddBankMaster() {
 
 const handleSubmit = (values) => {
   // Handle form submission
-  console.log(values, "find values");
+  console.log(values, "value");
+  const valueWithId = {
+    ...values,
+    id: BankList?.length + 1,
+  };
+  dispatch(postAddBank(valueWithId));
   
   toastRef.current.showToast();
   // {

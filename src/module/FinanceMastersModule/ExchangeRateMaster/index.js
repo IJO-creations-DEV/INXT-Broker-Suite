@@ -105,7 +105,7 @@ const Index = () => {
   };
   const headeraction ={
     fontSize: 16,
-    fontFamily: 'Inter var',
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     display:"flex",
     justifyContent:'center',
@@ -116,7 +116,7 @@ const Index = () => {
     // width: '19%',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter var',
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
     color: '#000',

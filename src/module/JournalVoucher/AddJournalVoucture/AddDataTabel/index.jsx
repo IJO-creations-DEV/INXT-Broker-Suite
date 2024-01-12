@@ -83,7 +83,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
     const headerStyle = {
 
         fontSize: 16,
-        fontFamily: "Inter var",
+        fontFamily: 'Inter, sans-serif',
         fontWeight: 500,
         padding: "6px 6px 6px 2px",
         color: "#000",
@@ -93,7 +93,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
     const headaction = {
         justifyContent: 'center',
         fontsize: 16,
-        fontfamily: "Inter var",
+        fontfamily: 'Inter, sans-serif',
         fontWeight: 500,
         padding: 10,
         color: "#000",

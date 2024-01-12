@@ -90,7 +90,7 @@ const PolicyReceipts = () => {
 
   const headerStyle = {
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: "10px 0",
     color: "#000",
@@ -102,7 +102,7 @@ const PolicyReceipts = () => {
     width: "10%",
 
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: "10px 0",
     color: "#000",
@@ -113,7 +113,7 @@ const PolicyReceipts = () => {
 
 
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: "10px 0",
     color: "#000",
@@ -124,7 +124,7 @@ const PolicyReceipts = () => {
     width: "8%",
 
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: "10px 0",
     color: "#000",

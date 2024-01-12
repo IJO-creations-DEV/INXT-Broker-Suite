@@ -194,7 +194,7 @@ const BankMaster = () => {
     // width: '10rem',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter var',
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: "10px 6px",
     color: '#000',

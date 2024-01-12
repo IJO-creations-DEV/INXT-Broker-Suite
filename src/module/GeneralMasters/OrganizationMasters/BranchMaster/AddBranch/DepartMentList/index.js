@@ -71,7 +71,7 @@ const DepartMentList = () => {
   }
   const headerStyle = {
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
     color: "#000",

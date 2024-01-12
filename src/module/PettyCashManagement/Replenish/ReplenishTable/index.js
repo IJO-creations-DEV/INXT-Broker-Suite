@@ -87,7 +87,7 @@ const PettyCashReplenishTable = () => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
     paddingLeft:0,
@@ -104,7 +104,7 @@ const PettyCashReplenishTable = () => {
     justifyContent: 'center',
     // textalign: center,
     fontSize: 16,
-    fontfamily: "Inter var",
+    fontfamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
     color: "#000",

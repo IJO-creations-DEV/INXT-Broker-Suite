@@ -151,7 +151,7 @@ function SpecificVoucher() {
     width: "9rem",
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     // padding: 4,
     color: "#000",

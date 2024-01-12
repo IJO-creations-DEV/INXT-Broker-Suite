@@ -13,7 +13,7 @@ const LabelWrapper = ({
   const labelStyle = {
     fontSize: textSize ? textSize : "16px",
     color: textColor ? textColor : "black",
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: textWeight ? textWeight : 500,
     margin:0,
     padding:0

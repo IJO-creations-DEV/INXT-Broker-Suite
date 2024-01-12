@@ -92,7 +92,7 @@ const AddDisbursementTable = () => {
     justifyContent: 'center',
 // textalign: center,
 fontSize: 16,
-fontFamily: "Inter var",
+fontFamily: 'Inter, sans-serif',
 fontWeight: 500,
 // padding: "18px 8px",
 // paddingTop:4,
@@ -106,7 +106,7 @@ display: "flex",
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 8,
     color: "#000",
@@ -379,7 +379,7 @@ headerStyle={headaction}
         onHide={() => setVisible(false)}
         headerStyle={{
           color: "#343434",
-          fontFamily: "Inter var",
+          fontFamily: 'Inter, sans-serif',
           fontSize: "24px",
           fontWeight: "600",
           lineHeight: "150%",

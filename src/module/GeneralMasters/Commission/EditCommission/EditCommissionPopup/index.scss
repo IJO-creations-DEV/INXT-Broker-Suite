@@ -2,7 +2,7 @@
     width: 40%;
     .input__label__jv {
         color: #111927 !important;
-        font-family: "Inter var";
+        font-family: 'Inter', sans-serif;
         font-size: 16px !important;
         font-style: normal !important;
         font-weight: 400 !important;
@@ -11,7 +11,7 @@
 
     .select__label__jv {
         color: #111927 !important;
-        font-family: "Inter var";
+        font-family: 'Inter', sans-serif;
         font-size: 16px !important;
         font-style: normal !important;
         font-weight: 500 !important;
@@ -20,7 +20,7 @@
 
     .input__field__jv {
         color: #111927;
-        font-family: "Inter var";
+        font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -30,7 +30,7 @@
 
         .p-dropdown-label {
             color: #111927;
-            font-family: "Inter var";
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
             font-weight: 400;
         }
@@ -45,7 +45,7 @@
         height: 45px;
         // width: 140px;
         padding: 0 40px;
-        font-family: "Inter var";
+        font-family: 'Inter', sans-serif;
     }
 
     .jv__save {
@@ -57,7 +57,7 @@
         height: 45px;
         // width: 163px;
         padding: 0 30px;
-        font-family: "Inter var";
+        font-family: 'Inter', sans-serif;
     }
     
 }

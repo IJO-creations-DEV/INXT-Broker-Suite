@@ -81,7 +81,7 @@ const AddRequestTable = () => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -238,7 +238,7 @@ const AddRequestTable = () => {
         onHide={() => setVisible(false)}
         headerStyle={{
           color: "#343434",
-          fontFamily: "Inter var",
+          fontFamily: 'Inter, sans-serif',
           fontSize: 16,
           fontWeight: 500,
           // lineHeight: "150%",

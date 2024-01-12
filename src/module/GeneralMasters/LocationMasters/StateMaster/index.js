@@ -87,7 +87,7 @@ const State = () => {
         // width: '10rem',
         // backgroundColor: 'red',
         fontSize: 16,
-        fontFamily: 'Inter var',
+        fontFamily: 'Inter, sans-serif',
         fontWeight: 500,
         padding: 6,
         color:'#000',

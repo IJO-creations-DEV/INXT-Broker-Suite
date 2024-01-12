@@ -33,7 +33,7 @@ const AddReceiptsTable = () => {
     justifyContent: 'center',
 // textalign: center,
 fontSize: 16,
-fontFamily: "Inter var",
+fontFamily: 'Inter, sans-serif',
 fontWeight: 500,
 padding: 6,
 color: "#000",
@@ -87,7 +87,7 @@ display: "flex"
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
     color: "#000",

@@ -59,7 +59,7 @@ const handlEdit =()=>{
   const home = { label: "Master" };
   const headerStyle = {
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -67,7 +67,7 @@ const handlEdit =()=>{
   };
   const ViewheaderStyle = {
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
     color: "#000",

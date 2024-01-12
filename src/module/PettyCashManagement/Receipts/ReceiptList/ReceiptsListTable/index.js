@@ -16,7 +16,7 @@ const ReceiptListTable = ({ AddReceiptTable }) => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: "1rem 0",
     color: "#000",

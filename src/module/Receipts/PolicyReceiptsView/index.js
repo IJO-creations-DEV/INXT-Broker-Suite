@@ -69,7 +69,7 @@ function PolicyReceipts() {
 
   const headerStyle = {
     fontSize: 16,
-    fontFamily: "Inter var",
+    fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     color: "#000",
     border: "none",

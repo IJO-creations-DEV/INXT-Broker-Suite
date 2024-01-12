@@ -48,7 +48,7 @@ const CompanyMasterTable = () => {
     const headerStyle = {
       width: "10rem",
       fontSize: 14,
-      fontFamily: "Inter var",
+      fontFamily: 'Inter, sans-serif',
       fontWeight: 500,
       padding: 6,
       color: "#000",

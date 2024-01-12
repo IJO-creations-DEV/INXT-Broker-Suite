@@ -10,7 +10,7 @@
       justify-content: space-between;
       .modal__title {
         color: #111927;
-        font-family: "Inter var";
+        font-family: 'Inter', sans-serif;
         font-size: 24px;
         font-style: normal;
         font-weight: 600;
@@ -19,7 +19,7 @@
     }
     .input__label__corrections {
       color: #111927 !important;
-      font-family: "Inter var";
+      font-family: 'Inter', sans-serif;
       font-size: 16px !important;
       font-style: normal !important;
       font-weight: 400 !important;
@@ -28,7 +28,7 @@
 
     .input__field__corrections {
       color: #111927;
-      font-family: "Inter var";
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
@@ -44,7 +44,7 @@
       border-radius: 30px;
       height: 45px;
       width: 153px;
-      font-family: "Inter var";
+      font-family: 'Inter', sans-serif;
       .p-button-label {
         font-weight: 500 !important;
         font-size: 18px !important;
@@ -55,7 +55,7 @@
     //   .input__label__corrections {
     //     font-size: 12px !important;
     //     color: #111927 !important;
-    //     font-family: "Inter var";
+    //     font-family: 'Inter', sans-serif;
     //     font-style: normal !important;
     //     font-weight: 400 !important;
     //     line-height: normal !important;
@@ -63,7 +63,7 @@
     //   .select__label__corrections {
     //     font-size: 12px !important;
     //     color: #111927 !important;
-    //     font-family: "Inter var";
+    //     font-family: 'Inter', sans-serif;
     //     font-style: normal !important;
     //     font-weight: 500 !important;
     //     line-height: normal !important;

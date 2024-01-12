@@ -16,7 +16,7 @@ const CustomToast = forwardRef((props, ref) => {
             key={index}
             style={{
               color: "#29CE00",
-              fontFamily: "Inter var",
+              fontFamily: 'Inter, sans-serif',
               fontSize: "16px",
               fontWeight: 500,
             }}
@@ -30,7 +30,7 @@ const CustomToast = forwardRef((props, ref) => {
             key={index}
             style={{
               color: "black",
-              fontFamily: "Inter var",
+              fontFamily: 'Inter, sans-serif',
               fontSize: "16px",
               fontWeight: 500,
             }}

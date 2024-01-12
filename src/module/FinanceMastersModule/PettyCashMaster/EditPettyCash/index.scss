@@ -103,7 +103,7 @@
         text-align: center;
         font-size: 17px;
         font-weight: 500;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
     }
     .popup__token__text{
         color: #29CE00;
@@ -117,7 +117,7 @@
         font-size: 18px;
         font-weight: bold;
         margin-bottom: 20px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
     }
   
     .modal-body {
@@ -135,14 +135,14 @@
       color: #111927;
       width: 100%;
       border-radius: 10px;
-      font-family: "Inter var";
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
       .p-dropdown-label {
         color: #111927;
-        font-family: "Inter var";
+        font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: 400;
       }
@@ -151,7 +151,7 @@
       color: #b1b1b1;
       width: 100%;
       border-radius: 10px;
-      font-family: "Inter var";
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -167,7 +167,7 @@
       font-style: normal !important;
       font-weight: 500 !important;
       line-height: normal !important;
-      font-family: "Inter var";
+      font-family: 'Inter', sans-serif;
     }
     .input__label__reversal__inactive {
       color: #b1b1b1 !important;
@@ -175,7 +175,7 @@
       font-style: normal !important;
       font-weight: 500 !important;
       line-height: normal !important;
-      font-family: "Inter var";
+      font-family: 'Inter', sans-serif;
     }
    
   }

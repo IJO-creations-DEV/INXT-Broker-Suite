@@ -31,7 +31,7 @@
         border-width: 0 0 1px 0;
         font-size: 16px;
         font-weight: 400;
-        font-family: 'Inter Var';
+        font-family: 'Inter', sans-serif;
         color: #111927;
     }
     .reversal__table__main {
@@ -51,7 +51,7 @@
 
                     .p-column-title {
                         color: #111927;
-                        font-family: "Inter var";
+                        font-family: 'Inter', sans-serif;
                         font-size: 16px;
                         font-style: normal;
                         font-weight: 500;
@@ -65,7 +65,7 @@
             tr {
                 td {
                     color: #111927;
-                    font-family: "Inter var";
+                    font-family: 'Inter', sans-serif;
                     font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
@@ -95,7 +95,7 @@
 
             span {
                 color: #1c2536 !important;
-                font-family: "Inter var";
+                font-family: 'Inter', sans-serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;

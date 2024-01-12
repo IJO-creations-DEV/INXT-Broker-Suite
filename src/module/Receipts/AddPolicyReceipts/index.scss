@@ -7,7 +7,7 @@
         font-style: normal;
         font-weight: 600;
         line-height: normal;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
         margin-bottom: 10px;
     }
     .p-calendar {
@@ -30,7 +30,7 @@
         width: 100%;
         margin: 12px 0;
         border-radius: 10px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
     }
     // .disable_container :disabled{
   
@@ -56,14 +56,14 @@
         width: 100%;
         margin: 12px 0;
         border-radius: 10px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
     }
 
 
     .input__label__addPolicy{
         color: #111927;
         font-size: 16px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
         font-weight: 500;
     }
     .custom-modal-overlay {
@@ -78,7 +78,7 @@
         align-items: center;
         padding: 0 0.5rem 0 1rem ;
         z-index: 1;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
     }
 
     .custom-modal {
@@ -114,7 +114,7 @@
         font-size: 18px;
         font-weight: bold;
         margin-bottom: 20px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
     }
 
     .modal-body {
@@ -134,7 +134,7 @@
             height: 45px;
             width: 153px;
             margin: 10px;
-            font-family: 'Inter var';
+            font-family: 'Inter', sans-serif;
         }
         .correction__print__btn__addPolicy{
             color:#6366F1;
@@ -145,7 +145,7 @@
             height: 45px;
             width: 153px;
             margin: 10px;
-            font-family: 'Inter var';
+            font-family: 'Inter', sans-serif;
         }
     }
     
@@ -160,7 +160,7 @@
         font-size: 24px;
         font-weight: 600;
         text-align: left;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
         
       }
       .save__btn__view{
@@ -187,7 +187,7 @@
         letter-spacing: 0em;
         text-align: left;
         color: #6C737F;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
       
       }
       
@@ -199,7 +199,7 @@
         text-align: center;
         margin-top: 20px;
         margin-bottom: 10px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
       
       }
       .edit__icon {
@@ -224,7 +224,7 @@
         align-items: center;
         border-radius: 30px !important;
         opacity: 0.5;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
       }
       .exit__text {}
       
@@ -236,7 +236,7 @@
         font-weight: 600;
         line-height: normal;
         margin-top: 10px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
       }
       
 
@@ -292,13 +292,13 @@
     }
     .header__text{
         font-size: 10px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
     }
    
 }
 @media screen and (min-width: 1200px) {
     .header__text{
         font-size: 14px;
-        font-family: 'Inter var';
+        font-family: 'Inter', sans-serif;
     }
 }

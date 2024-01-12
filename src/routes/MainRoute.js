@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import AuthRoute from "../routes/AuthRoute";
 import ProtectedLayout from "./ProtectedRoute";
@@ -72,14 +72,6 @@ import AddJournalVoucture from "../module/JournalVoucher/AddJournalVoucture";
 import DetailsJournalVocture from "../module/JournalVoucher/DetailsJournalVocture";
 
 import Bankdetailselection from "../module/PaymentVoucher/Bankdetailselection";
-// import DepartmentMasterInitial from "../module/FinanceMastersModule/DepartmentMaster/DepartmentMasterInitial";
-// import DepartmentAdding from "../module/FinanceMastersModule/DepartmentMaster/DepartmentAdding";
-// import DepartmentDetailsView from "../module/FinanceMastersModule/DepartmentMaster/DepartmentDetailsView";
-// import CategoryMasterInitial from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryMasterInitial";
-// import CategoryAdding from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryAdding";
-// import CategoryDetailsView from "../module/FinanceMastersModule/AccountCategoryMaster/CategoryDetailsView";
-// import CompanyDetailsView from "../module/FinanceMastersModule/CompanyMaster/CompanyDetailsView"
-// import AddCompany from "../module/FinanceMastersModule/CompanyMaster/AddCompany";
 import Initiate from "../module/PettyCashManagement/Initiate";
 import Disbursement from "../module/PettyCashManagement/Disbursement";
 import SubAccountEdit from "../module/FinanceMastersModule/SubAccountMaster/SubAccountEdit";
@@ -161,7 +153,11 @@ import AddCity from "../module/GeneralMasters/LocationMasters/CityMaster/AddCity
 import AddState from "../module/GeneralMasters/LocationMasters/StateMaster/AddState";
 
 const Maincomponent = () => {
+
+  const LazyPolicyReceipts = lazy(() => import('../module/Receipts/PolicyReceipts'));
+
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div
       style={{
         display: "flex",
@@ -172,7 +168,6 @@ const Maincomponent = () => {
         <AuthRoute />
         <Routes>
           <Route element={<ProtectedLayout />}>
-            {/* <Route path="/" element={<div>shh</div>} /> */}
             <Route
               path="/accounts/correctionsjv/correctionsjvdetails"
               element={<CorrectionJV />}
@@ -901,6 +896,7 @@ const Maincomponent = () => {
         </Route>
       </Routes>
     </div>
+    </Suspense>
   );
 };
 

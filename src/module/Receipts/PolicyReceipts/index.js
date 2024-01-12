@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import NavBar from "../../../components/NavBar";
@@ -24,16 +24,21 @@ import { getReceiptsListBySearchMiddleware } from "../store/receiptsMiddleware";
 const PolicyReceipts = () => {
   
   const [products, setProducts] = useState([]);
+  const [stylesLoaded, setStylesLoaded] = useState(false);
 
+  useEffect(() => {
+    // Dynamically import your SCSS styles
+    import('./index.scss').then(() => {
+      setStylesLoaded(true);
+    });
+  }, []);
   // useEffect(() => {
   //   setProducts(data);
   // }, []);
-  const menu = useRef(null);
   const items = [
-
     {
       label: 'Receipts', to: "/accounts/receipts"
-    },
+    }
 
   ];
 
@@ -45,11 +50,11 @@ const PolicyReceipts = () => {
     { name: 'Transaction Number', value: 'transactionNumber' },
     { name: 'Transaction Code', value: 'transactionCode' }]
 
-  const { receiptsTableList, loading, total, receiptsSearchTable } = useSelector(({ receiptsTableReducers }) => {
+  const { receiptsTableList, loading, receiptsSearchTable } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptsTableList: receiptsTableReducers?.receiptsTableList,
-      total: receiptsTableReducers,
+      // total: receiptsTableReducers,
       receiptsSearchTable: receiptsTableReducers?.receiptsSearchTable
 
     };
@@ -57,7 +62,7 @@ const PolicyReceipts = () => {
 
 
   console.log(receiptsTableList, "receiptsTableListreceiptsTableList")
-  console.log(total, "find receiptsTableList")
+  // console.log(total, "find receiptsTableList")
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -70,7 +75,8 @@ const PolicyReceipts = () => {
       ];
 
       return (
-        <React.Fragment>
+
+        <>
           <span
             className="mx-1"
             style={{ color: "var(--text-color)", userSelect: "none" }}
@@ -83,7 +89,7 @@ const PolicyReceipts = () => {
             options={dropdownOptions}
             onChange={options.onChange}
           />
-        </React.Fragment>
+        </>
       );
     },
   };
@@ -174,7 +180,9 @@ const PolicyReceipts = () => {
     navigate("/accounts/receipts/otherreceiptsview");
   };
   return (
-    <div className="overall__policyreceipts__container">
+    <Suspense fallback={<div>Loading...</div>}>
+    {stylesLoaded &&
+        <div className="overall__policyreceipts__container">
       <NavBar />
       <div className="overallfilter_container">
         <div>
@@ -301,7 +309,10 @@ const PolicyReceipts = () => {
           </DataTable>
         </div>
       </Card>
-    </div>
+    </div> }
+  </Suspense>
+
+
   );
 };
 

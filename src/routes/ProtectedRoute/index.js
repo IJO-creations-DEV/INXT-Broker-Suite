@@ -26,15 +26,15 @@ const index = () => {
           {/* <ResponsiveDrawer/> */}
         </div>
         <div className="main__content">
-          {Auth() ?
+          {/* {Auth() ?
             <Outlet />
             :
             <Outlet />
 
             // <Navigate to='login' replace />
-          }
+          } */}
 
-          {/* <Outlet /> */}
+          <Outlet />
         </div>
       </div>
     </div>

@@ -36,7 +36,16 @@ body .css-dip3t8 {
   }
   
   /* Media query for screens with a maximum width of 768px */
- 
+  .css-12w9als {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif !important;
+}
   
   
 }

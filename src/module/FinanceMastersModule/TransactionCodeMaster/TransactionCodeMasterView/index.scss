@@ -44,7 +44,7 @@
         color: #000;
         font-size: 16px;
         font-weight: 500;
-        font-family: Inter var;
+        font-family: 'Inter', sans-serif;
       }
       .btn__container{
         display: flex;
@@ -89,7 +89,7 @@
      
     .p-tabview .p-tabview-nav li .p-tabview-nav-link {
       font-weight: 400 !important;
-      font-family: inter var;
+      font-family: 'Inter', sans-serif;
       border: none !important;
     }
     .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
@@ -98,7 +98,7 @@
       color: #6366F1;
       
       font-weight: 500 !important;
-      font-family: inter var;
+      font-family: 'Inter', sans-serif;
   }
  
 }

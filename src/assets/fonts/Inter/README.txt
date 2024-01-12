@@ -1,4 +1,4 @@
-Inter Variable Font
+'Inter', sans-serifiable Font
 ===================
 
 This download contains Inter as both a variable font and static fonts.

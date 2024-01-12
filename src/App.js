@@ -1,5 +1,5 @@
 import Maincomponent from "./routes/MainRoute";
-import "./App.css";
+import "./App.scss";
 
 
 const App = () => {

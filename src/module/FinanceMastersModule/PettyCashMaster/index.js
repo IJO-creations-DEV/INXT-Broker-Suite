@@ -123,9 +123,10 @@ const PettyCashMaster = ({ response }) => {
       <div className='col-12 m-0 '>
         <div className='sub__container__petty'>
           <form onSubmit={formik.handleSubmit} className='col-12 search__filter__view__petty'>
-            <div className='col-12 md:col-10 lg:col-10'>
+            <div className='col-12 md:col-12 lg:col-12'>
               <div className='searchIcon__view__input__petty'>
-                <span className='pl-2'> <SvgSearchIcon /></span>
+                {/* <span className='pl-2'> <SvgSearchIcon /></span> */}
+                <i className="pi pi-search pl-3" />
                 <InputText
                   style={{ width: '100%' }}
                   classNames='input__sub__account__petty'

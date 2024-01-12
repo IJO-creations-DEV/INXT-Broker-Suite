@@ -153,13 +153,17 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
                     field="action"
                     body={(columnData) => (
                         <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
-                            <SvgEditicon onClick={() => handleEdit(columnData)} />
+                           
                             <SvgIconeye onClick={() => handleView(columnData)} />
+                            <SvgEditicon onClick={() => handleEdit(columnData)} />
                         </div>
                     )}
                     header="View"
                     className="fieldvalue_container"
-
+headerStyle={
+    {display:'flex',justifyContent:'center',alignItems:'center'}
+}
+style={{textAlign:'center'}}
                 ></Column>
             </DataTable>
         </div>

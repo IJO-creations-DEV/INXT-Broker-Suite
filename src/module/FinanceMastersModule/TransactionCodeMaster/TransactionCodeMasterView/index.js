@@ -69,6 +69,7 @@ const TransactionCodeMasterView = () => {
 
   const handleClick = () => {
     // navigate("/master/finance/transactioncode");
+    navigate(-1)
   };
 
 

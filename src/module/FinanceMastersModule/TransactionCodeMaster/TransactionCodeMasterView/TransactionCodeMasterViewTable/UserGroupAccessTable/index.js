@@ -62,10 +62,10 @@ const UserGroupAccess = () => {
               style={{
                 color: "var(--text-color)",
                 userSelect: "none",
-                width: "127%",
+                // width: "127%",
                 textAlign: "center",
-                display: "flex",
-                alignItems: "center",
+                // display: "flex",
+                // alignItems: "center",
               }}
             >
               Row count :{" "}
@@ -206,7 +206,7 @@ const UserGroupAccess = () => {
       >
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">
-            {/* <DropDowns
+            <DropDowns
               className="inputdialog__fieled"
               label="User Role"
               placeholder="Select"
@@ -222,14 +222,14 @@ const UserGroupAccess = () => {
               formik.setFieldValue("UserRole", e.value);
               // handleAccountcode(e.value);
             }}
-            optionLabel="name"
+            optionLabel="label"
             error={
               formik.touched.UserRole &&
               formik.errors.UserRole
             }
-            /> */}
-            <DropDowns
-              classNames="input__filed"
+            />
+            {/* <DropDowns
+              classNames="inputdialog__fieled"
               label="Minimum Transaction"
               placeholder="Select"
               textColor={"#111927"}
@@ -239,13 +239,13 @@ const UserGroupAccess = () => {
               onChange={(e) =>
                 formik.setFieldValue("UserRole", e.target.value)
               }
-
+style={{width:"100%"}}
               options={BankAccountCode}
 
               optionLabel='label'
 
               dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
+            /> */}
 
             {formik.touched.UserRole && formik.errors.UserRole && (
               <div

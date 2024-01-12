@@ -889,7 +889,10 @@ const Maincomponent = () => {
 
       <Routes>
         <Route element={<ProtectedLayout />}>
-          <Route path="/" element={<div>shh</div>} />
+          <Route path="/" element={
+          // <PolicyReceipts/>
+          <div></div>
+          } />
         </Route>
       </Routes>
     </div>

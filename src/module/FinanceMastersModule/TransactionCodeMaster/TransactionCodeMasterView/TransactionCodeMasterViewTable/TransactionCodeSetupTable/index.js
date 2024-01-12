@@ -45,44 +45,26 @@ const TransactionCodeSetupTable = () => {
     </div>
   );
   const template2 = {
-    layout:
-      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
     RowsPerPageDropdown: (options) => {
-      const dropdownOptions = [
-        { label: 5, value: 5 },
-        { label: 10, value: 10 },
-        { label: 20, value: 20 },
-        { label: 120, value: 120 },
-      ];
+        const dropdownOptions = [
+            { label: 5, value: 5 },
+            { label: 10, value: 10 },
+            { label: 20, value: 20 },
+            { label: 120, value: 120 }
+        ];
 
-      return (
-        <div className="paginator__container">
-          <React.Fragment>
-            <span
-              className="mx-1"
-              style={{
-                color: "var(--text-color)",
-                userSelect: "none",
-                width: "127%",
-                textAlign: "center",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-          </React.Fragment>
-        </div>
-      );
+        return (
+            <React.Fragment >
+                <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+                Row count :{' '}
+                </span>
+                <Dropdown value={options.value} className="pagedropdown_container"options={dropdownOptions} onChange={options.onChange} />
+            </React.Fragment>
+        );
     },
-  };
-
+   
+};
 
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
@@ -98,8 +80,8 @@ const TransactionCodeSetupTable = () => {
   };
 
   const initialValues = {
-    AccountingPeriodStart: "",
-    AccountingPeriodEnd: "",
+    AccountingPeriodStart: new Date(),
+    AccountingPeriodEnd: new Date(),
     TransactionNumberFrom: "",
     TransactionNumberTo: "",
   }
@@ -215,8 +197,7 @@ const TransactionCodeSetupTable = () => {
             </LabelWrapper>
             <Calendar
               showIcon
-              // placeholder="Select"
-
+              placeholder="Select"
               className="calendar_container"
               value={formik.values.AccountingPeriodStart}
               minDate={minDate}
@@ -225,6 +206,7 @@ const TransactionCodeSetupTable = () => {
               }}
               dateFormat="yy-mm-dd"
               error={formik.errors.AccountingPeriodStart}
+              
             />
           </div>
           <div className="calender__container col-12 md:col-6 lg-col-6 ">

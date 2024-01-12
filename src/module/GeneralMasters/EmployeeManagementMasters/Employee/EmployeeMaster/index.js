@@ -148,7 +148,7 @@ const handlEdit =()=>{
       <div className="col-12 m-0 ">
         <div className="sub__account__sub__container__hierarchy">
           <div className="col-12 search__filter__view__hierarchy">
-            <div className="col-12 md:col-10 lg:col-10">
+            <div className="col-12 md:col-12 lg:col-12">
               <div className="searchIcon__view__input__hierarchy">
                 <span className="pl-3">
                   {" "}

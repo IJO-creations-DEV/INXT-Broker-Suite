@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+// import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
@@ -9,29 +9,28 @@ import 'primereact/resources/primereact.css'; // core css
 import 'primeicons/primeicons.css'; // icons
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import App from './App';
 
 
 // Lazy load your application component
-const LazyApp = lazy(() => import('./App'));
+// const LazyApp = lazy(() => import('./App'));
 
 const Root = () => {
-  const [stylesLoaded, setStylesLoaded] = useState(false);
+  // const [stylesLoaded, setStylesLoaded] = useState(false);
 
-  useEffect(() => {
-    // Dynamically import your SCSS styles
-    import('./index.scss').then(() => {
-      setStylesLoaded(true);
-    });
-  }, []);
+  // useEffect(() => {
+  //   // Dynamically import your SCSS styles
+  //   import('./index.scss').then(() => {
+  //     setStylesLoaded(true);
+  //   });
+  // }, []);
 
   // Render your application only after SCSS styles are loaded
   return (
     <BrowserRouter>
       <Provider store={store}>
         <ProSidebarProvider>
-          <Suspense fallback={<div>Loading...</div>}>
-            {stylesLoaded ? <LazyApp /> : null}
-          </Suspense>
+          <App />
         </ProSidebarProvider>
       </Provider>
     </BrowserRouter>

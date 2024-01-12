@@ -1,4 +1,3 @@
-import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import AuthRoute from "../routes/AuthRoute";
 import ProtectedLayout from "./ProtectedRoute";
@@ -154,10 +153,8 @@ import AddState from "../module/GeneralMasters/LocationMasters/StateMaster/AddSt
 
 const Maincomponent = () => {
 
-  const LazyPolicyReceipts = lazy(() => import('../module/Receipts/PolicyReceipts'));
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
     <div
       style={{
         display: "flex",
@@ -896,7 +893,6 @@ const Maincomponent = () => {
         </Route>
       </Routes>
     </div>
-    </Suspense>
   );
 };
 

@@ -23,15 +23,15 @@ import { getReceiptsListBySearchMiddleware } from "../store/receiptsMiddleware";
 
 const PolicyReceipts = () => {
   
-  const [products, setProducts] = useState([]);
-  const [stylesLoaded, setStylesLoaded] = useState(false);
+  // const [products, setProducts] = useState([]);
+  // const [stylesLoaded, setStylesLoaded] = useState(false);
 
-  useEffect(() => {
-    // Dynamically import your SCSS styles
-    import('./index.scss').then(() => {
-      setStylesLoaded(true);
-    });
-  }, []);
+  // useEffect(() => {
+  //   // Dynamically import your SCSS styles
+  //   import('./index.scss').then(() => {
+  //     setStylesLoaded(true);
+  //   });
+  // }, []);
   // useEffect(() => {
   //   setProducts(data);
   // }, []);
@@ -180,8 +180,8 @@ const PolicyReceipts = () => {
     navigate("/accounts/receipts/otherreceiptsview");
   };
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-    {stylesLoaded &&
+    // <Suspense fallback={<div>Loading...</div>}>
+    // {stylesLoaded &&
         <div className="overall__policyreceipts__container">
       <NavBar />
       <div className="overallfilter_container">
@@ -309,8 +309,9 @@ const PolicyReceipts = () => {
           </DataTable>
         </div>
       </Card>
-    </div> }
-  </Suspense>
+    </div> 
+    // }
+  // </Suspense>
 
 
   );

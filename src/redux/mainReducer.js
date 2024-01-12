@@ -28,6 +28,8 @@ import insuranceCompanyReducers from "../module/GeneralMasters/InsuranceManageme
 import hierarchyTableReducers from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/store/hierarchyReducers"
 import organizationBranchMainReducers from "../module/GeneralMasters/OrganizationMasters/BranchMaster/store/branchReducers"
 import organizationCompanyMainReducers from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/store/companyReducers"
+import countryReducers from "../module/GeneralMasters/LocationMasters/CountryMaster/store/countryReducers";
+import cityReducers from "../module/GeneralMasters/LocationMasters/CityMaster/store/cityReducers";
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -54,7 +56,9 @@ const reducers = {
   insuranceCompanyReducers,
   hierarchyTableReducers,
   organizationBranchMainReducers,
-  organizationCompanyMainReducers
+  organizationCompanyMainReducers,
+  countryReducers,
+  cityReducers
 
 };
 

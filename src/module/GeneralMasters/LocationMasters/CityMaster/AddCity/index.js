@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './index.scss';
 import { BreadCrumb } from 'primereact/breadcrumb';
 import InputField from '../../../../../components/InputField';
@@ -18,6 +18,8 @@ import { useFormik } from "formik";
 import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../../components/Toast";
 import { InputText } from "primereact/inputtext";
+import { useDispatch, useSelector } from 'react-redux';
+import { postAddCityMiddleware } from '../store/cityMiddleware';
 
 
 const initialValues = {
@@ -31,11 +33,22 @@ const initialValues = {
 
 function AddCity({action}) {
     const toastRef = useRef(null);
-    const [date, setDate] = useState(null);
+    const dispatch = useDispatch();
+    const [statedata, setstatedata] = useState();
     const Navigate = useNavigate()
     const { id } = useParams();
 
+    const { cityTableList, loading,CityListById } = useSelector(
+        ({ cityReducers }) => {
+          return {
+            loading: cityReducers?.loading,
+            cityTableList: cityReducers?.cityTableList,
+            CityListById:cityReducers?.CityListById
+          };
+        }
+      );
 
+console.log(CityListById,"CityListById");
     const home = { label: "Master" };
     const items = [
         { label: 'Location', url: '/master/finance/exchangerate' },
@@ -54,19 +67,80 @@ function AddCity({action}) {
         { name: 'Davao', code: 'NY' },
         { name: 'Rome', code: 'RM' },
     ]
-
+    console.log(statedata,"statedata");
+    const setFormikValues = () => {
+        // const getCorrectionJVEdit = correctionJVList.find((item) => item.id === EditID);
+        const statedatas = CityListById.State
+        const updatedValues = {
+            CityCode: CityListById?.Citycode,
+            CityName: CityListById?.CityName,
+            Description: "Description",
+            State: statedata,
+            ModifiedBy: CityListById?.Modifiedby,
+          ModifiedOn: CityListById?.ModifiedOn
+        };
+        if (statedatas) {
+            formik.setValues({ ...formik.values, ...updatedValues });
+            setstatedata([{ name: statedatas, name: statedatas }]);
+          }
+        console.log(updatedValues, "updatedValues");
+        formik.setValues({ ...formik.values, ...updatedValues });
+      };
+      console.log(action, "action");
+    
+      useEffect(() => {
+        if (action === "view" || action === "edit") {
+          setFormikValues()
+          console.log(formik.values.CountryName, " formik.values.CountryName");
+        }
+      }, [])
    
-
-    const handleSubmit = (values) => {
-        
-        console.log(values, "find values");
+      const handleSubmitAdd = (values) => {
+        const valueWithId = {
+            ...values,
+            id: cityTableList?.length + 1,
+          };
+          dispatch(postAddCityMiddleware(valueWithId));
+      
 
         toastRef.current.showToast();
         
         setTimeout(() => {
             Navigate("/master/generals/location/city")
         }, 3000);
-    }
+      };
+    
+      const handleSubmitEdit = (values) => {
+        // dispatch(patchCountryEditMiddleware(values));
+        // console.log("Handle Edit Submission", values);
+        setTimeout(() => {
+          Navigate("/master/generals/location/city");
+        }, 3000);
+      };
+    
+      const handleSubmit = (values) => {
+        if (action === "add") {
+          handleSubmitAdd(values);
+        } else if (action === "edit") {
+          handleSubmitEdit(values);
+        }
+      };
+
+    // const handleSubmit = (values) => {
+        
+    //     const valueWithId = {
+    //         ...values,
+    //         id: cityTableList?.length + 1,
+    //       };
+    //       dispatch(postAddCityMiddleware(valueWithId));
+      
+
+    //     toastRef.current.showToast();
+        
+    //     setTimeout(() => {
+    //         Navigate("/master/generals/location/city")
+    //     }, 3000);
+    // }
 
     // };
 
@@ -153,7 +227,11 @@ function AddCity({action}) {
 
                                 }
                                 onChange={formik.handleChange("CityCode")}
-
+                                disabled={action === "add"
+                                ? false
+                                : action === "edit"
+                                  ? false
+                                  : true}
                             />
                             {formik.touched.CityCode &&
                 formik.errors.CityCode && (
@@ -176,7 +254,11 @@ function AddCity({action}) {
 
                                 }
                                 onChange={formik.handleChange("CityName")}
-
+                                disabled={action === "add"
+                                ? false
+                                : action === "edit"
+                                  ? false
+                                  : true}
                             />
                               {formik.touched.CityName &&
                 formik.errors.CityName && (
@@ -199,7 +281,11 @@ function AddCity({action}) {
 
                                 }
                                 onChange={formik.handleChange("Description")}
-
+                                disabled={action === "add"
+                                ? false
+                                : action === "edit"
+                                  ? false
+                                  : true}
                             />
                              {formik.touched.Description &&
                 formik.errors.Description && (
@@ -229,6 +315,11 @@ function AddCity({action}) {
                                 optionLabel="name"
                                 placeholder={"Select"}
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                                disabled={action === "add"
+                                ? false
+                                : action === "edit"
+                                  ? false
+                                  : true}
                             />
                             {formik.touched.State &&
                                 formik.errors.State && (
@@ -251,7 +342,11 @@ function AddCity({action}) {
 
                                 }
                                 onChange={formik.handleChange("ModifiedBy")}
-
+                                disabled={action === "add"
+                                ? false
+                                : action === "edit"
+                                  ? false
+                                  : true}
                             />
                               {formik.touched.ModifiedBy &&
                 formik.errors.ModifiedBy && (
@@ -274,7 +369,11 @@ function AddCity({action}) {
 
                                 }
                                 onChange={formik.handleChange("ModifiedOn")}
-
+                                disabled={action === "add"
+                                ? false
+                                : action === "edit"
+                                  ? false
+                                  : true}
                             />
                              {formik.touched.ModifiedOn &&
                 formik.errors.ModifiedOn && (
@@ -303,7 +402,7 @@ function AddCity({action}) {
             <div className="next_container">
             {action === "edit" && (
                 <Button className="submit_button p-0" label="update" disabled={!formik.isValid}
-                    // onClick={() => { formik.handleSubmit(); }}
+                    onClick={() => { formik.handleSubmit(); }}
                 />
             )}
             </div>

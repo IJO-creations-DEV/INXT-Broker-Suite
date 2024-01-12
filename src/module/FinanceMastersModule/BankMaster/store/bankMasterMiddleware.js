@@ -87,6 +87,7 @@ export const postAddBank = createAsyncThunk(
 export const patchBankDetailEdit = createAsyncThunk(
     PATCH_BANK_DETAIL_EDIT,
     async (payload, { rejectWithValue, getState }) => {
+        console.log(payload,"patchBankDetailEdit");
         // const { bankMasterReducer } = getState();
 
 

@@ -24,7 +24,8 @@ const initialState = {
       status: true,
       mobile: 9791669887
     },
-    { id :2,
+    {
+      id: 2,
       bankCode: 'Bank12345',
       // code: <SvgArrow />,
       bankName: 'Miller Investments',
@@ -35,7 +36,8 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {id :3,
+    {
+      id: 3,
       bankCode: 'Bank78901',
       // code: <SvgArrow />,
       bankName: 'Smith and Sons Banking',
@@ -46,7 +48,8 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {id :3,
+    {
+      id: 3,
       bankCode: 'Bank23456',
       // code: <SvgArrow />,
       bankName: 'Johnson Finance',
@@ -57,7 +60,8 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {id:4,
+    {
+      id: 4,
       bankCode: 'Bank67890',
       // code: <SvgArrow />,
       bankName: 'Miller Investments',
@@ -68,7 +72,8 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {id:5,
+    {
+      id: 5,
       bankCode: 'Bank78912',
       // code: <SvgArrow />,
       bankName: 'Smith and Sons Banking',
@@ -78,7 +83,8 @@ const initialState = {
       status: false, mobile: 9791669887
 
     },
-    {id:6,
+    {
+      id: 6,
       bankCode: 'Bank34567',
       // code: <SvgArrow />,
       bankName: 'Johnson Finance',
@@ -89,7 +95,8 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {id:7,
+    {
+      id: 7,
       bankCode: 'Bank89012',
       // code: <SvgArrow />,
       bankName: 'Miller Investments',
@@ -100,7 +107,8 @@ const initialState = {
 
 
     },
-    {id:8,
+    {
+      id: 8,
       bankCode: 'Bank45678',
       // code: <SvgArrow />,
       bankName: 'Smith and Sons Banking',
@@ -111,7 +119,8 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {id:9,
+    {
+      id: 9,
       bankCode: 'Bank56789',
       // code: <SvgArrow />,
       bankName: 'Johnson Finance',
@@ -122,7 +131,8 @@ const initialState = {
       mobile: 9791669887
 
     },
-    {id:10,
+    {
+      id: 10,
       bankCode: 'Bank89012',
       // code: <SvgArrow />,
       bankName: 'Miller Investments',

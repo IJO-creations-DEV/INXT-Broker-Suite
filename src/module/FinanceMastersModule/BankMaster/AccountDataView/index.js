@@ -200,11 +200,11 @@ console.log("first",paymentVocherList)
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
 
-            <Column field="VoucherNumber" header="Account Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="TransactionNumber" header="Account Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="CustomerCode" header="Account Type"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="VoucheDate" header="Main Account"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="Amount" header="Max Transaction Limit" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="AccountNumber" header="Account Number" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="AccountName" header="Account Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="AccountType" header="Account Type"   headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="MainAccount" header="Main Account"  headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="MaxTransactionLimit" header="Max Transaction Limit" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             {/* <Column field="name" header="Action" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="category" header="Instrument Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="quantity" header="Amount" headerStyle={headerStyle} className='fieldvalue_container'></Column> */}

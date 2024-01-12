@@ -45,6 +45,7 @@ const BankMaster = () => {
     setVisible(true);
     setDialog(rowData)
     // console.log(currentDialog, "current detail")
+    formik.setFieldValue("id", rowData?.id)
     formik.setFieldValue("bankCode", rowData?.bankCode)
     formik.setFieldValue("bankName", rowData?.bankName)
     formik.setFieldValue("bankBranch", rowData?.bankBranch)
@@ -67,6 +68,20 @@ const BankMaster = () => {
     setVisibleview(true);
     setDialog(rowData) // or any other logic you want to perform
     // Use the rowData as needed
+    formik.setFieldValue("id", rowData?.id)
+    formik.setFieldValue("bankCode", rowData?.bankCode)
+    formik.setFieldValue("bankName", rowData?.bankName)
+    formik.setFieldValue("bankBranch", rowData?.bankBranch)
+    formik.setFieldValue("ifscCode", rowData?.ifscCode)
+    formik.setFieldValue("addressLine1", 'Sudharshan Building')
+    formik.setFieldValue("addressLine2", '2nd floor,chamiers Road')
+    formik.setFieldValue("addressLine3", 'Nanthanam')
+    formik.setFieldValue("city", 'Chennai')
+    formik.setFieldValue("state", 'Tamil Nadu')
+    formik.setFieldValue("country", 'India')
+    formik.setFieldValue("mobile", rowData?.mobile)
+    formik.setFieldValue("fax", rowData?.mobile)
+    formik.setFieldValue("email", rowData?.email)
     console.log("View clicked for row:", rowData);
   };
 
@@ -305,7 +320,7 @@ const BankMaster = () => {
             <Column field="mobile" header="Phone" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
 
-            <Column body={(columnData) => (
+            <Column body={(rowData) => (
               //         <div className="card flex justify-content-center">
 
               //  <TieredMenu model={menuitems} popup ref={menu}  />
@@ -314,7 +329,7 @@ const BankMaster = () => {
 
               //   </div>
               <div className="card flex justify-content-center">
-                <TieredMenu model={menuitems.map(item => ({ ...item, command: () => item.command(columnData) }))} popup ref={menu} breakpoint="767px" />
+                <TieredMenu model={menuitems.map(item => ({ ...item, command: () => item.command(rowData) }))} popup ref={menu} breakpoint="767px" />
                 <Button icon={<SvgMenudots />} onClick={(e) => menu.current.toggle(e)} className="menubutton_popup" />
               </div>
 

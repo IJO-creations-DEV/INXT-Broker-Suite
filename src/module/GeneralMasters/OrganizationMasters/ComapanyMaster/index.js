@@ -15,7 +15,10 @@ import { useDispatch, useSelector } from "react-redux";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditicons from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
-import { getCompanyViewMiddleWare, getSearchCompanyMiddleware } from "./store/companyMiddleware";
+import {
+  getCompanyViewMiddleWare,
+  getSearchCompanyMiddleware,
+} from "./store/companyMiddleware";
 import { useFormik } from "formik";
 
 const Index = () => {
@@ -24,27 +27,23 @@ const Index = () => {
       return {
         loading: organizationCompanyMainReducers?.loading,
         companyTableList: organizationCompanyMainReducers?.companyTableList,
-        companySearchList: organizationCompanyMainReducers?.companySearchList
+        companySearchList: organizationCompanyMainReducers?.companySearchList,
       };
     }
   );
   console.log(companyTableList, "companyTableList");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleView = (columnData) => {
-    dispatch(getCompanyViewMiddleWare(columnData))
+    dispatch(getCompanyViewMiddleWare(columnData));
     navigate(
       `/master/generals/organization/companymaster/view/${columnData.id}`
     );
   };
   const handleEdit = (id) => {
-    navigate(
-      `/master/generals/organization/companymaster/edit/${id}`
-    );
+    navigate(`/master/generals/organization/companymaster/edit/${id}`);
   };
   const handlePolicy = (id) => {
-    navigate(
-      `/master/generals/organization/companymaster/add/${id}`
-    );
+    navigate(`/master/generals/organization/companymaster/add/${id}`);
   };
 
   console.log("first", companyTableList);
@@ -147,14 +146,16 @@ const Index = () => {
   const handleSubmit = (values) => {
     console.log(values.search, "getSearchCompanyMiddleware");
     dispatch(getSearchCompanyMiddleware({ textSearch: values.search }));
-  }
+  };
   const formik = useFormik({
     initialValues: { search: "" },
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
   });
   useEffect(() => {
     if (formik.values.search !== "") {
-      dispatch(getSearchCompanyMiddleware({ textSearch: formik.values.search }));
+      dispatch(
+        getSearchCompanyMiddleware({ textSearch: formik.values.search })
+      );
     }
   }, [formik.values.search]);
 
@@ -200,7 +201,6 @@ const Index = () => {
               />
             </span>
           </div>
-
         </div>
         <div className="headlist_lable">Company List</div>
 
@@ -208,7 +208,9 @@ const Index = () => {
 
         <div>
           <DataTable
-            value={formik.values.search !== "" ? companySearchList : companyTableList}
+            value={
+              formik.values.search !== "" ? companySearchList : companyTableList
+            }
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}
@@ -250,12 +252,12 @@ const Index = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
+
             <Column
-              body={renderToggleButton}
+              body={(columnData) => <ToggleButton id={columnData.id} />}
               header="Status"
-              headerStyle={headerStyle}
               className="fieldvalue_container"
-            ></Column>
+            />
             <Column
               body={(columnData) => (
                 <div className="action_icons">

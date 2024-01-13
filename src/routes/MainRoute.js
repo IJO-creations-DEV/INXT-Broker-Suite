@@ -621,7 +621,7 @@ const Maincomponent = () => {
               element={<UserEdit />}
             />
             <Route
-              path="master/generals/usermanagement/user/add/:id"
+              path="master/generals/usermanagement/user/add"
               element={<AddUser action="add" />}
             />
             <Route

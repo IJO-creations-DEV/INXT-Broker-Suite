@@ -1,5 +1,5 @@
 import { BreadCrumb } from "primereact/breadcrumb";
-import React, { useRef, useState,useEffect} from "react";
+import React, { useRef, useState, useEffect } from "react";
 import NavBar from "../../../../../components/NavBar";
 import SvgDot from "../../../../../assets/icons/SvgDot";
 import "./index.scss";
@@ -13,30 +13,36 @@ import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 import { InputText } from "primereact/inputtext";
 import EditUser from "../EditUser"
+import { useDispatch, useSelector } from "react-redux";
+import { getUserListByIdMiddleware, postAddUserMiddleware } from "../store/userMiddleware";
+import moment from "moment";
 
-const AddUser = ({action}) => {
+const AddUser = ({ action }) => {
   const { id } = useParams();
   console.log(id, "find id");
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState("");
+  const dispatch = useDispatch()
 
-  
   useEffect(() => {
     if (action === "edit" || action === "view") {
-      setFormikValues();
+      dispatch(getUserListByIdMiddleware(id)).then(() => {
+        setFormikValues();
+
+      })
+      // setFormikValues();
     }
-  }, [action]);
+  }, [action, id]);
   const items = [
     { label: "User Management" },
     {
-      label: `${
-        action === "add"
-          ? "Add User"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add User"
+        : action === "edit"
           ? "Edit User"
           : "View User"
-      }`,
+        }`,
     },
   ];
   const home = { label: "Master" };
@@ -49,6 +55,15 @@ const AddUser = ({action}) => {
     phoneNumber: "",
     assignedRole: "",
   };
+  const { loading, userList, searchList, userDetailList } = useSelector(({ userReducers }) => {
+    return {
+      loading: userReducers?.loading,
+      userList: userReducers?.userList,
+      searchList: userReducers?.userSearchList,
+      userDetailList: userReducers?.userDetailList
+
+    };
+  });
   const validate = (values) => {
     const errors = {};
     console.log(values, errors, "values");
@@ -74,25 +89,40 @@ const AddUser = ({action}) => {
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
 
-  const handleSubmit = () => {
+  const handleSubmit = (value) => {
+    console.log(value, "val")
+    dispatch(postAddUserMiddleware({
+      id: userList?.length + 1,
+      userName: value?.userName,
+      employeeCode: value?.employeeCode?.name,
+      assignedRole: value?.assignedRole?.name,
+      email: value?.email,
+      phoneNumber: value?.phoneNumber,
+      modifiedBy: "Johnson",
+      modifiedOn: "12/12/23",
+      status: "",
+      action: ""
+    }))
     toastRef.current.showToast();
 
     setTimeout(() => {
       setVisiblePopup(false);
     }, 3000);
+    navigate('/master/generals/usermanagement/user')
   };
 
   const setFormikValues = () => {
-    const userName = "John";
-    const employeeCode = "Em00123";
-    const email="Em00123";
-    const phoneNumber = "9874563210";
-    const assignedRole = "Level 2 Agent";
-   
-    const modifiedBy = "Johnson";
-    const modifiedOn = "RC1234";
-   
-   
+    console.log(userDetailList, "user details")
+    const userName = userDetailList?.userName;
+    const employeeCode = userDetailList?.employeeCode;
+    const email = userDetailList?.email;
+    const phoneNumber = userDetailList?.phoneNumber;
+    const assignedRole = userDetailList?.assignedRole;
+
+    const modifiedBy = userDetailList?.modifiedBy;
+    const modifiedOn = moment().format('DD/MM/YYYY');
+
+
 
     const updatedValues = {
       userName: `${userName}`,
@@ -100,7 +130,7 @@ const AddUser = ({action}) => {
       email: `${email}`,
       phoneNumber: `${phoneNumber}`,
       assignedRole: `${assignedRole}`,
-      
+
       modifiedBy: `${modifiedBy}`,
       modifiedOn: `${modifiedOn}`,
     };
@@ -116,20 +146,20 @@ const AddUser = ({action}) => {
       <div className="col-12">
         <NavBar />
       </div>
-      <div style={{justifyContent:'center',alignItems:'center',display:'flex'}}>
+      <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
-       
-    
+
+
       </div>
       <div className="add__sub__title">
-              {action === "add"
-                ? "Add User"
-                : action === "edit"
-                ? "Edit User"
-                : "View User"}
-            </div>
+        {action === "add"
+          ? "Add User"
+          : action === "edit"
+            ? "Edit User"
+            : "View User"}
+      </div>
       <div className="col-12 mb-2">
         <div className="mt-3">
           <BreadCrumb
@@ -144,7 +174,7 @@ const AddUser = ({action}) => {
         <div className="grid add__account__sub__container p-3">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-             disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.userName}
               onChange={formik.handleChange("userName")}
               error={formik.errors.userName}
@@ -156,7 +186,7 @@ const AddUser = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
-             disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.employeeCode}
               onChange={formik.handleChange("employeeCode")}
               error={formik.errors.employeeCode}
@@ -171,7 +201,7 @@ const AddUser = ({action}) => {
 
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-             disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.email}
               onChange={formik.handleChange("email")}
               error={formik.errors.email}
@@ -189,7 +219,7 @@ const AddUser = ({action}) => {
                 <i className={<SvgDropdown />}></i>
               </span>
               <InputText
-               disabled={action === "view" ? true : false}
+                disabled={action === "view" ? true : false}
                 placeholder="Enter"
                 value={formik.values.phoneNumber}
                 onChange={formik.handleChange("phoneNumber")}
@@ -201,7 +231,7 @@ const AddUser = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
-             disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.assignedRole}
               onChange={formik.handleChange("assignedRole")}
               error={formik.errors.assignedRole}
@@ -215,22 +245,22 @@ const AddUser = ({action}) => {
           </div>
         </div>
       </div>
-{action === "edit" && (
-      <div style={{width:"100%"}}>
-      <EditUser/>
-      </div>
+      {action === "edit" && (
+        <div style={{ width: "100%" }}>
+          <EditUser />
+        </div>
       )}
-      
+
       <div className="col-12 btn__view__Add mt-2">
-      {action === "add" && (
-        <Button
-          label="Save"
-          className="save__add__btn"
-          onClick={() => {
-            formik.handleSubmit();
-          }}
-          disabled={!formik.isValid}
-        />
+        {action === "add" && (
+          <Button
+            label="Save"
+            className="save__add__btn"
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+            disabled={!formik.isValid}
+          />
         )}
         {action === "edit" && (
           <Button

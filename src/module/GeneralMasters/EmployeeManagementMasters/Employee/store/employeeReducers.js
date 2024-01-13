@@ -109,7 +109,7 @@ const initialState = {
 
   ]
 };
-const receiptsReducer = createSlice({
+const employeeReducer = createSlice({
   name: "employee",
   initialState,
   reducers: {},
@@ -197,4 +197,4 @@ const receiptsReducer = createSlice({
   },
 });
 
-export default receiptsReducer.reducer;
+export default employeeReducer.reducer;

@@ -30,6 +30,7 @@ import organizationBranchMainReducers from "../module/GeneralMasters/Organizatio
 import organizationCompanyMainReducers from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/store/companyReducers"
 import countryReducers from "../module/GeneralMasters/LocationMasters/CountryMaster/store/countryReducers";
 import cityReducers from "../module/GeneralMasters/LocationMasters/CityMaster/store/cityReducers";
+import employeeReducers from "../module/GeneralMasters/EmployeeManagementMasters/Employee/store/employeeReducers";
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -58,7 +59,8 @@ const reducers = {
   organizationBranchMainReducers,
   organizationCompanyMainReducers,
   countryReducers,
-  cityReducers
+  cityReducers,
+  employeeReducers
 
 };
 

@@ -26,9 +26,16 @@ const EmployeeMaster = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
   
-  const {}=useSelector(({
-    
-  }))
+  const { hierarchTableList, loading, total, hierarchSeachList } = useSelector(({ employeeReducers }) => {
+    return {
+      loading: employeeReducers?.loading,
+      hierarchTableList: employeeReducers?.hierarchTableList,
+      hierarchSeachList: employeeReducers?.hierarchSeachList,
+      total: employeeReducers
+
+    };
+  });
+
 const handleView =()=>{
     navigate(`/master/generals/employeemanagement/employee/view/2`)
 }

@@ -90,11 +90,23 @@ export const patchHirarchyEditMiddleware = createAsyncThunk(
 );
 export const getSearchHirarchyMiddleware = createAsyncThunk(
   GET_SERACH_HIERARCHY,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, getState }) => {
+    const textSearch = payload;
+    console.log(textSearch, "textSearch")
+    const { hierarchyTableReducers } = getState();
+
+    const { hierarchTableList } = hierarchyTableReducers;
+
     try {
-      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
-    } catch (error) {
+      const searchResults = hierarchTableList.filter(item => {
+        return item.rankName.toLowerCase().includes(textSearch.toLowerCase());
+      });
+      console.log(searchResults, "searchResults")
+      return searchResults;
+
+
+    }
+    catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
   }

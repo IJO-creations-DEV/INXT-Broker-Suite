@@ -15,7 +15,8 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchHirarchyMiddleware } from "../store/hierarchyMiddleware";
 
 const HierarchyMaster = () => {
   const [products, setProducts] = useState([])
@@ -24,16 +25,24 @@ const HierarchyMaster = () => {
     navigate("/master/generals/employeemanagement/hierarchy/add");
 
   };
-  const [rowList, setRowList] = useState(5)
+  const [rowList, setRowList] = useState(5);
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch()
   useEffect(() => {
 
     setProducts()
   }, [])
+  useEffect(() => {
+    if (search.length > 0) {
+      dispatch(getSearchHirarchyMiddleware(search))
+    }
+  }, [search])
 
-  const { hierarchTableList, loading, total } = useSelector(({ hierarchyTableReducers }) => {
+  const { hierarchTableList, loading, total, hierarchSeachList } = useSelector(({ hierarchyTableReducers }) => {
     return {
       loading: hierarchyTableReducers?.loading,
       hierarchTableList: hierarchyTableReducers?.hierarchTableList,
+      hierarchSeachList: hierarchyTableReducers?.hierarchSeachList,
       total: hierarchyTableReducers
 
     };
@@ -46,8 +55,8 @@ const HierarchyMaster = () => {
     navigate(`/master/generals/employeemanagement/hierarchy/view/${id}`)
   }
 
-  const handlEdit = () => {
-    navigate('/master/generals/employeemanagement/hierarchy/edit/3')
+  const handlEdit = (id) => {
+    navigate(`/master/generals/employeemanagement/hierarchy/edit/${id}`)
   }
   const items = [
     { label: "Employee Management" },
@@ -176,7 +185,8 @@ const HierarchyMaster = () => {
                 <InputText
                   style={{ width: "100%" }}
                   classNames="input__sub__account__hierarchy"
-                  placeholder="Search By Rank Name"
+                  placeholder="Search By Rank Name" value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -190,7 +200,8 @@ const HierarchyMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={hierarchTableList}
+                value={search ? hierarchSeachList
+                  : hierarchTableList}
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"

@@ -15,6 +15,7 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
+import { useSelector } from "react-redux";
 
 const EmployeeMaster = () => {
   const navigate = useNavigate();
@@ -24,6 +25,10 @@ const EmployeeMaster = () => {
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
+  
+  const {}=useSelector(({
+    
+  }))
 const handleView =()=>{
     navigate(`/master/generals/employeemanagement/employee/view/2`)
 }

@@ -106,6 +106,7 @@ const initialState = {
     },
   ]
   ,
+  hierarchSeachList: [],
   hierarchListDetails: {}
 
 };
@@ -146,12 +147,12 @@ const receiptsReducer = createSlice({
     });
     builder.addCase(getSearchHirarchyMiddleware.fulfilled, (state, action) => {
       state.loading = false;
-      state.hierarchyDetailList = action.payload;
+      state.hierarchSeachList = action.payload;
     });
     builder.addCase(getSearchHirarchyMiddleware.rejected, (state, action) => {
       state.loading = false;
 
-      state.hierarchyDetailList = {};
+      state.hierarchSeachList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 

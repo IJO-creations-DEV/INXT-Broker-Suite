@@ -150,8 +150,17 @@ const cityReducer = createSlice({
             patchCityEditMiddleware.fulfilled,
             (state, action) => {
               state.loading = false;
-            
-              state.CityEdit = action.payload;
+              console.log(state.cityTableList, "state.countryTableList");
+              const updatedIndex = state.cityTableList.findIndex(
+                (item) => item.id === action.payload.id
+              );
+              if (updatedIndex !== -1) {
+                const updatedAddDisbursmentTable = [...state.cityTableList];
+                updatedAddDisbursmentTable[updatedIndex] = action.payload;
+                state.cityTableList = updatedAddDisbursmentTable;
+              } else {
+                state.cityTableList = [...state.cityTableList, action.payload];
+              }
             }
           );
           builder.addCase(

@@ -23,10 +23,18 @@ export const getRequestListMiddleware = createAsyncThunk(
 
 export const getRequestSearchMiddleware = createAsyncThunk(
   GET_REQUEST_VOUCHER_SEARCH,
-  async (payload, { rejectWithValue }) => {
+  async ({ field, value }, { rejectWithValue, getState }) => {
+    const { pettyCashRequestReducer } = getState();
+    const { RequestList } = pettyCashRequestReducer;
+    function filterReceiptsByField(receipts, field, value) {
+      const lowercasedValue = value.toLowerCase();
+      return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
+    }
     try {
+      const filteredReceipts = filterReceiptsByField(RequestList, field, value);
+
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return filteredReceipts;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

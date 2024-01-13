@@ -19,10 +19,19 @@ export const getCurrencyList = createAsyncThunk(
 
 export const getCurrencySearchList = createAsyncThunk(
     GET_CURRENCY_SEARCH_LIST,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue,getState }) => {
+        const textSearch = payload;
+        console.log(textSearch, "textSearch")
+        const { currencyMasterReducer } = getState();
+
+        const { CurrencyList } = currencyMasterReducer;
+        console.log(CurrencyList, "1234")
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            const searchResults = CurrencyList.filter(item => {
+                return item.Currencycode.toLowerCase().includes(textSearch.toLowerCase());
+            });
+            console.log(searchResults, "searchResults")
+            return searchResults;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

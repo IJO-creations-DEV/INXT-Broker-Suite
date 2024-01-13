@@ -14,10 +14,10 @@ import { getPatchMainAccountDetailEdit } from "./store/mainAccountReducer";
 
 const MainAccountMaster = () => {
 
-  const { MainAccountList, loading } = useSelector(({ mainAccoutMiddleware }) => {
+  const { MainAccountList, loading } = useSelector(({ mainAccoutReducers }) => {
     return {
-      loading: mainAccoutMiddleware?.loading,
-      MainAccountList: mainAccoutMiddleware?.MainAccountList,
+      loading: mainAccoutReducers?.loading,
+      MainAccountList: mainAccoutReducers?.MainAccountList,
 
     };
   });

@@ -23,10 +23,19 @@ export const getReceiptListMiddleware = createAsyncThunk(
 
 export const getReceiptSearchMiddleware = createAsyncThunk(
   GET_RECEIPT_VOUCHER_SEARCH,
-  async (payload, { rejectWithValue }) => {
+  async ({ field, value }, { rejectWithValue, getState }) => {
+    const { pettyCashReceiptsReducer } = getState();
+    const { ReceiptList } = pettyCashReceiptsReducer;
+    function filterReceiptsByField(receipts, field, value) {
+      const lowercasedValue = value.toLowerCase();
+      return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
+    }
+
     try {
+      const filteredReceipts = filterReceiptsByField(ReceiptList, field, value);
+
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return filteredReceipts;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -37,12 +46,11 @@ export const postAddReceiptMiddleware = createAsyncThunk(
   POST_ADD_RECEIPT_VOUCHER,
   async (payload, { rejectWithValue }) => {
 
-    console.log(payload,"postAddReceiptMiddleware")
+    console.log(payload, "postAddReceiptMiddleware")
 
     const currentDate = new Date(); // Get current date
-    const formattedDate = `${currentDate.getDate()}/${
-      currentDate.getMonth() + 1
-    }/${currentDate.getFullYear()}`;
+    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1
+      }/${currentDate.getFullYear()}`;
     const randomnumber = Math.floor(Math.random() * 50000) + 10000;
     const TableData = {
       id: payload?.id,

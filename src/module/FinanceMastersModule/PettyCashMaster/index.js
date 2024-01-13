@@ -20,6 +20,7 @@ const PettyCashMaster = ({ response }) => {
   console.log(response, "response")
   const [visible, setVisible] = useState(false);
   const [newDataTable, setnewDataTable] = useState([]);
+  const [search, setSearch] = useState('');
   const navigate = useNavigate()
   const items = [
     { id: 1, label: 'Petty Cash', url: '/master/finance/pettycash' },
@@ -55,7 +56,7 @@ const PettyCashMaster = ({ response }) => {
   const dispatch = useDispatch()
   const handleSubmit = (values) => {
     console.log(values.search, "getSearchPolicyList");
-    dispatch(getPettyCashSearchList({ textSearch: values.search }));
+    // dispatch(getPettyCashSearchList({ textSearch: values.search }));
   }
 
 
@@ -63,12 +64,7 @@ const PettyCashMaster = ({ response }) => {
     initialValues: { search: "" },
     onSubmit: handleSubmit
   });
-  useEffect(() => {
-    if (formik.values.search !== "") {
-     
-      dispatch(getPettyCashSearchList({ textSearch: formik.values.search }));
-    }
-  }, [formik.values.search]);
+ 
   const { pettyCashList,pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
     return {
       loading: pettyCashMainReducers?.loading,
@@ -79,6 +75,13 @@ const PettyCashMaster = ({ response }) => {
     };
   });
   console.log(pettyCashList, "pettyCashList");
+
+
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getPettyCashSearchList(search))
+    }
+  }, [search])
 
   return (
     <div className='grid  container__petty__cash'>
@@ -131,8 +134,8 @@ const PettyCashMaster = ({ response }) => {
                   style={{ width: '100%' }}
                   classNames='input__sub__account__petty'
                   placeholder='Search By Petty Cash Code'
-                  value={formik.values.search}
-                  onChange={formik.handleChange("search")}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -142,7 +145,7 @@ const PettyCashMaster = ({ response }) => {
           </div>
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
-              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}   pettyCashList={formik.values.search !== "" ? pettyCashSearchList : pettyCashList} />
+              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}   pettyCashList={search ? pettyCashSearchList : pettyCashList} />
             </div>
           </div>
         </div>

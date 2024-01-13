@@ -19,7 +19,7 @@ import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../../components/Toast";
 import { InputText } from "primereact/inputtext";
 import { useDispatch, useSelector } from 'react-redux';
-import { postAddCityMiddleware } from '../store/cityMiddleware';
+import { patchCityEditMiddleware, postAddCityMiddleware } from '../store/cityMiddleware';
 
 
 const initialValues = {
@@ -64,34 +64,36 @@ console.log(CityListById,"CityListById");
 
 
     const State = [
-        { name: 'Davao', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-    ]
+      { name: 'Davao', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+  ];
     console.log(statedata,"statedata");
     const setFormikValues = () => {
-        // const getCorrectionJVEdit = correctionJVList.find((item) => item.id === EditID);
-        const statedatas = CityListById.State
-        const updatedValues = {
-            CityCode: CityListById?.Citycode,
-            CityName: CityListById?.CityName,
-            Description: "Description",
-            State: statedata,
-            ModifiedBy: CityListById?.Modifiedby,
-          ModifiedOn: CityListById?.ModifiedOn
-        };
-        if (statedatas) {
-            formik.setValues({ ...formik.values, ...updatedValues });
-            setstatedata([{ name: statedatas, name: statedatas }]);
-          }
-        console.log(updatedValues, "updatedValues");
-        formik.setValues({ ...formik.values, ...updatedValues });
+      const statedatas = CityListById?.State; 
+      const updatedValues = {
+          CityCode: CityListById?.Citycode || "",
+          CityName: CityListById?.CityName || "",
+          Description: "Description",
+          State: statedatas || "",
+          ModifiedBy: CityListById?.Modifiedby || "",
+          ModifiedOn: CityListById?.ModifiedOn || ""
       };
+  
+      if (statedatas) {
+          formik.setValues({ ...formik.values, ...updatedValues });
+          setstatedata([{ name: statedatas, code: statedatas }]);    
+      }
+  
+      console.log(updatedValues, "updatedValues");
+      console.log(statedata, "statedata");
+  };
+  
       console.log(action, "action");
     
       useEffect(() => {
         if (action === "view" || action === "edit") {
           setFormikValues()
-          console.log(formik.values.CountryName, " formik.values.CountryName");
+          console.log(formik.values.CityCode, " formik.values.CountryName");
         }
       }, [])
    
@@ -111,8 +113,8 @@ console.log(CityListById,"CityListById");
       };
     
       const handleSubmitEdit = (values) => {
-        // dispatch(patchCountryEditMiddleware(values));
-        // console.log("Handle Edit Submission", values);
+        dispatch(patchCityEditMiddleware(values));
+        console.log("Handle Edit Submission", values);
         setTimeout(() => {
           Navigate("/master/generals/location/city");
         }, 3000);
@@ -126,23 +128,6 @@ console.log(CityListById,"CityListById");
         }
       };
 
-    // const handleSubmit = (values) => {
-        
-    //     const valueWithId = {
-    //         ...values,
-    //         id: cityTableList?.length + 1,
-    //       };
-    //       dispatch(postAddCityMiddleware(valueWithId));
-      
-
-    //     toastRef.current.showToast();
-        
-    //     setTimeout(() => {
-    //         Navigate("/master/generals/location/city")
-    //     }, 3000);
-    // }
-
-    // };
 
     const customValidation = (values) => {
         const errors = {};
@@ -312,7 +297,7 @@ console.log(CityListById,"CityListById");
                                     formik.setFieldValue("State", e.value)
                                 }
                                 options={State}
-                                optionLabel="name"
+                                optionLabel="name" 
                                 placeholder={"Select"}
                                 dropdownIcon={<SvgDropdown color={"#000"} />}
                                 disabled={action === "add"

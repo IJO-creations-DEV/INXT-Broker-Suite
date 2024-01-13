@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -12,14 +12,23 @@ import SvgTable from "../../../../assets/icons/SvgTable";
 import { InputSwitch } from "primereact/inputswitch";
 import { useLocation, useNavigate } from "react-router-dom";
 import ToggleButton from "../../../../components/ToggleButton";
-import { useDispatch } from "react-redux";
-import { getMainAccountDetailView, getPatchMainAccountDetailEdit } from "../store/mainAccountReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { getMainAccountDetailView, getMainAccountSearchList, getPatchMainAccountDetailEdit } from "../store/mainAccoutMiddleware";
 
 const TableData = ({ MainAccountList }) => {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState('');
   const location = useLocation();
   const tableView = location.state?.tableView || false;
   console.log(tableView, "find tableView");
+
+  const { MainAccountSearchList, loading } = useSelector(({ mainAccoutReducers }) => {
+    return {
+      loading: mainAccoutReducers?.loading,
+      MainAccountSearchList: mainAccoutReducers?.MainAccountSearchList,
+
+    };
+  });
 
   const emptyTableIcon = (
     <div>
@@ -108,6 +117,13 @@ const TableData = ({ MainAccountList }) => {
       </div>
     );
   };
+
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getMainAccountSearchList(search))
+    }
+  }, [search])
+
   return (
     <div className="master__main__table__container">
       <div className="grid m-0 header_search_container">
@@ -117,6 +133,8 @@ const TableData = ({ MainAccountList }) => {
             <InputText
               placeholder="Search By Main Account Code"
               className="searchinput__field"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </span>
         </div>
@@ -126,7 +144,7 @@ const TableData = ({ MainAccountList }) => {
       </div>
       <DataTable
         // value={tableView ? Productdata : []}
-        value={MainAccountList}
+        value={search?MainAccountSearchList:MainAccountList}
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}

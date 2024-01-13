@@ -24,10 +24,18 @@ export const getDisbursmentListMiddleware = createAsyncThunk(
 
 export const getDisbursmentSearchMiddleware = createAsyncThunk(
   GET_DISBURSMENT_VOUCHER_SEARCH,
-  async (payload, { rejectWithValue }) => {
+  async ({ field, value }, { rejectWithValue, getState }) => {
+    const { pettyCashDisbursementReducers } = getState();
+    const { DisbursmentList } = pettyCashDisbursementReducers;
+    function filterReceiptsByField(receipts, field, value) {
+      const lowercasedValue = value.toLowerCase();
+      return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
+    }
     try {
+      const filteredReceipts = filterReceiptsByField(DisbursmentList, field, value);
+
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return filteredReceipts;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

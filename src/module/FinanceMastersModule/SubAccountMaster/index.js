@@ -26,11 +26,12 @@ import CustomToast from "../../../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import SvgTable from "../../../assets/icons/SvgTable";
 import { useFormik } from "formik";
-import { getSubAccountEdit, getSubAccountView, postSubAccount } from "./store/subAccountMiddleWare";
+import { getSubAccountEdit, getSubAccountSearchList, getSubAccountView, postSubAccount } from "./store/subAccountMiddleWare";
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
   const [visiblePopup, setVisiblePopup] = useState(false);
+  const [search, setSearch] = useState('');
   const [visible, setVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOption1, setSelectedOption1] = useState(null);
@@ -45,11 +46,11 @@ const SubAccountMaster = () => {
 
   };
 
-  const { subAccountList, loading } = useSelector(({ subAccountMainReducers }) => {
+  const { subAccountList, loading,subAccountSearchList } = useSelector(({ subAccountMainReducers }) => {
     return {
       loading: subAccountMainReducers?.loading,
       subAccountList: subAccountMainReducers?.subAccountList,
-
+      subAccountSearchList: subAccountMainReducers?.subAccountSearchList,
     };
   });
   console.log(subAccountList, "subAccountList");
@@ -239,6 +240,12 @@ const SubAccountMaster = () => {
     },
   });
 
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getSubAccountSearchList(search))
+    }
+  }, [search])
+
 
   return (
     <div className='grid  container__subaccount'>
@@ -284,6 +291,8 @@ const SubAccountMaster = () => {
                   style={{ width: '100%' }}
                   classNames='input__sub__account__taxation'
                   placeholder='Search By Sub Account Code'
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -295,7 +304,7 @@ const SubAccountMaster = () => {
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
               <DataTable
-                value={subAccountList}
+                value={search ? subAccountSearchList :subAccountList}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__taxation'

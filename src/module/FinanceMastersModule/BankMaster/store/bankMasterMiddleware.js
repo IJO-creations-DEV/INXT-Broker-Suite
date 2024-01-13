@@ -21,10 +21,19 @@ export const getBankList = createAsyncThunk(
 
 export const getBankSearchList = createAsyncThunk(
     GET_BANK_SEARCH_LIST,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue,getState }) => {
+        const textSearch = payload;
+        console.log(textSearch, "textSearch")
+        const { bankMasterReducer } = getState();
+
+        const { BankList } = bankMasterReducer;
+        console.log(BankList, "1234")
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            const searchResults = BankList.filter(item => {
+                return item.bankCode.toLowerCase().includes(textSearch.toLowerCase());
+            });
+            console.log(searchResults, "searchResults")
+            return searchResults;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

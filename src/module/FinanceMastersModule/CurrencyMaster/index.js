@@ -1,4 +1,4 @@
-import React, { useState,useRef} from "react";
+import React, { useState,useRef, useEffect} from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../assets/icons/SvgAdd";
 import "../CurrencyMaster/index.scss";
@@ -23,16 +23,18 @@ import SvgEditicon from "../../../assets/icons/SvgEdit";
 // import { useNavigation } from '';
 import { TieredMenu } from 'primereact/tieredmenu';
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrencyDetailEdit, getCurrencyDetailView } from "./store/currencyMasterMiddlewar";
+import { getCurrencyDetailEdit, getCurrencyDetailView, getCurrencySearchList } from "./store/currencyMasterMiddlewar";
 
 const CurrencyMaster = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [search, setSearch] = useState('');
 
-  const { CurrencyList, loading } = useSelector(({ currencyMasterReducer }) => {
+  const { CurrencyList, loading,CurrencySearchList } = useSelector(({ currencyMasterReducer }) => {
     return {
       loading: currencyMasterReducer?.loading,
       CurrencyList: currencyMasterReducer?.CurrencyList,
+      CurrencySearchList: currencyMasterReducer?.CurrencySearchList,
     };
   });
   const isEmpty = CurrencyList.length === 0;
@@ -139,6 +141,13 @@ const CurrencyMaster = () => {
   const home = { label: "Master" };
 
   const handleClick = () => {};
+
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getCurrencySearchList(search))
+    }
+  }, [search])
+
   return (
     <div className="grid  container__currency">
       <div className="col-12 md:col-6 lg:col-6 mb-1">
@@ -184,6 +193,8 @@ const CurrencyMaster = () => {
                   style={{ width: "100%" }}
                   classNames="input__sub__account"
                   placeholder="Search By Currency code "
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -204,7 +215,7 @@ const CurrencyMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={CurrencyList}
+                value={search ? CurrencySearchList :CurrencyList}
                 tableStyle={{
                   minWidth: "50rem",
                   color: "#1C2536",

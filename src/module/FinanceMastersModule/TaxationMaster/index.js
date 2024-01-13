@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from 'primereact/button'
 import SvgAdd from '../../../assets/icons/SvgAdd'
 import "../TaxationMaster/index.scss"
@@ -17,7 +17,7 @@ import SvgEditIcon from "../../../assets/icons/SvgEditicons";
 import ToggleButton from "../../../components/ToggleButton";
 import Productdata from './mock'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTaxationView, getpatchTaxationEdit } from './store/taxationMiddleWare'
+import { getTaxationSearchList, getTaxationView, getpatchTaxationEdit } from './store/taxationMiddleWare'
 
 const TaxationMaster = () => {
   const navigate = useNavigate();
@@ -65,15 +65,17 @@ const TaxationMaster = () => {
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  
+  const [search, setSearch] = useState('');
+
   const onPageChange = (event) => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
-  const { taxationList, loading } = useSelector(({ taxationMainReducers }) => {
+  const { taxationList, loading,taxationSearchList } = useSelector(({ taxationMainReducers }) => {
     return {
       loading: taxationMainReducers?.loading,
       taxationList: taxationMainReducers?.taxationList,
+      taxationSearchList: taxationMainReducers?.taxationSearchList,
 
     };
   });
@@ -137,8 +139,13 @@ const TaxationMaster = () => {
         </React.Fragment>
       );
     },
-
   };
+
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getTaxationSearchList(search))
+    }
+  }, [search])
   return (
     <div className='grid  container__taxation'>
       <div className='col-12'>
@@ -173,6 +180,8 @@ const TaxationMaster = () => {
                   style={{ width: '100%' }}
                   classNames='input__sub__account__taxation'
                   placeholder='Search By Sub Account Code'
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -184,7 +193,7 @@ const TaxationMaster = () => {
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card">
               <DataTable
-                value={taxationList}
+                value={search ? taxationSearchList :taxationList}
                 style={{ overflowY: 'auto', maxWidth: '100%' }}
                 responsive={true}
                 className='table__view__taxation'

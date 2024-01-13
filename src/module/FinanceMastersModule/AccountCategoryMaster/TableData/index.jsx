@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -10,15 +10,19 @@ import SvgEdit from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../components/ToggleButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAccountCategorySearchList } from "../store/accountCategoryMeddleware";
 
 const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
-  const { AccountCategoryList, loading } = useSelector(
+  const [search, setSearch] = useState('');
+  const { AccountCategoryList, loading, AccountCategorySearchList } = useSelector(
     ({ accountCategoryReducer }) => {
       return {
         loading: accountCategoryReducer?.loading,
         AccountCategoryList: accountCategoryReducer?.AccountCategoryList,
+        AccountCategorySearchList: accountCategoryReducer?.AccountCategorySearchList,
       };
     }
   );
@@ -97,6 +101,13 @@ const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
       </div>
     );
   };
+
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getAccountCategorySearchList(search))
+    }
+  }, [search])
+
   return (
     <div className="master__account__table__container">
       <div className="grid m-0 header_search_container">
@@ -106,6 +117,8 @@ const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
             <InputText
               placeholder="Search By Account Category Code"
               className="searchinput__field"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </span>
         </div>
@@ -114,7 +127,7 @@ const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
         </div>
       </div>
       <DataTable
-        value={AccountCategoryList}
+        value={search ? AccountCategorySearchList : AccountCategoryList}
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -13,24 +13,32 @@ import "./index.scss";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
-import { getViewDisbursmentMiddleware } from "../store/pettyCashDisbursementMiddleware";
+import { getDisbursmentSearchMiddleware, getViewDisbursmentMiddleware } from "../store/pettyCashDisbursementMiddleware";
 
 
 const DisbursementTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("")
+  const [globalFilter, setGlobalFilter] = useState("PettycashCode")
   
-  const searchs = [
-    { name: 'Name', code: 'NY' },
-    { name: 'Date', code: 'RM' },
-    { name: 'Voucher Number', code: 'LDN' }]
-  const { DisbursmentList, loading } = useSelector(({ pettyCashDisbursementReducers }) => {
+
+  const { DisbursmentList, loading,DisbursmentSearch } = useSelector(({ pettyCashDisbursementReducers }) => {
     return {
       loading: pettyCashDisbursementReducers?.loading,
       DisbursmentList: pettyCashDisbursementReducers?.DisbursmentList,
+      DisbursmentSearch: pettyCashDisbursementReducers?.DisbursmentSearch
     };
   });
+
+  const searchs = [
+    { name: 'Pettycash Code', code: 'PettycashCode' },
+    { name: 'Transaction code', code: 'Transactioncode' },
+    { name: 'Transaction Number', code: 'TransactionNumber' },
+    { name: 'Branch code', code: 'Branchcode' },
+    { name: 'Department code', code: 'Departmentcode' },
+    { name: 'Date', code: 'Date' },
+  ]
 
   const isEmpty = DisbursmentList.length === 0;
 
@@ -84,7 +92,7 @@ const DisbursementTable = () => {
   };
 
   const handleView = (rowData) => {
-    dispatch(getViewDisbursmentMiddleware(rowData));
+    dispatch(getDisbursmentSearchMiddleware(rowData));
     console.log("View clicked:", rowData);
     navigate("/accounts/pettycash/disbursementdetailview");
   };
@@ -111,6 +119,19 @@ const DisbursementTable = () => {
     },
   ];
 
+  useEffect(() => {
+
+    console.log(globalFilter, "as")
+    if (globalFilter?.length > 0) {
+      if (search?.length > 0) {
+        dispatch(getDisbursmentSearchMiddleware({
+          field: globalFilter,
+          value: search
+        }))
+
+      }
+    }
+  }, [search])
 
   return (
     <div className="disbursement__table">
@@ -122,11 +143,13 @@ const DisbursementTable = () => {
               <InputText
                 placeholder="Search customers"
                 className="searchinput_left"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-          <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={searchs} optionLabel="name" 
+          <Dropdown  value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
                 placeholder="Search by"  
                 className="sorbyfilter_container"
                 dropdownIcon={<SvgDropdownicon/>}
@@ -136,7 +159,7 @@ const DisbursementTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={DisbursmentList}
+            value={search ? DisbursmentSearch : DisbursmentList}
             tableStyle={{
               
               color: "#1C2536",

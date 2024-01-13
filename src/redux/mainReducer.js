@@ -5,7 +5,7 @@ import currencyMasterReducer from "../module/FinanceMastersModule/CurrencyMaster
 import exchangeMasterReducer from "../module/FinanceMastersModule/ExchangeRateMaster/store/exchangeMasterReducer";
 import bankMasterReducer from "../module/FinanceMastersModule/BankMaster/store/bankMasterReducer";
 import accountCategoryReducer from "../module/FinanceMastersModule/AccountCategoryMaster/store/accountCategoryReducer";
-import mainAccoutMiddleware from "../module/FinanceMastersModule/MainAccountMaster/store/mainAccoutMiddleware";
+import mainAccoutReducers from "../module/FinanceMastersModule/MainAccountMaster/store/mainAccountReducer";
 import commissionMianReducers from "../module/GeneralMasters/Commission/store/commissionReducers";
 import taxationMainReducers from "../module/FinanceMastersModule/TaxationMaster/store/taxationReducers";
 import subAccountMainReducers from "../module/FinanceMastersModule/SubAccountMaster/store/subAccountReducers";
@@ -39,7 +39,7 @@ const reducers = {
   exchangeMasterReducer,
   bankMasterReducer,
   accountCategoryReducer,
-  mainAccoutMiddleware,
+  mainAccoutReducers,
   commissionMianReducers,
   taxationMainReducers,
   subAccountMainReducers,

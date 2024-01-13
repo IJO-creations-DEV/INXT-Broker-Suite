@@ -61,10 +61,19 @@ export const postAddTaxationMiddileware = createAsyncThunk(
 
 export const getTaxationSearchList = createAsyncThunk(
     GET_TAXATION_SEARCH_LIST,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue,getState }) => {
+        const textSearch = payload;
+        console.log(textSearch, "textSearch")
+        const { taxationMainReducers } = getState();
+
+        const { taxationList } = taxationMainReducers;
+        console.log(taxationList, "1234")
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            const searchResults = taxationList.filter(item => {
+                return item.taxCode.toLowerCase().includes(textSearch.toLowerCase());
+            });
+            console.log(searchResults, "searchResults")
+            return searchResults;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

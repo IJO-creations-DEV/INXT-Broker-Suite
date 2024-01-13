@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import CustomToast from "../../../../components/Toast";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../assets/icons/SvgBackicon";
-import { postMainAccountStatus } from "../store/mainAccountReducer";
+import { postMainAccountStatus } from "../store/mainAccoutMiddleware";
 import { useDispatch } from "react-redux";
 
 const AddMainAccount = () => {

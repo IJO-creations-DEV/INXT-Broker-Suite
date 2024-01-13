@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getRequest } from "../../../utility/commonServices";
-import { APIROUTES } from "../../../routes/apiRoutes";
+// import { getRequest } from "../../../utility/commonServices";
+// import { APIROUTES } from "../../../routes/apiRoutes";
 import {
   GET_EMPLOYEE_DETAILS,
   GET_EMPLOYEE_BY_ID,

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getEmployeeListMiddleware, getEmployeeListByIdMiddleware, postAddEmployeeMiddleware, patchEmployeeEditMiddleware, getSearchEmployeeMiddleware } from "./employeeMiddleware";
-import SvgIconeye from "../../../assets/icons/SvgIconeye";
+// import SvgIconeye from "../../../assets/icons/SvgIconeye";
 const initialState = {
   loading: false,
   error: "",

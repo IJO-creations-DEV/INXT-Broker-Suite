@@ -15,8 +15,23 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  patchInsuranceSignatoriesMiddleWare,
+  postInsuranceSignatoriesMiddleWare,
+} from "../store/insuranceSignatoriesMiddleware";
 
 const SignatoriesDetailsAction = ({ action }) => {
+  const dispatch = useDispatch();
+  const { InsuranceSignatoriesList, loading } = useSelector(
+    ({ insuranceSignatoriesReducers }) => {
+      return {
+        loading: insuranceSignatoriesReducers?.loading,
+        InsuranceSignatoriesList:
+          insuranceSignatoriesReducers?.InsuranceSignatoriesList,
+      };
+    }
+  );
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -25,7 +40,12 @@ const SignatoriesDetailsAction = ({ action }) => {
 
   useEffect(() => {
     if (action === "edit" || action === "view") {
-      setFormikValues();
+      if (id != null) {
+        const FilteredList = InsuranceSignatoriesList.filter(
+          (data) => data.id === parseInt(id)
+        );
+        setFormikValues(FilteredList);
+      }
     }
   }, [action]);
   const items = [
@@ -50,25 +70,6 @@ const SignatoriesDetailsAction = ({ action }) => {
   ];
   const home = { label: "Master" };
 
-  const cityOptionsList = [
-    { label: "Option 1", value: "City 1" },
-    { label: "Option 2", value: "City 2" },
-    { label: "Option 3", value: "City 3" },
-    { label: "Option 4", value: "City 4" },
-  ];
-  const stateOptionsList = [
-    { label: "Option 1", value: "State 1" },
-    { label: "Option 2", value: "State 2" },
-    { label: "Option 3", value: "State 3" },
-    { label: "Option 4", value: "State 4" },
-  ];
-  const countryOptionsList = [
-    { label: "Option 1", value: "Country 1" },
-    { label: "Option 2", value: "Country 2" },
-    { label: "Option 3", value: "Country 3" },
-    { label: "Option 4", value: "Country 4" },
-  ];
-
   const customValidation = (values) => {
     const errors = {};
 
@@ -87,6 +88,12 @@ const SignatoriesDetailsAction = ({ action }) => {
   const handleSubmit = (values) => {
     // Handle form submission
     if (action === "add") {
+      const valueWithId = {
+        ...values,
+        id: InsuranceSignatoriesList?.length + 1,
+      };
+      console.log(valueWithId, "find valueWithId");
+      dispatch(postInsuranceSignatoriesMiddleWare(valueWithId));
       toastRef.current.showToast();
 
       {
@@ -95,18 +102,22 @@ const SignatoriesDetailsAction = ({ action }) => {
           formik.resetForm();
         }, 3000);
       }
+    } else if (action === "edit") {
+      dispatch(patchInsuranceSignatoriesMiddleWare(values));
+      navigation("/master/generals/insurancemanagement/signatories");
     } else {
       navigation("/master/generals/insurancemanagement/signatories");
     }
 
     console.log(values, "find values");
   };
-  const setFormikValues = () => {
-    const signatoryCode = "Signatory0123";
-    const signatoryName = "Signatory";
-    const signatoryDescription = "Signatory description";
-    const modifiedBy = "Name";
-    const modifiedOn = "12/12/23";
+  const setFormikValues = (data) => {
+    console.log(data, "find setFormikValues ");
+    const signatoryCode = data[0]?.signatoriesCode;
+    const signatoryName = data[0]?.signatoryName;
+    const signatoryDescription = data[0]?.signatoryDescription;
+    const modifiedBy = data[0]?.modifiedby;
+    const modifiedOn = data[0]?.modifiedOn;
 
     const updatedValues = {
       signatoryCode: `${signatoryCode}`,
@@ -119,6 +130,7 @@ const SignatoriesDetailsAction = ({ action }) => {
   };
   const formik = useFormik({
     initialValues: {
+      id: id,
       signatoryCode: "",
       signatoryName: "",
       signatoryDescription: "",

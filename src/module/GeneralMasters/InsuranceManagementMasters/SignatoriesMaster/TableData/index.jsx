@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -11,10 +10,23 @@ import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../../assets/icons/SvgTable";
 import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../../components/ToggleButton";
+import { useSelector, useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { getSearchInsuranceSignatoriesMiddleware } from "../store/insuranceSignatoriesMiddleware";
 
 const TableData = ({ navigate }) => {
   // const navigate = useNavigation();
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const { InsuranceSignatoriesList, loading, SearchTableList } = useSelector(
+    ({ insuranceSignatoriesReducers }) => {
+      return {
+        loading: insuranceSignatoriesReducers?.loading,
+        InsuranceSignatoriesList:
+          insuranceSignatoriesReducers?.InsuranceSignatoriesList,
+        SearchTableList: insuranceSignatoriesReducers?.SearchTableList,
+      };
+    }
+  );
 
   const emptyTableIcon = (
     <div>
@@ -69,24 +81,31 @@ const TableData = ({ navigate }) => {
     );
   };
 
-  const renderToggleButton = (rowData) => {
-    return (
-      <div>
-        <ToggleButton />
-      </div>
-    );
-  };
-
   const handleView = (id) => {
-    navigate(
-      `/master/generals/insurancemanagement/signatories/view/${id}`
-    );
+    navigate(`/master/generals/insurancemanagement/signatories/view/${id}`);
   };
   const handleEdit = (id) => {
-    navigate(
-      `/master/generals/insurancemanagement/signatories/edit/${id}`
+    navigate(`/master/generals/insurancemanagement/signatories/edit/${id}`);
+  };
+  const handleSubmit = (values) => {
+    dispatch(
+      getSearchInsuranceSignatoriesMiddleware({ textSearch: values.search })
     );
   };
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit,
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+      dispatch(
+        getSearchInsuranceSignatoriesMiddleware({
+          textSearch: formik.values.search,
+        })
+      );
+    }
+  }, [formik.values.search]);
+
   return (
     <div className="signatories__master__table__container">
       <div className="grid m-0 header_search_container">
@@ -96,6 +115,8 @@ const TableData = ({ navigate }) => {
             <InputText
               placeholder="Search By Signatories Code"
               className="searchinput__field"
+              value={formik.values.search}
+              onChange={formik.handleChange("search")}
             />
           </span>
         </div>
@@ -104,7 +125,11 @@ const TableData = ({ navigate }) => {
         </div>
       </div>
       <DataTable
-        value={Productdata}
+        value={
+          formik.values.search !== ""
+            ? SearchTableList
+            : InsuranceSignatoriesList
+        }
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}

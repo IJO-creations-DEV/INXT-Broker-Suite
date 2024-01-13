@@ -15,8 +15,23 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  patchInsuranceCoverMiddleWare,
+  postInsuranceCoverMiddleWare,
+} from "../store/insuranceCoverMiddleware";
 
 const CoverDetailsAction = ({ action }) => {
+  const dispatch = useDispatch();
+  const { InsuranceCoverList, loading } = useSelector(
+    ({ insuranceCoverReducers }) => {
+      return {
+        loading: insuranceCoverReducers?.loading,
+        InsuranceCoverList: insuranceCoverReducers?.InsuranceCoverList,
+      };
+    }
+  );
+
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -25,7 +40,12 @@ const CoverDetailsAction = ({ action }) => {
 
   useEffect(() => {
     if (action === "edit" || action === "view") {
-      setFormikValues();
+      if (id != null) {
+        const FilteredList = InsuranceCoverList.filter(
+          (data) => data.id === parseInt(id)
+        );
+        setFormikValues(FilteredList);
+      }
     }
   }, [action]);
   const items = [
@@ -50,25 +70,6 @@ const CoverDetailsAction = ({ action }) => {
   ];
   const home = { label: "Master" };
 
-  const cityOptionsList = [
-    { label: "Option 1", value: "City 1" },
-    { label: "Option 2", value: "City 2" },
-    { label: "Option 3", value: "City 3" },
-    { label: "Option 4", value: "City 4" },
-  ];
-  const stateOptionsList = [
-    { label: "Option 1", value: "State 1" },
-    { label: "Option 2", value: "State 2" },
-    { label: "Option 3", value: "State 3" },
-    { label: "Option 4", value: "State 4" },
-  ];
-  const countryOptionsList = [
-    { label: "Option 1", value: "Country 1" },
-    { label: "Option 2", value: "Country 2" },
-    { label: "Option 3", value: "Country 3" },
-    { label: "Option 4", value: "Country 4" },
-  ];
-
   const customValidation = (values) => {
     const errors = {};
 
@@ -87,6 +88,11 @@ const CoverDetailsAction = ({ action }) => {
   const handleSubmit = (values) => {
     // Handle form submission
     if (action === "add") {
+      const valueWithId = {
+        ...values,
+        id: InsuranceCoverList?.length + 1,
+      };
+      dispatch(postInsuranceCoverMiddleWare(valueWithId));
       toastRef.current.showToast();
 
       {
@@ -95,18 +101,22 @@ const CoverDetailsAction = ({ action }) => {
           formik.resetForm();
         }, 3000);
       }
+    } else if (action === "edit") {
+      dispatch(patchInsuranceCoverMiddleWare(values));
+      navigation("/master/generals/insurancemanagement/cover");
     } else {
       navigation("/master/generals/insurancemanagement/cover");
     }
 
     console.log(values, "find values");
   };
-  const setFormikValues = () => {
-    const coverCode = "CC1234";
-    const coverName = "Name";
-    const coverDescription = "Cover description";
-    const modifiedBy = "Johnson";
-    const modifiedOn = "12/12/23";
+  const setFormikValues = (data) => {
+    console.log(data, "find setFormikValues");
+    const coverCode = data[0]?.coverCode;
+    const coverName = data[0]?.coverName;
+    const coverDescription = data[0]?.coverDescription;
+    const modifiedBy = data[0].modifiedby;
+    const modifiedOn = data[0].modifiedOn;
 
     const updatedValues = {
       coverCode: `${coverCode}`,
@@ -119,6 +129,7 @@ const CoverDetailsAction = ({ action }) => {
   };
   const formik = useFormik({
     initialValues: {
+      id: id,
       coverCode: "",
       coverName: "",
       coverDescription: "",

@@ -9,8 +9,22 @@ import { Button } from "primereact/button";
 import { useNavigate, useParams } from "react-router-dom";
 import CustomToast from "../../../../../components/Toast";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  patchInsuranceVehicleMiddleWare,
+  postInsuranceVehicleMiddleWare,
+} from "../store/insuranceVehicleMiddleware";
 
 const VehicleDetailsAction = ({ action }) => {
+  const dispatch = useDispatch();
+  const { InsuranceVehicleList, loading } = useSelector(
+    ({ insuranceVehicleReducers }) => {
+      return {
+        loading: insuranceVehicleReducers?.loading,
+        InsuranceVehicleList: insuranceVehicleReducers?.InsuranceVehicleList,
+      };
+    }
+  );
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -19,7 +33,12 @@ const VehicleDetailsAction = ({ action }) => {
 
   useEffect(() => {
     if (action === "edit" || action === "view") {
-      setFormikValues();
+      if (id != null) {
+        const FilteredList = InsuranceVehicleList.filter(
+          (data) => data.id === parseInt(id)
+        );
+        setFormikValues(FilteredList);
+      }
     }
   }, [action]);
   const items = [
@@ -43,25 +62,6 @@ const VehicleDetailsAction = ({ action }) => {
     },
   ];
   const home = { label: "Master" };
-
-  const cityOptionsList = [
-    { label: "Option 1", value: "City 1" },
-    { label: "Option 2", value: "City 2" },
-    { label: "Option 3", value: "City 3" },
-    { label: "Option 4", value: "City 4" },
-  ];
-  const stateOptionsList = [
-    { label: "Option 1", value: "State 1" },
-    { label: "Option 2", value: "State 2" },
-    { label: "Option 3", value: "State 3" },
-    { label: "Option 4", value: "State 4" },
-  ];
-  const countryOptionsList = [
-    { label: "Option 1", value: "Country 1" },
-    { label: "Option 2", value: "Country 2" },
-    { label: "Option 3", value: "Country 3" },
-    { label: "Option 4", value: "Country 4" },
-  ];
 
   const customValidation = (values) => {
     const errors = {};
@@ -92,6 +92,12 @@ const VehicleDetailsAction = ({ action }) => {
   const handleSubmit = (values) => {
     // Handle form submission
     if (action === "add") {
+      const valueWithId = {
+        ...values,
+        id: InsuranceVehicleList?.length + 1,
+      };
+      console.log(valueWithId, "find valueWithId");
+      dispatch(postInsuranceVehicleMiddleWare(valueWithId));
       toastRef.current.showToast();
 
       {
@@ -100,21 +106,25 @@ const VehicleDetailsAction = ({ action }) => {
           formik.resetForm();
         }, 3000);
       }
+    } else if (action === "edit") {
+      dispatch(patchInsuranceVehicleMiddleWare(values));
+      navigation("/master/generals/insurancemanagement/vehicle");
     } else {
       navigation("/master/generals/insurancemanagement/vehicle");
     }
 
     console.log(values, "find values");
   };
-  const setFormikValues = () => {
-    const vehicleCode = "VC12345";
-    const vehicleName = "Kia";
-    const vehicleVariant = "S Series";
-    const vehicleModel = "Seltos";
-    const vehicleBrand = "Kia";
-    const seatingCapacity = "7";
+  const setFormikValues = (data) => {
+    const vehicleCode = data[0]?.vehicleCode;
+    const vehicleName = data[0]?.vehicleName;
+    const vehicleVariant = data[0]?.vehicleVariant;
+    const vehicleModel = data[0]?.vehicleModel;
+    const vehicleBrand = data[0]?.vehicleBrand;
+    const seatingCapacity = data[0]?.seatingCapacity;
 
     const updatedValues = {
+      id: id,
       vehicleCode: `${vehicleCode}`,
       vehicleName: `${vehicleName}`,
       vehicleVariant: `${vehicleVariant}`,

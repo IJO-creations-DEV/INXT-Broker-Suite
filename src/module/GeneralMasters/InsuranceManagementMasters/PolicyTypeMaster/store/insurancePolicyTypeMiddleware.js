@@ -2,16 +2,16 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../../utility/commonServices";
 import { APIROUTES } from "../../../../../routes/apiRoutes";
 import {
-  GET_INSURANCE_COMPANY_SEARCH_LIST,
-  GET_INSURANCE_COMPANY_LIST,
-  POST_INSURANCE_COMPANY_DATA,
-  PATCH_INSURANCE_COMPANY_DATA,
+  GET_INSURANCE_POLICY_TYPE_SEARCH_LIST,
+  GET_INSURANCE_POLICY_TYPE_LIST,
+  POST_INSURANCE_POLICY_TYPE_DATA,
+  PATCH_INSURANCE_POLICY_TYPE_DATA,
 } from "../../../../../redux/actionTypes";
 
-export const getInsuranceCompanyListMiddleWare = createAsyncThunk(
-  GET_INSURANCE_COMPANY_LIST,
+export const getInsurancePolicyTypeMiddleWare = createAsyncThunk(
+  GET_INSURANCE_POLICY_TYPE_LIST,
   async (payload, { rejectWithValue, getState }) => {
-    const { insuranceCompanyReducers } = getState();
+    const { insurancePolicyTypeReducers } = getState();
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -20,18 +20,19 @@ export const getInsuranceCompanyListMiddleWare = createAsyncThunk(
     }
   }
 );
-export const postInsuranceCompanyMiddleWare = createAsyncThunk(
-  POST_INSURANCE_COMPANY_DATA,
+
+export const postInsurancePolicyTypeMiddleWare = createAsyncThunk(
+  POST_INSURANCE_POLICY_TYPE_DATA,
   async (payload, { rejectWithValue, getState }) => {
     const bodyTableData = {
       id: payload?.id,
       modifiedby: "Name",
       modifiedOn: "12/12/2023",
       Status: 0,
-      insuranceCompanyCode: payload?.insuranceCompanyCode,
-      insuranceCompanyName: payload?.insuranceCompanyName,
-      email: payload?.email,
-      phoneNumber: payload?.phoneNumber,
+      policytypeCode: payload?.policyTypeCode,
+      policyTypeName: payload?.policyTypeName,
+      product: payload?.policyTypeDescription,
+      policyTypeDescription: payload?.Product,
       action: payload?.id,
     };
     console.log(bodyTableData, "find add datas in midd");
@@ -44,25 +45,21 @@ export const postInsuranceCompanyMiddleWare = createAsyncThunk(
     }
   }
 );
-export const patchInsuranceCompanyMiddleWare = createAsyncThunk(
-  PATCH_INSURANCE_COMPANY_DATA,
+export const patchInsurancePolicyTypeMiddleWare = createAsyncThunk(
+  PATCH_INSURANCE_POLICY_TYPE_DATA,
   async (payload, { rejectWithValue, getState }) => {
-    const { insuranceCompanyReducers } = getState();
-    const { InsuranceCompanyList } = insuranceCompanyReducers;
-    const updatedData = InsuranceCompanyList?.map((item) => {
+    console.log(payload, "find edit load");
+    const { insurancePolicyTypeReducers } = getState();
+    const { InsurancePolicyType } = insurancePolicyTypeReducers;
+    console.log(InsurancePolicyType, "find original data");
+    const updatedData = InsurancePolicyType?.map((item) => {
       if (parseInt(item.id) === parseInt(payload?.id)) {
         return {
           ...item,
-          insuranceCompanyCode: payload?.insuranceCompanyCode,
-          insuranceCompanyName: payload?.insuranceCompanyName,
-          email: payload?.email,
-          phoneNumber: payload?.phoneNumber,
-          addressLine1: payload?.addressLine1,
-          addressLine2: payload?.addressLine2,
-          addressLine3: payload?.addressLine3,
-          city: payload?.city,
-          state: payload?.state,
-          country: payload?.country,
+          policytypeCode: payload?.policyTypeCode,
+          policyTypeName: payload?.policyTypeName,
+          product: payload?.policyTypeDescription,
+          policyTypeDescription: payload?.Product,
         };
       }
       return item;
@@ -77,26 +74,26 @@ export const patchInsuranceCompanyMiddleWare = createAsyncThunk(
     }
   }
 );
-export const getSearchInsuranceCompanyMiddleware = createAsyncThunk(
-  GET_INSURANCE_COMPANY_SEARCH_LIST,
+export const getSearchInsurancePolicyTypeMiddleware = createAsyncThunk(
+  GET_INSURANCE_POLICY_TYPE_SEARCH_LIST,
   async (payload, { rejectWithValue, getState }) => {
     const { textSearch } = payload;
-    const { insuranceCompanyReducers } = getState();
+    const { insurancePolicyTypeReducers } = getState();
 
-    const { InsuranceCompanyList } = insuranceCompanyReducers;
-    console.log(InsuranceCompanyList, "1234");
+    const { InsurancePolicyType } = insurancePolicyTypeReducers;
+    console.log(InsurancePolicyType, "1234");
 
     try {
       if (textSearch.trim() !== "") {
-        const searchResults = InsuranceCompanyList?.filter((item) => {
-          return item.insuranceCompanyCode
+        const searchResults = InsurancePolicyType?.filter((item) => {
+          return item.policytypeCode
             .toLowerCase()
             .includes(textSearch.toLowerCase());
         });
         console.log(searchResults, "searchResults");
         return searchResults;
       } else {
-        return InsuranceCompanyList;
+        return InsurancePolicyType;
       }
     } catch (error) {
       return rejectWithValue(error?.response?.data?.error?.message);

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getInsuranceCompanyListMiddleWare,
-  getSearchInsuranceCompanyMiddleWare,
   postInsuranceCompanyMiddleWare,
-  getMainAccountDetailView,
+  patchInsuranceCompanyMiddleWare,
+  getSearchInsuranceCompanyMiddleware,
 } from "./insuranceCompanyMiddleware";
 const initialState = {
   loading: false,
@@ -19,6 +19,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 1,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 2,
@@ -30,6 +36,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 2,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 3,
@@ -41,6 +53,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 3,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 4,
@@ -52,6 +70,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 4,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 5,
@@ -63,6 +87,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 5,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 6,
@@ -74,6 +104,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 6,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 7,
@@ -85,6 +121,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 7,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 8,
@@ -96,6 +138,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 8,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 9,
@@ -107,6 +155,12 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 9,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
     {
       id: 10,
@@ -118,39 +172,22 @@ const initialState = {
       email: "zealinsurance@abc.com",
       phoneNumber: "9874563210",
       action: 10,
+      addressLine1: "addressLine1",
+      addressLine2: "addressLine2",
+      addressLine3: "addressLine3",
+      city: "City 1",
+      state: "State 1",
+      country: "Country 1",
     },
   ],
-  MainAccountSearchList: [],
-  MainAccountStatus: {},
-  AddMainAccount: {},
-  MainAccountDetailEdit: {},
-  MainAccountDetailView: {},
+  SearchTableList: [],
 };
-const insuranceCompanyMasterReducer = createSlice({
+const insuranceManagementCompanyMasterReducer = createSlice({
   name: "mainAccountMaster",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // searchInsutanceCompany
-    builder.addCase(getSearchInsuranceCompanyMiddleWare.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(
-      getSearchInsuranceCompanyMiddleWare.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        // state.InsuranceCompanyList = action.payload;
-      }
-    );
-    builder.addCase(
-      getSearchInsuranceCompanyMiddleWare.rejected,
-      (state, action) => {
-        state.loading = false;
 
-        // state.InsuranceCompanyList = {};
-        state.error = typeof action.payload === "string" ? action.payload : "";
-      }
-    );
     //InsuranceCompanyList
 
     builder.addCase(getInsuranceCompanyListMiddleWare.pending, (state) => {
@@ -173,7 +210,7 @@ const insuranceCompanyMasterReducer = createSlice({
       }
     );
 
-    //MainAccountStatus
+    //postInsuranceCompany
 
     builder.addCase(postInsuranceCompanyMiddleWare.pending, (state) => {
       state.loading = true;
@@ -195,13 +232,48 @@ const insuranceCompanyMasterReducer = createSlice({
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
+    //EditInsuranceCompany
+    builder.addCase(patchInsuranceCompanyMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      patchInsuranceCompanyMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
 
-    //AddMainAccount
+        state.InsuranceCompanyList = action.payload;
+      }
+    );
+    builder.addCase(
+      patchInsuranceCompanyMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
 
-    //MainAccountDetailEdit
+        state.editList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+    //searchInsuranceCompany
+    builder.addCase(getSearchInsuranceCompanyMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getSearchInsuranceCompanyMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.SearchTableList = action.payload;
+      }
+    );
+    builder.addCase(
+      getSearchInsuranceCompanyMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
 
-    //MainAccountDetailView
+        state.SearchTableList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
   },
 });
 
-export default insuranceCompanyMasterReducer.reducer;
+export default insuranceManagementCompanyMasterReducer.reducer;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -10,13 +10,17 @@ import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../../assets/icons/SvgTable";
 import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../../components/ToggleButton";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { getSearchInsuranceCompanyMiddleware } from "../store/insuranceCompanyMiddleware";
 const TableData = ({ navigate }) => {
-  const { InsuranceCompanyList, loading } = useSelector(
+  const dispatch = useDispatch();
+  const { InsuranceCompanyList, loading, SearchTableList } = useSelector(
     ({ insuranceCompanyReducers }) => {
       return {
         loading: insuranceCompanyReducers?.loading,
         InsuranceCompanyList: insuranceCompanyReducers?.InsuranceCompanyList,
+        SearchTableList: insuranceCompanyReducers?.SearchTableList,
       };
     }
   );
@@ -74,14 +78,6 @@ const TableData = ({ navigate }) => {
     );
   };
 
-  const renderToggleButton = (rowData) => {
-    return (
-      <div>
-        <ToggleButton />
-      </div>
-    );
-  };
-
   const handleView = (id) => {
     navigate(
       `/master/generals/insurancemanagement/insurancecompany/view/${id}`
@@ -92,6 +88,24 @@ const TableData = ({ navigate }) => {
       `/master/generals/insurancemanagement/insurancecompany/edit/${id}`
     );
   };
+  const handleSubmit = (values) => {
+    dispatch(
+      getSearchInsuranceCompanyMiddleware({ textSearch: values.search })
+    );
+  };
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit,
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+      dispatch(
+        getSearchInsuranceCompanyMiddleware({
+          textSearch: formik.values.search,
+        })
+      );
+    }
+  }, [formik.values.search]);
   return (
     <div className="insurance__company__table__container">
       <div className="grid m-0 header_search_container">
@@ -101,6 +115,8 @@ const TableData = ({ navigate }) => {
             <InputText
               placeholder="Search By Insurance Company  Code"
               className="searchinput__field"
+              value={formik.values.search}
+              onChange={formik.handleChange("search")}
             />
           </span>
         </div>
@@ -109,7 +125,9 @@ const TableData = ({ navigate }) => {
         </div>
       </div>
       <DataTable
-        value={InsuranceCompanyList}
+        value={
+          formik.values.search !== "" ? SearchTableList : InsuranceCompanyList
+        }
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}
@@ -162,9 +180,12 @@ const TableData = ({ navigate }) => {
           field="id"
           body={renderActionButton}
           header="Action"
-          headerStyle={{display:'flex',justifyContent:'center',alignItems:'center'}}
+          headerStyle={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
           className="fieldvalueaction_container"
-          
         ></Column>
       </DataTable>
     </div>

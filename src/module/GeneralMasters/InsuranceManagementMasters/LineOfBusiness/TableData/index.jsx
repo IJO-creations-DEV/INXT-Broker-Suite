@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import SvgIconeye from "../../../../../assets/icons/SvgIconeye";
 import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../../assets/icons/SvgTable";
-import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../../components/ToggleButton";
+import { useFormik } from "formik";
+import { useSelector, useDispatch } from "react-redux";
+import { getSearchInsurancelineOfBusinessMiddleware } from "../store/insuranceLineOfBusinessMiddleware";
 
 const TableData = ({ navigate }) => {
+  const dispatch = useDispatch();
+  const { InsuranceLineOfBusinessList, loading, SearchTableList } = useSelector(
+    ({ insuranceLineOfBusinessReducers }) => {
+      return {
+        loading: insuranceLineOfBusinessReducers?.loading,
+        InsuranceLineOfBusinessList:
+          insuranceLineOfBusinessReducers?.InsuranceLineOfBusinessList,
+        SearchTableList: insuranceLineOfBusinessReducers?.SearchTableList,
+      };
+    }
+  );
   // const navigate = useNavigation();
-  const [products, setProducts] = useState([]);
 
   const emptyTableIcon = (
     <div>
@@ -68,25 +79,30 @@ const TableData = ({ navigate }) => {
       </div>
     );
   };
-
-  const renderToggleButton = (rowData) => {
-    return (
-      <div>
-        <ToggleButton />
-      </div>
-    );
-  };
-
   const handleView = (id) => {
-    navigate(
-      `/master/generals/insurancemanagement/lineofbusiness/view/${id}`
-    );
+    navigate(`/master/generals/insurancemanagement/lineofbusiness/view/${id}`);
   };
   const handleEdit = (id) => {
-    navigate(
-      `/master/generals/insurancemanagement/lineofbusiness/edit/${id}`
+    navigate(`/master/generals/insurancemanagement/lineofbusiness/edit/${id}`);
+  };
+  const handleSubmit = (values) => {
+    dispatch(
+      getSearchInsurancelineOfBusinessMiddleware({ textSearch: values.search })
     );
   };
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit,
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+      dispatch(
+        getSearchInsurancelineOfBusinessMiddleware({
+          textSearch: formik.values.search,
+        })
+      );
+    }
+  }, [formik.values.search]);
   return (
     <div className="line__business__compnay_container">
       <div className="grid m-0 header_search_container">
@@ -96,6 +112,8 @@ const TableData = ({ navigate }) => {
             <InputText
               placeholder="Search By Insurance Company  Code"
               className="searchinput__field"
+              value={formik.values.search}
+              onChange={formik.handleChange("search")}
             />
           </span>
         </div>
@@ -104,7 +122,11 @@ const TableData = ({ navigate }) => {
         </div>
       </div>
       <DataTable
-        value={Productdata}
+        value={
+          formik.values.search !== ""
+            ? SearchTableList
+            : InsuranceLineOfBusinessList
+        }
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}
@@ -142,11 +164,10 @@ const TableData = ({ navigate }) => {
           body={(columnData) => <ToggleButton id={columnData.id} />}
         ></Column>
         <Column
-          
           field="id"
           body={renderActionButton}
           header="Action"
-          headerStyle={{textAlign:'center'}}
+          headerStyle={{ textAlign: "center" }}
           className="fieldvalueaction_container"
           // style={{textAlign:'center'}}
         ></Column>

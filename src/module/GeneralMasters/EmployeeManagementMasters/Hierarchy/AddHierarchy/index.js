@@ -1,5 +1,5 @@
 import { BreadCrumb } from "primereact/breadcrumb";
-import React, { useRef, useState,useEffect} from "react";
+import React, { useRef, useState, useEffect } from "react";
 import NavBar from "../../../../../components/NavBar";
 import SvgDot from "../../../../../assets/icons/SvgDot";
 import "./index.scss";
@@ -8,39 +8,55 @@ import { Button } from "primereact/button";
 import { useFormik } from "formik";
 import SvgBack from "../../../../../assets/icons/SvgBack";
 import CustomToast from "../../../../../components/Toast";
-import { useNavigate,useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getHirarchyListByIdMiddleware, patchHirarchyEditMiddleware, postAddHirarchyMiddleware } from "../store/hierarchyMiddleware";
+import moment from "moment";
 
 
-const AddHierarchy = ({action}) => {
-  console.log(action, "find actions");
+const AddHierarchy = ({ action }) => {
   const { id } = useParams();
-  
-    console.log(id,'find id')
+  console.log(id, "find actions");
+
+  const { hierarchyListDetails, loading, total } = useSelector(({ hierarchyTableReducers }) => {
+    return {
+      loading: hierarchyTableReducers?.loading,
+      hierarchyListDetails: hierarchyTableReducers?.hierarchListDetails,
+      total: hierarchyTableReducers
+
+    };
+  }); console.log(total, 'find id')
   const navigate = useNavigate();
   const toastRef = useRef(null);
-  const [visiblePopup,setVisiblePopup]=useState("")
-
+  const [visiblePopup, setVisiblePopup] = useState("")
+  const dispatch = useDispatch()
   useEffect(() => {
     if (action === "edit" || action === "view") {
-      setFormikValues();
+      dispatch(getHirarchyListByIdMiddleware(id)).then(() => {
+        setFormikValues();
+
+      })
     }
-  }, [action]);
+
+  }, [action, id]);
+  useEffect(() => {
+    setFormikValues()
+  }, [hierarchyListDetails])
   const items = [
     { label: "Employee Management" },
-   
+
     {
-      label: `${
-        action === "add"
-          ? "Add Hierarchy"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add Hierarchy"
+        : action === "edit"
           ? "Edit Hierarchy"
           : "View Hierarchy"
-      }`,
+        }`,
     },
   ];
   const home = { label: "Master" };
 
-  
+
   const initialValue = {
     rankCode: "",
     rankName: "",
@@ -62,39 +78,50 @@ const AddHierarchy = ({action}) => {
     if (!values.levelNumber) {
       errors.levelNumber = "Level number is required";
     }
-  
+
 
     return errors;
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
 
-  const handleSubmit = () => {
-    toastRef.current.showToast();
-    
-      setTimeout(() => {
-        setVisiblePopup(false)
-      }, 3000);
+  const handleSubmit = (values) => {
+    console.log(values, "asddd")
+    if (action == "edit") {
+      dispatch(patchHirarchyEditMiddleware({ ...values, id }))
+    } else {
+      dispatch(postAddHirarchyMiddleware(values))
+
     }
-    const setFormikValues = () => {
-      const rankCode = "RC1234";
-      const rankName = "Rank Name";
-      const description="";
-      const levelNumber = "50";
-      const modifiedBy = "Johnson";
-      const modifiedOn = "RC1234";
-     
-  
-      const updatedValues = {
-        rankCode: `${rankCode}`,
-        rankName: `${rankName}`,
-        description: `${description}`,
-        levelNumber: `${levelNumber}`,
-        modifiedBy: `${modifiedBy}`,
-        modifiedOn: `${modifiedOn}`,
-      };
-      formik.setValues({ ...formik.values, ...updatedValues });
+    toastRef.current.showToast();
+
+    setTimeout(() => {
+      setVisiblePopup(false)
+    }, 3000);
+    navigate('/master/generals/employeemanagement/hierarchy/')
+
+
+  }
+  console.log(hierarchyListDetails, "hierarcy details")
+  const setFormikValues = () => {
+    const rankCode = hierarchyListDetails?.rankCode;
+    const rankName = hierarchyListDetails?.rankName;
+    const description = "description";
+    const levelNumber = hierarchyListDetails?.levelNumber;
+    const modifiedBy = hierarchyListDetails?.modifiedBy;
+    const modifiedOn = moment().format('DD/MM/YYYY');
+
+
+    const updatedValues = {
+      rankCode: `${rankCode}`,
+      rankName: `${rankName}`,
+      description: `${description}`,
+      levelNumber: `${levelNumber}`,
+      modifiedBy: `${modifiedBy}`,
+      modifiedOn: `${modifiedOn}`,
     };
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
 
 
   const formik = useFormik({
@@ -107,20 +134,20 @@ const AddHierarchy = ({action}) => {
       <div className="col-12">
         <NavBar />
       </div>
-      <div style={{justifyContent:'center',alignItems:'center',display:'flex'}}>
+      <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
-       
-    
+
+
       </div>
       <div className="add__sub__title">
-              {action === "add"
-                ? "Add Hierarchy"
-                : action === "edit"
-                ? "Edit Hierarchy"
-                : "View Hierarchy"}
-            </div>
+        {action === "add"
+          ? "Add Hierarchy"
+          : action === "edit"
+            ? "Edit Hierarchy"
+            : "View Hierarchy"}
+      </div>
       <div className="col-12 mb-2">
         <div className="mt-3">
           <BreadCrumb
@@ -135,7 +162,7 @@ const AddHierarchy = ({action}) => {
         <div className="grid add__account__sub__container p-3">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-             disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.rankCode}
               onChange={formik.handleChange("rankCode")}
               error={formik.errors.rankCode}
@@ -147,7 +174,7 @@ const AddHierarchy = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-             disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.rankName}
               onChange={formik.handleChange("rankName")}
               error={formik.errors.rankName}
@@ -160,7 +187,7 @@ const AddHierarchy = ({action}) => {
 
           <div className="col-12 md:col-3 lg:col-6">
             <InputField
-             disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.description}
               onChange={formik.handleChange("description")}
               error={formik.errors.basis}
@@ -172,7 +199,7 @@ const AddHierarchy = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-             disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.levelNumber}
               onChange={formik.handleChange("levelNumber")}
               error={formik.errors.levelNumber}
@@ -182,7 +209,7 @@ const AddHierarchy = ({action}) => {
               placeholder="Enter"
             />
           </div>
-          <div className="col-12 md:col-3 lg:col-3">
+          {/* <div className="col-12 md:col-3 lg:col-3">
             <InputField
              disabled={action === "view" ? true : false}
               value={formik.values.modifiedBy}
@@ -206,19 +233,19 @@ const AddHierarchy = ({action}) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="col-12 btn__view__Add mt-2">
-      {action === "add" && (
-        <Button
-          label="Save"
-          className="save__add__btn"
-          onClick={() => {
-            formik.handleSubmit();
-          }}
-          disabled={!formik.isValid}
-        />
+        {action === "add" && (
+          <Button
+            label="Save"
+            className="save__add__btn"
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+            disabled={!formik.isValid}
+          />
         )}
         {action === "edit" && (
           <Button

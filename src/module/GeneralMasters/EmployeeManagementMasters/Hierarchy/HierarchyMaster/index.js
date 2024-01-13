@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../../../assets/icons/SvgAdd";
 import "./index.scss";
@@ -18,36 +18,37 @@ import Productdata from "./mock";
 import { useSelector } from "react-redux";
 
 const HierarchyMaster = () => {
-  const [products,setProducts]=useState([])
+  const [products, setProducts] = useState([])
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("/master/generals/employeemanagement/hierarchy/add/1");
-   
-  };
+    navigate("/master/generals/employeemanagement/hierarchy/add");
 
+  };
+  const [rowList, setRowList] = useState(5)
   useEffect(() => {
-  
-   setProducts()
+
+    setProducts()
   }, [])
-  
-  const { hierarchTableList, loading,total } = useSelector(({ hierarchyTableReducers }) => {
+
+  const { hierarchTableList, loading, total } = useSelector(({ hierarchyTableReducers }) => {
     return {
       loading: hierarchyTableReducers?.loading,
       hierarchTableList: hierarchyTableReducers?.hierarchTableList,
-      total:hierarchyTableReducers
+      total: hierarchyTableReducers
 
     };
   });
+  console.log(hierarchTableList, "list of master")
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
-const handleView =()=>{
-    navigate("/master/generals/employeemanagement/hierarchy/view/2")
-}
+  const handleView = (id) => {
+    navigate(`/master/generals/employeemanagement/hierarchy/view/${id}`)
+  }
 
-const handlEdit =()=>{
+  const handlEdit = () => {
     navigate('/master/generals/employeemanagement/hierarchy/edit/3')
-}
+  }
   const items = [
     { label: "Employee Management" },
     {
@@ -85,17 +86,18 @@ const handlEdit =()=>{
   };
 
   const renderViewButton = (rowData) => {
+    console.log(rowData, "row data")
     return (
       <div className="center-content">
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-            onClick={() => handleView()}
+          onClick={() => handleView(rowData?.id)}
         />
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-            onClick={() => handlEdit()}
+          onClick={() => handlEdit(rowData?.id)}
         />
       </div>
     );
@@ -198,8 +200,8 @@ const handlEdit =()=>{
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
+              // onPage={onPageChange}
+              // onPageChange={onPageChange}
               >
                 <Column
                   field="rankCode"

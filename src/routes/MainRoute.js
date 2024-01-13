@@ -556,7 +556,7 @@ const Maincomponent = () => {
 
             <Route path="master/generals/employeemanagement/hierarchy" element={<HierarchyMaster />} />
             <Route
-              path="master/generals/employeemanagement/hierarchy/add/:id"
+              path="master/generals/employeemanagement/hierarchy/add"
               element={<AddHierarchy action="add" />}
             />
             <Route

@@ -6,6 +6,7 @@ import {
   chequebookdetailsMiddleware,
   patchpaymentStatusByIdMiddleware,
   patchpaymentVocherInvoiceListMiddleware,
+  getPaymentVocherListBySearchMiddleware,
 } from "./paymentVocherMiddleware";
 
 const initialState = {
@@ -267,6 +268,7 @@ const initialState = {
       status: "Approved",
     },
   ],
+  paymentVocherSearchList: [],
   individualVoucher: {},
 };
 const paymentVoucherReducer = createSlice({
@@ -285,6 +287,19 @@ const paymentVoucherReducer = createSlice({
       state.loading = false;
 
       state.paymentVocherList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+    builder.addCase(getPaymentVocherListBySearchMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getPaymentVocherListBySearchMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.paymentVocherSearchList = action.payload;
+    });
+    builder.addCase(getPaymentVocherListBySearchMiddleware.rejected, (state, action) => {
+      state.loading = false;
+
+      state.paymentVocherSearchList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 

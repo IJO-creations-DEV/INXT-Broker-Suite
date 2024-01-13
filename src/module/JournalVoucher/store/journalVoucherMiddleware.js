@@ -31,6 +31,7 @@ export const getJournalVoucherSearchList = createAsyncThunk(
         const { journalVoucherList } = journalVoucherMainReducers;
         console.log(journalVoucherList, "1234")
 
+        
         try {
             if (textSearch.trim() !== "") {
                 const searchResults = journalVoucherList.filter(item => {

@@ -21,10 +21,22 @@ export const getInitiateListMiddleware = createAsyncThunk(
 );
 export const getInitiateListSearchMiddleware = createAsyncThunk(
   GET_PETTY_CASH_VOUCHER_INITIAT_SEARCH,
-  async (payload, { rejectWithValue }) => {
+  async ({ field, value }, { rejectWithValue, getState }) => {
+    const { pettyCashInitiateReducer } = getState();
+    const { InitiateList } = pettyCashInitiateReducer;
+    function filterReceiptsByField(receipts, field, value) {
+      const lowercasedValue = value.toLowerCase();
+      return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
+    }
+
+    // Example usage:
+
+    // const filteredData = paymentVocherList.filter((item) => item.id === 1);
     try {
+      const filteredReceipts = filterReceiptsByField(InitiateList, field, value);
+
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return filteredReceipts;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

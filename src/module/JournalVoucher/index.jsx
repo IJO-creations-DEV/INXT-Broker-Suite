@@ -72,9 +72,10 @@ const JournalVoucher = () => {
   };
 
   useEffect(() => {
-    console.log(globalFilter, "as")
     if (globalFilter?.length > 0) {
       if (search?.length > 0) {
+        console.log(globalFilter, search, "as")
+
         dispatch(getJournalVoucherSearchList({
           field: globalFilter,
           value: search
@@ -88,13 +89,13 @@ const JournalVoucher = () => {
     initialValues: { search: "" },
     onSubmit: handleSubmit,
   });
-  useEffect(() => {
-    if (formik.values.search !== "") {
-      dispatch(
-        getJournalVoucherSearchList({ textSearch: formik.values.search })
-      );
-    }
-  }, [formik.values.search]);
+  // useEffect(() => {
+  //   if (formik.values.search !== "") {
+  //     dispatch(
+  //       getJournalVoucherSearchList({ textSearch: formik.values.search })
+  //     );
+  //   }
+  // }, [formik.values.search]);
 
   const onPageChange = (event) => {
     setFirst(event.first);
@@ -186,6 +187,8 @@ const JournalVoucher = () => {
                 <InputText
                   placeholder="Search customers"
                   className="searchinput_left"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </span>
             </div>
@@ -199,9 +202,10 @@ const JournalVoucher = () => {
                 </div>
               </div> */}
               <Dropdown
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.value)}
+                value={globalFilter}
+                onChange={(e) => setGlobalFilter(e.value)}
                 options={cities}
+                optionValue="code"
                 optionLabel="name"
                 placeholder="Search by"
                 className="sorbyfilter_container"
@@ -224,7 +228,7 @@ const JournalVoucher = () => {
                 newDataTable={newDataTable}
                 visible={visible}
                 journalVoucherList={
-                  formik.values.search !== ""
+                  search?.length > 0
                     ? journalVoucherSearchList
                     : journalVoucherList
                 }

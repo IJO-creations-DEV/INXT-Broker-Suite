@@ -24,28 +24,27 @@ export const journalVoucherMiddleware = createAsyncThunk(
 
 export const getJournalVoucherSearchList = createAsyncThunk(
     GET_JOURNAL_VOUCHER_SEARCH_LIST,
-    async (payload, { rejectWithValue, getState }) => {
-        const { textSearch } = payload;
+    async ({ field, value }, { rejectWithValue, getState }) => {
         const { journalVoucherMainReducers } = getState();
-
         const { journalVoucherList } = journalVoucherMainReducers;
-        console.log(journalVoucherList, "1234")
 
-        
-        try {
-            if (textSearch.trim() !== "") {
-                const searchResults = journalVoucherList.filter(item => {
-                    return item.totalCredit.toLowerCase().includes(textSearch.toLowerCase());
-                });
-                console.log(searchResults, "searchResults")
-                return searchResults;
-            } else {
-                return journalVoucherList;
-            }
-        } catch (error) {
-            return rejectWithValue(error?.response?.data?.error?.message);
+        console.log(journalVoucherList, field, value, "data search");
+
+        function filterReceiptsByField(receipts, field, value) {
+            const lowercasedValue = value.toLowerCase();
+            return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
         }
-    },
+        try {
+
+    
+            const filteredReceipts = filterReceiptsByField(journalVoucherList, field, value);
+
+            return filteredReceipts;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    }
+
 );
 
 
@@ -93,7 +92,7 @@ export const postTCJournalVoucher = createAsyncThunk(
 export const patchJVMiddleware = createAsyncThunk(
     PATCH_JOURNAL_VOUCHER_EDIT,
     async (payload, { rejectWithValue, getState }) => {
-        console.log(payload,"payloadpayload")
+        console.log(payload, "payloadpayload")
         const { journalVoucherMainReducers } = getState();
         const { journalVoucherPostTabelData } = journalVoucherMainReducers;
         try {
@@ -104,7 +103,7 @@ export const patchJVMiddleware = createAsyncThunk(
                         mainAccount: payload?.mainAccount,
                         subAccount: payload?.subAccount,
                         branchCode: payload?.branchCode,
-                        localAmount:payload?.localAmount,
+                        localAmount: payload?.localAmount,
                         currencyCode: payload?.currencyCode,
                         foreignAmount: payload?.foreignAmount,
                         entryType: payload?.entryType,
@@ -112,7 +111,7 @@ export const patchJVMiddleware = createAsyncThunk(
                 }
                 return item;
             });
-            console.log(editData,"editData")
+            console.log(editData, "editData")
             return editData;
         } catch (error) {
             return rejectWithValue(error?.response?.data?.error?.message || "An error occurred");
@@ -124,7 +123,7 @@ export const patchJVMiddleware = createAsyncThunk(
 export const getJournalVoucherViewData = createAsyncThunk(
     GET_JOURNAL_VOUCHER_VIEW,
     async (payload, { rejectWithValue, getState }) => {
-        console.log(payload,"payload")
+        console.log(payload, "payload")
         // const { journalVoucherMainReducers } = getState();
         // console.log(journalVoucherMainReducers, "dta");
         // const { journalVoucherList } = journalVoucherMainReducers

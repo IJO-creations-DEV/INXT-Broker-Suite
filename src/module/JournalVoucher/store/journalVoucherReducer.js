@@ -102,9 +102,10 @@ const journalVoucherReducer = createSlice({
       state.loading = true;
     });
     builder.addCase(getJournalVoucherSearchList.fulfilled, (state, action) => {
+      console.log(state.journalVoucherSearchList, "dataasd")
+
       state.loading = false;
       state.journalVoucherSearchList = action.payload;
-      console.log(state.journalVoucherSearchList, "data")
     });
     builder.addCase(getJournalVoucherSearchList.rejected, (state, action) => {
       state.loading = false;

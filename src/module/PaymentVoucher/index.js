@@ -181,6 +181,7 @@ const Index = () => {
 
 
             <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+              optionValue="code"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}

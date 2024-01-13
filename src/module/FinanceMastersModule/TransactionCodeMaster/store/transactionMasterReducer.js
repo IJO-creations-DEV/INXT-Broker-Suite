@@ -117,7 +117,7 @@ const transactionCodeMasterReducer = createSlice({
     });
     builder.addCase(getTransactioncodeListsearch.fulfilled, (state, action) => {
       state.loading = false;
-      state.TransactioncodeList = [action.payload];
+      state.TransactioncodeListsearch = action.payload;
     });
     builder.addCase(getTransactioncodeListsearch.rejected, (state, action) => {
       state.loading = false;

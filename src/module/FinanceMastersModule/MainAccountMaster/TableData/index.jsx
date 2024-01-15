@@ -20,7 +20,7 @@ const TableData = ({ MainAccountList }) => {
   const [search, setSearch] = useState('');
   const location = useLocation();
   const tableView = location.state?.tableView || false;
-  console.log(tableView, "find tableView");
+  console.log(MainAccountList, "MainAccountListMainAccountList");
 
   const { MainAccountSearchList, loading } = useSelector(({ mainAccoutReducers }) => {
     return {

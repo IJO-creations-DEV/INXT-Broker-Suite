@@ -27,6 +27,7 @@ import { Dialog } from "primereact/dialog";
 import ToggleButton from "../../../../../components/ToggleButton";
 import { postAddBank } from "../../store/bankMasterMiddleware";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
+import { postAddAccountDetails } from "../../store/bankMasterMiddleware";
 
 const initialValues = {
   AccountNumber: "",
@@ -167,6 +168,13 @@ alignItem:'center'
   };
 
   const handlesave = (value) => {
+
+    // console.log(value, "value");
+    // const valueWithId = {
+    //   ...value,
+    //   // id: BankList?.length + 1,
+    // };
+    dispatch(postAddAccountDetails(formik.values));
 
       navigate("/master/finance/bank/accountdataview");
   };

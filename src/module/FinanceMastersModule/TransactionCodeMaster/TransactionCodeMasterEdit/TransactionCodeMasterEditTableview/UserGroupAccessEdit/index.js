@@ -11,8 +11,20 @@ import { Dialog } from "primereact/dialog";
 import InputField from "../../../../../../components/InputField";
 import DropDowns from "../../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
+import { postAddUserGroupAccess } from "../../../store/transactionCodeMasterMiddleware";
 
 const UserGroupAccess = () => {
+  const { TransactioncodeListsearch, UserGroupAccessList, loading } = useSelector(({ transactionCodeMasterReducer }) => {
+    return {
+      loading: transactionCodeMasterReducer?.loading,
+      UserGroupAccessList: transactionCodeMasterReducer?.UserGroupAccessList,
+      // TransactioncodeListsearch: transactionCodeMasterReducer?.TransactioncodeListsearch,
+
+
+    };
+  });
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -30,6 +42,12 @@ const UserGroupAccess = () => {
     <div className="no__data__found">No data entered</div>
     </div>
   );
+  
+  const BankAccountCode = [
+    { label: 'Trans00123', value: 'Trans00123' },
+    { label: 'Trans00124', value: 'Trans00124' },
+
+  ];
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -69,6 +87,47 @@ const UserGroupAccess = () => {
     },
   };
 
+  const dispatch=useDispatch()
+  const initialValues = {
+    UserRole: "",
+    MinimumTransaction: "",
+    MaximumTransaction: "",
+  }
+  const handleSubmit = (values) => {
+    dispatch(postAddUserGroupAccess(formik.values))
+    setShow(false)
+  }
+
+  const customValidation = (values) => {
+    const errors = {};
+
+    if (!values.UserRole) {
+      errors.UserRole = "This field Code is required";
+    }
+    if (!values.MinimumTransaction) {
+      errors.MinimumTransaction = "This field is required";
+    }
+    if (!values.MaximumTransaction) {
+      errors.MaximumTransaction = "This field is required";
+    }
+
+    return errors;
+  };
+
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validate: customValidation,
+    onSubmit: (values) => {
+      // Handle form submission
+      handleSubmit(values);
+
+    },
+    // onSubmit: handleSubmit
+  });
+
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
     // navigate("/accounts/pettycash/PettyCashCodeDetails")
@@ -100,7 +159,7 @@ const UserGroupAccess = () => {
           />
         </div>
         <DataTable
-          value={products}
+          value={UserGroupAccessList}
           tableStyle={{
             minWidth: "50rem",
             color: "#1C2536",
@@ -153,12 +212,27 @@ const UserGroupAccess = () => {
           <div className=" col-12 md:col-6 lg-col-6 ">
             <DropDowns
               className="inputdialog__fieled"
-              label="User Role"
+              label="Minimum Transaction"
               placeholder="Select"
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
+              value={formik.values.UserRole}
+              onChange={(e) =>
+                formik.setFieldValue("UserRole", e.target.value)
+              }
+
+              options={BankAccountCode}
+
+              optionLabel='label'
+
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              // label="User Role"
+              // placeholder="Select"
+              // textColor={"#111927"}
+              // textSize={"16"}
+              // textWeight={500}
+              // dropdownIcon={<SvgDropdown color={"#000"} />}
               // value={formik.values.Description}
               // options={BankAccountCode}
               // onChange={(e) => {
@@ -172,6 +246,14 @@ const UserGroupAccess = () => {
               //   formik.errors.BankAccountNumber
               // }
             />
+             {formik.touched.UserRole && formik.errors.UserRole && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                className="formik__errror__JV"
+              >
+                {formik.errors.UserRole}
+              </div>
+            )}
           </div>
         </div>
         <div className="grid mt-1">
@@ -183,12 +265,12 @@ const UserGroupAccess = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              // value={formik.values.TransactionCode}
-              // onChange={formik.handleChange("TransactionCode")}
-              // error={
-              //   formik.touched.TransactionCode &&
-              //   formik.errors.TransactionCode
-              // }
+              value={formik.values.MinimumTransaction}
+              onChange={formik.handleChange("MinimumTransaction")}
+              error={
+                formik.touched.MinimumTransaction &&
+                formik.errors.MinimumTransaction
+              }
             />
           </div>
           <div className=" col-12 md:col-6 lg-col-6 ">
@@ -199,12 +281,12 @@ const UserGroupAccess = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              // value={formik.values.TransactionCode}
-              // onChange={formik.handleChange("TransactionCode")}
-              // error={
-              //   formik.touched.TransactionCode &&
-              //   formik.errors.TransactionCode
-              // }
+              value={formik.values.MaximumTransaction}
+              onChange={formik.handleChange("MaximumTransaction")}
+              error={
+                formik.touched.MaximumTransaction &&
+                formik.errors.MaximumTransaction
+              }
             />
           </div>
         </div>
@@ -212,9 +294,7 @@ const UserGroupAccess = () => {
           <Button
             label="Save"
             className="add__btn"
-            onClick={() => {
-              handleSave();
-            }}
+            onClick={formik.handleSubmit}
           />
         </div>
       </Dialog>

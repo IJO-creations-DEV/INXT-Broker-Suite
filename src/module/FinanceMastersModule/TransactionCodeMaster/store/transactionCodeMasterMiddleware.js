@@ -126,6 +126,7 @@ export const postAddTransactionCodeSetup = createAsyncThunk(
             }),
             TransactionNumberFrom: payload?.TransactionNumberFrom,
             TransactionNumberTo: payload?.TransactionNumberTo,
+            lastUsed:"0"
 
         };
         try {

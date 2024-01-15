@@ -37,10 +37,9 @@ const AddMainAccount = () => {
   const [entrySwitch, setentrySwitch] = useState(EntrySwitchoptions[0]);
 
   const codeOptionsType = [
-    { label: "Option 1", value: "Income" },
-    { label: "Option 2", value: "Expense" },
-    { label: "Option 3", value: "Asset" },
-    { label: "Option 4", value: "Liability" },
+    { label: "Option 1", value: "Credit" },
+    { label: "Option 2", value: "Debit" },
+   
   ];
   const categoryOptionsCode = [
     { label: "Option 1", value: "Debtor" },
@@ -70,8 +69,8 @@ const AddMainAccount = () => {
     if (!values.description) {
       errors.description = "This field is required";
     }
-    if (!values.accountcategorycode) {
-      errors.accountcategorycode = "This field is required";
+    if (!values.accountCategoryCode) {
+      errors.accountCategoryCode = "This field is required";
     }
 
     if (
@@ -81,43 +80,62 @@ const AddMainAccount = () => {
       errors.companyCode = "This field is required";
     }
 
-    if (!values.accounttype) {
-      errors.accounttype = "This field is required";
+    if (!values.accountType) {
+      errors.accountType = "This field is required";
     }
 
     return errors;
   };
   const dispatch = useDispatch()
+  // const handleSubmit = (values) => {
+  //   // Handle form submission
+  //   // toastRef.current.showToast();
+  //   // {
+  //   //   setTimeout(() => {
+  //   //     navigation("/master/finance/mainaccount", {
+  //   //       state: { tableView: true },
+  //   //     });
+  //   //   }, 3000);
+  //   // }
+  //   dispatch(postMainAccountStatus(formik.values))
+  //     .then(() => {
+  //       toastRef.current.showToast();
+  //       setTimeout(() => {
+  //         navigation("/master/finance/mainaccount")
+  //       }, 2000);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+
+  //   console.log(values, "find values");
+  // };
   const handleSubmit = (values) => {
-    // Handle form submission
-    // toastRef.current.showToast();
-    // {
-    //   setTimeout(() => {
-    //     navigation("/master/finance/mainaccount", {
-    //       state: { tableView: true },
-    //     });
-    //   }, 3000);
-    // }
-    dispatch(postMainAccountStatus(formik.values))
+    const openEntry = selectSwitch === "No" ? "Yes" : "No";
+    const updatedValues = { ...values, openEntry};
+  
+    dispatch(postMainAccountStatus(updatedValues))
       .then(() => {
         toastRef.current.showToast();
         setTimeout(() => {
-          navigation("/master/finance/mainaccount")
+          navigation("/master/finance/mainaccount");
         }, 2000);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-
-    console.log(values, "find values");
+  
+    console.log(updatedValues, "find values");
   };
+  
   const formik = useFormik({
     initialValues: {
       mainAccountCode: "",
       mainaccountname: "",
       description: "",
-      accountcategorycode: "",
-      accounttype: "",
+      accountCategoryCode: "",
+      accountType: "",
+      openEntry:"",
       companyCode: [],
       currencyCode: [],
       openEntryType: "",
@@ -223,16 +241,16 @@ const AddMainAccount = () => {
               optionLabel="value"
               label="Account Type"
 
-              value={formik.values.accounttype}
-              onChange={(e) => formik.setFieldValue("accounttype", e.value)}
+              value={formik.values.accountType}
+              onChange={(e) => formik.setFieldValue("accountType", e.value)}
               options={codeOptionsType}
             />
-            {formik.touched.accounttype && formik.errors.accounttype && (
+            {formik.touched.accountType && formik.errors.accountType && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
               >
-                {formik.errors.accounttype}
+                {formik.errors.accountType}
               </div>
             )}
           </div>
@@ -291,19 +309,19 @@ const AddMainAccount = () => {
               classNames="select__label__corrections"
               optionLabel="value"
               label="Account Category Code"
-              value={formik.values.accountcategorycode}
+              value={formik.values.accountCategoryCode}
               onChange={(e) =>
-                formik.setFieldValue("accountcategorycode", e.value)
+                formik.setFieldValue("accountCategoryCode", e.value)
               }
               options={categoryOptionsCode}
             />
-            {formik.touched.accountcategorycode &&
-              formik.errors.accountcategorycode && (
+            {formik.touched.accountCategoryCode &&
+              formik.errors.accountCategoryCode && (
                 <div
                   style={{ fontSize: 12, color: "red" }}
                   className="formik__errror__JV"
                 >
-                  {formik.errors.accountcategorycode}
+                  {formik.errors.accountCategoryCode}
                 </div>
               )}
           </div>
@@ -312,10 +330,10 @@ const AddMainAccount = () => {
               disabled={true}
               classNames="input__field__corrections__inactive"
               className="input__label__corrections"
-              label="Description"
+              label="description"
               value={
-                formik.values.accountcategorycode
-                  ? `descrption ${formik.values.accountcategorycode}`
+                formik.values.accountCategoryCode
+                  ? `descrption ${formik.values.accountCategoryCode}`
                   : ""
               }
             />

@@ -72,6 +72,30 @@ const initialState = {
       companyCode: "cc202",
       currencyCode: "cc556"
     },
+
+);
+export const patchMainAccountDetailEdit = createAsyncThunk(
+    PATCH_MAIN_ACCOUNT_DETAIL_EDIT,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload,"accountType");
+        const data = {
+            id: payload?.id,
+            mainAccountCode: payload?.mainAccountCode,
+            mainaccountname: payload?.mainaccountname,
+            description: payload?.description,
+            accountCategoryCode: payload?.accountCategoryCode,
+            accountType: payload?.accountType, 
+            companyCode: payload?.companyCode,
+            currencyCode: payload?.currencyCode,
+            openEntryType: payload?.openEntryType ,
+            openEntry:payload?.openEntry
+        };
+        try {
+            return data;
+        } catch (error) {
+            return rejectWithValue(error?.response?.data?.error?.message);
+        }
+
     {
       id: "6",
       mainAccountCode: "main303",
@@ -107,6 +131,7 @@ const initialState = {
       accountCategoryCode: "acc505",
       companyCode: "cc505",
       currencyCode: "cc889"
+
     },
     {
       id: "9",
@@ -191,6 +216,17 @@ const mainAccountMasterReducer = createSlice({
       }
     );
 
+
+
+export const getMainAccountDetailView = createAsyncThunk(
+    GET_MAIN_ACCOUNT_DETAIL_VIEW,
+    async (payload, { rejectWithValue }) => {
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+
     //MainAccountStatus
 
     builder.addCase(postMainAccountStatus.pending, (state) => {
@@ -254,6 +290,7 @@ const mainAccountMasterReducer = createSlice({
           state.MainAccountList = updatedCurrencyList;
         } else {
           state.MainAccountList = [...state.MainAccountList, action.payload];
+
         }
       }
     );

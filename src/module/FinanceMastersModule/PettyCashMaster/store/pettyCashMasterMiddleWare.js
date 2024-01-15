@@ -27,14 +27,14 @@ export const pettyCashMaster = createAsyncThunk(
 export const postAddPettyCash = createAsyncThunk(
     POST_ADD_PETTY_CASH,
     async (payload, { rejectWithValue }) => {
-        console.log(payload, "values")
+        console.log(payload, "payload")
         try {
             const postData = {
-                prttycashcode: payload?.prttycashcode,
+                pettycashcode: payload?.pettycashcode,
                 pettycashname: payload?.pettycashname,
                 pettycashsize: payload?.pettycashsize,
                 avilabelcash: payload?.avilabelcash,
-                mincashback: payload?.mincashback,
+                minicashbox: payload?.minicashbox,
                 transactionlimit: payload?.transactionlimit
             }
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);

@@ -156,6 +156,10 @@ export const POST_ADD_BANK = "bank/POST_ADD_BANK";
 export const GET_BANK_DETAIL_VIEW = "bank/GET_BANK_DETAIL_VIEW";
 export const GET_ADD_BANK = "bank/GET_ADD_BANK";
 export const PATCH_BANK_DETAIL_EDIT = "bank/PATCH_BANK_DETAIL_EDIT";
+export const POST_ADD_ACCOUNT_DETAILS="bank/POST_ADD_ACCOUNT_DETAILS";
+export const GET_ADD_VIEW="bank/GET_ADD_VIEW"
+export const GET_Account_PATCH_VIEW="bank/GET_Account_PATCH_VIEW";
+export const GET_PATCH_VIEW="bank/GET_PATCH_VIEW"
 
 export const GET_ACCOUNT_CATEGORY_LIST =
   "accountCategory/GET_ACCOUNT_CATEGORY_LIST";

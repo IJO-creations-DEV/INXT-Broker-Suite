@@ -18,24 +18,45 @@ import { useFormik } from "formik";
 import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../components/Toast";
 import { InputText } from "primereact/inputtext";
+
+import { postAddBankMiddleware } from '../store/bankMasterMiddleware';
+import { useDispatch } from 'react-redux';
+
 import { postAddBank } from '../store/bankMasterMiddleware';
 import { useDispatch, useSelector } from 'react-redux';
 
 
+
 const initialValues ={
-    BankCode: "",
-    BankName:"",
-    BankBranch:"",
-    IFSCCode:"",
+    bankCode: "",
+    bankName:"",
+    bankBranch:"",
+    ifscCode:"",
     AddressLine1:"",
     AddressLine2:"",
     AddressLine3:"",
     City:"",
-    State:"",
+    state:"",
     Country:"",
-    PhoneNumber:"",
+    mobile:"",
     Fax:"",
-    EmailID:""
+    email:""
+    // CompanyCode: "",
+    // CompanyName: "",
+    // LicenseNumber: "",
+    // email: "",
+    // Logo: "",
+    // Websitelink: "",
+    // Description: "",
+    // AddressLine1: "",
+    // AddressLine2: "",
+    // AddressLine3: "",
+    // PinCode: "",
+    // City: "",
+    // State: "",
+    // Country: "",
+    // mobile: "",
+    // Fax: "",
 }
 
 function AddBankMaster() {
@@ -63,7 +84,7 @@ function AddBankMaster() {
         { name: "Davio", code: "NY" },
         { name: "UK", code: "RM" },
       ];
-      const State = [
+      const state = [
         { name: "Davio", code: "NY" },
         { name: "Davio2", code: "RM" },
       ];
@@ -87,8 +108,13 @@ function AddBankMaster() {
 // }
 
 // const toastRef = useRef(null);
-
+const dispatch=useDispatch()
 const handleSubmit = (values) => {
+
+
+  console.log(values, "find values");
+  dispatch(postAddBankMiddleware(formik.values))
+
   // Handle form submission
   console.log(values, "value");
   const valueWithId = {
@@ -97,29 +123,40 @@ const handleSubmit = (values) => {
   };
   dispatch(postAddBank(valueWithId));
   
+
   toastRef.current.showToast();
-  // {
-    setTimeout(() => {
+
+  setTimeout(() => {
     Navigate("/master/finance/bank")
-    }, 3000);
-  }
+  }, 3000);
+};
+// const handleSubmit = (values) => {
+//   // Handle form submission
+//   console.log(values, "find values");
+  
+//   toastRef.current.showToast();
+//   // {
+//     setTimeout(() => {
+//     Navigate("/master/finance/bank")
+//     }, 3000);
+//   }
   
 // };
 
 const customValidation = (values) => {
   const errors = {};
 
-  if (!values.BankCode) {
-    errors.BankCode = "This field Code is required";
+  if (!values.bankCode) {
+    errors.bankCode = "This field Code is required";
   }
-  if (!values.BankName) {
-    errors.BankName = "This field is required";
+  if (!values.bankName) {
+    errors.bankName = "This field is required";
   }
-  if (!values.BankBranch) {
-    errors.BankBranch = "This field is required";
+  if (!values.bankBranch) {
+    errors.bankBranch = "This field is required";
   }
-  if (!values.IFSCCode) {
-    errors.IFSCCode = "This field is required";
+  if (!values.ifscCode) {
+    errors.ifscCode = "This field is required";
   }
   if (!values.AddressLine1) {
     errors.AddressLine1 = "This field is required";
@@ -133,20 +170,20 @@ const customValidation = (values) => {
   if (!values.City) {
     errors.City = "This field is required";
   }
-  if (!values.State) {
-    errors.State= "This field is required";
+  if (!values.state) {
+    errors.state= "This field is required";
   }
   if (!values.Country) {
     errors.Country= "This field is required";
   }
-  if (!values.PhoneNumber) {
-    errors.PhoneNumber= "This field is required";
+  if (!values.mobile) {
+    errors.mobile= "This field is required";
   }
   if (!values.Fax) {
     errors.Fax= "This field is required";
   }
-  if (!values.EmailID) {
-    errors.EmailID= "This field is required";
+  if (!values.email) {
+    errors.email= "This field is required";
   }
   return errors;
 };
@@ -195,16 +232,16 @@ const formik = useFormik({
               classNames="field__container"
               label="Bank Code"
               placeholder={"Enter"}
-              value={formik.values.BankCode}
-              onChange={formik.handleChange("BankCode")}
+              value={formik.values.bankCode}
+              onChange={formik.handleChange("bankCode")}
               
             />
-             { formik.touched.BankCode && formik.errors.BankCode && (
+             { formik.touched.bankCode && formik.errors.bankCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 
               >
-                {formik.errors.BankCode}
+                {formik.errors.bankCode}
               </div>
             )}
             </div>
@@ -215,16 +252,16 @@ const formik = useFormik({
               classNames="field__container"
               label="Bank Name"
               placeholder={"Enter"}
-              value={formik.values.BankName}
-              onChange={formik.handleChange("BankName")}
+              value={formik.values.bankName}
+              onChange={formik.handleChange("bankName")}
               
             />
-            { formik.touched.BankName && formik.errors.BankName && (
+            { formik.touched.bankName && formik.errors.bankName && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 
               >
-                {formik.errors.BankName}
+                {formik.errors.bankName}
               </div>
             )}
             </div>
@@ -236,16 +273,16 @@ const formik = useFormik({
               classNames="field__container"
               label="Bank Branch"
               placeholder={"Enter"}
-              value={formik.values.BankBranch}
-              onChange={formik.handleChange("BankBranch")}
+              value={formik.values.bankBranch}
+              onChange={formik.handleChange("bankBranch")}
               
             />
-            {formik.touched.BankBranch && formik.errors.BankBranch && (
+            {formik.touched.bankBranch && formik.errors.bankBranch && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 
               >
-                {formik.errors.BankBranch}
+                {formik.errors.bankBranch}
               </div>
             )}
             </div>
@@ -261,16 +298,16 @@ const formik = useFormik({
               classNames="field__container"
               label="IFSC Code"
               placeholder={"Enter"}
-              value={formik.values.IFSCCode}
-              onChange={formik.handleChange("IFSCCode")}
+              value={formik.values.ifscCode}
+              onChange={formik.handleChange("ifscCode")}
               
             />
-            {formik.touched.IFSCCode &&formik.errors.IFSCCode && (
+            {formik.touched.ifscCode &&formik.errors.ifscCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 
               >
-                {formik.errors.IFSCCode}
+                {formik.errors.ifscCode}
               </div>
             )}
           </div>
@@ -357,22 +394,22 @@ const formik = useFormik({
           <div class="col-3 md:col-3 lg-col-3">
           <DropDowns
               className="dropdown__container"
-              label="State"
-              value={formik.values.State}
+              label="state"
+              value={formik.values.state}
               onChange={(e) =>
-                formik.setFieldValue("State", e.value)
+                formik.setFieldValue("state", e.value)
               }
-              options={State}
+              options={state}
               optionLabel="name"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-             {formik.touched.State && formik.errors.State && (
+             {formik.touched.state && formik.errors.state && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 
               >
-                {formik.errors.State}
+                {formik.errors.state}
               </div>
             )}
           </div>
@@ -407,16 +444,16 @@ const formik = useFormik({
           <i className={<SvgDropdown/>}></i>
         </span>
         <InputText placeholder="enter"
-        value={formik.values.PhoneNumber}
-        onChange={formik.handleChange("PhoneNumber")}
+        value={formik.values.mobile}
+        onChange={formik.handleChange("mobile")}
         />
       </div>
-             {formik.touched.PhoneNumber && formik.errors.PhoneNumber && (
+             {formik.touched.mobile && formik.errors.mobile && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 
               >
-                {formik.errors.PhoneNumber}
+                {formik.errors.mobile}
               </div>
             )}
           </div>
@@ -452,15 +489,15 @@ const formik = useFormik({
               classNames="field__container"
               label="Email ID"
               placeholder={"Enter"}
-              value={formik.values.EmailID}
-              onChange={formik.handleChange("EmailID")}
+              value={formik.values.email}
+              onChange={formik.handleChange("email")}
             />
-            {formik.touched.EmailID && formik.errors.EmailID && (
+            {formik.touched.email && formik.errors.email && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 
               >
-                {formik.errors.EmailID}
+                {formik.errors.email}
               </div>
             )}
             

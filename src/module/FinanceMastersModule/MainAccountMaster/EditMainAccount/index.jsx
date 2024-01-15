@@ -19,13 +19,13 @@ import { patchMainAccountDetailEdit } from "../store/mainAccoutMiddleware";
 const EditMainAccount = () => {
   const initialValues = {
     mainAccountCode: "",
-    mainaccountname: "",
+    mainAccountName: "",
     description: "",
-    accountcategorycode: "",
-    accounttype: "",
+    accountCategoryCode: "",
+    accountType: "",
     companyCode: [],
     currencyCode: [],
-    openEntryType: "",
+    openEntryType: [],
   }
   const dispatch = useDispatch()
   const navigation = useNavigate();
@@ -49,24 +49,46 @@ const EditMainAccount = () => {
       };
     }
   );
-  console.log(getMainAccountDetailEdit, "getMainAccountDetailEdit")
+  console.log(getMainAccountDetailEdit.accountType, "getMainAccountDetailEdit")
   const handleSubmit = (value) => {
+    const openEntry = selectSwitch === "No" ? "Yes" : "No";
+    const updatedValues = { ...value, openEntry };
     console.log(value, "value")
-    dispatch(patchMainAccountDetailEdit(value));
+    dispatch(patchMainAccountDetailEdit(updatedValues));
     navigation("/master/finance/mainaccount")
   };
+
+  const [accType, setAccType] = useState([])
+  const [openEType, setOpenEType] = useState([])
+  const [accCaletgoryC, setAccCaletgoryC] = useState([])
   const setFormikValues = () => {
+    const accountTypeData = getMainAccountDetailEdit?.accountType
+    const openEntryTypeData = getMainAccountDetailEdit?.openEntryType
+    const accountCategoryCodeData = getMainAccountDetailEdit?.accountCategoryCode
     const updatedValues = {
       id: getMainAccountDetailEdit?.id,
       mainAccountCode: getMainAccountDetailEdit?.mainAccountCode,
-      mainaccountname: getMainAccountDetailEdit?.mainaccountname,
+      mainAccountName: getMainAccountDetailEdit?.mainAccountName,
       description: getMainAccountDetailEdit?.description,
-      accountcategorycode: getMainAccountDetailEdit?.accountcategorycode,
-      accounttype: getMainAccountDetailEdit?.accounttype,
+      accountCategoryCode: getMainAccountDetailEdit?.accountCategoryCode,
+      accountType: accountTypeData,
       companyCode: getMainAccountDetailEdit?.companyCode,
       currencyCode: getMainAccountDetailEdit?.currencyCode,
-      openentrytype: getMainAccountDetailEdit?.openentrytype
+      openEntryType: openEntryTypeData
     };
+    console.log(updatedValues.accountType, "uu");
+    if (accountTypeData) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setAccType([{ label: accountTypeData, value: accountTypeData }]);
+    }
+    if (openEntryTypeData) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setOpenEType([{ label: openEntryTypeData, value: openEntryTypeData }]);
+    }
+    if (accountCategoryCodeData) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setAccCaletgoryC([{ label: accountCategoryCodeData, value: accountCategoryCodeData }]);
+    }
     formik.setValues({ ...formik.values, ...updatedValues });
   };
   const formik = useFormik({
@@ -123,11 +145,11 @@ const EditMainAccount = () => {
   //     mainaccountode: "",
   //     mainaccountname: "",
   //     description: "",
-  //     accountcategorycode: "",
+  //     accountCategoryCode: "",
   //     accounttype: "",
   //     companyCode: [],
   //     currencyCode: [],
-  //     openentrytype: "",
+  //     openEntryType: "",
   //   },
   //   validate: customValidation,
   //   onSubmit: (values) => {
@@ -166,14 +188,14 @@ const EditMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Main Account Code"
-              value={formik.values.mainaccountode}
+              value={formik.values.mainAccountCode}
               onChange={(e) =>
-                formik.setFieldValue("mainaccountode", e.target.value)
+                formik.setFieldValue("mainAccountCode", e.target.value)
               }
             />
-            {formik.touched.mainaccountode && formik.errors.mainaccountode && (
+            {formik.touched.mainAccountCode && formik.errors.mainAccountCode && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.mainaccountode}
+                {formik.errors.mainAccountCode}
               </div>
             )}
           </div>
@@ -183,15 +205,15 @@ const EditMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Main Account Name"
-              value={formik.values.mainaccountname}
+              value={formik.values.mainAccountName}
               onChange={(e) =>
-                formik.setFieldValue("mainaccountname", e.target.value)
+                formik.setFieldValue("mainAccountName", e.target.value)
               }
             />
-            {formik.touched.mainaccountname &&
-              formik.errors.mainaccountname && (
+            {formik.touched.mainAccountName &&
+              formik.errors.mainAccountName && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.mainaccountname}
+                  {formik.errors.mainAccountName}
                 </div>
               )}
           </div>
@@ -222,16 +244,16 @@ const EditMainAccount = () => {
               classNames="select__label__corrections"
               optionLabel="value"
               label="Account Type"
-              value={formik.values.accounttype}
-              onChange={(e) => formik.setFieldValue("accounttype", e.value)}
-              options={codeOptionsType}
+              value={formik.values.accountType}
+              onChange={(e) => formik.setFieldValue("accountType", e.value)}
+              options={accType}
             />
-            {formik.touched.accounttype && formik.errors.accounttype && (
+            {formik.touched.accountType && formik.errors.accountType && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
               >
-                {formik.errors.accounttype}
+                {formik.errors.accountType}
               </div>
             )}
           </div>
@@ -262,9 +284,9 @@ const EditMainAccount = () => {
               }
               optionLabel="value"
               label="Open Entry type"
-              value={formik.values.openentrytype}
-              onChange={(e) => formik.setFieldValue("openentrytype", e.value)}
-              options={codeOptionsType}
+              value={formik.values.openEntryType}
+              onChange={(e) => formik.setFieldValue("openEntryType", e.value)}
+              options={openEType}
             />
           </div>
           <div className="col-12 md:col-4 lg:col-3 xl:col-3">
@@ -289,19 +311,19 @@ const EditMainAccount = () => {
               classNames="select__label__corrections"
               optionLabel="value"
               label="Account Category Code"
-              value={formik.values.accountcategorycode}
+              value={formik.values.accountCategoryCode}
               onChange={(e) =>
-                formik.setFieldValue("accountcategorycode", e.value)
+                formik.setFieldValue("accountCategoryCode", e.value)
               }
-              options={categoryOptionsCode}
+              options={accCaletgoryC}
             />
-            {formik.touched.accountcategorycode &&
-              formik.errors.accountcategorycode && (
+            {formik.touched.accountCategoryCode &&
+              formik.errors.accountCategoryCode && (
                 <div
                   style={{ fontSize: 12, color: "red" }}
                   className="formik__errror__JV"
                 >
-                  {formik.errors.accountcategorycode}
+                  {formik.errors.accountCategoryCode}
                 </div>
               )}
           </div>
@@ -312,8 +334,8 @@ const EditMainAccount = () => {
               className="input__label__corrections"
               label="Description"
               value={
-                formik.values.accountcategorycode
-                  ? `descrption ${formik.values.accountcategorycode}`
+                formik.values.accountCategoryCode
+                  ? `descrption ${formik.values.accountCategoryCode}`
                   : ""
               }
             />

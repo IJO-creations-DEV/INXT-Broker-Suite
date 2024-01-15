@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT, POST_ADD_BANK } from "../../../../redux/actionTypes";
+import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT, POST_ADD_BANK, POST_ADD_ACCOUNT_DETAILS, GET_ADD_VIEW, GET_Account_PATCH_VIEW, GET_PATCH_VIEW } from "../../../../redux/actionTypes";
 import SvgEye from "../../../../assets/icons/SvgEye";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 
@@ -40,12 +40,29 @@ export const getBankSearchList = createAsyncThunk(
     },
 );
 
-export const postBankStatus = createAsyncThunk(
+export const postAddBankMiddleware = createAsyncThunk(
     POST_BANK_STATUS,
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload");
+        const data = {
+            bankCode: payload?.bankCode,
+            bankName: payload?.bankName,
+            bankBranch: payload?.bankBranch,
+            ifscCode: payload?.ifscCode,
+            AddressLine1: payload?.AddressLine1,
+            AddressLine2: payload?.AddressLine2,
+            AddressLine3: payload?.AddressLine3,
+            city: payload?.city,
+            state: payload?.state,
+            status: payload?.status,
+            Country: payload?.Country,
+            mobile: payload?.mobile,
+            Fax: payload?.Fax,
+            email: payload?.email,
+        }
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            return data;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }
@@ -56,9 +73,33 @@ export const postBankStatus = createAsyncThunk(
 export const getAddBank = createAsyncThunk(
     GET_ADD_BANK,
     async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+
+
+export const postAddAccountDetails = createAsyncThunk(
+    POST_ADD_ACCOUNT_DETAILS,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload");
+        const data = {
+            id: payload?.AccountNumber,
+            AccountNumber: payload?.AccountNumber,
+            AccountName: payload?.AccountName,
+            AccountType: payload?.AccountType.name,
+            MainAccount: payload?.MainAccount,
+            MainAccountDescription: payload?.MainAccountDescription,
+            TransactionLimit: payload?.TransactionLimit,
+        }
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return data;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }
@@ -86,6 +127,30 @@ export const postAddBank = createAsyncThunk(
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return tabledata;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+
+export const getAccountDetailsView = createAsyncThunk(
+    GET_ADD_VIEW,
+    async (payload, { rejectWithValue }) => {
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+export const getPatchAccountDetailsView = createAsyncThunk(
+    GET_Account_PATCH_VIEW,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "columnData");
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }
@@ -138,9 +203,31 @@ export const patchBankDetailEdit = createAsyncThunk(
 export const getBankDetailView = createAsyncThunk(
     GET_BANK_DETAIL_VIEW,
     async (payload, { rejectWithValue }) => {
+
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+
+export const postPatchAccountDetailEdit = createAsyncThunk(
+    GET_PATCH_VIEW,
+    async (payload, { rejectWithValue }) => {
+        const data = {
+            id: payload?.id,
+            AccountNumber: payload?.AccountNumber,
+            AccountName: payload?.AccountName,
+            AccountType: payload?.AccountType,
+            MainAccount: payload?.MainAccount,
+            MainAccountDescription: payload?.MainAccountDescription,
+            TransactionLimit: payload?.TransactionLimit,
+        }
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return data;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

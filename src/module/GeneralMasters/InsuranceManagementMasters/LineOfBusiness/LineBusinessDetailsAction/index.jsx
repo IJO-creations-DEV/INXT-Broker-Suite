@@ -15,17 +15,37 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  patchInsurancelineOfBusinessMiddleWare,
+  postInsurancelineOfBusinessMiddleWare,
+} from "../store/insuranceLineOfBusinessMiddleware";
 
 const LineBusinessDetailsAction = ({ action }) => {
+  const dispatch = useDispatch();
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
   const toastRef = useRef(null);
   const navigation = useNavigate();
+  const { InsuranceLineOfBusinessList, loading } = useSelector(
+    ({ insuranceLineOfBusinessReducers }) => {
+      return {
+        loading: insuranceLineOfBusinessReducers?.loading,
+        InsuranceLineOfBusinessList:
+          insuranceLineOfBusinessReducers?.InsuranceLineOfBusinessList,
+      };
+    }
+  );
 
   useEffect(() => {
     if (action === "edit" || action === "view") {
-      setFormikValues();
+      if (id != null) {
+        const FilteredList = InsuranceLineOfBusinessList.filter(
+          (data) => data.id === parseInt(id)
+        );
+        setFormikValues(FilteredList);
+      }
     }
   }, [action]);
   const items = [
@@ -49,25 +69,6 @@ const LineBusinessDetailsAction = ({ action }) => {
   ];
   const home = { label: "Master" };
 
-  const cityOptionsList = [
-    { label: "Option 1", value: "City 1" },
-    { label: "Option 2", value: "City 2" },
-    { label: "Option 3", value: "City 3" },
-    { label: "Option 4", value: "City 4" },
-  ];
-  const stateOptionsList = [
-    { label: "Option 1", value: "State 1" },
-    { label: "Option 2", value: "State 2" },
-    { label: "Option 3", value: "State 3" },
-    { label: "Option 4", value: "State 4" },
-  ];
-  const countryOptionsList = [
-    { label: "Option 1", value: "Country 1" },
-    { label: "Option 2", value: "Country 2" },
-    { label: "Option 3", value: "Country 3" },
-    { label: "Option 4", value: "Country 4" },
-  ];
-
   const customValidation = (values) => {
     const errors = {};
 
@@ -86,6 +87,12 @@ const LineBusinessDetailsAction = ({ action }) => {
   const handleSubmit = (values) => {
     // Handle form submission
     if (action === "add") {
+      const valueWithId = {
+        ...values,
+        id: InsuranceLineOfBusinessList?.length + 1,
+      };
+      dispatch(postInsurancelineOfBusinessMiddleWare(valueWithId));
+
       toastRef.current.showToast();
 
       {
@@ -94,16 +101,20 @@ const LineBusinessDetailsAction = ({ action }) => {
           formik.resetForm();
         }, 3000);
       }
+    } else if (action === "edit") {
+      dispatch(patchInsurancelineOfBusinessMiddleWare(values));
+      navigation("/master/generals/insurancemanagement/lineofbusiness");
     } else {
       navigation("/master/generals/insurancemanagement/lineofbusiness");
     }
 
     console.log(values, "find values");
   };
-  const setFormikValues = () => {
-    const lineofBusinessCode = "LBC12345";
-    const LOBName = "LOB";
-    const LOBDescription = "Designation description";
+  const setFormikValues = (data) => {
+    console.log(data, "find data in setFormikValues");
+    const lineofBusinessCode = data[0]?.businessCode;
+    const LOBName = data[0]?.LOBName;
+    const LOBDescription = data[0]?.description;
     const modifiedBy = "Johnson";
     const modifiedOn = "12/12/23";
 
@@ -118,6 +129,7 @@ const LineBusinessDetailsAction = ({ action }) => {
   };
   const formik = useFormik({
     initialValues: {
+      id: id,
       lineofBusinessCode: "",
       LOBName: "",
       LOBDescription: "",

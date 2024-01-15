@@ -15,8 +15,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  patchInsurancePolicyTypeMiddleWare,
+  postInsurancePolicyTypeMiddleWare,
+} from "../store/insurancePolicyTypeMiddleware";
 
 const PolicyTypeDetailsAction = ({ action }) => {
+  const dispatch = useDispatch();
+  const { InsurancePolicyType, loading } = useSelector(
+    ({ insurancePolicyTypeReducers }) => {
+      return {
+        loading: insurancePolicyTypeReducers?.loading,
+        InsurancePolicyType: insurancePolicyTypeReducers?.InsurancePolicyType,
+      };
+    }
+  );
   console.log(action, "find action");
   const { id } = useParams();
   console.log(id, "find route id");
@@ -25,7 +39,12 @@ const PolicyTypeDetailsAction = ({ action }) => {
 
   useEffect(() => {
     if (action === "edit" || action === "view") {
-      setFormikValues();
+      if (id != null) {
+        const FilteredList = InsurancePolicyType.filter(
+          (data) => data.id === parseInt(id)
+        );
+        setFormikValues(FilteredList);
+      }
     }
   }, [action]);
   const items = [
@@ -49,25 +68,6 @@ const PolicyTypeDetailsAction = ({ action }) => {
   ];
   const home = { label: "Master" };
 
-  const cityOptionsList = [
-    { label: "Option 1", value: "City 1" },
-    { label: "Option 2", value: "City 2" },
-    { label: "Option 3", value: "City 3" },
-    { label: "Option 4", value: "City 4" },
-  ];
-  const stateOptionsList = [
-    { label: "Option 1", value: "State 1" },
-    { label: "Option 2", value: "State 2" },
-    { label: "Option 3", value: "State 3" },
-    { label: "Option 4", value: "State 4" },
-  ];
-  const countryOptionsList = [
-    { label: "Option 1", value: "Country 1" },
-    { label: "Option 2", value: "Country 2" },
-    { label: "Option 3", value: "Country 3" },
-    { label: "Option 4", value: "Country 4" },
-  ];
-
   const customValidation = (values) => {
     const errors = {};
 
@@ -89,6 +89,12 @@ const PolicyTypeDetailsAction = ({ action }) => {
   const handleSubmit = (values) => {
     // Handle form submission
     if (action === "add") {
+      const valueWithId = {
+        ...values,
+        id: InsurancePolicyType?.length + 1,
+      };
+      dispatch(postInsurancePolicyTypeMiddleWare(valueWithId));
+
       toastRef.current.showToast();
 
       {
@@ -97,19 +103,23 @@ const PolicyTypeDetailsAction = ({ action }) => {
           formik.resetForm();
         }, 3000);
       }
+    } else if (action === "edit") {
+      dispatch(patchInsurancePolicyTypeMiddleWare(values));
+      navigation("/master/generals/insurancemanagement/policytype");
     } else {
       navigation("/master/generals/insurancemanagement/policytype");
     }
 
     console.log(values, "find values");
   };
-  const setFormikValues = () => {
-    const policyTypeCode = "pro00123";
-    const policyTypeName = "Motor Comprehensive";
-    const policyTypeDescription = "Product Description";
+  const setFormikValues = (data) => {
+    console.log(data, "find setFormikValues");
+    const policyTypeCode = data[0]?.policytypeCode;
+    const policyTypeName = data[0]?.policyTypeName;
+    const policyTypeDescription = data[0]?.policyTypeDescription;
     const modifiedBy = "Johnson";
     const modifiedOn = "12/12/23";
-    const Product = "Line of Business";
+    const Product = data[0]?.product;
 
     const updatedValues = {
       policyTypeCode: `${policyTypeCode}`,
@@ -123,6 +133,7 @@ const PolicyTypeDetailsAction = ({ action }) => {
   };
   const formik = useFormik({
     initialValues: {
+      id: id,
       policyTypeCode: "",
       policyTypeName: "",
       policyTypeDescription: "",
@@ -138,7 +149,10 @@ const PolicyTypeDetailsAction = ({ action }) => {
   return (
     <div className="policy__type__master_container">
       <div className="grid m-0 top-container">
-        <CustomToast ref={toastRef} message="Policy type Code CC1234 is added" />
+        <CustomToast
+          ref={toastRef}
+          message="Policy type Code CC1234 is added"
+        />
         <div className="col-12 p-0">
           <NavBar />
         </div>
@@ -230,9 +244,7 @@ const PolicyTypeDetailsAction = ({ action }) => {
               placeholder="Enter"
               label="Product"
               value={formik.values.Product}
-              onChange={(e) =>
-                formik.setFieldValue("Product", e.target.value)
-              }
+              onChange={(e) => formik.setFieldValue("Product", e.target.value)}
             />
             {formik.touched.Product && formik.errors.Product && (
               <div style={{ fontSize: 12, color: "red" }}>

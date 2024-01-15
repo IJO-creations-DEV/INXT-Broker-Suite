@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import Productdata from "./mock";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -11,10 +10,22 @@ import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../../assets/icons/SvgTable";
 import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../../components/ToggleButton";
+import { useSelector, useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { getSearchInsuranceCoverMiddleware } from "../store/insuranceCoverMiddleware";
 
 const TableData = ({ navigate }) => {
   // const navigate = useNavigation();
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const { InsuranceCoverList, loading, SearchTableList } = useSelector(
+    ({ insuranceCoverReducers }) => {
+      return {
+        loading: insuranceCoverReducers?.loading,
+        InsuranceCoverList: insuranceCoverReducers?.InsuranceCoverList,
+        SearchTableList: insuranceCoverReducers?.SearchTableList,
+      };
+    }
+  );
 
   const emptyTableIcon = (
     <div>
@@ -69,20 +80,28 @@ const TableData = ({ navigate }) => {
     );
   };
 
-  const renderToggleButton = (rowData) => {
-    return (
-      <div>
-        <ToggleButton />
-      </div>
-    );
-  };
-
   const handleView = (id) => {
     navigate(`/master/generals/insurancemanagement/cover/view/${id}`);
   };
   const handleEdit = (id) => {
     navigate(`/master/generals/insurancemanagement/cover/edit/${id}`);
   };
+  const handleSubmit = (values) => {
+    dispatch(getSearchInsuranceCoverMiddleware({ textSearch: values.search }));
+  };
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit,
+  });
+  useEffect(() => {
+    if (formik.values.search !== "") {
+      dispatch(
+        getSearchInsuranceCoverMiddleware({
+          textSearch: formik.values.search,
+        })
+      );
+    }
+  }, [formik.values.search]);
   return (
     <div className="cover__table__container">
       <div className="grid m-0 header_search_container">
@@ -92,6 +111,8 @@ const TableData = ({ navigate }) => {
             <InputText
               placeholder="Search By Insurance Company  Code"
               className="searchinput__field"
+              value={formik.values.search}
+              onChange={formik.handleChange("search")}
             />
           </span>
         </div>
@@ -100,7 +121,9 @@ const TableData = ({ navigate }) => {
         </div>
       </div>
       <DataTable
-        value={Productdata}
+        value={
+          formik.values.search !== "" ? SearchTableList : InsuranceCoverList
+        }
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}

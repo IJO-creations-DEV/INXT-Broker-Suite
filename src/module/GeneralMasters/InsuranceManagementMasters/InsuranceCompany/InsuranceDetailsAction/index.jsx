@@ -15,7 +15,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
-import { postInsuranceCompanyMiddleWare } from "../store/insuranceCompanyMiddleware";
+import {
+  patchInsuranceCompanyMiddleWare,
+  postInsuranceCompanyMiddleWare,
+} from "../store/insuranceCompanyMiddleware";
 import { useSelector, useDispatch } from "react-redux";
 
 const InsuranceDetailsAction = ({ action }) => {
@@ -145,26 +148,32 @@ const InsuranceDetailsAction = ({ action }) => {
           formik.resetForm();
         }, 3000);
       }
+    } else if (action === "edit") {
+      console.log(values, "find edit values");
+      dispatch(patchInsuranceCompanyMiddleWare(values));
+      navigation("/master/generals/insurancemanagement/insurancecompany");
     } else {
       navigation("/master/generals/insurancemanagement/insurancecompany");
     }
   };
   const setFormikValues = (data) => {
+    const id = data[0]?.id;
     const insuranceCompanyCode = data[0]?.insuranceCompanyCode;
     const insuranceCompanyName = data[0]?.insuranceCompanyName;
     const insuranceCompanyDescription = "Insurance Company Description";
-    const addressLine1 = "addressLine1";
-    const addressLine2 = "addressLine2";
-    const addressLine3 = "addressLine3";
-    const city = { label: "Option 1", value: "City 1" };
-    const state = { label: "Option 1", value: "State 1" };
-    const country = { label: "Option 1", value: "Country 1" };
+    const addressLine1 = data[0]?.addressLine1;
+    const addressLine2 = data[0]?.addressLine2;
+    const addressLine3 = data[0]?.addressLine3;
+    const city = { label: "Option 1", value: data[0]?.city };
+    const state = { label: "Option 1", value: data[0]?.state };
+    const country = { label: "Option 1", value: data[0]?.country };
     const email = data[0]?.email;
     const phoneNumber = data[0]?.phoneNumber;
     const modifiedBy = data[0]?.modifiedby;
     const modifiedOn = data[0]?.modifiedOn;
 
     const updatedValues = {
+      id,
       insuranceCompanyCode: `${insuranceCompanyCode}`,
       insuranceCompanyName: `${insuranceCompanyName}`,
       insuranceCompanyDescription: `${insuranceCompanyDescription}`,
@@ -183,6 +192,7 @@ const InsuranceDetailsAction = ({ action }) => {
   };
   const formik = useFormik({
     initialValues: {
+      id: id,
       insuranceCompanyCode: "",
       insuranceCompanyName: "",
       insuranceCompanyDescription: "",

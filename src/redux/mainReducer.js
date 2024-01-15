@@ -25,13 +25,19 @@ import editReducers from "../module/Receipts/store/receiptsReducers";
 import reversalMainReducers from "../module/Reversals/store/reversalReducers";
 import correctionJVMainReducers from "../module/CorrectionJV/store/correctionJVReducers";
 import insuranceCompanyReducers from "../module/GeneralMasters/InsuranceManagementMasters/InsuranceCompany/store/insuranceCompanyReducers";
-import hierarchyTableReducers from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/store/hierarchyReducers"
-import organizationBranchMainReducers from "../module/GeneralMasters/OrganizationMasters/BranchMaster/store/branchReducers"
-import organizationCompanyMainReducers from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/store/companyReducers"
+import hierarchyTableReducers from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/store/hierarchyReducers";
+import organizationBranchMainReducers from "../module/GeneralMasters/OrganizationMasters/BranchMaster/store/branchReducers";
+import organizationCompanyMainReducers from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/store/companyReducers";
 import countryReducers from "../module/GeneralMasters/LocationMasters/CountryMaster/store/countryReducers";
 import cityReducers from "../module/GeneralMasters/LocationMasters/CityMaster/store/cityReducers";
 import employeeReducers from "../module/GeneralMasters/EmployeeManagementMasters/Employee/store/employeeReducers";
 import userReducers from "../module/GeneralMasters/UserManagementMasters/User/store/userReducers";
+import insuranceLineOfBusinessReducers from "../module/GeneralMasters/InsuranceManagementMasters/LineOfBusiness/store/insuranceLineOfBusinessReducers";
+import insuranceProductReducers from "../module/GeneralMasters/InsuranceManagementMasters/ProductMaster/store/insuranceProductReducers";
+import insurancePolicyTypeReducers from "../module/GeneralMasters/InsuranceManagementMasters/PolicyTypeMaster/store/insurancePolicyTypeReducers";
+import insuranceCoverReducers from "../module/GeneralMasters/InsuranceManagementMasters/Cover/store/insuranceCoverReducers";
+import insuranceSignatoriesReducers from "../module/GeneralMasters/InsuranceManagementMasters/SignatoriesMaster/store/insuranceSignatoriesReducers";
+import insuranceVehicleReducers from "../module/GeneralMasters/InsuranceManagementMasters/Vehicle/store/insuranceVehicleReducers";
 import stateReducers from "../module/GeneralMasters/LocationMasters/StateMaster/store/stateReducers";
 
 const reducers = {
@@ -65,6 +71,12 @@ const reducers = {
   cityReducers,
   employeeReducers,
   userReducers,
+  insuranceLineOfBusinessReducers,
+  insuranceProductReducers,
+  insurancePolicyTypeReducers,
+  insuranceCoverReducers,
+  insuranceSignatoriesReducers,
+  insuranceVehicleReducers,
   stateReducers
 
 };

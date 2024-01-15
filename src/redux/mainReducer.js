@@ -32,6 +32,8 @@ import countryReducers from "../module/GeneralMasters/LocationMasters/CountryMas
 import cityReducers from "../module/GeneralMasters/LocationMasters/CityMaster/store/cityReducers";
 import employeeReducers from "../module/GeneralMasters/EmployeeManagementMasters/Employee/store/employeeReducers";
 import userReducers from "../module/GeneralMasters/UserManagementMasters/User/store/userReducers";
+import stateReducers from "../module/GeneralMasters/LocationMasters/StateMaster/store/stateReducers";
+
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -62,7 +64,8 @@ const reducers = {
   countryReducers,
   cityReducers,
   employeeReducers,
-  userReducers
+  userReducers,
+  stateReducers
 
 };
 

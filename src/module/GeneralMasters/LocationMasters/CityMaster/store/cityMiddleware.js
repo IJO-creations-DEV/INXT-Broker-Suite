@@ -53,6 +53,7 @@ export const postAddCityMiddleware = createAsyncThunk(
 export const patchCityEditMiddleware = createAsyncThunk(
   PATCH_CITY_EDIT,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"patchCityEditMiddleware");
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;

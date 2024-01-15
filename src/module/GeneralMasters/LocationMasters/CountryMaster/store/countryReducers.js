@@ -6,6 +6,7 @@ const initialState = {
   error: "",
   countryTableList: [
     {
+      id: 1,
       "CountryName": "United States",
       "ISOCode": "US",
       "PhoneCode": "+1",
@@ -13,6 +14,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 2,
       "CountryName": "Canada",
       "ISOCode": "CA",
       "PhoneCode": "+1",
@@ -20,6 +22,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 3,
       "CountryName": "United Kingdom",
       "ISOCode": "GB",
       "PhoneCode": "+44",
@@ -27,6 +30,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 4,
       "CountryName": "Germany",
       "ISOCode": "DE",
       "PhoneCode": "+49",
@@ -34,6 +38,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 5,
       "CountryName": "Australia",
       "ISOCode": "AU",
       "PhoneCode": "+61",
@@ -41,6 +46,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 6,
       "CountryName": "India",
       "ISOCode": "IN",
       "PhoneCode": "+91",
@@ -48,6 +54,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 7,
       "CountryName": "Brazil",
       "ISOCode": "BR",
       "PhoneCode": "+55",
@@ -55,6 +62,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 8,
       "CountryName": "Japan",
       "ISOCode": "JP",
       "PhoneCode": "+81",
@@ -62,6 +70,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 9,
       "CountryName": "South Africa",
       "ISOCode": "ZA",
       "PhoneCode": "+27",
@@ -69,6 +78,7 @@ const initialState = {
       "ModifiedOn": "2024-01-12"
     },
     {
+      id: 10,
       "CountryName": "Mexico",
       "ISOCode": "MX",
       "PhoneCode": "+52",
@@ -79,8 +89,8 @@ const initialState = {
   ,
   countryDetailList: {},
   postAddCountry: "",
-  getSearchCountry:"",
-  patchCountry:""
+  getSearchCountry: "",
+  patchCountry: ""
 };
 const countryReducer = createSlice({
   name: "employee",

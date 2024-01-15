@@ -199,7 +199,7 @@ onClick={handleadd}
                 <div className="action_icons">
 
                 <SvgEyeIcon onClick={() => handleView(rowData)} />
-                <SvgEditicon onClick={() => handleEdit(rowData.id)}/>
+                <SvgEditicon onClick={() => handleEdit(rowData)}/>
                 </div>
               )}
               header="Action"

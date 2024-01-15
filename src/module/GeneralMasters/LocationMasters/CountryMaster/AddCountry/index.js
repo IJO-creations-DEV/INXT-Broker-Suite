@@ -65,6 +65,7 @@ function AddExchange({ action }) {
   const setFormikValues = () => {
     // const getCorrectionJVEdit = correctionJVList.find((item) => item.id === EditID);
     const updatedValues = {
+      id:countryDetailList?.id,
       CountryName: countryDetailList?.CountryName,
       ISOCode: countryDetailList?.ISOCode,
       Description: "Description",
@@ -82,7 +83,7 @@ function AddExchange({ action }) {
       setFormikValues()
       console.log(formik.values.CountryName, " formik.values.CountryName");
     }
-  }, [])
+  }, [countryDetailList])
 
 
   const minDate = new Date();

@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react';
+import React,{useState,useRef, useEffect} from 'react';
 import './index.scss';
 import { BreadCrumb } from 'primereact/breadcrumb';
 import InputField from '../../../../../components/InputField';
@@ -18,6 +18,8 @@ import { useFormik } from "formik";
 import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../../components/Toast";
 import { InputText } from "primereact/inputtext";
+import { useDispatch, useSelector } from 'react-redux';
+import { patchStateEditMiddleware, postAddStateMiddleware } from '../store/stateMiddleware';
 
 
 const initialValues ={
@@ -25,15 +27,16 @@ const initialValues ={
   StateName: "",
   Description: "",
   Country: "",
-  ModifiedBy: "",
+  Modifiedby: "",
   ModifiedOn: ""
  
 }
 
 function AddState({action}) {
     const toastRef = useRef(null);
+    const dispatch = useDispatch();
     const { id } = useParams();
-    const [date, setDate] = useState(null);
+    const [country, setCountry] = useState();
     const Navigate=useNavigate()
     const [departmentcode, setDepartmentCode] = useState(null);
     const [branchcode, setBranchCode] = useState(null);
@@ -43,6 +46,17 @@ function AddState({action}) {
     const [transactioncode, setTransactioncode] = useState(null);
     const [selectinstrumentcurrency, setSelectInstrumentCurrency] = useState(null);
     
+
+    const { stateTableList, loading,getStateListById } = useSelector(
+      ({ stateReducers }) => {
+        return {
+          loading: stateReducers?.loading,
+          stateTableList: stateReducers?.stateTableList,
+          getStateListById:stateReducers?.getStateListById
+        };
+      }
+    );
+console.log(getStateListById,"getStateListById");
     const Country = [
         { name: "India", code: "NY" },
         { name: "USA", code: "RM" },
@@ -59,6 +73,40 @@ function AddState({action}) {
         : "Details State"}` },
     ];
 
+    const setFormikValues = () => {
+      // const getCorrectionJVEdit = correctionJVList.find((item) => item.id === EditID);
+      const Country =getStateListById?.Country
+      const updatedValues = {
+        id:getStateListById?.id,
+        StateCode:getStateListById?.StateCode,
+        StateName: getStateListById?.StateName,
+        Description:"Description",
+        Country:Country,
+        Modifiedby:getStateListById?.Modifiedby,
+        ModifiedOn: getStateListById?.ModifiedOn
+      };
+      if (action === "view") {
+        if (Country) {
+          formik.setValues({ ...formik.values, ...updatedValues });
+          formik.setFieldValue("Country", Country);
+          setCountry([{ name: Country, code: Country }]);
+        }
+      } else {
+        if (Country) {
+          formik.setValues({ ...formik.values, ...updatedValues });
+          setCountry([{ name: Country, code: Country }]);
+        }
+      }
+    };
+    console.log(action, "action");
+  
+    useEffect(() => {
+      if (action === "view" || action === "edit") {
+        setFormikValues()
+        console.log(formik.values.CountryName, " formik.values.CountryName");
+      }
+    }, [getStateListById])
+
     const minDate = new Date();
     minDate.setDate(minDate.getDate() + 1);
 
@@ -69,16 +117,36 @@ function AddState({action}) {
 
 // const toastRef = useRef(null);
 
-const handleSubmit = (values) => {
-  // Handle form submission
-  console.log(values, "find values");
-  
-  toastRef.current.showToast();
-  // {
+
+  const handleSubmitAdd = (values) => {
+    const valueWithId = {
+      ...values,
+      id: stateTableList?.length + 1,
+    };
+    dispatch(postAddStateMiddleware(valueWithId));
+
+    toastRef.current.showToast();
+
     setTimeout(() => {
-    Navigate("/master/finance/exchangerate")
+      Navigate("/master/generals/location/state");
     }, 3000);
-  }
+  };
+
+  const handleSubmitEdit = (values) => {
+    dispatch(patchStateEditMiddleware(values));
+    console.log("Handle Edit Submission", values);
+    setTimeout(() => {
+      Navigate("/master/generals/location/state");
+    }, 3000);
+  };
+
+  const handleSubmit = (values) => {
+    if (action === "add") {
+      handleSubmitAdd(values);
+    } else if (action === "edit") {
+      handleSubmitEdit(values);
+    }
+  };
   
 // };
 
@@ -97,8 +165,8 @@ const customValidation = (values) => {
   if (!values.Country) {
       errors.Country = "This field is required";
   }
-  if (!values.ModifiedBy) {
-      errors.ModifiedBy = "This field is required";
+  if (!values.Modifiedby) {
+      errors.Modifiedby = "This field is required";
   }
 
   if (!values.ModifiedOn) {
@@ -111,12 +179,12 @@ const customValidation = (values) => {
 const formik = useFormik({
   initialValues:initialValues,
   validate: customValidation,
-  // onSubmit: (values) => {
+  onSubmit: (values) => {
   //   // Handle form submission
-  //    handleSubmit(values);
+     handleSubmit(values);
     
-  // },
-   onSubmit:handleSubmit
+  },
+  //  onSubmit:handleSubmit
 });
 
     return (
@@ -164,7 +232,11 @@ const formik = useFormik({
                  
               }
               onChange={formik.handleChange("StateCode")}
-              
+              disabled={action === "add"
+              ? false
+              : action === "edit"
+                ? false
+                : true}
             />
             {formik.touched.StateCode &&
                 formik.errors.StateCode && (
@@ -187,7 +259,11 @@ const formik = useFormik({
                  
               }
               onChange={formik.handleChange("StateName")}
-              
+              disabled={action === "add"
+              ? false
+              : action === "edit"
+                ? false
+                : true}
             />
             {formik.touched.StateName &&
                 formik.errors.StateName && (
@@ -210,7 +286,11 @@ const formik = useFormik({
                 
               }
               onChange={formik.handleChange("Description")}
-              
+              disabled={action === "add"
+              ? false
+              : action === "edit"
+                ? false
+                : true} 
             />
              {formik.touched.Description &&
                 formik.errors.Description && (
@@ -240,6 +320,11 @@ const formik = useFormik({
                 optionLabel="name"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
+                disabled={action === "add"
+                ? false
+                : action === "edit"
+                  ? false
+                  : true}
               />
               {formik.touched.Country &&
                 formik.errors.Country && (
@@ -258,16 +343,20 @@ const formik = useFormik({
               placeholder={"Enter"}
             //   value={formik.values.CurrencyDescription}
             value={
-                formik.values.ModifiedBy
+                formik.values.Modifiedby
                 
               }
-              onChange={formik.handleChange("ModifiedBy")}
-              
+              onChange={formik.handleChange("Modifiedby")}
+              disabled={action === "add"
+              ? false
+              : action === "edit"
+                ? false
+                : true}
             />
-            {formik.touched.ModifiedBy &&
-                formik.errors.ModifiedBy && (
+            {formik.touched.Modifiedby &&
+                formik.errors.Modifiedby && (
                   <div style={{ fontSize: 12, color: "red" }}>
-                    {formik.errors.ModifiedBy}
+                    {formik.errors.Modifiedby}
                   </div>
                 )}
            
@@ -285,7 +374,11 @@ const formik = useFormik({
                 
               }
               onChange={formik.handleChange("ModifiedOn")}
-              
+              disabled={action === "add"
+              ? false
+              : action === "edit"
+                ? false
+                : true}
             />
             {formik.touched.ModifiedOn &&
                 formik.errors.ModifiedOn && (
@@ -314,7 +407,7 @@ const formik = useFormik({
             <div className="next_container">
             {action === "edit" && (
               <Button className="submit_button p-0" label="Update"  disabled={!formik.isValid}
-              // onClick={()=>{formik.handleSubmit();}} 
+              onClick={()=>{formik.handleSubmit();}} 
               />
             )}
 </div>

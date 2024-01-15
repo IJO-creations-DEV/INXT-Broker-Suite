@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getRequest } from "../../../utility/commonServices";
-import { APIROUTES } from "../../../routes/apiRoutes";
+// import { getRequest } from "../../../utility/commonServices";
+// import { APIROUTES } from "../../../routes/apiRoutes";
 import {
   GET_STATE_DETAILS,
   GET_STATE_BY_ID,
@@ -9,6 +9,7 @@ import {
   GET_SERACH_STATE,
  
 } from "../../../../../redux/actionTypes";
+import { data } from "../../../../Receipts/PolicyReceipts/mock";
 
 export const getStateMiddleware = createAsyncThunk(
   GET_STATE_DETAILS,
@@ -35,9 +36,20 @@ export const getStateListByIdMiddleware = createAsyncThunk(
 export const postAddStateMiddleware = createAsyncThunk(
   POST_ADD_STATE,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"postAddStateMiddleware");
+
+    console.log(data,"data");
     try {
+      const data={
+        id: payload?.id,
+        StateCode: payload?.StateCode,
+        StateName: payload?.StateName,
+        Country: payload?.Country,
+        Modifiedby: payload?.ModifiedBy,
+        ModifiedOn: payload?.ModifiedOn
+      }
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

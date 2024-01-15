@@ -48,7 +48,7 @@ function AddCity({action}) {
         }
       );
 
-console.log(CityListById,"CityListById");
+console.log(CityListById,statedata,"CityListById");
     const home = { label: "Master" };
     const items = [
         { label: 'Location', url: '/master/finance/exchangerate' },
@@ -71,22 +71,32 @@ console.log(CityListById,"CityListById");
     const setFormikValues = () => {
       const statedatas = CityListById?.State; 
       const updatedValues = {
-          CityCode: CityListById?.Citycode || "",
-          CityName: CityListById?.CityName || "",
-          Description: "Description",
-          State: statedatas || "",
-          ModifiedBy: CityListById?.Modifiedby || "",
-          ModifiedOn: CityListById?.ModifiedOn || ""
+        id: CityListById?.id,
+        CityCode: CityListById?.Citycode || "",
+        CityName: CityListById?.CityName || "",
+        Description: "Description",
+        State: statedata || "",
+        ModifiedBy: CityListById?.Modifiedby || "",
+        ModifiedOn: CityListById?.ModifiedOn || ""
       };
-  
-      if (statedatas) {
+    
+      if (action === "view") {
+        if (statedatas) {
           formik.setValues({ ...formik.values, ...updatedValues });
-          setstatedata([{ name: statedatas, code: statedatas }]);    
+          formik.setFieldValue("State", statedatas);
+          setstatedata([{ name: statedatas, code: statedatas }]);
+        }
+      } else {
+        if (statedatas) {
+          formik.setValues({ ...formik.values, ...updatedValues });
+          setstatedata([{ name: statedatas, code: statedatas }]);
+        }
       }
-  
+    
       console.log(updatedValues, "updatedValues");
       console.log(statedata, "statedata");
-  };
+    };
+    
   
       console.log(action, "action");
     
@@ -95,7 +105,7 @@ console.log(CityListById,"CityListById");
           setFormikValues()
           console.log(formik.values.CityCode, " formik.values.CountryName");
         }
-      }, [])
+      }, [CityListById])
    
       const handleSubmitAdd = (values) => {
         const valueWithId = {
@@ -112,8 +122,20 @@ console.log(CityListById,"CityListById");
         }, 3000);
       };
     
+
       const handleSubmitEdit = (values) => {
-        dispatch(patchCityEditMiddleware(values));
+
+        const data = {
+          id: values?.id,
+          Citycode: values?.CityCode || "",
+          CityName: values?.CityName || "",
+          Description: "Description",
+          State: values.State.name || "",
+          Modifiedby: values?.ModifiedBy || "",
+          ModifiedOn: values?.ModifiedOn || ""
+        }
+
+        dispatch(patchCityEditMiddleware(data));
         console.log("Handle Edit Submission", values);
         setTimeout(() => {
           Navigate("/master/generals/location/city");

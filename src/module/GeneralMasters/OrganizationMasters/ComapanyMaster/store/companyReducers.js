@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCompanyListMiddleware, getCompanyListByIdMiddleware, postAddCompanyMiddleware, patchCompanyEditMiddleware, getSearchCompanyMiddleware, getComapnyListByIdMiddleware, getCompanyView, getCompanyViewMiddleWare } from "./companyMiddleware";
+import {
+  getCompanyListMiddleware,
+  getCompanyListByIdMiddleware,
+  postAddCompanyMiddleware,
+  patchCompanyEditMiddleware,
+  getSearchCompanyMiddleware,
+  getComapnyListByIdMiddleware,
+  getCompanyView,
+  getCompanyViewMiddleWare,
+} from "./companyMiddleware";
 
 const initialState = {
   loading: false,
@@ -42,11 +51,11 @@ const initialState = {
       Country: "India",
       PhoneNumber: "8296571254",
       Fax: "77",
-    }
+    },
   ],
-  companySearchList: []
+  companySearchList: [],
 };
-let nextId = 3
+let nextId = 3;
 const receiptsReducer = createSlice({
   name: "employee",
   initialState,
@@ -79,40 +88,29 @@ const receiptsReducer = createSlice({
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
-
-
     builder.addCase(getSearchCompanyMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      getSearchCompanyMiddleware.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.companySearchList = action.payload;
-      }
-    );
-    builder.addCase(
-      getSearchCompanyMiddleware.rejected,
-      (state, action) => {
-        state.loading = false;
+    builder.addCase(getSearchCompanyMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.companySearchList = action.payload;
+    });
+    builder.addCase(getSearchCompanyMiddleware.rejected, (state, action) => {
+      state.loading = false;
 
-        state.companySearchList = {};
-        state.error = typeof action.payload === "string" ? action.payload : "";
-      }
-    );
-
+      state.companySearchList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
     builder.addCase(postAddCompanyMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      postAddCompanyMiddleware.fulfilled, (state, action) => {
-        state.loading = false;
-        const newItem2 = { ...action.payload, id: nextId++ };
-        state.companyTableList = [...state.companyTableList, newItem2];
-        console.log(state.companyTableList, "companyTableList")
-      }
-    );
+    builder.addCase(postAddCompanyMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      const newItem2 = { ...action.payload, id: nextId++ };
+      state.companyTableList = [...state.companyTableList, newItem2];
+      console.log(state.companyTableList, "companyTableList");
+    });
     builder.addCase(postAddCompanyMiddleware.rejected, (state, action) => {
       state.loading = false;
 
@@ -120,46 +118,32 @@ const receiptsReducer = createSlice({
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
-
     builder.addCase(getCompanyViewMiddleWare.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      getCompanyViewMiddleWare.fulfilled,
-      (state, action) => {
-        state.loading = false;
-        state.companyView = action.payload;
-      }
-    );
-    builder.addCase(
-      getCompanyViewMiddleWare.rejected,
-      (state, action) => {
-        state.loading = false;
-        state.companyView = {};
-        state.error = typeof action.payload === "string" ? action.payload : "";
-      }
-    );
+    builder.addCase(getCompanyViewMiddleWare.fulfilled, (state, action) => {
+      state.loading = false;
+      state.companyView = action.payload;
+    });
+    builder.addCase(getCompanyViewMiddleWare.rejected, (state, action) => {
+      state.loading = false;
+      state.companyView = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
     builder.addCase(patchCompanyEditMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      patchCompanyEditMiddleware.fulfilled,
-      (state, action) => {
-        state.loading = false;
+    builder.addCase(patchCompanyEditMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
 
-        state.companyTableList = action.payload;
-      }
-    );
-    builder.addCase(
-      patchCompanyEditMiddleware.rejected,
-      (state, action) => {
-        state.loading = false;
+      state.companyTableList = action.payload;
+    });
+    builder.addCase(patchCompanyEditMiddleware.rejected, (state, action) => {
+      state.loading = false;
 
-        state.editList = {};
-        state.error = typeof action.payload === "string" ? action.payload : "";
-      }
-    );
-
+      state.editList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
   },
 });
 

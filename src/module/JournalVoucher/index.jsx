@@ -39,15 +39,17 @@ const JournalVoucher = () => {
 
   const [selectedCity, setSelectedCity] = useState(null);
   const cities = [
-    { name: "Name", code: "NY" },
-    { name: "Edit", code: "RM" },
-    { name: "Voucher Number", code: "LDN" },
+    { name: "Transation Code", code: "transationCode" },
+    { name: "Transaction Number", code: "transactionNumber" },
+    // { name: "Voucher Number", code: "LDN" },
   ];
 
   const [products, setProducts] = useState([]);
   const [visible, setVisible] = useState(false);
   const [newDataTable, setnewDataTable] = useState([]);
   const navigate = useNavigate();
+  const [globalFilter, setGlobalFilter] = useState('');
+  const [search, setSearch] = useState('')
   const items = [
     { id: 1, label: "Journal Voucher", to: "/accounts/journalvoucher" },
   ];
@@ -69,17 +71,31 @@ const JournalVoucher = () => {
     dispatch(getJournalVoucherSearchList({ textSearch: values.search }));
   };
 
+  useEffect(() => {
+    if (globalFilter?.length > 0) {
+      if (search?.length > 0) {
+        console.log(globalFilter, search, "as")
+
+        dispatch(getJournalVoucherSearchList({
+          field: globalFilter,
+          value: search
+        }))
+
+      }
+    }
+  }, [search])
+
   const formik = useFormik({
     initialValues: { search: "" },
     onSubmit: handleSubmit,
   });
-  useEffect(() => {
-    if (formik.values.search !== "") {
-      dispatch(
-        getJournalVoucherSearchList({ textSearch: formik.values.search })
-      );
-    }
-  }, [formik.values.search]);
+  // useEffect(() => {
+  //   if (formik.values.search !== "") {
+  //     dispatch(
+  //       getJournalVoucherSearchList({ textSearch: formik.values.search })
+  //     );
+  //   }
+  // }, [formik.values.search]);
 
   const onPageChange = (event) => {
     setFirst(event.first);
@@ -149,31 +165,33 @@ const JournalVoucher = () => {
                 <span className="p-input-icon-left" style={{ width: "100%" }}>
                   <i className="pi pi-search" />
                   {/* <span className='p-1'> <SvgSearchIcon /></span> */}
-                  {/* <InputText
+            {/* <InputText
                     style={{ width: "100%" }}
                     classNames="input__sub__account__Journal__Voture"
                     placeholder="Search by Transaction Code"
                     value={formik.values.search}
                     onChange={formik.handleChange("search")}
                   /> */}
-                   {/* <InputText
+            {/* <InputText
                 placeholder="Search customers"
                 className="searchinput_left"
               />
                 </span>
               </div>
 
-            // </form> */} 
-            <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 10 ,paddingRight:10}}>
-            {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
-            <span className="p-input-icon-left" style={{ width: "100%" }}>
-              <i className="pi pi-search" />
-              <InputText
-                placeholder="Search customers"
-                className="searchinput_left"
-              />
-            </span>
-          </div>
+            // </form> */}
+            <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 10, paddingRight: 10 }}>
+              {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
+              <span className="p-input-icon-left" style={{ width: "100%" }}>
+                <i className="pi pi-search" />
+                <InputText
+                  placeholder="Search customers"
+                  className="searchinput_left"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </span>
+            </div>
 
 
             <div className="col-12 md:col-2 lg:col-2">
@@ -184,9 +202,10 @@ const JournalVoucher = () => {
                 </div>
               </div> */}
               <Dropdown
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.value)}
+                value={globalFilter}
+                onChange={(e) => setGlobalFilter(e.value)}
                 options={cities}
+                optionValue="code"
                 optionLabel="name"
                 placeholder="Search by"
                 className="sorbyfilter_container"
@@ -195,13 +214,13 @@ const JournalVoucher = () => {
             </div>
           </div>
           <div className="col-12 ">
-            <div className="main__tabel__title__Journal__Voture " style={{ paddingLeft: 10,paddingRight:10 }}>
+            <div className="main__tabel__title__Journal__Voture " style={{ paddingLeft: 10, paddingRight: 10 }}>
               Journal Voucher history
             </div>
           </div>
           <div
             className="col-12 md:col-12 lg-col-12"
-            style={{ maxWidth: "100%", maxHeight: "40vh" ,paddingLeft:16,paddingRight:16}}
+            style={{ maxWidth: "100%", maxHeight: "40vh", paddingLeft: 16, paddingRight: 16 }}
           >
             <div className="card p-1">
               <DataTabelJV
@@ -209,7 +228,7 @@ const JournalVoucher = () => {
                 newDataTable={newDataTable}
                 visible={visible}
                 journalVoucherList={
-                  formik.values.search !== ""
+                  search?.length > 0
                     ? journalVoucherSearchList
                     : journalVoucherList
                 }

@@ -80,6 +80,8 @@ export const GET_PAYMENT_CHECKBOK_DETAILS =
   "paymentvoucher/GET_PAYMENT_CHECKBOK_DETAILS";
 export const PATCH_INVOICE_LIST_DETAILS =
   "paymentvoucher/GET_PAYMENT_CHECKBOK_DETAILS";
+export const SEARCH_PAYMENT_VOUCHER =
+  "paymentvoucher/SEARCH_PAYMENT_VOCHER";
 
 export const GET_COMMISSION = "commission/GET_COMMISSION";
 export const GET_TAXATION = "taxation/GET_TAXATION";
@@ -193,7 +195,7 @@ export const GET_PATCH_SUB_ACCOUNT_EDIT = "subaccount/GET_PATCH_SUB_ACCOUNT_EDIT
 
 export const GET_RECEIPT_DETAILS = "receipts/GET_RECEIPT_DETAILS";
 export const GET_RECEIPT_SEARCH = "receipts/GET_RECEIPT_SEARCH";
-export const GET_PAYMENT_DETAILS="receipts/GET_PAYMENT_DETAILS"
+export const GET_PAYMENT_DETAILS = "receipts/GET_PAYMENT_DETAILS"
 
 export const GET_RECEIPT_DETAILS_BY_ID = "receipts/GET_RECEIPT_DETAILS_BY_ID";
 export const GET_RECEIVABLE_TABLE = "receipts/GET_RECEIVABLE_TABLE";
@@ -218,7 +220,7 @@ export const GET_CORRECTION_JV_LIST = "correction/GET_CORRECTION_JV_LIST";
 export const POST_CORRECTION_JV = "correction/POST_CORRECTION_JV";
 export const GET_CORRECTION_JV_VIEW = "correction/GET_CORRECTION_JV_VIEW";
 export const PATCH_CORRECTION_JV_EDIT = "correction/PATCH_CORRECTION_JV_EDIT";
-export const GET_PATCH_CORRECTION_JV_EDIT="correction/GET_PATCH_CORRECTION_JV_EDIT"
+export const GET_PATCH_CORRECTION_JV_EDIT = "correction/GET_PATCH_CORRECTION_JV_EDIT"
 
 export const GET_REVERSAL_JV_LIST = "reversal/GET_REVERSAL_JV_LIST";
 export const POST_REVERSAL_JV = "reversal/POST_REVERSAL_JV";

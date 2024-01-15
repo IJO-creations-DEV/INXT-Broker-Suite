@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -13,22 +13,30 @@ import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useDispatch, useSelector } from "react-redux";
+import { getRequestSearchMiddleware } from "../store/pettyCashRequestMiddleware";
 
 const RequestTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("")
+  const [globalFilter, setGlobalFilter] = useState("ReceiptNo")
 
-  const { RequestList, loading } = useSelector(({ pettyCashRequestReducer }) => {
+  const { RequestList, loading ,RequestSearch} = useSelector(({ pettyCashRequestReducer }) => {
     return {
       loading: pettyCashRequestReducer?.loading,
       RequestList: pettyCashRequestReducer?.RequestList,
+      RequestSearch: pettyCashRequestReducer?.RequestSearch
     };
   });
   const searchs = [
-    { name: 'Name', code: 'NY' },
-    { name: 'Date', code: 'RM' },
-    { name: 'Voucher Number', code: 'LDN' }]
+    { name: 'Receipt No', code: 'ReceiptNo' },
+    { name: 'Request Number', code: 'RequestNumber' },
+    { name: 'Requester Name', code: 'RequesterName' },
+    { name: 'Branch Code', code: 'Branchcode' },
+    { name: 'Department code', code: 'Departmentcode' },
+    { name: 'Total Amount', code: 'TotalAmount' },
+    { name: 'Date', code: 'Date' },
+  ]
 
   const isEmpty = RequestList.length === 0;
 
@@ -99,6 +107,21 @@ const RequestTable = () => {
     color: "#000",
     border: "none",
   };
+
+  useEffect(() => {
+
+    console.log(globalFilter, "as")
+    if (globalFilter?.length > 0) {
+      if (search?.length > 0) {
+        dispatch(getRequestSearchMiddleware({
+          field: globalFilter,
+          value: search
+        }))
+
+      }
+    }
+  }, [search])
+
   return (
     <div className="Request__table">
       <Card className="mt-1">
@@ -109,11 +132,13 @@ const RequestTable = () => {
               <InputText
                 placeholder="Search customers"
                 className="searchinput_left"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-          <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={searchs} optionLabel="name" 
+          <Dropdown    value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
                 placeholder="Search by"  
                 className="sorbyfilter_container"
                 dropdownIcon={<SvgDropdownicon/>}
@@ -124,7 +149,7 @@ const RequestTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={RequestList}
+            value={search ? RequestSearch :RequestList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",

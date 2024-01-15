@@ -17,15 +17,18 @@ import { TieredMenu } from "primereact/tieredmenu";
 import SvgIconeye from "../../assets/icons/SvgIconeye";
 import SvgDropdown from "../../assets/icons/SvgDropdown";
 import SvgDropdownicon from "../../assets/icons/SvgDropdownicon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getPaymentVocherListBySearchMiddleware } from "./store/paymentVocherMiddleware";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const { paymentVocherList, loading } = useSelector(
+  const dispatch = useDispatch()
+  const { paymentVocherList, loading, paymentVocherSearchList } = useSelector(
     ({ paymentVoucherReducers }) => {
       return {
         loading: paymentVoucherReducers?.loading,
         paymentVocherList: paymentVoucherReducers?.paymentVocherList,
+        paymentVocherSearchList: paymentVoucherReducers?.paymentVocherSearchList
       };
     }
   );
@@ -83,7 +86,7 @@ const Index = () => {
     fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
-    paddingLeft:6,
+    paddingLeft: 6,
     color: "#000",
     border: "none",
   };
@@ -100,14 +103,27 @@ const Index = () => {
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
-  const [globalFilter, setGlobalFilter] = useState("");
-
+  const [globalFilter, setGlobalFilter] = useState("VoucherNumber");
+  const [search, setSearch] = useState("")
   const [selectedCity, setSelectedCity] = useState(null);
   const cities = [
-      { name: 'Name', code: 'NY' },
-      { name: 'Edit', code: 'RM' },
-      { name: 'Voucher Number', code: 'LDN' },
+    { name: 'VoucherNumber', code: 'VoucherNumber' },
+    { name: 'TransactionNumber', code: 'TransactionNumber' },
+    { name: 'CustomerCode', code: 'CustomerCode' },
   ];
+
+  useEffect(() => {
+    console.log(globalFilter, "as")
+    if (globalFilter?.length > 0) {
+      if (search?.length > 0) {
+        dispatch(getPaymentVocherListBySearchMiddleware({
+          field: globalFilter,
+          value: search
+        }))
+
+      }
+    }
+  }, [search])
 
   const onGlobalFilterChange = (event) => {
     setGlobalFilter(event.target.value);
@@ -154,6 +170,8 @@ const Index = () => {
               <InputText
                 placeholder="Search customers"
                 className="searchinput_left"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </span>
           </div>
@@ -162,11 +180,12 @@ const Index = () => {
             {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" /> */}
 
 
-            <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
-                placeholder="Search by"  
-                className="sorbyfilter_container"
-                dropdownIcon={<SvgDropdownicon/>}
-                />
+            <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+              optionValue="code"
+              placeholder="Search by"
+              className="sorbyfilter_container"
+              dropdownIcon={<SvgDropdownicon />}
+            />
 
 
             {/* <Button
@@ -184,7 +203,7 @@ const Index = () => {
 
         <div>
           <DataTable
-            value={paymentVocherList}
+            value={search ? paymentVocherSearchList : paymentVocherList}
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}
@@ -238,7 +257,7 @@ const Index = () => {
                 <SvgIconeye onClick={() => handleView(columnData)} />
               )}
               header="Action"
-              style={{textAlign:'center'}}
+              style={{ textAlign: 'center' }}
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>

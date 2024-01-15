@@ -27,6 +27,7 @@ const TransactionCodeMasterTable = () => {
   });
   console.log(TransactioncodeList, "TransactioncodeList")
   const [products, setProducts] = useState([{ TransactionCode: "100101" }]);
+  const [search, setSearch] = useState('');
 
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
@@ -154,11 +155,13 @@ const TransactionCodeMasterTable = () => {
   };
 
   useEffect(() => {
-    if (formik.values.search !== "") {
+    if (search?.length > 0) {
+      dispatch(getTransactioncodeListsearch(search))
 
-      dispatch(getTransactioncodeListsearch({ textSearch: formik.values.search }));
     }
-  }, [formik.values.search]);
+  }, [search])
+
+
   return (
     <div className="transactioncode__master__table">
       <Card className="mt-4">
@@ -169,8 +172,8 @@ const TransactionCodeMasterTable = () => {
               <InputText
                 placeholder="Search By Transaction Code"
                 className="searchinput__left"
-                value={formik.values.search}
-                onChange={formik.handleChange("search")}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </span>
           </form>
@@ -179,7 +182,7 @@ const TransactionCodeMasterTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={formik.values.search !== "" ? TransactioncodeListsearch : TransactioncodeList}
+            value={search ? TransactioncodeListsearch : TransactioncodeList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
@@ -188,13 +191,13 @@ const TransactionCodeMasterTable = () => {
             scrollHeight="40vh"
             paginator
             rows={5}
-            selection={selectedRows}
+            // selection={selectedRows}
             rowsPerPageOptions={[5, 10, 25, 50]}
             // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             emptyMessage={isEmpty ? emptyTableIcon : null}
-            selectionMode="checkbox"
+          // selectionMode="checkbox"
           >
             {/* <Column
               header={<input type="checkbox" />}
@@ -208,12 +211,12 @@ const TransactionCodeMasterTable = () => {
               headerStyle={headerStyle}
               style={{ textAlign: "center" }}
             /> */}
- <Column
+            {/* <Column
               selectionMode="multiple"
               selectedItem
               headerStyle={{ width: "2rem" }}
               style={{textAlign:'center'}}
-            ></Column>
+            ></Column> */}
 
 
             <Column
@@ -249,7 +252,7 @@ const TransactionCodeMasterTable = () => {
               className="fieldvalue_container"
             ></Column>
             <Column
-              body={renderToggleButton}
+              body={(columnData) => <ToggleButton id={columnData.id} />}
               header="Status"
               headerStyle={{ textAlign: 'center', ...headerStyle }}
               className="fieldvalue_container"

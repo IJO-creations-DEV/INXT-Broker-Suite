@@ -21,7 +21,7 @@ export const getTransactioncodeListMiddleware = createAsyncThunk(
 export const getTransactioncodeListsearch = createAsyncThunk(
     GET_TRANSACTION_CODE_LIST_SEARCH,
     async (payload, { rejectWithValue, getState }) => {
-        const { textSearch } = payload;
+        const textSearch = payload;
         console.log(textSearch, "textSearch")
         const { transactionCodeMasterReducer } = getState();
 
@@ -29,15 +29,13 @@ export const getTransactioncodeListsearch = createAsyncThunk(
         console.log(TransactioncodeList, "1234")
 
         try {
-            if (textSearch.trim() !== "") {
-                const searchResults = TransactioncodeList.filter(item => {
-                    return item.TransactionName.toLowerCase().includes(textSearch.toLowerCase());
-                });
-                console.log(searchResults, "searchResults")
-                return searchResults;
-            } else {
-                return TransactioncodeList;
-            }
+            const searchResults = TransactioncodeList.filter(item => {
+                return item.TransactionName.toLowerCase().includes(textSearch.toLowerCase());
+            });
+            console.log(searchResults, "searchResults")
+            return searchResults;
+
+
         } catch (error) {
             return rejectWithValue(error?.response?.data?.error?.message);
         }

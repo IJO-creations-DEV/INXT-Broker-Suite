@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -13,21 +13,37 @@ import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useDispatch, useSelector } from "react-redux";
-import { getViewReceiptMiddleware } from "../store/pettyCashReceiptsMiddleware";
+import { getReceiptSearchMiddleware, getViewReceiptMiddleware } from "../store/pettyCashReceiptsMiddleware";
 
 const PettyCashReceiptsTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [filterData, setFilterData] = useState(null);
+  const [search, setSearch] = useState("")
+  const [globalFilter, setGlobalFilter] = useState("ReceiptNo")
 
-  const { ReceiptList, loading } = useSelector(
+  const { ReceiptList, loading, ReceiptSearch } = useSelector(
     ({ pettyCashReceiptsReducer }) => {
       return {
         loading: pettyCashReceiptsReducer?.loading,
         ReceiptList: pettyCashReceiptsReducer?.ReceiptList,
+        ReceiptSearch: pettyCashReceiptsReducer?.ReceiptSearch
       };
     }
   );
+
+  const searchs = [
+    { name: 'Receipt No', code: 'ReceiptNo' },
+    { name: 'Requester Name', code: 'RequesterName' },
+    { name: 'Branch Code', code: 'Branchcode' },
+    { name: 'Transaction code', code: 'Transactioncode' },
+    { name: 'Bank Code', code: 'BankCode' },
+    { name: 'SubAccount', code: 'SubAccount' },
+    { name: 'Transaction Number', code: 'TransactionNumber' },
+    { name: 'Date', code: 'Date' },
+  ]
+
+
   const isEmpty = ReceiptList?.length === 0;
 
   const emptyTableIcon = (
@@ -111,6 +127,20 @@ const PettyCashReceiptsTable = () => {
     { name: "Receipt No", code: "code" },
   ];
 
+  useEffect(() => {
+
+    console.log(globalFilter, "as")
+    if (globalFilter?.length > 0) {
+      if (search?.length > 0) {
+        dispatch(getReceiptSearchMiddleware({
+          field: globalFilter,
+          value: search
+        }))
+
+      }
+    }
+  }, [search])
+
   return (
     <div className="petty__cash__receipts__table">
       <Card className="mt-1">
@@ -121,15 +151,14 @@ const PettyCashReceiptsTable = () => {
               <InputText
                 placeholder="Search by Petty cash Code"
                 className="searchinput_left"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2 search__container">
             <Dropdown
-              value={filterData}
-              onChange={(e) => setFilterData(e.value)}
-              options={cities}
-              optionLabel="name"
+              value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}
@@ -148,7 +177,7 @@ const PettyCashReceiptsTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={ReceiptList}
+            value={search ? ReceiptSearch :ReceiptList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",

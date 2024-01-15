@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -12,38 +12,39 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
-import { getInitiateDetailsMiddleware } from "../store/pettyCashInitiateMiddleware";
+import { getInitiateDetailsMiddleware, getInitiateListSearchMiddleware } from "../store/pettyCashInitiateMiddleware";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
 const InitiateTable = () => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("")
+  const [globalFilter, setGlobalFilter] = useState("Pettycashcode")
 
-  
-  const { InitiateList, loading } = useSelector(({ pettyCashInitiateReducer }) => {
+  const { InitiateList, loading, InitiateListSearch } = useSelector(({ pettyCashInitiateReducer }) => {
     return {
       loading: pettyCashInitiateReducer?.loading,
       InitiateList: pettyCashInitiateReducer?.InitiateList,
+      InitiateListSearch: pettyCashInitiateReducer?.InitiateListSearch
     };
   });
 
-  const searchs =[
-    { name: 'Name', code: 'NY' },
-    { name: 'Date', code: 'RM' },
-    { name: 'Transaction Number', code: 'LDN' },
-    { name: 'Receipts Number', code: 'LDN' }]
-  
+  const searchs = [
+    { name: 'Petty Cash code', code: 'Pettycashcode' },
+    { name: 'Transaction Number', code: 'TransactionNumber' },
+    { name: 'Branch Code', code: 'Branchcode' },
+    { name: 'Department Code', code: 'Departmentcode' }]
+
 
   const isEmpty = InitiateList.length === 0;
 
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable />
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
   const template2 = {
@@ -59,40 +60,40 @@ const InitiateTable = () => {
 
       return (
         <div className="paginatoroverall__container">
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdowninner_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+          <React.Fragment>
+            <span
+              className="mx-1"
+              style={{ color: "var(--text-color)", userSelect: "none" }}
+            >
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdowninner_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          </React.Fragment>
         </div>
       );
     },
   };
 
   const renderViewButton = (rowData) => {
-    
+
     return (
-        <div className="center-content">
-      <Button
-        icon={<SvgEyeIcon />}
-        className="eye__btn"
-        onClick={() => handleView(rowData)}
-      />
+      <div className="center-content">
+        <Button
+          icon={<SvgEyeIcon />}
+          className="eye__btn"
+          onClick={() => handleView(rowData)}
+        />
       </div>
     );
   };
 
   const handleView = (rowData) => {
-dispatch(getInitiateDetailsMiddleware(rowData));
+    dispatch(getInitiateDetailsMiddleware(rowData));
     navigate("/accounts/pettycash/PettyCashCodeDetails")
   };
   const headerStyle = {
@@ -101,7 +102,7 @@ dispatch(getInitiateDetailsMiddleware(rowData));
     fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
-    paddingLeft:6,
+    paddingLeft: 6,
     color: "#000",
     border: "none",
   };
@@ -113,9 +114,23 @@ dispatch(getInitiateDetailsMiddleware(rowData));
     fontWeight: 500,
     padding: 6,
     color: "#000",
-    border:" none",
+    border: " none",
     display: "flex"
   };
+  useEffect(() => {
+
+    console.log(globalFilter, "as")
+    if (globalFilter?.length > 0) {
+      if (search?.length > 0) {
+        dispatch(getInitiateListSearchMiddleware({
+          field: globalFilter,
+          value: search
+        }))
+
+      }
+    }
+  }, [search])
+
   const menu = useRef(null);
   const menuitems = [
     {
@@ -138,32 +153,34 @@ dispatch(getInitiateDetailsMiddleware(rowData));
               <InputText
                 placeholder="Search customers"
                 className="searchinput_left"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
             {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" /> */}
-            <Dropdown value={search} onChange={(e) => setSearch(e.value)} options={searchs} optionLabel="name" 
-                placeholder="Search by"  
-                className="sorbyfilter_container"
-                dropdownIcon={<SvgDropdownicon/>}
-                />
+            <Dropdown value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
+              placeholder="Search by"
+              className="sorbyfilter_container"
+              dropdownIcon={<SvgDropdownicon />}
+            />
 
             {/* <Button label="Search by" outlined icon={<SvgDropdownicon />}
               className="sorbyfilter_container"
               onClick={(e) => menu.current.toggle(e)}
             /> */}
-            </div>
+          </div>
           <div className="sub__title">Petty Cash Code history</div>
         </div>
         <div className="card">
           <DataTable
-            value={InitiateList}
+            value={search ? InitiateListSearch : InitiateList}
             tableStyle={{
-              
+
               color: "#1C2536",
             }}
-            scrollable={true} 
+            scrollable={true}
             scrollHeight="40vh"
             paginator
             rows={5}
@@ -178,7 +195,7 @@ dispatch(getInitiateDetailsMiddleware(rowData));
               header="Petty cash code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
+
             ></Column>
             <Column
               field="Pettycashsize"
@@ -199,21 +216,21 @@ dispatch(getInitiateDetailsMiddleware(rowData));
               header="Transaction Limit"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
+
             ></Column>
             <Column
               field="Branchcode"
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
+
             ></Column>
             <Column
               field="Departmentcode"
               header="Department code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
+
             ></Column>
             <Column
               field="Date"

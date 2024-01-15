@@ -22,13 +22,14 @@ import ToggleButton from "../../../components/ToggleButton";
 import SvgTable from "../../../assets/icons/SvgTable";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { patchBankDetailEdit } from "./store/bankMasterMiddleware";
+import { getBankSearchList, patchBankDetailEdit } from "./store/bankMasterMiddleware";
 
 const BankMaster = () => {
   const menu = useRef(null);
   const [visible, setVisible] = useState(false);
   const [visibleview, setVisibleview] = useState(false);
   const [currentDialog, setDialog] = useState({});
+  const [search, setSearch] = useState('');
   const dispatch = useDispatch()
   // const menuitems = [
   //   { label: "Edit", command: () => setVisible(true) },
@@ -45,6 +46,7 @@ const BankMaster = () => {
     setVisible(true);
     setDialog(rowData)
     // console.log(currentDialog, "current detail")
+    formik.setFieldValue("id", rowData?.id)
     formik.setFieldValue("bankCode", rowData?.bankCode)
     formik.setFieldValue("bankName", rowData?.bankName)
     formik.setFieldValue("bankBranch", rowData?.bankBranch)
@@ -67,15 +69,30 @@ const BankMaster = () => {
     setVisibleview(true);
     setDialog(rowData) // or any other logic you want to perform
     // Use the rowData as needed
+    formik.setFieldValue("id", rowData?.id)
+    formik.setFieldValue("bankCode", rowData?.bankCode)
+    formik.setFieldValue("bankName", rowData?.bankName)
+    formik.setFieldValue("bankBranch", rowData?.bankBranch)
+    formik.setFieldValue("ifscCode", rowData?.ifscCode)
+    formik.setFieldValue("addressLine1", 'Sudharshan Building')
+    formik.setFieldValue("addressLine2", '2nd floor,chamiers Road')
+    formik.setFieldValue("addressLine3", 'Nanthanam')
+    formik.setFieldValue("city", 'Chennai')
+    formik.setFieldValue("state", 'Tamil Nadu')
+    formik.setFieldValue("country", 'India')
+    formik.setFieldValue("mobile", rowData?.mobile)
+    formik.setFieldValue("fax", rowData?.mobile)
+    formik.setFieldValue("email", rowData?.email)
     console.log("View clicked for row:", rowData);
   };
 
 
 
   const [products, setProducts] = useState([]);
-  const { bankList } = useSelector(({ bankMasterReducer }) => {
+  const { bankList, BankSearchList } = useSelector(({ bankMasterReducer }) => {
     return {
-      bankList: bankMasterReducer?.BankList
+      bankList: bankMasterReducer?.BankList,
+      BankSearchList: bankMasterReducer?.BankSearchList,
     };
   });
   useEffect(() => {
@@ -239,6 +256,12 @@ const BankMaster = () => {
     navigate("/otherreceiptsview");
   };
 
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getBankSearchList(search))
+    }
+  }, [search])
+
   return (
     <div className='overall__bankmaster__container'>
       <NavBar />
@@ -275,7 +298,8 @@ const BankMaster = () => {
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
-              <InputText placeholder="Search customers" className="searchinput_left" />
+              <InputText placeholder="Search customers" className="searchinput_left" value={search}
+                onChange={(e) => setSearch(e.target.value)} />
             </span>
           </div>
           {/* </div> */}
@@ -287,7 +311,7 @@ const BankMaster = () => {
         {/* </div> */}
 
         <div className="card">
-          <DataTable value={bankList} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
+          <DataTable value={search ? BankSearchList :bankList} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
             paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
             // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
@@ -303,9 +327,9 @@ const BankMaster = () => {
             <Column field="ifscCode" header="IFSC Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="email" header="Email" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="mobile" header="Phone" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column body={renderToggleButton} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
 
-            <Column body={(columnData) => (
+            <Column body={(rowData) => (
               //         <div className="card flex justify-content-center">
 
               //  <TieredMenu model={menuitems} popup ref={menu}  />
@@ -314,7 +338,7 @@ const BankMaster = () => {
 
               //   </div>
               <div className="card flex justify-content-center">
-                <TieredMenu model={menuitems.map(item => ({ ...item, command: () => item.command(columnData) }))} popup ref={menu} breakpoint="767px" />
+                <TieredMenu model={menuitems.map(item => ({ ...item, command: () => item.command(rowData) }))} popup ref={menu} breakpoint="767px" />
                 <Button icon={<SvgMenudots />} onClick={(e) => menu.current.toggle(e)} className="menubutton_popup" />
               </div>
 

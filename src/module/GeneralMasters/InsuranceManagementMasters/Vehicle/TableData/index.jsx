@@ -90,7 +90,7 @@ const TableData = ({ navigate }) => {
   return (
     <div className="vehicle__table__container">
       <div className="grid m-0 header_search_container">
-        <div class="col-12 md:col-10 lg:col-10 xl:col-10 p-0">
+        <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-0">
           <span className="p-input-icon-left w-full">
             <i className="pi pi-search" />
             <InputText
@@ -144,7 +144,8 @@ const TableData = ({ navigate }) => {
           field="status"
           header="status"
           className="fieldvalue_container"
-          body={renderToggleButton}
+          body={(columnData) => <ToggleButton id={columnData.id} />}
+
         ></Column>
         <Column
           style={{

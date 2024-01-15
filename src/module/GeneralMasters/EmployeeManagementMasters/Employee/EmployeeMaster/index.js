@@ -15,6 +15,7 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
+import { useSelector } from "react-redux";
 
 const EmployeeMaster = () => {
   const navigate = useNavigate();
@@ -24,6 +25,17 @@ const EmployeeMaster = () => {
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
+  
+  const { hierarchTableList, loading, total, hierarchSeachList } = useSelector(({ employeeReducers }) => {
+    return {
+      loading: employeeReducers?.loading,
+      hierarchTableList: employeeReducers?.hierarchTableList,
+      hierarchSeachList: employeeReducers?.hierarchSeachList,
+      total: employeeReducers
+
+    };
+  });
+
 const handleView =()=>{
     navigate(`/master/generals/employeemanagement/employee/view/2`)
 }
@@ -148,7 +160,7 @@ const handlEdit =()=>{
       <div className="col-12 m-0 ">
         <div className="sub__account__sub__container__hierarchy">
           <div className="col-12 search__filter__view__hierarchy">
-            <div className="col-12 md:col-10 lg:col-10">
+            <div className="col-12 md:col-12 lg:col-12">
               <div className="searchIcon__view__input__hierarchy">
                 <span className="pl-3">
                   {" "}
@@ -223,7 +235,7 @@ const handlEdit =()=>{
                 ></Column>
                 <Column
                   field="status"
-                  body={renderToggleButton}
+                  body={(columnData) => <ToggleButton id={columnData.id} />}
                   header="Status"
                   headerStyle={{ textAlign: "center", ...headerStyle }}
                   className="fieldvalue_container"

@@ -14,6 +14,7 @@ import { InputText } from "primereact/inputtext";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
+import ToggleButton from "../../../../components/ToggleButton";
 
 const Index = () => {
   const template2 = {
@@ -178,7 +179,7 @@ const Index = () => {
               headerStyle={headerStyle}
               field="status"
               className="fieldvalue_container"
-              body={() => <SvgArrow />}
+              body={(columnData) => <ToggleButton id={columnData.id} />}
             />
           </DataTable>
         </div>

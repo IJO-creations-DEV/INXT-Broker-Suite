@@ -37,14 +37,14 @@ const State = () => {
     }, []);
 
     const handleEdit = (id) => {
-      navigate(`/master/generals/location/state/edit/:${id}`)
+      navigate(`/master/generals/location/state/edit`)
     }
 
     const handleView =(id)=>{
-      navigate(`/master/generals/location/state/view/:${id}`)
+      navigate(`/master/generals/location/state/view`)
     }
     const handleadd =(id)=>{
-      navigate(`/master/generals/location/state/add/:${id}`)
+      navigate(`/master/generals/location/state/add`)
     }
 
     const isEmpty = products.length === 0;
@@ -146,7 +146,7 @@ onClick={handleadd}
     
 
 <div  className="header_search_container">
-    <div class="col-12 md:col-6 lg:col-10">
+    <div class="col-12 md:col-12 lg:col-12">
         {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
         <span className="p-input-icon-left" style={{width:"100%"}}>
                 <i className="pi pi-search" />
@@ -178,7 +178,7 @@ onClick={handleadd}
                     <Column field="quantity" header="Modified by"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="name" header="Modified On" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     {/* <Column field="name" header="Phone" headerStyle={headerStyle}  className='fieldvalue_container'></Column> */}
-                    <Column body={renderToggleButton} header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column
               body={(columnData) => (
                 <div className="action_icons">

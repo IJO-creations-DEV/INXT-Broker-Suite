@@ -22,7 +22,7 @@ import { getReceiptsListBySearchMiddleware } from "../store/receiptsMiddleware";
 
 
 const PolicyReceipts = () => {
-  
+
   // const [products, setProducts] = useState([]);
   // const [stylesLoaded, setStylesLoaded] = useState(false);
 
@@ -50,17 +50,15 @@ const PolicyReceipts = () => {
     { name: 'Transaction Number', value: 'transactionNumber' },
     { name: 'Transaction Code', value: 'transactionCode' }]
 
-  const { receiptsTableList, loading, receiptsSearchTable } = useSelector(({ receiptsTableReducers }) => {
+  const { receiptsTableList, loading, total, receiptsSearchTable } = useSelector(({ receiptsTableReducers }) => {
     return {
       loading: receiptsTableReducers?.loading,
       receiptsTableList: receiptsTableReducers?.receiptsTableList,
-      // total: receiptsTableReducers,
+      total: receiptsTableReducers,
       receiptsSearchTable: receiptsTableReducers?.receiptsSearchTable
 
     };
   });
-
-
   console.log(receiptsTableList, "receiptsTableListreceiptsTableList")
   // console.log(total, "find receiptsTableList")
   const template2 = {
@@ -144,19 +142,19 @@ const PolicyReceipts = () => {
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
-  const [globalFilter, setGlobalFilter] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("name");
   const dispatch = useDispatch();
   const [searches, setSearch] = useState("");
 
   useEffect(() => {
     console.log(globalFilter, "as")
-    if(globalFilter.length > 0 ){
+    if (globalFilter?.length > 0) {
       if (searches?.length > 0) {
         dispatch(getReceiptsListBySearchMiddleware({
           field: globalFilter,
           value: searches
         }))
-  
+
       }
     }
   }, [searches])
@@ -182,7 +180,7 @@ const PolicyReceipts = () => {
   return (
     // <Suspense fallback={<div>Loading...</div>}>
     // {stylesLoaded &&
-        <div className="overall__policyreceipts__container">
+    <div className="overall__policyreceipts__container">
       <NavBar />
       <div className="overallfilter_container">
         <div>
@@ -232,7 +230,7 @@ const PolicyReceipts = () => {
 
         <div className="card">
           <DataTable
-            value={ receiptsTableList}
+            value={searches ? receiptsSearchTable : receiptsTableList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
@@ -309,9 +307,9 @@ const PolicyReceipts = () => {
           </DataTable>
         </div>
       </Card>
-    </div> 
+    </div>
     // }
-  // </Suspense>
+    // </Suspense>
 
 
   );

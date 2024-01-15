@@ -23,24 +23,27 @@ import SvgEdit from "../../../assets/icons/SvgEdits";
 import ToggleButton from "../../../components/ToggleButton";
 import SvgEditicons from "../../../assets/icons/SvgEdit";
 import SvgTable from "../../../assets/icons/SvgTable";
-import { getExchangeDetailEdit, getExchangeDetailView } from "./store/exchangeMasterMiddleware";
+import { getExchangeDetailEdit, getExchangeDetailView, getExchangeSearchList } from "./store/exchangeMasterMiddleware";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const { ExchangeList, loading } = useSelector(({ exchangeMasterReducer }) => {
+  const [search, setSearch] = useState('');
+
+  const { ExchangeList, loading, ExchangeSearchList } = useSelector(({ exchangeMasterReducer }) => {
     return {
       loading: exchangeMasterReducer?.loading,
       ExchangeList: exchangeMasterReducer?.ExchangeList,
+      ExchangeSearchList: exchangeMasterReducer?.ExchangeSearchList,
     };
   });
   console.log(ExchangeList, "ExchangeList")
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   const handleView = (columnData) => {
     dispatch(getExchangeDetailView(columnData))
     navigate("/master/finance/exchangerate/viewexchange")
   }
-  
+
   const handleEdit = (columnData) => {
     console.log(columnData, "columnData")
     dispatch(getExchangeDetailEdit(columnData))
@@ -103,13 +106,13 @@ const Index = () => {
       </div>
     );
   };
-  const headeraction ={
+  const headeraction = {
     fontSize: 16,
     fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
-    display:"flex",
-    justifyContent:'center',
-    border:"none"
+    display: "flex",
+    justifyContent: 'center',
+    border: "none"
   }
 
   const headerStyle = {
@@ -151,6 +154,12 @@ const Index = () => {
     navigate('/master/finance/exchangerate/addexchange')
   }
 
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getExchangeSearchList(search))
+    }
+  }, [search])
+
   return (
     <div className='overall__exchangerate__container'>
       <NavBar />
@@ -184,7 +193,9 @@ const Index = () => {
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
-              <InputText placeholder="Search By Currency code " className="searchinput_left" />
+              <InputText placeholder="Search By Currency code " className="searchinput_left"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)} />
             </span>
           </div>
 
@@ -195,7 +206,7 @@ const Index = () => {
 
         <div >
           <DataTable
-            value={ExchangeList}
+            value={search ? ExchangeSearchList : ExchangeList}
             tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
             paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
@@ -209,7 +220,7 @@ const Index = () => {
             <Column field="CurrencyCode" header="Currency Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="ToCurrencyCode" header="To Currency Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="ExchangeRate" header="Exchange Rate" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column body={renderToggleButton} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column
               body={(columnData) => (
                 <div className="action_icons">

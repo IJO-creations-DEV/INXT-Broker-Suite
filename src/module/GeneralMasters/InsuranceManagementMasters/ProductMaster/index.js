@@ -39,7 +39,7 @@ const Index = () => {
           <div className="main__account__title">Product</div>
         </div>
         <div className="col-12 p-0 flex justify-content-end">
-          <Button
+          {/* <Button
             icon={
               <div className="pr-2">
                 <SvgUploade />
@@ -48,7 +48,7 @@ const Index = () => {
             className="main__btn__action__upload mr-4"
           >
             Upload
-          </Button>
+          </Button> */}
           <Button
             icon={
               <div className="pr-2">

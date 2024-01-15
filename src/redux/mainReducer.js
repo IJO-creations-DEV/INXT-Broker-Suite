@@ -5,7 +5,7 @@ import currencyMasterReducer from "../module/FinanceMastersModule/CurrencyMaster
 import exchangeMasterReducer from "../module/FinanceMastersModule/ExchangeRateMaster/store/exchangeMasterReducer";
 import bankMasterReducer from "../module/FinanceMastersModule/BankMaster/store/bankMasterReducer";
 import accountCategoryReducer from "../module/FinanceMastersModule/AccountCategoryMaster/store/accountCategoryReducer";
-import mainAccoutMiddleware from "../module/FinanceMastersModule/MainAccountMaster/store/mainAccoutMiddleware";
+import mainAccoutReducers from "../module/FinanceMastersModule/MainAccountMaster/store/mainAccountReducer";
 import commissionMianReducers from "../module/GeneralMasters/Commission/store/commissionReducers";
 import taxationMainReducers from "../module/FinanceMastersModule/TaxationMaster/store/taxationReducers";
 import subAccountMainReducers from "../module/FinanceMastersModule/SubAccountMaster/store/subAccountReducers";
@@ -28,6 +28,10 @@ import insuranceCompanyReducers from "../module/GeneralMasters/InsuranceManageme
 import hierarchyTableReducers from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/store/hierarchyReducers"
 import organizationBranchMainReducers from "../module/GeneralMasters/OrganizationMasters/BranchMaster/store/branchReducers"
 import organizationCompanyMainReducers from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/store/companyReducers"
+import countryReducers from "../module/GeneralMasters/LocationMasters/CountryMaster/store/countryReducers";
+import cityReducers from "../module/GeneralMasters/LocationMasters/CityMaster/store/cityReducers";
+import employeeReducers from "../module/GeneralMasters/EmployeeManagementMasters/Employee/store/employeeReducers";
+import userReducers from "../module/GeneralMasters/UserManagementMasters/User/store/userReducers";
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -36,7 +40,7 @@ const reducers = {
   exchangeMasterReducer,
   bankMasterReducer,
   accountCategoryReducer,
-  mainAccoutMiddleware,
+  mainAccoutReducers,
   commissionMianReducers,
   taxationMainReducers,
   subAccountMainReducers,
@@ -54,7 +58,11 @@ const reducers = {
   insuranceCompanyReducers,
   hierarchyTableReducers,
   organizationBranchMainReducers,
-  organizationCompanyMainReducers
+  organizationCompanyMainReducers,
+  countryReducers,
+  cityReducers,
+  employeeReducers,
+  userReducers
 
 };
 

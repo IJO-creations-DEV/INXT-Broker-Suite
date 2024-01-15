@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../../../assets/icons/SvgAdd";
 import "./index.scss";
@@ -15,22 +15,42 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchUserMiddleware } from "../store/userMiddleware";
 
 const UserMaster = () => {
+  const [search, setSearch] = useState('')
+
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("/master/generals/usermanagement/user/add/1");
+    navigate("/master/generals/usermanagement/user/add");
   };
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
-const handleView =()=>{
-    navigate("/master/generals/usermanagement/user/view/2")
-}
+  const { loading, userList, searchList } = useSelector(({ userReducers }) => {
+    return {
+      loading: userReducers?.loading,
+      userList: userReducers?.userList,
+      searchList: userReducers?.userSearchList
 
-const handlEdit =()=>{
-    navigate('/master/generals/usermanagement/user/edit/3')
-}
+    };
+  });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getSearchUserMiddleware(search))
+
+    }
+  }, [search])
+
+  const handleView = (id) => {
+    navigate(`/master/generals/usermanagement/user/view/${id}`)
+  }
+
+  const handlEdit = (id) => {
+    navigate(`/master/generals/usermanagement/user/edit/${id}`)
+  }
   const items = [
     { label: "User Management" },
     {
@@ -61,11 +81,11 @@ const handlEdit =()=>{
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
   const onPageChange = (event) => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
+
 
   const renderViewButton = (rowData) => {
     return (
@@ -73,12 +93,12 @@ const handlEdit =()=>{
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-            onClick={() => handleView()}
+          onClick={() => handleView(rowData?.id)}
         />
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-            onClick={() => handlEdit()}
+          onClick={() => handlEdit(rowData?.id)}
         />
       </div>
     );
@@ -148,7 +168,7 @@ const handlEdit =()=>{
       <div className="col-12 m-0 ">
         <div className="sub__account__sub__container__hierarchy">
           <div className="col-12 search__filter__view__hierarchy">
-            <div className="col-12 md:col-10 lg:col-10">
+            <div className="col-12 md:col-12 lg:col-12">
               <div className="searchIcon__view__input__hierarchy">
                 <span className="pl-3">
                   {" "}
@@ -158,6 +178,8 @@ const handlEdit =()=>{
                   style={{ width: "100%" }}
                   classNames="input__sub__account__hierarchy"
                   placeholder="Search By Employee Code"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -171,7 +193,7 @@ const handlEdit =()=>{
           >
             <div className="card">
               <DataTable
-                value={Productdata}
+                value={search ? searchList : userList}
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"
@@ -181,8 +203,8 @@ const handlEdit =()=>{
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
+              // onPage={onPageChange}
+              // onPageChange={onPageChange}
               >
                 <Column
                   field="userName"
@@ -202,21 +224,21 @@ const handlEdit =()=>{
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                 ></Column>
-                 <Column
+                <Column
                   field="e-mail"
                   header="E-mail"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                 ></Column>
-                  <Column
+                <Column
                   field="phoneNumber"
                   header="Phone number"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                 ></Column>
-                
-               
-               
+
+
+
                 <Column
                   field="modifiedBy"
                   header="Modified By"
@@ -231,7 +253,7 @@ const handlEdit =()=>{
                 ></Column>
                 <Column
                   field="status"
-                  body={renderToggleButton}
+                  body={(columnData) => <ToggleButton id={columnData.id} />}
                   header="Status"
                   headerStyle={{ textAlign: "center", ...headerStyle }}
                   className="fieldvalue_container"

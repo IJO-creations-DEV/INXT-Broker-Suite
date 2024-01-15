@@ -1,13 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getRequest } from "../../../utility/commonServices";
-import { APIROUTES } from "../../../routes/apiRoutes";
 import {
   GET_CITY_DETAILS,
   GET_CITY_BY_ID,
   POST_ADD_CITY,
   PATCH_CITY_EDIT,
   GET_SERACH_CITY,
-  
+
 } from "../../../../../redux/actionTypes";
 
 export const getCityMiddleware = createAsyncThunk(
@@ -24,6 +22,7 @@ export const getCityMiddleware = createAsyncThunk(
 export const getCityListByIdMiddleware = createAsyncThunk(
   GET_CITY_BY_ID,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"getCityListByIdMiddleware");
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -35,9 +34,17 @@ export const getCityListByIdMiddleware = createAsyncThunk(
 export const postAddCityMiddleware = createAsyncThunk(
   POST_ADD_CITY,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"postAddCityMiddleware");
+    const tableData = {
+      "Citycode": payload?.CityCode,
+      "CityName": payload?.CityName,
+      "State": payload?.State?.name,
+      "Modifiedby": payload?.ModifiedBy,
+      "ModifiedOn": payload?.ModifiedOn
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return tableData;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

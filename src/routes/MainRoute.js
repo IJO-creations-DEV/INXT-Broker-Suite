@@ -505,15 +505,15 @@ const Maincomponent = () => {
               element={<Country />}
             />
             <Route
-              path="master/generals/location/country/edit/:id"
+              path="master/generals/location/country/edit"
               element={<AddCountry action="edit"/>}
             />
             <Route
-              path="master/generals/location/country/view/:id"
+              path="master/generals/location/country/view"
               element={<AddCountry action="view"/>}
             />
             <Route
-              path="master/generals/location/country/add/:id"
+              path="master/generals/location/country/add"
               element={<AddCountry action="add"/>}
             />
             
@@ -521,15 +521,15 @@ const Maincomponent = () => {
             <Route path="master/generals/location/state" element={<State />} />
 
             <Route
-              path="master/generals/location/state/edit/:id"
+              path="master/generals/location/state/edit"
               element={<AddState action="edit" />}
             />
             <Route
-              path="master/generals/location/state/view/:id"
+              path="master/generals/location/state/view"
               element={<AddState action="view" />}
             />
             <Route
-              path="master/generals/location/state/add/:id"
+              path="master/generals/location/state/add"
               element={<AddState action="add" />} />
 
 
@@ -538,15 +538,15 @@ const Maincomponent = () => {
             <Route path="master/generals/location/city" element={<City />} />
 
             <Route
-              path="master/generals/location/city/edit/:id"
+              path="master/generals/location/city/edit"
               element={<AddCity action="edit" />}
             />
             <Route
-              path="master/generals/location/city/view/:id"
+              path="master/generals/location/city/view"
               element={<AddCity action="view" />}
             />
             <Route
-              path="master/generals/location/city/add/:id"
+              path="master/generals/location/city/add"
               element={<AddCity action="add" />} />
 
             {/* Employee Management */}
@@ -556,7 +556,7 @@ const Maincomponent = () => {
 
             <Route path="master/generals/employeemanagement/hierarchy" element={<HierarchyMaster />} />
             <Route
-              path="master/generals/employeemanagement/hierarchy/add/:id"
+              path="master/generals/employeemanagement/hierarchy/add"
               element={<AddHierarchy action="add" />}
             />
             <Route
@@ -621,7 +621,7 @@ const Maincomponent = () => {
               element={<UserEdit />}
             />
             <Route
-              path="master/generals/usermanagement/user/add/:id"
+              path="master/generals/usermanagement/user/add"
               element={<AddUser action="add" />}
             />
             <Route

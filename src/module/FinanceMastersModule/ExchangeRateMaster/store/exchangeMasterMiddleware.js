@@ -19,10 +19,19 @@ export const getExchangeList = createAsyncThunk(
 
 export const getExchangeSearchList = createAsyncThunk(
     GET_EXCHANGE_SEARCH_LIST,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue,getState }) => {
+        const textSearch = payload;
+        console.log(textSearch, "textSearch")
+        const { exchangeMasterReducer } = getState();
+
+        const { ExchangeList } = exchangeMasterReducer;
+        console.log(ExchangeList, "1234")
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            const searchResults = ExchangeList.filter(item => {
+                return item.CurrencyCode.toLowerCase().includes(textSearch.toLowerCase());
+            });
+            console.log(searchResults, "searchResults")
+            return searchResults;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

@@ -22,31 +22,40 @@ import ToggleButton from "../../../../components/ToggleButton";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import SvgEditicon from "../../../../assets/icons/SvgEdit";
+import { useDispatch, useSelector } from "react-redux";
+import { getCityListByIdMiddleware } from "./store/cityMiddleware";
 
 const City = () => {
   const menu = useRef(null);
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const [visibleview, setVisibleview] = useState(false);
   
  
-
+  const { cityTableList, loading } = useSelector(
+    ({ cityReducers }) => {
+      return {
+        loading: cityReducers?.loading,
+        cityTableList: cityReducers?.cityTableList,
+      };
+    }
+  );
   
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-        ProductService.getProductsMini().then(data => setProducts(data));
-    }, []);
+   
 
-    const handleEdit = (id) => {
-      navigate(`/master/generals/location/city/edit/${id}`)
+    const handleEdit = (rowData) => {
+      dispatch(getCityListByIdMiddleware(rowData));
+      navigate(`/master/generals/location/city/edit`)
     }
 
-    const handleadd =(id)=>{
-      navigate (`/master/generals/location/city/add/${id}`)
+    const handleadd =()=>{
+      navigate (`/master/generals/location/city/add`)
     }
-    const handleView =(id)=>{
-      navigate(`/master/generals/location/city/view/${id}`)
+    const handleView =(rowData)=>{
+      dispatch(getCityListByIdMiddleware(rowData));
+      navigate(`/master/generals/location/city/view`)
     }
-    const isEmpty = products.length === 0;
+    const isEmpty = cityTableList.length === 0;
 
     const emptyTableIcon = (
       <div>
@@ -163,7 +172,7 @@ onClick={handleadd}
     
 
 <div  className="header_search_container">
-    <div class="col-12 md:col-6 lg:col-10">
+    <div class="col-12 md:col-12 lg:col-12">
         {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
         <span className="p-input-icon-left" style={{width:"100%"}}>
                 <i className="pi pi-search" />
@@ -179,7 +188,7 @@ onClick={handleadd}
             {/* </div> */}
 
     <div className="card">
-                <DataTable value={products} tableStyle={{ minWidth: '50rem',color:'#1C2536' }}
+                <DataTable value={cityTableList} tableStyle={{ minWidth: '50rem',color:'#1C2536' }}
                     paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
                     // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
@@ -189,19 +198,19 @@ onClick={handleadd}
             emptyMessage={isEmpty ? emptyTableIcon : null}
                 >
                   
-                    <Column field="name" header="City code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="name" header="City Name"sortable headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="category" header="State" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-                    <Column field="quantity" header="Modified by"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
-                    <Column field="name" header="Modified On" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="Citycode" header="City code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="CityName" header="City Name"sortable headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="State" header="State" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+                    <Column field="Modifiedby" header="Modified by"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column field="ModifiedOn" header="Modified On" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     {/* <Column field="name" header="Phone" headerStyle={headerStyle}  className='fieldvalue_container'></Column> */}
-                    <Column body={renderToggleButton} header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column
-              body={(columnData) => (
+              body={(rowData) => (
                 <div className="action_icons">
 
-                <SvgEyeIcon onClick={() => handleView(columnData.id)} />
-                <SvgEditicon onClick={() => handleEdit(columnData.id)}/>
+                <SvgEyeIcon onClick={() => handleView(rowData)} />
+                <SvgEditicon onClick={() => handleEdit(rowData)}/>
                 </div>
               )}
               header="Action"

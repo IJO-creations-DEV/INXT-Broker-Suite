@@ -23,10 +23,19 @@ export const getReplenishListMiddleware = createAsyncThunk(
 
 export const getReplenishSearchMiddleware = createAsyncThunk(
   GET_REPLENISH_VOUCHER_SEARCH,
-  async (payload, { rejectWithValue }) => {
+  async ({ field, value }, { rejectWithValue, getState }) => {
+    const { pettyCashReplenishReducer } = getState();
+    const { ReplenishList } = pettyCashReplenishReducer;
+    function filterReceiptsByField(receipts, field, value) {
+      const lowercasedValue = value.toLowerCase();
+      return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
+    }
     try {
+
+      const filteredReceipts = filterReceiptsByField(ReplenishList, field, value);
+console.log(filteredReceipts,"filteredReceipts");
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return filteredReceipts;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

@@ -25,10 +25,19 @@ export const getAccountCategoryList = createAsyncThunk(
 
 export const getAccountCategorySearchList = createAsyncThunk(
   GET_ACCOUNT_CATEGORY_SEARCH_LIST,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue,getState }) => {
+    const textSearch = payload;
+    console.log(textSearch, "textSearch")
+    const { accountCategoryReducer } = getState();
+
+    const { AccountCategoryList } = accountCategoryReducer;
+    console.log(AccountCategoryList, "1234")
     try {
-      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+        const searchResults = AccountCategoryList.filter(item => {
+            return item.accountCategoryCode.toLowerCase().includes(textSearch.toLowerCase());
+        });
+        console.log(searchResults, "searchResults")
+        return searchResults;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

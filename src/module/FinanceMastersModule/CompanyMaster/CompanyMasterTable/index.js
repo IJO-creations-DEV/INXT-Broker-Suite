@@ -6,6 +6,7 @@ import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import ToggleButton from "../../../../components/ToggleButton";
 import SvgFilters from "../../../../assets/icons/SvgFilters";
 import "../index.scss";
 
@@ -131,6 +132,7 @@ const CompanyMasterTable = () => {
               header="Status"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(columnData) => <ToggleButton id={columnData.id} />}
             ></Column>
             <Column
               field="code"

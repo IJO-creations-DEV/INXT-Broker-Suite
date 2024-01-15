@@ -112,7 +112,7 @@ const Commission = () => {
       <div className='col-12 m-0 '>
         <div className='sub__container__Journal__Voture'>
           <form onSubmit={formik.handleSubmit} className='col-12 search__filter__view__Journal__Voture'>
-            <div className='col-12 md:col-10 lg:col-10'>
+            <div className='col-12 md:col-12 lg:col-12'>
               <div className='searchIcon__view__input__Journal__Voture'>
                 <span className='pl-2'> <SvgSearchIcon /></span>
                 <InputText

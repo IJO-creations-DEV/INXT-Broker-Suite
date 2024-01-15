@@ -14,7 +14,7 @@ import { SelectButton } from "primereact/selectbutton";
 import { useNavigate } from "react-router-dom";
 import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 import { useDispatch, useSelector } from "react-redux";
-import { patchMainAccountDetailEdit } from "../store/mainAccountReducer";
+import { patchMainAccountDetailEdit } from "../store/mainAccoutMiddleware";
 
 const EditMainAccount = () => {
   const initialValues = {

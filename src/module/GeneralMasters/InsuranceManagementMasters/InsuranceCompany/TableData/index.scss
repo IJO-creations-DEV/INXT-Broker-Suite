@@ -39,6 +39,11 @@
       border: none;
     }
   }
+  .fieldvalueaction_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
   .empty-table-icon {
     display: flex;
     justify-content: center;

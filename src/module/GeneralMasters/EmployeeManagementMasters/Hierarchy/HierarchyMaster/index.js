@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../../../assets/icons/SvgAdd";
 import "./index.scss";
@@ -15,39 +15,49 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchHirarchyMiddleware } from "../store/hierarchyMiddleware";
 
 const HierarchyMaster = () => {
-  const [products,setProducts]=useState([])
+  const [products, setProducts] = useState([])
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("/master/generals/employeemanagement/hierarchy/add/1");
-   
-  };
+    navigate("/master/generals/employeemanagement/hierarchy/add");
 
+  };
+  const [rowList, setRowList] = useState(5);
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch()
   useEffect(() => {
-  
-   setProducts()
+
+    setProducts()
   }, [])
-  
-  const { hierarchTableList, loading,total } = useSelector(({ hierarchyTableReducers }) => {
+  useEffect(() => {
+    if (search.length > 0) {
+      dispatch(getSearchHirarchyMiddleware(search))
+    }
+  }, [search])
+
+  const { hierarchTableList, loading, total, hierarchSeachList } = useSelector(({ hierarchyTableReducers }) => {
     return {
       loading: hierarchyTableReducers?.loading,
       hierarchTableList: hierarchyTableReducers?.hierarchTableList,
-      total:hierarchyTableReducers
+      hierarchSeachList: hierarchyTableReducers?.hierarchSeachList,
+      total: hierarchyTableReducers
 
     };
   });
+  console.log(hierarchTableList, "list of master")
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
-const handleView =()=>{
-    navigate("/master/generals/employeemanagement/hierarchy/view/2")
-}
+  const handleView = (id) => {
+    navigate(`/master/generals/employeemanagement/hierarchy/view/${id}`)
+  }
 
-const handlEdit =()=>{
-    navigate('/master/generals/employeemanagement/hierarchy/edit/3')
-}
+  const handlEdit = (id) => {
+    navigate(`/master/generals/employeemanagement/hierarchy/edit/${id}`)
+  }
   const items = [
     { label: "Employee Management" },
     {
@@ -85,17 +95,18 @@ const handlEdit =()=>{
   };
 
   const renderViewButton = (rowData) => {
+    console.log(rowData, "row data")
     return (
       <div className="center-content">
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-            onClick={() => handleView()}
+          onClick={() => handleView(rowData?.id)}
         />
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-            onClick={() => handlEdit()}
+          onClick={() => handlEdit(rowData?.id)}
         />
       </div>
     );
@@ -165,7 +176,7 @@ const handlEdit =()=>{
       <div className="col-12 m-0 ">
         <div className="sub__account__sub__container__hierarchy">
           <div className="col-12 search__filter__view__hierarchy">
-            <div className="col-12 md:col-10 lg:col-10">
+            <div className="col-12 md:col-12 lg:col-12">
               <div className="searchIcon__view__input__hierarchy">
                 <span className="pl-3">
                   {" "}
@@ -174,7 +185,8 @@ const handlEdit =()=>{
                 <InputText
                   style={{ width: "100%" }}
                   classNames="input__sub__account__hierarchy"
-                  placeholder="Search By Country Name"
+                  placeholder="Search By Rank Name" value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -188,7 +200,8 @@ const handlEdit =()=>{
           >
             <div className="card">
               <DataTable
-                value={hierarchTableList}
+                value={search ? hierarchSeachList
+                  : hierarchTableList}
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"
@@ -198,8 +211,8 @@ const handlEdit =()=>{
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
+              // onPage={onPageChange}
+              // onPageChange={onPageChange}
               >
                 <Column
                   field="rankCode"
@@ -233,7 +246,7 @@ const handlEdit =()=>{
                 ></Column>
                 <Column
                   field="status"
-                  body={renderToggleButton}
+                  body={(columnData) => <ToggleButton id={columnData.id} />}
                   header="Status"
                   headerStyle={{ textAlign: "center", ...headerStyle }}
                   className="fieldvalue_container"

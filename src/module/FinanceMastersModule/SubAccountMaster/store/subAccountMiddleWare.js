@@ -37,10 +37,19 @@ export const postSubAccount = createAsyncThunk(
 
 export const getSubAccountSearchList = createAsyncThunk(
     GET_SUB_ACCOUNT_SEARCH_LIST,
-    async (payload, { rejectWithValue }) => {
+    async (payload, { rejectWithValue, getState }) => {
+        const textSearch = payload;
+        console.log(textSearch, "textSearch")
+        const { subAccountMainReducers } = getState();
+
+        const { subAccountList } = subAccountMainReducers;
+        console.log(subAccountList, "1234")
         try {
-            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            const searchResults = subAccountList.filter(item => {
+                return item.subAccountCode.toLowerCase().includes(textSearch.toLowerCase());
+            });
+            console.log(searchResults, "searchResults")
+            return searchResults;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

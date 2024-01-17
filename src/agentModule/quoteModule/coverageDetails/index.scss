@@ -1,0 +1,97 @@
+.coverage__container {
+  .coverage__container__titles {
+    font-size: 34px;
+    font-weight: 600;
+    font-family: Poppins;
+    line-height: 51px;
+    color: #111927;
+  }
+  .coverage__container__back__btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .coverage__container__back__btn__title {
+      font-size: 16px;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 24px;
+      color: #111927;
+    }
+  }
+  .coverage__details__card__container {
+    .coverage__details__card__container__title {
+      font-size: 34px;
+      font-weight: 600;
+      font-family: Poppins;
+      line-height: 51px;
+      color: #111927 !important;
+      padding: 0px 10px !important;
+    }
+    .coverage__details__card__container__sub__title {
+      font-size: 24px;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 36px;
+      color: #111927;
+      padding: 0px 10px !important;
+    }
+  }
+  .calculation__btn__container {
+    .p-button {
+      color: #6366f1;
+      background: #ffffff;
+      border: 1px solid #6366f1;
+      padding: 8px 16px 8px 16px;
+      font-size: 1rem;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+        box-shadow 0.2s;
+      border-radius: 6px;
+    }
+    .p-button-label {
+      font-size: 16px;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 24px;
+      color: #6366f1;
+    }
+  }
+  .back__next__btn__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .back__btn__container {
+    .p-button {
+      color: #111927;
+      background: #ffffff;
+      border: 1px solid #ffffff;
+      padding: 8px 16px 8px 16px;
+      font-size: 1rem;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+        box-shadow 0.2s;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 400 !important;
+      font-family: Poppins;
+      line-height: 24px;
+      color: #111927;
+    }
+  }
+  .next__btn__container {
+    .p-button {
+      color: #ffffff;
+      background: #6366f1;
+      border: 1px solid #6366f1;
+      padding: 8px 16px 8px 16px;
+      font-size: 1rem;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+        box-shadow 0.2s;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 24px;
+      color: #ffffff;
+    }
+  }
+}

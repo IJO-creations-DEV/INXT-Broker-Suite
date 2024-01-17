@@ -1,0 +1,80 @@
+.leadlisting__overal__container {
+    .leadlisting__overal__container__title {
+        font-family: Poppins !important;
+        font-size: 34px !important;
+        font-weight: 600 !important;
+        line-height: 51px !important;
+    }
+
+    .btn_lable_save_container {
+        display: flex;
+        justify-content: flex-end;
+
+        .p-button-label {
+            font-family: Poppins !important;
+            font-size: 16px !important;
+            font-weight: 400 !important;
+            line-height: 24px !important;
+        }
+
+        .p-button {
+            margin: 0;
+            display: inline-flex;
+            cursor: pointer;
+            user-select: none;
+            align-items: center;
+            vertical-align: bottom;
+            text-align: center;
+            overflow: hidden;
+            gap: 10px;
+            position: relative;
+        }
+    }
+
+    .breadCrums {
+        margin: 20px 0px;
+        border: none;
+        color: #000;
+        font-family: Poppins !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        line-height: 24px !important;
+    }
+
+    .p-breadcrumb {
+        border-radius: 6px;
+        padding: 1rem 0rem;
+    }
+    .lead__listing__card__container{
+    .p-card {
+        background: #ffffff;
+        color: #111927;
+        box-shadow: none !important;
+        border-radius: 20px !important;
+        fill: #fff !important;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
+        margin-top: 10px;
+      }
+      .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border:0px #e5e7eb !important;
+        border-width: 0 0 2px 0;
+        border-color: transparent transparent #e5e7eb transparent;
+        background: #ffffff;
+        color: #6b7280;
+        padding: 1.25rem;
+        font-family: Poppins !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        line-height: 24px !important;
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+        transition: box-shadow 0.2s;
+        margin: 0 0 -2px 0;
+    }
+    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+        background: #ffffff;
+        border-color: #6366F1;
+        color: #6366F1 !important;
+    }
+    }
+}

@@ -19,11 +19,9 @@ import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../components/Toast";
 import { InputText } from "primereact/inputtext";
 
-import { postAddBankMiddleware } from '../store/bankMasterMiddleware';
-import { useDispatch } from 'react-redux';
-
-import { postAddBank } from '../store/bankMasterMiddleware';
+import { postAddBankMiddleware,postAddBank } from '../store/bankMasterMiddleware';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 
 
@@ -108,7 +106,6 @@ function AddBankMaster() {
 // }
 
 // const toastRef = useRef(null);
-const dispatch=useDispatch()
 const handleSubmit = (values) => {
 
 

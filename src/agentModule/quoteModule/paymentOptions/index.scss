@@ -1,0 +1,49 @@
+.overall__payment__option__container{
+.header__title {
+    color: #111927;
+    font-family: Poppins;
+    font-size: 34px;
+    font-weight: 600;
+  }
+  .table__header {
+    color: #111927;
+    font-family: Poppins;
+    font-size: 34px;
+    font-weight: 600;
+    padding: 1.5rem;
+  }
+
+  .quote__id__text {
+    color: #111927;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .left__arrow {
+    display: flex;
+    gap: 10px;
+  }
+  .left__arrow__text {
+    color: #111927;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .atm__text{
+    
+    border-radius:10px;
+    display:flex;
+    height:60px;
+    align-items:center;
+    // justify-content:center;
+    border: 1px solid #E5E7EB;
+    gap:10px;
+  padding: 0 1.5rem;
+  }
+  .input__text__style{
+    color: #111927;
+font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+  }
+}

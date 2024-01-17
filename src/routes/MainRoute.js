@@ -150,6 +150,50 @@ import AddBranch from "../module/GeneralMasters/OrganizationMasters/BranchMaster
 import AddCountry from "../module/GeneralMasters/LocationMasters/CountryMaster/AddCountry/index"
 import AddCity from "../module/GeneralMasters/LocationMasters/CityMaster/AddCity";
 import AddState from "../module/GeneralMasters/LocationMasters/StateMaster/AddState";
+import Dashboard from "../agentModule/dashBoardModule/home";
+import AgentViewProfile from "../agentModule/dashBoardModule/agentViewProfile";
+import AgentEditProfile from "../agentModule/dashBoardModule/agentEditProfile";
+import Notification from "../agentModule/dashBoardModule/notification";
+import LeadCreation from "../agentModule/leadModule/leadCreation";
+import LeadListing from "../agentModule/leadModule/leadListing";
+import CoverageDeatails from "../agentModule/quoteModule/coverageDetails";
+import PolicyDetails from "../agentModule/quoteModule/policyDetails";
+import Accessories from "../agentModule/quoteModule/accessories";
+import OrderSummary from "../agentModule/quoteModule/orderSummary";
+import QuoteDetailView from "../agentModule/quoteModule/quoteDetailView";
+import QuoteListing from "../agentModule/quoteModule/quoteListing";
+import CustomerInfo from "../agentModule/quoteModule/customerInfo";
+import QuoteComparisonView from "../agentModule/quoteModule/quoteComparisonView";
+import UploadVehiclePhotos from "../agentModule/quoteModule/uploadVehiclePhotos";
+import CoverageDetailedVew from "../agentModule/quoteModule/coverageDetailedVew";
+import PolicyApproval from "../agentModule/quoteModule/policyApproval";
+import UploadPolicy from "../agentModule/quoteModule/uploadPolicy";
+import PolicyDetailedView from "../agentModule/quoteModule/policyDetailedView";
+import PaymentConfirmation from "../agentModule/quoteModule/paymentConfirmation";
+import PaymentOptions from "../agentModule/quoteModule/paymentOptions";
+import PaymentApproval from "../agentModule/quoteModule/paymentApproval";
+import PaymentError from "../agentModule/quoteModule/paymentError";
+import ClientListing from "../agentModule/quoteModule/clientListing";
+import ClaimDetails from "../agentModule/claimsModule/claimDetails";
+import SendMail from "../agentModule/claimsModule/sendMail";
+import RequestApproval from "../agentModule/claimsModule/requestApproval";
+import AdjusterSubmission from "../agentModule/claimsModule/adjusterSubmission";
+import SettlementApproval from "../agentModule/claimsModule/settlementApproval";
+import SettlementDetails from "../agentModule/claimsModule/settlementDetails";
+import PersonalDetails from "../agentModule/endorsementModule/personalDetails";
+import CoverageDetails from "../agentModule/endorsementModule/coveragedetails";
+import EndorsementApproval from "../agentModule/endorsementModule/endorsementApproval";
+import UploadEndorsement from "../agentModule/endorsementModule/uploadEndorsement";
+import EndorsementDetailedView from "../agentModule/endorsementModule/endorsementDetailedView";
+import PaymentOptionsEndorsement from "../agentModule/endorsementModule/paymentOptions";
+import PaymentConfirmationEndorsement from "../agentModule/endorsementModule/paymentConfirmation";
+import Endorsementpaymentapproval from "../agentModule/endorsementModule/paymentApprovalEndorsement";
+import PaymentErrorEndorsment from "../agentModule/endorsementModule/paymentErrorEndorsement";
+import Payments from "../agentModule/paymentsModule";
+import OpenItems from "../agentModule/openItems/openItems";
+import UpcomingEvents from "../agentModule/openItems/upcomingEvents";
+import ExpiringPolicy from "../agentModule/openItems/expiringPolicy";
+import AgenSideBar from "../components/AgentSideBar";
 
 const Maincomponent = () => {
 
@@ -882,19 +926,157 @@ const Maincomponent = () => {
             <Route path="master/generals/commission/addcommission" element={<AddCommission />} />
             <Route path="master/generals/commission/editcommission" element={<EditCommission />} />
             <Route path="master/generals/commission/viewcommission/:id" element={<ViewCommission />} />
+        
+            <Route element={<ProtectedLayout />}>
+            {/* <Route path="/login" element={<Login />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} /> */}
+            {/* // Agent Dashboard, Notification & agent profile */}
+            <Route path="/agent/home" element={<Dashboard />} />
+            <Route path="/agent/notification" element={<Notification />} />
+            <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
+            <Route path="/agent/editprofile" element={<AgentEditProfile />} />
+            {/* // Lead Creation, edit lead & Lead listing */}
+            <Route path="/agent/createlead" element={<LeadCreation />} />
+            <Route path="/agent/leadlisting" element={<LeadListing />} />
+            {/* // Quote Creation, Policy conversion & Client listing */}
+            <Route
+              path="/agent/createquote/policydetails"
+              element={<PolicyDetails />}
+            />
+            <Route
+              path="/agent/createquote/coveragedetails"
+              element={<CoverageDeatails />}
+            />
+            <Route
+              path="/agent/createquote/accessories"
+              element={<Accessories />}
+            />
+            <Route
+              path="/agent/createquote/ordersummary"
+              element={<OrderSummary />}
+            />
+            <Route path="/agent/quotedetailview" element={<QuoteDetailView />} />
+            <Route path="/agent/quotelisting" element={<QuoteListing />} />
+            <Route
+              path="/agent/quotecomparisonview"
+              element={<QuoteComparisonView />}
+            />
+            <Route
+              path="/agent/convertpolicy/customerinfo"
+              element={<CustomerInfo />}
+            />
+            <Route
+              path="/agent/convertpolicy/uploadvehiclephotos"
+              element={<UploadVehiclePhotos />}
+            />
+            <Route
+              path="/agent/coveragedetailedview"
+              element={<CoverageDetailedVew />}
+            />
+            <Route path="/agent/policyapproval" element={<PolicyApproval />} />
+            <Route path="/agent/uploadpolicy" element={<UploadPolicy />} />
+            <Route
+              path="/agent/policydetailedview"
+              element={<PolicyDetailedView />}
+            />
+            <Route
+              path="/agent/policy/paymentconfirmation"
+              element={<PaymentConfirmation />}
+            />
+            <Route
+              path="/agent/policy/paymentoptions"
+              element={<PaymentOptions />}
+            />
+            <Route
+              path="/agent/policy/paymentapproval"
+              element={<PaymentApproval />}
+            />
+            <Route
+              path="/agent/policy/paymenterror"
+              element={<PaymentError />}
+            />
+            <Route path="/agent/clientlisting" element={<ClientListing />} />
+            {/* // Claims */}
+            <Route
+              path="/agent/claimrequest/claimdetails"
+              element={<ClaimDetails />}
+            />
+            <Route path="/agent/claimrequest/sendmail" element={<SendMail />} />
+            <Route
+              path="/agent/claimrequest/requestapproval"
+              element={<RequestApproval />}
+            />
+            <Route
+              path="/agent/claimrequest/adjustersubmission"
+              element={<AdjusterSubmission />}
+            />
+            <Route
+              path="/agent/claimrequest/settlementapproval"
+              element={<SettlementApproval />}
+            />
+            <Route
+              path="/agent/claimrequest/settlementdetails"
+              element={<SettlementDetails />}
+            />
+            <Route
+              path="/agent/claimdetailedview"
+              element={<SettlementDetails />}
+            />
+            {/* // Endorsement */}
+            <Route
+              path="/agent/endorsement/personaldetails"
+              element={<PersonalDetails />}
+            />
+            <Route
+              path="/agent/endorsement/coveragedetails"
+              element={<CoverageDetails />}
+            />
+            <Route
+              path="/agent/endorsementapproval"
+              element={<EndorsementApproval />}
+            />
+            <Route
+              path="/agent/uploadendorsement"
+              element={<UploadEndorsement />}
+            />
+            <Route
+              path="/agent/endorsementdetailedview"
+              element={<EndorsementDetailedView />}
+            />
+            <Route
+              path="/agent/endorsement/paymentconfirmation"
+              element={<PaymentConfirmationEndorsement />}
+            />
+            <Route
+              path="/agent/endorsement/paymentoptions"
+              element={<PaymentOptionsEndorsement />}
+            />
+            <Route
+              path="/agent/endorsement/paymentapproval"
+              element={<Endorsementpaymentapproval />}
+            />
+            <Route
+              path="/agent/endorsement/paymenterror"
+              element={<PaymentErrorEndorsment />}
+            />
+            {/* // Payments */}
+            <Route path="/agent/payments" element={<Payments />} />
+            {/* // Open items */}
+            <Route path="/agent/openitems" element={<OpenItems />} />
+            <Route
+              path="/agent/openitems/upcomingevents"
+              element={<UpcomingEvents />}
+            />
+            <Route
+              path="/agent/openitems/expiringpolicy"
+              element={<ExpiringPolicy />}
+            />
+            </Route>
           </Route>
         </Routes>
       </div>
       <AuthRoute />
 
-      <Routes>
-        <Route element={<ProtectedLayout />}>
-          <Route path="/" element={
-          // <PolicyReceipts/>
-          <div></div>
-          } />
-        </Route>
-      </Routes>
     </div>
   );
 };

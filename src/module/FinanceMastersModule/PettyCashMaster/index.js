@@ -71,7 +71,6 @@ const PettyCashMaster = ({ response }) => {
       dispatch(getPettyCashSearchList({ textSearch: formik.values.search }));
     }
   }, [formik.values.search]);
-  const { pettyCashList, pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
 
  
   const { pettyCashList,pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {

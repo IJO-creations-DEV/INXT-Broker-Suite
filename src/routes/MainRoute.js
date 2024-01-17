@@ -141,13 +141,12 @@ import Role from "../module/GeneralMasters/UserManagementMasters/Role/RoleMaster
 import AddRole from "../module/GeneralMasters/UserManagementMasters/Role/AddRole";
 import HierarchyMaster from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/HierarchyMaster";
 import AddHierarchy from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/AddHierarchy";
-import UserEdit from "../module/GeneralMasters/UserManagementMasters/User/EditUser"
+import UserEdit from "../module/GeneralMasters/UserManagementMasters/User/EditUser";
 import ClaimSettlement from "../agentModule/claimsModule/claimSettlement";
-
 
 import AddCompany from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/AddCompany";
 import AddBranch from "../module/GeneralMasters/OrganizationMasters/BranchMaster/AddBranch";
-import AddCountry from "../module/GeneralMasters/LocationMasters/CountryMaster/AddCountry/index"
+import AddCountry from "../module/GeneralMasters/LocationMasters/CountryMaster/AddCountry/index";
 import AddCity from "../module/GeneralMasters/LocationMasters/CityMaster/AddCity";
 import AddState from "../module/GeneralMasters/LocationMasters/StateMaster/AddState";
 import Dashboard from "../agentModule/dashBoardModule/home";
@@ -200,8 +199,6 @@ import ClaimDocumentUpload from "../agentModule/claimsModule/claimDocumentUpload
 import LeadEdit from "../agentModule/leadModule/leadEdit";
 
 const Maincomponent = () => {
-
-
   return (
     <div
       style={{
@@ -390,7 +387,6 @@ const Maincomponent = () => {
               element={<AccountCategoryMaster />}
             /> */}
 
-
             {/* General Master */}
 
             {/* Organization Master */}
@@ -398,7 +394,6 @@ const Maincomponent = () => {
               path="master/generals/organization/companymaster"
               element={<CompanyMasters />}
             />
-
 
             <Route
               path="master/generals/organization/companymaster/add/:id"
@@ -578,9 +573,8 @@ const Maincomponent = () => {
             />
             <Route
               path="master/generals/location/state/add"
-              element={<AddState action="add" />} />
-
-
+              element={<AddState action="add" />}
+            />
 
             {/* {City} */}
             <Route path="master/generals/location/city" element={<City />} />
@@ -595,14 +589,17 @@ const Maincomponent = () => {
             />
             <Route
               path="master/generals/location/city/add"
-              element={<AddCity action="add" />} />
+              element={<AddCity action="add" />}
+            />
 
             {/* Employee Management */}
 
-
             {/* Hierarchy */}
 
-            <Route path="master/generals/employeemanagement/hierarchy" element={<HierarchyMaster />} />
+            <Route
+              path="master/generals/employeemanagement/hierarchy"
+              element={<HierarchyMaster />}
+            />
             <Route
               path="master/generals/employeemanagement/hierarchy/add"
               element={<AddHierarchy action="add" />}
@@ -615,7 +612,10 @@ const Maincomponent = () => {
               path="master/generals/employeemanagement/hierarchy/view/:id"
               element={<AddHierarchy action="view" />}
             />
-            <Route path="master/generals/employeemanagement/:id" element={<AddHierarchy />} />
+            <Route
+              path="master/generals/employeemanagement/:id"
+              element={<AddHierarchy />}
+            />
 
             <Route
               path="master/generals/employeemanagement/designation"
@@ -681,7 +681,6 @@ const Maincomponent = () => {
               element={<AddUser action="view" />}
             />
             <Route
-
               path="master/generals/usermanagement/adduser"
               element={<AddUser />}
             />
@@ -794,8 +793,10 @@ const Maincomponent = () => {
               element={<PettyCashdetails />}
             />
 
-
-            <Route path="master/finance/pettycash/editpettycash/:id" element={<EditPettyCash />} />
+            <Route
+              path="master/finance/pettycash/editpettycash/:id"
+              element={<EditPettyCash />}
+            />
 
             <Route />
             <Route path="master/finance/company" element={<CompanyMaster />} />
@@ -961,7 +962,10 @@ const Maincomponent = () => {
                 path="/agent/createquote/ordersummary"
                 element={<OrderSummary />}
               />
-              <Route path="/agent/quotedetailview" element={<QuoteDetailView />} />
+              <Route
+                path="/agent/quotedetailview"
+                element={<QuoteDetailView />}
+              />
               <Route path="/agent/quotelisting" element={<QuoteListing />} />
               <Route
                 path="/agent/quotecomparisonview"
@@ -979,7 +983,10 @@ const Maincomponent = () => {
                 path="/agent/coveragedetailedview"
                 element={<CoverageDetailedVew />}
               />
-              <Route path="/agent/policyapproval" element={<PolicyApproval />} />
+              <Route
+                path="/agent/policyapproval"
+                element={<PolicyApproval />}
+              />
               <Route path="/agent/uploadpolicy" element={<UploadPolicy />} />
               <Route
                 path="/agent/policydetailedview"
@@ -1001,13 +1008,19 @@ const Maincomponent = () => {
                 path="/agent/policy/paymenterror"
                 element={<PaymentError />}
               />
-              <Route path="/agent/clientlisting/:id" element={<ClientListing />} />
+              <Route
+                path="/agent/clientlisting/:id"
+                element={<ClientListing />}
+              />
               {/* // Claims */}
               <Route
                 path="/agent/claimrequest/claimdetails"
                 element={<ClaimDetails />}
               />
-              <Route path="/agent/claimrequest/sendmail" element={<SendMail />} />
+              <Route
+                path="/agent/claimrequest/sendmail"
+                element={<SendMail />}
+              />
               <Route
                 path="/agent/claimrequest/requestapproval/:id"
                 element={<RequestApproval />}
@@ -1094,7 +1107,6 @@ const Maincomponent = () => {
         </Routes>
       </div>
       <AuthRoute />
-
     </div>
   );
 };

@@ -12,10 +12,11 @@ import DatepickerField from "../../component/datePicker";
 import { FileUpload } from "primereact/fileupload";
 import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
 import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
-import { useNavigate
- } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import SvgUploadClose from "../../../assets/agentIcon/SvgUploadClose";
+
 const AdjusterSubmission = () => {
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
   const fileUploadRef = useRef(null);
   const [uploadImage, setuploadImage] = useState(null);
   const handleUppendImg = (name, src) => {
@@ -26,9 +27,9 @@ const AdjusterSubmission = () => {
     setuploadImage(null);
     fileUploadRef.current.clear();
   };
-  const handlenext =()=> {
-    Navigate('/agent/claimrequest/settlementapproval')
-  }
+  const handlenext = () => {
+    Navigate("/agent/claimrequest/settlementapproval");
+  };
   return (
     <div className="claim__request__upload__container">
       <div className="claim__request__upload__main__title">Clients</div>
@@ -131,7 +132,7 @@ const AdjusterSubmission = () => {
           {uploadImage && (
             <div class="col-12 mt-2 ">
               <span onClick={handleCancelUplaoded}>
-                <SvgImageShow />
+                <SvgUploadClose />
               </span>
             </div>
           )}
@@ -141,7 +142,9 @@ const AdjusterSubmission = () => {
                 <Button className="back__btn">Back</Button>
               </div>
               <div className="next__btn__container">
-                <Button className="next__btn"  onClick={handlenext}>Next</Button>
+                <Button className="next__btn" onClick={handlenext}>
+                  Next
+                </Button>
               </div>
             </div>
           </div>

@@ -3,9 +3,15 @@ import React, { useState } from 'react'
 import InputTextField from '../../../component/inputText'
 import { Checkbox } from "primereact/checkbox";
 import DropdownField from '../../../component/DropdwonField';
+import { Button } from 'primereact/button';
+import { useNavigate } from 'react-router-dom';
 
 const ClaimDetailsCard = () => {
     const [checked, setChecked] = useState(false);
+    const navigate = useNavigate()
+    const handleNext = () => {
+        navigate('/agent/claimrequest/sendmail')
+    }
     return (
         <div className="claim__details__card__container mt-4">
             <Card>
@@ -111,13 +117,56 @@ const ClaimDetailsCard = () => {
                         <DropdownField label="City" />
                     </div>
                     <div className="col-12 md:col-6 lg:col-6">
-                    <InputTextField
+                        <InputTextField
                             label="ZIP Code"
                         />
                     </div>
                 </div>
 
-                <div  className="claim__details__card__sub__title mt-3 ml-2">Third Party Details (If Applicable)</div>
+                <div className="claim__details__card__sub__title mt-3 ml-2">Third Party Details (If Applicable)</div>
+                <div>
+                    <div className="grid mt-2">
+                        <div className="col-12 md:col-6 lg:col-6">
+                            <InputTextField
+                                label="Name"
+                            />
+                        </div>
+                        <div className="col-12 md:col-6 lg:col-6">
+                            <InputTextField
+                                label="Contact Number"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid mt-2">
+                        <div className="col-12 md:col-6 lg:col-6">
+                            <InputTextField
+                                label="Plate Number"
+                            />
+                        </div>
+                        <div className="col-12 md:col-6 lg:col-6">
+                            <InputTextField
+                                label="Unit"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid mt-2">
+                        <div className="col-12 md:col-6 lg:col-6">
+                            <InputTextField
+                                label="Shop"
+                            />
+                        </div>
+                        <div className="col-12 md:col-6 lg:col-6">
+                            <InputTextField
+                                label="Insurance Company Name"
+                            />
+                        </div>
+                    </div>
+                    <div className='p-d-flex p-flex-align-end'>
+                        <Button label='Next' onClick={handleNext} />
+                    </div>
+                </div>
             </Card>
         </div>
     )

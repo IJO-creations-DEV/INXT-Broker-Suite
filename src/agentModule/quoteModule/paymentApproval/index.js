@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const PaymentApproval = () => {
   const navigate = useNavigate()
   const handleNavigate = () => {
-    navigate('/agent/clientlisting')
+    navigate('/agent/clientlisting/1233')
   }
   return (
     <div>

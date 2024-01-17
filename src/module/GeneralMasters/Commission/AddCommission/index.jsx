@@ -24,8 +24,10 @@ import CustomToast from '../../../../components/Toast';
 import { SelectButton } from 'primereact/selectbutton';
 import data from './data';
 import SvgEditIcon from '../../../../assets/icons/SvgEditIcon';
-import { postAddCommission } from '../store/commissionMiddleWare';
+import { getEditCommissionPopup, postAddCommission } from '../store/commissionMiddleWare';
 import { useDispatch, useSelector } from 'react-redux';
+import EditCommissionPopup from '../EditCommission/EditCommissionPopup';
+import ViewCommissionPopup from '../ViewCommission/ViewCommissionPopup';
 
 const AddCommission = () => {
   const toastRef = useRef(null);
@@ -171,11 +173,18 @@ const AddCommission = () => {
     },
 
   };
+  const [showEditPopup, setShowEditPopup] = useState(false)
+  const [showViewPopup, setShowViewPopup] = useState(false)
   const handleNavigateView = () => {
     // navigate("/master/generals/commission/viewcommission")
+    setShowViewPopup(true)
   }
-  const handleEditNavigate = () => {
-    // navigate("/master/generals/commission/editcommission/")
+
+  const handleEditNavigate = (rowData) => {
+    console.log(rowData, "popupEditData");
+    dispatch(getEditCommissionPopup(rowData))
+    setShowEditPopup(true)
+    // navigate("/master/generals/commission/editcommission/editcommissionpopup")
   }
   const renderEditButton = (rowData) => {
     return (
@@ -183,7 +192,7 @@ const AddCommission = () => {
         <div className='eyeIcon' onClick={handleNavigateView}>
           <SvgEyeIcon />
         </div>
-        <div onClick={handleEditNavigate}>
+        <div onClick={() => handleEditNavigate(rowData)}>
           <SvgEditIcon />
         </div>
       </div>
@@ -543,6 +552,17 @@ const AddCommission = () => {
       <div className="col-12" >
 
         <AddCommissionPopup visible={visible} setVisible={setVisible} />
+
+      </div>
+      <div className="col-12" >
+
+        <EditCommissionPopup showEditPopup={showEditPopup} setShowEditPopup={setShowEditPopup} />
+
+      </div>
+
+      <div className="col-12" >
+
+        <ViewCommissionPopup showViewPopup={showViewPopup} setShowViewPopup={setShowViewPopup} />
 
       </div>
 

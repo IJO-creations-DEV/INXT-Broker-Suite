@@ -194,6 +194,7 @@ import OpenItems from "../agentModule/openItems/openItems";
 import UpcomingEvents from "../agentModule/openItems/upcomingEvents";
 import ExpiringPolicy from "../agentModule/openItems/expiringPolicy";
 import AgenSideBar from "../components/AgentSideBar";
+import EditCommissionPopup from "../module/GeneralMasters/Commission/EditCommission/EditCommissionPopup";
 
 const Maincomponent = () => {
 
@@ -925,6 +926,7 @@ const Maincomponent = () => {
             <Route path="master/generals/commission" element={<Commission />} />
             <Route path="master/generals/commission/addcommission" element={<AddCommission />} />
             <Route path="master/generals/commission/editcommission" element={<EditCommission />} />
+            <Route path="master/generals/commission/editcommissionpopup" element={<EditCommissionPopup />} />
             <Route path="master/generals/commission/viewcommission/:id" element={<ViewCommission />} />
 
             <Route element={<ProtectedLayout />}>

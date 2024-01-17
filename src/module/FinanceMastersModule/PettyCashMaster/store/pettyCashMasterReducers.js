@@ -195,6 +195,7 @@ const pettyCashMasterReducers = createSlice({
               const updatedIndex = state.pettyCashList.findIndex(
                 (item) => item.id === action.payload.id
               );
+              console.log(updatedIndex,"updatedIndex");
               if (updatedIndex !== -1) {
                 const updatedCurrencyList = [...state.pettyCashList];
                 updatedCurrencyList[updatedIndex] = action.payload;

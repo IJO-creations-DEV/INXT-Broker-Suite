@@ -199,7 +199,7 @@ const UserGroupAccess = () => {
         </DataTable>
       </div>
       <Dialog
-        header="Add User Group Access"
+        header="Add User Group Accesswww"
         visible={show}
         style={{ width: "50vw" }}
         onHide={() => setShow(false)}
@@ -214,19 +214,19 @@ const UserGroupAccess = () => {
               textSize={"16"}
               textWeight={500}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-             
-            value={formik.values.UserRole}
-            options={BankAccountCode}
-            onChange={(e) => {
-              console.log(e.value);
-              formik.setFieldValue("UserRole", e.value);
-              // handleAccountcode(e.value);
-            }}
-            optionLabel="label"
-            error={
-              formik.touched.UserRole &&
-              formik.errors.UserRole
-            }
+
+              value={formik.values.UserRole}
+              options={BankAccountCode}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("UserRole", e.value);
+                // handleAccountcode(e.value);
+              }}
+              optionLabel="label"
+              error={
+                formik.touched.UserRole &&
+                formik.errors.UserRole
+              }
             />
             {/* <DropDowns
               classNames="inputdialog__fieled"

@@ -197,6 +197,7 @@ import AgenSideBar from "../components/AgentSideBar";
 import EditCommissionPopup from "../module/GeneralMasters/Commission/EditCommission/EditCommissionPopup";
 import ClaimRejected from "../agentModule/claimsModule/claimRejected";
 import ClaimDocumentUpload from "../agentModule/claimsModule/claimDocumentUpload";
+import LeadEdit from "../agentModule/leadModule/leadEdit";
 
 const Maincomponent = () => {
 
@@ -942,6 +943,7 @@ const Maincomponent = () => {
               {/* // Lead Creation, edit lead & Lead listing */}
               <Route path="/agent/createlead" element={<LeadCreation />} />
               <Route path="/agent/leadlisting" element={<LeadListing />} />
+              <Route path="/agent/leadedit" element={<LeadEdit />} />
               {/* // Quote Creation, Policy conversion & Client listing */}
               <Route
                 path="/agent/createquote/policydetails"

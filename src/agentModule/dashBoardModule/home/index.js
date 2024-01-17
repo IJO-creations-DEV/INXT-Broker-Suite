@@ -12,78 +12,70 @@ import SvgHome from "../../../assets/agentIcon/SvgHome";
 import { Dialog } from 'primereact/dialog';
 import SvgSearch from "../../../assets/agentIcon/SvgSearch";
 import { useNavigate } from "react-router-dom";
+import { Dropdown } from "primereact/dropdown";
 
 const Dashboard = () => {
   const [visible, setVisible] = useState(false);
-  const menuCreateQuote = useRef(null);
+  const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
 
-  const CreateQuoteitems = [
+  const dropdownOptions = [
     {
-      label: <div style={{ display: "none" }}></div>,
-      items: [
-        {
-          label: (
-            <div
-              style={{
-                fontFamily: "Inter var",
-                fontWeight: 400,
-                fontSize: "16px",
-                color: "#111927",
-                width:"100%",
-              }}
-              onClick={() => setVisible(true)}
-            >
-              Motor
-            </div>
-          ),
-          icon: (
-            <div className="mr-3" onClick={() => setVisible(true)}>
-              <SvgMotor />
-            </div>
-          ),
-        },
-        {
-          label: (
-            <div
-              style={{
-                fontFamily: "Inter var",
-                fontWeight: 400,
-                fontSize: "16px",
-                color: "#111927",
-              }}
-            >
-              Travel
-            </div>
-          ),
-          icon: (
-            <div className="mr-3">
-              <SvgTravel />
-            </div>
-          ),
-        },
-        {
-          label: (
-            <div
-              style={{
-                fontFamily: "Inter var",
-                fontWeight: 400,
-                fontSize: "16px",
-                color: "#111927",
-              }}
-            >
-              Property
-            </div>
-          ),
-          icon: (
-            <div className="mr-3">
-              <SvgHome />
-            </div>
-          ),
-        },
-      ],
+      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }} onClick={()=>{handleClickMotor()}}>
+        <div><SvgMotor /></div>
+        <div
+          style={{
+            fontFamily: "Inter var",
+            fontWeight: 400,
+            fontSize: "16px",
+            color: "#111927",
+            width: "100%",
+          }}
+        >
+          Motor
+        </div>
+      </div>,
+      value: 'Motor'
+    },
+    {
+      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }}>
+        <div><SvgTravel /></div>
+        <div
+          style={{
+            fontFamily: "Inter var",
+            fontWeight: 400,
+            fontSize: "16px",
+            color: "#111927",
+            width: "100%",
+          }}
+        >
+          Travel
+        </div>
+      </div>,
+      value: 'Travel'
+    },
+    {
+      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }}>
+        <div><SvgHome /></div>
+        <div
+          style={{
+            fontFamily: "Inter var",
+            fontWeight: 400,
+            fontSize: "16px",
+            color: "#111927",
+            width: "100%",
+          }}
+        >
+          Property
+        </div>
+      </div>, value: 'Property'
     },
   ];
+
+
+  const handleClickMotor = () =>{
+    setVisible(true)
+  }
 
   const handleclick = ()=>{
     navigate("/agent/createlead")
@@ -98,23 +90,13 @@ const Dashboard = () => {
           <div className="dasboard__container__sub__title">John Visser</div>
         </div>
         <div className="col-12 md:col-6 lg:col-6">
-          <div className="menu__container">
-            <Menu
-              model={CreateQuoteitems}
-              popup
-              ref={menuCreateQuote}
-              id="popup_menu_right"
-              popupAlignment="right"
-            />
-          </div>
-          <div className="dasboard__container__btn">
-            <Button
-              label="Create Quote"
-              icon={<SvgAdd color={"#fff"} />}
-              className="dasboard__container__add__btn"
-              onClick={(event) => menuCreateQuote.current.toggle(event)}
-              aria-controls="popup_menu_right"
-              aria-haspopup
+          <div className="btn_lable_save_container">
+            <Dropdown
+              value={selectedOption}
+              options={dropdownOptions}
+              onChange={(e) => setSelectedOption(e.value)}
+              placeholder="Create Lead"
+              dropdownIcon={<SvgAdd />}
             />
           </div>
         </div>

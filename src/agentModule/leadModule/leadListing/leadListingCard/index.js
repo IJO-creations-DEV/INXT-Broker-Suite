@@ -1,7 +1,10 @@
 import { Card } from 'primereact/card'
 import React from 'react'
 import { TabView, TabPanel } from 'primereact/tabview';
-import LeadListingTable from './leadListingtable';
+import LeadListingTable from './LeadListingAllTable';
+import LeadListingMotorTable from './LeadListingMotorTable';
+import LeadListingTravelTable from './LeadListingTravelTable';
+import LeadListingHomeTable from './LeadListingHomeTable';
 
 const LeadListingCard = () => {
     return (
@@ -9,13 +12,16 @@ const LeadListingCard = () => {
             <Card>
                 <TabView>
                     <TabPanel header="All">
-                        <LeadListingTable/>
+                        <LeadListingTable />
                     </TabPanel>
                     <TabPanel header="Motor">
+                        <LeadListingMotorTable />
                     </TabPanel>
                     <TabPanel header="Travel">
+                        <LeadListingTravelTable />
                     </TabPanel>
                     <TabPanel header="Property">
+                        <LeadListingHomeTable />
                     </TabPanel>
                 </TabView>
             </Card>

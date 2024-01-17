@@ -163,7 +163,7 @@ const ClaimDetailsCard = () => {
                             />
                         </div>
                     </div>
-                    <div className='p-d-flex p-flex-align-end'>
+                    <div className='next_but_container'>
                         <Button label='Next' onClick={handleNext} />
                     </div>
                 </div>

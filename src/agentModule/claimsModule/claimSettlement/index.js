@@ -6,12 +6,13 @@ import DropdownField from '../../component/DropdwonField'
 import InputTextField from '../../component/inputText'
 import DatepickerField from '../../component/datePicker'
 import SvgBlueArrow from '../../../assets/agentIcon/SvgBlueArrow'
+import './index.scss'
 
 const ClaimSettlement = () => {
     return (
-        <div>
+        <div className='claim__detailssettlemenet__container '>
             <NavBar />
-            <div className='claim__details__container'>
+            <div >
                 <div className="claim__details__container__titles">Clients</div>
                 <div className="claim__details__container__back__btn mt-3">
                     <SvgLeftArrow />
@@ -19,12 +20,12 @@ const ClaimSettlement = () => {
                 </div>
             </div>
             <Card>
-                <div className="claim__details__card__container__title">
+                <div className="claim__title">
                     Claim Settlement
                 </div>
                 <div className="grid mt-2">
                     <div className="col-12 md:col-6 lg:col-6">
-                        <DropdownField label="Policy Numbef" />
+                        <DropdownField label="Policy Number" />
                     </div>
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField
@@ -43,7 +44,7 @@ const ClaimSettlement = () => {
                         />
                     </div>
                 </div>
-                <div>
+                <div className='claim__doc__title'>
                     Documents
                 </div>
                 <div className="grid mt-2">
@@ -112,6 +113,10 @@ const ClaimSettlement = () => {
                 </div>
 
             </Card>
+
+
+
+
         </div>
 
     )

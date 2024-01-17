@@ -11,22 +11,27 @@ import DatepickerField from '../../component/datePicker'
 import { FileUpload } from "primereact/fileupload";
 import SvgImageUpload from '../../../assets/icons/SvgImageUpload'
 import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
+import './index.scss'
+import CustomToast from "../../../components/Toast";
 
 
 const SettlementDetails = () => {
   const navigate = useNavigate();
+  const toastRef = useRef(null);
   const params = useParams();
   const { id } = params;
   const handleEdit = () => {
     navigate('/agent/claimrequest/claimdetails')
   }
   const handleSubmit = () => {
-    navigate('/agent/claimdetailedview/12344')
+    toastRef.current.showToast();
+    setTimeout(() => {
+      navigate('/agent/claimdetailedview/12344')
+    }, 2000);
+    
 
   }
-  const handleNext = () => {
-
-  }
+ 
   const fileUploadRef = useRef(null);
   const [uploadImage, setuploadImage] = useState(null);
   const handleUppendImg = (name, src) => {
@@ -41,7 +46,8 @@ const SettlementDetails = () => {
   return (
     <div>
       <NavBar />
-      <div className='claim__details__container'>
+      <CustomToast ref={toastRef} message="Claim Settled Successfully" />
+      <div className='claim__settlementdetails__container'>
         <div className="claim__details__container__titles">Clients</div>
         <div className="claim__details__container__back__btn mt-3">
           <SvgLeftArrow />
@@ -50,15 +56,15 @@ const SettlementDetails = () => {
         <Card>
 
           <div className="claim__details__card__container__title">
-            Claim Request
+          Claim Settlement
           </div>
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
-              <DropdownField label="Country" />
+              <DropdownField label="Settlement type" />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
-                label="Policy Number"
+                label="Settlement Amount"
               />
             </div>
           </div>
@@ -76,7 +82,61 @@ const SettlementDetails = () => {
 
             </div>
           </div>
-          <div>
+
+
+
+          <div class="col-12 mt-4 p-0">
+<div className="claim__request__upload__subtitle  mb-2">
+          Documents
+        </div>
+            {/* {!imageURL ? ( */}
+              <div className="upload__card__container mt-2">
+                <div className="file_icon_selector">
+                  <FileUpload
+                    url="./upload"
+                    auto
+                    customUpload
+                    mode="basic"
+                    name="demo"
+                    accept=".png,.jpg,.jpeg"
+                    // maxFileSize={2000000}
+                    uploadHandler={(e) => {
+                      handleUppendImg(
+                        e.options.props.name,
+                        e.files[0],
+                        "the data"
+                      );
+                    }}
+                  />
+                  <div className="icon_click_option">
+                    <SvgImageUpload />
+                  </div>
+                  <div className="upload__caption text-center">Upload</div>
+                  <div className="upload__caption text-center">
+                    Maximum 2 MB (PNG or JPEG Files Only)
+                  </div>
+                </div>
+              </div>
+            {/* ) : ( */}
+              {/* <div className="upload__image__area mt-2">
+                <img src={imageURL} alt="Image" className="image__view" />
+              </div>
+            ) */}
+            {/* } */}
+          </div>
+
+          <div className='claimrequest__back__but'>
+          <Button link className='claim__back__but'>
+            Back
+          </Button>
+          <Button onClick={handleSubmit} className='claim__snd__but'>
+          Submit
+          </Button>
+
+        </div>
+
+
+          {/* <div>
             Document
           </div>
           <div className="col-12">
@@ -119,7 +179,7 @@ const SettlementDetails = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* <div>
             <div>
               

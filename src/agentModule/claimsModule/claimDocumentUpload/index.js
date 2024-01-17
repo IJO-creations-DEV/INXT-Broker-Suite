@@ -14,7 +14,7 @@ import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
 import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
 import { useNavigate
  } from "react-router-dom";
-const AdjusterSubmission = () => {
+const ClaimDocumentUpload = () => {
   const Navigate = useNavigate()
   const fileUploadRef = useRef(null);
   const [uploadImage, setuploadImage] = useState(null);
@@ -30,7 +30,7 @@ const AdjusterSubmission = () => {
     Navigate('/agent/claimrequest/settlementapproval')
   }
   return (
-    <div className="claim__request__upload__container">
+    <div className="claim__docupload__upload__container">
       <div className="claim__request__upload__main__title">Clients</div>
       <div className="claim__request__upload__back__btn mt-3">
         <SvgLeftArrow />
@@ -104,7 +104,13 @@ const AdjusterSubmission = () => {
           <div className="col-12 claim__request__upload__subtitle mt-2 mb-2">
             Proof of Documents
           </div>
-          <div className="col-12">
+
+<div className="uploaddoc__conatiner">
+          <img src='https://i.ibb.co/0Qv0kzR/document.png' className='claimtitle__img__container' />
+          <img src='https://i.ibb.co/0Qv0kzR/document.png' className='claimtitle__img__container' />
+
+</div>
+          {/* <div className="col-12">
             <div className="file_icon_selector">
               <FileUpload
                 ref={fileUploadRef}
@@ -134,15 +140,15 @@ const AdjusterSubmission = () => {
                 <SvgImageShow />
               </span>
             </div>
-          )}
+          )} */}
           <div className="col-12">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
-                <Button className="back__btn">Back</Button>
+                <Button className="back__btn">Cancel</Button>
               </div>
-              <div className="next__btn__container">
+              {/* <div className="next__btn__container">
                 <Button className="next__btn"  onClick={handlenext}>Next</Button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -151,4 +157,4 @@ const AdjusterSubmission = () => {
   );
 };
 
-export default AdjusterSubmission;
+export default ClaimDocumentUpload;

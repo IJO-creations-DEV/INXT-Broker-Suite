@@ -195,6 +195,8 @@ import UpcomingEvents from "../agentModule/openItems/upcomingEvents";
 import ExpiringPolicy from "../agentModule/openItems/expiringPolicy";
 import AgenSideBar from "../components/AgentSideBar";
 import EditCommissionPopup from "../module/GeneralMasters/Commission/EditCommission/EditCommissionPopup";
+import ClaimRejected from "../agentModule/claimsModule/claimRejected";
+import ClaimDocumentUpload from "../agentModule/claimsModule/claimDocumentUpload";
 
 const Maincomponent = () => {
 
@@ -1024,6 +1026,17 @@ const Maincomponent = () => {
                 path="/agent/claimdetailedview/:id"
                 element={<ClaimSettlement />}
               />
+
+              <Route
+                path="/agent/claimrejected"
+                 element={<ClaimRejected />}
+              />
+             <Route
+                path="/agent/claimdocumentupload"
+                 element={<ClaimDocumentUpload/>}
+              />
+
+
               {/* // Endorsement */}
               <Route
                 path="/agent/endorsement/personaldetails"

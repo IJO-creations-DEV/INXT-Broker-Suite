@@ -18,14 +18,13 @@ import { useSelector } from "react-redux";
 
 const ViewMainAccount = () => {
 
-  const { MainAccountDetailView, loading } = useSelector(({ mainAccoutMiddleware }) => {
+  const { MainAccountDetailView, loading } = useSelector(({ mainAccoutReducers }) => {
     return {
-      loading: mainAccoutMiddleware?.loading,
-      MainAccountDetailView: mainAccoutMiddleware?.MainAccountDetailView,
-
+      loading: mainAccoutReducers?.loading,
+      MainAccountDetailView: mainAccoutReducers?.MainAccountDetailView,
     };
   });
-  console.log(MainAccountDetailView, "MainAccountDetailView");
+  console.log(loading, "loading");
   const navigation = useNavigate();
   const items = [
     {

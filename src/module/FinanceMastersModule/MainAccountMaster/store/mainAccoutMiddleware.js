@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_MAIN_ACCOUNT_LIST, GET_MAIN_ACCOUNT_SEARCH_LIST, POST_MAIN_ACCOUNT_STATUS, GET_MAIN_ACCOUNT_DETAIL_VIEW, GET_ADD_MAIN_ACCOUNT, PATCH_MAIN_ACCOUNT_DETAIL_EDIT, GET_PATCH_MAIN_ACCOUNT_DETAIL_EDIT } from "../../../../redux/actionTypes";
+import { GET_MAIN_ACCOUNT_LIST, GET_MAIN_ACCOUNT_SEARCH_LIST, POST_MAIN_ACCOUNT_STATUS, GET_MAIN_ACCOUNT_DETAIL_VIEW, GET_ADD_MAIN_ACCOUNT, PATCH_MAIN_ACCOUNT_DETAIL_EDIT, GET_PATCH_MAIN_ACCOUNT_DETAIL_EDIT, GET_MAIN_ACCOUNT_VIEW } from "../../../../redux/actionTypes";
 
 
 export const getMainAccountList = createAsyncThunk(
@@ -103,8 +103,9 @@ export const patchMainAccountDetailEdit = createAsyncThunk(
 
 
 export const getMainAccountDetailView = createAsyncThunk(
-    GET_MAIN_ACCOUNT_DETAIL_VIEW,
+    GET_MAIN_ACCOUNT_VIEW,
     async (payload, { rejectWithValue }) => {
+        console.log(payload,"payloadpayload");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;

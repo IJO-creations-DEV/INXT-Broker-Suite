@@ -73,7 +73,7 @@ const initialState = {
       currencyCode: "cc556"
     }]
 
-  }
+}
 const mainAccountMasterReducer = createSlice({
   name: "mainAccountMaster",
   initialState,
@@ -230,23 +230,25 @@ const mainAccountMasterReducer = createSlice({
     builder.addCase(getMainAccountDetailView.pending, (state) => {
       state.loading = true;
     });
+    
     builder.addCase(
       getMainAccountDetailView.fulfilled,
       (state, action) => {
         state.loading = false;
         state.MainAccountDetailView = action.payload;
+        console.log(state.MainAccountDetailView, "state.MainAccountDetailView");
       }
     );
+    
     builder.addCase(
       getMainAccountDetailView.rejected,
       (state, action) => {
         state.loading = false;
-
         state.MainAccountDetailView = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
-  },
+  }
 });
 
 export default mainAccountMasterReducer.reducer;

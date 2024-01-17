@@ -42,14 +42,14 @@ const EditMainAccount = () => {
 
 
   const { getMainAccountDetailEdit, loading } = useSelector(
-    ({ mainAccoutMiddleware }) => {
+    ({ mainAccoutReducers }) => {
       return {
-        loading: mainAccoutMiddleware?.loading,
-        getMainAccountDetailEdit: mainAccoutMiddleware?.getMainAccountDetailEdit,
+        loading: mainAccoutReducers?.loading,
+        getMainAccountDetailEdit: mainAccoutReducers?.getMainAccountDetailEdit,
       };
     }
   );
-  console.log(getMainAccountDetailEdit.accountType, "getMainAccountDetailEdit")
+  console.log(getMainAccountDetailEdit, "getMainAccountDetailEdit")
   const handleSubmit = (value) => {
     const openEntry = selectSwitch === "No" ? "Yes" : "No";
     const updatedValues = { ...value, openEntry };
@@ -61,10 +61,14 @@ const EditMainAccount = () => {
   const [accType, setAccType] = useState([])
   const [openEType, setOpenEType] = useState([])
   const [accCaletgoryC, setAccCaletgoryC] = useState([])
+  const [companyCodeOption, setCompanyCodeOption]=useState([])
+  const [currencyCodeOption,setCurrencyCodeOption]=useState([])
   const setFormikValues = () => {
     const accountTypeData = getMainAccountDetailEdit?.accountType
     const openEntryTypeData = getMainAccountDetailEdit?.openEntryType
     const accountCategoryCodeData = getMainAccountDetailEdit?.accountCategoryCode
+    const companyCodeData=getMainAccountDetailEdit?.companyCode
+    const currencyCodeData=getMainAccountDetailEdit?.currencyCode
     const updatedValues = {
       id: getMainAccountDetailEdit?.id,
       mainAccountCode: getMainAccountDetailEdit?.mainAccountCode,
@@ -72,8 +76,8 @@ const EditMainAccount = () => {
       description: getMainAccountDetailEdit?.description,
       accountCategoryCode: getMainAccountDetailEdit?.accountCategoryCode,
       accountType: accountTypeData,
-      companyCode: getMainAccountDetailEdit?.companyCode,
-      currencyCode: getMainAccountDetailEdit?.currencyCode,
+      companyCode: companyCodeData,
+      currencyCode:currencyCodeData ,
       openEntryType: openEntryTypeData
     };
     console.log(updatedValues.accountType, "uu");
@@ -88,6 +92,14 @@ const EditMainAccount = () => {
     if (accountCategoryCodeData) {
       formik.setValues({ ...formik.values, ...updatedValues });
       setAccCaletgoryC([{ label: accountCategoryCodeData, value: accountCategoryCodeData }]);
+    }
+    if(companyCodeData){
+      setCompanyCodeOption([{label:companyCodeData,value:companyCodeData}])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if(currencyCodeData){
+      setCurrencyCodeOption([{label:currencyCodeData,value:currencyCodeData}])
+      formik.setValues({ ...formik.values, ...updatedValues });
     }
     formik.setValues({ ...formik.values, ...updatedValues });
   };
@@ -347,16 +359,16 @@ const EditMainAccount = () => {
               label="Company Code"
               classNames="input__label__corrections"
             />
-            {/* <MultiSelect
+            <MultiSelect
               className="input__field__corrections mt-2"
-              value={formik.values.companyCode}
+              value={[formik.values.companyCode]}
               onChange={(e) => formik.setFieldValue("companyCode", e.value)}
-              options={companyCodeDatas}
+              options={companyCodeOption}
               optionLabel="value"
               display="chip"
               placeholder="Select"
               dropdownIcon={<SvgDropdown />}
-            /> */}
+            />
             {formik.touched.companyCode && formik.errors.companyCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
@@ -376,17 +388,17 @@ const EditMainAccount = () => {
                     : "input__label__corrections"
                 }
               />
-              {/* <MultiSelect
+              <MultiSelect
                 disabled={entrySwitch === "No" ? true : false}
                 className="input__field__corrections mt-2"
-                value={formik.values.currencyCode}
+                value={[formik.values.currencyCode]}
                 onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
-                options={currencyCodeDatas}
+                options={currencyCodeOption}
                 optionLabel="value"
                 display="chip"
                 placeholder="Select"
                 dropdownIcon={<SvgDropdown />}
-              /> */}
+              />
             </div>
           )}
         </div>

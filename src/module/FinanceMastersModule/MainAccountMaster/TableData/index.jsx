@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -68,23 +68,34 @@ const TableData = ({ MainAccountList }) => {
   };
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const handleAction = (rowData) => {
+  const handleview = (rowData) => {
     console.log(rowData, "rowData")
-    dispatch(getMainAccountDetailView(rowData))
-    navigate("/master/finance/mainaccount/viewmainaccount")
+    if (rowData) {
+      dispatch(getMainAccountDetailView(rowData))
+      navigate("/master/finance/mainaccount/viewmainaccount")
+    }
+    else {
+      alert("error")
+    }
 
   }
+ 
   const handleEdit = (rowData) => {
     console.log(rowData, "rowDatarowData");
+   if(rowData){
     dispatch(getPatchMainAccountDetailEdit(rowData))
     navigate("/master/finance/mainaccount/editmainaccount");
+   }
+   else{
+    alert("error")
+   }
   }
   const renderActionButton = (rowData) => {
     return (
       <div className="action__button__container">
         <Button
           icon={<SvgIconeye />}
-          onClick={() => handleAction(rowData)}
+          onClick={() => handleview(rowData)}
           className="action__button p-0"
         />
         <Button
@@ -144,7 +155,7 @@ const TableData = ({ MainAccountList }) => {
       </div>
       <DataTable
         // value={tableView ? Productdata : []}
-        value={search?MainAccountSearchList:MainAccountList}
+        value={search ? MainAccountSearchList : MainAccountList}
         paginator
         rows={5}
         rowsPerPageOptions={[5, 10, 25, 50]}
@@ -194,7 +205,7 @@ const TableData = ({ MainAccountList }) => {
           field="id"
           body={renderActionButton}
           header="Action"
-          // className="fieldvalue_container"
+        // className="fieldvalue_container"
         ></Column>
       </DataTable>
     </div>

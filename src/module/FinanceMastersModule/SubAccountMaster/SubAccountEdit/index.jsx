@@ -18,7 +18,7 @@ import { patchSubAccountEdit } from '../store/subAccountMiddleWare';
 
 const SubAdd = () => {
     const navigation = useNavigate();
-    const [isoCode, setIsoCode] = useState([])
+
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [selectedOption, setSelectedOption] = useState([{ name: "Main0123" }, { name: "Main0126" }, { name: "Main0128" }]);
     const [selectedOption1, setSelectedOption1] = useState([{ name: "INR" }, { name: "EUR" }, { name: "AUD" }]);
@@ -32,8 +32,8 @@ const SubAdd = () => {
         subAccountCode: "",
         description: "",
         subAccountName: "",
-        mainAccount: "",
-        currencyCode: "",
+        mainAccount: [],
+        currencyCode: [],
     }
     const { getSubDetailEdit, loading } = useSelector(({ subAccountMainReducers }) => {
         return {
@@ -42,7 +42,7 @@ const SubAdd = () => {
 
         };
     });
-    console.log(getSubDetailEdit, "getSubDetailEdit");
+    console.log(loading, "loading");
 
 
     const item = [{ name: "Main00123 - Main Account Description" }, { name: "Main00125 - Main Account Description" }, { name: "Main00128 - Main Account Description" }];
@@ -64,19 +64,33 @@ const SubAdd = () => {
         //     navigate("/master/finance/subaccount");
         // }, 2000);
     };
+    const [isoCode, setIsoCode] = useState([])
+    const [currencyOption, setCurrencyOption]=useState([])
     const setFormikValues = () => {
-
+        const mainData = getSubDetailEdit?.mainAccount
+        const currencyData=getSubDetailEdit?.currencyCode
+        console.log(mainData,"mainData");
         const updatedValues = {
+
             subAccountCode: getSubDetailEdit?.subAccountCode,
             description: getSubDetailEdit?.description,
             subAccountName: getSubDetailEdit?.subAccountName,
-            mainAccount: getSubDetailEdit?.mainAccount,
-            currencyCode: getSubDetailEdit?.currencyCode,
+            mainAccount: mainData,
+            currencyCode: currencyData,
             id: getSubDetailEdit.id
         };
 
+        if (mainData) {
+        // if (mainData) {
+            setIsoCode([{ label: mainData, value: mainData }])
+            formik.setValues({ ...formik.values, ...updatedValues });
+        }
+        if(currencyData){
+            setCurrencyOption([{ label: currencyData, value: currencyData }])
+            formik.setValues({ ...formik.values, ...updatedValues });
 
-
+        }
+       
         formik.setValues({ ...formik.values, ...updatedValues });
     };
 
@@ -155,22 +169,22 @@ const SubAdd = () => {
                 <div class="grid">
                     <div class="sm-col-12  md:col-8 lg-col-8">
                         <label className='main_acc_text'>Main Account</label>
-                        {/* <MultiSelect
-                            value={formik.values.mainAccount}
+                        <MultiSelect
+                           value={[formik.values.mainAccount]}
                             // options={item}
-                            // onChange={(e) => {
-                            //     formik.setFieldValue("mainAccount", e.value)
-                            // }}
+                            onChange={(e) => {
+                                formik.setFieldValue("mainAccount", e.value)
+                            }}
                             options={isoCode}
                             className="dropdown__add__sub"
                             label="Main Account"
                             display="chip"
-                            optionLabel="value"
+                            optionLabel="label"
                             classNames="label__sub__add"
                             placeholder={"Select"}
 
                             dropdownIcon={<SvgDropdown color={"#000"} />}
-                        /> */}
+                        />
 
 
 
@@ -182,13 +196,13 @@ const SubAdd = () => {
 
                     <div class="sm-col-12  md:col-8 lg-col-8">
                         <label className='main_acc_text'>Currency Code</label>
-                        {/* <MultiSelect
-                            value={formik.values.currencyCode}
+                        <MultiSelect
+                            value={[formik.values.currencyCode]}
                             // options={item}
-                            // onChange={(e) => {
-                            //     formik.setFieldValue("currencyCode", e.value)
-                            // }}
-                            options={isoCode}
+                            onChange={(e) => {
+                                formik.setFieldValue("currencyCode", e.value)
+                            }}
+                            options={currencyOption}
                             className="dropdown__add__sub"
 
                             display="chip"
@@ -197,7 +211,7 @@ const SubAdd = () => {
                             placeholder={"Select"}
 
                             dropdownIcon={<SvgDropdown color={"#000"} />}
-                        /> */}
+                        />
 
 
                     </div>

@@ -16,6 +16,7 @@ import { useFormik } from "formik";
 import { getUserEditData, postAddUserGroupAccess } from "../../../store/transactionCodeMasterMiddleware";
 import SvgEditicon from "../../../../../../assets/icons/SvgEdit";
 import UserGroupAccessEditPopup from "./UserGroupAccessEditPopup";
+import SvgEditIcon from "../../../../../../assets/icons/SvgEditIcon";
 
 const UserGroupAccess = () => {
   const { TransactioncodeListsearch, UserGroupAccessList, loading, getUserAccessData } = useSelector(({ transactionCodeMasterReducer }) => {
@@ -214,10 +215,10 @@ const UserGroupAccess = () => {
           <Column
             field="Edit"
             body={(columnData) => (
-              <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
+              <div onClick={() => handleEdit(columnData)}  style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
 
 
-                <SvgEditicon onClick={() => handleEdit(columnData)} />
+                <SvgEditIcon  />
               </div>
             )}
             header="Edit"

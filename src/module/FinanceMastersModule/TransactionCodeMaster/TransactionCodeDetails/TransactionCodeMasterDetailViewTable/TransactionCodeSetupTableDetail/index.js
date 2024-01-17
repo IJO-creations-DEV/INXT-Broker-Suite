@@ -5,8 +5,17 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router";
 import "./index.scss";
 import SvgTable from "../../../../../../assets/icons/SvgTable";
+import { useSelector } from "react-redux";
 
 const TransactionCodeSetupTableDetail = () => {
+  const { TransactioncodeListsearch, TransactionCodeSetup, loading } = useSelector(({ transactionCodeMasterReducer }) => {
+    return {
+      loading: transactionCodeMasterReducer?.loading,
+      TransactionCodeSetup: transactionCodeMasterReducer?.TransactionCodeSetup,
+
+
+    };
+  });
   const [products, setProducts] = useState([]);
 
   const navigate = useNavigate();
@@ -73,7 +82,7 @@ const TransactionCodeSetupTableDetail = () => {
       {/* <Card className="mt-1"> */}
       <div className="card">
         <DataTable
-          value={products}
+          value={TransactionCodeSetup}
           tableStyle={{
             minWidth: "50rem",
             color: "#1C2536",
@@ -89,7 +98,7 @@ const TransactionCodeSetupTableDetail = () => {
           emptyMessage={isEmpty ? emptyTableIcon : null}
         >
           <Column
-            field="AccountingPeriodstart"
+            field="AccountingPeriodStart"
             header="Accounting Period start"
             headerStyle={headerStyle}
             className="fieldvalue_container"
@@ -99,23 +108,23 @@ const TransactionCodeSetupTableDetail = () => {
             header="Accounting Period End"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            //   sortable
+          //   sortable
           ></Column>
           <Column
-            field="TransactionNofrom"
+            field="TransactionNumberFrom"
             header="Transaction No from"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            //   sortable
+          //   sortable
           ></Column>
           <Column
-            field="TransactionNoTo"
+            field="TransactionNumberTo"
             header="Transaction No To"
             headerStyle={headerStyle}
             className="fieldvalue_container"
           ></Column>
           <Column
-            field="LastUsed"
+            field="lastUsed"
             header="Last Used"
             headerStyle={headerStyle}
             className="fieldvalue_container"

@@ -194,6 +194,7 @@ import OpenItems from "../agentModule/openItems/openItems";
 import UpcomingEvents from "../agentModule/openItems/upcomingEvents";
 import ExpiringPolicy from "../agentModule/openItems/expiringPolicy";
 import AgenSideBar from "../components/AgentSideBar";
+import EditCommissionPopup from "../module/GeneralMasters/Commission/EditCommission/EditCommissionPopup";
 import ClaimRejected from "../agentModule/claimsModule/claimRejected";
 import ClaimDocumentUpload from "../agentModule/claimsModule/claimDocumentUpload";
 

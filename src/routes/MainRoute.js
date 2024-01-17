@@ -142,7 +142,7 @@ import AddRole from "../module/GeneralMasters/UserManagementMasters/Role/AddRole
 import HierarchyMaster from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/HierarchyMaster";
 import AddHierarchy from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/AddHierarchy";
 import UserEdit from "../module/GeneralMasters/UserManagementMasters/User/EditUser"
-
+import ClaimSettlement from "../agentModule/claimsModule/claimSettlement";
 
 
 import AddCompany from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/AddCompany";
@@ -1015,12 +1015,12 @@ const Maincomponent = () => {
                 element={<SettlementApproval />}
               />
               <Route
-                path="/agent/claimrequest/settlementdetails"
+                path="/agent/claimrequest/settlementdetails/:id"
                 element={<SettlementDetails />}
               />
               <Route
-                path="/agent/claimdetailedview"
-                element={<SettlementDetails />}
+                path="/agent/claimdetailedview/:id"
+                element={<ClaimSettlement />}
               />
               {/* // Endorsement */}
               <Route

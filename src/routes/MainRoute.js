@@ -1076,6 +1076,7 @@ const Maincomponent = () => {
               />
               {/* // Payments */}
               <Route path="/agent/payments" element={<Payments />} />
+              <Route path="/agent/payments/detail/:id" element={<PaymentDetails/>}/>
               {/* // Open items */}
               <Route path="/agent/openitems" element={<OpenItems />} />
               <Route

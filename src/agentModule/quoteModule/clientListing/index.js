@@ -14,6 +14,8 @@ import SvgEditIcon from '../../../assets/icons/SvgEditIcon'
 import { Menu } from 'primereact/menu';
 import { InputText } from 'primereact/inputtext'
 import SvgFilters from '../../../assets/icons/SvgFilters'
+import { Dialog } from 'primereact/dialog'
+import { Checkbox } from 'primereact/checkbox'
 
 const ClientListing = () => {
   const navigate = useNavigate()
@@ -26,6 +28,14 @@ const ClientListing = () => {
   const params = useParams();
   const { id } = params
   const home = { label: "Home" };
+  const [endrosementModal, setEndrosementModal] = useState(false)
+  const categories = [
+    { name: 'Personal Details Change', key: 'personaldetail' },
+    { name: 'Motor Details Change', key: 'motordetail' },
+    { name: 'Coverage Change', key: 'coveragechange' },
+    { name: 'Policy Extend', key: 'ploicyextend' }
+  ];
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const menuItems = [
     {
@@ -73,6 +83,16 @@ const ClientListing = () => {
   const headerStyle = {
     textAlign: "end",
   };
+  const onCategoryChange = (e) => {
+    let _selectedCategories = [...selectedCategories];
+
+    if (e.checked)
+      _selectedCategories.push(e.value);
+    else
+      _selectedCategories = _selectedCategories.filter(category => category.key !== e.value.key);
+
+    setSelectedCategories(_selectedCategories);
+  };
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -107,6 +127,9 @@ const ClientListing = () => {
   const handleMenuClick = (menuItem) => {
     if (menuItem == "view") {
       navigate('/agent/claimrequest/claimdetails')
+    }
+    if (menuItem == "endrosement") {
+      setEndrosementModal(true)
     }
     // Handle the menu item click here
     console.log(`${menuItem} clicked`);
@@ -144,8 +167,30 @@ const ClientListing = () => {
       </div>
     )
   }
+  const handleEndrosmentSubmit = () => {
+    navigate('/agent/endorsement/personaldetails', {
+      state: selectedCategories
+    })
+  }
   return (
     <div>
+      <Dialog header="Header" visible={endrosementModal} style={{ width: '50vw' }} onHide={() => setEndrosementModal(false)}>
+        <div className="flex flex-column gap-3">
+          {categories.map((category) => {
+            return (
+              <div key={category.key} className="flex align-items-center">
+                <Checkbox inputId={category.key} name="category" value={category} onChange={onCategoryChange} checked={selectedCategories.some((item) => item.key === category.key)} />
+                <label htmlFor={category.key} className="ml-2">
+                  {category.name}
+                </label>
+              </div>
+            );
+          })}
+          <Button onClick={handleEndrosmentSubmit}>Proceed</Button>
+        </div>
+
+      </Dialog>
+
       <div className="claim__request__upload__main__title">Clients</div>
       <div className="col-12 p-0">
         <BreadCrumb

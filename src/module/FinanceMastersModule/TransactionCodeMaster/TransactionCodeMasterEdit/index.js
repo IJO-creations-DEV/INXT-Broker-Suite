@@ -66,8 +66,9 @@ const TransactionCodeEdit = () => {
     const MainAccount = getTrascationcodeDetailsEdit?.MainAccountCode
     const subAccount = getTrascationcodeDetailsEdit?.SubAccountCode
     const branchCode = getTrascationcodeDetailsEdit?.BranchCode
-    const dept = getTrascationcodeDetailsEdit?.Department
+    const dept = getTrascationcodeDetailsEdit?.DepartmentCode
     const updatedValues = {
+      id:getTrascationcodeDetailsEdit?.id,
       TransactionCode: getTrascationcodeDetailsEdit?.TransactionCode || "",
       TransactionName: getTrascationcodeDetailsEdit?.TransactionName || "",
       Description: getTrascationcodeDetailsEdit?.Description || "",
@@ -78,7 +79,7 @@ const TransactionCodeEdit = () => {
       SubAccountDescription: getTrascationcodeDetailsEdit?.SubAccountDescription || "",
       BranchCode: branchCode || "",
       BranchDescription: getTrascationcodeDetailsEdit?.BranchDescription || "",
-      Department: dept || "",
+      DepartmentCode: dept || "",
       DepartmentDescription: getTrascationcodeDetailsEdit?.DepartmentDescription || "",
     };
     console.log(updatedValues.SubAccountCode, subAccount, "updatedValues.TransactionBasis")
@@ -118,7 +119,7 @@ const TransactionCodeEdit = () => {
       SubAccountDescription: "",
       BranchCode: "",
       BranchDescription: "",
-      Department: "",
+      DepartmentCode: "",
       DepartmentDescription: "",
     },
     validate: (values) => {
@@ -392,11 +393,11 @@ const TransactionCodeEdit = () => {
                 textWeight={500}
 
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.Department}
+                value={formik.values.DepartmentCode}
                 options={deptC}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("Department", e.target.value);
+                  formik.setFieldValue("DepartmentCode", e.target.value);
 
                 }}
 

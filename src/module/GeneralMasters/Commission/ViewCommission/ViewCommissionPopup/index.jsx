@@ -10,7 +10,7 @@ import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 import SvgModalClose from "../../../../../assets/icons/SvgNodalClose";
 import { useDispatch, useSelector } from "react-redux";
 import { addLevelPatchEditPopup } from "../../store/commissionMiddleWare";
-const EditCommissionPopup = ({ showEditPopup, setShowEditPopup, handleUpdate }) => {
+const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) => {
     const { loading, popupEditData } = useSelector(({ commissionMianReducers }) => {
         return {
             loading: commissionMianReducers?.loading,
@@ -43,7 +43,7 @@ const EditCommissionPopup = ({ showEditPopup, setShowEditPopup, handleUpdate }) 
     const dispatch=useDispatch()
     const handleSubmit = (value) => {
         dispatch(addLevelPatchEditPopup(value))
-        setShowEditPopup(false);
+        setShowViewPopup(false);
         console.log(value, "valuedata");
     }
     const [levetOptionData, setLevelOptionData]=useState([])
@@ -87,9 +87,9 @@ const EditCommissionPopup = ({ showEditPopup, setShowEditPopup, handleUpdate }) 
     return (
         <Dialog
             header="Add Level Wise Commission Sharing "
-            visible={showEditPopup}
+            visible={showViewPopup}
             className="commission__modal__container"
-            onHide={() => setShowEditPopup(false)}
+            onHide={() => setShowViewPopup(false)}
             dismissableMask={true}
         >
             <div className="form__container">
@@ -160,6 +160,6 @@ const EditCommissionPopup = ({ showEditPopup, setShowEditPopup, handleUpdate }) 
     );
 };
 
-export default EditCommissionPopup;
+export default ViewCommissionPopup;
 
 

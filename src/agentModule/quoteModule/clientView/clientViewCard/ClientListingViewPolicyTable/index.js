@@ -47,7 +47,7 @@ const LeadListingAllTable = () => {
       navigate("/agent/claimrequest/claimdetails");
     } else if (label === "Renewal") {
     } else if (label === "Endorsement") {
-      navigate("/agent/policydetailedview");
+      navigate("/agent/endorsement/personaldetails");
     }
   };
 

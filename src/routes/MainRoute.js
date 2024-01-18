@@ -198,6 +198,7 @@ import EditCommissionPopup from "../module/GeneralMasters/Commission/EditCommiss
 import ClaimRejected from "../agentModule/claimsModule/claimRejected";
 import ClaimDocumentUpload from "../agentModule/claimsModule/claimDocumentUpload";
 import LeadEdit from "../agentModule/leadModule/leadEdit";
+import ViewEndorsement from "../agentModule/endorsementModule/viewUploadEndorsement";
 
 const Maincomponent = () => {
   return (
@@ -929,10 +930,22 @@ const Maincomponent = () => {
               element={<ViewCurrency />}
             />
             <Route path="master/generals/commission" element={<Commission />} />
-            <Route path="master/generals/commission/addcommission" element={<AddCommission />} />
-            <Route path="master/generals/commission/editcommission" element={<EditCommission />} />
-            <Route path="master/generals/commission/editcommissionpopup" element={<EditCommissionPopup />} />
-            <Route path="master/generals/commission/viewcommission/:id" element={<ViewCommission />} />
+            <Route
+              path="master/generals/commission/addcommission"
+              element={<AddCommission />}
+            />
+            <Route
+              path="master/generals/commission/editcommission"
+              element={<EditCommission />}
+            />
+            <Route
+              path="master/generals/commission/editcommissionpopup"
+              element={<EditCommissionPopup />}
+            />
+            <Route
+              path="master/generals/commission/viewcommission/:id"
+              element={<ViewCommission />}
+            />
 
             <Route element={<ProtectedLayout />}>
               {/* <Route path="/login" element={<Login />} />
@@ -1009,14 +1022,8 @@ const Maincomponent = () => {
                 path="/agent/policy/paymenterror"
                 element={<PaymentError />}
               />
-              <Route
-                path="/agent/clientlisting"
-                element={<ClientListing />}
-              />
-              <Route
-                path="/agent/clientview/:id"
-                element={<ClientView/>}
-              />
+              <Route path="/agent/clientlisting" element={<ClientListing />} />
+              <Route path="/agent/clientview/:id" element={<ClientView />} />
               {/* // Claims */}
               <Route
                 path="/agent/claimrequest/claimdetails"
@@ -1047,15 +1054,11 @@ const Maincomponent = () => {
                 element={<ClaimSettlement />}
               />
 
+              <Route path="/agent/claimrejected" element={<ClaimRejected />} />
               <Route
-                path="/agent/claimrejected"
-                 element={<ClaimRejected />}
-              />
-             <Route
                 path="/agent/claimdocumentupload"
-                 element={<ClaimDocumentUpload/>}
+                element={<ClaimDocumentUpload />}
               />
-
 
               {/* // Endorsement */}
               <Route
@@ -1075,7 +1078,11 @@ const Maincomponent = () => {
                 element={<UploadEndorsement />}
               />
               <Route
-                path="/agent/endorsementdetailedview"
+                path="/agent/viewendorsement"
+                element={<ViewEndorsement />}
+              />
+              <Route
+                path="/agent/endorsementdetailedview/:id"
                 element={<EndorsementDetailedView />}
               />
               <Route
@@ -1096,7 +1103,10 @@ const Maincomponent = () => {
               />
               {/* // Payments */}
               <Route path="/agent/payments" element={<Payments />} />
-              <Route path="/agent/payments/detail/:id" element={<PaymentDetails/>}/>
+              <Route
+                path="/agent/payments/detail/:id"
+                element={<PaymentDetails />}
+              />
               {/* // Open items */}
               <Route path="/agent/openitems" element={<OpenItems />} />
               <Route

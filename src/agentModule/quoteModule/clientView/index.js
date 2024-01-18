@@ -4,7 +4,7 @@ import { Button } from "primereact/button";
 import SvgAdd from "../../../assets/agentIcon/SvgAdd"
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../../assets/agentIcon/SvgDots";
-import ClientListingCard from "./clientListingCard";
+import ClientViewCard from "./clientViewCard";
 import { Dropdown } from "primereact/dropdown";
 import SvgMotor from "../../../assets/agentIcon/SvgMotor";
 import SvgTravel from "../../../assets/agentIcon/SvgTravel";
@@ -44,7 +44,7 @@ const LeadListing = () => {
           separatorIcon={<SvgDot color={"#000"} />}
         />
       </div>
-      <ClientListingCard />
+      <ClientViewCard />
     </div>);
 };
 

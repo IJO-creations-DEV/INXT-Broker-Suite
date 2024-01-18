@@ -39,7 +39,6 @@ import insuranceCoverReducers from "../module/GeneralMasters/InsuranceManagement
 import insuranceSignatoriesReducers from "../module/GeneralMasters/InsuranceManagementMasters/SignatoriesMaster/store/insuranceSignatoriesReducers";
 import insuranceVehicleReducers from "../module/GeneralMasters/InsuranceManagementMasters/Vehicle/store/insuranceVehicleReducers";
 import stateReducers from "../module/GeneralMasters/LocationMasters/StateMaster/store/stateReducers";
-
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,

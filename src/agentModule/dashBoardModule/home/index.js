@@ -13,15 +13,23 @@ import { Dialog } from 'primereact/dialog';
 import SvgSearch from "../../../assets/agentIcon/SvgSearch";
 import { useNavigate } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const [visible, setVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
-
+  const { userDetails, commissionList } = useSelector(
+    ({ homeReducers }) => {
+      return {
+        userDetails: homeReducers?.dashboardDetails?.userDetails,
+        commissionList: homeReducers?.dashboardDetails?.commission
+      };
+    }
+  );
   const dropdownOptions = [
     {
-      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }} onClick={()=>{handleClickMotor()}}>
+      label: <div style={{ display: "flex", alignItems: "center", gap: "10px" }} onClick={() => { handleClickMotor() }}>
         <div><SvgMotor /></div>
         <div
           style={{
@@ -38,7 +46,7 @@ const Dashboard = () => {
       value: 'Motor'
     },
     {
-      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }}>
+      label: <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <div><SvgTravel /></div>
         <div
           style={{
@@ -55,7 +63,7 @@ const Dashboard = () => {
       value: 'Travel'
     },
     {
-      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }}>
+      label: <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <div><SvgHome /></div>
         <div
           style={{
@@ -73,11 +81,11 @@ const Dashboard = () => {
   ];
 
 
-  const handleClickMotor = () =>{
+  const handleClickMotor = () => {
     setVisible(true)
   }
 
-  const handleclick = ()=>{
+  const handleclick = () => {
     navigate("/agent/createlead")
   }
 
@@ -101,18 +109,18 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <TopCard />
-      <CenterCard />
-      <BottomCard />
+      <TopCard detail={userDetails} />
+      <CenterCard commission={commissionList} />
+      <BottomCard detail={userDetails} />
       <Dialog className="dailog__box__container" visible={visible} style={{ width: '30vw' }} onHide={() => setVisible(false)}>
         <div className="dailog__box__container__title">Choose a Quote for</div>
         <div className="dailog__box__inputs__container mt-4">
-          <div className="dailog__box__inputs" onClick={()=>{handleclick()}}>
+          <div className="dailog__box__inputs" onClick={() => { handleclick() }}>
             New Lead
           </div>
-          <div className="dailog__box__inputs__existing__container mt-3">
+          <div className="dailog__box__inputs__existing__container mt-3 mb-6">
             <div className="dailog__box__inputs__existing">Existing Client</div>
-            <div className="dailog__box__inputs__svg"><SvgSearch/></div>
+            <div className="dailog__box__inputs__svg"><SvgSearch /></div>
           </div>
         </div>
       </Dialog>

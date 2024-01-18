@@ -4,15 +4,16 @@ import { Dropdown } from 'primereact/dropdown';
 import BarchartMonthly from "./BarchartMonthly";
 import SvgArrow from "../../../../assets/agentIcon/SvgArrow";
 
-const CenterCard = () => {
+const CenterCard = ({ commission }) => {
+  console.log(commission, "test data")
 
-  const [selectedCity, setSelectedCity] = useState(2024);
+  const [selectedCity, setSelectedCity] = useState("2024");
   const cities = [
-    { name: '2024', code: '1' },
-    { name: '2023', code: '2' },
-    { name: '2022', code: '3' },
-    { name: '2021', code: '4' },
-    { name: '2020', code: '5' }
+    { name: '2024' },
+    { name: '2023' },
+    { name: '2022' },
+    { name: '2021' },
+    { name: '2020' }
   ];
 
   return (
@@ -29,10 +30,10 @@ const CenterCard = () => {
             <div className="center__card__container__tabs col-12 md:col-6 lg:col-6">
               <div className="center__card__container__year__lable">Year</div>
               <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name"
-                className="w-full md:w-8rem" />
+                className="w-full md:w-8rem" optionValue="name" />
             </div>
           </div>
-          <BarchartMonthly year={selectedCity?.name}/>
+          <BarchartMonthly year={selectedCity} data={commission} />
 
         </Card>
       </div>

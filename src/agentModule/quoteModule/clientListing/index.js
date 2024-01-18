@@ -4,37 +4,98 @@ import { Button } from "primereact/button";
 import SvgAdd from "../../../assets/agentIcon/SvgAdd"
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../../assets/agentIcon/SvgDots";
-import ClientListingCard from "./clientListingCard";
+ import ClientListingCard from "./clientListingCard";
 import { Dropdown } from "primereact/dropdown";
 import SvgMotor from "../../../assets/agentIcon/SvgMotor";
 import SvgTravel from "../../../assets/agentIcon/SvgTravel";
 import SvgHome from "../../../assets/agentIcon/SvgHome";
 import { useNavigate } from "react-router-dom";
 
-const LeadListing = () => {
+const ClientListing = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
 
   const items = [
-    
-    { label: "Clients", url: "/agent/clientlisting" },
-    { label: "Client ID: 12345678", url: "/agent/clientlisting" },
+    { label: "Clients" },
   ];
   const Initiate = { label: "Home" };
   
- 
+  const dropdownOptions = [
+    {
+      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }} onClick={()=>{handleClickMotor()}}>
+        <div><SvgMotor /></div>
+        <div
+          style={{
+            fontFamily: "Inter var",
+            fontWeight: 400,
+            fontSize: "16px",
+            color: "#111927",
+            width: "100%",
+          }}
+        >
+          Motor
+        </div>
+      </div>,
+      value: 'Motor'
+    },
+    {
+      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }}>
+        <div><SvgTravel /></div>
+        <div
+          style={{
+            fontFamily: "Inter var",
+            fontWeight: 400,
+            fontSize: "16px",
+            color: "#111927",
+            width: "100%",
+          }}
+        >
+          Travel
+        </div>
+      </div>,
+      value: 'Travel'
+    },
+    {
+      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }}>
+        <div><SvgHome /></div>
+        <div
+          style={{
+            fontFamily: "Inter var",
+            fontWeight: 400,
+            fontSize: "16px",
+            color: "#111927",
+            width: "100%",
+          }}
+        >
+          Property
+        </div>
+      </div>, value: 'Property'
+    },
+  ];
 
 
-  
+  const handleClickMotor = () =>{
+    navigate("/agent/createlead")
+  }
 
   return (
-    <div className="client__listing__card__container">
+    <div className="clientlisting__overal__container">
 
       <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
-          <label className="leadlisting__overal__container__title">Clients</label>
+          <label className="leadlisting__overal__container__title">Client</label>
         </div>
-   
+        {/* <div class="col-12 md:col-6 lg:col-6">
+          <div className="btn_lable_save_container">
+            <Dropdown
+              value={selectedOption}
+              options={dropdownOptions}
+              onChange={(e) => setSelectedOption(e.value)}
+              placeholder="Create Lead"
+              dropdownIcon={<SvgAdd />}
+            />
+          </div>
+        </div> */}
       </div>
       <div>
         <BreadCrumb
@@ -48,4 +109,4 @@ const LeadListing = () => {
     </div>);
 };
 
-export default LeadListing;
+export default ClientListing;

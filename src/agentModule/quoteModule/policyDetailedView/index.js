@@ -11,7 +11,7 @@ const PolicyDetailedView = () => {
       </div>
       <div className='policy__details__view__back__btn__container mt-3'>
       <SvgLeftArrow />
-      <div className='policy__details__view__back__btn__container__title'>Lead ID: 12345678</div>
+      <div className='policy__details__view__back__btn__container__title'>Client ID: 12345678</div>
       </div>
       <PolicyDetailedViewCard/>
     </div>

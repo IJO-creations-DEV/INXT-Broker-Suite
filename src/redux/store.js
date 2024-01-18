@@ -1,22 +1,25 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import reducers from "./mainReducer";
-// import logger from 'redux-logger';
+import { configureStore, combineReducers, getDefaultMiddleware } from "@reduxjs/toolkit";
+import mainReducers from "./mainReducer";
+import agentReducers from "./AgentReducer";
+import logger from 'redux-logger';
 
 const resetStoreActionType = "main/resetStore";
 
-const combinedReducer = combineReducers(reducers);
-export const rootReducer = (state, action) => {
-    // when a logout action is dispatched it will reset redux state
+const rootReducer = combineReducers({
+    ...mainReducers,
+    ...agentReducers,
+});
+
+const resettableRootReducer = (state, action) => {
     if (action.type === resetStoreActionType) {
-        // eslint-disable-next-line
         state = undefined;
     }
-    return combinedReducer(state, action);
+    return rootReducer(state, action);
 };
 
 const store = configureStore({
-    reducer: rootReducer,
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    reducer: resettableRootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export const resetStore = () => {

@@ -1,27 +1,4 @@
-.client__listing__card__container {
-    
-    .view__btn {
-        color: #ffffff;
-        background: transparent;
-        border: 1px solid transparent !important;
-        padding: 0.1rem 0.75rem !important;
-        font-size: 1rem !important;
-        transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-        border-radius: 10px !important;
-    }
-
-    .name__box__container {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
- 
-    .p-datatable .p-datatable-tbody > tr > td {
-        text-align: left;
-        border: 1px solid #e5e7eb;
-        border-width: 0 0 1px 0;
-         padding:1rem 1rem; 
-    }
+.clientlisting__overal__container {
     .leadlisting__overal__container__title {
         font-family: Poppins !important;
         font-size: 34px !important;
@@ -48,7 +25,6 @@
             flex-direction: row-reverse !important;
         }
 
-        
         .p-dropdown .p-dropdown-label {
             background: #6366F1;
             border: 0 none;
@@ -98,7 +74,7 @@
 
     .p-breadcrumb {
         border-radius: 6px;
-        padding: 1rem 0rem;
+        padding: 0.5rem 0rem;
     }
 
     .lead__listing__card__container {
@@ -165,8 +141,18 @@
 
         .btn__container__view__edit {
             display: flex;
-            // justify-content: center;
+             justify-content: center;
             align-items: center;
+        }
+
+        .view__btn {
+            color: #ffffff;
+            background: transparent;
+            border: 1px solid transparent !important;
+            padding: 0.1rem 0.75rem !important;
+            font-size: 1rem !important;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+            border-radius: 10px !important;
         }
 
         .edit__btn {
@@ -179,7 +165,10 @@
             border-radius: 10px !important;
         }
 
-        
+        .name__box__container {
+            display: flex;
+            gap: 10px;
+        }
 
         .name__text {
             color: #000;
@@ -219,7 +208,6 @@
             font-size: 14px !important;
             font-weight: 300 !important;
             line-height: 21px !important;
-            
         }
 
         .header__btn__container {
@@ -314,6 +302,5 @@
             padding: 0.5rem 1rem;
             border-radius: 6px;
         }
-      
     }
 }

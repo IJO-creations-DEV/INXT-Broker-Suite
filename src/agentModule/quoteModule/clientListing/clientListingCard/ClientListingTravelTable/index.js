@@ -15,7 +15,7 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 
-const LeadListingTravelTable = () => {
+const ClientListingTravelTable = () => {
 
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [selectionMode, setSelectionMode] = useState('multiple');
@@ -25,16 +25,16 @@ const LeadListingTravelTable = () => {
         {
             "id": "1",
             "Name": "Sophie Clark",
-            "Category": "Individual",
+            "Category": "Positivity",
             "Date": "2024-01-26",
             "Quotes": "01",
             "LeadID": "123456",
-            "Svg":<SvgMotorTable />
+            "Svg":<SvgTravlesTable />
         },
         {
             "id": "2",
             "Name": "John Smith",
-            "Category": "Individual",
+            "Category": "Motivation",
             "Date": "2024-02-10",
             "Quotes": "02",
             "LeadID": "126",
@@ -43,16 +43,16 @@ const LeadListingTravelTable = () => {
         {
             "id": "3",
             "Name": "Emma Davis",
-            "Category": "Individual",
+            "Category": "Inspiration",
             "Date": "2024-03-15",
             "Quotes": "02",
             "LeadID": "1456",
-            "Svg":<SvgHomeTable />
+            "Svg":<SvgTravlesTable />
         },
         {
             "id": "4",
             "Name": "Michael Johnson",
-            "Category": "Company",
+            "Category": "Courage",
             "Date": "2024-04-20",
             "Quotes": "03",
             "LeadID": "1236",
@@ -61,25 +61,25 @@ const LeadListingTravelTable = () => {
         {
             "id": "5",
             "Name": "Olivia Turner",
-            "Category": "Individual",
+            "Category": "Kindness",
             "Date": "2024-05-25",
             "Quotes": "04",
             "LeadID": "1456",
-            "Svg":<SvgMotorTable />
+            "Svg":<SvgTravlesTable />
         },
         {
             "id": "6",
             "Name": "David Rodriguez",
-            "Category": "Company",
+            "Category": "Perseverance",
             "Date": "2024-06-30",
             "Quotes": "05",
             "LeadID": "123116",
-            "Svg":<SvgHomeTable />
+            "Svg":<SvgTravlesTable />
         },
         {
             "id": "7",
             "Name": "Ava Williams",
-            "Category": "Individual",
+            "Category": "Wisdom",
             "Date": "2024-07-05",
             "Quotes": "06",
             "LeadID": "123411",
@@ -88,25 +88,25 @@ const LeadListingTravelTable = () => {
         {
             "id": "8",
             "Name": "Daniel Brown",
-            "Category": "Company",
+            "Category": "Gratitude",
             "Date": "2024-08-10",
             "Quotes": "01",
             "LeadID": "1234000",
-            "Svg":<SvgMotorTable />
+            "Svg":<SvgTravlesTable />
         },
         {
             "id": "9",
             "Name": "Sophia Carter",
-            "Category": "Individual",
+            "Category": "Love",
             "Date": "2024-09-15",
             "Quotes": "02",
             "LeadID": "1234555",
-            "Svg":<SvgHomeTable />
+            "Svg":<SvgTravlesTable />
         },
         {
             "id": "10",
             "Name": "Ryan Walker",
-            "Category": "Company",
+            "Category": "Confidence",
             "Date": "2024-10-20",
             "Quotes": "03",
             "LeadID": "1234226",
@@ -115,11 +115,11 @@ const LeadListingTravelTable = () => {
         {
             "id": "11",
             "Name": "Ella Adams",
-            "Category": "Individual",
+            "Category": "Success",
             "Date": "2024-11-25",
             "Quotes": "04",
             "LeadID": "1234000",
-            "Svg":<SvgMotorTable />
+            "Svg":<SvgTravlesTable />
         }
     ]
 
@@ -161,14 +161,14 @@ const LeadListingTravelTable = () => {
                     <Button
                         icon={<SvgEdit />}
                         className="view__btn"
-                        onClick={() => handleEdit(rowData)}
+                        onClick={() => handleView(rowData)}
                     />
                 </div>
                 <div>
                     <Button
                         icon={<SvgArrow />}
                         className="edit__btn"
-                        onClick={() => handleView(rowData)}
+                        onClick={() => handleEdit(rowData)}
                     />
                 </div>
             </div>
@@ -182,7 +182,7 @@ const LeadListingTravelTable = () => {
                 <div>{rowData.Svg}</div>
                 <div>
                     <div className="name__text">{rowData.Name}</div>
-                    <div className="lead__id__text">Lead Id :{rowData.LeadID} </div>
+                    <div className="lead__id__text">Client Id:{rowData.LeadID} </div>
                 </div>
             </div>
         )
@@ -214,7 +214,7 @@ const LeadListingTravelTable = () => {
     }
 
     const handleView = () => {
-        navigate("/agent/quotelisting")
+        navigate("/agent/leadedit")
     }
 
 
@@ -231,8 +231,7 @@ const LeadListingTravelTable = () => {
         color: "#000",
         border: " none",
         display: "flex",
-        alignItem: "center",
-        height: "56px"
+        alignItem: "center"
     };
 
     const headerStyle = {
@@ -267,7 +266,7 @@ const LeadListingTravelTable = () => {
                     <span className="p-input-icon-left">
                         <i className="pi pi-search" />
                         {/* <SvgSearch/> */}
-                        <InputText placeholder="Search" />
+                        <InputText placeholder="Search" style={{borderRadius:10}}/>
                     </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
@@ -306,4 +305,4 @@ const LeadListingTravelTable = () => {
     )
 }
 
-export default LeadListingTravelTable
+export default ClientListingTravelTable

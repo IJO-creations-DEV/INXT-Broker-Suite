@@ -1,0 +1,111 @@
+.payment__dashboard__container{
+    .payment__heading{
+        color: #111927;
+font-family: Poppins;
+font-size: 34px;
+font-weight: 600;
+    }
+    .paymentCard_container{
+        border-radius: 20px;
+background: #FFF;
+box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.07);
+    }
+    .header_search_container{
+        display: grid;
+    }
+    .p-tabview .p-tabview-nav{
+        background: #ffffff;
+        border:none !important
+    }
+    .payment__paid__fieldcard{
+
+    }
+    .payment__paid__titlefieldcard{
+        color: #111927;
+        font-family: Poppins;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .payment__paid__subtitlefieldcard{
+        color: #6C737F;
+        font-family: Poppins;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 2px;
+    }
+    .payment__paid__pricefieldcard{
+        color: #000;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 500;
+       
+    }
+    .payment__paidfieldcard{
+        color: #0B815A;
+        font-family: Poppins;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 18px;
+background: rgba(16, 185, 129, 0.12);
+text-align: center;
+padding: 4px 10px;
+    }
+    .payment__overall__fieldcard{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #F2F4F7;
+        padding-top: 20px;
+        padding-bottom:  16px;
+    }
+    .sorbyfilter_container{
+        border: none;
+    }
+    .payment__cardlisting{
+        display: grid;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .paymentcard_eachcontainer{
+        // height: 180px;
+        // width:260px;
+        border-radius: 20px;
+border: 0.3px solid rgba(17, 25, 39, 0.10);
+background: #FFF;
+margin-bottom: 18px;
+text-align: center;
+// box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.07);
+    }
+    .price__listing{
+        margin: 14px 0px;
+    }
+    .p-tabview .p-tabview-panels {
+        background: #ffffff;
+        padding: 1.25rem 0rem !important;
+        border-top: 1px solid #E5E7EB;
+        color: #4b5563;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+    .paginator__container{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 0px !important;
+    }
+    .pagedropdown_container{
+        border: none;
+        // background-color: ;
+    }
+    .payment_pending{
+        color: #6C737F;
+font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+    }
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        
+        font-weight: 500 !important;
+    }
+    
+}

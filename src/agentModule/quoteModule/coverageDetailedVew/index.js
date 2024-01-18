@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import SvgRightarrow from "../../../assets/agentIcon/SvgRightArrow";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../../../components/NavBar";
 
 const LeadPreview = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const LeadPreview = () => {
 
   return (
     <div className="overall__lead__view__container">
+      <NavBar/>
       <div className="header__title">Leads</div>
       <div className="lead__quote__id mt-3">
         <div className="left__arrow">
@@ -143,7 +145,7 @@ const LeadPreview = () => {
               </div>
               <div className="image__text mt-2">
                 <img
-                  src="https://i.ibb.co/51rWbD4/idimage.png"
+                  src="https://i.ibb.co/YLm4Wtc/carimage1.png"
                   alt="idimage"
                   className="image__size"
                 />
@@ -155,10 +157,11 @@ const LeadPreview = () => {
               </div>
               <div className="image__text mt-2">
                 <img
-                  src="https://i.ibb.co/51rWbD4/idimage.png"
+                  src="https://i.ibb.co/NpQCSqg/rightimage.png"
                   alt="idimage"
                   className="image__size"
                 />
+                
               </div>
             </div>
           </div>
@@ -169,19 +172,21 @@ const LeadPreview = () => {
               </div>
               <div className="image__text mt-2">
                 <img
-                  src="https://i.ibb.co/51rWbD4/idimage.png"
+                  src="https://i.ibb.co/qYTp1Ss/front.png"
                   alt="idimage"
                   className="image__size"
                 />
+             
               </div>
             </div>
             <div class="col-6">
               <div className="vehicle__left__text">Vehicle Rear Side Photo</div>
               <div className="image__text mt-2">
                 <img
-                  src="https://i.ibb.co/51rWbD4/idimage.png"
+                  src="https://i.ibb.co/CtQ3Qr1/frontright.png"
                   alt="idimage"
                   className="image__size"
+                
                 />
               </div>
             </div>
@@ -192,10 +197,11 @@ const LeadPreview = () => {
               <div className="col-12">
                 <div className="image__texts mt-2">
                   <img
-                    src="https://i.ibb.co/51rWbD4/idimage.png"
+                    src="https://i.ibb.co/ZH7j1K3/dashboardphoto.png"
                     alt="idimage"
                     className="image__size"
                   />
+                 
                 </div>
               </div>
             </div>

@@ -35,7 +35,7 @@ padding: 0 1.5rem;
     font-family: Poppins;
     font-size: 18px;
     font-weight: 400;
-    margin: 8px 0px;
+    // margin: 8px 0px;
     justify-content: space-between;
     display: flex;
     padding: 0 1.5rem;
@@ -48,14 +48,14 @@ padding: 0 1.5rem;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
-    padding: 0 1.5rem;
+    // padding: 0 1.5rem;
   }
   .image__texts{
     height: 162px;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
-    padding: 0 1.5rem;
+    // padding: 0 1.5rem;
   }
 .image__size{
     flex: 1 1;
@@ -173,7 +173,7 @@ font-weight: 500;
     text-align: center;
     overflow: hidden;
     position: relative;
-    padding: 8px;
+    padding: 8px 16px;
     border-radius: 6px;
   }
   .left__arrow {

@@ -173,6 +173,7 @@ import PaymentOptions from "../agentModule/quoteModule/paymentOptions";
 import PaymentApproval from "../agentModule/quoteModule/paymentApproval";
 import PaymentError from "../agentModule/quoteModule/paymentError";
 import ClientListing from "../agentModule/quoteModule/clientListing";
+import ClientView from "../agentModule/quoteModule/clientView";
 import ClaimDetails from "../agentModule/claimsModule/claimDetails";
 import SendMail from "../agentModule/claimsModule/sendMail";
 import RequestApproval from "../agentModule/claimsModule/requestApproval";
@@ -1011,6 +1012,10 @@ const Maincomponent = () => {
               <Route
                 path="/agent/clientlisting/:id"
                 element={<ClientListing />}
+              />
+              <Route
+                path="/agent/clientview/:id"
+                element={<ClientView/>}
               />
               {/* // Claims */}
               <Route

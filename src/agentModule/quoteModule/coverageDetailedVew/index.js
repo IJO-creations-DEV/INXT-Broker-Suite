@@ -190,11 +190,14 @@ const LeadPreview = () => {
                 />
               </div>
             </div>
+
             <div className="vehicle__left__text mt-2">
               Vehicle Interior Dashboard Photo
             </div>
-            <div class="grid m-0">
-              <div className="col-12">
+         
+          </div>
+          <div class="grid m-0">
+              <div class="col-12">
                 <div className="image__texts mt-2">
                   <img
                     src="https://i.ibb.co/ZH7j1K3/dashboardphoto.png"
@@ -205,7 +208,6 @@ const LeadPreview = () => {
                 </div>
               </div>
             </div>
-          </div>
         </div>
         <div className="sub__title">
           <label className="policy__text">Coverage details</label>

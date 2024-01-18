@@ -118,7 +118,7 @@ const Dashboard = () => {
           <div className="dailog__box__inputs" onClick={() => { handleclick() }}>
             New Lead
           </div>
-          <div className="dailog__box__inputs__existing__container mt-3">
+          <div className="dailog__box__inputs__existing__container mt-3 mb-6">
             <div className="dailog__box__inputs__existing">Existing Client</div>
             <div className="dailog__box__inputs__svg"><SvgSearch /></div>
           </div>

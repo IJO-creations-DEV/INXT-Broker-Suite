@@ -5,13 +5,17 @@ import CalculaitionTextInputs from "../../../component/calculaitionTextInputs";
 import DropdownField from "../../../component/DropdwonField";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
+import customHistory from "../../../../routes/customHistory";
 
 const CoverageDetailsCard = () => {
   const navigate = useNavigate();
 
   const handleclick = () => {
-      navigate("/agent/createquote/accessories");
-  }
+    navigate("/agent/createquote/accessories");
+  };
+  const handleBackNavigation = () => {
+    customHistory.back();
+  };
 
   return (
     <div className="coverage__details__card__container mt-4">
@@ -24,9 +28,7 @@ const CoverageDetailsCard = () => {
         </div>
         <div className="grid m-0">
           <div className="col-12 md:col-12 lg:col-12">
-            <InputTextField
-              label="Loss and Damage coverage"
-            />
+            <InputTextField label="Loss and Damage coverage" />
           </div>
         </div>
         <div className="grid m-0 mt-2">
@@ -103,14 +105,22 @@ const CoverageDetailsCard = () => {
           </div>
           <div className="col-12 md:col-6 lg:col-6 back__next__btn__container ">
             <div className="back__btn__container">
-              <Button className="back__btn">Back</Button>
+              <Button className="back__btn" onClick={handleBackNavigation}>
+                Back
+              </Button>
             </div>
             <div className="next__btn__container">
-              <Button className="next__btn" onClick={()=>{handleclick()}}>Next</Button>
+              <Button
+                className="next__btn"
+                onClick={() => {
+                  handleclick();
+                }}
+              >
+                Next
+              </Button>
             </div>
           </div>
         </div>
-
       </Card>
     </div>
   );

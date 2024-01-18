@@ -5,14 +5,17 @@ import { Card } from "primereact/card";
 import CalculaitionTextInputs from "../../../../src/agentModule/component/calculaitionTextInputs";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
+import customHistory from "../../../routes/customHistory";
 
 const Accessories = () => {
   const navigate = useNavigate();
-    
-  const handleclick = () => {
-      navigate("/agent/createquote/ordersummary");
-  }
 
+  const handleclick = () => {
+    navigate("/agent/createquote/ordersummary");
+  };
+  const handleBackNavigation = () => {
+    customHistory.back();
+  };
   return (
     <div className="overall__create__quote__accessories">
       <div className="header__title">Leads</div>
@@ -54,10 +57,20 @@ const Accessories = () => {
         </div>
         <div className="back__button__container col-12 md:col-12 lg:col-12">
           <div className="back__text__container">
-            <Button label="Back" className="back__btn" />
+            <Button
+              label="Back"
+              className="back__btn"
+              onClick={handleBackNavigation}
+            />
           </div>
           <div className="next__text__container">
-            <Button onClick={()=>{handleclick()}} label="Next" className="next__btn" />
+            <Button
+              onClick={() => {
+                handleclick();
+              }}
+              label="Next"
+              className="next__btn"
+            />
           </div>
         </div>
       </Card>

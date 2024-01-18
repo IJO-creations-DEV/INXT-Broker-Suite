@@ -1010,7 +1010,7 @@ const Maincomponent = () => {
                 element={<PaymentError />}
               />
               <Route
-                path="/agent/clientlisting/:id"
+                path="/agent/clientlisting"
                 element={<ClientListing />}
               />
               <Route
@@ -1091,7 +1091,7 @@ const Maincomponent = () => {
                 element={<Endorsementpaymentapproval />}
               />
               <Route
-                path="/agent/endorsement/paymenterror"
+                path="/agent/endorsement/paymenterror/:id"
                 element={<PaymentErrorEndorsment />}
               />
               {/* // Payments */}

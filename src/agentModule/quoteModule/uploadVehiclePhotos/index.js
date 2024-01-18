@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
 import { FileUpload } from "primereact/fileupload";
 import { useNavigate } from "react-router-dom";
+import customHistory from "../../../routes/customHistory";
 
 const UploadVehiclePhotos = () => {
   const [imageURLLeft, setimageURLLeft] = useState(null);
@@ -13,12 +14,15 @@ const UploadVehiclePhotos = () => {
   const [imageURLFront, setimageURLFront] = useState(null);
   const [imageURLRear, setimageURLRear] = useState(null);
   const [imageURLInterior, setimageURLInterior] = useState(null);
-  
+
   const navigate = useNavigate();
 
   const handleclick = () => {
-      navigate("/agent/coveragedetailedview");
-  }
+    navigate("/agent/coveragedetailedview");
+  };
+  const handleBackNavigation = () => {
+    customHistory.back();
+  };
 
   const handleUppendImg = (name, src, position) => {
     if (position === "left") {
@@ -249,10 +253,19 @@ const UploadVehiclePhotos = () => {
           <div className="col-12">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
-                <Button className="back__btn">Back</Button>
+                <Button className="back__btn" onClick={handleBackNavigation}>
+                  Back
+                </Button>
               </div>
               <div className="next__btn__container">
-                <Button className="next__btn" onClick={()=>{handleclick()}}>Next</Button>
+                <Button
+                  className="next__btn"
+                  onClick={() => {
+                    handleclick();
+                  }}
+                >
+                  Next
+                </Button>
               </div>
             </div>
           </div>

@@ -9,7 +9,7 @@ import { Menu } from "primereact/menu";
 import SvgMotor from "../../../assets/agentIcon/SvgMotor";
 import SvgTravel from "../../../assets/agentIcon/SvgTravel";
 import SvgHome from "../../../assets/agentIcon/SvgHome";
-import { Dialog } from 'primereact/dialog';
+import { Dialog } from "primereact/dialog";
 import SvgSearch from "../../../assets/agentIcon/SvgSearch";
 import { useNavigate } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
@@ -19,77 +19,91 @@ const Dashboard = () => {
   const [visible, setVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
- 
-  const { userDetails, commissionList } = useSelector(
-    ({ homeReducers }) => {
-      return {
-        userDetails: homeReducers?.dashboardDetails?.userDetails,
-        commissionList: homeReducers?.dashboardDetails?.commission
-      };
-    }
-  );
+
+  const { userDetails, commissionList } = useSelector(({ homeReducers }) => {
+    return {
+      userDetails: homeReducers?.dashboardDetails?.userDetails,
+      commissionList: homeReducers?.dashboardDetails?.commission,
+    };
+  });
   const dropdownOptions = [
     {
-      label: <div style={{ display: "flex", alignItems: "center", gap: "10px" }} onClick={() => { handleClickMotor() }}>
-        <div><SvgMotor /></div>
+      label: (
         <div
-          style={{
-            fontFamily: "Inter var",
-            fontWeight: 400,
-            fontSize: "16px",
-            color: "#111927",
-            width: "100%",
+          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          onClick={() => {
+            handleClickMotor();
           }}
         >
-          Motor
+          <div>
+            <SvgMotor />
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter var",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#111927",
+              width: "100%",
+            }}
+          >
+            Motor
+          </div>
         </div>
-      </div>,
-      value: 'Motor'
+      ),
+      value: "Motor",
     },
     {
-      label: <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <div><SvgTravel /></div>
-        <div
-          style={{
-            fontFamily: "Inter var",
-            fontWeight: 400,
-            fontSize: "16px",
-            color: "#111927",
-            width: "100%",
-          }}
-        >
-          Travel
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div>
+            <SvgTravel />
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter var",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#111927",
+              width: "100%",
+            }}
+          >
+            Travel
+          </div>
         </div>
-      </div>,
-      value: 'Travel'
+      ),
+      value: "Travel",
     },
     {
-      label: <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <div><SvgHome /></div>
-        <div
-          style={{
-            fontFamily: "Inter var",
-            fontWeight: 400,
-            fontSize: "16px",
-            color: "#111927",
-            width: "100%",
-          }}
-        >
-          Property
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div>
+            <SvgHome />
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter var",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#111927",
+              width: "100%",
+            }}
+          >
+            Property
+          </div>
         </div>
-      </div>, value: 'Property'
+      ),
+      value: "Property",
     },
   ];
 
-
   const handleClickMotor = () => {
-    setVisible(true)
-  }
+    setVisible(true);
+  };
 
   const handleclick = () => {
-    navigate("/agent/createlead")
-  }
-
+    navigate("/agent/createlead");
+  };
 
   return (
     <div className="dasboard__container">
@@ -104,7 +118,7 @@ const Dashboard = () => {
               value={selectedOption}
               options={dropdownOptions}
               onChange={(e) => setSelectedOption(e.value)}
-              placeholder="Create Lead"
+              placeholder="Create Quote"
               dropdownIcon={<SvgAdd />}
             />
           </div>
@@ -113,15 +127,27 @@ const Dashboard = () => {
       <TopCard detail={userDetails} />
       <CenterCard commission={commissionList} />
       <BottomCard detail={userDetails} />
-      <Dialog className="dailog__box__container" visible={visible} style={{ width: '30vw' }} onHide={() => setVisible(false)}>
+      <Dialog
+        className="dailog__box__container"
+        visible={visible}
+        style={{ width: "30vw" }}
+        onHide={() => setVisible(false)}
+      >
         <div className="dailog__box__container__title">Choose a Quote for</div>
         <div className="dailog__box__inputs__container mt-4">
-          <div className="dailog__box__inputs" onClick={() => { handleclick() }}>
+          <div
+            className="dailog__box__inputs"
+            onClick={() => {
+              handleclick();
+            }}
+          >
             New Lead
           </div>
           <div className="dailog__box__inputs__existing__container mt-3 mb-6">
             <div className="dailog__box__inputs__existing">Existing Client</div>
-            <div className="dailog__box__inputs__svg"><SvgSearch /></div>
+            <div className="dailog__box__inputs__svg">
+              <SvgSearch />
+            </div>
           </div>
         </div>
       </Dialog>

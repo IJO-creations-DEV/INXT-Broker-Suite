@@ -26,6 +26,10 @@ const PaymentOptions = () => {
   const handleMOdalOpen = () => {
     setModalVisible(true);
   };
+  const handleNavigation = () => {
+    navigate("/agent/policy/paymentapproval");
+  };
+
   const handleMOdalClose = () => {
     setModalVisible(false);
   };
@@ -34,7 +38,6 @@ const PaymentOptions = () => {
     fileUploadRef.current.clear();
   };
   const handleSubmit = () => {
-    console.log("asss");
     navigate("/agent/policy/paymentapproval");
   };
   return (
@@ -60,7 +63,10 @@ const PaymentOptions = () => {
           <div className="table__header">Payment Options</div>
           <div className="grid">
             <div className="col-6">
-              <div className="atm__text" onClick={handleMOdalOpen}>
+              <div
+                className="atm__text cursor-pointer"
+                onClick={handleNavigation}
+              >
                 <SvgHomes />
                 <div className="input__text__style">
                   ATM/Bank Transfer (Virtual Account)
@@ -68,7 +74,10 @@ const PaymentOptions = () => {
               </div>
             </div>
             <div className="col-6">
-              <div className="atm__text" onClick={handleMOdalOpen}>
+              <div
+                className="atm__text cursor-pointer"
+                onClick={handleNavigation}
+              >
                 <SvgQr />
                 <div className="input__text__style">QRIS</div>
               </div>
@@ -76,13 +85,16 @@ const PaymentOptions = () => {
           </div>
           <div className="grid mt-2">
             <div className="col-6">
-              <div className="atm__text " onClick={handleMOdalOpen}>
+              <div
+                className="atm__text cursor-pointer "
+                onClick={handleNavigation}
+              >
                 <SvgCredit />
                 <div className="input__text__style">Credit Card</div>
               </div>
             </div>
             <div className="col-6">
-              <div className="atm__text">
+              <div className="atm__text cursor-pointer">
                 <SvgEmoney />
                 <div className="input__text__style">E-Money</div>
               </div>
@@ -90,13 +102,19 @@ const PaymentOptions = () => {
           </div>
           <div className="grid mt-2">
             <div className="col-6">
-              <div className="atm__text" onClick={handleMOdalOpen}>
+              <div
+                className="atm__text cursor-pointer"
+                onClick={handleNavigation}
+              >
                 <SvgDigital />
                 <div className="input__text__style">Digi Bank</div>
               </div>
             </div>
             <div className="col-6">
-              <div className="atm__text" onClick={handleMOdalOpen}>
+              <div
+                className="atm__text cursor-pointer"
+                onClick={handleNavigation}
+              >
                 <SvgStore />
                 <div className="input__text__style">Convenience Store</div>
               </div>
@@ -104,13 +122,19 @@ const PaymentOptions = () => {
           </div>
           <div className="grid mt-2">
             <div className="col-6">
-              <div className="atm__text" onClick={handleMOdalOpen}>
+              <div
+                className="atm__text cursor-pointer"
+                onClick={handleMOdalOpen}
+              >
                 <SvgDebit />
                 <div className="input__text__style">Direct Debit</div>
               </div>
             </div>
             <div className="col-6">
-              <div className="atm__text" onClick={handleMOdalOpen}>
+              <div
+                className="atm__text cursor-pointer"
+                onClick={handleNavigation}
+              >
                 <SvgInternet />
                 <div className="input__text__style">Internet Banking</div>
               </div>

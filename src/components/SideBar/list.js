@@ -267,7 +267,7 @@ export const menuList = [
       },
       {
         name: "Clients",
-        path: "/agent/claimrequest/claimdetails",
+        path: "/agent/clientlisting",
       },
       {
         name: "Open Items",

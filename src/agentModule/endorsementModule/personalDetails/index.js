@@ -19,7 +19,7 @@ const PersonalDetails = () => {
   const handleclick = () => {
     toastRef.current.showToast();
     setTimeout(() => {
-      navigate("/agent/uploadendorsement");
+      navigate(`/agent/endorsement/paymenterror/${123}`);
     }, 2000);
   };
 
@@ -287,7 +287,7 @@ const PersonalDetails = () => {
               className="text__area__container"
             />
           </div>
-          
+
           <div className="col-12">
             <div className="back__next__btn__container">
               <div className="next__btn__container">

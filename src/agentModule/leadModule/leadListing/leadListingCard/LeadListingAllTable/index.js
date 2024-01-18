@@ -1,9 +1,8 @@
 import { InputText } from "primereact/inputtext";
 import TableDropdownField from '../../../../component/tableDropDwonField';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { InputSwitch } from 'primereact/inputswitch';
 import { Checkbox } from 'primereact/checkbox';
 import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import { Button } from "primereact/button";
@@ -25,7 +24,7 @@ const LeadListingAllTable = () => {
         {
             "id": "1",
             "Name": "Sophie Clark",
-            "Category": "Positivity",
+            "Category": "Individual",
             "Date": "2024-01-26",
             "Quotes": "01",
             "LeadID": "123456",
@@ -34,7 +33,7 @@ const LeadListingAllTable = () => {
         {
             "id": "2",
             "Name": "John Smith",
-            "Category": "Motivation",
+            "Category": "Individual",
             "Date": "2024-02-10",
             "Quotes": "02",
             "LeadID": "126",
@@ -43,7 +42,7 @@ const LeadListingAllTable = () => {
         {
             "id": "3",
             "Name": "Emma Davis",
-            "Category": "Inspiration",
+            "Category": "Individual",
             "Date": "2024-03-15",
             "Quotes": "02",
             "LeadID": "1456",
@@ -52,7 +51,7 @@ const LeadListingAllTable = () => {
         {
             "id": "4",
             "Name": "Michael Johnson",
-            "Category": "Courage",
+            "Category": "Company",
             "Date": "2024-04-20",
             "Quotes": "03",
             "LeadID": "1236",
@@ -61,7 +60,7 @@ const LeadListingAllTable = () => {
         {
             "id": "5",
             "Name": "Olivia Turner",
-            "Category": "Kindness",
+            "Category": "Individual",
             "Date": "2024-05-25",
             "Quotes": "04",
             "LeadID": "1456",
@@ -70,7 +69,7 @@ const LeadListingAllTable = () => {
         {
             "id": "6",
             "Name": "David Rodriguez",
-            "Category": "Perseverance",
+            "Category": "Company",
             "Date": "2024-06-30",
             "Quotes": "05",
             "LeadID": "123116",
@@ -79,7 +78,7 @@ const LeadListingAllTable = () => {
         {
             "id": "7",
             "Name": "Ava Williams",
-            "Category": "Wisdom",
+            "Category": "Individual",
             "Date": "2024-07-05",
             "Quotes": "06",
             "LeadID": "123411",
@@ -88,7 +87,7 @@ const LeadListingAllTable = () => {
         {
             "id": "8",
             "Name": "Daniel Brown",
-            "Category": "Gratitude",
+            "Category": "Company",
             "Date": "2024-08-10",
             "Quotes": "01",
             "LeadID": "1234000",
@@ -97,7 +96,7 @@ const LeadListingAllTable = () => {
         {
             "id": "9",
             "Name": "Sophia Carter",
-            "Category": "Love",
+            "Category": "Individual",
             "Date": "2024-09-15",
             "Quotes": "02",
             "LeadID": "1234555",
@@ -106,7 +105,7 @@ const LeadListingAllTable = () => {
         {
             "id": "10",
             "Name": "Ryan Walker",
-            "Category": "Confidence",
+            "Category": "Company",
             "Date": "2024-10-20",
             "Quotes": "03",
             "LeadID": "1234226",
@@ -115,7 +114,7 @@ const LeadListingAllTable = () => {
         {
             "id": "11",
             "Name": "Ella Adams",
-            "Category": "Success",
+            "Category": "Individual",
             "Date": "2024-11-25",
             "Quotes": "04",
             "LeadID": "1234000",
@@ -163,14 +162,14 @@ const LeadListingAllTable = () => {
                     <Button
                         icon={<SvgEdit />}
                         className="view__btn"
-                        onClick={() => handleView(rowData)}
+                        onClick={() =>handleEdit(rowData)}
                     />
                 </div>
                 <div>
                     <Button
                         icon={<SvgArrow />}
                         className="edit__btn"
-                        onClick={() => handleEdit(rowData)}
+                        onClick={() =>  handleView(rowData)}
                     />
                 </div>
             </div>
@@ -216,7 +215,7 @@ const LeadListingAllTable = () => {
     }
 
     const handleView = () => {
-        navigate("/agent/leadedit")
+        navigate("/agent/quotelisting")
     }
 
 
@@ -225,15 +224,16 @@ const LeadListingAllTable = () => {
     }
 
     const ViewheaderStyle = {
-        // justifyContent: 'center',
-        textalign: "center",
+        justifyContent: 'center',
+        // textalign: center,
         fontSize: 16,
         fontFamily: 'Poppins',
         fontWeight: 500,
         color: "#000",
         border: " none",
-        // display: "grid",
-        // alignItem: "center",
+        display: "flex",
+        alignItem: "center",
+        height: "56px"
     };
 
     const headerStyle = {
@@ -301,7 +301,7 @@ const LeadListingAllTable = () => {
                     <Column body={renderCategory} header={renderUncheckedHeader("Category")} headerStyle={headerStyle}></Column>
                     <Column body={renderDate} header={renderUncheckedHeader("Date")} headerStyle={headerStyle}></Column>
                     <Column body={renderQuotes} header={renderUncheckedHeader("Quotes")} headerStyle={headerStyle}></Column>
-                    <Column body={renderViewEditButton} header={renderUncheckedHeader("Actions")}   headerStyle={{ ...ViewheaderStyle, textAlign: 'center' }}></Column>
+                    <Column body={renderViewEditButton} header={renderUncheckedHeader("Actions")}   headerStyle={ViewheaderStyle}></Column>
                 </DataTable>
             </div>
         </div>

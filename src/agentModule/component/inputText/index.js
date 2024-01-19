@@ -1,11 +1,16 @@
 import { InputText } from "primereact/inputtext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 
 const InputTextField = ({ value, onChange, label, disabled }) => {
   const [focused, setFocused] = useState(false);
 
   console.log(onChange, "onChange");
+  useEffect(() => {
+    if (value) {
+      setFocused(true);
+    }
+  }, [value]);
 
   const handleFocus = () => {
     setFocused(true);

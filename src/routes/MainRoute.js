@@ -210,7 +210,7 @@ const Maincomponent = () => {
       }}
     >
       <ResponsiveDrawer />
-      <div style={{ width: "100%" }}>
+      <div className="parent__main__container">
    
 
         {/* <AuthRoute /> */}

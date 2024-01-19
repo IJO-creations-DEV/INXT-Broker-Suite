@@ -25,20 +25,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPaymentSearchDataMiddleWare } from "./store/paymentMiddleware";
 import SvgDropdownicon from "../../assets/icons/SvgDropdownicon";
 
-
 const Payments = () => {
- 
   const { paymenttabledata, paymentSearchList, loading } = useSelector(
     ({ agentPaymentMainReducers }) => {
       return {
         loading: agentPaymentMainReducers?.loading,
         paymenttabledata: agentPaymentMainReducers?.paymenttabledata,
-        paymentSearchList: agentPaymentMainReducers?.paymentSearchList
+        paymentSearchList: agentPaymentMainReducers?.paymentSearchList,
       };
     }
   );
   console.log(paymenttabledata, "paymenttabledata");
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const menuRight = useRef(null);
   const navigate = useNavigate();
   const [endrosementModal, setEndrosementModal] = useState(false);
@@ -145,26 +143,28 @@ const Payments = () => {
       // </div>
     );
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [globalFilter, setGlobalFilter] = useState("Name");
   const cities = [
-    { name: 'Name', code: 'Name' },
-    { name: 'ClientID', code: 'ClientID' },
-    { name: 'Gross Premium', code: 'Gross Premium' },
+    { name: "Name", code: "Name" },
+    { name: "ClientID", code: "ClientID" },
+    { name: "Gross Premium", code: "Gross Premium" },
   ];
   const [status, setStatus] = useState("PAID");
- 
+
   useEffect(() => {
     if (globalFilter && search) {
-      dispatch(getPaymentSearchDataMiddleWare({
-        field: globalFilter,
-        value: search,
-        status1:status,  
-      }));
+      dispatch(
+        getPaymentSearchDataMiddleWare({
+          field: globalFilter,
+          value: search,
+          status1: status,
+        })
+      );
     }
-  }, [ search]);
- 
-  console.log(status,"status");
+  }, [search]);
+
+  console.log(status, "status");
 
   const template2 = {
     layout: "RowsPerPageDropdown CurrentPageReport PrevPageLink  NextPageLink ",
@@ -195,7 +195,6 @@ const Payments = () => {
   };
   return (
     <div>
-      <NavBar />
       <div className="payment__dashboard__container">
         <div className="payment__heading">Payments</div>
         <div class="grid">
@@ -240,7 +239,7 @@ const Payments = () => {
                 <div class="col-12 md:col-9 lg:col-9">
                   <span className="p-input-icon-left" style={{ width: "100%" }}>
                     <i className="pi pi-search" />
-                   
+
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
@@ -250,17 +249,25 @@ const Payments = () => {
                   </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
-                  <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+                  <Dropdown
+                    value={globalFilter}
+                    onChange={(e) => setGlobalFilter(e.value)}
+                    options={cities}
+                    optionLabel="name"
                     optionValue="code"
                     placeholder="Search by"
                     className="sorbyfilter__style"
                     dropdownIcon={<SvgDropdownicon />}
                   />
                 </div>
-              
               </div>
               <div>
-                <PaymentCard items={cities} dataSearch={search} status={"PAID"} setStatus={setStatus}/>
+                <PaymentCard
+                  items={cities}
+                  dataSearch={search}
+                  status={"PAID"}
+                  setStatus={setStatus}
+                />
                 <div className="paginator__container">
                   <Paginator
                     first={0}
@@ -283,13 +290,17 @@ const Payments = () => {
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
-                      value={status.a  &&search}
+                      value={status.a && search}
                       onChange={(e) => setSearch(e.target.value)}
                     />
                   </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
-                  <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+                  <Dropdown
+                    value={globalFilter}
+                    onChange={(e) => setGlobalFilter(e.value)}
+                    options={cities}
+                    optionLabel="name"
                     optionValue="code"
                     placeholder="Search by"
                     className="sorbyfilter__style"
@@ -298,7 +309,11 @@ const Payments = () => {
                 </div>
               </div>
               <div>
-                <PaymentCard dataSearch={search} status={"PENDING"} setStatus={setStatus} />
+                <PaymentCard
+                  dataSearch={search}
+                  status={"PENDING"}
+                  setStatus={setStatus}
+                />
                 <div className="paginator__container">
                   <Paginator
                     first={0}
@@ -327,7 +342,11 @@ const Payments = () => {
                   <TableDropdownField label="Search By" />
                 </div> */}
                 <div class="col-12 md:col-3 lg:col-3">
-                  <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+                  <Dropdown
+                    value={globalFilter}
+                    onChange={(e) => setGlobalFilter(e.value)}
+                    options={cities}
+                    optionLabel="name"
                     optionValue="code"
                     placeholder="Search by"
                     className="sorbyfilter__style"
@@ -336,7 +355,11 @@ const Payments = () => {
                 </div>
               </div>
               <div>
-                <PaymentCard dataSearch={search} status="REVIEWING" setStatus={setStatus} />
+                <PaymentCard
+                  dataSearch={search}
+                  status="REVIEWING"
+                  setStatus={setStatus}
+                />
                 <div className="paginator__container">
                   <Paginator
                     first={0}

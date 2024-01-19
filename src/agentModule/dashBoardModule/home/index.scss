@@ -6,62 +6,62 @@
     line-height: 24px;
   }
 
-  
   .btn_lable_save_container {
     display: flex;
     justify-content: flex-end;
 
     .p-button-label {
-        font-family: Poppins !important;
-        font-size: 16px !important;
-        font-weight: 400 !important;
-        line-height: 24px !important;
+      font-family: Poppins !important;
+      font-size: 16px !important;
+      font-weight: 400 !important;
+      line-height: 24px !important;
     }
 
     .p-dropdown {
-        display: flex;
-        cursor: pointer;
-        position: relative;
-        user-select: none;
-        flex-direction: row-reverse !important;
+      display: flex;
+      cursor: pointer;
+      position: relative;
+      user-select: none;
+      flex-direction: row-reverse !important;
     }
 
     .p-dropdown .p-dropdown-label {
-        background: #6366F1;
-        border: 0 none;
+      background: #6366f1;
+      border: 0 none;
     }
 
     .p-dropdown .p-dropdown-label.p-placeholder {
-        color: #fff;
+      color: #fff;
     }
 
     .p-dropdown .p-dropdown-trigger {
-        background: #6366F1;
-        color: #6b7280;
-        width: 3rem;
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
+      background: #6366f1;
+      color: #6b7280;
+      width: 3rem;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
     }
 
     .p-inputtext {
-        font-family: var(--font-family);
-        font-feature-settings: var(--font-feature-settings, normal);
-        font-size: 1rem;
-        color: #4b5563;
-        background: #ffffff;
-        padding: 0.75rem 0.75rem;
-        // border: 1px 0px 1px 1px solid #d1d5db;
-        transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-        appearance: none;
-        border-top-right-radius: 6px;
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 6px;
-        width: 100%;
+      font-family: var(--font-family);
+      font-feature-settings: var(--font-feature-settings, normal);
+      font-size: 1rem;
+      color: #4b5563;
+      background: #ffffff;
+      padding: 0.75rem 0.75rem;
+      // border: 1px 0px 1px 1px solid #d1d5db;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+        box-shadow 0.2s;
+      appearance: none;
+      border-top-right-radius: 6px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 6px;
+      width: 100%;
     }
-}
+  }
 
   .dasboard__container__sub__title {
     font-size: 24px;
@@ -157,11 +157,12 @@
     }
 
     .center__card__container__title {
-      font-size: 20px;
-      font-weight: 400;
+      color: #000;
       font-family: Poppins;
-      line-height: 30px;
-      color: #111927;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
     }
 
     .center__card__container__sub__title {
@@ -169,7 +170,7 @@
       font-weight: 400;
       font-family: Poppins;
       line-height: 21px;
-      color: #6C737F;
+      color: #6c737f;
     }
 
     .center__card__container__tabs {
@@ -181,8 +182,8 @@
 
     .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
       background: #ffffff;
-      border-color: #6366F1;
-      color: #6366F1;
+      border-color: #6366f1;
+      color: #6366f1;
       font-size: 16px;
       font-weight: 400;
       font-family: Poppins;
@@ -194,7 +195,7 @@
       border-width: 0 0 0px 0 !important;
       border-color: transparent transparent #e5e7eb transparent;
       background: #ffffff;
-      color: #6C737F;
+      color: #6c737f;
       padding: 1rem 1.25rem;
       font-size: 16px;
       font-weight: 400;
@@ -266,7 +267,7 @@
       font-weight: 300;
       font-family: Poppins;
       line-height: 21px;
-      color: #6C737F;
+      color: #6c737f;
       text-align: center;
     }
   }
@@ -283,12 +284,14 @@
       display: none !important;
     }
   }
-
-
 }
 
 .dailog__box__container {
-
+  .p-dialog-header-icons {
+    svg {
+      color: #111927;
+    }
+  }
   .dailog__box__container__title {
     font-size: 16px;
     font-weight: 400;
@@ -300,7 +303,7 @@
   }
 
   .dailog__box__inputs {
-    background-color: #6366F1;
+    background-color: #6366f1;
     padding: 1rem;
     font-size: 16px;
     font-weight: 400;
@@ -335,7 +338,7 @@
 
   .dailog__box__inputs__existing__container {
     display: flex;
-    background-color: #6366F1;
+    background-color: #6366f1;
     font-size: 16px;
     font-weight: 400;
     font-family: Poppins;
@@ -343,10 +346,7 @@
     color: #fff;
     border-radius: 6px;
     padding: 0.5rem;
-
   }
-
-
 }
 
 .p-dialog .p-dialog-header {

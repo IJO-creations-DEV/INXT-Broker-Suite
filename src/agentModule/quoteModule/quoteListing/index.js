@@ -4,6 +4,8 @@ import SvgDots from "../../../assets/agentIcon/SvgDots";
 import { useNavigate } from "react-router-dom";
 import QuoteListingCard from "./quoteListingCard";
 import "./index.scss"
+
+
 const QuoteListing = () => {
   const navigate = useNavigate();
   const items = [

@@ -273,6 +273,8 @@ const LeadListingAllTable = () => {
           className="corrections__table__main"
           onSelectionChange={(e) => setSelectedProducts(e.value)}
           dataKey="id"
+          scrollable={true}
+          scrollHeight="60vh"
           tableStyle={{ minWidth: "50rem" }}
         >
           <Column

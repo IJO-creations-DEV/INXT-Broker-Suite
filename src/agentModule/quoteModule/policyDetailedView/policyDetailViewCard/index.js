@@ -6,7 +6,7 @@ import SvgBlueArrow from "../../../../assets/agentIcon/SvgBlueArrow";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 
-const PolicyDetailedViewCard = () => {
+const PolicyDetailedViewCard = ({ action }) => {
   const navigate = useNavigate();
 
   const handleclick = () => {
@@ -85,23 +85,25 @@ const PolicyDetailedViewCard = () => {
             </div>
           </div>
         </div>
-        <div className="policy__detail__view__btn__container mt-4">
-          <div className="paylater__btn__container">
-            <Button className="back__btn" onClick={handlePayLater}>
-              Pay Later
-            </Button>
+        {action === "edit" && (
+          <div className="policy__detail__view__btn__container mt-4">
+            <div className="paylater__btn__container">
+              <Button className="back__btn" onClick={handlePayLater}>
+                Pay Later
+              </Button>
+            </div>
+            <div className="proceed__btn__container">
+              <Button
+                className="next__btn"
+                onClick={() => {
+                  handleclick();
+                }}
+              >
+                Proceed to payment
+              </Button>
+            </div>
           </div>
-          <div className="proceed__btn__container">
-            <Button
-              className="next__btn"
-              onClick={() => {
-                handleclick();
-              }}
-            >
-              Proceed to payment
-            </Button>
-          </div>
-        </div>
+        )}
       </Card>
     </div>
   );

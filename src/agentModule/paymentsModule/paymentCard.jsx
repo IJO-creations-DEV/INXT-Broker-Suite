@@ -5,12 +5,21 @@ import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 import Carddata from "./mock";
 
-const PaymentCard = () => {
+const PaymentCard = ({ status }) => {
   const navigate = useNavigate();
-
+  const filteredData = Carddata.filter((card) => card.status === status);
+  const handleAction = (status) => {
+    if (status === "PAID") {
+      navigate(`/agent/policydetailedviewonly`);
+    } else if (status === "PENDING") {
+      navigate(`/agent/policydetailedview`);
+    } else if (status === "REVIEWING") {
+      navigate(`/agent/policy/paymentapproval`);
+    }
+  };
   return (
     <div>
-      {Carddata.map((data) => (
+      {filteredData.map((data) => (
         <div key={data.id} className="payment__overall__fieldcard">
           {/* <Card  > */}
           <div className="payment__paid__fieldcard">
@@ -41,7 +50,9 @@ const PaymentCard = () => {
           <div>
             <Button
               outlined
-              onClick={() => navigate(`/agent/policydetailedview`)}
+              onClick={() => {
+                handleAction(data.status);
+              }}
               icon={<SvgArrow />}
               className="sorbyfilter_container"
             />

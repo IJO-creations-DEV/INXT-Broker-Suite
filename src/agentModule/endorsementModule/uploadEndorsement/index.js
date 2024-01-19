@@ -17,17 +17,12 @@ const UploadEndorsement = () => {
   const toastRef = useRef(null);
   const navigate = useNavigate();
   const fileUploadRef = useRef(null);
-  const [actionStatus, setactionStatus] = useState(false);
 
-  const handleclick = () => {
+  const handleCompleteAction = () => {
     toastRef.current.showToast();
     setTimeout(() => {
-      // navigate("/agent/policydetailedview");
-      setactionStatus(true);
+      navigate("/agent/viewendorsement");
     }, 2000);
-  };
-  const handleclickNavigation = () => {
-    navigate("/agent/endorsement/paymentconfirmation");
   };
 
   const handleUppendImg = (name, src) => {
@@ -105,100 +100,52 @@ const UploadEndorsement = () => {
           <div className="upload__endorsement__card__sub__title mt-2 mb-2">
             Document
           </div>
-          {actionStatus === false ? (
-            <>
-              <div className="upload__card__container mt-2">
-                <div className="file_icon_selector">
-                  <FileUpload
-                    ref={fileUploadRef}
-                    url="./upload"
-                    auto
-                    customUpload
-                    mode="basic"
-                    name="demo"
-                    accept=".png,.jpg,.jpeg"
-                    maxFileSize={2000000}
-                    uploadHandler={(e) => {
-                      handleUppendImg(
-                        e.options.props.name,
-                        e.files[0],
-                        "the data"
-                      );
-                    }}
-                  />
-                  <div className="icon_click_option">
-                    <SvgUpload />
-                  </div>
-                  <div className="upload__caption text-center">Upload</div>
-                  <div className="upload__caption text-center">
-                    Maximum 2 MB (PNG, JPEG and PDF Files Only)
-                  </div>
-                </div>
-              </div>
 
-              {imageURL && (
-                <div className="mt-4" onClick={handleCancelUplaoded}>
-                  <SvgUploadClose />
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="grid mt-2">
-              <div className="col-12 md:col-6 lg:col-6">
-                <div className="endorsement__detail__view__box">
-                  <div className="grid mt-2">
-                    <div className="col-12 md:col-6 lg:col-6">
-                      <div className="endorsement__detail__view__box__title">
-                        Endorsement
-                      </div>
-                    </div>
-                    <div className="col-12 md:col-6 lg:col-6">
-                      <div className="endorsement__detail__view__box__container">
-                        <div className="endorsement__detail__view__box__sub__title">
-                          View
-                        </div>
-                        <SvgBlueArrow />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <div className="upload__card__container mt-2">
+            <div className="file_icon_selector">
+              <FileUpload
+                ref={fileUploadRef}
+                url="./upload"
+                auto
+                customUpload
+                mode="basic"
+                name="demo"
+                accept=".png,.jpg,.jpeg"
+                maxFileSize={2000000}
+                uploadHandler={(e) => {
+                  handleUppendImg(e.options.props.name, e.files[0], "the data");
+                }}
+              />
+              <div className="icon_click_option">
+                <SvgUpload />
               </div>
+              <div className="upload__caption text-center">Upload</div>
+              <div className="upload__caption text-center">
+                Maximum 2 MB (PNG, JPEG and PDF Files Only)
+              </div>
+            </div>
+          </div>
+
+          {imageURL && (
+            <div className="mt-4" onClick={handleCancelUplaoded}>
+              <SvgUploadClose />
             </div>
           )}
-          {actionStatus === false ? (
-            <div className="grid m-0 mt-2">
-              <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container ">
-                <div className="complete__btn__container">
-                  <Button
-                    className="complete__btn"
-                    onClick={() => {
-                      handleclick();
-                    }}
-                  >
-                    Completed
-                  </Button>
-                </div>
+
+          <div className="grid m-0 mt-2">
+            <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container ">
+              <div className="complete__btn__container">
+                <Button
+                  className="complete__btn"
+                  onClick={() => {
+                    handleCompleteAction();
+                  }}
+                >
+                  Completed
+                </Button>
               </div>
             </div>
-          ) : (
-            <div className="grid m-0 mt-2">
-              <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container ">
-                <div className="back__btn__container">
-                  <Button className="back__btn">Pay Later</Button>
-                </div>
-                <div className="complete__btn__container">
-                  <Button
-                    className="complete__btn"
-                    onClick={() => {
-                      handleclickNavigation();
-                    }}
-                  >
-                    Proceed to payment
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
+          </div>
         </Card>
       </div>
     </div>

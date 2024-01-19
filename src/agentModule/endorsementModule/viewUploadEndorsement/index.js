@@ -7,30 +7,30 @@ import { useNavigate } from "react-router-dom";
 import InputTextField from "../../component/inputText";
 import SvgBlueArrow from "../../../assets/agentIcon/SvgBlueArrow";
 
-const EndorsementDetailedView = () => {
+const ViewEndorsement = () => {
   const navigate = useNavigate();
 
-  const handleCommonAction = () => {
+  const handleclickNavigation = () => {
+    navigate("/agent/endorsement/paymentconfirmation");
+  };
+  const handlePayLater = () => {
     navigate(`/agent/clientview/${123}`);
   };
 
   return (
-    <div className="detailed__endorsement__container">
-      <div className="detailed__endorsement__container__title">Clients</div>
+    <div className="view__endorsement__container">
+      <div className="view__endorsement__container__title">Clients</div>
       <div className="grid mt-3">
-        <div
-          onClick={handleCommonAction}
-          className="detailed__endorsement__container__back__btn__container col-12 md:col-6 lg:col-6 cursor-pointer"
-        >
+        <div className="view__endorsement__container__back__btn__container col-12 md:col-6 lg:col-6">
           <SvgLeftArrow />
-          <div className="detailed__endorsement__container__back__btn__title">
+          <div className="view__endorsement__container__back__btn__title">
             Client ID :123456
           </div>
         </div>
       </div>
-      <div className="detailed__endorsement__card__container mt-4">
+      <div className="view__endorsement__card__container mt-4">
         <Card className="card__container">
-          <div className="detailed__endorsement__card__container__title">
+          <div className="view__endorsement__card__container__title">
             Endorsement
           </div>
           <div className="grid mt-2">
@@ -78,7 +78,7 @@ const EndorsementDetailedView = () => {
             </div>
           </div>
 
-          <div className="detailed__endorsement__card__sub__title mt-2 mb-2">
+          <div className="view__endorsement__card__sub__title mt-2 mb-2">
             Document
           </div>
 
@@ -103,10 +103,30 @@ const EndorsementDetailedView = () => {
               </div>
             </div>
           </div>
+
+          <div className="grid m-0 mt-2">
+            <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container ">
+              <div className="back__btn__container">
+                <Button className="back__btn" onClick={handlePayLater}>
+                  Pay Later
+                </Button>
+              </div>
+              <div className="complete__btn__container">
+                <Button
+                  className="complete__btn"
+                  onClick={() => {
+                    handleclickNavigation();
+                  }}
+                >
+                  Proceed to payment
+                </Button>
+              </div>
+            </div>
+          </div>
         </Card>
       </div>
     </div>
   );
 };
 
-export default EndorsementDetailedView;
+export default ViewEndorsement;

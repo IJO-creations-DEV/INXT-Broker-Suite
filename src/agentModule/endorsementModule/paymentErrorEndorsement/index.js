@@ -14,8 +14,11 @@ const PaymentErrorEndorsment = () => {
   const handleReject = () => {
     toastRef.current.showToast();
     setTimeout(() => {
-      navigate(`/agent/clientlisting`);
+      navigate(`/agent/clientview/${123}`);
     }, 2000);
+  };
+  const handleCommonAction = () => {
+    navigate(`/agent/clientview/${123}`);
   };
   const handleSubmit = () => {
     navigate("/agent/uploadendorsement");
@@ -25,7 +28,10 @@ const PaymentErrorEndorsment = () => {
       <div className="endorsement__waiting__requestapproval__upload__main__title">
         Clients
       </div>
-      <div className="endorsement__waiting__request__uploadarrow__back__btn mt-3">
+      <div
+        onClick={handleCommonAction}
+        className="endorsement__waiting__request__uploadarrow__back__btn mt-3 cursor-pointer"
+      >
         <SvgLeftArrow />
         <div className="endorsement__waiting__request__upload__back__btn__title">
           Client ID :{id}

@@ -1,38 +1,25 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import "./index.scss";
 import { Card } from "primereact/card";
-import SvgCountPlusIcon from "../../../assets/icons/SvgCountPlusIcon";
-import SvgCountMinusIcon from "../../../assets/icons/SvgCountMinusIcon";
-import CalculaitionTextInputs from "../../component/calculaitionTextInputs";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Button } from "primereact/button";
 import DropdownField from "../../component/DropdwonField";
 import InputTextField from "../../component/inputText";
 import DatepickerField from "../../component/datePicker";
-import { FileUpload } from "primereact/fileupload";
-import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
-import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
-import { useNavigate
- } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const ClaimDocumentUpload = () => {
-  const Navigate = useNavigate()
-  const fileUploadRef = useRef(null);
-  const [uploadImage, setuploadImage] = useState(null);
-  const handleUppendImg = (name, src) => {
-    console.log(name, src, "find handleUppendImg");
-    setuploadImage(src?.objectURL);
+  const Navigate = useNavigate();
+
+  const handleCommonAction = () => {
+    Navigate(`/agent/clientview/${123}`);
   };
-  const handleCancelUplaoded = () => {
-    setuploadImage(null);
-    fileUploadRef.current.clear();
-  };
-  const handlenext =()=> {
-    Navigate('/agent/claimrequest/settlementapproval')
-  }
   return (
     <div className="claim__docupload__upload__container">
       <div className="claim__request__upload__main__title">Clients</div>
-      <div className="claim__request__upload__back__btn mt-3">
+      <div
+        className="claim__request__upload__back__btn mt-3 cursor-pointer"
+        onClick={handleCommonAction}
+      >
         <SvgLeftArrow />
         <div className="claim__request__upload__back__btn__title">
           Client ID :123456
@@ -105,50 +92,24 @@ const ClaimDocumentUpload = () => {
             Proof of Documents
           </div>
 
-<div className="uploaddoc__conatiner">
-          <img src='https://i.ibb.co/0Qv0kzR/document.png' className='claimtitle__img__container' />
-          <img src='https://i.ibb.co/0Qv0kzR/document.png' className='claimtitle__img__container' />
-
-</div>
-          {/* <div className="col-12">
-            <div className="file_icon_selector">
-              <FileUpload
-                ref={fileUploadRef}
-                url="./upload"
-                auto
-                customUpload
-                mode="basic"
-                name="demo"
-                accept=".png,.jpg,.jpeg,.pdf"
-                maxFileSize={2000000}
-                uploadHandler={(e) => {
-                  handleUppendImg(e.options.props.name, e.files[0]);
-                }}
-              />
-              <div className="icon_click_option">
-                <SvgImageUpload />
-              </div>
-              <div className="upload__caption text-center">Upload</div>
-              <div className="upload__caption text-center">
-                Maximum 2 MB (PNG, JPEG and PDF Files Only)
-              </div>
-            </div>
+          <div className="uploaddoc__conatiner">
+            <img
+              src="https://i.ibb.co/0Qv0kzR/document.png"
+              className="claimtitle__img__container"
+            />
+            <img
+              src="https://i.ibb.co/0Qv0kzR/document.png"
+              className="claimtitle__img__container"
+            />
           </div>
-          {uploadImage && (
-            <div class="col-12 mt-2 ">
-              <span onClick={handleCancelUplaoded}>
-                <SvgImageShow />
-              </span>
-            </div>
-          )} */}
+
           <div className="col-12">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
-                <Button className="back__btn">Cancel</Button>
+                <Button className="back__btn" onClick={handleCommonAction}>
+                  Cancel
+                </Button>
               </div>
-              {/* <div className="next__btn__container">
-                <Button className="next__btn"  onClick={handlenext}>Next</Button>
-              </div> */}
             </div>
           </div>
         </div>

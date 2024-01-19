@@ -1004,7 +1004,11 @@ const Maincomponent = () => {
               <Route path="/agent/uploadpolicy" element={<UploadPolicy />} />
               <Route
                 path="/agent/policydetailedview"
-                element={<PolicyDetailedView />}
+                element={<PolicyDetailedView action="edit"/>}
+              />
+               <Route
+                path="/agent/policydetailedviewonly"
+                element={<PolicyDetailedView action="view"/>}
               />
               <Route
                 path="/agent/policy/paymentconfirmation"

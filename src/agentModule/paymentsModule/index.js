@@ -1,69 +1,61 @@
-import React, { useRef, useState } from 'react'
-import NavBar from '../../components/NavBar'
-import { TabPanel, TabView } from 'primereact/tabview'
-import { InputText } from 'primereact/inputtext'
-import { Button } from 'primereact/button'
-import SvgFilters from '../../assets/icons/SvgFilters'
-import { ClientListingData } from '../quoteModule/clientListing/mock'
-import { DataTable } from 'primereact/datatable'
-import { Dropdown } from 'primereact/dropdown'
-import { Column } from 'primereact/column'
-import { Menu } from 'primereact/menu'
-import { useNavigate } from 'react-router-dom'
-import { Card } from 'primereact/card'
-import PaymentCard from './paymentCard'
-import { Paginator } from 'primereact/paginator'
-import './index.scss'
-import TableDropdownField from '../component/tableDropDwonField'
-import SvgGross from '../../assets/agentIcon/SvgGross'
-import SvgCollectedPremium from '../../assets/agentIcon/SvgCollectedPremium'
-import SvgCollected from '../../assets/agentIcon/SvgCollected'
-import SvgReceivable from '../../assets/agentIcon/SvgReceivable'
-import SvgCommission from '../../assets/agentIcon/SvgCommission'
-import SvgReceivables from '../../assets/agentIcon/SvgReceivables'
-
+import React, { useRef, useState } from "react";
+import NavBar from "../../components/NavBar";
+import { TabPanel, TabView } from "primereact/tabview";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import SvgFilters from "../../assets/icons/SvgFilters";
+import { ClientListingData } from "../quoteModule/clientListing/mock";
+import { DataTable } from "primereact/datatable";
+import { Dropdown } from "primereact/dropdown";
+import { Column } from "primereact/column";
+import { Menu } from "primereact/menu";
+import { useNavigate } from "react-router-dom";
+import { Card } from "primereact/card";
+import PaymentCard from "./paymentCard";
+import { Paginator } from "primereact/paginator";
+import "./index.scss";
+import TableDropdownField from "../component/tableDropDwonField";
+import SvgGross from "../../assets/agentIcon/SvgGross";
+import SvgCollectedPremium from "../../assets/agentIcon/SvgCollectedPremium";
+import SvgCollected from "../../assets/agentIcon/SvgCollected";
+import SvgReceivable from "../../assets/agentIcon/SvgReceivable";
+import SvgCommission from "../../assets/agentIcon/SvgCommission";
+import SvgReceivables from "../../assets/agentIcon/SvgReceivables";
 
 const Payments = () => {
   const menuRight = useRef(null);
   const navigate = useNavigate();
-  const [endrosementModal, setEndrosementModal] = useState(false)
+  const [endrosementModal, setEndrosementModal] = useState(false);
 
   const renderPaymentStatus = (rowData) => {
     console.log(rowData, "rowData");
 
-    return (
-      <div>
-        {rowData?.payment}
-      </div>
-    )
-  }
+    return <div>{rowData?.payment}</div>;
+  };
   const handleMenuToggle = (event, menuRef) => {
     menuRef.current.toggle(event);
   };
   const menuItems = [
     {
-      label: 'View',
-      command: () => handleMenuClick('view'),
-      icon: "pi pi-refresh"
-
+      label: "View",
+      command: () => handleMenuClick("view"),
+      icon: "pi pi-refresh",
     },
     {
-      label: 'Claim',
-      command: () => handleMenuClick('claim'),
-      icon: "pi pi-refresh"
-
-    }, {
-      label: 'Renewal',
-      command: () => handleMenuClick('renewal'),
-      icon: "pi pi-refresh"
-
+      label: "Claim",
+      command: () => handleMenuClick("claim"),
+      icon: "pi pi-refresh",
     },
     {
-      label: 'Endorsement',
-      command: () => handleMenuClick('endrosement'),
-      icon: "pi pi-refresh"
-
-    }
+      label: "Renewal",
+      command: () => handleMenuClick("renewal"),
+      icon: "pi pi-refresh",
+    },
+    {
+      label: "Endorsement",
+      command: () => handleMenuClick("endrosement"),
+      icon: "pi pi-refresh",
+    },
   ];
   const headerStyle = {
     textAlign: "end",
@@ -98,10 +90,10 @@ const Payments = () => {
   // };
   const handleMenuClick = (menuItem) => {
     if (menuItem == "view") {
-      navigate('/agent/claimrequest/claimdetails')
+      navigate("/agent/claimrequest/claimdetails");
     }
     if (menuItem == "endrosement") {
-      setEndrosementModal(true)
+      setEndrosementModal(true);
     }
     // Handle the menu item click here
     console.log(`${menuItem} clicked`);
@@ -112,11 +104,21 @@ const Payments = () => {
   const renderEditButton = (rowData) => {
     return (
       <div className="card flex justify-content-center">
+        <Menu
+          model={menuItems}
+          popup
+          ref={menuRight}
+          id="popup_menu_right"
+          popupAlignment="right"
+        />
 
-        <Menu model={menuItems} popup ref={menuRight} id="popup_menu_right" popupAlignment="right" />
-
-        <Button icon="pi pi-align-right" className="mr-2" onClick={(event) => handleMenuToggle(event, menuRight)} aria-controls="popup_menu_right" aria-haspopup />
-
+        <Button
+          icon="pi pi-align-right"
+          className="mr-2"
+          onClick={(event) => handleMenuToggle(event, menuRight)}
+          aria-controls="popup_menu_right"
+          aria-haspopup
+        />
       </div>
       // <div className="action__icon">
       //   <Button
@@ -129,8 +131,7 @@ const Payments = () => {
   };
 
   const template2 = {
-    layout:
-      "RowsPerPageDropdown CurrentPageReport PrevPageLink  NextPageLink ",
+    layout: "RowsPerPageDropdown CurrentPageReport PrevPageLink  NextPageLink ",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
@@ -159,68 +160,44 @@ const Payments = () => {
   return (
     <div>
       <NavBar />
-      <div className='payment__dashboard__container'>
-        <div className='payment__heading'>
-          Payments
-        </div>
+      <div className="payment__dashboard__container">
+        <div className="payment__heading">Payments</div>
         <div class="grid">
-
-        <div class="col-12 md:col-6 lg:col-3">
-          <Card className='paymentcard_eachcontainer'>
-           <SvgGross/>
-              <div className='price__listing'>
-                ₱ 174050
-              </div>
-              <div>
-                Gross Premium
-              </div>
-           
-          </Card>
+          <div class="col-12 md:col-6 lg:col-3">
+            <Card className="paymentcard_eachcontainer">
+              <SvgGross />
+              <div className="price__listing">₱ 174050</div>
+              <div>Gross Premium</div>
+            </Card>
           </div>
 
           <div class="col-12 md:col-6 lg:col-3">
-          <Card className='paymentcard_eachcontainer'>
-            <SvgCollected/>
-              <div  className='price__listing'>
-                ₱ 8400
-              </div>
-              <div>
-                Collected Premium
-              </div>
-            
-          </Card>
+            <Card className="paymentcard_eachcontainer">
+              <SvgCollected />
+              <div className="price__listing">₱ 8400</div>
+              <div>Collected Premium</div>
+            </Card>
           </div>
 
           <div class="col-12 md:col-6 lg:col-3">
-          <Card className='paymentcard_eachcontainer'>
-           <SvgReceivables/>
-              <div  className='price__listing'>
-                ₱ 8400
-              </div>
-              <div>
-                Receivables
-              </div>
-            
-          </Card>
+            <Card className="paymentcard_eachcontainer">
+              <SvgReceivables />
+              <div className="price__listing">₱ 8400</div>
+              <div>Receivables</div>
+            </Card>
           </div>
           <div class="col-12 md:col-6 lg:col-3">
-          <Card className='paymentcard_eachcontainer'>
-            <div className='mt-3'>
-            <SvgCommission/>
-            </div>
-            <div  className='price__listing'>
-                ₱ 13920
+            <Card className="paymentcard_eachcontainer">
+              <div className="mt-3">
+                <SvgCommission />
               </div>
-              <div>
-                Earned Commission
-              </div>
-           
-          </Card>
-</div>
-
+              <div className="price__listing">₱ 13920</div>
+              <div>Earned Commission</div>
+            </Card>
+          </div>
         </div>
 
-        <Card className='paymentCard_container'>
+        <Card className="paymentCard_container">
           <TabView>
             <TabPanel header="Paid">
               <div class="grid">
@@ -228,7 +205,10 @@ const Payments = () => {
                   <span className="p-input-icon-left" style={{ width: "100%" }}>
                     <i className="pi pi-search" />
                     {/* <SvgSearch/> */}
-                    <InputText placeholder="Search" style={{ width: "100%",borderRadius:'10px' }}/>
+                    <InputText
+                      placeholder="Search"
+                      style={{ width: "100%", borderRadius: "10px" }}
+                    />
                   </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
@@ -236,22 +216,30 @@ const Payments = () => {
                 </div>
               </div>
               <div>
-                <PaymentCard />
-                <div className='paginator__container'>
-                <Paginator first={0} rows={10} totalRecords={50}
-                  template={template2} />
-</div>
+                <PaymentCard status="PAID" />
+                <div className="paginator__container">
+                  <Paginator
+                    first={0}
+                    rows={10}
+                    totalRecords={50}
+                    template={template2}
+                  />
+                </div>
               </div>
-
-           
             </TabPanel>
-            <TabPanel header="Pending" headerStyle={{fontSize:'16px',fontWeight:"500"}}>
-            <div class="grid">
+            <TabPanel
+              header="Pending"
+              headerStyle={{ fontSize: "16px", fontWeight: "500" }}
+            >
+              <div class="grid">
                 <div class="col-12 md:col-9 lg:col-9">
                   <span className="p-input-icon-left" style={{ width: "100%" }}>
                     <i className="pi pi-search" />
                     {/* <SvgSearch/> */}
-                    <InputText placeholder="Search" style={{ width: "100%",borderRadius:'10px' }}/>
+                    <InputText
+                      placeholder="Search"
+                      style={{ width: "100%", borderRadius: "10px" }}
+                    />
                   </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
@@ -259,20 +247,27 @@ const Payments = () => {
                 </div>
               </div>
               <div>
-                <PaymentCard />
-                <div className='paginator__container'>
-                <Paginator first={0} rows={10} totalRecords={50}
-                  template={template2} />
-</div>
+                <PaymentCard status="PENDING" />
+                <div className="paginator__container">
+                  <Paginator
+                    first={0}
+                    rows={10}
+                    totalRecords={50}
+                    template={template2}
+                  />
+                </div>
               </div>
             </TabPanel>
             <TabPanel header="Reviewing">
-            <div class="grid">
+              <div class="grid">
                 <div class="col-12 md:col-9 lg:col-9">
                   <span className="p-input-icon-left" style={{ width: "100%" }}>
                     <i className="pi pi-search" />
                     {/* <SvgSearch/> */}
-                    <InputText placeholder="Search" style={{ width: "100%",borderRadius:'10px' }}/>
+                    <InputText
+                      placeholder="Search"
+                      style={{ width: "100%", borderRadius: "10px" }}
+                    />
                   </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
@@ -280,22 +275,23 @@ const Payments = () => {
                 </div>
               </div>
               <div>
-                <PaymentCard />
-                <div className='paginator__container'>
-                <Paginator first={0} rows={10} totalRecords={50}
-                  template={template2} />
-</div>
+                <PaymentCard status="REVIEWING" />
+                <div className="paginator__container">
+                  <Paginator
+                    first={0}
+                    rows={10}
+                    totalRecords={50}
+                    template={template2}
+                  />
+                </div>
               </div>
             </TabPanel>
-
           </TabView>
         </Card>
-        <div>
-
-        </div>
+        <div></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Payments
+export default Payments;

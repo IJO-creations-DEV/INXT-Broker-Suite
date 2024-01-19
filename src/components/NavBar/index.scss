@@ -82,20 +82,20 @@
 //   }
 // }
 
-.nav__block{
-  background-color: #fff;
+.nav__block {
+  background: rgba(255, 255, 255, 0.8);
   height: 64px;
-flex-shrink: 0;
-display: flex;
-justify-content: flex-end;
-align-items:center;
-gap:34px;
-padding-right: 64px;
-// margin-bottom: 38px;
-width:100%
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 34px;
+  padding-right: 64px;
+  // position: fixed;
+  // z-index: 1;
+  // right: 0;
+  // left: 0;
 }
-.profile_container{
+.profile_container {
   height: 32px;
-  width:32px;
-  
+  width: 32px;
 }

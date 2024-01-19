@@ -119,7 +119,7 @@ const Dashboard = () => {
             <Dropdown
               value={selectedOption}
               options={dropdownOptions}
-              onChange={(e) => setSelectedOption(e.value)}
+              // onChange={(e) => setSelectedOption(e.value)}
               placeholder="Create Quote"
               dropdownIcon={<SvgAdd />}
             />

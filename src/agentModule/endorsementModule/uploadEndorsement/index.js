@@ -26,6 +26,9 @@ const UploadEndorsement = () => {
       setactionStatus(true);
     }, 2000);
   };
+  const handleclickNavigation = () => {
+    navigate("/agent/endorsement/paymentconfirmation");
+  };
 
   const handleUppendImg = (name, src) => {
     setimageURL(src.objectURL);
@@ -162,7 +165,7 @@ const UploadEndorsement = () => {
               </div>
             </div>
           )}
-          {actionStatus === false && (
+          {actionStatus === false ? (
             <div className="grid m-0 mt-2">
               <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container ">
                 <div className="complete__btn__container">
@@ -173,6 +176,24 @@ const UploadEndorsement = () => {
                     }}
                   >
                     Completed
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="grid m-0 mt-2">
+              <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container ">
+                <div className="back__btn__container">
+                  <Button className="back__btn">Pay Later</Button>
+                </div>
+                <div className="complete__btn__container">
+                  <Button
+                    className="complete__btn"
+                    onClick={() => {
+                      handleclickNavigation();
+                    }}
+                  >
+                    Proceed to payment
                   </Button>
                 </div>
               </div>

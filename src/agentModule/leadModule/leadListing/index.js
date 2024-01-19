@@ -16,7 +16,7 @@ const LeadListing = () => {
   const navigate = useNavigate();
 
   const items = [
-    { label: "Leads", url: "/agent/leadlisting" },
+    { label: "Leads",command: () => navigate("/agent/leadlisting") },
   ];
   const Initiate = { label: "Home" };
   

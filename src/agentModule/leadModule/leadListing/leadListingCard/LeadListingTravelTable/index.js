@@ -25,16 +25,16 @@ const LeadListingTravelTable = () => {
         {
             "id": "1",
             "Name": "Sophie Clark",
-            "Category": "Positivity",
+            "Category": "Individual",
             "Date": "2024-01-26",
             "Quotes": "01",
             "LeadID": "123456",
-            "Svg":<SvgTravlesTable />
+            "Svg":<SvgMotorTable />
         },
         {
             "id": "2",
             "Name": "John Smith",
-            "Category": "Motivation",
+            "Category": "Individual",
             "Date": "2024-02-10",
             "Quotes": "02",
             "LeadID": "126",
@@ -43,16 +43,16 @@ const LeadListingTravelTable = () => {
         {
             "id": "3",
             "Name": "Emma Davis",
-            "Category": "Inspiration",
+            "Category": "Individual",
             "Date": "2024-03-15",
             "Quotes": "02",
             "LeadID": "1456",
-            "Svg":<SvgTravlesTable />
+            "Svg":<SvgHomeTable />
         },
         {
             "id": "4",
             "Name": "Michael Johnson",
-            "Category": "Courage",
+            "Category": "Company",
             "Date": "2024-04-20",
             "Quotes": "03",
             "LeadID": "1236",
@@ -61,25 +61,25 @@ const LeadListingTravelTable = () => {
         {
             "id": "5",
             "Name": "Olivia Turner",
-            "Category": "Kindness",
+            "Category": "Individual",
             "Date": "2024-05-25",
             "Quotes": "04",
             "LeadID": "1456",
-            "Svg":<SvgTravlesTable />
+            "Svg":<SvgMotorTable />
         },
         {
             "id": "6",
             "Name": "David Rodriguez",
-            "Category": "Perseverance",
+            "Category": "Company",
             "Date": "2024-06-30",
             "Quotes": "05",
             "LeadID": "123116",
-            "Svg":<SvgTravlesTable />
+            "Svg":<SvgHomeTable />
         },
         {
             "id": "7",
             "Name": "Ava Williams",
-            "Category": "Wisdom",
+            "Category": "Individual",
             "Date": "2024-07-05",
             "Quotes": "06",
             "LeadID": "123411",
@@ -88,25 +88,25 @@ const LeadListingTravelTable = () => {
         {
             "id": "8",
             "Name": "Daniel Brown",
-            "Category": "Gratitude",
+            "Category": "Company",
             "Date": "2024-08-10",
             "Quotes": "01",
             "LeadID": "1234000",
-            "Svg":<SvgTravlesTable />
+            "Svg":<SvgMotorTable />
         },
         {
             "id": "9",
             "Name": "Sophia Carter",
-            "Category": "Love",
+            "Category": "Individual",
             "Date": "2024-09-15",
             "Quotes": "02",
             "LeadID": "1234555",
-            "Svg":<SvgTravlesTable />
+            "Svg":<SvgHomeTable />
         },
         {
             "id": "10",
             "Name": "Ryan Walker",
-            "Category": "Confidence",
+            "Category": "Company",
             "Date": "2024-10-20",
             "Quotes": "03",
             "LeadID": "1234226",
@@ -115,11 +115,11 @@ const LeadListingTravelTable = () => {
         {
             "id": "11",
             "Name": "Ella Adams",
-            "Category": "Success",
+            "Category": "Individual",
             "Date": "2024-11-25",
             "Quotes": "04",
             "LeadID": "1234000",
-            "Svg":<SvgTravlesTable />
+            "Svg":<SvgMotorTable />
         }
     ]
 
@@ -161,14 +161,14 @@ const LeadListingTravelTable = () => {
                     <Button
                         icon={<SvgEdit />}
                         className="view__btn"
-                        onClick={() => handleView(rowData)}
+                        onClick={() => handleEdit(rowData)}
                     />
                 </div>
                 <div>
                     <Button
                         icon={<SvgArrow />}
                         className="edit__btn"
-                        onClick={() => handleEdit(rowData)}
+                        onClick={() => handleView(rowData)}
                     />
                 </div>
             </div>
@@ -214,7 +214,7 @@ const LeadListingTravelTable = () => {
     }
 
     const handleView = () => {
-        navigate("/agent/leadedit")
+        navigate("/agent/quotelisting")
     }
 
 
@@ -231,7 +231,8 @@ const LeadListingTravelTable = () => {
         color: "#000",
         border: " none",
         display: "flex",
-        alignItem: "center"
+        alignItem: "center",
+        height: "56px"
     };
 
     const headerStyle = {

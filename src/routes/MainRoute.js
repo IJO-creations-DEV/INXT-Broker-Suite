@@ -173,6 +173,7 @@ import PaymentOptions from "../agentModule/quoteModule/paymentOptions";
 import PaymentApproval from "../agentModule/quoteModule/paymentApproval";
 import PaymentError from "../agentModule/quoteModule/paymentError";
 import ClientListing from "../agentModule/quoteModule/clientListing";
+import ClientView from "../agentModule/quoteModule/clientView";
 import ClaimDetails from "../agentModule/claimsModule/claimDetails";
 import SendMail from "../agentModule/claimsModule/sendMail";
 import RequestApproval from "../agentModule/claimsModule/requestApproval";
@@ -1009,8 +1010,12 @@ const Maincomponent = () => {
                 element={<PaymentError />}
               />
               <Route
-                path="/agent/clientlisting/:id"
+                path="/agent/clientlisting"
                 element={<ClientListing />}
+              />
+              <Route
+                path="/agent/clientview/:id"
+                element={<ClientView/>}
               />
               {/* // Claims */}
               <Route
@@ -1086,7 +1091,7 @@ const Maincomponent = () => {
                 element={<Endorsementpaymentapproval />}
               />
               <Route
-                path="/agent/endorsement/paymenterror"
+                path="/agent/endorsement/paymenterror/:id"
                 element={<PaymentErrorEndorsment />}
               />
               {/* // Payments */}

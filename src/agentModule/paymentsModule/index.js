@@ -13,6 +13,15 @@ import { useNavigate } from 'react-router-dom'
 import { Card } from 'primereact/card'
 import PaymentCard from './paymentCard'
 import { Paginator } from 'primereact/paginator'
+import './index.scss'
+import TableDropdownField from '../component/tableDropDwonField'
+import SvgGross from '../../assets/agentIcon/SvgGross'
+import SvgCollectedPremium from '../../assets/agentIcon/SvgCollectedPremium'
+import SvgCollected from '../../assets/agentIcon/SvgCollected'
+import SvgReceivable from '../../assets/agentIcon/SvgReceivable'
+import SvgCommission from '../../assets/agentIcon/SvgCommission'
+import SvgReceivables from '../../assets/agentIcon/SvgReceivables'
+
 
 const Payments = () => {
   const menuRight = useRef(null);
@@ -150,138 +159,137 @@ const Payments = () => {
   return (
     <div>
       <NavBar />
-      <div>
-        <div>
+      <div className='payment__dashboard__container'>
+        <div className='payment__heading'>
           Payments
         </div>
-        <div>
-          <div>
-            <div>
+        <div class="grid">
 
-            </div>
-            <div>
-              ₱ 174050
-            </div>
-            <div>
-              Gross Premium
-            </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <Card className='paymentcard_eachcontainer'>
+           <SvgGross/>
+              <div className='price__listing'>
+                ₱ 174050
+              </div>
+              <div>
+                Gross Premium
+              </div>
+           
+          </Card>
           </div>
-          <div>
-            <div>
 
-            </div>
-            <div>
-              ₱ 8400
-            </div>
-            <div>
-              Collected Premium
-            </div>
-          </div> <div>
-            <div>
-
-            </div>
-            <div>
-              ₱ 8400
-            </div>
-            <div>
-              Receivables
-            </div>
-          </div> <div>
-            <div>
-
-            </div>
-            <div>
-              ₱ 13920
-            </div>
-            <div>
-              Earned Commission
-            </div>
+          <div class="col-12 md:col-6 lg:col-3">
+          <Card className='paymentcard_eachcontainer'>
+            <SvgCollected/>
+              <div  className='price__listing'>
+                ₱ 8400
+              </div>
+              <div>
+                Collected Premium
+              </div>
+            
+          </Card>
           </div>
+
+          <div class="col-12 md:col-6 lg:col-3">
+          <Card className='paymentcard_eachcontainer'>
+           <SvgReceivables/>
+              <div  className='price__listing'>
+                ₱ 8400
+              </div>
+              <div>
+                Receivables
+              </div>
+            
+          </Card>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3">
+          <Card className='paymentcard_eachcontainer'>
+            <div className='mt-3'>
+            <SvgCommission/>
+            </div>
+            <div  className='price__listing'>
+                ₱ 13920
+              </div>
+              <div>
+                Earned Commission
+              </div>
+           
+          </Card>
+</div>
+
         </div>
-        <TabView>
-          <TabPanel header="Paid">
-            <div className="header_search_container">
-              <div class="col-12 md:col-6 lg:col-9">
-                <span className="p-input-icon-left" style={{ width: "100%" }}>
-                  <i className="pi pi-search" />
-                  <InputText
-                    placeholder="Search customers"
-                    className="searchinput_left"
-                  />
-                </span>
+
+        <Card className='paymentCard_container'>
+          <TabView>
+            <TabPanel header="Paid">
+              <div class="grid">
+                <div class="col-12 md:col-9 lg:col-9">
+                  <span className="p-input-icon-left" style={{ width: "100%" }}>
+                    <i className="pi pi-search" />
+                    {/* <SvgSearch/> */}
+                    <InputText placeholder="Search" style={{ width: "100%",borderRadius:'10px' }}/>
+                  </span>
+                </div>
+                <div class="col-12 md:col-3 lg:col-3">
+                  <TableDropdownField label="Search By" />
+                </div>
+              </div>
+              <div>
+                <PaymentCard />
+                <div className='paginator__container'>
+                <Paginator first={0} rows={10} totalRecords={50}
+                  template={template2} />
+</div>
               </div>
 
-              <div class="col-12 md:col-6 lg:col-3">
-                
+           
+            </TabPanel>
+            <TabPanel header="Pending" headerStyle={{fontSize:'16px',fontWeight:"500"}}>
+            <div class="grid">
+                <div class="col-12 md:col-9 lg:col-9">
+                  <span className="p-input-icon-left" style={{ width: "100%" }}>
+                    <i className="pi pi-search" />
+                    {/* <SvgSearch/> */}
+                    <InputText placeholder="Search" style={{ width: "100%",borderRadius:'10px' }}/>
+                  </span>
+                </div>
+                <div class="col-12 md:col-3 lg:col-3">
+                  <TableDropdownField label="Search By" />
+                </div>
               </div>
-            </div>
-            <div>
-              <PaymentCard />
-              <Paginator first={0} rows={10} totalRecords={50}
-                template={template2} />
+              <div>
+                <PaymentCard />
+                <div className='paginator__container'>
+                <Paginator first={0} rows={10} totalRecords={50}
+                  template={template2} />
+</div>
+              </div>
+            </TabPanel>
+            <TabPanel header="Reviewing">
+            <div class="grid">
+                <div class="col-12 md:col-9 lg:col-9">
+                  <span className="p-input-icon-left" style={{ width: "100%" }}>
+                    <i className="pi pi-search" />
+                    {/* <SvgSearch/> */}
+                    <InputText placeholder="Search" style={{ width: "100%",borderRadius:'10px' }}/>
+                  </span>
+                </div>
+                <div class="col-12 md:col-3 lg:col-3">
+                  <TableDropdownField label="Search By" />
+                </div>
+              </div>
+              <div>
+                <PaymentCard />
+                <div className='paginator__container'>
+                <Paginator first={0} rows={10} totalRecords={50}
+                  template={template2} />
+</div>
+              </div>
+            </TabPanel>
 
-            </div>
-
-            {/* <DataTable
-              value={ClientListingData}
-              paginator
-              rows={5}
-              rowsPerPageOptions={[5, 10, 25, 50]}
-              currentPageReportTemplate="{first} - {last} of {totalRecords}"
-              paginatorTemplate={template2}
-              className="corrections__table__main"
-              scrollable={true}
-              scrollHeight="40vh"
-            >
-              <Column
-                field="policyNumber"
-                header="Policy Number"
-                className="fieldvalue_container"
-                body={render}
-              ></Column>
-              <Column
-                field="grossPremium"
-                header="Gross Premium"
-                className="fieldvalue_container"
-              ></Column>
-              <Column
-                field="expiryDate"
-                header="Expiry Date"
-                className="fieldvalue_container"
-              ></Column>
-              <Column
-                field="payment"
-                header="Payment"
-                body={renderPaymentStatus}
-                className="fieldvalue_container"
-              ></Column>
-              <Column
-                field="id"
-                body={renderEditButton}
-                header="Action"
-                className="fieldvalue_container last__div__table"
-                headerStyle={headerStyle}
-              ></Column>
-            </DataTable> */}
-          </TabPanel>
-          <TabPanel header="Pending">
-            <p className="m-0">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-              eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-              enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
-              ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
-            </p>
-          </TabPanel>
-          <TabPanel header="Reviewing">
-            <p className="m-0">
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti
-              quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
-              culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-              Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
-            </p>
-          </TabPanel>
-
-        </TabView>
+          </TabView>
+        </Card>
         <div>
 
         </div>

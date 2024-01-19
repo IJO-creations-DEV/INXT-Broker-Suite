@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 
-export default function BarchartMonthly({ year= "2024" }) {
+export default function BarchartMonthly({ year = "2024" }) {
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
 
@@ -93,7 +93,7 @@ export default function BarchartMonthly({ year= "2024" }) {
                     labels: {
                         color: textColor
                     },
-                    display:false
+                    display: false
                 }
             },
             scales: {
@@ -127,7 +127,7 @@ export default function BarchartMonthly({ year= "2024" }) {
     return (
         <div className="card">
             <Chart type="bar" data={chartData} options={chartOptions} />
-            <div className='mt-2' style={{textAlign:"center",fontFamily:"Poppins",fontSize:"12px",fontWeight:400}}>{year}</div>
+            <div className='mt-2' style={{ textAlign: "center", fontFamily: "Poppins", fontSize: "12px", fontWeight: 400 }}>{year}</div>
         </div>
     )
 }

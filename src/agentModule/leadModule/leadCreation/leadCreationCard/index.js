@@ -13,13 +13,21 @@ const LeadCreationCard = () => {
   const [show, setShow] = useState(false);
   const toastRef = useRef(null);
   const navigate = useNavigate();
+  const [buttonAction, setbuttonAction] = useState(null);
 
-  const handleclick = () =>{
+  const handleclick = () => {
     toastRef.current.showToast();
     setTimeout(() => {
       navigate("/agent/createquote/policydetails");
     }, 2000);
-  }
+  };
+
+  const handleSaveLead = () => {
+    toastRef.current.showToast();
+    setTimeout(() => {
+      navigate("/agent/quotelisting");
+    }, 2000);
+  };
 
   return (
     <div className="card_overall_container mt-4">
@@ -32,7 +40,10 @@ const LeadCreationCard = () => {
               inputId="ingredient1"
               name="pizza"
               value="Cheese"
-              onChange={(e) => { setIngredient(e.value); setShow(false) }}
+              onChange={(e) => {
+                setIngredient(e.value);
+                setShow(false);
+              }}
               checked={ingredient === "Cheese"}
             />
             <label htmlFor="ingredient1" className="labeltxt_container">
@@ -44,7 +55,10 @@ const LeadCreationCard = () => {
               inputId="ingredient2"
               name="pizza"
               value="Mushroom"
-              onChange={(e) => { setIngredient(e.value); setShow(true) }}
+              onChange={(e) => {
+                setIngredient(e.value);
+                setShow(true);
+              }}
               checked={ingredient === "Mushroom"}
             />
             <label htmlFor="ingredient2" className="labeltxt_container">
@@ -52,15 +66,16 @@ const LeadCreationCard = () => {
             </label>
           </div>
         </div>
-        {show === true ?
-          (<div class="grid mt-2">
+        {show === true ? (
+          <div class="grid mt-2">
             <div class="col-12 md:col-6 lg:col-6">
               <InputTextField label="Company Name*" />
             </div>
             <div class="col-12 md:col-6 lg:col-6">
               <InputTextField label="Tax Information Number*" />
             </div>
-          </div>) : null}
+          </div>
+        ) : null}
 
         <div class="grid mt-2">
           <div class="col-12 md:col-6 lg:col-6">
@@ -88,8 +103,8 @@ const LeadCreationCard = () => {
               inputId="ingredient1"
               name="pizza"
               value="Cheese"
-            // onChange={(e) => setIngredient(e.value)}
-            // checked={ingredient === "Cheese"}
+              // onChange={(e) => setIngredient(e.value)}
+              // checked={ingredient === "Cheese"}
             />
             <label htmlFor="ingredient1" className="labeltxt_container">
               Male
@@ -100,8 +115,8 @@ const LeadCreationCard = () => {
               inputId="ingredient2"
               name="pizza"
               value="Mushroom"
-            // onChange={(e) => setIngredient(e.value)}
-            // checked={ingredient === "Mushroom"}
+              // onChange={(e) => setIngredient(e.value)}
+              // checked={ingredient === "Mushroom"}
             />
             <label htmlFor="ingredient2" className="labeltxt_container">
               Female
@@ -146,9 +161,19 @@ const LeadCreationCard = () => {
         </div>
 
         <div className="save_continue_conatiner">
-          <Button label="Save Lead" text className="btn_lable_container" />
+          <Button
+            label="Save Lead"
+            onClick={handleSaveLead}
+            text
+            className="btn_lable_container"
+          />
           <div className="btn_lable_save_container">
-            <Button onClick={()=>{handleclick()}} label="Save & Continue" />
+            <Button
+              onClick={() => {
+                handleclick();
+              }}
+              label="Save & Continue"
+            />
           </div>
         </div>
       </Card>

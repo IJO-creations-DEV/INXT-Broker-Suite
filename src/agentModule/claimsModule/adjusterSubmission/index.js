@@ -14,6 +14,7 @@ import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
 import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
 import { useNavigate } from "react-router-dom";
 import SvgUploadClose from "../../../assets/agentIcon/SvgUploadClose";
+import customHistory from "../../../routes/customHistory";
 
 const AdjusterSubmission = () => {
   const Navigate = useNavigate();
@@ -30,6 +31,10 @@ const AdjusterSubmission = () => {
   const handlenext = () => {
     Navigate("/agent/claimrequest/settlementapproval");
   };
+  const handleBackNavigation = () => {
+    customHistory.back();
+  };
+
   return (
     <div className="claim__request__upload__container">
       <div className="claim__request__upload__main__title">Clients</div>
@@ -139,7 +144,9 @@ const AdjusterSubmission = () => {
           <div className="col-12">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
-                <Button className="back__btn">Back</Button>
+                <Button onClick={handleBackNavigation} className="back__btn">
+                  Back
+                </Button>
               </div>
               <div className="next__btn__container">
                 <Button className="next__btn" onClick={handlenext}>

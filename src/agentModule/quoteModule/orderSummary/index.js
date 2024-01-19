@@ -9,18 +9,21 @@ import { Button } from "primereact/button";
 import DropdownField from "../../component/DropdwonField";
 import CustomToast from "../../../components/Toast";
 import { useNavigate } from "react-router-dom";
+import customHistory from "../../../routes/customHistory";
 
 const OrderSummary = () => {
   const toastRef = useRef(null);
   const navigate = useNavigate();
 
   const handleclick = () => {
-
     toastRef.current.showToast();
     setTimeout(() => {
       navigate("/agent/quotedetailview");
     }, 2000);
-  }
+  };
+  const handleBackNavigation = () => {
+    customHistory.back();
+  };
 
   return (
     <div className="order__summary__container">
@@ -115,10 +118,19 @@ const OrderSummary = () => {
           <div className="col-12">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
-                <Button className="back__btn">Back</Button>
+                <Button className="back__btn" onClick={handleBackNavigation}>
+                  Back
+                </Button>
               </div>
               <div className="next__btn__container">
-                <Button className="next__btn" onClick={()=>{handleclick()}}>Completed Quote</Button>
+                <Button
+                  className="next__btn"
+                  onClick={() => {
+                    handleclick();
+                  }}
+                >
+                  Completed Quote
+                </Button>
               </div>
             </div>
           </div>

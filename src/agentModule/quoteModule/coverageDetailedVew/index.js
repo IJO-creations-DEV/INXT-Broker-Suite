@@ -6,17 +6,21 @@ import SvgRightarrow from "../../../assets/agentIcon/SvgRightArrow";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
+import customHistory from "../../../routes/customHistory";
 
 const LeadPreview = () => {
   const navigate = useNavigate();
 
   const handleclick = () => {
     navigate("/agent/policyapproval");
-  }
+  };
+  const handleBackNavigation = () => {
+    customHistory.back();
+  };
 
   return (
     <div className="overall__lead__view__container">
-      <NavBar/>
+      <NavBar />
       <div className="header__title">Leads</div>
       <div className="lead__quote__id mt-3">
         <div className="left__arrow">
@@ -64,7 +68,11 @@ const LeadPreview = () => {
           <div class="grid m-0">
             <div className="col-12">
               <div className="image__text mt-2">
-                <img src="https://i.ibb.co/51rWbD4/idimage.png" alt="idimage" className="image__size" />
+                <img
+                  src="https://i.ibb.co/51rWbD4/idimage.png"
+                  alt="idimage"
+                  className="image__size"
+                />
               </div>
             </div>
           </div>
@@ -161,7 +169,6 @@ const LeadPreview = () => {
                   alt="idimage"
                   className="image__size"
                 />
-                
               </div>
             </div>
           </div>
@@ -176,7 +183,6 @@ const LeadPreview = () => {
                   alt="idimage"
                   className="image__size"
                 />
-             
               </div>
             </div>
             <div class="col-6">
@@ -186,23 +192,22 @@ const LeadPreview = () => {
                   src="https://i.ibb.co/CtQ3Qr1/frontright.png"
                   alt="idimage"
                   className="image__size"
-                
                 />
               </div>
             </div>
+
             <div className="vehicle__left__text mt-2">
               Vehicle Interior Dashboard Photo
             </div>
-            <div class="grid m-0">
-              <div className="col-12">
-                <div className="image__texts mt-2">
-                  <img
-                    src="https://i.ibb.co/ZH7j1K3/dashboardphoto.png"
-                    alt="idimage"
-                    className="image__size"
-                  />
-                 
-                </div>
+          </div>
+          <div class="grid m-0">
+            <div class="col-12">
+              <div className="image__texts mt-2">
+                <img
+                  src="https://i.ibb.co/ZH7j1K3/dashboardphoto.png"
+                  alt="idimage"
+                  className="image__size"
+                />
               </div>
             </div>
           </div>
@@ -252,8 +257,15 @@ const LeadPreview = () => {
           severity="help"
           text
           className="download__button"
+          onClick={handleBackNavigation}
         />
-        <Button label="Send to Insurance Company" classNames="policy_button" onClick={() => { handleclick() }}>
+        <Button
+          label="Send to Insurance Company"
+          classNames="policy_button"
+          onClick={() => {
+            handleclick();
+          }}
+        >
           <SvgRightarrow />
         </Button>
       </div>

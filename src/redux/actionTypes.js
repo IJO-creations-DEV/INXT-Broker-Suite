@@ -362,3 +362,12 @@ export const POST_INSURANCE_VEHICLE_DATA =
   "insurancecompany/POST_INSURANCE_VEHICLE_DATA";
 export const PATCH_INSURANCE_VEHICLE_DATA =
   "insurancecompany/PATCH_INSURANCE_VEHICLE_DATA";
+///AGENT MODULE///
+
+//lead (Agent Module)
+
+export const POST_CREATELEAD_DATA = "leadcreatedata/POST_CREATELEAD_DATA";
+export const GET_LEADTABLE_DATA ="leadtabledata/GET_LEADTABLE_DATA";
+export const PATCH_LEADEDIT_DATA ="leadeditdata/PATCH_LEADEDIT_DATA";
+export const GET_PAYMENTTABLE_DATA = "paymenttabledata/GET_PAYMENTTABLE_DATA";
+export const POST_PAYMENT_DATA = "paymentcreatedata/POST_PAYMENT_DATA";

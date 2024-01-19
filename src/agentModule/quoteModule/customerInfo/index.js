@@ -33,22 +33,35 @@ const CustomerInfo = ({action}) => {
   const navigate = useNavigate();
   
   const dispatch = useDispatch();
-  const handleSubmit= (value) => {
+  // const handleSubmit= (value) => {
 
-    if (action === "edit") {
+  //   if (action === "edit") {
+  //     const valueWithId = {
+  //       ...value,
+  //       id: postcustomerinfodata?.length + 1,
+  //     };
+  //     console.log("first", action);
+  //     dispatch(patchinformationMiddleWare(valueWithId));
+  //   } else {
+  //     console.log("122", value);
+  //     dispatch(postinformationMiddleWare(value));
+  //     navigate("/agent/convertpolicy/uploadvehiclephotos");
+  //   }
+  // }
+  const handleSubmit = (values) => {
+    if (action === "edit" && postcustomerinfodata) {
       const valueWithId = {
-        ...value,
-        id: postcustomerinfodata?.length + 1,
+        ...values,
+        id: postcustomerinfodata.id, 
       };
-      console.log("first",action)
-  dispatch(patchinformationMiddleWare(valueWithId))
+      dispatch(patchinformationMiddleWare(values));
+      navigate("/agent/convertpolicy/uploadvehiclephotos")
+    } else {
+      dispatch(postinformationMiddleWare(values));
+      navigate("/agent/convertpolicy/uploadvehiclephotos");
     }
-
-    console.log("122",value)
-     dispatch(postinformationMiddleWare(value));
-     navigate("/agent/convertpolicy/uploadvehiclephotos");
-  }
- 
+  };
+  
   
   const { postcustomerinfodata, loading } = useSelector(({  CustomerInfoReducer }) => {
     return {
@@ -128,16 +141,20 @@ const TruckTypes = [   { label: "Heavy duty", value: "AL" },
     return errors;
   };
 
-  // useEffect(() => {
-  //   setFormikValues();
-  // }, [postcustomerinfodata]);
-  useEffect(() => {
-    console.log(action,'find sction call')
-    if (action === "edit") {
-console.log(postcustomerinfodata,'find postcustomerinfodata')
+
+//   useEffect(() => {
+//     console.log(action,'find sction call')
+//     if (action === "edit") {
+// console.log(postcustomerinfodata,'find postcustomerinfodata')
+//     setFormikValues(postcustomerinfodata);
+//     }
+//   },[action]);
+useEffect(() => {
+  if (action === "edit" && postcustomerinfodata) {
     setFormikValues(postcustomerinfodata);
-    }
-  },[action]);
+  }
+}, [action, postcustomerinfodata]);
+
 
   const setFormikValues = (data) => {
     console.log(data,"find data")

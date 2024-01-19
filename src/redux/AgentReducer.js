@@ -7,7 +7,7 @@ import accessoriesReducer from "../agentModule/quoteModule/accessories/store/acc
 import orderSummaryReducer from "../agentModule/quoteModule/orderSummary/store/orderSummaryReducer";
 import CustomerInfoReducer from "../agentModule/quoteModule/customerInfo/store/infoReducer";
 import clientsReducers from "../agentModule/quoteModule/clientListing/store/clientsReducer";
-import openitemsReducers from "../agentModule/openItems/store/openitemsReducers";
+import openitemsReducers from "../agentModule/openItems/store/openItemsReducers";
 
 const agentReducers = {
   homeReducers,

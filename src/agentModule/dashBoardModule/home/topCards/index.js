@@ -32,7 +32,7 @@ const TopCard = ({ detail }) => {
             </div>
             <div className="col-8 md:col-8 lg:col-8">
               <div className="card__container__title">Total Clients</div>
-              <div className="card__container__count mt-1">60</div>
+              <div className="card__container__count mt-1">{detail?.totalClients}</div>
             </div>
           </div>
           <div className="card__container__btn__container mt-3">
@@ -48,7 +48,7 @@ const TopCard = ({ detail }) => {
             </div>
             <div className="col-8 md:col-8 lg:col-8">
               <div className="card__container__title">Policy Sold</div>
-              <div className="card__container__count mt-1">200</div>
+              <div className="card__container__count mt-1">{detail?.policySold}</div>
             </div>
           </div>
           <div className="card__contaiiner__btn__container mt-3">

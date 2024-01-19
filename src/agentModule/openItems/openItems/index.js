@@ -15,6 +15,8 @@ import { InputTextarea } from "primereact/inputtextarea";
 import CustomToast from "../../../components/Toast";
 import SvgArrow from "../../../assets/agentIcon/SvgArrow";
 import { useNavigate } from "react-router-dom";
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 
 const OpenItems = () => {
   const [visible, setVisible] = useState(false);
@@ -33,7 +35,7 @@ const OpenItems = () => {
     }, 2000);
   };
 
-  const handleSeeMore = () =>{
+  const handleSeeMore = () => {
     navigate("/agent/openitems/upcomingevents");
   }
 
@@ -106,7 +108,13 @@ const OpenItems = () => {
 
       <div class="grid mt-3">
         <div class="col-12 md:col-8 lg:col-8">
-          <Card></Card>
+          <Card>
+
+            <FullCalendar
+              plugins={[dayGridPlugin]}
+              initialView="dayGridMonth"
+            />
+          </Card>
         </div>
         <div class="col-12 md:col-4 lg:col-4">
           <Card className="upcoming__event__main___container">
@@ -135,9 +143,9 @@ const OpenItems = () => {
                 </div>
               </div>
             </div>
-            <div className="see__more__container mt-2" onClick={()=>handleSeeMore()}>
-            <div className="see__more__text">See More</div>
-            <SvgArrow/>
+            <div className="see__more__container mt-2" onClick={() => handleSeeMore()}>
+              <div className="see__more__text">See More</div>
+              <SvgArrow />
             </div>
           </Card>
         </div>

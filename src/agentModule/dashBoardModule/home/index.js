@@ -14,6 +14,7 @@ import SvgSearch from "../../../assets/agentIcon/SvgSearch";
 import { useNavigate } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
 import { useSelector } from "react-redux";
+import NavBar from "../../../components/NavBar";
 
 const Dashboard = () => {
   const [visible, setVisible] = useState(false);
@@ -107,6 +108,7 @@ const Dashboard = () => {
 
   return (
     <div className="dasboard__container">
+      <NavBar/>
       <div className="grid  mt-2" style={{ padding: "0px 12px" }}>
         <div className="col-12 md:col-6 lg:col-6">
           <div className="dasboard__container__title">Good Day to You !</div>

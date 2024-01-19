@@ -12,7 +12,7 @@ const PolicyApprovalCard = () => {
     navigate("/agent/uploadpolicy");
   };
   const handleEdit = () => {
-    navigate("/agent/convertpolicy/customerinfo");
+    navigate(`/agent/convertpolicy/customerinfo/edit`);
   };
 
   return (

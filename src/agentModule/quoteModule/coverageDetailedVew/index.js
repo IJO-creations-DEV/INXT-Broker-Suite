@@ -7,6 +7,8 @@ import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
 import customHistory from "../../../routes/customHistory";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const LeadPreview = () => {
   const navigate = useNavigate();
@@ -18,6 +20,15 @@ const LeadPreview = () => {
     customHistory.back();
   };
 
+  const { postcustomerinfodata, loading } = useSelector(({ CustomerInfoReducer }) => {
+    return {
+      loading: CustomerInfoReducer?.loading,
+      postcustomerinfodata: CustomerInfoReducer?.postcustomerinfodata,
+
+    };
+  });
+
+console.log("211",postcustomerinfodata)
   return (
     <div className="overall__lead__view__container">
       <NavBar />
@@ -119,31 +130,31 @@ const LeadPreview = () => {
           </div>
           <div className="quote__details">
             <label className="insurance__text">Motor Number</label>
-            <label className="alpha__text">123456</label>
+            <label className="alpha__text">{postcustomerinfodata?.MotorNumber}</label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Chassis Number</label>
-            <label className="alpha__text">123456</label>
+            <label className="alpha__text">{postcustomerinfodata?.ChassisNumber}</label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Mortgage</label>
-            <label className="alpha__text">Nil</label>
+            <label className="alpha__text">{postcustomerinfodata?.Mortgage}</label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Cert Number</label>
-            <label className="alpha__text">123456</label>
+            <label className="alpha__text">{postcustomerinfodata?.CertNumber}</label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Plate Number</label>
-            <label className="alpha__text">PH 50 M 1000</label>
+            <label className="alpha__text">{postcustomerinfodata?.PlateNumber}</label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">MV File Number</label>
-            <label className="alpha__text">MV 0123</label>
+            <label className="alpha__text">{postcustomerinfodata?.MVFileNumber}</label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Authen Code</label>
-            <label className="alpha__text">AU00123</label>
+            <label className="alpha__text">{postcustomerinfodata?.AuthenCode}</label>
           </div>
           <div className="insured_vehicle_text">Insured Vehicle Photo</div>
           <div class="grid m-0">

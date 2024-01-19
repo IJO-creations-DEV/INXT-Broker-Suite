@@ -94,7 +94,8 @@ function EditExchange() {
     // toastRef.current.showToast();
     // setTimeout(() => {
     //   Navigate("/master/finance/exchangerate")
-    // }, 2000);
+    // }, 2000)
+    
   };
   const currencyCode = [
     { label: getExchangeEdit?.CurrencyCode, value: getExchangeEdit?.CurrencyCode },

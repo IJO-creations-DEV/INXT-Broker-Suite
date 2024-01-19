@@ -987,8 +987,14 @@ const Maincomponent = () => {
               />
               <Route
                 path="/agent/convertpolicy/customerinfo"
-                element={<CustomerInfo />}
+                element={<CustomerInfo action="view"/>}
               />
+
+<Route
+                path="/agent/convertpolicy/customerinfo/edit"
+                element={<CustomerInfo action="edit"/>}
+              />
+
               <Route
                 path="/agent/convertpolicy/uploadvehiclephotos"
                 element={<UploadVehiclePhotos />}

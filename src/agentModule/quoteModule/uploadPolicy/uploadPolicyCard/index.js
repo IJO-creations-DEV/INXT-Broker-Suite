@@ -9,18 +9,35 @@ import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 import CustomToast from "../../../../components/Toast";
 import customHistory from "../../../../routes/customHistory";
+import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { postUploadPolicyMiddleWare } from "../store/uploadPolicyMiddleWare";
+const initialValues = {
+  PolicyNumber:"",
+  InsuranceCompany:"",
+  Production: new Date(),
+  Inception: new Date(),
+  IssuedDate: new Date(),
+  Expiry:new Date()
+};
+
 
 const UploadPolicyCard = () => {
   const [imageURL, setimageURL] = useState();
   const toastRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleclick = () => {
+  const handleSubmit = (value) => {
     toastRef.current.showToast();
+    console.log("122",value)
+     dispatch(postUploadPolicyMiddleWare(value));
     setTimeout(() => {
       navigate("/agent/policydetailedview");
     }, 2000);
   };
+  // const minDate = new Date();
+  // minDate.setDate(minDate.getDate() + 1);
 
   const handleUppendImg = (name, src) => {
     setimageURL(src.objectURL);
@@ -31,6 +48,13 @@ const UploadPolicyCard = () => {
   };
   console.log(imageURL, "imageURL");
 
+  const formik = useFormik({
+    initialValues: initialValues,
+    // validate: customValidation,
+    onSubmit: handleSubmit,
+  });
+
+
   return (
     <div className="upload__policy__card__container mt-4">
       <CustomToast ref={toastRef} message="Policy Converted Successfully" />
@@ -40,28 +64,59 @@ const UploadPolicyCard = () => {
         </div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Insurance Company" />
+            <InputTextField label="Insurance Company" 
+            value={formik.values.InsuranceCompany}
+            onChange={formik.handleChange("InsuranceCompany")}/>
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Policy Number" />
-          </div>
-        </div>
-
-        <div className="grid mt-2">
-          <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Production" />
-          </div>
-          <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Inception" />
+            <InputTextField label="Policy Number" 
+            value={formik.values.PolicyNumber}
+            onChange={formik.handleChange("PolicyNumber")}/>
           </div>
         </div>
 
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Issued Date" />
+            <DatepickerField label="Production"
+            value={formik.values.Production}
+            // minDate={minDate}
+            onChange={(e) => { 
+              formik.setFieldValue("Production", e.target.value);
+            }}
+            dateFormat="yy-mm-dd"
+            // error={formik.errors.Production}
+            />
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Expiry" />
+            <DatepickerField label="Inception" 
+            value={formik.values.Inception}
+            // minDate={minDate}
+            onChange={(e) => { 
+              formik.setFieldValue("Inception", e.target.value);
+            }}
+            dateFormat="yy-mm-dd"
+            />
+          </div>
+        </div>
+
+        <div className="grid mt-2">
+          <div className="col-12 md:col-6 lg:col-6">
+            <DatepickerField label="Issued Date" 
+            value={formik.values.IssuedDate}
+            // minDate={minDate}
+            onChange={(e) => { 
+              formik.setFieldValue("IssuedDate", e.target.value);
+            }}
+            dateFormat="yy-mm-dd"/>
+          </div>
+          <div className="col-12 md:col-6 lg:col-6">
+            <DatepickerField label="Expiry" 
+            value={formik.values.Expiry}
+            // minDate={minDate}
+            onChange={(e) => { 
+              formik.setFieldValue("Expiry", e.target.value);
+            }}
+            dateFormat="yy-mm-dd" />
           </div>
         </div>
 
@@ -107,7 +162,7 @@ const UploadPolicyCard = () => {
               <Button
                 className="complete__btn"
                 onClick={() => {
-                  handleclick();
+                  formik.handleSubmit();
                 }}
               >
                 Complete

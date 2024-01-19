@@ -3,7 +3,7 @@ import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomToast from "../../../components/Toast";
 import PersonalDetailsChange from "./SplitScreens/PersonalDetailsChange";
 import MotorDetailsChange from "./SplitScreens/MotorDetailsChange";
@@ -12,7 +12,8 @@ import PolicyExtend from "./SplitScreens/PolicyExtend";
 const PersonalDetails = () => {
   const navigate = useNavigate();
   const toastRef = useRef(null);
-
+  const { state } = useLocation();
+  console.log(state, "total value")
   const handleclick = () => {
     toastRef.current.showToast();
     setTimeout(() => {

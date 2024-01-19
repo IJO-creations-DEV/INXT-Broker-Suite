@@ -13,6 +13,7 @@ import "../../../clientView/index.scss";
 import SvgDot from "../../../../../assets/agentIcon/SvgDot";
 import { TieredMenu } from "primereact/tieredmenu";
 import { Dialog } from "primereact/dialog";
+import { Menu } from "primereact/menu";
 
 const LeadListingAllTable = () => {
   const menu = useRef(null);
@@ -20,22 +21,57 @@ const LeadListingAllTable = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [checkboxValue, setCheckboxValue] = useState(false);
+  const categories = [
+    { name: 'Personal Details Change', key: 'personaldetail' },
+    { name: 'Motor Details Change', key: 'motordetail' },
+    { name: 'Coverage Change', key: 'coveragechange' },
+    { name: 'Policy Extend', key: 'ploicyextend' }
+  ];
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
 
   const showDialog = () => {
     setDisplayDialog(true);
   };
 
-  const hideDialog = () => {
+  const hideDialogClose = () => {
     setDisplayDialog(false);
   };
   const handleDialogButtonClick = () => {
-    hideDialog();
-    navigate("/agent/endorsement/personaldetails");
-  
+
+    hideDialogClose();
+    handleTypes()
+    navigate("/agent/endorsement/personaldetails", {
+      state: {
+        types: handleTypes()
+      }
+    });
+
   };
+  const handleTypes = () => {
+    let result = [];
+    console.log(selectedCategories, "out 1")
+    if (selectedCategories.some(obj => obj.key === "personaldetail")) {
+      result.push('1')
+    }
+    if (selectedCategories.some(obj => obj.key === "motordetail")) {
+      result.push('2')
+
+    }
+    if (selectedCategories.some(obj => obj.key === "coveragechange")) {
+      result.push('3')
+
+    }
+    if (selectedCategories.some(obj => obj.key === "ploicyextend")) {
+      result.push('4')
+
+    }
+    console.log(result, "out")
+    return result
+  }
   const navigate = useNavigate();
- 
- 
+
+
   const item = [
     {
       label: "View",
@@ -55,7 +91,64 @@ const LeadListingAllTable = () => {
       command: () => setDisplayDialog(true),
     },
   ];
-  
+  const menuItems = [
+
+    {
+
+      label: 'View',
+
+      command: () => handleMenuClick('view'),
+
+      icon: "pi pi-refresh"
+
+    },
+
+    {
+
+      label: 'Claim',
+
+      command: () => handleMenuClick('claim'),
+
+      icon: "pi pi-refresh"
+
+    }, {
+
+      label: 'Renewal',
+
+      command: () => handleMenuClick('renewal'),
+
+      icon: "pi pi-refresh"
+
+    },
+
+    {
+
+      label: 'Endorsement',
+
+      command: () => handleMenuClick('endrosement'),
+
+      icon: "pi pi-refresh"
+
+    }
+
+  ];
+
+  const handleMenuToggle = (event, menuRef) => {
+    menuRef.current.toggle(event);
+  };
+  const handleMenuClick = (menuItem) => {
+    if (menuItem == "view") {
+      navigate('/agent/claimrequest/claimdetails')
+    }
+    if (menuItem == "endrosement") {
+      setDisplayDialog(true)
+    }
+    // Handle the menu item click here
+    console.log(`${menuItem} clicked`);
+    // You can use the menuItem information as needed (e.g., display a toast)
+    // toast.current.show({ severity: 'info', summary: `${menuItem} Clicked`, detail: 'Item clicked' });
+  };
+
 
   const TableData = [
     {
@@ -157,6 +250,16 @@ const LeadListingAllTable = () => {
       Svg: <SvgMotorTable />,
     },
   ];
+  const onCategoryChange = (e) => {
+    let _selectedCategories = [...selectedCategories];
+
+    if (e.checked)
+      _selectedCategories.push(e.value);
+    else
+      _selectedCategories = _selectedCategories.filter(category => category.key !== e.value.key);
+
+    setSelectedCategories(_selectedCategories);
+  };
 
   const template2 = {
     layout:
@@ -191,18 +294,20 @@ const LeadListingAllTable = () => {
     },
   };
 
+
   const renderViewEditButton = (rowData) => {
     return (
       <div className="btn__container__view__edit">
-        
-          <TieredMenu model={item} popup ref={menu} breakpoint="767px" />
-          <Button
-            icon={<SvgDot />}
-            className="view__btn"
-            onClick={(e) => menu.current.toggle(e)}
-            // onClick={() => handleItemClick(rowData)}
-          />
-       
+
+        <Menu model={menuItems} popup ref={menu} breakpoint="767px" />
+        <Button
+          icon={<SvgDot />}
+          className="view__btn"
+          onClick={(event) => handleMenuToggle(event, menu)}
+        // onClick={(e) => menu.current.toggle(e)}
+        // onClick={() => handleItemClick(rowData)}
+        />
+
       </div>
     );
   };
@@ -229,14 +334,14 @@ const LeadListingAllTable = () => {
 
   const renderPayment = (rowData) => {
     return (
-     
+
       <div
         className={
           rowData.Payment === "Pending"
             ? "company__status__type__green"
             : rowData.Payment === "Completed"
-            ? "company__status__type__blue"
-            : "company__status__type__red"
+              ? "company__status__type__blue"
+              : "company__status__type__red"
         }
       >
         {rowData.Payment}
@@ -252,7 +357,7 @@ const LeadListingAllTable = () => {
     fontWeight: 500,
     color: "#000",
     border: " none",
-    
+
   };
 
   const headerStyle = {
@@ -341,10 +446,26 @@ const LeadListingAllTable = () => {
         visible={displayDialog}
         style={{ height: "340px", width: "500px" }}
         modal
-        onHide={hideDialog}
+        onHide={hideDialogClose}
       >
         <div className="p-fluid">
-          <div className="p-field-checkbox m-3">
+          {categories.map((category) => {
+            return (
+              <div key={category.key} className="p-field-checkbox m-3">
+                <Checkbox id="checkbox" inputId={category.key} name="category" value={category} onChange={onCategoryChange} checked={selectedCategories.some((item) => item.key === category.key)} />
+                <label style={{
+                  color: "#111927",
+                  marginLeft: "16px",
+                  fontFamily: "Poppins",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }} htmlFor={category.key} className="ml-2">
+                  {category.name}
+                </label>
+              </div>
+            );
+          })}
+          {/* <div className="p-field-checkbox m-3">
             <Checkbox
               id="checkbox"
               checked={checkboxValue}
@@ -353,8 +474,8 @@ const LeadListingAllTable = () => {
             <label
               style={{
                 color: "#111927",
-                marginLeft:"16px"    ,    
-               fontFamily: "Poppins",
+                marginLeft: "16px",
+                fontFamily: "Poppins",
                 fontSize: "16px",
                 fontWeight: 400,
               }}
@@ -368,13 +489,13 @@ const LeadListingAllTable = () => {
               checked={checkboxValue}
               onChange={(e) => setCheckboxValue(e.checked)}
             />
-            <label  style={{
-                color: "#111927",
-                marginLeft:"16px"    ,    
-               fontFamily: "Poppins",
-                fontSize: "16px",
-                fontWeight: 400,
-              }}>Motor Details Change</label>
+            <label style={{
+              color: "#111927",
+              marginLeft: "16px",
+              fontFamily: "Poppins",
+              fontSize: "16px",
+              fontWeight: 400,
+            }}>Motor Details Change</label>
           </div>
           <div className="p-field-checkbox m-3">
             <Checkbox
@@ -382,13 +503,13 @@ const LeadListingAllTable = () => {
               checked={checkboxValue}
               onChange={(e) => setCheckboxValue(e.checked)}
             />
-            <label  style={{
-                color: "#111927",
-                marginLeft:"16px"    ,    
-               fontFamily: "Poppins",
-                fontSize: "16px",
-                fontWeight: 400,
-              }}>Coverage Change</label>
+            <label style={{
+              color: "#111927",
+              marginLeft: "16px",
+              fontFamily: "Poppins",
+              fontSize: "16px",
+              fontWeight: 400,
+            }}>Coverage Change</label>
           </div>
           <div className="p-field-checkbox m-3">
             <Checkbox
@@ -396,16 +517,16 @@ const LeadListingAllTable = () => {
               checked={checkboxValue}
               onChange={(e) => setCheckboxValue(e.checked)}
             />
-            <label  style={{
-                color: "#111927",
-                marginLeft:"16px"    ,    
-               fontFamily: "Poppins",
-                fontSize: "16px",
-                fontWeight: 400,
-              }}>Policy Extend</label>
-          </div>
+            <label style={{
+              color: "#111927",
+              marginLeft: "16px",
+              fontFamily: "Poppins",
+              fontSize: "16px",
+              fontWeight: 400,
+            }}>Policy Extend</label>
+          </div> */}
 
-       
+
           <div className="m-5">
             <Button label="Proceed" onClick={handleDialogButtonClick} />
           </div>

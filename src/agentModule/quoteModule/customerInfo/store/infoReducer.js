@@ -1,21 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { postinformationMiddleWare,patchinformationMiddleWare} from "./infoMiddleWare";
 
+
 const initialState = {
     loading: false,
     error: "",
     paymenttabledata:[],
-    postcustomerinfodata:
-      {
-        id: "1",
-        StateCode: "SC1",
-        StateName: "StateName1",
-        Country: "India",
-        Modifiedby: "User1",
-        ModifiedOn: "2024-01-11",
-      },
-      
-    
+    postcustomerinfodata:{},
     patchinformation:{}
 };
 
@@ -27,7 +18,7 @@ const customerInfoReducer = createSlice({
 
 
 
-      //postcustomerInfoReducer
+      
 
     builder.addCase(postinformationMiddleWare.pending, (state) => {
         state.loading = true;
@@ -47,38 +38,17 @@ const customerInfoReducer = createSlice({
         }
       );
 
-
-        //patchinformationMiddleWare
-
-    builder.addCase(patchinformationMiddleWare.pending, (state) => {
-      state.loading = true;
-    });
     builder.addCase(
       patchinformationMiddleWare.fulfilled,
       (state, action) => {
         state.loading = false;
-        console.log(state.postcustomerinfodata, "state.countryTableList");
-              const updatedIndex = state.postcustomerinfodata.findIndex(
-                (item) => item.id === action.payload.id
-              );
-              if (updatedIndex !== -1) {
-                const updatedAddDisbursmentTable = [...state.postcustomerinfodata];
-                updatedAddDisbursmentTable[updatedIndex] = action.payload;
-                state.postcustomerinfodata = updatedAddDisbursmentTable;
-              } else {
-                state.postcustomerinfodata = [...state.postcustomerinfodata, action.payload];
-              }
+        console.log(action.payload, "find patch in red");
+
+       state.postcustomerinfodata =action.payload
+        
       }
     );
-    builder.addCase(
-      patchinformationMiddleWare.rejected,
-      (state, action) => {
-        state.loading = false;
-        state.editList = {};
-        state.error = typeof action.payload === "string" ? action.payload : "";
-      }
-    );
-      
+    
     },
 });
 

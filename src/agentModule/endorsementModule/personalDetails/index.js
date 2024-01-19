@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Card } from "primereact/card";
@@ -35,10 +35,22 @@ const PersonalDetails = () => {
       </div>
       <Card className="mt-4">
         <div className="customer__info__title">Endorsement Request</div>
-        <PersonalDetailsChange />
-        <MotorDetailsChange />
-        <CoverageChange />
-        <PolicyExtend />
+        {/* <PersonalDetailsChange handleFormSubmit={handleclick} />
+        <MotorDetailsChange handleFormSubmit={handleclick} />
+        <CoverageChange handleFormSubmit={handleclick} />
+        <PolicyExtend handleFormSubmit={handleclick} /> */}
+        <PersonalDetailsChange
+          handleFormSubmit={(values) => handleclick("personal", values)}
+        />
+        <MotorDetailsChange
+          handleFormSubmit={(values) => handleclick("motor", values)}
+        />
+        <CoverageChange
+          handleFormSubmit={(values) => handleclick("coverage", values)}
+        />
+        <PolicyExtend
+          handleFormSubmit={(values) => handleclick("policyExtend", values)}
+        />
         <div className="grid m-0">
           <div className="col-12">
             <div className="back__next__btn__container">

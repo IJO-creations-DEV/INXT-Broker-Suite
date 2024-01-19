@@ -1,62 +1,202 @@
-import React from "react";
+import React, { useEffect } from "react";
 import InputTextField from "../../../component/inputText";
 import DropdownField from "../../../component/DropdwonField";
-const MotorDetailsChange = () => {
+import { useFormik } from "formik";
+
+const initialValue = {
+  TNVS: "",
+  MotorNumber: "",
+  ChassisNumber: "",
+  Mortgage: "",
+  CertNumber: "",
+  PlateNumber: "",
+  MVFileNumber: "",
+  AuthenCode: "",
+  VehicleBrand: "",
+  ModelYear: "",
+  ModelVariant: "",
+  VehicleModel: "",
+  VehicleColor: "",
+  SeatingCapacity: "",
+};
+
+const MotorDetailsChange = ({handleFormSubmit}) => {
+  const formik = useFormik({
+    initialValues: initialValue,
+    // validate,
+    onSubmit: (values) => {
+      handleFormSubmit('motor', values);
+    },
+  });
+
+
   return (
     <div>
       <div className="customer__info__subtitle mt-2 mb-2">
         Motor Details Change
       </div>
-      <div class="grid m-0">
-        <div class="col-12 mt-2 p-0">
-          <div class="grid m-0">
-            <div class="col-12 md:col-6 lg:col-6 xl:col-6">
-              <DropdownField label="TNVS" disabled={true} />
+      {/* <form onSubmit={formik.handleSubmit}> */}
+        <div class="grid m-0">
+          <div class="col-12 mt-2 p-0">
+            <div class="grid m-0">
+              <div class="col-12 md:col-6 lg:col-6 xl:col-6">
+                <DropdownField
+                  label="TNVS"
+                  disabled={true}
+                  value={formik.values.TNVS}
+                  // options={TNVSOptions}
+                  onChange={(e) => {
+                    console.log(e.value);
+                    formik.setFieldValue("TNVS", e.value);
+                  }}
+                  optionLabel="label"
+                  error={formik.touched.TNVS && formik.errors.TNVS}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <InputTextField label="Motor Number" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <InputTextField label="Chassis Number" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <DropdownField label="Mortgage" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <InputTextField label="Cert Number" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <InputTextField label="Plate Number" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <InputTextField label="MV File Number" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <InputTextField label="Authen Code" />
-        </div>
+          <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="Motor Number"
+              value={formik.values.MotorNumber}
+              onChange={formik.handleChange("MotorNumber")}
+              error={formik.touched.MotorNumber && formik.errors.MotorNumber}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="Chassis Number"
+              value={formik.values.ChassisNumber}
+              onChange={formik.handleChange("ChassisNumber")}
+              error={
+                formik.touched.ChassisNumber && formik.errors.ChassisNumber
+              }
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Mortgage"
+              value={formik.values.Mortgage}
+              // options={MortgageOptions}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("Mortgage", e.value);
+              }}
+              optionLabel="label"
+              error={formik.touched.Mortgage && formik.errors.Mortgage}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="Cert Number"
+              value={formik.values.CertNumber}
+              onChange={formik.handleChange("CertNumber")}
+              error={formik.touched.CertNumber && formik.errors.CertNumber}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="Plate Number"
+              value={formik.values.PlateNumber}
+              onChange={formik.handleChange("PlateNumber")}
+              error={formik.touched.PlateNumber && formik.errors.PlateNumber}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="MV File Number"
+              value={formik.values.MVFileNumber}
+              onChange={formik.handleChange("MVFileNumber")}
+              error={formik.touched.MVFileNumber && formik.errors.MVFileNumber}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="Authen Code"
+              value={formik.values.AuthenCode}
+              onChange={formik.handleChange("AuthenCode")}
+              error={formik.touched.AuthenCode && formik.errors.AuthenCode}
+            />
+          </div>
 
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <DropdownField label="Vehicle Brand" />
-        </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Vehicle Brand"
+              value={formik.values.VehicleBrand}
+              // options={VehicleBrandOptions}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("VehicleBrand", e.value);
+              }}
+              optionLabel="label"
+              error={formik.touched.VehicleBrand && formik.errors.VehicleBrand}
+            />
+          </div>
 
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <DropdownField label="Model Year" />
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Model Year"
+              value={formik.values.ModelYear}
+              // options={ModelYearOptions}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("ModelYear", e.value);
+              }}
+              optionLabel="label"
+              error={formik.touched.ModelYear && formik.errors.ModelYear}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Model Variant"
+              value={formik.values.ModelVariant}
+              // options={ModelVariantOptions}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("ModelVariant", e.value);
+              }}
+              optionLabel="label"
+              error={formik.touched.ModelVariant && formik.errors.ModelVariant}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Vehicle Model"
+              value={formik.values.VehicleModel}
+              // options={VehicleModelOptions}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("VehicleModel", e.value);
+              }}
+              optionLabel="label"
+              error={formik.touched.VehicleModel && formik.errors.VehicleModel}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Vehicle Color"
+              value={formik.values.VehicleColor}
+              // options={VehicleColorOptions}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("VehicleColor", e.value);
+              }}
+              optionLabel="label"
+              error={formik.touched.VehicleColor && formik.errors.VehicleColor}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="Seating Capacity"
+              value={formik.values.SeatingCapacity}
+              onChange={formik.handleChange("SeatingCapacity")}
+              error={
+                formik.touched.SeatingCapacity && formik.errors.SeatingCapacity
+              }
+            />
+          </div>
         </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <DropdownField label="Model Variant" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <DropdownField label="Vehicle Model" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <DropdownField label="Vehicle Color" />
-        </div>
-        <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-          <InputTextField label="Seating Capacity" />
-        </div>
-      </div>
+      {/* </form> */}
     </div>
   );
 };

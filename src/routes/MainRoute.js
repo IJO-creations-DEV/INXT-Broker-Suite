@@ -200,6 +200,7 @@ import ClaimDocumentUpload from "../agentModule/claimsModule/claimDocumentUpload
 import LeadEdit from "../agentModule/leadModule/leadEdit";
 import ViewEndorsement from "../agentModule/endorsementModule/viewUploadEndorsement";
 import EndorsementRejected from "../agentModule/endorsementModule/EndorsementRejected";
+import LoginScreen from "../module/AuthModule/Login/index";
 
 const Maincomponent = () => {
   return (
@@ -210,8 +211,11 @@ const Maincomponent = () => {
     >
       <ResponsiveDrawer />
       <div style={{ width: "100%" }}>
-        <AuthRoute />
+   
+
+        {/* <AuthRoute /> */}
         <Routes>
+        <Route path="/login" element={<LoginScreen />} />
           <Route element={<ProtectedLayout />}>
             <Route
               path="/accounts/correctionsjv/correctionsjvdetails"
@@ -948,7 +952,6 @@ const Maincomponent = () => {
               element={<ViewCommission />}
             />
 
-            <Route element={<ProtectedLayout />}>
               {/* <Route path="/login" element={<Login />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} /> */}
               {/* // Agent Dashboard, Notification & agent profile */}
@@ -1133,11 +1136,10 @@ const Maincomponent = () => {
                 path="/agent/openitems/expiringpolicy"
                 element={<ExpiringPolicy />}
               />
-            </Route>
           </Route>
         </Routes>
       </div>
-      <AuthRoute />
+      {/* <AuthRoute /> */}
     </div>
   );
 };

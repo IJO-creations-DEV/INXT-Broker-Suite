@@ -15,7 +15,7 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 
-const ClientListingTravelTable = () => {
+const ClientListingCompanyCategory = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
@@ -162,14 +162,14 @@ const ClientListingTravelTable = () => {
           <Button
             icon={<SvgEdit />}
             className="view__btn"
-            onClick={() => handleView(rowData)}
+            onClick={() => handleEditAction(rowData)}
           />
         </div>
         <div>
           <Button
             icon={<SvgArrow />}
             className="edit__btn"
-            onClick={() => handleEdit(rowData)}
+            onClick={() => handleViewAction(rowData)}
           />
         </div>
       </div>
@@ -200,12 +200,12 @@ const ClientListingTravelTable = () => {
     return <div className="quote__text">{rowData.Quotes}</div>;
   };
 
-  const handleView = () => {
+  const handleEditAction = () => {
     navigate("/agent/leadedit");
   };
 
-  const handleEdit = () => {
-    navigate("/agent/leadedit");
+  const handleViewAction = () => {
+    navigate(`/agent/clientview/${123}`);
   };
 
   const ViewheaderStyle = {
@@ -315,4 +315,4 @@ const ClientListingTravelTable = () => {
   );
 };
 
-export default ClientListingTravelTable;
+export default ClientListingCompanyCategory;

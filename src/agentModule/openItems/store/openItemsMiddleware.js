@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GET_UPCOMMING_OPEN_ITEMS_LIST, POST_UPCOMMING_OPEN_ITEMS_LIST } from "../../../redux/agentActionTypes";
-import { POST_PAYMENT_DATA } from "../../../redux/actionTypes";
+
 import moment from "moment";
 
 

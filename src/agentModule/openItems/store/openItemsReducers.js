@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getOpenItemsListMiddleware, postOpenItemsListMiddleware } from "./openItemsMiddleware";
+import { getOpenItemsListMiddleware, postOpenItemsListMiddleware } from "./openItemsMiddleware.js";
+
 
 const initialState = {
     loading: false,

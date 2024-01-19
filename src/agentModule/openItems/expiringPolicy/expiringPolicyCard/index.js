@@ -9,8 +9,10 @@ import SvgProfileC from "../../../../assets/agentIcon/SvgProfileC";
 import SvgArrow from "../../../../assets/agentIcon/SvgArrow";
 import SvgDownArrow from "../../../../assets/agentIcon/SvgDownArrow";
 import { Dropdown } from "primereact/dropdown";
+import { useNavigate } from "react-router-dom";
 
 const ExpiringPolicyCard = () => {
+  const navigate = useNavigate();
   const TableData = [
     {
       AssuredName: "John Doe",
@@ -186,7 +188,9 @@ const ExpiringPolicyCard = () => {
     },
   };
 
-  const handlesubmit = () => {};
+  const handlesubmit = () => {
+    navigate('/agent/policydetailedviewonly')
+  };
 
   return (
     <div className="expiring__policy__card__container mt-4">

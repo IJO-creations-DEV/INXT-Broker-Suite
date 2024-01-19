@@ -27,6 +27,7 @@ import SvgDropdownicon from "../../assets/icons/SvgDropdownicon";
 
 
 const Payments = () => {
+ 
   const { paymenttabledata, paymentSearchList, loading } = useSelector(
     ({ agentPaymentMainReducers }) => {
       return {
@@ -149,20 +150,21 @@ const Payments = () => {
   const cities = [
     { name: 'Name', code: 'Name' },
     { name: 'ClientID', code: 'ClientID' },
+    { name: 'Gross Premium', code: 'Gross Premium' },
   ];
-
+  const [status, setStatus] = useState("PAID");
+ 
   useEffect(() => {
-    console.log(globalFilter, "as")
-    if (globalFilter?.length > 0) {
-      if (search?.length > 0) {
-        dispatch(getPaymentSearchDataMiddleWare({
-          field: globalFilter,
-          value: search
-        }))
-
-      }
+    if (globalFilter && search) {
+      dispatch(getPaymentSearchDataMiddleWare({
+        field: globalFilter,
+        value: search,
+        status1:status,  
+      }));
     }
-  }, [search])
+  }, [ search]);
+ 
+  console.log(status,"status");
 
   const template2 = {
     layout: "RowsPerPageDropdown CurrentPageReport PrevPageLink  NextPageLink ",
@@ -242,7 +244,7 @@ const Payments = () => {
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
-                      value={search}
+                      value={status && search}
                       onChange={(e) => setSearch(e.target.value)}
                     />
                   </span>
@@ -258,7 +260,7 @@ const Payments = () => {
               
               </div>
               <div>
-                <PaymentCard dataSearch={search} status="PAID" />
+                <PaymentCard items={cities} dataSearch={search} status={"PAID"} setStatus={setStatus}/>
                 <div className="paginator__container">
                   <Paginator
                     first={0}
@@ -281,7 +283,7 @@ const Payments = () => {
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
-                      value={search}
+                      value={status.a  &&search}
                       onChange={(e) => setSearch(e.target.value)}
                     />
                   </span>
@@ -296,7 +298,7 @@ const Payments = () => {
                 </div>
               </div>
               <div>
-                <PaymentCard dataSearch={search} status="PENDING" />
+                <PaymentCard dataSearch={search} status={"PENDING"} setStatus={setStatus} />
                 <div className="paginator__container">
                   <Paginator
                     first={0}
@@ -334,7 +336,7 @@ const Payments = () => {
                 </div>
               </div>
               <div>
-                <PaymentCard dataSearch={search} status="REVIEWING" />
+                <PaymentCard dataSearch={search} status="REVIEWING" setStatus={setStatus} />
                 <div className="paginator__container">
                   <Paginator
                     first={0}

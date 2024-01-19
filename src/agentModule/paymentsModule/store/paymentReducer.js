@@ -16,7 +16,7 @@ const initialState = {
       },
       {
         id: 2,
-        grosspremiu: "3456",
+        grosspremium: "3456",
         clintid:"123456",
         date:"13/12/12",
         name:"ayesha",
@@ -34,7 +34,7 @@ const initialState = {
       },
       {
         id: 2,
-        grosspremiu: "3456",
+        grosspremium: "3456",
         clintid:"123456",
         date:"13/12/12",
         name:"pandiyan",
@@ -52,7 +52,7 @@ const initialState = {
       },
       {
         id: 2,
-        grosspremiu: "3456",
+        grosspremium: "3456",
         clintid:"123456",
         date:"13/12/12",
         name:"sudarshan",
@@ -79,7 +79,7 @@ const paymentReducer = createSlice({
         getpaymenttableMiddleware.fulfilled,
         (state, action) => {
           state.loading = false;
-          state.paymenttabledata = action.payload
+          state.paymenttabledata = [action.payload]
         }
       );
       builder.addCase(

@@ -19,22 +19,22 @@ const index = () => {
   return (
     <div className="protected__layout__container">
       <div className="protected__layout__header">
-        {/* <NavBar /> */}
+        <NavBar />
       </div>
       <div className="protected__layout__content__space">
         <div className="protected__layout__Footer__container">
           {/* <ResponsiveDrawer/> */}
         </div>
         <div className="main__content">
-          {/* {Auth() ?
+          {Auth() ?
             <Outlet />
             :
             <Outlet />
 
             // <Navigate to='login' replace />
-          } */}
+          }
 
-          <Outlet />
+          {/* <Outlet /> */}
         </div>
       </div>
     </div>

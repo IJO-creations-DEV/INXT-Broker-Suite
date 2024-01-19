@@ -108,7 +108,7 @@ const Dashboard = () => {
 
   return (
     <div className="dasboard__container">
-      <NavBar/>
+      {/* <NavBar/> */}
       <div className="grid  mt-2" style={{ padding: "0px 12px" }}>
         <div className="col-12 md:col-6 lg:col-6">
           <div className="dasboard__container__title">Good Day to You !</div>

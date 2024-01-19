@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getBranchListMiddleware, getBranchListByIdMiddleware, postAddBranchMiddleware, patchBranchEditMiddleware, getSearchBranchMiddleware, getOrganizationBranchView, getDepartmentListMiddleware, postAddDepartment, getDepatmentView } from "./branchMiddleware";
+import { getBranchListMiddleware, getBranchListByIdMiddleware, postAddBranchMiddleware, patchBranchEditMiddleware, getSearchBranchMiddleware, getOrganizationBranchView, getDepartmentListMiddleware, postAddDepartment, getDepatmentView, getPatchBranchData, postPatchDepatmentEdit, getDepatmentEditData } from "./branchMiddleware";
 
 const initialState = {
   loading: false,
@@ -57,7 +57,9 @@ const initialState = {
       Description: "test purpose",
     }
   ],
-  depatmentView: {}
+  depatmentView: {},
+  getBranchPatch:{},
+  getDepartmentPatch:{}
 };
 let nextId = 3
 let nextId2 = 3
@@ -211,8 +213,17 @@ const organizationBranchReducers = createSlice({
       patchBranchEditMiddleware.fulfilled,
       (state, action) => {
         state.loading = false;
-
-        state.branchTableList = action.payload;
+        const updatedIndex = state.branchTableList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        console.log(updatedIndex,"updatedIndex");
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.branchTableList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.branchTableList = updatedCurrencyList;
+        } else {
+          state.branchTableList = [...state.branchTableList, action.payload];
+        }
       }
     );
     builder.addCase(
@@ -221,6 +232,75 @@ const organizationBranchReducers = createSlice({
         state.loading = false;
 
         state.branchList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    builder.addCase(getPatchBranchData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getPatchBranchData.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.getBranchPatch = action.payload;
+      }
+    );
+    builder.addCase(
+      getPatchBranchData.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.getBranchPatch = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    builder.addCase(getDepatmentEditData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getDepatmentEditData.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.getDepartmentPatch = action.payload;
+      }
+    );
+    builder.addCase(
+      getDepatmentEditData.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.getDepartmentPatch = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    builder.addCase(postPatchDepatmentEdit.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      postPatchDepatmentEdit.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        const updatedIndex = state.departmentList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        console.log(updatedIndex,"updatedIndex");
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.departmentList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.departmentList = updatedCurrencyList;
+        } else {
+          state.departmentList = [...state.departmentList, action.payload];
+        }
+      }
+    );
+    builder.addCase(
+      postPatchDepatmentEdit.rejected,
+      (state, action) => {
+        state.loading = false;
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

@@ -61,8 +61,8 @@ const EditMainAccount = () => {
   const [accType, setAccType] = useState([])
   const [openEType, setOpenEType] = useState([])
   const [accCaletgoryC, setAccCaletgoryC] = useState([])
-  const [companyCodeOption, setCompanyCodeOption]=useState([])
-  const [currencyCodeOption,setCurrencyCodeOption]=useState([])
+  const [companyCodeOption, setcompanyCodeOption]=useState([])
+  const [currencyCodeOption,setcurrencyCodeOption]=useState([])
   const setFormikValues = () => {
     const accountTypeData = getMainAccountDetailEdit?.accountType
     const openEntryTypeData = getMainAccountDetailEdit?.openEntryType
@@ -80,7 +80,7 @@ const EditMainAccount = () => {
       currencyCode:currencyCodeData ,
       openEntryType: openEntryTypeData
     };
-    console.log(updatedValues.accountType, "uu");
+    // console.log(updatedValues.accountType, "uu");
     if (accountTypeData) {
       formik.setValues({ ...formik.values, ...updatedValues });
       setAccType([{ label: accountTypeData, value: accountTypeData }]);
@@ -94,11 +94,11 @@ const EditMainAccount = () => {
       setAccCaletgoryC([{ label: accountCategoryCodeData, value: accountCategoryCodeData }]);
     }
     if(companyCodeData){
-      setCompanyCodeOption([{label:companyCodeData,value:companyCodeData}])
+      setcompanyCodeOption([{label:companyCodeData,value:companyCodeData}])
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     if(currencyCodeData){
-      setCurrencyCodeOption([{label:currencyCodeData,value:currencyCodeData}])
+      setcurrencyCodeOption([{label:currencyCodeData,value:currencyCodeData}])
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     formik.setValues({ ...formik.values, ...updatedValues });
@@ -155,10 +155,10 @@ const EditMainAccount = () => {
   // const formik = useFormik({
   //   initialValues: {
   //     mainaccountode: "",
-  //     mainaccountname: "",
+  //     mainAccountName: "",
   //     description: "",
   //     accountCategoryCode: "",
-  //     accounttype: "",
+  //     accountType: "",
   //     companyCode: [],
   //     currencyCode: [],
   //     openEntryType: "",
@@ -236,7 +236,7 @@ const EditMainAccount = () => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Description"
+              label="description"
               value={formik.values.description}
               onChange={(e) =>
                 formik.setFieldValue("description", e.target.value)
@@ -344,7 +344,7 @@ const EditMainAccount = () => {
               disabled={true}
               classNames="input__field__corrections__inactive"
               className="input__label__corrections"
-              label="Description"
+              label="description"
               value={
                 formik.values.accountCategoryCode
                   ? `descrption ${formik.values.accountCategoryCode}`

@@ -71,13 +71,13 @@ const SubAdd = () => {
         const currencyData=getSubDetailEdit?.currencyCode
         console.log(mainData,"mainData");
         const updatedValues = {
-
+            id: getSubDetailEdit.id,
             subAccountCode: getSubDetailEdit?.subAccountCode,
             description: getSubDetailEdit?.description,
             subAccountName: getSubDetailEdit?.subAccountName,
             mainAccount: mainData,
             currencyCode: currencyData,
-            id: getSubDetailEdit.id
+            
         };
 
         if (mainData) {

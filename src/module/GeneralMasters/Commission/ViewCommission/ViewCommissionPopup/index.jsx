@@ -11,18 +11,18 @@ import SvgModalClose from "../../../../../assets/icons/SvgNodalClose";
 import { useDispatch, useSelector } from "react-redux";
 import { addLevelPatchEditPopup } from "../../store/commissionMiddleWare";
 const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) => {
-    const { loading, popupEditData } = useSelector(({ commissionMianReducers }) => {
+    const { loading, commissionPopupView } = useSelector(({ commissionMianReducers }) => {
         return {
             loading: commissionMianReducers?.loading,
-            popupEditData: commissionMianReducers?.popupEditData
+            commissionPopupView: commissionMianReducers?.commissionPopupView
 
         };
     });
-    console.log(popupEditData.sharingRate, "popupEditData")
+    console.log(commissionPopupView.sharingRate, "popupEditData")
 
     const codeOptionsMain = [
-        { label: "Option 1", value: "Main00123" },
-        { label: "Option 2", value: "Main00124" },
+        { label: commissionPopupView.level, value: commissionPopupView.level },
+      
     ];
 
 
@@ -42,28 +42,28 @@ const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) 
     };
     const dispatch=useDispatch()
     const handleSubmit = (value) => {
-        dispatch(addLevelPatchEditPopup(value))
+        // dispatch(addLevelPatchEditPopup(value))
         setShowViewPopup(false);
         console.log(value, "valuedata");
     }
     const [levetOptionData, setLevelOptionData]=useState([])
 
-    const setFormikValues = () => {
-        const levelData=popupEditData?.level
+    // const setFormikValues = () => {
+    //     const levelData=popupEditData?.level
        
-        const updatedValues = {
-            id: popupEditData?.id,
-            level:levelData,
-            sharingRate: popupEditData?.sharingRate,
-            commissionCode: popupEditData?.commissionCode,
-        };
-        if(levelData){
-            formik.setValues({ ...formik.values, ...updatedValues });
-            setLevelOptionData([{ label: levelData, value: levelData }]);
-        }
+    //     const updatedValues = {
+    //         id: popupEditData?.id,
+    //         level:levelData,
+    //         sharingRate: popupEditData?.sharingRate,
+    //         commissionCode: popupEditData?.commissionCode,
+    //     };
+    //     if(levelData){
+    //         formik.setValues({ ...formik.values, ...updatedValues });
+    //         setLevelOptionData([{ label: levelData, value: levelData }]);
+    //     }
       
-        formik.setValues({ ...formik.values, ...updatedValues });
-    };
+    //     formik.setValues({ ...formik.values, ...updatedValues });
+    // };
     const formik = useFormik({
         initialValues: {
             level: "",
@@ -80,9 +80,9 @@ const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) 
         //     setShowEditPopup(false);
         // },
     });
-    useEffect(() => {
-        setFormikValues();
-    }, [popupEditData]);
+    // useEffect(() => {
+    //     setFormikValues();
+    // }, [popupEditData]);
 
     return (
         <Dialog
@@ -102,9 +102,9 @@ const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) 
                             classNames="select__label__jv"
                             optionLabel="value"
                             label="Level"
-                            value={formik.values.level}
+                            value={commissionPopupView.level}
                             onChange={(e) => formik.setFieldValue("level", e.value)}
-                            options={levetOptionData}
+                            options={codeOptionsMain}
                         />
                         {formik.touched.level && formik.errors.level && (
                             <div
@@ -121,7 +121,7 @@ const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) 
                             className="input__label__jv"
                             label="sharingRate"
                             value={
-                                formik.values.sharingRate
+                                commissionPopupView.sharingRate
                             }
                             onChange={(e) => formik.setFieldValue("sharingRate", e.target.value)}
                         />

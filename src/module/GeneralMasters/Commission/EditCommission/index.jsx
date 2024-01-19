@@ -640,7 +640,7 @@ import { SelectButton } from 'primereact/selectbutton';
 import data from './data';
 import SvgEditIcon from '../../../../assets/icons/SvgEditIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { patchCommissionEdit } from '../store/commissionMiddleWare';
+import { getEditCommissionPopup, patchCommissionEdit } from '../store/commissionMiddleWare';
 
 const EditCommission = () => {
     const { commissionList, loading, commissionSearchList, getCommissionEdit,addLevelCommissionSharing } = useSelector(({ commissionMianReducers }) => {
@@ -667,10 +667,11 @@ const EditCommission = () => {
         { label: 'Edit Commissions', url: '/master/generals/commission/editcommission' },
 
     ];
+    const [visible, setVisible] = useState(false);
     const home = { label: "Master" };
     useEffect(() => {
         const timerId = setTimeout(() => {
-            setVisiblePopup(false);
+            setVisible(false);
         }, 2000);
 
         return () => clearTimeout(timerId);
@@ -750,6 +751,7 @@ const EditCommission = () => {
         }
         formik.setValues({ ...formik.values, ...updatedValues });
     };
+    
     const formik = useFormik({
         initialValues: {
             commissionCode: "",
@@ -858,22 +860,23 @@ const EditCommission = () => {
     const handleNavigateView = () => {
 
     }
-    const handleEditNavigate = () => {
-
+    const handleEditNavigate = (rowData) => {
+        setVisiblePopup(true)
+        dispatch(getEditCommissionPopup(rowData))
     }
 
     const renderEditButton = (rowData) => {
         return (
             <div className="centercontent" >
 
-                <div onClick={handleEditNavigate}>
+                <div onClick={()=>handleEditNavigate(rowData)}>
                     <SvgEditIcon />
                 </div>
 
             </div>
         );
     };
-    const [visible, setVisible] = useState(false);
+   
 
     return (
         <div className='grid edit__commission__add__container'>
@@ -1224,7 +1227,7 @@ const EditCommission = () => {
             </div>
             <div className="col-12" >
 
-                <EditCommissionPopup visible={visible} setVisible={setVisible} />
+                <EditCommissionPopup visiblePopup={visiblePopup} setVisiblePopup={setVisiblePopup} />
 
             </div>
 

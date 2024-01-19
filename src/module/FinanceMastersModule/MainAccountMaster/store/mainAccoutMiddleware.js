@@ -43,9 +43,23 @@ export const getMainAccountSearchList = createAsyncThunk(
 export const postMainAccountStatus = createAsyncThunk(
     POST_MAIN_ACCOUNT_STATUS,
     async (payload, { rejectWithValue }) => {
+        const data = {
+          
+            id: payload?.id,
+            mainAccountCode: payload?.mainAccountCode,
+            mainAccountName: payload?.mainAccountName,
+            description: payload?.description,
+            accountCategoryCode: payload?.accountCategoryCode,
+            accountType: payload?.accountType,
+            companyCode: payload?.companyCode,
+            openEntry:payload?.openEntry,
+            currencyCode: payload?.currencyCode,
+            openEntryType: payload?.openEntryType
+        }
+        console.log(data,"datadata");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            return data;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }
@@ -83,13 +97,14 @@ export const patchMainAccountDetailEdit = createAsyncThunk(
         const data = {
             id: payload?.id,
             mainAccountCode: payload?.mainAccountCode,
-            mainaccountname: payload?.mainaccountname,
+            mainAccountName: payload?.mainAccountName,
             description: payload?.description,
-            accountcategorycode: payload?.accountcategorycode,
-            accounttype: payload?.accounttype,
+            accountCategoryCode: payload?.accountCategoryCode,
+            accountType: payload?.accountType,
             companyCode: payload?.companyCode,
+            openEntry:payload?.openEntry,
             currencyCode: payload?.currencyCode,
-            openentrytype: payload?.openentrytype
+            openEntryType: payload?.openEntryType
         }
         try {
             return data;

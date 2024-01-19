@@ -24,7 +24,7 @@ const ViewMainAccount = () => {
       MainAccountDetailView: mainAccoutReducers?.MainAccountDetailView,
     };
   });
-  console.log(loading, "loading");
+  console.log(MainAccountDetailView, "MainAccountDetailView");
   const navigation = useNavigate();
   const items = [
     {
@@ -75,14 +75,15 @@ const ViewMainAccount = () => {
   };
   const formik = useFormik({
     initialValues: {
-      mainaccountode: "",
-      mainaccountname: "",
+      mainAccountCode: "",
+      mainAccountName: "",
       description: "",
-      accountcategorycode: "",
+      accountCategoryCode: "",
       accountType: "",
+      openEntry:"",
       companyCode: [],
       currencyCode: [],
-      openentrytype: "",
+      openEntryType: "",
     },
     validate: customValidation,
     onSubmit: (values) => {
@@ -141,13 +142,13 @@ const ViewMainAccount = () => {
 
               value={MainAccountDetailView.mainAccountName}
               onChange={(e) =>
-                formik.setFieldValue("mainaccountname", e.target.value)
+                formik.setFieldValue("mainAccountName", e.target.value)
               }
             />
-            {formik.touched.mainaccountname &&
-              formik.errors.mainaccountname && (
+            {formik.touched.mainAccountName &&
+              formik.errors.mainAccountName && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.mainaccountname}
+                  {formik.errors.mainAccountName}
                 </div>
               )}
           </div>
@@ -158,7 +159,7 @@ const ViewMainAccount = () => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Description"
+              label="description"
 
               value={MainAccountDetailView.description}
               onChange={(e) =>
@@ -219,9 +220,9 @@ const ViewMainAccount = () => {
               }
               optionLabel="value"
               label="Open Entry type"
-              // value={formik.values.openentrytype}
+              // value={formik.values.openEntryType}
               value={selectSwitch == "Yes" && MainAccountDetailView.openEntryType}
-              // onChange={(e) => formik.setFieldValue("openentrytype", e.value)}
+              // onChange={(e) => formik.setFieldValue("openEntryType", e.value)}
               options={codeOptionsType}
             />
           </div>
@@ -252,18 +253,18 @@ const ViewMainAccount = () => {
 
 
               // onChange={(e) =>
-              //   formik.setFieldValue("accountcategorycode", e.value)
+              //   formik.setFieldValue("accountCategoryCode", e.value)
               // }
               value={MainAccountDetailView.accountCategoryCode}
               options={categoryOptionsCode}
             />
-            {formik.touched.accountcategorycode &&
-              formik.errors.accountcategorycode && (
+            {formik.touched.accountCategoryCode &&
+              formik.errors.accountCategoryCode && (
                 <div
                   style={{ fontSize: 12, color: "red" }}
                   className="formik__errror__JV"
                 >
-                  {formik.errors.accountcategorycode}
+                  {formik.errors.accountCategoryCode}
                 </div>
               )}
           </div>
@@ -272,10 +273,10 @@ const ViewMainAccount = () => {
               disabled={true}
               classNames="input__field__corrections__inactive"
               className="input__label__corrections"
-              label="Description"
+              label="description"
               value={MainAccountDetailView.description}
             // value={
-            //   MainAccountDetailView.accountcategorycode
+            //   MainAccountDetailView.accountCategoryCode
             //     ? `descrption ${MainAccountDetailView.description}`
             //     : ""
             // }

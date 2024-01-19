@@ -63,8 +63,8 @@ const AddMainAccount = () => {
     if (!values.mainAccountCode) {
       errors.mainAccountCode = "This field is required";
     }
-    if (!values.mainaccountname) {
-      errors.mainaccountname = "This field is required";
+    if (!values.mainAccountName) {
+      errors.mainAccountName = "This field is required";
     }
     if (!values.description) {
       errors.description = "This field is required";
@@ -113,17 +113,22 @@ const AddMainAccount = () => {
   const handleSubmit = (values) => {
     const openEntry = selectSwitch === "No" ? "Yes" : "No";
     const updatedValues = { ...values, openEntry};
-  
     dispatch(postMainAccountStatus(updatedValues))
-      .then(() => {
         toastRef.current.showToast();
         setTimeout(() => {
           navigation("/master/finance/mainaccount");
         }, 2000);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    // dispatch(postMainAccountStatus(updatedValues))
+    //   .then(() => {
+    //     alert("hii")
+    //     toastRef.current.showToast();
+    //     setTimeout(() => {
+    //       navigation("/master/finance/mainaccount");
+    //     }, 2000);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
   
     console.log(updatedValues, "find values");
   };
@@ -131,7 +136,7 @@ const AddMainAccount = () => {
   const formik = useFormik({
     initialValues: {
       mainAccountCode: "",
-      mainaccountname: "",
+      mainAccountName: "",
       description: "",
       accountCategoryCode: "",
       accountType: "",
@@ -200,15 +205,15 @@ const AddMainAccount = () => {
               placeholder="Enter"
               label="Main Account Name"
 
-              value={formik.values.mainaccountname}
+              value={formik.values.mainAccountName}
               onChange={(e) =>
-                formik.setFieldValue("mainaccountname", e.target.value)
+                formik.setFieldValue("mainAccountName", e.target.value)
               }
             />
-            {formik.touched.mainaccountname &&
-              formik.errors.mainaccountname && (
+            {formik.touched.mainAccountName &&
+              formik.errors.mainAccountName && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.mainaccountname}
+                  {formik.errors.mainAccountName}
                 </div>
               )}
           </div>
@@ -219,7 +224,7 @@ const AddMainAccount = () => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Description"
+              label="description"
 
               value={formik.values.description}
               onChange={(e) =>

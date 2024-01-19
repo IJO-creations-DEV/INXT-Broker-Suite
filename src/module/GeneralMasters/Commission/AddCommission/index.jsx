@@ -24,7 +24,7 @@ import CustomToast from '../../../../components/Toast';
 import { SelectButton } from 'primereact/selectbutton';
 import data from './data';
 import SvgEditIcon from '../../../../assets/icons/SvgEditIcon';
-import { getEditCommissionPopup, postAddCommission } from '../store/commissionMiddleWare';
+import { getCommissionPopupView, getEditCommissionPopup, postAddCommission } from '../store/commissionMiddleWare';
 import { useDispatch, useSelector } from 'react-redux';
 import EditCommissionPopup from '../EditCommission/EditCommissionPopup';
 import ViewCommissionPopup from '../ViewCommission/ViewCommissionPopup';
@@ -175,9 +175,10 @@ const AddCommission = () => {
   };
   const [showEditPopup, setShowEditPopup] = useState(false)
   const [showViewPopup, setShowViewPopup] = useState(false)
-  const handleNavigateView = () => {
+  const handleNavigateView = (rowData) => {
     // navigate("/master/generals/commission/viewcommission")
     setShowViewPopup(true)
+    dispatch(getCommissionPopupView(rowData))
   }
 
   const handleEditNavigate = (rowData) => {
@@ -189,7 +190,7 @@ const AddCommission = () => {
   const renderEditButton = (rowData) => {
     return (
       <div className="centercontent" >
-        <div className='eyeIcon' onClick={handleNavigateView}>
+        <div className='eyeIcon' onClick={()=>handleNavigateView(rowData)}>
           <SvgEyeIcon />
         </div>
         <div onClick={() => handleEditNavigate(rowData)}>

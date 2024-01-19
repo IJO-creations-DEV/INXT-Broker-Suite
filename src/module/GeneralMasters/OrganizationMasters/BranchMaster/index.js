@@ -16,7 +16,7 @@ import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditicons from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrganizationBranchView, getSearchBranchMiddleware } from "./store/branchMiddleware";
+import { getOrganizationBranchView, getPatchBranchData, getSearchBranchMiddleware } from "./store/branchMiddleware";
 import { useFormik } from "formik";
 
 const Index = () => {
@@ -55,9 +55,11 @@ const Index = () => {
       `/master/generals/organization/branchmaster/view/${columnData.id}`
     );
   };
-  const handleEdit = (id) => {
+  const handleEdit = (columnData) => {
+    dispatch(getPatchBranchData(columnData))
+    console.log(columnData, "columnData")
     navigate(
-      `/master/generals/organization/branchmaster/edit/${id}`
+      `/master/generals/organization/branchmaster/edit/${columnData.id}`
     );
   };
 

@@ -218,7 +218,7 @@
 // export default commissionReducers.reducer;
 
 import { createSlice } from "@reduxjs/toolkit";
-import { addLevelPatchEditPopup, getCommission, getCommissionSearchList, getCommissionView, getEditCommissionPopup, getLevelCommissionSharing, getPatchCommissionEdit, getPatchCommissionEditMiddleware, patchCommissionEdit, postAddCommission, postAddLevelShareRatingCommission } from "./commissionMiddleWare";
+import { addLevelPatchEditPopup, getCommission, getCommissionPopupView, getCommissionSearchList, getCommissionView, getEditCommissionPopup, getLevelCommissionSharing, getPatchCommissionEdit, getPatchCommissionEditMiddleware, patchCommissionEdit, postAddCommission, postAddLevelShareRatingCommission } from "./commissionMiddleWare";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
     loading: false,
@@ -276,7 +276,9 @@ const initialState = {
             commissionCode: "CC123",
             sharingRate: "S123",
         }
-    ]
+    ],
+    commissionPopupView:{}
+    
 
 
 
@@ -406,10 +408,10 @@ const commissionReducers = createSlice({
             (state, action) => {
                 state.loading = false;
                 state.commissionList=action.payload
-                const updatedIndex = state.commissionList
-                // const updatedIndex = state.commissionList.findIndex(
-                //     (item) => item.id === action.payload.id
-                // );
+                // const updatedIndex = state.commissionList
+                const updatedIndex = state.commissionList.findIndex(
+                    (item) => item.id === action.payload.id
+                );
                 console.log(state.commissionList,"updatedIndex");
                 if (updatedIndex !== -1) {
                     const updatedCurrencyList = [...state.commissionList];
@@ -523,6 +525,27 @@ const commissionReducers = createSlice({
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );
+
+        builder.addCase(getCommissionPopupView.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            getCommissionPopupView.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                state.commissionPopupView = action.payload;
+            }
+        );
+        builder.addCase(
+            getCommissionPopupView.rejected,
+            (state, action) => {
+                state.loading = false;
+
+                state.commissionPopupView = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
 
 
     },

@@ -1,11 +1,12 @@
 import { Card } from 'primereact/card'
 import React from 'react'
 import { TabView, TabPanel } from 'primereact/tabview';
-import ClientListingTable from './ClientListingViewPolicyTable';
-import ClientListingClaimTable from './ClientListingViewClaimTable';
-import ClientListingRenewalTable from './ClientListingViewRenewaleTable';
-import ClientListingEndorsementTable from './ClientListingViewEndorsementTable';
+import ClientListingViewPolicyTable from './ClientListingViewPolicyTable';
+import ClientListingViewClaimTable from './ClientListingViewClaimTable';
+import ClientListingViewRenewalTable from './ClientListingViewRenewaleTable';
+import ClientListingViewEndorsementTable from './ClientListingViewEndorsementTable';
 import SvgBackArrow from '../../../../assets/icons/SvgBackArrow';
+import "../../clientView/index.scss";
 
 const ClientListingCard = () => {
     return (
@@ -16,17 +17,17 @@ const ClientListingCard = () => {
                 <label className='carson__style'>Carson Darrin</label>
                 </div>
                 <TabView>
-                    <TabPanel header="Policy">
-                        <ClientListingTable />
+                    <TabPanel header="Policy" className='policy__header'>
+                        <ClientListingViewPolicyTable />
                     </TabPanel>
-                    <TabPanel header="Claim">
-                        <ClientListingClaimTable />
+                    <TabPanel header="Claim" className='policy__header'>
+                        <ClientListingViewClaimTable />
                     </TabPanel>
-                    <TabPanel header="Renewal">
-                        <ClientListingRenewalTable />
+                    <TabPanel header="Renewal" className='policy__header'>
+                        <ClientListingViewRenewalTable />
                     </TabPanel>
-                    <TabPanel header="Endorsement">
-                        <ClientListingEndorsementTable />
+                    <TabPanel header="Endorsement" className='policy__header'>
+                        <ClientListingViewEndorsementTable />
                     </TabPanel>
                 </TabView>
             </Card>

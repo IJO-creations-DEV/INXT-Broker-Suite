@@ -8,7 +8,7 @@ import SvgArrow from "../../../../../assets/icons/SvgArrow";
 import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
-import "../../../clientListing/index.scss";
+import "../../../clientView/index.scss";
 const LeadListingAllTable = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
@@ -156,7 +156,7 @@ const LeadListingAllTable = () => {
           <Button
             icon={<SvgArrow />}
             className="view__btn"
-            onClick={() => handleView(rowData)}
+            // onClick={() => handleView(rowData)}
           />
         </div>
       </div>
@@ -186,17 +186,13 @@ const LeadListingAllTable = () => {
   const renderStatus = (rowData) => {
     return (
       <div
-        className="quote__text"
-        style={{
-          backgroundColor: "#FEF2E1",
-          color: "#C1622A",
-          borderRadius: "25px",
-          height: "25px",
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          width: "100px",
-        }}
+        className={
+          rowData.Status === "Processing"
+            ? "company__status__type__green"
+            : rowData.Status === "Completed"
+            ? "company__status__type__blue"
+            : "client__view__type__red"
+        }
       >
         {rowData.Status}
       </div>
@@ -205,33 +201,26 @@ const LeadListingAllTable = () => {
   const renderPayment = (rowData) => {
     return (
       <div
-        className="quote__text"
-        style={{
-          backgroundColor: "#FEF2E1",
-          color: "#C1622A",
-          borderRadius: "25px",
-          height: "25px",
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          width: "100px",
-        }}
+        className={
+          rowData.payment === "Pending"
+            ? "company__status__type__green"
+            : rowData.payment === "Completed"
+            ? "company__status__type__blue"
+            : rowData.payment === "Reviewing"
+            ? "company__status__type__red"
+            : "endorsement__payment__type"
+           
+        }
       >
         {rowData.payment}
+        
       </div>
     );
   };
 
-  const handleView = (rowData) => {
-    console.log(rowData, "find rowData");
-    if (rowData?.Status === "Rejected") {
-      //   navigate("/agent/claimrejected");
-    } else if (rowData?.Status === "Processing") {
-      navigate(`/agent/endorsement/paymenterror/${123}`);
-    } else if (rowData?.Status === "Completed") {
-      navigate(`/agent/endorsementdetailedview/${123}`);
-    }
-  };
+  // const handleView = () => {
+  //     navigate("/agent/leadedit")
+  // }
 
   const ViewheaderStyle = {
     textalign: "center",

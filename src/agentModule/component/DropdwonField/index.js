@@ -13,7 +13,7 @@ const DropdownField = ({ value, onChange, options, label, disabled }) => {
   const handleBlur = () => {
     setFocused(false);
   };
-
+console.log("first",options)
   return (
     <div style={{ position: "relative" }} className="dropdown__container">
       <Dropdown

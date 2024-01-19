@@ -27,6 +27,17 @@
 .App-link {
   color: #61dafb;
 }
+.css-esmk4o {
+  position: relative;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-color: #efefef;
+  -webkit-transition: width,left,right,300ms;
+  transition: width,left,right,300ms;
+  width: 23vw !important;
+  min-width: 20vw !important;
+  background-color: #1C2536!important;
+}
 
 @keyframes App-logo-spin {
   from {

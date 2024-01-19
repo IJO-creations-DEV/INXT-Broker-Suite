@@ -12,13 +12,13 @@ const LeadEditCrad = () => {
   const [ingredient, setIngredient] = useState();
   const navigate = useNavigate();
   const handleclick = () => {
-    navigate("/agent/leadlisting");
+    navigate("/agent/clientlisting");
   };
 
   const handlecancel = () => {
-    navigate("/agent/leadlisting");
+    navigate("/agent/clientlisting");
   };
-  
+
   return (
     <div className="edit__card_overall_container mt-5">
       <Card title="Edit Client">

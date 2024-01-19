@@ -11,116 +11,117 @@ import SvgArrow from "../../../../../assets/icons/SvgArrow";
 import SvgMotorTable from "../../../../../assets/agentIcon/SvgMotorTable";
 import SvgTravlesTable from "../../../../../assets/agentIcon/SvgTravlesTable";
 import SvgHomeTable from "../../../../../assets/agentIcon/SvgHomeTable";
-import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { Dropdown } from "primereact/dropdown";
+import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
+import { Avatar } from "primereact/avatar";
 
-const ClientListingMotorTable = () => {
+const ClientListingAllCategory = ({ TableData }) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
 
-  const TableData = [
-    {
-      id: "1",
-      Name: "Sophie Clark",
-      Category: "Individual",
-      Date: "2024-01-26",
-      Quotes: "01",
-      LeadID: "123456",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "2",
-      Name: "John Smith",
-      Category: "Individual",
-      Date: "2024-02-10",
-      Quotes: "02",
-      LeadID: "126",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "3",
-      Name: "Emma Davis",
-      Category: "Individual",
-      Date: "2024-03-15",
-      Quotes: "02",
-      LeadID: "1456",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "4",
-      Name: "Michael Johnson",
-      Category: "Individual",
-      Date: "2024-04-20",
-      Quotes: "03",
-      LeadID: "1236",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "5",
-      Name: "Olivia Turner",
-      Category: "Individual",
-      Date: "2024-05-25",
-      Quotes: "04",
-      LeadID: "1456",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "6",
-      Name: "David Rodriguez",
-      Category: "Individual",
-      Date: "2024-06-30",
-      Quotes: "05",
-      LeadID: "123116",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "7",
-      Name: "Ava Williams",
-      Category: "Individual",
-      Date: "2024-07-05",
-      Quotes: "06",
-      LeadID: "123411",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "8",
-      Name: "Daniel Brown",
-      Category: "Individual",
-      Date: "2024-08-10",
-      Quotes: "01",
-      LeadID: "1234000",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "9",
-      Name: "Sophia Carter",
-      Category: "Individual",
-      Date: "2024-09-15",
-      Quotes: "02",
-      LeadID: "1234555",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "10",
-      Name: "Ryan Walker",
-      Category: "Individual",
-      Date: "2024-10-20",
-      Quotes: "03",
-      LeadID: "1234226",
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "11",
-      Name: "Ella Adams",
-      Category: "Individual",
-      Date: "2024-11-25",
-      Quotes: "04",
-      LeadID: "1234000",
-      Svg: <SvgMotorTable />,
-    },
-  ];
+  // const TableData = [
+  //   {
+  //     id: "1",
+  //     Name: "Sophie Clark",
+  //     Category: "Individual",
+  //     Date: "2024-01-26",
+  //     Quotes: "01",
+  //     LeadID: "123456",
+  //     Svg: <SvgMotorTable />,
+  //   },
+  //   {
+  //     id: "2",
+  //     Name: "John Smith",
+  //     Category: "Individual",
+  //     Date: "2024-02-10",
+  //     Quotes: "02",
+  //     LeadID: "126",
+  //     Svg: <SvgTravlesTable />,
+  //   },
+  //   {
+  //     id: "3",
+  //     Name: "Emma Davis",
+  //     Category: "Individual",
+  //     Date: "2024-03-15",
+  //     Quotes: "02",
+  //     LeadID: "1456",
+  //     Svg: <SvgHomeTable />,
+  //   },
+  //   {
+  //     id: "4",
+  //     Name: "Michael Johnson",
+  //     Category: "Individual",
+  //     Date: "2024-04-20",
+  //     Quotes: "03",
+  //     LeadID: "1236",
+  //     Svg: <SvgTravlesTable />,
+  //   },
+  //   {
+  //     id: "5",
+  //     Name: "Olivia Turner",
+  //     Category: "Individual",
+  //     Date: "2024-05-25",
+  //     Quotes: "04",
+  //     LeadID: "1456",
+  //     Svg: <SvgMotorTable />,
+  //   },
+  //   {
+  //     id: "6",
+  //     Name: "David Rodriguez",
+  //     Category: "Company",
+  //     Date: "2024-06-30",
+  //     Quotes: "05",
+  //     LeadID: "123116",
+  //     Svg: <SvgHomeTable />,
+  //   },
+  //   {
+  //     id: "7",
+  //     Name: "Ava Williams",
+  //     Category: "Company",
+  //     Date: "2024-07-05",
+  //     Quotes: "06",
+  //     LeadID: "123411",
+  //     Svg: <SvgTravlesTable />,
+  //   },
+  //   {
+  //     id: "8",
+  //     Name: "Daniel Brown",
+  //     Category: "Company",
+  //     Date: "2024-08-10",
+  //     Quotes: "01",
+  //     LeadID: "1234000",
+  //     Svg: <SvgMotorTable />,
+  //   },
+  //   {
+  //     id: "9",
+  //     Name: "Sophia Carter",
+  //     Category: "Individual",
+  //     Date: "2024-09-15",
+  //     Quotes: "02",
+  //     LeadID: "1234555",
+  //     Svg: <SvgHomeTable />,
+  //   },
+  //   {
+  //     id: "10",
+  //     Name: "Ryan Walker",
+  //     Category: "Company",
+  //     Date: "2024-10-20",
+  //     Quotes: "03",
+  //     LeadID: "1234226",
+  //     Svg: <SvgTravlesTable />,
+  //   },
+  //   {
+  //     id: "11",
+  //     Name: "Ella Adams",
+  //     Category: "Company",
+  //     Date: "2024-11-25",
+  //     Quotes: "04",
+  //     LeadID: "1234000",
+  //     Svg: <SvgMotorTable />,
+  //   },
+  // ];
 
   const template2 = {
     layout:
@@ -162,27 +163,40 @@ const ClientListingMotorTable = () => {
           <Button
             icon={<SvgEdit />}
             className="view__btn"
-            onClick={() => handleView(rowData)}
+            onClick={() => handleEditAction(rowData)}
           />
         </div>
         <div>
           <Button
             icon={<SvgArrow />}
             className="edit__btn"
-            onClick={() => handleEdit(rowData)}
+            onClick={() => handleViewAction(rowData)}
           />
         </div>
       </div>
     );
   };
 
+  const handleSvg = (type) => {
+    // if (type == 'motor') {
+    //   return <SvgMotorTable />
+    // }
+    // else if (type == 'travel') {
+    //   return <SvgTravlesTable />
+    // }
+    // else if (type == 'home') {
+    //   return <SvgHomeTable />
+    // }
+    return <Avatar label={type.charAt(0)} size="xlarge" shape="circle" />;
+  };
+
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{rowData.Svg}</div>
+        <div>{handleSvg(rowData.Name)}</div>
         <div>
           <div className="name__text">{rowData.Name}</div>
-          <div className="lead__id__text">Client Id:{rowData.LeadID} </div>
+          <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
         </div>
       </div>
     );
@@ -200,23 +214,36 @@ const ClientListingMotorTable = () => {
     return <div className="quote__text">{rowData.Quotes}</div>;
   };
 
-  const handleView = () => {
+  const handleEditAction = () => {
     navigate("/agent/leadedit");
   };
 
-  const handleEdit = () => {
-    navigate("/agent/leadedit");
+  const handleViewAction = () => {
+    navigate(`/agent/clientview/${123}`);
   };
 
   const ViewheaderStyle = {
-    justifyContent: "center",
-    // textalign: center,
+    // justifyContent: 'center',
+    textalign: "center",
+    fontSize: 16,
+    fontFamily: "Poppins",
+    fontWeight: 500,
+    color: "#000",
+    border: " none",
+    // display: "grid",
+    // alignItem: "center",
+  };
+  const ViewheadercenterStyle = {
+    // justifyContent: 'center',
+    textalign: "center",
     fontSize: 16,
     fontFamily: "Poppins",
     fontWeight: 500,
     color: "#000",
     border: " none",
     display: "flex",
+    justifyContent: "center",
+    // display: "grid",
     alignItem: "center",
   };
 
@@ -270,6 +297,7 @@ const ClientListingMotorTable = () => {
           rowsPerPageOptions={[5, 10, 25, 50]}
           currentPageReportTemplate="{first} - {last} of {totalRecords}"
           paginatorTemplate={template2}
+          className="corrections__table__main"
           onSelectionChange={(e) => setSelectedProducts(e.value)}
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
@@ -307,7 +335,7 @@ const ClientListingMotorTable = () => {
           <Column
             body={renderViewEditButton}
             header={renderUncheckedHeader("Actions")}
-            headerStyle={ViewheaderStyle}
+            headerStyle={ViewheadercenterStyle}
           ></Column>
         </DataTable>
       </div>
@@ -315,4 +343,4 @@ const ClientListingMotorTable = () => {
   );
 };
 
-export default ClientListingMotorTable;
+export default ClientListingAllCategory;

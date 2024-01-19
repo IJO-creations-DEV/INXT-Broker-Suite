@@ -3,53 +3,59 @@ import TableDropdownField from "../../../../component/tableDropDwonField";
 import React, { useState, useRef } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { InputSwitch } from "primereact/inputswitch";
 import { Checkbox } from "primereact/checkbox";
-import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import { Button } from "primereact/button";
-import SvgArrow from "../../../../../assets/icons/SvgArrow";
 import SvgMotorTable from "../../../../../assets/agentIcon/SvgMotorTable";
-import SvgTravlesTable from "../../../../../assets/agentIcon/SvgTravlesTable";
-import SvgHomeTable from "../../../../../assets/agentIcon/SvgHomeTable";
 import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
-import "../../../clientListing/index.scss";
+import "../../../clientView/index.scss";
 import SvgDot from "../../../../../assets/agentIcon/SvgDot";
 import { TieredMenu } from "primereact/tieredmenu";
+import { Dialog } from "primereact/dialog";
+
 const LeadListingAllTable = () => {
   const menu = useRef(null);
+  const [displayDialog, setDisplayDialog] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
+  const [checkboxValue, setCheckboxValue] = useState(false);
+
+  const showDialog = () => {
+    setDisplayDialog(true);
+  };
+
+  const hideDialog = () => {
+    setDisplayDialog(false);
+  };
+  const handleDialogButtonClick = () => {
+    hideDialog();
+    navigate("/agent/endorsement/personaldetails");
+  
+  };
   const navigate = useNavigate();
-  const items = [
+ 
+ 
+  const item = [
     {
       label: "View",
-      command: () => handleItemClick("View"),
+      url: "/agent/policydetailedview",
     },
     {
       label: "Claim",
-      command: () => handleItemClick("Claim"),
+      url: "/agent/claimrequest/claimdetails",
     },
     {
       label: "Renewal",
-      command: () => handleItemClick("Renewal"),
+      url: "/agent/policydetailedview",
     },
+
     {
       label: "Endorsement",
-      command: () => handleItemClick("Endorsement"),
+      command: () => setDisplayDialog(true),
     },
   ];
-  const handleItemClick = (label) => {
-    if (label === "View") {
-      navigate("/agent/policydetailedview");
-    } else if (label === "Claim") {
-      navigate("/agent/claimrequest/claimdetails");
-    } else if (label === "Renewal") {
-    } else if (label === "Endorsement") {
-      navigate("/agent/endorsement/personaldetails");
-    }
-  };
+  
 
   const TableData = [
     {
@@ -188,15 +194,15 @@ const LeadListingAllTable = () => {
   const renderViewEditButton = (rowData) => {
     return (
       <div className="btn__container__view__edit">
-        <div>
-          <TieredMenu model={items} popup ref={menu} breakpoint="767px" />
+        
+          <TieredMenu model={item} popup ref={menu} breakpoint="767px" />
           <Button
             icon={<SvgDot />}
             className="view__btn"
             onClick={(e) => menu.current.toggle(e)}
-            // onClick={() => handleView(rowData)}
+            // onClick={() => handleItemClick(rowData)}
           />
-        </div>
+       
       </div>
     );
   };
@@ -223,27 +229,21 @@ const LeadListingAllTable = () => {
 
   const renderPayment = (rowData) => {
     return (
+     
       <div
-        className="quote__text"
-        style={{
-          backgroundColor: "#FEF2E1",
-          color: "#C1622A",
-          borderRadius: "25px",
-          height: "25px",
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          width: "100px",
-        }}
+        className={
+          rowData.Payment === "Pending"
+            ? "company__status__type__green"
+            : rowData.Payment === "Completed"
+            ? "company__status__type__blue"
+            : "company__status__type__red"
+        }
       >
         {rowData.Payment}
       </div>
     );
   };
 
-  // const handleView = () => {
-  //     navigate("/agent/leadedit")
-  // }
 
   const ViewheaderStyle = {
     textalign: "center",
@@ -252,8 +252,7 @@ const LeadListingAllTable = () => {
     fontWeight: 500,
     color: "#000",
     border: " none",
-    // display: "grid",
-    // alignItem: "center",
+    
   };
 
   const headerStyle = {
@@ -338,6 +337,80 @@ const LeadListingAllTable = () => {
           ></Column>
         </DataTable>
       </div>
+      <Dialog
+        visible={displayDialog}
+        style={{ height: "340px", width: "500px" }}
+        modal
+        onHide={hideDialog}
+      >
+        <div className="p-fluid">
+          <div className="p-field-checkbox m-3">
+            <Checkbox
+              id="checkbox"
+              checked={checkboxValue}
+              onChange={(e) => setCheckboxValue(e.checked)}
+            />
+            <label
+              style={{
+                color: "#111927",
+                marginLeft:"16px"    ,    
+               fontFamily: "Poppins",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}
+            >
+              Personal Details Change
+            </label>
+          </div>
+          <div className="p-field-checkbox m-3">
+            <Checkbox
+              id="checkbox"
+              checked={checkboxValue}
+              onChange={(e) => setCheckboxValue(e.checked)}
+            />
+            <label  style={{
+                color: "#111927",
+                marginLeft:"16px"    ,    
+               fontFamily: "Poppins",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}>Motor Details Change</label>
+          </div>
+          <div className="p-field-checkbox m-3">
+            <Checkbox
+              id="checkbox"
+              checked={checkboxValue}
+              onChange={(e) => setCheckboxValue(e.checked)}
+            />
+            <label  style={{
+                color: "#111927",
+                marginLeft:"16px"    ,    
+               fontFamily: "Poppins",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}>Coverage Change</label>
+          </div>
+          <div className="p-field-checkbox m-3">
+            <Checkbox
+              id="checkbox"
+              checked={checkboxValue}
+              onChange={(e) => setCheckboxValue(e.checked)}
+            />
+            <label  style={{
+                color: "#111927",
+                marginLeft:"16px"    ,    
+               fontFamily: "Poppins",
+                fontSize: "16px",
+                fontWeight: 400,
+              }}>Policy Extend</label>
+          </div>
+
+       
+          <div className="m-5">
+            <Button label="Proceed" onClick={handleDialogButtonClick} />
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 };

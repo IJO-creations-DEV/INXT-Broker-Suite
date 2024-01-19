@@ -6,6 +6,26 @@
         font-style: normal;
         font-weight: 400;
     }
+    .policy__header{
+        color: red;
+
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+    }
+//     .details__text{
+//         color: #111927 !important;
+
+// font-family: Poppins;
+// font-size: 16px;
+// font-style: normal;
+// font-weight: 400;
+//     }
+    .p-datatable .p-column-header-content {
+        display: none;
+        
+    }
   
     .view__btn {
         color: #ffffff;
@@ -16,7 +36,64 @@
         transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
         border-radius: 10px !important;
     }
-
+    .client__view__type__red{
+        background-color:#FDE8E7;
+        color: #B42318;
+        text-align: center;
+        border-radius: 25px;
+        padding: 8px;
+        font-family: Poppins !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        line-height: 16.94px !important;
+    }
+    .company__status__type__green{
+        background-color:#FEF2E1;
+        color: #C1622A;
+        text-align: center;
+        border-radius: 25px;
+        padding: 8px;
+        font-family: Poppins !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        line-height: 16.94px !important;
+    }
+    .company__status__type__red{
+       
+        background-color:#D9EDF3;
+        color: #167594;
+        text-align: center;
+        border-radius: 25px;
+        padding: 8px;
+        font-family: Poppins !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        line-height: 16.94px !important;
+    }
+    .endorsement__payment__type{
+       
+        background-color:#F3F4F6;
+        color: #6C737F;
+        text-align: center;
+        border-radius: 25px;
+        padding: 8px;
+        font-family: Poppins !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        line-height: 16.94px !important;
+    }
+.company__status__type__blue{
+    background-color: #E2F6F0;
+    color: #11845F;
+   
+    text-align: center;
+    border-radius: 25px;
+    padding: 8px;
+    font-family: Poppins !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 16.94px !important;
+}
     .name__box__container {
         display: flex;
         gap: 10px;

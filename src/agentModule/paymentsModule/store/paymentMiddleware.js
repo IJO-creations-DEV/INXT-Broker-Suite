@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { POST_PAYMENT_DATA,GET_PAYMENTTABLE_DATA} from "../../../redux/actionTypes";
+import { POST_PAYMENT_DATA,GET_PAYMENTTABLE_DATA, GET_PAYMENT_SEARCH} from "../../../redux/actionTypes";
 
 
 
 
 export const getpaymenttableMiddleware = createAsyncThunk(
     GET_PAYMENTTABLE_DATA,
-    async (_a, { rejectWithValue }) => {
+    async (payload, { rejectWithValue }) => {
 
         try {
             // Simulate an API call if needed
@@ -37,6 +37,27 @@ export const postpaymentdataMiddleWare = createAsyncThunk(
       try {
         // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
         // return bodyTableData;
+      } catch (error) {
+        return rejectWithValue(error?.response.data.error.message);
+      }
+    }
+  );
+
+
+  export const getPaymentSearchDataMiddleWare = createAsyncThunk(
+    GET_PAYMENT_SEARCH,
+    async ({ field, value }, { rejectWithValue, getState }) => {
+      const { agentPaymentMainReducers } = getState();
+      const { paymenttabledata } = agentPaymentMainReducers;
+      console.log(paymenttabledata, field, value, "dta");
+      function filterReceiptsByField(receipts, field, value) {
+        const lowercasedValue = value.toLowerCase();
+        return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
+      }
+      try {
+        const filteredReceipts = filterReceiptsByField(paymenttabledata, field, value);
+
+        return filteredReceipts;
       } catch (error) {
         return rejectWithValue(error?.response.data.error.message);
       }

@@ -107,5 +107,29 @@ font-weight: 400;
         
         font-weight: 500 !important;
     }
+    .sorbyfilter__style{
+        // flex-direction: row-reverse;
+        // gap:10px;
+        height: 46px;
+        border-color: #d1d5db;
+        // width: 85%;
+        // margin-left: 8px;
+        font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    // padding: 10px;
+    font-weight: 500;
+        width:100%;
+        color: #6366F1;
+        margin: 0px !important;
+        border-radius: 10px;
+        border: 1px solid #ced4da;
+        &:focus {
+            outline: 0 none;
+            outline-offset: 0;
+            box-shadow: 0 0 0 0.1rem #E5E7EB;
+            border-color: #E5E7EB;
+          }
+    }
+    
     
 }

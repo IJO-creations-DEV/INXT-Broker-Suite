@@ -375,3 +375,4 @@ export const GET_LEADTABLE_DATA ="leadtabledata/GET_LEADTABLE_DATA";
 export const PATCH_LEADEDIT_DATA ="leadeditdata/PATCH_LEADEDIT_DATA";
 export const GET_PAYMENTTABLE_DATA = "paymenttabledata/GET_PAYMENTTABLE_DATA";
 export const POST_PAYMENT_DATA = "paymentcreatedata/POST_PAYMENT_DATA";
+export const GET_PAYMENT_SEARCH="paymentcreatedata/GET_PAYMENT_SEARCH";

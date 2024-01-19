@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavBar from "../../components/NavBar";
 import { TabPanel, TabView } from "primereact/tabview";
 import { InputText } from "primereact/inputtext";
@@ -21,8 +21,23 @@ import SvgCollected from "../../assets/agentIcon/SvgCollected";
 import SvgReceivable from "../../assets/agentIcon/SvgReceivable";
 import SvgCommission from "../../assets/agentIcon/SvgCommission";
 import SvgReceivables from "../../assets/agentIcon/SvgReceivables";
+import { useDispatch, useSelector } from "react-redux";
+import { getPaymentSearchDataMiddleWare } from "./store/paymentMiddleware";
+import SvgDropdownicon from "../../assets/icons/SvgDropdownicon";
+
 
 const Payments = () => {
+  const { paymenttabledata, paymentSearchList, loading } = useSelector(
+    ({ agentPaymentMainReducers }) => {
+      return {
+        loading: agentPaymentMainReducers?.loading,
+        paymenttabledata: agentPaymentMainReducers?.paymenttabledata,
+        paymentSearchList: agentPaymentMainReducers?.paymentSearchList
+      };
+    }
+  );
+  console.log(paymenttabledata, "paymenttabledata");
+  const [search, setSearch] = useState("")
   const menuRight = useRef(null);
   const navigate = useNavigate();
   const [endrosementModal, setEndrosementModal] = useState(false);
@@ -129,6 +144,25 @@ const Payments = () => {
       // </div>
     );
   };
+  const dispatch = useDispatch()
+  const [globalFilter, setGlobalFilter] = useState("Name");
+  const cities = [
+    { name: 'Name', code: 'Name' },
+    { name: 'ClientID', code: 'ClientID' },
+  ];
+
+  useEffect(() => {
+    console.log(globalFilter, "as")
+    if (globalFilter?.length > 0) {
+      if (search?.length > 0) {
+        dispatch(getPaymentSearchDataMiddleWare({
+          field: globalFilter,
+          value: search
+        }))
+
+      }
+    }
+  }, [search])
 
   const template2 = {
     layout: "RowsPerPageDropdown CurrentPageReport PrevPageLink  NextPageLink ",
@@ -204,19 +238,27 @@ const Payments = () => {
                 <div class="col-12 md:col-9 lg:col-9">
                   <span className="p-input-icon-left" style={{ width: "100%" }}>
                     <i className="pi pi-search" />
-                    {/* <SvgSearch/> */}
+                   
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                     />
                   </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
-                  <TableDropdownField label="Search By" />
+                  <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+                    optionValue="code"
+                    placeholder="Search by"
+                    className="sorbyfilter__style"
+                    dropdownIcon={<SvgDropdownicon />}
+                  />
                 </div>
+              
               </div>
               <div>
-                <PaymentCard status="PAID" />
+                <PaymentCard dataSearch={search} status="PAID" />
                 <div className="paginator__container">
                   <Paginator
                     first={0}
@@ -239,15 +281,22 @@ const Payments = () => {
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                     />
                   </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
-                  <TableDropdownField label="Search By" />
+                  <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+                    optionValue="code"
+                    placeholder="Search by"
+                    className="sorbyfilter__style"
+                    dropdownIcon={<SvgDropdownicon />}
+                  />
                 </div>
               </div>
               <div>
-                <PaymentCard status="PENDING" />
+                <PaymentCard dataSearch={search} status="PENDING" />
                 <div className="paginator__container">
                   <Paginator
                     first={0}
@@ -267,15 +316,25 @@ const Payments = () => {
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                     />
                   </span>
                 </div>
-                <div class="col-12 md:col-3 lg:col-3">
+                {/* <div class="col-12 md:col-3 lg:col-3">
                   <TableDropdownField label="Search By" />
+                </div> */}
+                <div class="col-12 md:col-3 lg:col-3">
+                  <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+                    optionValue="code"
+                    placeholder="Search by"
+                    className="sorbyfilter__style"
+                    dropdownIcon={<SvgDropdownicon />}
+                  />
                 </div>
               </div>
               <div>
-                <PaymentCard status="REVIEWING" />
+                <PaymentCard dataSearch={search} status="REVIEWING" />
                 <div className="paginator__container">
                   <Paginator
                     first={0}

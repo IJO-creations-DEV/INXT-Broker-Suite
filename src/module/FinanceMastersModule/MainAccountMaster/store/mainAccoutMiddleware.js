@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_MAIN_ACCOUNT_LIST, GET_MAIN_ACCOUNT_SEARCH_LIST, POST_MAIN_ACCOUNT_STATUS, GET_MAIN_ACCOUNT_DETAIL_VIEW, GET_ADD_MAIN_ACCOUNT, PATCH_MAIN_ACCOUNT_DETAIL_EDIT, GET_PATCH_MAIN_ACCOUNT_DETAIL_EDIT } from "../../../../redux/actionTypes";
+import { GET_MAIN_ACCOUNT_LIST, GET_MAIN_ACCOUNT_SEARCH_LIST, POST_MAIN_ACCOUNT_STATUS, GET_MAIN_ACCOUNT_DETAIL_VIEW, GET_ADD_MAIN_ACCOUNT, PATCH_MAIN_ACCOUNT_DETAIL_EDIT, GET_PATCH_MAIN_ACCOUNT_DETAIL_EDIT, GET_MAIN_ACCOUNT_VIEW } from "../../../../redux/actionTypes";
 
 
 export const getMainAccountList = createAsyncThunk(
@@ -43,9 +43,23 @@ export const getMainAccountSearchList = createAsyncThunk(
 export const postMainAccountStatus = createAsyncThunk(
     POST_MAIN_ACCOUNT_STATUS,
     async (payload, { rejectWithValue }) => {
+        const data = {
+          
+            id: payload?.id,
+            mainAccountCode: payload?.mainAccountCode,
+            mainAccountName: payload?.mainAccountName,
+            description: payload?.description,
+            accountCategoryCode: payload?.accountCategoryCode,
+            accountType: payload?.accountType,
+            companyCode: payload?.companyCode,
+            openEntry:payload?.openEntry,
+            currencyCode: payload?.currencyCode,
+            openEntryType: payload?.openEntryType
+        }
+        console.log(data,"datadata");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            return data;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }
@@ -83,13 +97,14 @@ export const patchMainAccountDetailEdit = createAsyncThunk(
         const data = {
             id: payload?.id,
             mainAccountCode: payload?.mainAccountCode,
-            mainaccountname: payload?.mainaccountname,
+            mainAccountName: payload?.mainAccountName,
             description: payload?.description,
-            accountcategorycode: payload?.accountcategorycode,
-            accounttype: payload?.accounttype,
+            accountCategoryCode: payload?.accountCategoryCode,
+            accountType: payload?.accountType,
             companyCode: payload?.companyCode,
+            openEntry:payload?.openEntry,
             currencyCode: payload?.currencyCode,
-            openentrytype: payload?.openentrytype
+            openEntryType: payload?.openEntryType
         }
         try {
             return data;
@@ -103,8 +118,9 @@ export const patchMainAccountDetailEdit = createAsyncThunk(
 
 
 export const getMainAccountDetailView = createAsyncThunk(
-    GET_MAIN_ACCOUNT_DETAIL_VIEW,
+    GET_MAIN_ACCOUNT_VIEW,
     async (payload, { rejectWithValue }) => {
+        console.log(payload,"payloadpayload");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;

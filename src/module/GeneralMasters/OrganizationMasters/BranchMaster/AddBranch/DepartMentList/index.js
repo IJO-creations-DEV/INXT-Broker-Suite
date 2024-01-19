@@ -12,17 +12,17 @@ import { Dialog } from 'primereact/dialog';
 import InputField from '../../../../../../components/InputField';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { getDepatmentView, postAddDepartment } from '../../store/branchMiddleware';
+import { getDepatmentEditData, getDepatmentView, postAddDepartment, postPatchDepatmentEdit } from '../../store/branchMiddleware';
 import SvgIconeye from '../../../../../../assets/icons/SvgIconeye';
 import SvgEditicons from '../../../../../../assets/icons/SvgEditicons';
 
 const DepartMentList = () => {
-  const { departmentList, loading, depatmentView } = useSelector(({ organizationBranchMainReducers }) => {
+  const { departmentList, loading, depatmentView,getDepartmentPatch } = useSelector(({ organizationBranchMainReducers }) => {
     return {
       loading: organizationBranchMainReducers?.loading,
       departmentList: organizationBranchMainReducers?.departmentList,
-      depatmentView: organizationBranchMainReducers?.depatmentView
-
+      depatmentView: organizationBranchMainReducers?.depatmentView,
+      getDepartmentPatch:organizationBranchMainReducers?.getDepartmentPatch
     };
   });
   console.log(departmentList, "departmentList");
@@ -67,6 +67,7 @@ const DepartMentList = () => {
     setVisibleView(true)
   }
   const handleEdit = (columnData) => {
+    dispatch(getDepatmentEditData(columnData))
     setVisibleEdit(true)
   }
   const headerStyle = {
@@ -83,10 +84,19 @@ const DepartMentList = () => {
     DepartmentName: "",
     Description: ""
   }
-  const handleSubmit = (values) => {
-    alert("hii")
+  const handleSubmit = (value) => {
+   if(formik.values){
     dispatch(postAddDepartment(formik.values))
     setVisible(false)
+   }
+   if(value){
+    alert("hiii")
+    dispatch(postPatchDepatmentEdit(value))
+    setVisible(false)
+   }
+   else{
+    alert("hii")
+   }
   }
   const customValidation = (values) => {
     const errors = {}
@@ -107,6 +117,30 @@ const DepartMentList = () => {
     validate: customValidation,
     onSubmit: handleSubmit,
   });
+
+  const [epartmentCodeDataOption,setDepartmentCodeDataOption]=useState([])
+
+  const setFormikValues = () => {
+    const DepartmentCodeData = getDepartmentPatch?.DepartmentCode;
+    const updatedValues = {
+      id: getDepartmentPatch.id,
+      DepartmentCode: DepartmentCodeData,
+      DepartmentName: getDepartmentPatch?.DepartmentName,
+      Description:getDepartmentPatch?.Description,
+      Status:getDepartmentPatch?.Status
+    };
+    console.log(updatedValues.id,"updatedValues");
+    // if(DepartmentCodeData){
+    //   setDepartmentCodeDataOption([{label:DepartmentCodeData,value:DepartmentCodeData}])
+    // }
+
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
+
+  useEffect(() => {
+    setFormikValues();
+  }, [getDepartmentPatch]);
+
 
 
 
@@ -260,7 +294,8 @@ const DepartMentList = () => {
                 classNames="field__container"
                 label="Department Code"
                 placeholder={"Enter"}
-                value={depatmentView.DepartmentCode}
+                value={formik.values.DepartmentCode}
+                onChange={formik.handleChange("DepartmentCode")}
               />
             </div>
           </div>
@@ -270,7 +305,8 @@ const DepartMentList = () => {
                 classNames="field__container"
                 label="Department Name"
                 placeholder={"Enter"}
-                value={depatmentView.DepartmentName}
+                value={formik.values.DepartmentName}
+                onChange={formik.handleChange("DepartmentName")}
               />
             </div>
           </div>
@@ -282,7 +318,8 @@ const DepartMentList = () => {
                 classNames="field__container"
                 label="Description"
                 placeholder={"Enter"}
-                value={depatmentView.Description}
+                value={formik.values.Description}
+                onChange={formik.handleChange("Description")}
               />
             </div>
           </div>

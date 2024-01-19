@@ -11,6 +11,7 @@ import {
 const initialState = {
   loading: false,
   error: "",
+  MainAccountDetailView:{},
   MainAccountList: [
     {
       id: "1",
@@ -18,7 +19,7 @@ const initialState = {
       mainAccountName: "mainAccountName",
       description: "description",
       accountType: "Credit",
-      openEntry: "123",
+      openEntry: "Yes",
       openEntryType: "credit",
       accountCategoryCode: "acc123",
       companyCode: "cc123",
@@ -30,50 +31,52 @@ const initialState = {
       mainAccountName: "anotherAccountName",
       description: "another description",
       accountType: "Debit",
-      openEntry: "456",
+      openEntry: "No",
       openEntryType: "debit",
       accountCategoryCode: "acc456",
       companyCode: "cc456",
       currencyCode: "cc223"
     },
-    {
-      id: "3",
-      mainAccountCode: "main789",
-      mainAccountName: "yetAnotherAccountName",
-      description: "yet another description",
-      accountType: "Credit",
-      openEntry: "789",
-      openEntryType: "credit",
-      accountCategoryCode: "acc789",
-      companyCode: "cc789",
-      currencyCode: "cc334"
-    },
-    {
-      id: "4",
-      mainAccountCode: "main101",
-      mainAccountName: "accountName4",
-      description: "description4",
-      accountType: "Debit",
-      openEntry: "101",
-      openEntryType: "debit",
-      accountCategoryCode: "acc101",
-      companyCode: "cc101",
-      currencyCode: "cc445"
-    },
-    {
-      id: "5",
-      mainAccountCode: "main202",
-      mainAccountName: "accountName5",
-      description: "description5",
-      accountType: "Credit",
-      openEntry: "202",
-      openEntryType: "credit",
-      accountCategoryCode: "acc202",
-      companyCode: "cc202",
-      currencyCode: "cc556"
-    }]
+    // {
+    //   id: "3",
+    //   mainAccountCode: "main789",
+    //   mainAccountName: "yetAnotherAccountName",
+    //   description: "yet another description",
+    //   accountType: "Credit",
+    //   openEntry: "789",
+    //   openEntryType: "credit",
+    //   accountCategoryCode: "acc789",
+    //   companyCode: "cc789",
+    //   currencyCode: "cc334"
+    // },
+    // {
+    //   id: "4",
+    //   mainAccountCode: "main101",
+    //   mainAccountName: "accountName4",
+    //   description: "description4",
+    //   accountType: "Debit",
+    //   openEntry: "101",
+    //   openEntryType: "debit",
+    //   accountCategoryCode: "acc101",
+    //   companyCode: "cc101",
+    //   currencyCode: "cc445"
+    // },
+    // {
+    //   id: "5",
+    //   mainAccountCode: "main202",
+    //   mainAccountName: "accountName5",
+    //   description: "description5",
+    //   accountType: "Credit",
+    //   openEntry: "202",
+    //   openEntryType: "credit",
+    //   accountCategoryCode: "acc202",
+    //   companyCode: "cc202",
+    //   currencyCode: "cc556"
+    // }
+  ]
 
-  }
+}
+let nextId=3
 const mainAccountMasterReducer = createSlice({
   name: "mainAccountMaster",
   initialState,
@@ -132,18 +135,16 @@ const mainAccountMasterReducer = createSlice({
     });
     builder.addCase(
       postMainAccountStatus.fulfilled, (state, action) => {
-        state.loading = false;
-        // const newItem2 = { ...action.payload, id: nextId++ };
-        // state.MainAccountList = [...state.MainAccountList, newItem2];
-        console.log(state.MainAccountList, "kkk")
+          state.loading = false;
+          const newItem = { ...action.payload, id: nextId++ };
+          state.MainAccountList = [...state.MainAccountList, newItem];
+          console.log(state.MainAccountList, "newItem")
       }
-    );
+  );
     builder.addCase(
       postMainAccountStatus.rejected,
       (state, action) => {
         state.loading = false;
-
-        state.MainAccountStatus = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
@@ -230,23 +231,25 @@ const mainAccountMasterReducer = createSlice({
     builder.addCase(getMainAccountDetailView.pending, (state) => {
       state.loading = true;
     });
+    
     builder.addCase(
       getMainAccountDetailView.fulfilled,
       (state, action) => {
         state.loading = false;
         state.MainAccountDetailView = action.payload;
+        console.log(state.MainAccountDetailView, "state.MainAccountDetailView");
       }
     );
+    
     builder.addCase(
       getMainAccountDetailView.rejected,
       (state, action) => {
         state.loading = false;
-
         state.MainAccountDetailView = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
-  },
+  }
 });
 
 export default mainAccountMasterReducer.reducer;

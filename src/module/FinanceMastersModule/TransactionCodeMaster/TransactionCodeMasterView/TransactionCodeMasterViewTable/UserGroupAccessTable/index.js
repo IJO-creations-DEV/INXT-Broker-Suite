@@ -11,9 +11,11 @@ import { Dialog } from "primereact/dialog";
 import InputField from "../../../../../../components/InputField";
 import DropDowns from "../../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
-import { postAddTransactionCodeSetup, postAddUserGroupAccess } from "../../../store/transactionCodeMasterMiddleware";
+import { getUserEditData, postAddTransactionCodeSetup, postAddUserGroupAccess } from "../../../store/transactionCodeMasterMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
+import SvgEditIcon from "../../../../../../assets/icons/SvgEditIcon";
+import UserGroupAccessEditPopup from "../../../TransactionCodeMasterEdit/TransactionCodeMasterEditTableview/UserGroupAccessEdit/UserGroupAccessEditPopup";
 
 const UserGroupAccess = () => {
   const { TransactioncodeListsearch, UserGroupAccessList, loading } = useSelector(({ transactionCodeMasterReducer }) => {
@@ -86,6 +88,12 @@ const UserGroupAccess = () => {
     console.log("View clicked:", rowData);
     // navigate("/accounts/pettycash/PettyCashCodeDetails")
   };
+  const [showEdit, setShowEdit] = useState([])
+  const handleEdit = (columnData) => {
+    setShowEdit(true)
+    dispatch(getUserEditData(columnData))
+    console.log(columnData, "columnData");
+  }
   const headerStyle = {
     fontSize: 16,
     fontFamily: 'Inter, sans-serif',
@@ -192,14 +200,24 @@ const UserGroupAccess = () => {
           ></Column>
           <Column
             field="Edit"
+            body={(columnData) => (
+              <div onClick={() => handleEdit(columnData)} style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
+
+
+                <SvgEditIcon />
+              </div>
+            )}
             header="Edit"
             headerStyle={headerStyle}
             className="fieldvalue_container"
           ></Column>
         </DataTable>
       </div>
+      <div className="col-12">
+        <UserGroupAccessEditPopup showEdit={showEdit} setShowEdit={setShowEdit} />
+      </div>
       <Dialog
-        header="Add User Group Accesswww"
+        header="Add User Group Access"
         visible={show}
         style={{ width: "50vw" }}
         onHide={() => setShow(false)}
@@ -247,14 +265,14 @@ style={{width:"100%"}}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             /> */}
 
-            {formik.touched.UserRole && formik.errors.UserRole && (
+            {/* {formik.touched.UserRole && formik.errors.UserRole && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
               >
                 {formik.errors.UserRole}
               </div>
-            )}
+            )} */}
             {/* <InputField
               classNames="input__filed"
               label="Minimum Transaction"

@@ -18,7 +18,7 @@ const TaxationDetails = () => {
 
     };
   });
-  console.log(taxationView, "taxationView");
+  console.log(taxationView.effectiveFrom, "taxationView");
   const navigate = useNavigate()
   const items = [
     { label: "Taxation Master", url: "/master/finance/taxation" },
@@ -110,7 +110,7 @@ const TaxationDetails = () => {
             <LabelWrapper className="calenderlable__container">Effective Form</LabelWrapper>
             <Calendar
               showIcon
-              value={new Date(taxationView.effectiveForm)}
+              value={new Date(taxationView.effectiveFrom)}
               label="Effective From"
               classNames="dropdown__add__sub"
               className="label__sub__add"

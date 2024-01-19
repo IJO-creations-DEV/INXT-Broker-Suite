@@ -10,6 +10,9 @@ import {
   GET_DEPARTMENT_LUST_DETAILS,
   POST_ADD_DEPARTMENT,
   GET_DEPARTMENT_VIEW,
+  GET_PATCH_BRANCH_EDIT,
+  POST_PATCH_DEPARTMENT_EDIT,
+  GET_PATCH_DEPARTMENT_EDIT,
 } from "../../../../../redux/actionTypes";
 
 export const getBranchListMiddleware = createAsyncThunk(
@@ -97,9 +100,25 @@ export const getDepatmentView = createAsyncThunk(
 export const patchBranchEditMiddleware = createAsyncThunk(
   PATCH_BRANCH_EDIT,
   async (payload, { rejectWithValue }) => {
+    const data = {
+      id: payload?.id,
+      BranchCode: payload?.BranchCode,
+      BranchName: payload?.BranchName,
+      CompanyName: payload?.CompanyName,
+      EmailID: payload?.EmailID,
+      Description: payload?.Description,
+      AddressLine1: payload?.AddressLine1,
+      AddressLine2: payload?.AddressLine2,
+      AddressLine3: payload?.AddressLine3,
+      City: payload?.City,
+      State: payload?.State,
+      Country: payload?.Country,
+      PhoneNumber: payload?.PhoneNumber,
+      Fax: payload?.Fax,
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -129,5 +148,50 @@ export const getSearchBranchMiddleware = createAsyncThunk(
       return rejectWithValue(error?.response?.data?.error?.message);
     }
   },
+);
+
+export const getPatchBranchData = createAsyncThunk(
+  GET_PATCH_BRANCH_EDIT,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const postPatchDepatmentEdit = createAsyncThunk(
+  POST_PATCH_DEPARTMENT_EDIT,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload.id,"payloadpayload");
+    const data={
+      id: payload.id,
+      DepartmentCode: payload?.DepartmentCode,
+      DepartmentName: payload?.DepartmentName,
+      Description:payload?.Description,
+      Status:'Credit'
+    }
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+
+export const getDepatmentEditData = createAsyncThunk(
+  GET_PATCH_DEPARTMENT_EDIT,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
 );
 

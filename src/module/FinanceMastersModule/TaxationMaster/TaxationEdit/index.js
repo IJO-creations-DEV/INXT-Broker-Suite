@@ -79,7 +79,7 @@ const AddTaxation = () => {
       id: getTaxationEdit.id,
       taxCode: getTaxationEdit?.taxCode,
       taxName: getTaxationEdit?.taxName,
-      remarks:getTaxationEdit?.remarks,
+      remarks: getTaxationEdit?.remarks,
       taxRate: taxRatee,
       basis: getTaxationEdit?.basis,
       taxationDescription: getTaxationEdit?.taxationDescription,
@@ -221,12 +221,12 @@ const AddTaxation = () => {
                 showIcon
                 value={formik.values.effectiveFrom}
                 minDate={minDate}
-
                 onChange={(e) => {
-                  formik.setFieldValue("effectiveFrom", e.target.value);
+                  formik.setFieldValue("effectiveFrom", e.value);
                 }}
                 dateFormat="yy-mm-dd"
               />
+
             </div>
           </div>
           <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
@@ -240,7 +240,6 @@ const AddTaxation = () => {
                 showIcon
                 value={formik.values.effectiveTo}
                 minDate={minDate}
-
                 onChange={(e) => {
                   formik.setFieldValue("effectiveTo", e.target.value);
                 }}

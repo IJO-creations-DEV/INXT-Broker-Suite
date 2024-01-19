@@ -186,7 +186,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import { getRequest } from "../../../utility/commonServices";
 // import { APIROUTES } from "../../../routes/apiRoutes";
-import { ADD_LEVEL_PATCH_COMMISSION_EDIT_POPUP, GET_COMMISSION, GET_COMMISSION_BY_ID, GET_COMMISSION_SEARCH_LIST, GET_COMMISSION_SHARING, GET_COMMISSION_VIEW, GET_PATCH_COMMISSION_EDIT, GET_PATCH_COMMISSION_EDIT_POPUP, PATCH_COMMISSION_EDIT, POST_ADD_SHARINGRATE_COMMISSION, POST_COMMISSION } from "../../../../redux/actionTypes";
+import { ADD_LEVEL_PATCH_COMMISSION_EDIT_POPUP, GET_COMMISSION, GET_COMMISSION_BY_ID, GET_COMMISSION_POPUP_VIEW, GET_COMMISSION_SEARCH_LIST, GET_COMMISSION_SHARING, GET_COMMISSION_VIEW, GET_PATCH_COMMISSION_EDIT, GET_PATCH_COMMISSION_EDIT_POPUP, PATCH_COMMISSION_EDIT, POST_ADD_SHARINGRATE_COMMISSION, POST_COMMISSION } from "../../../../redux/actionTypes";
 
 
 
@@ -417,6 +417,20 @@ export const addLevelPatchEditPopup = createAsyncThunk(
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return data;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+)
+
+
+export const getCommissionPopupView = createAsyncThunk(
+    GET_COMMISSION_POPUP_VIEW,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "columnData");
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

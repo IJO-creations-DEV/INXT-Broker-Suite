@@ -46,9 +46,6 @@ export const postAddPettyCash = createAsyncThunk(
         }
     },)
 
-
-
-
 export const getPettyCashSearchList = createAsyncThunk(
     GET_PETTY_CASH_SEARCH_LIST,
     async (payload, { rejectWithValue,getState }) => {
@@ -56,20 +53,20 @@ export const getPettyCashSearchList = createAsyncThunk(
         console.log(textSearch, "textSearch")
         const { pettyCashMainReducers } = getState();
 
-        const { pettyCashSearchList } = pettyCashMainReducers;
-        console.log(pettyCashSearchList, "1234")
+        const { pettyCashList } = pettyCashMainReducers;
+        console.log(pettyCashMainReducers, "pettyCashMainReducers")
         try {
-            const searchResults = pettyCashSearchList.filter(item => {
-                return item.pettycashcode.toLowerCase().includes(textSearch.toLowerCase());
+            const searchResults = pettyCashList.filter(item => {
+                return item.pettycashname.toLowerCase().includes(textSearch.toLowerCase());
             });
             console.log(searchResults, "searchResults")
             return searchResults;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }
-    },
-);
+    },)
 
+    
 export const getPettyCashView = createAsyncThunk(
     GET_PETTY_CASH_VIEW,
 

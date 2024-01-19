@@ -21,7 +21,8 @@ const UploadEndorsement = () => {
   const handleCompleteAction = () => {
     toastRef.current.showToast();
     setTimeout(() => {
-      navigate("/agent/viewendorsement");
+      // navigate("/agent/viewendorsement");
+      navigate(`/agent/endorsementdetailedview/${123}`);
     }, 2000);
   };
 

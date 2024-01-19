@@ -199,6 +199,7 @@ import ClaimRejected from "../agentModule/claimsModule/claimRejected";
 import ClaimDocumentUpload from "../agentModule/claimsModule/claimDocumentUpload";
 import LeadEdit from "../agentModule/leadModule/leadEdit";
 import ViewEndorsement from "../agentModule/endorsementModule/viewUploadEndorsement";
+import EndorsementRejected from "../agentModule/endorsementModule/EndorsementRejected";
 
 const Maincomponent = () => {
   return (
@@ -1111,6 +1112,11 @@ const Maincomponent = () => {
                 path="/agent/endorsement/paymenterror/:id"
                 element={<PaymentErrorEndorsment />}
               />
+               <Route
+                path="/agent/endorsement/rejected/:id"
+                element={<EndorsementRejected />}
+              />
+              
               {/* // Payments */}
               <Route path="/agent/payments" element={<Payments />} />
               <Route

@@ -38,7 +38,7 @@ const LeadListingAllTable = () => {
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
       Date: "01 JAN 2024",
-      Status: "Processing",
+      Status: "Completed",
       payment: "Pending",
       Actions: <SvgArrow />,
     },
@@ -66,7 +66,7 @@ const LeadListingAllTable = () => {
       EndorsementID: "7000.00",
       Date: "01 JAN 2024",
       Status: "Rejected",
-      payment: "Pending",
+      payment: "N/A",
       Actions: <SvgArrow />,
     },
     {
@@ -84,7 +84,7 @@ const LeadListingAllTable = () => {
       EndorsementID: "7000.00",
       Date: "01 JAN 2024",
       Status: "Rejected",
-      payment: "Pending",
+      payment: "N/A",
       Actions: <SvgArrow />,
     },
     {
@@ -111,7 +111,7 @@ const LeadListingAllTable = () => {
       EndorsementID: "7000.00",
       Date: "01 JAN 2024",
       Status: "Processing",
-      payment: "Pending",
+      payment: "N/A",
       Actions: <SvgArrow />,
     },
   ];
@@ -156,7 +156,7 @@ const LeadListingAllTable = () => {
           <Button
             icon={<SvgArrow />}
             className="view__btn"
-            // onClick={() => handleView(rowData)}
+            onClick={() => handleView(rowData)}
           />
         </div>
       </div>
@@ -209,18 +209,36 @@ const LeadListingAllTable = () => {
             : rowData.payment === "Reviewing"
             ? "company__status__type__red"
             : "endorsement__payment__type"
-           
         }
       >
         {rowData.payment}
-        
       </div>
     );
   };
 
-  // const handleView = () => {
-  //     navigate("/agent/leadedit")
-  // }
+  const handleView = (rowData) => {
+    console.log(rowData, "find rowData");
+    if (rowData?.Status === "Rejected") {
+      navigate(`/agent/endorsement/rejected/${123}`);
+    } else if (rowData?.Status === "Processing") {
+      navigate(`/agent/endorsement/paymenterror/${123}`);
+    } else if (
+      rowData?.Status === "Completed" &&
+      rowData?.payment === "Completed"
+    ) {
+      navigate(`/agent/endorsementdetailedview/${123}`);
+    } else if (
+      rowData?.Status === "Completed" &&
+      rowData?.payment === "Reviewing"
+    ) {
+      navigate(`/agent/policy/paymentapproval`);
+    } else if (
+      rowData?.Status === "Completed" &&
+      rowData?.payment === "Pending"
+    ) {
+      navigate(`/agent/viewendorsement`);
+    }
+  };
 
   const ViewheaderStyle = {
     textalign: "center",

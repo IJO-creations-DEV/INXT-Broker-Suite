@@ -1,10 +1,66 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getpaymenttableMiddleware,postpaymentdataMiddleWare} from "./paymentMiddleware";
+import { getPaymentSearchDataMiddleWare, getpaymenttableMiddleware,postpaymentdataMiddleWare} from "./paymentMiddleware";
 
 const initialState = {
     loading: false,
     error: "",
-    paymenttabledata:[],
+    paymenttabledata:[
+      {
+        id: 1,
+        grosspremium: "3456",
+        clintid:"123456",
+        date:"13/12/12",
+        name:"sindhu",
+        subtitle:"policy no : 12345",
+        status:"PAID"
+      },
+      {
+        id: 2,
+        grosspremiu: "3456",
+        clintid:"123456",
+        date:"13/12/12",
+        name:"ayesha",
+        subtitle:"policy no : 12345",
+        status:"PAID"
+      },
+      {
+        id: 1,
+        grosspremium: "3456",
+        clintid:"123456",
+        date:"13/12/12",
+        name:"youraj",
+        subtitle:"policy no : 12345",
+        status:"PENDING"
+      },
+      {
+        id: 2,
+        grosspremiu: "3456",
+        clintid:"123456",
+        date:"13/12/12",
+        name:"pandiyan",
+        subtitle:"policy no : 12345",
+        status:"PENDING"
+      },
+      {
+        id: 1,
+        grosspremium: "3456",
+        clintid:"123456",
+        date:"13/12/12",
+        name:"manoj",
+        subtitle:"policy no : 12345",
+        status:"REVIEWING"
+      },
+      {
+        id: 2,
+        grosspremiu: "3456",
+        clintid:"123456",
+        date:"13/12/12",
+        name:"sudarshan",
+        subtitle:"policy no : 12345",
+        status:"REVIEWING"
+      },
+    ],
+    paymentSearchList:[],
     postpaymentdata:{}
 };
 
@@ -55,6 +111,20 @@ const paymentReducer = createSlice({
           state.error = typeof action.payload === "string" ? action.payload : "";
         }
       );
+
+      builder.addCase(getPaymentSearchDataMiddleWare.pending, (state) => {
+        state.loading = true;
+      });
+      builder.addCase(getPaymentSearchDataMiddleWare.fulfilled, (state, action) => {
+        state.loading = false;
+        state.paymentSearchList = action.payload;
+      });
+      builder.addCase(getPaymentSearchDataMiddleWare.rejected, (state, action) => {
+        state.loading = false;
+  
+        state.paymentSearchList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      });
       
     },
 });

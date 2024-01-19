@@ -4,10 +4,35 @@ import SvgArrow from "../../assets/agentIcon/SvgArrow";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 import Carddata from "./mock";
+import { useSelector } from "react-redux";
 
-const PaymentCard = ({ status }) => {
+const PaymentCard = ({ dataSearch, status }) => {
+  console.log(dataSearch, "dataSearch");
+
+  const { paymenttabledata, paymentSearchList, loading } = useSelector(
+    ({ agentPaymentMainReducers }) => {
+      return {
+        loading: agentPaymentMainReducers?.loading,
+        paymenttabledata: agentPaymentMainReducers?.paymenttabledata,
+        paymentSearchList: agentPaymentMainReducers?.paymentSearchList
+      };
+    }
+  );
+  console.log(paymenttabledata, "paymenttabledata");
   const navigate = useNavigate();
-  const filteredData = Carddata.filter((card) => card.status === status);
+  // const filteredData = data.filter((val) => val.status === status);
+
+  const filteredData =
+    paymenttabledata &&
+    paymenttabledata
+      .filter((val) => val.status === status)
+      .filter((val) => {
+        return (
+          val.name.toLowerCase().includes(dataSearch.toLowerCase()) ||
+          val.clintid.toLowerCase().includes(dataSearch.toLowerCase())
+        );
+      });
+
   const handleAction = (status) => {
     if (status === "PAID") {
       navigate(`/agent/policydetailedviewonly`);

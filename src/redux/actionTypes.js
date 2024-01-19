@@ -378,4 +378,6 @@ export const POST_PAYMENT_DATA = "paymentcreatedata/POST_PAYMENT_DATA";
 export const GET_PAYMENT_SEARCH="paymentcreatedata/GET_PAYMENT_SEARCH";
 export const POST_INFORMATION_DATA="customerdata/POST_INFORMATION_DATA";
 export const POST_UPLOADPOLICY_DATA = "uploadpolicy/POST_UPLOADPOLICY_DATA";
-export const PATCH_INFORMATION_DATA="patchinformation/PATCH_INFORMATION_DATA"
+export const PATCH_INFORMATION_DATA="patchinformation/PATCH_INFORMATION_DATA";
+
+export const GET_ENDROSEMENT_VIEW_DATA="endrosementView/GET_ENDROSEMENT_VIEW_DATA"

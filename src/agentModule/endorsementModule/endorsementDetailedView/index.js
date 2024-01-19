@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Card } from "primereact/card";
@@ -6,16 +6,28 @@ import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 import InputTextField from "../../component/inputText";
 import SvgBlueArrow from "../../../assets/agentIcon/SvgBlueArrow";
+import { useSelector } from "react-redux";
 
 const EndorsementDetailedView = () => {
+  const {endrosementViewData,  loading } = useSelector(
+    ({ endrosementViewMainReducers }) => {
+      return {
+        loading: endrosementViewMainReducers?.loading,
+        endrosementViewData: endrosementViewMainReducers?.endrosementViewData,
+       
+      };
+    }
+  );
+  console.log(endrosementViewData.policyNumber, "endrosementViewData");
   const navigate = useNavigate();
 
   const handleCommonAction = () => {
     navigate(`/agent/clientview/${123}`);
   };
 
+ 
   return (
-    <div className="detailed__endorsement__container">
+    <div className="detailed__endorsement__container m-0">
       <div className="detailed__endorsement__container__title">Clients</div>
       <div className="grid mt-3">
         <div
@@ -37,42 +49,42 @@ const EndorsementDetailedView = () => {
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Policy Number"
-                value="123456"
+                value={endrosementViewData.policyNumber}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Endorsement Number"
-                value="123456"
+                value={endrosementViewData.endrosementNumber}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Production"
-                value="12/12/2023"
+                value={endrosementViewData.production}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Inception"
-                value="12/12/2023"
+                value={endrosementViewData.inception}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Issued Date"
-                value="12/12/2023"
+                value={endrosementViewData.issuedDate}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Expiry"
-                value="12/12/2023"
+                value={endrosementViewData.expiry}
                 disabled={true}
               />
             </div>

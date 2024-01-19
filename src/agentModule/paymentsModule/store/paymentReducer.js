@@ -7,8 +7,8 @@ const initialState = {
     paymenttabledata:[
       {
         id: 1,
-        grosspremium: "3456",
-        clintid:"123456",
+        grosspremium: "355",
+        clintid:"123",
         date:"13/12/12",
         name:"sindhu",
         subtitle:"policy no : 12345",
@@ -16,8 +16,8 @@ const initialState = {
       },
       {
         id: 2,
-        grosspremium: "3456",
-        clintid:"123456",
+        grosspremium: "655",
+        clintid:"456",
         date:"13/12/12",
         name:"ayesha",
         subtitle:"policy no : 12345",
@@ -25,8 +25,8 @@ const initialState = {
       },
       {
         id: 1,
-        grosspremium: "3456",
-        clintid:"123456",
+        grosspremium: "677",
+        clintid:"789",
         date:"13/12/12",
         name:"youraj",
         subtitle:"policy no : 12345",
@@ -34,8 +34,8 @@ const initialState = {
       },
       {
         id: 2,
-        grosspremium: "3456",
-        clintid:"123456",
+        grosspremium: "788",
+        clintid:"912",
         date:"13/12/12",
         name:"pandiyan",
         subtitle:"policy no : 12345",
@@ -43,20 +43,20 @@ const initialState = {
       },
       {
         id: 1,
-        grosspremium: "3456",
-        clintid:"123456",
+        grosspremium: "888",
+        clintid:"812",
         date:"13/12/12",
         name:"manoj",
-        subtitle:"policy no : 12345",
+        subtitle:"policy no : 888",
         status:"REVIEWING"
       },
       {
         id: 2,
-        grosspremium: "3456",
-        clintid:"123456",
+        grosspremium: "988",
+        clintid:"765",
         date:"13/12/12",
         name:"sudarshan",
-        subtitle:"policy no : 12345",
+        subtitle:"policy no : 988",
         status:"REVIEWING"
       },
     ],

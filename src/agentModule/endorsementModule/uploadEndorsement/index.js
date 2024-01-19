@@ -11,14 +11,17 @@ import CustomToast from "../../../components/Toast";
 import InputTextField from "../../component/inputText";
 import DatepickerField from "../../component/datePicker";
 import SvgBlueArrow from "../../../assets/agentIcon/SvgBlueArrow";
+import { useDispatch } from "react-redux";
+import { getEndrosementViewData } from "../endorsementDetailedView/store/endrosementViewMiddleWare";
 
 const UploadEndorsement = () => {
   const [imageURL, setimageURL] = useState();
   const toastRef = useRef(null);
   const navigate = useNavigate();
   const fileUploadRef = useRef(null);
-
+const dispatch=useDispatch()
   const handleCompleteAction = () => {
+    dispatch(getEndrosementViewData(123))
     toastRef.current.showToast();
     setTimeout(() => {
       // navigate("/agent/viewendorsement");

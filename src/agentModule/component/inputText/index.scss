@@ -55,14 +55,14 @@
       font-weight: 500;
       font-family: Poppins;
       line-height: 24px;
-      color: #11845F;
+      color: #6366F1;
       border-radius: 10px;
-      border: 1px solid #11845F !important;
+      border: 1px solid #6366F1 !important;
       &:focus {
         outline: 0 none;
         outline-offset: 0;
         box-shadow: 0 0 0 0.1rem #E5E7EB;
-        border-color: #11845F;
+        border-color: #6366F1;
       }
     }
   
@@ -70,7 +70,7 @@
       position: absolute;
       top: 25px;
       left: 10px;
-      color: #11845F;
+      color: #6366F1;
       pointer-events: none;
       transition: 0.2s ease all;
       font-size: 14px;
@@ -81,7 +81,7 @@
       &.focused {
         top: 4px;
         left: 10px;
-        color: #11845F;
+        color: #6366F1;
         font-size: 14px;
         font-weight: 400;
         font-family: Poppins;

@@ -202,7 +202,7 @@ const PolicyDetailsCard = () => {
             </div>
           </div>
           <div className="policy__details__card__btn__container">
-            <div className="next__btn__container mt-2 mr-1">
+            <div className="next__btn__container">
               <Button
                 className="next__btn"
                 onClick={() => {

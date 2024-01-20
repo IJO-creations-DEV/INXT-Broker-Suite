@@ -53,7 +53,7 @@ const Accessories = () => {
       <form>
         <Card className="mt-4">
           <div className="table__header">Create Quote</div>
-          <div className="sub__heading mt-2">Accessories</div>
+          <div className="sub__heading mt-2 mb-2">Accessories</div>
           <div class="grid mt-2">
             <div class="col-6">
               <InputTextField
@@ -118,6 +118,7 @@ const Accessories = () => {
               />
             </div>
           </div>
+          <div class="grid mt-2">
           <div className="back__button__container col-12 md:col-12 lg:col-12">
             <div className="back__text__container">
               <Button
@@ -135,6 +136,7 @@ const Accessories = () => {
                 className="next__btn"
               />
             </div>
+          </div>
           </div>
         </Card>
       </form>

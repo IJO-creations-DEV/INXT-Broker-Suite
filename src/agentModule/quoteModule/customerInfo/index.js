@@ -336,7 +336,7 @@ useEffect(() => {
                error={formik.touched.TNVS && formik.errors.TNVS}
             />
           </div>
-          <div className="col-12">
+          <div className="col-12 mt-2">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
                 <Button className="back__btn" onClick={handleBackNavigation}>

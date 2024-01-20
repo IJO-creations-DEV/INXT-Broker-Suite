@@ -381,9 +381,7 @@ export const POST_UPLOADPOLICY_DATA = "uploadpolicy/POST_UPLOADPOLICY_DATA";
 export const PATCH_INFORMATION_DATA="patchinformation/PATCH_INFORMATION_DATA";
 
 export const GET_ENDROSEMENT_VIEW_DATA="endrosementView/GET_ENDROSEMENT_VIEW_DATA"
-<<<<<<< Updated upstream
  export const  POST_SETTLEMENT_CLAIM_DATA ="claimsettlement/ POST_SETTLEMENT_CLAIM_DATA"
-=======
 export const GET_CLAIM_DETAILS_VIEW_DATA="claimdetails/GET_CLAIM_DETAILS_VIEW_DATA"
 export const POST_CLAIM_DETAILS_DATA="claimdetails/POST_CLAIM_DETAILS_DATA"
 
@@ -391,4 +389,5 @@ export const POST_SENT_MAIL_DATA="sendmail/POST_SENT_MAIL_DATA"
 export const POST_ADJUSTER_SUBMISSION_DATA="adjustersubmission/POST_ADJUSTER_SUBMISSION_DATA"
 export const GET_CLAIM_DATA="claimtabeldaya/GET_CLAIM_DATA"
 export const GET_CLAIM_DATA_SEARCH_LIST="claimtabeldaya/GET_CLAIM_DATA_SEARCH_LIST"
->>>>>>> Stashed changes
+export const GET_CLAIM_SETTLE_DATA="claimsettlement/GET_CLAIM_SETTLE_DATA"
+export const GET_CLAIM_DOCUMENT_UPLOAD_DATA="claimdocumentupload/GET_CLAIM_DOCUMENT_UPLOAD_DATA"

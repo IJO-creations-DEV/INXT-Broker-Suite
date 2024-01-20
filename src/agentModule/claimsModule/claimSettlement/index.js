@@ -8,8 +8,19 @@ import DatepickerField from "../../component/datePicker";
 import SvgBlueArrow from "../../../assets/agentIcon/SvgBlueArrow";
 import "./index.scss";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const ClaimSettlement = () => {
+  const { claimSettleViewData, loading } = useSelector(
+    ({ claimSettleMainReducers }) => {
+        return {
+            loading: claimSettleMainReducers?.loading,
+            claimSettleViewData: claimSettleMainReducers?.claimSettleViewData,
+
+        };
+    }
+);
+console.log(claimSettleViewData, "endrosementViewData");
   const navigate = useNavigate();
   const handleNavigation = () => {
     navigate(`/agent/clientview/${123}`);
@@ -33,18 +44,18 @@ const ClaimSettlement = () => {
         <div className="claim__title">Claim Settlement</div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Policy Number" value="policy001" />
+            <InputTextField value={claimSettleViewData?.policyNumber} label="Policy Number" />
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Claim Number" value="121221" />
+            <InputTextField value={claimSettleViewData?.claimNumber} label="Claim Number" />
           </div>
         </div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Date Reported" value="01/01/2024" />
+            <InputTextField value={claimSettleViewData?.dateReported} label="Date Reported" />
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Date of Loss" value="01/01/2024" />
+            <InputTextField value={claimSettleViewData?.dateOfLoss} label="Date of Loss" />
           </div>
         </div>
         <div className="claim__doc__title">Documents</div>

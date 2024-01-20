@@ -384,11 +384,8 @@ export const GET_ENDROSEMENT_VIEW_DATA="endrosementView/GET_ENDROSEMENT_VIEW_DAT
 
  export const  POST_SETTLEMENT_CLAIM_DATA ="claimsettlement/ POST_SETTLEMENT_CLAIM_DATA"
 
-<<<<<<< Updated upstream
-=======
 //  export const  POST_SETTLEMENT_CLAIM_DATA ="claimsettlement/ POST_SETTLEMENT_CLAIM_DATA"
 
->>>>>>> Stashed changes
 export const GET_CLAIM_DETAILS_VIEW_DATA="claimdetails/GET_CLAIM_DETAILS_VIEW_DATA"
 export const POST_CLAIM_DETAILS_DATA="claimdetails/POST_CLAIM_DETAILS_DATA"
 

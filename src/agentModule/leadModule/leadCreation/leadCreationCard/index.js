@@ -26,6 +26,8 @@ const initialValue = {
   City: "",
   ZIPCode: "",
   DateofBirth: "",
+  category:"Individual",
+  gender:"Male"
 };
 
 const LeadCreationCard = () => {
@@ -70,8 +72,10 @@ const LeadCreationCard = () => {
               inputId="individual"
               name="category"
               value="Individual"
-              onChange={() => formik.setFieldValue("category", "Individual")}
+              onChange={() => {formik.setFieldValue("category", "Individual")
+            setShow(false)}}
               checked={formik.values.category === "Individual"}
+              
             />
             <label htmlFor="ingredient1" className="labeltxt_container">
               Individual
@@ -82,7 +86,8 @@ const LeadCreationCard = () => {
               inputId="company"
               name="category"
               value="Company"
-              onChange={() => formik.setFieldValue("category", "Company")}
+              onChange={() =>{ formik.setFieldValue("category", "Company");
+            setShow(true)}}
               checked={formik.values.category === "Company"}
             />
             <label htmlFor="ingredient2" className="labeltxt_container">

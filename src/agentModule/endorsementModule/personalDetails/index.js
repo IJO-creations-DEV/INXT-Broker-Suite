@@ -61,7 +61,7 @@ const PersonalDetails = () => {
                     handleclick();
                   }}
                 >
-                  Send
+                  Send to insurance Company
                 </Button>
               </div>
             </div>

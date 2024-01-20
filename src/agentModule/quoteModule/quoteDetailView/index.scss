@@ -1,4 +1,15 @@
 .overall__quotedetails__view__container {
+  .p-card {
+    background: #ffffff;
+    color: #111927;
+    box-shadow: none !important;
+    border-radius: 20px !important;
+    background-color: #fff !important;
+    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
+    .p-card-body {
+      padding: 0;
+    }
+  }
   .header_title {
     color: #111927;
     font-family: Poppins;
@@ -10,7 +21,8 @@
     font-family: Poppins;
     font-size: 34px;
     font-weight: 600;
-    padding: 1.5rem;
+    // padding: 1.5rem;
+    padding: 1.5rem 1.5rem 0 1.5rem;
   }
   .quote_details {
     color: #111927;
@@ -60,7 +72,7 @@
     font-family: Poppins;
     font-size: 18px;
     font-weight: 500;
-    margin: 10px 0;
+    padding-bottom: 24px;
   }
   .gross_count {
     color: #6366f1;
@@ -69,9 +81,7 @@
     font-weight: 500;
     margin: 10px 0;
   }
-  .p-card .p-card-body {
-    padding: 0;
-  }
+
   .policy_button {
     color: #fff;
     font-family: Poppins;
@@ -84,7 +94,7 @@
     align-items: flex-end;
     justify-content: flex-end;
     display: flex;
-    gap: 2%;
+    gap: 24px;
     margin: 24px 0px;
   }
 
@@ -106,8 +116,9 @@
     text-align: center;
     overflow: hidden;
     position: relative;
-    padding: 8px;
+    padding: 8px 16px;
     border-radius: 6px;
+    gap: 10px;
   }
   .left_arrow {
     display: flex;

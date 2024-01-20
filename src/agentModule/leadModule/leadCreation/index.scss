@@ -11,9 +11,12 @@
     color: #111927;
     box-shadow: none !important;
     border-radius: 20px !important;
-    fill: #fff !important;
+    background-color: #fff !important;
     filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
     margin-top: 10px;
+    .p-card-body {
+      padding: 24px;
+    }
   }
   .innerlead_container {
     display: flex;
@@ -44,9 +47,8 @@
   .save_continue_conatiner {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
-    margin: 10px 0px;
-    padding: 8px 16px;
+    gap: 24px;
+    margin-top: 1rem;
   }
   .btn_lable_container {
     color: #111927;

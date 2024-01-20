@@ -63,7 +63,7 @@
     }
 
     .breadCrums {
-        margin: 20px 0px;
+        margin: 16px 0px;
         border: none;
         color: #000;
         font-family: Poppins !important;
@@ -74,9 +74,22 @@
 
     .p-breadcrumb {
         border-radius: 6px;
-        padding: 0.5rem 0rem;
+        padding: 1rem 0rem;
+    }
+    .lead__table__container {
+        margin-top: 1rem;
+    }
+    .p-tabview .p-tabview-panels {
+        background: #ffffff;
+        padding: 1.25rem 0rem !important;
     }
 
+    .feat_searchby_container{
+        margin-top: 0px !important;
+        border-radius: 10px;
+        width: 100%;
+        padding: 4px;
+    }
     .lead__listing__card__container {
         .p-card {
             background: #ffffff;
@@ -125,7 +138,7 @@
             color: #4b5563;
             background: #ffffff;
             padding: 0.75rem 2.75rem;
-            border: 1px solid #d1d5db;
+            // border: 1px solid #d1d5db;
             transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
             appearance: none;
             border-radius: 6px;
@@ -136,7 +149,7 @@
             text-align: left;
             border: 1px solid #e5e7eb;
             border-width: 0 0 1px 0;
-            padding: 1rem 1rem;
+            padding: 24px 1rem;
         }
 
         .btn__container__view__edit {

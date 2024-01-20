@@ -100,8 +100,7 @@ const LeadListingAllTable = () => {
 
       command: () => handleMenuClick('view'),
 
-      icon: "pi pi-refresh",
-      
+     
 
     },
 
@@ -111,16 +110,13 @@ const LeadListingAllTable = () => {
 
       command: () => handleMenuClick('claim'),
 
-      icon: "pi pi-refresh"
-
+     
     }, {
 
       label: 'Renewal',
 
       command: () => handleMenuClick('renewal'),
-
-      icon: "pi pi-refresh",
-      disabled:true
+      
 
     },
 
@@ -130,7 +126,6 @@ const LeadListingAllTable = () => {
 
       command: () => handleMenuClick('endrosement'),
 
-      icon: "pi pi-refresh"
 
     }
 
@@ -378,35 +373,36 @@ const LeadListingAllTable = () => {
     border: " none",
   };
 
-  const rendercheckedHeader = (value) => {
-    return selectedProducts.length === 0 ? (
-      value
-    ) : selectedProducts.length === 1 ? (
-      <div className="header__btn__container">
-        <div className="header__delete__btn">Delete</div>
-        <div className="header__edit__btn">Edit</div>
-      </div>
-    ) : (
-      <div className="header__delete__btn">Delete</div>
-    );
-  };
+  // const rendercheckedHeader = (value) => {
+  //   return selectedProducts.length === 0 ? (
+  //     value
+  //   ) : selectedProducts.length === 1 ? (
+  //     <div className="header__btn__container">
+  //       <div className="header__delete__btn">Delete</div>
+  //       <div className="header__edit__btn">Edit</div>
+  //     </div>
+  //   ) : (
+  //     <div className="header__delete__btn">Delete</div>
+  //   );
+  // };
 
-  const renderUncheckedHeader = (value) => {
-    return selectedProducts.length == 0 && value;
-  };
+  // const renderUncheckedHeader = (value) => {
+  //   return selectedProducts.length == 0 && value;
+  // };
 
   return (
     <div>
       <div class="grid">
         <div class="col-12 md:col-9 lg:col-9">
-          <span className="p-input-icon-left" style={{ width: "100%" }}>
+          <span className="p-input-icon-left" style={{ width: "100%", }}>
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" style={{ width: "100%" }} />
+            <InputText placeholder="Search" style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }} />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-          <TableDropdownField label="Search By" />
+        <Dropdown   optionLabel="name" className="feat_searchby_container"
+                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
         </div>
       </div>
       <div className="lead__table__container">
@@ -420,33 +416,36 @@ const LeadListingAllTable = () => {
           currentPageReportTemplate="{first} - {last} of {totalRecords}"
           paginatorTemplate={template2}
           className="corrections__table__main"
-          onSelectionChange={(e) => setSelectedProducts(e.value)}
+          // onSelectionChange={(e) => setSelectedProducts(e.value)}
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
+          
+ scrollable={true}
+ scrollHeight="60vh"
         >
           <Column
             body={renderPolicyNumber}
-            header={rendercheckedHeader("PolicyNumber")}
+            header="PolicyNumber"
             headerStyle={headerStyle}
           ></Column>
           <Column
             body={renderGrossPremium}
-            header={renderUncheckedHeader("GrossPremium")}
+            header="GrossPremium"
             headerStyle={headerStyle}
           ></Column>
           <Column
             body={renderExpiryDate}
-            header={renderUncheckedHeader("ExpiryDate")}
+            header="ExpiryDate"
             headerStyle={headerStyle}
           ></Column>
           <Column
             body={renderPayment}
-            header={renderUncheckedHeader("Payment")}
+            header="Payment"
             headerStyle={headerStyle}
           ></Column>
           <Column
             body={renderViewEditButton}
-            header={renderUncheckedHeader("Actions")}
+            header="Actions"
             headerStyle={{ ...ViewheaderStyle, textAlign: "center" }}
           ></Column>
         </DataTable>

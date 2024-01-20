@@ -280,11 +280,12 @@ const ClientListingAllCategory = ({ TableData }) => {
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" style={{ borderRadius: 10 }} />
+            <InputText placeholder="Search" style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-          <TableDropdownField label="Search By" />
+        <Dropdown   optionLabel="name" className="feat_searchby_container"
+                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
         </div>
       </div>
       <div className="lead__table__container">
@@ -301,6 +302,8 @@ const ClientListingAllCategory = ({ TableData }) => {
           onSelectionChange={(e) => setSelectedProducts(e.value)}
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
+          scrollable={true}
+          scrollHeight="60vh"
         >
           <Column
             selectionMode={selectionMode}

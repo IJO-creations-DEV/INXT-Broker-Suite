@@ -7,7 +7,16 @@ const ExpiringPolicy = () => {
 
   return (
     <div className="expiring__policy__container">
-      <div className="expiring__policy__container__titles">Upcoming Events</div>
+      {/* <div className="expiring__policy__container__titles">  Upcoming Events</div> */}
+
+      <div class="grid mt-3">
+        <div class="col-12 md:col-6 lg:col-6">
+          <label className="leadlisting__overal__container__title">Policy Expiration</label>
+        </div>
+      
+      </div>
+
+
       <div className="expiring__policy__container__back__btn mt-4">
         <SvgLeftArrow />
         <div className="expiring__policy__container__back__btn__title">

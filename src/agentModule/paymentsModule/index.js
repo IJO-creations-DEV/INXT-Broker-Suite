@@ -239,10 +239,9 @@ const Payments = () => {
                 <div class="col-12 md:col-9 lg:col-9">
                   <span className="p-input-icon-left" style={{ width: "100%" }}>
                     <i className="pi pi-search" />
-
                     <InputText
                       placeholder="Search"
-                      style={{ width: "100%", borderRadius: "10px" }}
+                      style={{ width: "100%", padding: "1rem 2.75rem",borderRadius:"10px" }}
                       value={status && search}
                       onChange={(e) => setSearch(e.target.value)}
                     />

@@ -1,10 +1,20 @@
 .client__listing__card__container {
+    border-radius: 20px;
     .carson__style{
         color: #111927;
         font-family: Poppins;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
+    }
+    .feat_searchby_container{
+        margin-top: 0px !important;
+        border-radius: 10px;
+        width: 100%;
+        padding: 4px 0px;
+    }
+    .lead__table__container{
+        margin-top: 1rem;
     }
     .policy__header{
         color: red;
@@ -13,6 +23,10 @@ font-family: Poppins;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
+// border:none !important
+    }
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border: none;
     }
 //     .details__text{
 //         color: #111927 !important;
@@ -22,11 +36,18 @@ font-weight: 400;
 // font-style: normal;
 // font-weight: 400;
 //     }
-    .p-datatable .p-column-header-content {
-        display: none;
+    // .p-datatable .p-column-header-content {
+    //     display: none;
         
+    // }
+    .p-tabview .p-tabview-panels {
+        background: #ffffff;
+        padding: 1.25rem 1.25rem 1.25rem 0rem !important;
+        border: 0 none;
+        color: #4b5563;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
     }
-  
     .view__btn {
         color: #ffffff;
         background: transparent;
@@ -46,17 +67,20 @@ font-weight: 400;
         font-size: 14px !important;
         font-weight: 400 !important;
         line-height: 16.94px !important;
+        display: unset;
+        // padding: 8px 20px;
     }
     .company__status__type__green{
         background-color:#FEF2E1;
         color: #C1622A;
         text-align: center;
         border-radius: 25px;
-        padding: 8px;
+        padding: 8px ;
         font-family: Poppins !important;
         font-size: 14px !important;
         font-weight: 400 !important;
         line-height: 16.94px !important;
+        display: unset;
     }
     .company__status__type__red{
        
@@ -64,11 +88,12 @@ font-weight: 400;
         color: #167594;
         text-align: center;
         border-radius: 25px;
-        padding: 8px;
+        padding: 8px 14px;
         font-family: Poppins !important;
         font-size: 14px !important;
         font-weight: 400 !important;
         line-height: 16.94px !important;
+        display: unset;
     }
     .endorsement__payment__type{
        
@@ -76,7 +101,8 @@ font-weight: 400;
         color: #6C737F;
         text-align: center;
         border-radius: 25px;
-        padding: 8px;
+        padding: 8px 16px;
+        display: unset;
         font-family: Poppins !important;
         font-size: 14px !important;
         font-weight: 400 !important;
@@ -93,6 +119,7 @@ font-weight: 400;
     font-size: 14px !important;
     font-weight: 400 !important;
     line-height: 16.94px !important;
+    display: unset;
 }
     .name__box__container {
         display: flex;
@@ -104,7 +131,7 @@ font-weight: 400;
         text-align: left;
         border: 1px solid #e5e7eb;
         border-width: 0 0 1px 0;
-         padding:1rem 1rem; 
+         padding:24px 1rem; 
     }
     .leadlisting__overal__container__title {
         font-family: Poppins !important;
@@ -171,7 +198,7 @@ font-weight: 400;
     }
 
     .breadCrums {
-        margin: 20px 0px;
+        margin: 16px 0px;
         border: none;
         color: #000;
         font-family: Poppins !important;

@@ -1,4 +1,9 @@
 .leadlisting__overal__container {
+    .feat_searchby_container{
+        margin-top: 0px !important;
+        border-radius: 10px;
+        width: 100%;
+    }
     .leadlisting__overal__container__title {
         font-family: Poppins !important;
         font-size: 34px !important;
@@ -32,7 +37,8 @@
 
         .p-dropdown .p-dropdown-label.p-placeholder {
             color: #fff;
-            padding-top: 16px;
+            // padding-top: 16px;
+            height: 2.75rem;
         }
 
         .p-dropdown .p-dropdown-trigger {
@@ -43,6 +49,7 @@
             border-bottom-left-radius: 6px;
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
+            height: 2.75rem;
         }
 
         .p-inputtext {
@@ -65,7 +72,7 @@
     }
 
     .breadCrums {
-        margin: 20px 0px;
+        margin: 16px 0px;
         border: none;
         color: #000;
         font-family: Poppins !important;
@@ -136,7 +143,7 @@
             color: #4b5563;
             background: #ffffff;
             padding: 1rem 2.75rem;
-            border: 1px solid #d1d5db;
+            // border: 1px solid #d1d5db;
             transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
             appearance: none;
             border-radius: 10px;
@@ -147,7 +154,7 @@
             text-align: left;
             border: 1px solid #e5e7eb;
             border-width: 0 0 1px 0;
-            padding: 1rem 1rem;
+            padding:24px 1rem;
         }
 
         .btn__container__view__edit {
@@ -246,6 +253,7 @@
     }
 
     .lead__table__container {
+        margin-top: 1rem;
         .p-inputtext {
             font-family: var(--font-family);
             font-feature-settings: var(--font-feature-settings, normal);

@@ -6,10 +6,24 @@
     line-height: 36px;
     color: #111927;
   }
+  .leadlisting__overal__container__title {
+    font-family: Poppins !important;
+    font-size: 34px !important;
+    font-weight: 600 !important;
+    line-height: 51px !important;
+}
+
+.feat_searchby_container{
+  margin-top: 0px !important;
+  border-radius: 10px;
+  width: 100%;
+}
+
   .expiring__policy__container__back__btn {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-bottom: 14px;
     .expiring__policy__container__back__btn__title {
       font-size: 16px;
       font-weight: 400;
@@ -34,12 +48,12 @@
       font-size: 1rem;
       color: #4b5563;
       background: #ffffff;
-      padding: 0.75rem 2.75rem;
-      border: 1px solid #d1d5db;
+      padding: 1rem 2.75rem;
+      // border: 1px solid #d1d5db;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s,
         box-shadow 0.2s;
       appearance: none;
-      border-radius: 6px;
+      border-radius: 10px;
       width: 100%;
     }
 
@@ -176,4 +190,13 @@
         border-radius: 6px;
     }
   }
+  .table__container{
+    margin-top: 1rem;
+  }
+  .p-datatable .p-datatable-tbody > tr > td {
+    text-align: left;
+    border: 1px solid #e5e7eb;
+    border-width: 0 0 1px 0;
+    padding: 24px 1rem !important;
+}
 }

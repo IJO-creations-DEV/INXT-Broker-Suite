@@ -13,6 +13,9 @@ import SvgHomeTable from "../../../../../assets/agentIcon/SvgHomeTable";
 import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
+import '../../index.scss'
+
+        
 
 const LeadListingAllTable = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -257,7 +260,9 @@ const LeadListingAllTable = () => {
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-          <TableDropdownField label="Search By" />
+          {/* <TableDropdownField label="Search By" /> */}
+          <Dropdown   optionLabel="name" className="feat_searchby_container"
+                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
         </div>
       </div>
       <div className="lead__table__container">

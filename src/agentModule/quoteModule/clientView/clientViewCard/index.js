@@ -11,8 +11,8 @@ import "../../clientView/index.scss";
 const ClientListingCard = () => {
     return (
         <div className="client__listing__card__container mt-4">
-            <Card>
-                <div style={{display:'flex',gap:'10px'}}>
+            <Card style={{borderRadius:"20px"}}>
+                <div style={{display:'flex',gap:'10px',margin:"16px 0px"}}>
                 <SvgBackArrow/>
                 <label className='carson__style'>Carson Darrin</label>
                 </div>

@@ -271,7 +271,9 @@ const LeadListingMotorTable = () => {
                     </span>
                 </div>
                 <div class="col-12 md:col-3 lg:col-3">
-                    <TableDropdownField label="Search By" />
+                    {/* <TableDropdownField label="Search By" /> */}
+                    <Dropdown   optionLabel="name" className="feat_searchby_container"
+                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
                 </div>
             </div>
             <div  className="lead__table__container">
@@ -287,6 +289,8 @@ const LeadListingMotorTable = () => {
                     onSelectionChange={(e) => setSelectedProducts(e.value)}
                     dataKey="id"
                     tableStyle={{ minWidth: '50rem' }}
+                    scrollable={true}
+                    scrollHeight="60vh"
                 >
                     <Column
                         selectionMode={selectionMode}

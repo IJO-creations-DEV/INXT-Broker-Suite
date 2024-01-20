@@ -275,7 +275,7 @@ const QuoteListingCard = () => {
             <div className="quote__listing__card__container__back__btn">
               <SvgLeftArrow />
               <div className="quote__listing__card__container__back__btn__title">
-                Open Items
+              Carson Darrin
               </div>
             </div>
           </div>
@@ -297,7 +297,8 @@ const QuoteListingCard = () => {
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-            <TableDropdownField label="Search By" />
+          <Dropdown   optionLabel="name" className="feat_searchby_container"
+                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
           </div>
         </div>
         <div className="quote__listing__card__table">
@@ -314,6 +315,8 @@ const QuoteListingCard = () => {
             onSelectionChange={(e) => setSelectedProducts(e.value)}
             dataKey="id"
             tableStyle={{ minWidth: "50rem" }}
+            scrollable={true}
+            scrollHeight="60vh"
           >
             <Column
               selectionMode={selectionMode}

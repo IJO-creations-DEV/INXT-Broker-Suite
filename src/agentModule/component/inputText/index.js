@@ -5,12 +5,12 @@ import "./index.scss";
 const InputTextField = ({ value, onChange, label, disabled }) => {
   const [focused, setFocused] = useState(false);
 
-  console.log(onChange, "onChange");
-  useEffect(() => {
-    if (value) {
-      setFocused(true);
-    }
-  }, [value]);
+  // console.log(onChange, "onChange");
+  // useEffect(() => {
+  //   if (value) {
+  //     setFocused(true);
+  //   }
+  // }, [value]);
 
   const handleFocus = () => {
     setFocused(true);
@@ -37,7 +37,7 @@ const InputTextField = ({ value, onChange, label, disabled }) => {
         onBlur={handleBlur}
         disabled={disabled}
       />
-      <label htmlFor="input" className={`label ${focused ? "focused" : ""}`}>
+      <label htmlFor="input" className={`label ${focused || value !=="" ? "focused" : ""}`}>
         {label}
       </label>
     </div>

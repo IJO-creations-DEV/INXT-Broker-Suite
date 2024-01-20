@@ -9,16 +9,33 @@ import PersonalDetailsChange from "./SplitScreens/PersonalDetailsChange";
 import MotorDetailsChange from "./SplitScreens/MotorDetailsChange";
 import CoverageChange from "./SplitScreens/CoverageChange";
 import PolicyExtend from "./SplitScreens/PolicyExtend";
+import { useSelector } from "react-redux";
+
 const PersonalDetails = () => {
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  const { personalDetails } = useSelector(({ personalDetailsReducer }) => {
+    return {
+      personalDetails: personalDetailsReducer?.personalDetails,
+    };
+  });
+
+  console.log(personalDetails, "personalDetails");
+  const handleButtonClick = () => {
+    setIsFormSubmitted(true);
+  };
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const { state } = useLocation();
-  console.log(state, "total value")
-  const handleclick = () => {
+  console.log(state, "total value");
+  const handleFormSubmit = (values) => {
+    setIsFormSubmitted(true);
     toastRef.current.showToast();
+
     setTimeout(() => {
       navigate(`/agent/endorsement/paymenterror/${123}`);
     }, 2000);
+    console.log(values, "find datas in formik");
   };
 
   return (
@@ -35,31 +52,48 @@ const PersonalDetails = () => {
       </div>
       <Card className="mt-4">
         <div className="customer__info__title">Endorsement Request</div>
-        {/* <PersonalDetailsChange handleFormSubmit={handleclick} />
-        <MotorDetailsChange handleFormSubmit={handleclick} />
-        <CoverageChange handleFormSubmit={handleclick} />
-        <PolicyExtend handleFormSubmit={handleclick} /> */}
-        <PersonalDetailsChange
-          handleFormSubmit={(values) => handleclick("personal", values)}
-        />
-        <MotorDetailsChange
-          handleFormSubmit={(values) => handleclick("motor", values)}
-        />
-        <CoverageChange
-          handleFormSubmit={(values) => handleclick("coverage", values)}
-        />
-        <PolicyExtend
-          handleFormSubmit={(values) => handleclick("policyExtend", values)}
-        />
+        {state?.types[0] === "1" && (
+          <PersonalDetailsChange
+            handleFormSubmit={handleFormSubmit}
+            isFormSubmitted={isFormSubmitted}
+            setIsFormSubmitted={setIsFormSubmitted}
+            personalDetails={personalDetails}
+          />
+        )}
+        {state?.types[1] === "2" && (
+          <MotorDetailsChange
+            handleFormSubmit={handleFormSubmit}
+            isFormSubmitted={isFormSubmitted}
+            setIsFormSubmitted={setIsFormSubmitted}
+            personalDetails={personalDetails}
+          />
+        )}
+        {state?.types[2] === "3" && (
+          <CoverageChange
+            handleFormSubmit={handleFormSubmit}
+            isFormSubmitted={isFormSubmitted}
+            setIsFormSubmitted={setIsFormSubmitted}
+            personalDetails={personalDetails}
+          />
+        )}
+        {state?.types[3] === "4" && (
+          <PolicyExtend
+            handleFormSubmit={handleFormSubmit}
+            isFormSubmitted={isFormSubmitted}
+            setIsFormSubmitted={setIsFormSubmitted}
+            personalDetails={personalDetails}
+          />
+        )}
         <div className="grid m-0">
           <div className="col-12">
             <div className="back__next__btn__container">
               <div className="next__btn__container">
                 <Button
                   className="next__btn"
-                  onClick={() => {
-                    handleclick();
-                  }}
+                  onClick={handleButtonClick}
+
+                  // onClick={()=>handleclick()}
+                  // onClick={()=>{ formik.handleSubmit()}}
                 >
                   Send to insurance Company
                 </Button>

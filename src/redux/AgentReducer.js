@@ -8,6 +8,7 @@ import orderSummaryReducer from "../agentModule/quoteModule/orderSummary/store/o
 import CustomerInfoReducer from "../agentModule/quoteModule/customerInfo/store/infoReducer";
 import clientsReducers from "../agentModule/quoteModule/clientListing/store/clientsReducer";
 import openitemsReducers from "../agentModule/openItems/store/openItemsReducers";
+import personalDetailsReducer from "../agentModule/endorsementModule/personalDetails/store/personalDetailsReducer";
 
 const agentReducers = {
   homeReducers,
@@ -19,6 +20,7 @@ const agentReducers = {
   accessoriesReducer,
   orderSummaryReducer,
   clientsReducers,
-  CustomerInfoReducer
+  CustomerInfoReducer,
+  personalDetailsReducer
 };
 export default agentReducers;

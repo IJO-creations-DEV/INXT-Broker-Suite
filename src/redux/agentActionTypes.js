@@ -14,3 +14,5 @@ export const POST_POLICY_DETAILS = "agent/post/POST_POLICY_DETAILS";
 export const POST_COVERAGE_DETAILS ="agent/post/POST_COVERAGE_DETAILS"
 export const  POST_ACCESSORIES = "agent/post/POST_ACCESSORIES"
 export const  POST_ORDER_SUMMARY ="agent/post/POST_ORDER_SUMMARY"
+export const  PATCH_PERSONAL_DETAILS ="agent/patch/PATCH_PERSONAL_DETAILS"
+export const  GET_PERSONAL_DETAILS ="agent/get/GET_PERSONAL_DETAILS"

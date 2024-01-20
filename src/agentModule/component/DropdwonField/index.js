@@ -29,7 +29,7 @@ console.log("first",options)
       />
       <label
         htmlFor="dropdown"
-        className={`label ${focused || value ? "focused" : ""}`}
+        className={`label ${focused || value !=="" ? "focused" : ""}`}
       >
         {label}
       </label>

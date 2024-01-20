@@ -92,6 +92,7 @@ const LeadListingAllTable = () => {
     },
   ];
   const menuItems = [
+    
 
     {
 
@@ -99,7 +100,8 @@ const LeadListingAllTable = () => {
 
       command: () => handleMenuClick('view'),
 
-      icon: "pi pi-refresh"
+      icon: "pi pi-refresh",
+      
 
     },
 
@@ -117,7 +119,8 @@ const LeadListingAllTable = () => {
 
       command: () => handleMenuClick('renewal'),
 
-      icon: "pi pi-refresh"
+      icon: "pi pi-refresh",
+      disabled:true
 
     },
 
@@ -134,10 +137,14 @@ const LeadListingAllTable = () => {
   ];
 
   const handleMenuToggle = (event, menuRef) => {
+    
     menuRef.current.toggle(event);
   };
   const handleMenuClick = (menuItem) => {
     if (menuItem == "view") {
+      navigate('/agent/policydetailedview')
+    }
+    if (menuItem == "claim") {
       navigate('/agent/claimrequest/claimdetails')
     }
     if (menuItem == "endrosement") {
@@ -301,6 +308,7 @@ const LeadListingAllTable = () => {
 
         <Menu model={menuItems} popup ref={menu} breakpoint="767px" />
         <Button
+            
           icon={<SvgDot />}
           className="view__btn"
           onClick={(event) => handleMenuToggle(event, menu)}
@@ -336,6 +344,7 @@ const LeadListingAllTable = () => {
     return (
 
       <div
+
         className={
           rowData.Payment === "Pending"
             ? "company__status__type__green"

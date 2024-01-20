@@ -145,7 +145,7 @@ const dispatch=useDispatch()
                     handleCompleteAction();
                   }}
                 >
-                  Completed
+                  Complete
                 </Button>
               </div>
             </div>

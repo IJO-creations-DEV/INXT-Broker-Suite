@@ -5,6 +5,7 @@ import DatepickerField from "../../../component/datePicker";
 import SvgBlueArrow from "../../../../assets/agentIcon/SvgBlueArrow";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
+import SvgDot from "../../../../assets/agentIcon/SvgDot"
 
 const PolicyDetailedViewCard = ({ action }) => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const PolicyDetailedViewCard = ({ action }) => {
       <Card>
         <div className="policy__details__card__view__container__title">
           Policy details
+          <SvgDot/>
         </div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">

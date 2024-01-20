@@ -9,22 +9,70 @@ import { useNavigate } from "react-router-dom";
 import { InputTextarea } from "primereact/inputtextarea";
 import "./index.scss";
 import customHistory from "../../../routes/customHistory";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { postSendData } from "./store/sendMailMiddleWare";
+import SvgUploadSuccess from "../../../assets/agentIcon/SvgUploadSuccess";
+import SvgUploadClose from "../../../assets/agentIcon/SvgUploadClose";
 
 const SendMail = () => {
   const fileUploadRef = useRef(null);
   const [uploadImage, setuploadImage] = useState(null);
   const navigate = useNavigate();
+  const [pending, setPending] = useState("Pending");
   const handleUppendImg = (name, src) => {
     console.log(name, src, "find handleUppendImg");
     setuploadImage(src?.objectURL);
+    // const file = src.files[0];
+    // console.log(file,"file");
+
+    // if (file.size <= 200000) {
+    // } else {
+    //   console.log("File size exceeds 2 MB. Please select a smaller file.");
+    // }
   };
   const handleCancelUplaoded = () => {
     setuploadImage(null);
     fileUploadRef.current.clear();
   };
-  const handleSubmit = () => {
-    navigate("/agent/claimrequest/requestapproval/122344");
+
+  const formInitialValue = {
+    mailSubject: "",
+    write: "",
+    file: null,
   };
+  const customValidation = (values) => {
+    const errors = {};
+
+    if (!values.mailSubject) {
+      errors.mailSubject = "This field is required";
+    }
+    if (!values.write) {
+      errors.write = "This field is required";
+    }
+
+    if (!values.file) {
+      errors.file = "Please select a file";
+    }
+    return errors;
+  };
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    if (!values.file) {
+      alert("please select file")
+      return;
+    }
+    dispatch(postSendData(formik.values))
+    navigate("/agent/claimrequest/requestapproval/122344");
+  }
+  const formik = useFormik({
+    initialValues: formInitialValue,
+    validate: customValidation,
+    onSubmit: handleSubmit,
+  });
+  // const handleSubmit = () => {
+  //   navigate("/agent/claimrequest/requestapproval/122344");
+  // };
   const handleBackNavigation = () => {
     customHistory.back();
   };
@@ -40,7 +88,16 @@ const SendMail = () => {
       <Card>
         <div className="claim__details__container__titles">Claim Request</div>
         <div className="mt-4">
-          <InputTextField label="Mail Subject" />
+          <InputTextField
+            label="Mail Subject"
+            value={formik.values.mailSubject}
+            onChange={formik.handleChange("mailSubject")}
+          />
+          {formik.touched.mailSubject && formik.errors.mailSubject && (
+            <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+              {formik.errors.mailSubject}
+            </div>
+          )}
         </div>
         <div className="mt-4">
           {/* <InputTextField 
@@ -53,7 +110,14 @@ const SendMail = () => {
             cols={30}
             placeholder="Write"
             className="claim__write__field"
+            value={formik.values.write}
+            onChange={formik.handleChange("write")}
           />
+          {formik.touched.write && formik.errors.write && (
+            <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+              {formik.errors.write}
+            </div>
+          )}
         </div>
 
         <div class="col-12 mt-4 p-0">
@@ -72,8 +136,10 @@ const SendMail = () => {
                 accept=".png,.jpg,.jpeg"
                 // maxFileSize={2000000}
                 uploadHandler={(e) => {
+                  formik.setFieldValue("file", e.files[0]);
                   handleUppendImg(e.options.props.name, e.files[0], "the data");
                 }}
+              // disabled={pending === "Pending"}
               />
               <div className="icon_click_option">
                 <SvgImageUpload />
@@ -84,6 +150,19 @@ const SendMail = () => {
               </div>
             </div>
           </div>
+          {formik.touched.file && formik.errors.file && (
+            <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+              {formik.errors.file}
+            </div>
+          )}
+
+          {uploadImage && (
+            <div class="col-12 mt-2 ">
+              <span onClick={handleCancelUplaoded}>
+                <SvgUploadClose />
+              </span>
+            </div>
+          )}
           {/* ) : ( */}
           {/* <div className="upload__image__area mt-2">
                 <img src={imageURL} alt="Image" className="image__view" />
@@ -100,7 +179,7 @@ const SendMail = () => {
           >
             Back
           </Button>
-          <Button onClick={handleSubmit} className="claim__snd__but">
+          <Button onClick={formik.handleSubmit} className="claim__snd__but">
             Send
           </Button>
         </div>

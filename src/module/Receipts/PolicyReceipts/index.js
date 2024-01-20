@@ -14,15 +14,12 @@ import { data } from "./mock";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import SvgEye from "../../../assets/icons/SvgEye";
-import { TieredMenu } from 'primereact/tieredmenu';
+import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
 import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
 import { getReceiptsListBySearchMiddleware } from "../store/receiptsMiddleware";
 
-
-
 const PolicyReceipts = () => {
-
   // const [products, setProducts] = useState([]);
   // const [stylesLoaded, setStylesLoaded] = useState(false);
 
@@ -37,29 +34,28 @@ const PolicyReceipts = () => {
   // }, []);
   const items = [
     {
-      label: 'Receipts', to: "/accounts/receipts"
-    }
-
+      label: "Receipts",
+      to: "/accounts/receipts",
+    },
   ];
 
-
-
   const search = [
-    { name: 'Name', value: 'name' },
-    { name: 'Customer Code', value: 'customerCode' },
-    { name: 'Transaction Number', value: 'transactionNumber' },
-    { name: 'Transaction Code', value: 'transactionCode' }]
+    { name: "Name", value: "name" },
+    { name: "Customer Code", value: "customerCode" },
+    { name: "Transaction Number", value: "transactionNumber" },
+    { name: "Transaction Code", value: "transactionCode" },
+  ];
 
-  const { receiptsTableList, loading, total, receiptsSearchTable } = useSelector(({ receiptsTableReducers }) => {
-    return {
-      loading: receiptsTableReducers?.loading,
-      receiptsTableList: receiptsTableReducers?.receiptsTableList,
-      total: receiptsTableReducers,
-      receiptsSearchTable: receiptsTableReducers?.receiptsSearchTable
-
-    };
-  });
-  console.log(receiptsTableList, "receiptsTableListreceiptsTableList")
+  const { receiptsTableList, loading, total, receiptsSearchTable } =
+    useSelector(({ receiptsTableReducers }) => {
+      return {
+        loading: receiptsTableReducers?.loading,
+        receiptsTableList: receiptsTableReducers?.receiptsTableList,
+        total: receiptsTableReducers,
+        receiptsSearchTable: receiptsTableReducers?.receiptsSearchTable,
+      };
+    });
+  console.log(receiptsTableList, "receiptsTableListreceiptsTableList");
   // console.log(total, "find receiptsTableList")
   const template2 = {
     layout:
@@ -73,7 +69,6 @@ const PolicyReceipts = () => {
       ];
 
       return (
-
         <>
           <span
             className="mx-1"
@@ -94,19 +89,18 @@ const PolicyReceipts = () => {
 
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "10px 0",
     color: "#000",
     border: "none",
     textalign: "center",
-
   };
   const headerStyle1 = {
     width: "10%",
 
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "10px 0",
     color: "#000",
@@ -114,10 +108,8 @@ const PolicyReceipts = () => {
     textalign: "center",
   };
   const headerStyle2 = {
-
-
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "10px 0",
     color: "#000",
@@ -128,7 +120,7 @@ const PolicyReceipts = () => {
     width: "8%",
 
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "10px 0",
     color: "#000",
@@ -136,7 +128,12 @@ const PolicyReceipts = () => {
     textalign: "center",
   };
 
-  const itemss = [{ label: "Name" }, { label: "Date" }, { label: "Transaction Number" }, { label: "Receipt Number" }];
+  const itemss = [
+    { label: "Name" },
+    { label: "Date" },
+    { label: "Transaction Number" },
+    { label: "Receipt Number" },
+  ];
   const home = { label: "Accounts " };
 
   const navigate = useNavigate();
@@ -147,17 +144,18 @@ const PolicyReceipts = () => {
   const [searches, setSearch] = useState("");
 
   useEffect(() => {
-    console.log(globalFilter, "as")
+    console.log(globalFilter, "as");
     if (globalFilter?.length > 0) {
       if (searches?.length > 0) {
-        dispatch(getReceiptsListBySearchMiddleware({
-          field: globalFilter,
-          value: searches
-        }))
-
+        dispatch(
+          getReceiptsListBySearchMiddleware({
+            field: globalFilter,
+            value: searches,
+          })
+        );
       }
     }
-  }, [searches])
+  }, [searches]);
 
   const onPageChange = (event) => {
     setFirst(event.first);
@@ -181,7 +179,6 @@ const PolicyReceipts = () => {
     // <Suspense fallback={<div>Loading...</div>}>
     // {stylesLoaded &&
     <div className="overall__policyreceipts__container">
-      <NavBar />
       <div className="overallfilter_container">
         <div>
           <label className="label_header">Receipts</label>
@@ -202,7 +199,7 @@ const PolicyReceipts = () => {
 
       <Card>
         <div className="header_search_container">
-          <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: '0' }}>
+          <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: "0" }}>
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
@@ -216,12 +213,16 @@ const PolicyReceipts = () => {
           <div class="col-12 md:col-3 lg:col-2">
             {/* <TieredMenu model={itemss} popup ref={menu} breakpoint="67px" /> */}
 
-            <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={search} optionLabel="name" optionValue="value"
+            <Dropdown
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={search}
+              optionLabel="name"
+              optionValue="value"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}
             />
-
           </div>
         </div>
         <div className="listlable_textcontainer">
@@ -236,7 +237,6 @@ const PolicyReceipts = () => {
               color: "#1C2536",
               maxHeight: "50vh",
               overflowy: "auto",
-
             }}
             scrollable={true}
             scrollHeight="40vh"
@@ -255,7 +255,6 @@ const PolicyReceipts = () => {
               className="fieldvalue_container"
             ></Column>
             <Column
-
               field="transactionCode"
               header="Transaction Code"
               headerStyle={headerStyle}
@@ -290,7 +289,6 @@ const PolicyReceipts = () => {
               className="fieldvalue_container"
             ></Column>
             <Column
-
               field="amount"
               header="Amount"
               headerStyle={headerStyle3}
@@ -310,8 +308,6 @@ const PolicyReceipts = () => {
     </div>
     // }
     // </Suspense>
-
-
   );
 };
 

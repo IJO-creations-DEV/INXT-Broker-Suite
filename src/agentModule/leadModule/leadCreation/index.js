@@ -6,9 +6,8 @@ import NavBar from "../../../components/NavBar";
 
 const LeadCreation = () => {
   return (
-
     <div className="overall_Leadcreat_container">
-      {/* <NavBar /> */}
+      {/* */}
 
       <div className="innerlead_container mt-3">
         <SvgLeftArrow />

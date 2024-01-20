@@ -1,52 +1,59 @@
-import { BreadCrumb } from 'primereact/breadcrumb'
-import React, { useEffect, useState, useRef } from 'react'
-import NavBar from '../../../../components/NavBar'
-import SvgDot from '../../../../assets/icons/SvgDot';
-import "../AddCommission/index.scss"
-import DropDowns from '../../../../components/DropDowns';
-import InputField from '../../../../components/InputField';
-import { Button } from 'primereact/button';
-import SvgDropdown from '../../../../assets/icons/SvgDropdown';
-import { useFormik } from 'formik';
-import LabelWrapper from '../../../../components/LabelWrapper';
-import { Calendar } from 'primereact/calendar';
-import SvgDatePicker from '../../../../assets/icons/SvgDatePicker';
-import SvgAdd from '../../../../assets/icons/SvgAdd';
-import { useNavigate } from 'react-router-dom';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Dropdown } from 'primereact/dropdown';
-import SvgTable from '../../../../assets/icons/SvgTable';
-import SvgEyeIcon from '../../../../assets/icons/SvgEyeIcon';
-import AddCommissionPopup from './AddCommissionPopup';
-import ArrowLeftIcon from '../../../../assets/icons/ArrowLeftIcon';
-import CustomToast from '../../../../components/Toast';
-import { SelectButton } from 'primereact/selectbutton';
-import data from './data';
-import SvgEditIcon from '../../../../assets/icons/SvgEditIcon';
-import { getCommissionPopupView, getEditCommissionPopup, postAddCommission } from '../store/commissionMiddleWare';
-import { useDispatch, useSelector } from 'react-redux';
-import EditCommissionPopup from '../EditCommission/EditCommissionPopup';
-import ViewCommissionPopup from '../ViewCommission/ViewCommissionPopup';
+import { BreadCrumb } from "primereact/breadcrumb";
+import React, { useEffect, useState, useRef } from "react";
+import NavBar from "../../../../components/NavBar";
+import SvgDot from "../../../../assets/icons/SvgDot";
+import "../AddCommission/index.scss";
+import DropDowns from "../../../../components/DropDowns";
+import InputField from "../../../../components/InputField";
+import { Button } from "primereact/button";
+import SvgDropdown from "../../../../assets/icons/SvgDropdown";
+import { useFormik } from "formik";
+import LabelWrapper from "../../../../components/LabelWrapper";
+import { Calendar } from "primereact/calendar";
+import SvgDatePicker from "../../../../assets/icons/SvgDatePicker";
+import SvgAdd from "../../../../assets/icons/SvgAdd";
+import { useNavigate } from "react-router-dom";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Dropdown } from "primereact/dropdown";
+import SvgTable from "../../../../assets/icons/SvgTable";
+import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
+import AddCommissionPopup from "./AddCommissionPopup";
+import ArrowLeftIcon from "../../../../assets/icons/ArrowLeftIcon";
+import CustomToast from "../../../../components/Toast";
+import { SelectButton } from "primereact/selectbutton";
+import data from "./data";
+import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
+import {
+  getCommissionPopupView,
+  getEditCommissionPopup,
+  postAddCommission,
+} from "../store/commissionMiddleWare";
+import { useDispatch, useSelector } from "react-redux";
+import EditCommissionPopup from "../EditCommission/EditCommissionPopup";
+import ViewCommissionPopup from "../ViewCommission/ViewCommissionPopup";
 
 const AddCommission = () => {
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [date, setDate] = useState();
-  const { addLevelCommissionSharing, loading, commissionSearchList } = useSelector(({ commissionMianReducers }) => {
-    return {
-      loading: commissionMianReducers?.loading,
-      addLevelCommissionSharing: commissionMianReducers?.addLevelCommissionSharing,
-      commissionSearchList: commissionMianReducers?.commissionSearchList
-
-    };
-  });
-  console.log(addLevelCommissionSharing, "addLevelCommissionSharing")
+  const { addLevelCommissionSharing, loading, commissionSearchList } =
+    useSelector(({ commissionMianReducers }) => {
+      return {
+        loading: commissionMianReducers?.loading,
+        addLevelCommissionSharing:
+          commissionMianReducers?.addLevelCommissionSharing,
+        commissionSearchList: commissionMianReducers?.commissionSearchList,
+      };
+    });
+  console.log(addLevelCommissionSharing, "addLevelCommissionSharing");
 
   const items = [
-    { label: 'Commission', url: '/master/generals/Commission' },
-    { label: 'Add Commissions', url: '/master/generals/Commission/addcommission' },
-
+    { label: "Commission", url: "/master/generals/Commission" },
+    {
+      label: "Add Commissions",
+      url: "/master/generals/Commission/addcommission",
+    },
   ];
   const home = { label: "Master" };
   useEffect(() => {
@@ -69,7 +76,7 @@ const AddCommission = () => {
       errors.desc = "This field is required";
     }
     if (!values.product) {
-      errors.product = "product is required"
+      errors.product = "product is required";
     }
     if (!values.selectCovers) {
       errors.selectCovers = "This field Code is required";
@@ -87,17 +94,16 @@ const AddCommission = () => {
       errors.effectiveTo = "This field is required";
     }
 
-
     return errors;
   };
   const codeOptions = [
     { label: "Option 1", value: "Trans00123" },
     { label: "Option 2", value: "Trans00124" },
   ];
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
     dispatch(postAddCommission(formik.values));
-    navigate("/master/generals/commission")
+    navigate("/master/generals/commission");
     // toastRef.current.showToast();
     // setTimeout(() => {
     //   navigate("/master/generals/Commission");
@@ -105,7 +111,7 @@ const AddCommission = () => {
   };
   const handleGoBack = () => {
     navigate("/master/generals/Commission");
-  }
+  };
   const formik = useFormik({
     initialValues: {
       commissioncode: "",
@@ -116,8 +122,7 @@ const AddCommission = () => {
       maxRate: "",
       selectAgent: "",
       effectiveFrom: new Date(),
-      effectiveTo: new Date()
-
+      effectiveTo: new Date(),
     },
     validate: customValidation,
 
@@ -126,16 +131,16 @@ const AddCommission = () => {
       setStep(1);
     },
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handlePolicy = () => {
-    setVisible(true)
-  }
+    setVisible(true);
+  };
   const [products, setProducts] = useState(data);
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const handleNavigate = () => {
-    navigate("/accounts/journalvoucher/detailsjournalvocture")
-  }
+    navigate("/accounts/journalvoucher/detailsjournalvocture");
+  };
   const onPageChange = (event) => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
@@ -153,44 +158,52 @@ const AddCommission = () => {
   minDate.setDate(minDate.getDate() + 1);
 
   const template2 = {
-    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 }
+        { label: 120, value: 120 },
       ];
 
       return (
-        <React.Fragment >
-          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-            Row count :{' '}
+        <React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Row count :{" "}
           </span>
-          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
         </React.Fragment>
       );
     },
-
   };
-  const [showEditPopup, setShowEditPopup] = useState(false)
-  const [showViewPopup, setShowViewPopup] = useState(false)
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const [showViewPopup, setShowViewPopup] = useState(false);
   const handleNavigateView = (rowData) => {
     // navigate("/master/generals/commission/viewcommission")
-    setShowViewPopup(true)
-    dispatch(getCommissionPopupView(rowData))
-  }
+    setShowViewPopup(true);
+    dispatch(getCommissionPopupView(rowData));
+  };
 
   const handleEditNavigate = (rowData) => {
     console.log(rowData, "popupEditData");
-    dispatch(getEditCommissionPopup(rowData))
-    setShowEditPopup(true)
+    dispatch(getEditCommissionPopup(rowData));
+    setShowEditPopup(true);
     // navigate("/master/generals/commission/editcommission/editcommissionpopup")
-  }
+  };
   const renderEditButton = (rowData) => {
     return (
-      <div className="centercontent" >
-        <div className='eyeIcon' onClick={()=>handleNavigateView(rowData)}>
+      <div className="centercontent">
+        <div className="eyeIcon" onClick={() => handleNavigateView(rowData)}>
           <SvgEyeIcon />
         </div>
         <div onClick={() => handleEditNavigate(rowData)}>
@@ -203,19 +216,26 @@ const AddCommission = () => {
   const selectSwitchoptions = ["Yes", "No"];
   const [selectSwitch, setselectSwitch] = useState(selectSwitchoptions[0]);
 
-
   return (
-    <div className='grid commission__add__container'>
-      <div className='col-12'>
-        <NavBar />
-      </div>
-      <div className='col-12'>
+    <div className="grid commission__add__container">
+      <div className="col-12"></div>
+      <div className="col-12">
         <CustomToast ref={toastRef} message="Add Commission" />
       </div>
-      <div className='col-12 mb-2'>
-        <div className='add__sub__title'><div onClick={handleGoBack} className='mr-2 mt-1'><ArrowLeftIcon /></div>Add Commissions</div>
-        <div className='mt-3'>
-          <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
+      <div className="col-12 mb-2">
+        <div className="add__sub__title">
+          <div onClick={handleGoBack} className="mr-2 mt-1">
+            <ArrowLeftIcon />
+          </div>
+          Add Commissions
+        </div>
+        <div className="mt-3">
+          <BreadCrumb
+            home={home}
+            className="breadCrums__view__add__screen"
+            model={items}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
       </div>
       <div className="grid card__container p-2 m-1">
@@ -229,9 +249,7 @@ const AddCommission = () => {
             }
             label="Commission Code"
             placeholder="Enter"
-            value={
-              formik.values.commissioncode
-            }
+            value={formik.values.commissioncode}
             onChange={(e) =>
               formik.setFieldValue("commissioncode", e.target.value)
             }
@@ -244,7 +262,6 @@ const AddCommission = () => {
               {formik.errors.commissioncode}
             </div>
           )}
-
         </div>
         <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
           <InputField
@@ -256,12 +273,8 @@ const AddCommission = () => {
             }
             label="Description"
             placeholder="Enter"
-            value={
-              formik.values.desc
-            }
-            onChange={(e) =>
-              formik.setFieldValue("desc", e.target.value)
-            }
+            value={formik.values.desc}
+            onChange={(e) => formik.setFieldValue("desc", e.target.value)}
           />
           {formik.touched.desc && formik.errors.desc && (
             <div
@@ -273,7 +286,6 @@ const AddCommission = () => {
           )}
         </div>
         <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-
           <DropDowns
             // disabled={step === 0 ? false : true}
             className={
@@ -289,9 +301,7 @@ const AddCommission = () => {
             label="Product"
             dropdownIcon={<SvgDropdown color={"#000"} />}
             value={formik.values.product}
-            onChange={(e) =>
-              formik.setFieldValue("product", e.target.value)
-            }
+            onChange={(e) => formik.setFieldValue("product", e.target.value)}
             options={codeOptions}
             optionLabel="value"
             placeholder={"Select"}
@@ -346,13 +356,8 @@ const AddCommission = () => {
             }
             label="Maximum Rate"
             placeholder="Enter"
-            value={
-              formik.values.maxRate
-
-            }
-            onChange={(e) =>
-              formik.setFieldValue("maxRate", e.target.value)
-            }
+            value={formik.values.maxRate}
+            onChange={(e) => formik.setFieldValue("maxRate", e.target.value)}
           />
           {formik.touched.maxRate && formik.errors.maxRate && (
             <div
@@ -388,13 +393,11 @@ const AddCommission = () => {
                 dateFormat="yy-mm-dd"
                 showIcon
                 minDate={minDate}
-
                 className="calender_field_claim"
               />
               <div className="calender_icon_claim">
                 <SvgDatePicker />
               </div>
-
             </LabelWrapper>
           </div>
           {formik.touched.effectiveFrom && formik.errors.effectiveFrom && (
@@ -470,43 +473,36 @@ const AddCommission = () => {
           )}
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-          <div className='input__label__reversal'>Modifiable</div>
+          <div className="input__label__reversal">Modifiable</div>
           <SelectButton
-
             className="mt-2 select__switch__option"
-
             value={selectSwitch}
-
             onChange={(e) => setselectSwitch(e.value)}
-
             options={selectSwitchoptions}
-
           />
         </div>
       </div>
-      <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-      </div>
+      <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal"></div>
       <div className=" bottom__view p-2 m-1">
         <div className="  input__view__reversal p-2">
-          <div className='add__level__text'>Add Level Wise Commission Sharing</div>
-          <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__Journal__Voture '>
-
-            <div className='add__icon__view__petty' onClick={handlePolicy}>
-              <div className='add__icon__petty' >
-                <SvgAdd color={'#fff'} />
+          <div className="add__level__text">
+            Add Level Wise Commission Sharing
+          </div>
+          <div className="col-12 md:col-6 lg:col-6 add__icon__alighn__Journal__Voture ">
+            <div className="add__icon__view__petty" onClick={handlePolicy}>
+              <div className="add__icon__petty">
+                <SvgAdd color={"#fff"} />
               </div>
-              <div className='add__text__petty'>
-                Add
-              </div>
+              <div className="add__text__petty">Add</div>
             </div>
           </div>
         </div>
         <div className="col-12 card">
           <DataTable
             value={addLevelCommissionSharing}
-            style={{ overflowY: 'auto', maxWidth: '100%' }}
+            style={{ overflowY: "auto", maxWidth: "100%" }}
             responsive={true}
-            className='table__view__Journal__Voture'
+            className="table__view__Journal__Voture"
             paginator
             paginatorLeft
             rows={5}
@@ -516,71 +512,53 @@ const AddCommission = () => {
             onPage={onPageChange}
             onPageChange={onPageChange}
             emptyMessage={isEmpty ? emptyTableIcon : null}
-
           >
-            <Column
-              field="level"
-              header="Level"
-
-
-            >
-            </Column>
+            <Column field="level" header="Level"></Column>
             <Column
               field="commissionCode"
               header="Commission Code"
-            // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
-
-            >
-
-            </Column>
-            <Column
-              field="sharingRate"
-              header="Share Rate"
-            >
-
-            </Column>
+              // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
+            ></Column>
+            <Column field="sharingRate" header="Share Rate"></Column>
             <Column
               field="mainAC"
               header="Action"
               body={renderEditButton}
-              style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
-            >
-
-            </Column>
+              style={{
+                display: "grid",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            ></Column>
           </DataTable>
         </div>
       </div>
-      <div className="col-12" >
-
+      <div className="col-12">
         <AddCommissionPopup visible={visible} setVisible={setVisible} />
-
       </div>
-      <div className="col-12" >
-
-        <EditCommissionPopup showEditPopup={showEditPopup} setShowEditPopup={setShowEditPopup} />
-
+      <div className="col-12">
+        <EditCommissionPopup
+          showEditPopup={showEditPopup}
+          setShowEditPopup={setShowEditPopup}
+        />
       </div>
 
-      <div className="col-12" >
-
-        <ViewCommissionPopup showViewPopup={showViewPopup} setShowViewPopup={setShowViewPopup} />
-
+      <div className="col-12">
+        <ViewCommissionPopup
+          showViewPopup={showViewPopup}
+          setShowViewPopup={setShowViewPopup}
+        />
       </div>
 
       <div className="col-12 btn__view__Add">
-
         <Button
           label="Save"
-          className='save__add__btn'
+          className="save__add__btn"
           disabled={!formik.isValid}
           onClick={formik.handleSubmit}
         />
-
       </div>
     </div>
-
-
-  )
-}
-export default AddCommission
-
+  );
+};
+export default AddCommission;

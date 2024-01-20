@@ -26,8 +26,8 @@ const EditMainAccount = () => {
     companyCode: [],
     currencyCode: [],
     openEntryType: [],
-  }
-  const dispatch = useDispatch()
+  };
+  const dispatch = useDispatch();
   const navigation = useNavigate();
   const items = [
     {
@@ -40,7 +40,6 @@ const EditMainAccount = () => {
     },
   ];
 
-
   const { getMainAccountDetailEdit, loading } = useSelector(
     ({ mainAccoutReducers }) => {
       return {
@@ -49,26 +48,27 @@ const EditMainAccount = () => {
       };
     }
   );
-  console.log(getMainAccountDetailEdit, "getMainAccountDetailEdit")
+  console.log(getMainAccountDetailEdit, "getMainAccountDetailEdit");
   const handleSubmit = (value) => {
     const openEntry = selectSwitch === "No" ? "Yes" : "No";
     const updatedValues = { ...value, openEntry };
-    console.log(value, "value")
+    console.log(value, "value");
     dispatch(patchMainAccountDetailEdit(updatedValues));
-    navigation("/master/finance/mainaccount")
+    navigation("/master/finance/mainaccount");
   };
 
-  const [accType, setAccType] = useState([])
-  const [openEType, setOpenEType] = useState([])
-  const [accCaletgoryC, setAccCaletgoryC] = useState([])
-  const [companyCodeOption, setcompanyCodeOption]=useState([])
-  const [currencyCodeOption,setcurrencyCodeOption]=useState([])
+  const [accType, setAccType] = useState([]);
+  const [openEType, setOpenEType] = useState([]);
+  const [accCaletgoryC, setAccCaletgoryC] = useState([]);
+  const [companyCodeOption, setcompanyCodeOption] = useState([]);
+  const [currencyCodeOption, setcurrencyCodeOption] = useState([]);
   const setFormikValues = () => {
-    const accountTypeData = getMainAccountDetailEdit?.accountType
-    const openEntryTypeData = getMainAccountDetailEdit?.openEntryType
-    const accountCategoryCodeData = getMainAccountDetailEdit?.accountCategoryCode
-    const companyCodeData=getMainAccountDetailEdit?.companyCode
-    const currencyCodeData=getMainAccountDetailEdit?.currencyCode
+    const accountTypeData = getMainAccountDetailEdit?.accountType;
+    const openEntryTypeData = getMainAccountDetailEdit?.openEntryType;
+    const accountCategoryCodeData =
+      getMainAccountDetailEdit?.accountCategoryCode;
+    const companyCodeData = getMainAccountDetailEdit?.companyCode;
+    const currencyCodeData = getMainAccountDetailEdit?.currencyCode;
     const updatedValues = {
       id: getMainAccountDetailEdit?.id,
       mainAccountCode: getMainAccountDetailEdit?.mainAccountCode,
@@ -77,8 +77,8 @@ const EditMainAccount = () => {
       accountCategoryCode: getMainAccountDetailEdit?.accountCategoryCode,
       accountType: accountTypeData,
       companyCode: companyCodeData,
-      currencyCode:currencyCodeData ,
-      openEntryType: openEntryTypeData
+      currencyCode: currencyCodeData,
+      openEntryType: openEntryTypeData,
     };
     // console.log(updatedValues.accountType, "uu");
     if (accountTypeData) {
@@ -91,14 +91,20 @@ const EditMainAccount = () => {
     }
     if (accountCategoryCodeData) {
       formik.setValues({ ...formik.values, ...updatedValues });
-      setAccCaletgoryC([{ label: accountCategoryCodeData, value: accountCategoryCodeData }]);
+      setAccCaletgoryC([
+        { label: accountCategoryCodeData, value: accountCategoryCodeData },
+      ]);
     }
-    if(companyCodeData){
-      setcompanyCodeOption([{label:companyCodeData,value:companyCodeData}])
+    if (companyCodeData) {
+      setcompanyCodeOption([
+        { label: companyCodeData, value: companyCodeData },
+      ]);
       formik.setValues({ ...formik.values, ...updatedValues });
     }
-    if(currencyCodeData){
-      setcurrencyCodeOption([{label:currencyCodeData,value:currencyCodeData}])
+    if (currencyCodeData) {
+      setcurrencyCodeOption([
+        { label: currencyCodeData, value: currencyCodeData },
+      ]);
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     formik.setValues({ ...formik.values, ...updatedValues });
@@ -172,9 +178,7 @@ const EditMainAccount = () => {
   return (
     <div className="add__main__container">
       <div className="grid m-0 top-container">
-        <div className="col-12 p-0">
-          <NavBar />
-        </div >
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="svgback_container">
             <span onClick={() => navigation(-1)}>
@@ -205,11 +209,12 @@ const EditMainAccount = () => {
                 formik.setFieldValue("mainAccountCode", e.target.value)
               }
             />
-            {formik.touched.mainAccountCode && formik.errors.mainAccountCode && (
-              <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.mainAccountCode}
-              </div>
-            )}
+            {formik.touched.mainAccountCode &&
+              formik.errors.mainAccountCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.mainAccountCode}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
             <InputField

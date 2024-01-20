@@ -3,7 +3,6 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import NavBar from "../../components/NavBar";
 import Cookies from "js-cookie";
 
-
 // import Header from "../../components/Header";
 // import Footer from "../../components/Footer";
 import "./index.scss";
@@ -26,10 +25,8 @@ const index = () => {
           {/* <ResponsiveDrawer/> */}
         </div>
         <div className="main__content">
-          {Auth() ?
-            <Outlet />
-            :
-            <Outlet />
+          {
+            Auth() ? <Outlet /> : <Outlet />
 
             // <Navigate to='login' replace />
           }

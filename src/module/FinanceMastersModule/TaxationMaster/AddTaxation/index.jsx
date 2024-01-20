@@ -13,21 +13,25 @@ import { useFormik } from "formik";
 import SvgBack from "../../../../assets/icons/SvgBack";
 import CustomToast from "../../../../components/Toast";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { postAddTaxationMiddileware } from "../store/taxationMiddleWare";
 const AddTaxation = () => {
   const [errors, setErrors] = useState("");
   const navigate = useNavigate();
   const toastRef = useRef(null);
-  const dispatch = useDispatch()
-  const addTaxationList = useSelector(state => state.addTaxationList);
+  const dispatch = useDispatch();
+  const addTaxationList = useSelector((state) => state.addTaxationList);
   const items = [
     { label: "Taxation", url: "/master/finance/taxation" },
     { label: "Add Taxation", url: "/master/finance/taxation/addtaxation" },
   ];
   const home = { label: "Master" };
 
-  const item = [{ label: "30%", value: "30%" }, { label: "40%", value: "40%" }, { label: "70%", value: "70%" }];
+  const item = [
+    { label: "30%", value: "30%" },
+    { label: "40%", value: "40%" },
+    { label: "70%", value: "70%" },
+  ];
   const initialValue = {
     taxCode: "",
     taxName: "",
@@ -65,8 +69,6 @@ const AddTaxation = () => {
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
 
-
-
   const handleSubmit = (values) => {
     // const formErrors = validate(formik.values);
     // setErrors(formErrors);
@@ -80,7 +82,6 @@ const AddTaxation = () => {
 
     dispatch(postAddTaxationMiddileware(formik.values));
     navigate("/master/finance/taxation");
-
   };
 
   const formik = useFormik({
@@ -90,9 +91,7 @@ const AddTaxation = () => {
   });
   return (
     <div className="grid sub__add__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
+      <div className="col-12"></div>
       <div>
         <span onClick={() => navigate(-1)}>
           <SvgBack />
@@ -115,9 +114,7 @@ const AddTaxation = () => {
             <InputField
               value={formik.values.taxCode}
               onChange={formik.handleChange("taxCode")}
-              error={
-                formik.touched.taxCode &&
-                formik.errors.taxCode}
+              error={formik.touched.taxCode && formik.errors.taxCode}
               label="Tax Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -128,9 +125,7 @@ const AddTaxation = () => {
             <InputField
               value={formik.values.taxName}
               onChange={formik.handleChange("taxName")}
-              error={
-                formik.touched.taxName &&
-                formik.errors.taxName}
+              error={formik.touched.taxName && formik.errors.taxName}
               label="Tax Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -141,14 +136,11 @@ const AddTaxation = () => {
             <DropDowns
               value={formik.values.taxRate}
               onChange={formik.handleChange("taxRate")}
-              error={
-                formik.touched.taxRate &&
-                formik.errors.taxRate}
+              error={formik.touched.taxRate && formik.errors.taxRate}
               className="dropdown__add__sub"
               label="Tax Rate"
               classNames="label__sub__add"
               optionLabel="label"
-
               placeholder={"Select"}
               options={item}
               dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -159,9 +151,7 @@ const AddTaxation = () => {
             <InputField
               value={formik.values.basis}
               onChange={formik.handleChange("basis")}
-              error={
-                formik.touched.basis &&
-                formik.errors.basis}
+              error={formik.touched.basis && formik.errors.basis}
               label="Basis"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -173,8 +163,8 @@ const AddTaxation = () => {
               value={formik.values.remarks}
               onChange={formik.handleChange("remarks")}
               error={
-                formik.touched.TransactionNumberFrom &&
-                formik.errors.remarks}
+                formik.touched.TransactionNumberFrom && formik.errors.remarks
+              }
               label="Remarks"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -187,7 +177,8 @@ const AddTaxation = () => {
               onChange={formik.handleChange("taxationDescription")}
               error={
                 formik.touched.taxationDescription &&
-                formik.errors.taxationDescription}
+                formik.errors.taxationDescription
+              }
               label="Taxation Description"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -215,10 +206,9 @@ const AddTaxation = () => {
                   formik.setFieldValue("effectiveFrom", e.target.value);
                 }}
                 dateFormat="yy-mm-dd"
-
                 error={
-                  formik.touched.effectiveFrom &&
-                  formik.errors.effectiveFrom}
+                  formik.touched.effectiveFrom && formik.errors.effectiveFrom
+                }
               />
             </div>
           </div>
@@ -243,9 +233,7 @@ const AddTaxation = () => {
                   formik.setFieldValue("effectiveTo", e.target.value);
                 }}
                 dateFormat="yy-mm-dd"
-                error={
-                  formik.touched.effectiveTo &&
-                  formik.errors.effectiveTo}
+                error={formik.touched.effectiveTo && formik.errors.effectiveTo}
               />
             </div>
           </div>

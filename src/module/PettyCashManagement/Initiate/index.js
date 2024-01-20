@@ -12,17 +12,19 @@ const Initiate = () => {
   const navigate = useNavigate();
   const items = [
     { label: "Petty Cash", to: "Petty Cash Management" },
-    { label: "Petty Cash Initiate", to: "/accounts/pettycash/pettycashcodeinitiate" },
+    {
+      label: "Petty Cash Initiate",
+      to: "/accounts/pettycash/pettycashcodeinitiate",
+    },
   ];
   const Initiate = { label: "Accounts" };
 
   const handleClick = () => {
-    navigate('/accounts/pettycash/pettycashcodeinitiate/initiate')
-  }
+    navigate("/accounts/pettycash/pettycashcodeinitiate/initiate");
+  };
 
   return (
     <div className="pettycash__management">
-      <NavBar />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div className="pettycash__title">Petty Cash Initiate</div>
@@ -41,7 +43,9 @@ const Initiate = () => {
               label="Initiate"
               icon={<SvgAdd color={"#fff"} />}
               className="add__btn"
-              onClick={() => { handleClick() }}
+              onClick={() => {
+                handleClick();
+              }}
             />
           </div>
         </div>

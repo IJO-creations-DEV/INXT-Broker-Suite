@@ -51,19 +51,16 @@ function Detailview() {
   const Navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
   // const home = { label: "Accounts" };
-  
+
   const items = [
     {
-     
       label: "Payment Voucher",
-      command:()=>Navigate("/accounts/paymentvoucher/"),
-      
-     
+      command: () => Navigate("/accounts/paymentvoucher/"),
     },
     {
       label: "Payment Voucher Details",
       to: "/accounts/paymentvoucher/detailview",
-    }
+    },
   ];
   const statusBodyTemplate = (rowData) => {
     return (
@@ -113,12 +110,12 @@ function Detailview() {
     // width: '12rem',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
     border: "none",
-    paddingLeft:0
+    paddingLeft: 0,
   };
   const status = [
     { name: "Active", code: "NY" },
@@ -154,7 +151,6 @@ function Detailview() {
   };
   return (
     <div className="overall__detailview__container">
-      <NavBar />
       <CustomToast
         ref={toastRef}
         message={`Cheque book details ${actionToast} successfully`}
@@ -287,7 +283,7 @@ function Detailview() {
             <Column
               selectionMode="single"
               headerStyle={{ width: "4rem" }}
-              style={{textAlign:'center'}}
+              style={{ textAlign: "center" }}
             ></Column>
           )}
           <Column

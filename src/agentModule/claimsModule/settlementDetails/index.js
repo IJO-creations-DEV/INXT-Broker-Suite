@@ -19,17 +19,12 @@ import { useFormik } from "formik";
 import { postSettlementClaimMiddleware } from "./Store/claimSettlementMiddleware";
 
 const initialValues = {
-  SettlementType:"",
-  SettlementAmount:"",
+  SettlementType: "",
+  SettlementAmount: "",
   IssueDate: new Date(),
   SettleDate: new Date(),
- 
 };
-const items =[
-  {label:'Cash'},
-  {label:'Card'},
-  {label:'Cheque'}
-]
+const items = [{ label: "Cash" }, { label: "Card" }, { label: "Cheque" }];
 
 const SettlementDetails = () => {
   const navigate = useNavigate();
@@ -42,14 +37,13 @@ const SettlementDetails = () => {
   };
   const handleSubmit = (value) => {
     toastRef.current.showToast();
-    console.log("find settlement",value)
+    console.log("find settlement", value);
     dispatch(postSettlementClaimMiddleware(value));
     setTimeout(() => {
       navigate("/agent/claimdetailedview/12344");
     }, 2000);
   };
 
- 
   const fileUploadRef = useRef(null);
   const [uploadImage, setuploadImage] = useState(null);
   const handleUppendImg = (name, src) => {
@@ -74,7 +68,6 @@ const SettlementDetails = () => {
   });
   return (
     <div>
-      <NavBar />
       <CustomToast ref={toastRef} message="Claim Settled Successfully" />
       <div className="claim__settlementdetails__container">
         <div className="claim__details__container__titles">Clients</div>
@@ -90,10 +83,8 @@ const SettlementDetails = () => {
           </div>
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
-            <DropdownField
-              
+              <DropdownField
                 label="Settlement type"
-                
                 value={formik.values.SettlementType}
                 onChange={(e) =>
                   formik.setFieldValue("SettlementType", e.value)
@@ -101,42 +92,37 @@ const SettlementDetails = () => {
                 options={items}
                 optionLabel="name"
                 placeholder={"Select"}
-                
               />
-             
             </div>
             <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Settlement Amount" 
-            value={formik.values.SettlementAmount}
-            onChange={formik.handleChange("SettlementAmount")}/>
-              
+              <InputTextField
+                label="Settlement Amount"
+                value={formik.values.SettlementAmount}
+                onChange={formik.handleChange("SettlementAmount")}
+              />
             </div>
           </div>
 
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Issue Date"
-            value={formik.values.IssueDate}
-            
-            onChange={(e) => { 
-              formik.setFieldValue("IssueDate", e.target.value);
-            }}
-            dateFormat="yy-mm-dd"
-           
-            />
-             
+              <DatepickerField
+                label="Issue Date"
+                value={formik.values.IssueDate}
+                onChange={(e) => {
+                  formik.setFieldValue("IssueDate", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+              />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Settle date"
-            value={formik.values.SettleDate}
-          
-            onChange={(e) => { 
-              formik.setFieldValue("SettleDate", e.target.value);
-            }}
-            dateFormat="yy-mm-dd"
-           
-            />
-             
+              <DatepickerField
+                label="Settle date"
+                value={formik.values.SettleDate}
+                onChange={(e) => {
+                  formik.setFieldValue("SettleDate", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+              />
             </div>
           </div>
 
@@ -144,7 +130,7 @@ const SettlementDetails = () => {
             <div className="claim__request__upload__subtitle  mb-2">
               Documents
             </div>
-           
+
             <div className="upload__card__container mt-2">
               <div className="file_icon_selector">
                 <FileUpload
@@ -154,7 +140,6 @@ const SettlementDetails = () => {
                   mode="basic"
                   name="demo"
                   accept=".png,.jpg,.jpeg"
-                  
                   uploadHandler={(e) => {
                     handleUppendImg(
                       e.options.props.name,
@@ -172,7 +157,6 @@ const SettlementDetails = () => {
                 </div>
               </div>
             </div>
-           
           </div>
 
           <div className="claimrequest__back__but">
@@ -187,10 +171,7 @@ const SettlementDetails = () => {
               Submit
             </Button>
           </div>
-
-          
         </Card>
-      
       </div>
     </div>
   );

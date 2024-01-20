@@ -10,52 +10,55 @@ import SvgBack from "../../../../../assets/icons/SvgBack";
 import CustomToast from "../../../../../components/Toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getHirarchyListByIdMiddleware, patchHirarchyEditMiddleware, postAddHirarchyMiddleware } from "../store/hierarchyMiddleware";
+import {
+  getHirarchyListByIdMiddleware,
+  patchHirarchyEditMiddleware,
+  postAddHirarchyMiddleware,
+} from "../store/hierarchyMiddleware";
 import moment from "moment";
-
 
 const AddHierarchy = ({ action }) => {
   const { id } = useParams();
   console.log(id, "find actions");
 
-  const { hierarchyListDetails, loading, total } = useSelector(({ hierarchyTableReducers }) => {
-    return {
-      loading: hierarchyTableReducers?.loading,
-      hierarchyListDetails: hierarchyTableReducers?.hierarchListDetails,
-      total: hierarchyTableReducers
-
-    };
-  }); console.log(total, 'find id')
+  const { hierarchyListDetails, loading, total } = useSelector(
+    ({ hierarchyTableReducers }) => {
+      return {
+        loading: hierarchyTableReducers?.loading,
+        hierarchyListDetails: hierarchyTableReducers?.hierarchListDetails,
+        total: hierarchyTableReducers,
+      };
+    }
+  );
+  console.log(total, "find id");
   const navigate = useNavigate();
   const toastRef = useRef(null);
-  const [visiblePopup, setVisiblePopup] = useState("")
-  const dispatch = useDispatch()
+  const [visiblePopup, setVisiblePopup] = useState("");
+  const dispatch = useDispatch();
   useEffect(() => {
     if (action === "edit" || action === "view") {
       dispatch(getHirarchyListByIdMiddleware(id)).then(() => {
         setFormikValues();
-
-      })
+      });
     }
-
   }, [action, id]);
   useEffect(() => {
-    setFormikValues()
-  }, [hierarchyListDetails])
+    setFormikValues();
+  }, [hierarchyListDetails]);
   const items = [
     { label: "Employee Management" },
 
     {
-      label: `${action === "add"
-        ? "Add Hierarchy"
-        : action === "edit"
+      label: `${
+        action === "add"
+          ? "Add Hierarchy"
+          : action === "edit"
           ? "Edit Hierarchy"
           : "View Hierarchy"
-        }`,
+      }`,
     },
   ];
   const home = { label: "Master" };
-
 
   const initialValue = {
     rankCode: "",
@@ -79,38 +82,33 @@ const AddHierarchy = ({ action }) => {
       errors.levelNumber = "Level number is required";
     }
 
-
     return errors;
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
 
   const handleSubmit = (values) => {
-    console.log(values, "asddd")
+    console.log(values, "asddd");
     if (action == "edit") {
-      dispatch(patchHirarchyEditMiddleware({ ...values, id }))
+      dispatch(patchHirarchyEditMiddleware({ ...values, id }));
     } else {
-      dispatch(postAddHirarchyMiddleware(values))
-
+      dispatch(postAddHirarchyMiddleware(values));
     }
     toastRef.current.showToast();
 
     setTimeout(() => {
-      setVisiblePopup(false)
+      setVisiblePopup(false);
     }, 3000);
-    navigate('/master/generals/employeemanagement/hierarchy/')
-
-
-  }
-  console.log(hierarchyListDetails, "hierarcy details")
+    navigate("/master/generals/employeemanagement/hierarchy/");
+  };
+  console.log(hierarchyListDetails, "hierarcy details");
   const setFormikValues = () => {
     const rankCode = hierarchyListDetails?.rankCode;
     const rankName = hierarchyListDetails?.rankName;
     const description = "description";
     const levelNumber = hierarchyListDetails?.levelNumber;
     const modifiedBy = hierarchyListDetails?.modifiedBy;
-    const modifiedOn = moment().format('DD/MM/YYYY');
-
+    const modifiedOn = moment().format("DD/MM/YYYY");
 
     const updatedValues = {
       rankCode: `${rankCode}`,
@@ -123,7 +121,6 @@ const AddHierarchy = ({ action }) => {
     formik.setValues({ ...formik.values, ...updatedValues });
   };
 
-
   const formik = useFormik({
     initialValues: initialValue,
     validate,
@@ -131,22 +128,24 @@ const AddHierarchy = ({ action }) => {
   });
   return (
     <div className="grid add__hierarchy__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
-      <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+      <div className="col-12"></div>
+      <div
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+        }}
+      >
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
-
-
       </div>
       <div className="add__sub__title">
         {action === "add"
           ? "Add Hierarchy"
           : action === "edit"
-            ? "Edit Hierarchy"
-            : "View Hierarchy"}
+          ? "Edit Hierarchy"
+          : "View Hierarchy"}
       </div>
       <div className="col-12 mb-2">
         <div className="mt-3">

@@ -3,34 +3,37 @@ import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import NavBar from "../../../components/NavBar";
 import { useNavigate } from "react-router-dom";
-import SvgDot from "../../../assets/icons/SvgDot"
+import SvgDot from "../../../assets/icons/SvgDot";
 import SvgFilters from "../../../assets/icons/SvgFilters";
 import SvgAdd from "../../../assets/icons/SvgAdd";
-import { Card } from 'primereact/card';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { Card } from "primereact/card";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-import { ProductService } from './mock';
-import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
+import { ProductService } from "./mock";
+import { Button } from "primereact/button";
+import { Dropdown } from "primereact/dropdown";
 import SvgUpload from "../../../assets/icons/SvgUpload";
 import SvgMenudots from "../../../assets/icons/SvgMenudots";
-import { TieredMenu } from 'primereact/tieredmenu';
-import { Dialog } from 'primereact/dialog';
+import { TieredMenu } from "primereact/tieredmenu";
+import { Dialog } from "primereact/dialog";
 import InputField from "../../../components/InputField";
 import ToggleButton from "../../../components/ToggleButton";
 import SvgTable from "../../../assets/icons/SvgTable";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { getBankSearchList, patchBankDetailEdit } from "./store/bankMasterMiddleware";
+import {
+  getBankSearchList,
+  patchBankDetailEdit,
+} from "./store/bankMasterMiddleware";
 
 const BankMaster = () => {
   const menu = useRef(null);
   const [visible, setVisible] = useState(false);
   const [visibleview, setVisibleview] = useState(false);
   const [currentDialog, setDialog] = useState({});
-  const [search, setSearch] = useState('');
-  const dispatch = useDispatch()
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
   // const menuitems = [
   //   { label: "Edit", command: () => setVisible(true) },
   //   { label: "View", command: () => setVisibleview(true) },
@@ -39,27 +42,30 @@ const BankMaster = () => {
   const menuitems = [
     { label: "Edit", command: (rowData) => handleEdit(rowData) },
     { label: "View", command: (rowData) => handleView(rowData) },
-    { label: "Add/Edit Account", command: () => navigate("/master/finance/bank/accountdataview") }
+    {
+      label: "Add/Edit Account",
+      command: () => navigate("/master/finance/bank/accountdataview"),
+    },
   ];
 
   const handleEdit = (rowData) => {
     setVisible(true);
-    setDialog(rowData)
+    setDialog(rowData);
     // console.log(currentDialog, "current detail")
-    formik.setFieldValue("id", rowData?.id)
-    formik.setFieldValue("bankCode", rowData?.bankCode)
-    formik.setFieldValue("bankName", rowData?.bankName)
-    formik.setFieldValue("bankBranch", rowData?.bankBranch)
-    formik.setFieldValue("ifscCode", rowData?.ifscCode)
-    formik.setFieldValue("addressLine1", 'Sudharshan Building')
-    formik.setFieldValue("addressLine2", '2nd floor,chamiers Road')
-    formik.setFieldValue("addressLine3", 'Nanthanam')
-    formik.setFieldValue("city", 'Chennai')
-    formik.setFieldValue("state", 'Tamil Nadu')
-    formik.setFieldValue("country", 'India')
-    formik.setFieldValue("mobile", rowData?.mobile)
-    formik.setFieldValue("fax", rowData?.mobile)
-    formik.setFieldValue("email", rowData?.email)
+    formik.setFieldValue("id", rowData?.id);
+    formik.setFieldValue("bankCode", rowData?.bankCode);
+    formik.setFieldValue("bankName", rowData?.bankName);
+    formik.setFieldValue("bankBranch", rowData?.bankBranch);
+    formik.setFieldValue("ifscCode", rowData?.ifscCode);
+    formik.setFieldValue("addressLine1", "Sudharshan Building");
+    formik.setFieldValue("addressLine2", "2nd floor,chamiers Road");
+    formik.setFieldValue("addressLine3", "Nanthanam");
+    formik.setFieldValue("city", "Chennai");
+    formik.setFieldValue("state", "Tamil Nadu");
+    formik.setFieldValue("country", "India");
+    formik.setFieldValue("mobile", rowData?.mobile);
+    formik.setFieldValue("fax", rowData?.mobile);
+    formik.setFieldValue("email", rowData?.email);
     // or any other logic you want to perform
     // Use the rowData as needed
     console.log("Edit clicked for row:", rowData);
@@ -67,26 +73,24 @@ const BankMaster = () => {
 
   const handleView = (rowData) => {
     setVisibleview(true);
-    setDialog(rowData) // or any other logic you want to perform
+    setDialog(rowData); // or any other logic you want to perform
     // Use the rowData as needed
-    formik.setFieldValue("id", rowData?.id)
-    formik.setFieldValue("bankCode", rowData?.bankCode)
-    formik.setFieldValue("bankName", rowData?.bankName)
-    formik.setFieldValue("bankBranch", rowData?.bankBranch)
-    formik.setFieldValue("ifscCode", rowData?.ifscCode)
-    formik.setFieldValue("addressLine1", 'Sudharshan Building')
-    formik.setFieldValue("addressLine2", '2nd floor,chamiers Road')
-    formik.setFieldValue("addressLine3", 'Nanthanam')
-    formik.setFieldValue("city", 'Chennai')
-    formik.setFieldValue("state", 'Tamil Nadu')
-    formik.setFieldValue("country", 'India')
-    formik.setFieldValue("mobile", rowData?.mobile)
-    formik.setFieldValue("fax", rowData?.mobile)
-    formik.setFieldValue("email", rowData?.email)
+    formik.setFieldValue("id", rowData?.id);
+    formik.setFieldValue("bankCode", rowData?.bankCode);
+    formik.setFieldValue("bankName", rowData?.bankName);
+    formik.setFieldValue("bankBranch", rowData?.bankBranch);
+    formik.setFieldValue("ifscCode", rowData?.ifscCode);
+    formik.setFieldValue("addressLine1", "Sudharshan Building");
+    formik.setFieldValue("addressLine2", "2nd floor,chamiers Road");
+    formik.setFieldValue("addressLine3", "Nanthanam");
+    formik.setFieldValue("city", "Chennai");
+    formik.setFieldValue("state", "Tamil Nadu");
+    formik.setFieldValue("country", "India");
+    formik.setFieldValue("mobile", rowData?.mobile);
+    formik.setFieldValue("fax", rowData?.mobile);
+    formik.setFieldValue("email", rowData?.email);
     console.log("View clicked for row:", rowData);
   };
-
-
 
   const [products, setProducts] = useState([]);
   const { bankList, BankSearchList } = useSelector(({ bankMasterReducer }) => {
@@ -95,9 +99,7 @@ const BankMaster = () => {
       BankSearchList: bankMasterReducer?.BankSearchList,
     };
   });
-  useEffect(() => {
-
-  }, [bankList])
+  useEffect(() => {}, [bankList]);
   // useEffect(() => {
   //   console.log(currentDialog, "ads")
   //   if(Object.keys(currentDialog).length>0){
@@ -107,20 +109,20 @@ const BankMaster = () => {
   // }, [currentDialog])
 
   const initialState = {
-    bankCode: '',
-    bankName: '',
-    bankBranch: '',
-    ifscCode: '',
-    addressLine1: '',
-    addressLine2: '',
-    addressLine3: '',
-    city: '',
-    state: '',
-    country: '',
-    mobile: '',
-    fax: '',
-    email: ''
-  }
+    bankCode: "",
+    bankName: "",
+    bankBranch: "",
+    ifscCode: "",
+    addressLine1: "",
+    addressLine2: "",
+    addressLine3: "",
+    city: "",
+    state: "",
+    country: "",
+    mobile: "",
+    fax: "",
+    email: "",
+  };
   const validate = (values) => {
     console.log(values, "ggg");
     const errors = {};
@@ -160,11 +162,11 @@ const BankMaster = () => {
   // console.log(formik.values, "asdd")
 
   const handleUpdate = () => {
-    dispatch(patchBankDetailEdit(formik.values))
-    setVisible(false)
-    console.log(formik.values, "dddd")
+    dispatch(patchBankDetailEdit(formik.values));
+    setVisible(false);
+    console.log(formik.values, "dddd");
     // formik.values
-  }
+  };
   // useEffect(() => {
   //   ProductService.getProductsMini().then(data => setProducts(data));
   // }, []);
@@ -180,48 +182,51 @@ const BankMaster = () => {
     </div>
   );
   const template2 = {
-    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 }
+        { label: 120, value: 120 },
       ];
 
       return (
-        <React.Fragment >
-          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-            Row count :{' '}
+        <React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Row count :{" "}
           </span>
-          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
         </React.Fragment>
       );
     },
-
   };
 
-
-
   const handleadd = () => {
-    navigate('/master/finance/bank/addbankmaster')
-  }
+    navigate("/master/finance/bank/addbankmaster");
+  };
 
   const headerStyle = {
     // width: '10rem',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "10px 6px",
-    color: '#000',
-    border: 'none'
+    color: "#000",
+    border: "none",
   };
 
-  const items = [
-    { label: "Bank" },
-
-  ];
+  const items = [{ label: "Bank" }];
   const renderToggleButton = (state) => {
     return (
       <div>
@@ -235,7 +240,7 @@ const BankMaster = () => {
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
-  const [globalFilter, setGlobalFilter] = useState('');
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const onPageChange = (event) => {
     setFirst(event.first);
@@ -247,72 +252,82 @@ const BankMaster = () => {
   };
 
   const handlePolicy = () => {
-    navigate('/createvoucher')
-  }
+    navigate("/createvoucher");
+  };
   const handleArrowClick = () => {
-    navigate('/policyreceiptsview')
-  }
+    navigate("/policyreceiptsview");
+  };
   const handleEditClick = () => {
     navigate("/otherreceiptsview");
   };
 
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getBankSearchList(search))
+      dispatch(getBankSearchList(search));
     }
-  }, [search])
+  }, [search]);
 
   return (
-    <div className='overall__bankmaster__container'>
-      <NavBar />
+    <div className="overall__bankmaster__container">
       <div className="overallfilter_container">
-        <div >
-          <label className='label_header'>Bank Master</label>
+        <div>
+          <label className="label_header">Bank Master</label>
           <BreadCrumb
             model={items}
             home={home}
-            className='breadcrumbs_container'
-            separatorIcon={<SvgDot color={"#000"} />} />
+            className="breadcrumbs_container"
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
         <div className="filterbutton_container">
-
-          <Button type="button" label="Upload" className="uploadbutton_container" icon={<SvgUpload />} outlined />
-
-          <Button type="button" label="Add" className="addbutton_container" icon={<SvgAdd />}
-            onClick={handleadd}
+          <Button
+            type="button"
+            label="Upload"
+            className="uploadbutton_container"
+            icon={<SvgUpload />}
+            outlined
           />
 
-
+          <Button
+            type="button"
+            label="Add"
+            className="addbutton_container"
+            icon={<SvgAdd />}
+            onClick={handleadd}
+          />
         </div>
       </div>
-
 
       <Card
       //   className="overallcard_container"
       >
         {/* <div className="searchiput_container"> */}
 
-
         <div className="header_search_container">
           <div class="col-12 md:col-12 lg:col-12">
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
-              <InputText placeholder="Search customers" className="searchinput_left" value={search}
-                onChange={(e) => setSearch(e.target.value)} />
+              <InputText
+                placeholder="Search customers"
+                className="searchinput_left"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </span>
           </div>
           {/* </div> */}
-
-
         </div>
-
 
         {/* </div> */}
 
         <div className="card">
-          <DataTable value={search ? BankSearchList :bankList} tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
-            paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
+          <DataTable
+            value={search ? BankSearchList : bankList}
+            tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
+            paginator
+            rows={5}
+            rowsPerPageOptions={[5, 10, 25, 50]}
             // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
@@ -320,42 +335,91 @@ const BankMaster = () => {
             scrollHeight="40vh"
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
+            <Column
+              field="bankCode"
+              header="Bank Code"
+              sortable
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="bankName"
+              header="Bank Name"
+              sortable
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="bankBranch"
+              header="Bank Branch"
+              sortable
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="ifscCode"
+              header="IFSC Code"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="email"
+              header="Email"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="mobile"
+              header="Phone"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              body={(columnData) => <ToggleButton id={columnData.id} />}
+              header="Status"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
 
-            <Column field="bankCode" header="Bank Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="bankName" header="Bank Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="bankBranch" header="Bank Branch" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="ifscCode" header="IFSC Code" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="email" header="Email" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="mobile" header="Phone" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column
+              body={(rowData) => (
+                //         <div className="card flex justify-content-center">
 
-            <Column body={(rowData) => (
-              //         <div className="card flex justify-content-center">
+                //  <TieredMenu model={menuitems} popup ref={menu}  />
+                //   <SvgMenudots onClick={(e) => menu.current.toggle(e)} />
 
-              //  <TieredMenu model={menuitems} popup ref={menu}  />
-              //   <SvgMenudots onClick={(e) => menu.current.toggle(e)} />
-
-
-              //   </div>
-              <div className="card flex justify-content-center">
-                <TieredMenu model={menuitems.map(item => ({ ...item, command: () => item.command(rowData) }))} popup ref={menu} breakpoint="767px" />
-                <Button icon={<SvgMenudots />} onClick={(e) => menu.current.toggle(e)} className="menubutton_popup" />
-              </div>
-
-
-            )}
-              header="Action" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-
+                //   </div>
+                <div className="card flex justify-content-center">
+                  <TieredMenu
+                    model={menuitems.map((item) => ({
+                      ...item,
+                      command: () => item.command(rowData),
+                    }))}
+                    popup
+                    ref={menu}
+                    breakpoint="767px"
+                  />
+                  <Button
+                    icon={<SvgMenudots />}
+                    onClick={(e) => menu.current.toggle(e)}
+                    className="menubutton_popup"
+                  />
+                </div>
+              )}
+              header="Action"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
           </DataTable>
-
-
         </div>
-
       </Card>
 
-
-      <Dialog header="Bank Details" visible={visible} style={{ width: '60vw' }} onHide={() => setVisible(false)}>
-
+      <Dialog
+        header="Bank Details"
+        visible={visible}
+        style={{ width: "60vw" }}
+        onHide={() => setVisible(false)}
+      >
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">
             <InputField
@@ -372,7 +436,7 @@ const BankMaster = () => {
               label="Bank Name"
               placeholder={"Enter"}
               value={formik.values.bankName}
-              onChange={formik.handleChange('bankName')}
+              onChange={formik.handleChange("bankName")}
             />
           </div>
           <div class="col-12 md:col-3 lg:col-3">
@@ -484,15 +548,21 @@ const BankMaster = () => {
             />
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button label="Update" className="dialog_updatebutton_view" onClick={handleUpdate} />
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            label="Update"
+            className="dialog_updatebutton_view"
+            onClick={handleUpdate}
+          />
         </div>
-
-
       </Dialog>
 
-      <Dialog header="Bank Details" visible={visibleview} style={{ width: '60vw' }} onHide={() => setVisibleview(false)}>
-
+      <Dialog
+        header="Bank Details"
+        visible={visibleview}
+        style={{ width: "60vw" }}
+        onHide={() => setVisibleview(false)}
+      >
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">
             <InputField
@@ -509,7 +579,7 @@ const BankMaster = () => {
               label="Bank Name"
               placeholder={"Enter"}
               value={formik.values.bankName}
-              onChange={formik.handleChange('bankName')}
+              onChange={formik.handleChange("bankName")}
             />
           </div>
           <div class="col-12 md:col-3 lg:col-3">
@@ -621,11 +691,7 @@ const BankMaster = () => {
             />
           </div>
         </div>
-
-
-
       </Dialog>
-
     </div>
   );
 };

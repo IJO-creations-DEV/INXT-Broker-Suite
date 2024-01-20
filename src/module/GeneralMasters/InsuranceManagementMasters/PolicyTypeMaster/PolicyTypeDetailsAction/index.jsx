@@ -153,9 +153,7 @@ const PolicyTypeDetailsAction = ({ action }) => {
           ref={toastRef}
           message="Policy type Code CC1234 is added"
         />
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="svgback_container">
             <span onClick={() => navigation(-1)}>

@@ -237,7 +237,6 @@ function AddCompany({ action }) {
 
   return (
     <div className="overall__addcompany__container">
-      <NavBar />
       <CustomToast ref={toastRef} message="Company code CC1234 added" />
       <div>
         <span onClick={() => Navigate(-1)}>

@@ -13,12 +13,10 @@ import { getPatchMainAccountDetailEdit } from "./store/mainAccountReducer";
 // import ModalData from "./PopUpData/ModalData";
 
 const MainAccountMaster = () => {
-
   const { MainAccountList, loading } = useSelector(({ mainAccoutReducers }) => {
     return {
       loading: mainAccoutReducers?.loading,
       MainAccountList: mainAccoutReducers?.MainAccountList,
-
     };
   });
   console.log(MainAccountList[0].mainAccountCode, "MainAccountList");
@@ -34,7 +32,7 @@ const MainAccountMaster = () => {
     },
   ];
   const home = { label: "Master" };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleAction = (id, navigationPath) => {
     if (navigationPath === "Add") {
       navigation("/master/finance/mainaccount/addmainaccount");
@@ -43,16 +41,13 @@ const MainAccountMaster = () => {
       // navigation("/master/finance/mainaccount/editmainaccount");
     }
     if (navigationPath === "View") {
-     
       // navigation("/master/finance/mainaccount/viewmainaccount");
     }
   };
   return (
     <div className="container__main__category__master">
       <div className="grid m-0 top__container">
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="main__account__title">Main Account Master</div>
         </div>
@@ -91,7 +86,10 @@ const MainAccountMaster = () => {
       </div>
       <div className="grid m-0 table__container">
         <div className="col-12 p-0">
-          <TableData handleAction={handleAction} MainAccountList={MainAccountList} />
+          <TableData
+            handleAction={handleAction}
+            MainAccountList={MainAccountList}
+          />
         </div>
       </div>
     </div>

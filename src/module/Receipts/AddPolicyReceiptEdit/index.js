@@ -28,7 +28,7 @@ function PolicyReceipts() {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [visible, setVisible] = useState(false);
   const [editedData, setEditedData] = useState(null);
-  const [errors, setErrors] = useState("")
+  const [errors, setErrors] = useState("");
   const dispatch = useDispatch();
   const { receivableTableList, loading, total } = useSelector(
     ({ editReducers }) => ({
@@ -37,7 +37,7 @@ function PolicyReceipts() {
       total: editReducers?.total,
     })
   );
-  console.log(receivableTableList, "receivableTableListreceivableTableList")
+  console.log(receivableTableList, "receivableTableListreceivableTableList");
 
   const totalNetAmount = selectedRows.reduce((total, item) => {
     const netAmount = parseFloat(item.netPremium);
@@ -67,21 +67,22 @@ function PolicyReceipts() {
     const dst = parseFloat(item.dst);
     const vat = parseFloat(item.vat);
     const lgt = parseFloat(item.lgt);
-    const other = parseFloat(item.other)
-    const subTotalAll = (dst + lgt + vat + other)
+    const other = parseFloat(item.other);
+    const subTotalAll = dst + lgt + vat + other;
     return !isNaN(subTotalAll) ? total + subTotalAll : total;
   }, 0);
   console.log(totall, "totall");
 
-
-
   useEffect(() => {
     console.log(total, "Total");
   }, [total]);
-  console.log(total, "find patchReceipEditMiddleware")
+  console.log(total, "find patchReceipEditMiddleware");
 
   const navigate = useNavigate();
-  const items = [{ label: "Receipts", command: () => navigate("/accounts/receipts") }, { label: "Add Receipts", to: "/accounts/receipts/addreceipts" }];
+  const items = [
+    { label: "Receipts", command: () => navigate("/accounts/receipts") },
+    { label: "Add Receipts", to: "/accounts/receipts/addreceipts" },
+  ];
 
   const home = { label: "Accounts " };
 
@@ -111,10 +112,7 @@ function PolicyReceipts() {
     const other = rowData?.other;
     const fcAmount = rowData?.fcAmount;
     const lcAmount = rowData?.lcAmount;
-    const discounts = rowData?.discounts
-
-
-
+    const discounts = rowData?.discounts;
 
     const updatedValues = {
       id: `${id}`,
@@ -128,8 +126,7 @@ function PolicyReceipts() {
       lgt: `${lgt}`,
       other: `${other}`,
       fcAmount: `${fcAmount}`,
-      lcAmount: `${lcAmount}`
-
+      lcAmount: `${lcAmount}`,
     };
     formik.setValues({ ...formik.values, ...updatedValues });
   };
@@ -149,12 +146,10 @@ function PolicyReceipts() {
     lcAmount: editedData?.lcAmount || "",
   };
 
-
   const handleSubmit = (values) => {
     dispatch(patchReceipEditMiddleware(values));
     setVisiblePopup(false);
-    console.log(values, "find checking")
-
+    console.log(values, "find checking");
   };
 
   const formik = useFormik({
@@ -162,7 +157,6 @@ function PolicyReceipts() {
 
     onSubmit: handleSubmit,
   });
-
 
   const handleClick = () => {
     navigate("/accounts/receipts/paymentdetails");
@@ -200,16 +194,14 @@ function PolicyReceipts() {
   const headerStyle = {
     fontSize: 16,
     paddingLeft: 0,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     color: "#000",
     border: "none",
-
   };
 
   return (
     <div className="overall__add_policy_edit__container">
-      <NavBar />
       <span onClick={() => navigate(-1)}>
         <SvgBack />
       </span>
@@ -243,12 +235,21 @@ function PolicyReceipts() {
             paginatorTemplate={template2}
             className="datatable_container"
             selectionMode="checkbox"
-          // selection={selectedRows}
-          // onSelectionChange={(e) => setSelectedRows(e.value)}
+            // selection={selectedRows}
+            // onSelectionChange={(e) => setSelectedRows(e.value)}
           >
-            <Column selectionMode="multiple" exportable={false}
-            style={{textAlign:'center'}}
-            headerStyle={{paddingLeft:18,display:'flex',justifyContent:'center',paddingTop: 20,paddingBottom: 20,border:'none'}}
+            <Column
+              selectionMode="multiple"
+              exportable={false}
+              style={{ textAlign: "center" }}
+              headerStyle={{
+                paddingLeft: 18,
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: 20,
+                paddingBottom: 20,
+                border: "none",
+              }}
             ></Column>
             <Column
               field="policies"
@@ -326,7 +327,7 @@ function PolicyReceipts() {
               header="Action"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              style={{ textAlign: 'center' }}
+              style={{ textAlign: "center" }}
             ></Column>
           </DataTable>
         </div>
@@ -381,11 +382,15 @@ function PolicyReceipts() {
       </div>
       <div className="next_container">
         <div className="exit_print_buttons">
-          <Button label="Next" className="print" onClick={handleClick} disabled={!selectedRows} />
+          <Button
+            label="Next"
+            className="print"
+            onClick={handleClick}
+            disabled={!selectedRows}
+          />
         </div>
       </div>
       <div className="col-12">
-
         <Dialog
           header="Policy details"
           visible={visiblePopup}
@@ -395,7 +400,6 @@ function PolicyReceipts() {
             setEditedData(null);
           }}
         >
-
           <div class="grid">
             <div class="sm-col-12  md:col-6 lg-col-6">
               <InputField
@@ -517,11 +521,9 @@ function PolicyReceipts() {
 
           <div className="update_btn">
             <Button
-
               label="Update"
               className="update_btnlabel"
               onClick={formik.handleSubmit}
-
             />
           </div>
         </Dialog>{" "}

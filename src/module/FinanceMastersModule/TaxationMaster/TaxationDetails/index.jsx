@@ -15,11 +15,10 @@ const TaxationDetails = () => {
     return {
       loading: taxationMainReducers?.loading,
       taxationView: taxationMainReducers?.taxationView,
-
     };
   });
   console.log(taxationView.effectiveFrom, "taxationView");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const items = [
     { label: "Taxation Master", url: "/master/finance/taxation" },
     {
@@ -31,9 +30,7 @@ const TaxationDetails = () => {
 
   return (
     <div className="grid overall__taxation__details">
-      <div className="col-12">
-        <NavBar />
-      </div>
+      <div className="col-12"></div>
       <div>
         <span onClick={() => navigate(-1)}>
           <SvgBack />
@@ -107,7 +104,9 @@ const TaxationDetails = () => {
             />
           </div>
           <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
-            <LabelWrapper className="calenderlable__container">Effective Form</LabelWrapper>
+            <LabelWrapper className="calenderlable__container">
+              Effective Form
+            </LabelWrapper>
             <Calendar
               showIcon
               value={new Date(taxationView.effectiveFrom)}
@@ -122,7 +121,9 @@ const TaxationDetails = () => {
             /> */}
           </div>
           <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
-            <LabelWrapper className="calenderlable__container">Effective To</LabelWrapper>
+            <LabelWrapper className="calenderlable__container">
+              Effective To
+            </LabelWrapper>
             <Calendar
               showIcon
               value={new Date(taxationView.effectiveTo)}
@@ -131,9 +132,7 @@ const TaxationDetails = () => {
               className="label__sub__add"
               placeholder="Enter"
               dateFormat="yy-mm-dd"
-
             />
-
           </div>
         </div>
       </div>

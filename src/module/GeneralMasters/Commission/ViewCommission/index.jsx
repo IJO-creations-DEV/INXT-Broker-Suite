@@ -1,4 +1,3 @@
-
 // import { BreadCrumb } from 'primereact/breadcrumb'
 // import React, { useEffect, useState } from 'react'
 // import NavBar from '../../../../components/NavBar'
@@ -92,7 +91,7 @@
 //       setStep(1);
 //     },
 //   });
-  
+
 //   const navigate = useNavigate()
 //   const handleGoBack=()=>{
 //     navigate('/master/generals/commission')
@@ -157,11 +156,11 @@
 //     );
 //   };
 //   const [visible, setVisible] = useState(false);
- 
+
 //   return (
 //     <div className='grid view__commission__add__container'>
 //       <div className='col-12'>
-//         <NavBar />
+//
 //       </div>
 //       <div className='col-12 mb-2'>
 //         <div className='add__sub__title'><div onClick={handleGoBack} className='mr-2 mt-1'><ArrowLeftIcon /></div>View Commissions</div>
@@ -434,58 +433,60 @@
 //         </div>
 //       </div>
 
-
-
 //     </div>
 //   )
 // }
 // export default ViewCommission
 
-
-import { BreadCrumb } from 'primereact/breadcrumb'
-import React, { useEffect, useState } from 'react'
-import NavBar from '../../../../components/NavBar'
-import SvgDot from '../../../../assets/icons/SvgDot';
-import "../ViewCommission/index.scss"
-import DropDowns from '../../../../components/DropDowns';
-import InputField from '../../../../components/InputField';
-import { Button } from 'primereact/button';
-import SuccessIcon from '../../../../assets/icons/SuccessIcon';
-import SvgDropdown from '../../../../assets/icons/SvgDropdown';
-import { useFormik } from 'formik';
-import LabelWrapper from '../../../../components/LabelWrapper';
-import { Calendar } from 'primereact/calendar';
-import SvgDatePicker from '../../../../assets/icons/SvgDatePicker';
-import SvgAdd from '../../../../assets/icons/SvgAdd';
-import { useNavigate } from 'react-router-dom';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Dropdown } from 'primereact/dropdown';
-import SvgTable from '../../../../assets/icons/SvgTable';
-import SvgEyeIcon from '../../../../assets/icons/SvgEyeIcon';
-import ArrowLeftIcon from '../../../../assets/icons/ArrowLeftIcon';
-import { SelectButton } from 'primereact/selectbutton';
-import { useSelector } from 'react-redux';
+import { BreadCrumb } from "primereact/breadcrumb";
+import React, { useEffect, useState } from "react";
+import NavBar from "../../../../components/NavBar";
+import SvgDot from "../../../../assets/icons/SvgDot";
+import "../ViewCommission/index.scss";
+import DropDowns from "../../../../components/DropDowns";
+import InputField from "../../../../components/InputField";
+import { Button } from "primereact/button";
+import SuccessIcon from "../../../../assets/icons/SuccessIcon";
+import SvgDropdown from "../../../../assets/icons/SvgDropdown";
+import { useFormik } from "formik";
+import LabelWrapper from "../../../../components/LabelWrapper";
+import { Calendar } from "primereact/calendar";
+import SvgDatePicker from "../../../../assets/icons/SvgDatePicker";
+import SvgAdd from "../../../../assets/icons/SvgAdd";
+import { useNavigate } from "react-router-dom";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Dropdown } from "primereact/dropdown";
+import SvgTable from "../../../../assets/icons/SvgTable";
+import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
+import ArrowLeftIcon from "../../../../assets/icons/ArrowLeftIcon";
+import { SelectButton } from "primereact/selectbutton";
+import { useSelector } from "react-redux";
 // import AddCommissionPopup from './AddCommissionPopup';
 
 const ViewCommission = () => {
-  const { commissionView, loading,addLevelCommissionSharing } = useSelector(({ commissionMianReducers }) => {
-    return {
-      loading: commissionMianReducers?.loading,
-      commissionView: commissionMianReducers?.commissionView,
-      addLevelCommissionSharing:commissionMianReducers?.addLevelCommissionSharing
-    };
-  });
-  console.log(commissionView.selectCover, "commissionView")
+  const { commissionView, loading, addLevelCommissionSharing } = useSelector(
+    ({ commissionMianReducers }) => {
+      return {
+        loading: commissionMianReducers?.loading,
+        commissionView: commissionMianReducers?.commissionView,
+        addLevelCommissionSharing:
+          commissionMianReducers?.addLevelCommissionSharing,
+      };
+    }
+  );
+  console.log(commissionView.selectCover, "commissionView");
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [date, setDate] = useState(new Date());
   const selectSwitchoptions = ["Yes", "No"];
 
   const [selectSwitch, setselectSwitch] = useState(selectSwitchoptions[0]);
   const items = [
-    { label: 'Commission', url: '/master/generals/Commission' },
-    { label: 'View Commissions', url: '/master/generals/commission/viewcommission' },
-
+    { label: "Commission", url: "/master/generals/Commission" },
+    {
+      label: "View Commissions",
+      url: "/master/generals/commission/viewcommission",
+    },
   ];
   const home = { label: "Master" };
   useEffect(() => {
@@ -524,14 +525,13 @@ const ViewCommission = () => {
   };
   const productOptions = [
     { label: commissionView.product, value: commissionView.product },
-  ]
+  ];
   const selectAgentOptions = [
     { label: commissionView.selectAgent, value: commissionView.selectAgent },
-
   ];
   const selectCoverOptions = [
     { label: commissionView.selectCover, value: commissionView.selectCover },
-  ]
+  ];
   const handleSubmit = (values) => {
     console.log(values, "find values");
   };
@@ -542,7 +542,7 @@ const ViewCommission = () => {
       pettycashsize: "",
       avilabelcash: "",
       mincashback: "",
-      transactionlimit: ""
+      transactionlimit: "",
     },
     validate: customValidation,
     onSubmit: (values) => {
@@ -551,20 +551,20 @@ const ViewCommission = () => {
     },
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleGoBack = () => {
-    navigate('/master/generals/commission')
-  }
+    navigate("/master/generals/commission");
+  };
   const handlePolicy = () => {
     // navigate('/master/generals/commission/addcommission')
-    setVisible(true)
-  }
+    setVisible(true);
+  };
   const [products, setProducts] = useState([]);
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const handleNavigate = () => {
-    navigate("/accounts/journalvoucher/detailsjournalvocture")
-  }
+    navigate("/accounts/journalvoucher/detailsjournalvocture");
+  };
   const onPageChange = (event) => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
@@ -588,8 +588,13 @@ const ViewCommission = () => {
 
       return (
         <div
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-          className="table__selector">
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          className="table__selector"
+        >
           <React.Fragment>
             <span style={{ color: "var(--text-color)", userSelect: "none" }}>
               Row count :{" "}
@@ -610,21 +615,28 @@ const ViewCommission = () => {
     return (
       <div className="centercontent" onClick={handleNavigate}>
         <SvgEyeIcon />
-
       </div>
     );
   };
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className='grid view__commission__add__container'>
-      <div className='col-12'>
-        <NavBar />
-      </div>
-      <div className='col-12 mb-2'>
-        <div className='add__sub__title'><div onClick={handleGoBack} className='mr-2 mt-1'><ArrowLeftIcon /></div>View Commissions</div>
-        <div className='mt-3'>
-          <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
+    <div className="grid view__commission__add__container">
+      <div className="col-12"></div>
+      <div className="col-12 mb-2">
+        <div className="add__sub__title">
+          <div onClick={handleGoBack} className="mr-2 mt-1">
+            <ArrowLeftIcon />
+          </div>
+          View Commissions
+        </div>
+        <div className="mt-3">
+          <BreadCrumb
+            home={home}
+            className="breadCrums__view__add__screen"
+            model={items}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
       </div>
       <div className="grid card__container p-2 m-1">
@@ -638,14 +650,10 @@ const ViewCommission = () => {
             }
             label="Commission Code"
             placeholder="Enter"
-            value={
-              commissionView.commissionCode
-
-            }
-          // onChange={(e) =>
-          //   formik.setFieldValue("prttycashcode", e.target.value)
-          // }
-
+            value={commissionView.commissionCode}
+            // onChange={(e) =>
+            //   formik.setFieldValue("prttycashcode", e.target.value)
+            // }
           />
         </div>
         <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
@@ -658,9 +666,7 @@ const ViewCommission = () => {
             }
             label="Description"
             placeholder="Enter"
-            value={
-              commissionView.desc
-            }
+            value={commissionView.desc}
             onChange={(e) =>
               formik.setFieldValue("pettycashname", e.target.value)
             }
@@ -736,10 +742,7 @@ const ViewCommission = () => {
             }
             label="Maximum Rate"
             placeholder="Enter"
-            value={
-              commissionView.maxRate
-
-            }
+            value={commissionView.maxRate}
             onChange={(e) =>
               formik.setFieldValue("pettycashsize", e.target.value)
             }
@@ -759,7 +762,7 @@ const ViewCommission = () => {
                 onChange={(e) => setDate(e.value)}
                 showIcon
                 className="calender_field_claim"
-              // placeholder={translate("claimstatus")["Choose Date"]}
+                // placeholder={translate("claimstatus")["Choose Date"]}
               />
               <div className="calender_icon_claim">
                 <SvgDatePicker />
@@ -778,11 +781,10 @@ const ViewCommission = () => {
             >
               <Calendar
                 value={new Date(commissionView.effectiveTo)}
-
                 onChange={(e) => setDate(e.value)}
                 showIcon
                 className="calender_field_claim"
-              // placeholder={translate("claimstatus")["Choose Date"]}
+                // placeholder={translate("claimstatus")["Choose Date"]}
               />
               <div className="calender_icon_claim">
                 <SvgDatePicker />
@@ -821,25 +823,21 @@ const ViewCommission = () => {
           )}
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-          <div className='input__label__reversal'>Modifiable</div>
+          <div className="input__label__reversal">Modifiable</div>
           <SelectButton
-
             className="mt-2 select__switch__option"
-
             value={selectSwitch}
-
             onChange={(e) => setselectSwitch(e.value)}
-
             options={selectSwitchoptions}
-
           />
         </div>
       </div>
-      <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal m-1">
-      </div>
+      <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal m-1"></div>
       <div className="col-12 bottom__view p-2 m-1">
         <div className="grid  input__view__reversal p-2 mt-1">
-          <div className='col-12 md:col-6 lg:col-6 add__level__text'>Add Level Wise Commission Sharing</div>
+          <div className="col-12 md:col-6 lg:col-6 add__level__text">
+            Add Level Wise Commission Sharing
+          </div>
           {/* <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__Journal__Voture '>
 
             <div className='add__icon__view__petty' onClick={handlePolicy}>
@@ -855,9 +853,9 @@ const ViewCommission = () => {
         <div className="col-12 card">
           <DataTable
             value={addLevelCommissionSharing}
-            style={{ overflowY: 'auto', maxWidth: '100%' }}
+            style={{ overflowY: "auto", maxWidth: "100%" }}
             responsive={true}
-            className='table__view__Journal__Voture'
+            className="table__view__Journal__Voture"
             paginator
             paginatorLeft
             rows={5}
@@ -871,34 +869,26 @@ const ViewCommission = () => {
             <Column
               field="level"
               header="Level"
-              style={{ width: '40%' }}
-            >
-            </Column>
+              style={{ width: "40%" }}
+            ></Column>
             <Column
               field="commissionCode"
               header="Commission Code"
-              style={{ width: '40%' }}
-            >
-
-            </Column>
+              style={{ width: "40%" }}
+            ></Column>
             <Column
               field="sharingRate"
               header="Share Rate"
-              style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}
-            >
-
-            </Column>
-
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            ></Column>
           </DataTable>
         </div>
       </div>
-
-
-
     </div>
-  )
-}
-export default ViewCommission
-
-
-
+  );
+};
+export default ViewCommission;

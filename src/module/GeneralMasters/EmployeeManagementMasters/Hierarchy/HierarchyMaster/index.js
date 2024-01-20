@@ -19,45 +19,44 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSearchHirarchyMiddleware } from "../store/hierarchyMiddleware";
 
 const HierarchyMaster = () => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("/master/generals/employeemanagement/hierarchy/add");
-
   };
   const [rowList, setRowList] = useState(5);
   const [search, setSearch] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-
-    setProducts()
-  }, [])
+    setProducts();
+  }, []);
   useEffect(() => {
     if (search.length > 0) {
-      dispatch(getSearchHirarchyMiddleware(search))
+      dispatch(getSearchHirarchyMiddleware(search));
     }
-  }, [search])
+  }, [search]);
 
-  const { hierarchTableList, loading, total, hierarchSeachList } = useSelector(({ hierarchyTableReducers }) => {
-    return {
-      loading: hierarchyTableReducers?.loading,
-      hierarchTableList: hierarchyTableReducers?.hierarchTableList,
-      hierarchSeachList: hierarchyTableReducers?.hierarchSeachList,
-      total: hierarchyTableReducers
-
-    };
-  });
-  console.log(hierarchTableList, "list of master")
+  const { hierarchTableList, loading, total, hierarchSeachList } = useSelector(
+    ({ hierarchyTableReducers }) => {
+      return {
+        loading: hierarchyTableReducers?.loading,
+        hierarchTableList: hierarchyTableReducers?.hierarchTableList,
+        hierarchSeachList: hierarchyTableReducers?.hierarchSeachList,
+        total: hierarchyTableReducers,
+      };
+    }
+  );
+  console.log(hierarchTableList, "list of master");
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
   const handleView = (id) => {
-    navigate(`/master/generals/employeemanagement/hierarchy/view/${id}`)
-  }
+    navigate(`/master/generals/employeemanagement/hierarchy/view/${id}`);
+  };
 
   const handlEdit = (id) => {
-    navigate(`/master/generals/employeemanagement/hierarchy/edit/${id}`)
-  }
+    navigate(`/master/generals/employeemanagement/hierarchy/edit/${id}`);
+  };
   const items = [
     { label: "Employee Management" },
     {
@@ -69,7 +68,7 @@ const HierarchyMaster = () => {
   const home = { label: "Master" };
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -77,7 +76,7 @@ const HierarchyMaster = () => {
   };
   const ViewheaderStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -95,7 +94,7 @@ const HierarchyMaster = () => {
   };
 
   const renderViewButton = (rowData) => {
-    console.log(rowData, "row data")
+    console.log(rowData, "row data");
     return (
       <div className="center-content">
         <Button
@@ -151,9 +150,7 @@ const HierarchyMaster = () => {
   };
   return (
     <div className="grid overall__hierarchy__master__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
+      <div className="col-12"></div>
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Hierarchy Master</div>
         <div className="mt-3">
@@ -185,14 +182,17 @@ const HierarchyMaster = () => {
                 <InputText
                   style={{ width: "100%" }}
                   classNames="input__sub__account__hierarchy"
-                  placeholder="Search By Rank Name" value={search}
+                  placeholder="Search By Rank Name"
+                  value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
           </div>
           <div className="col-12 ">
-            <div className="main__tabel__title__hierarchy p-2">Country List</div>
+            <div className="main__tabel__title__hierarchy p-2">
+              Country List
+            </div>
           </div>
           <div
             className="col-12 md:col-12 lg-col-12"
@@ -200,8 +200,7 @@ const HierarchyMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={search ? hierarchSeachList
-                  : hierarchTableList}
+                value={search ? hierarchSeachList : hierarchTableList}
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"
@@ -211,8 +210,8 @@ const HierarchyMaster = () => {
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-              // onPage={onPageChange}
-              // onPageChange={onPageChange}
+                // onPage={onPageChange}
+                // onPageChange={onPageChange}
               >
                 <Column
                   field="rankCode"

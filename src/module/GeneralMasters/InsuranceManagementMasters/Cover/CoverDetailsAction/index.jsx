@@ -145,9 +145,7 @@ const CoverDetailsAction = ({ action }) => {
     <div className="action__cover_container">
       <div className="grid m-0 top-container">
         <CustomToast ref={toastRef} message="Cover Code CC1234 is added" />
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="svgback_container">
             <span onClick={() => navigation(-1)}>

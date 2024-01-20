@@ -9,7 +9,6 @@ import NavBar from "../../../components/NavBar";
 import customHistory from "../../../routes/customHistory";
 import { useDispatch, useSelector } from "react-redux";
 
-
 const LeadPreview = () => {
   const navigate = useNavigate();
 
@@ -20,18 +19,18 @@ const LeadPreview = () => {
     customHistory.back();
   };
 
-  const { postcustomerinfodata, loading } = useSelector(({ CustomerInfoReducer }) => {
-    return {
-      loading: CustomerInfoReducer?.loading,
-      postcustomerinfodata: CustomerInfoReducer?.postcustomerinfodata,
+  const { postcustomerinfodata, loading } = useSelector(
+    ({ CustomerInfoReducer }) => {
+      return {
+        loading: CustomerInfoReducer?.loading,
+        postcustomerinfodata: CustomerInfoReducer?.postcustomerinfodata,
+      };
+    }
+  );
 
-    };
-  });
-
-console.log("211",postcustomerinfodata)
+  console.log("211", postcustomerinfodata);
   return (
     <div className="overall__lead__view__container">
-      <NavBar />
       <div className="header__title">Leads</div>
       <div className="lead__quote__id mt-3">
         <div className="left__arrow">
@@ -130,31 +129,45 @@ console.log("211",postcustomerinfodata)
           </div>
           <div className="quote__details">
             <label className="insurance__text">Motor Number</label>
-            <label className="alpha__text">{postcustomerinfodata?.MotorNumber}</label>
+            <label className="alpha__text">
+              {postcustomerinfodata?.MotorNumber}
+            </label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Chassis Number</label>
-            <label className="alpha__text">{postcustomerinfodata?.ChassisNumber}</label>
+            <label className="alpha__text">
+              {postcustomerinfodata?.ChassisNumber}
+            </label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Mortgage</label>
-            <label className="alpha__text">{postcustomerinfodata?.Mortgage}</label>
+            <label className="alpha__text">
+              {postcustomerinfodata?.Mortgage}
+            </label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Cert Number</label>
-            <label className="alpha__text">{postcustomerinfodata?.CertNumber}</label>
+            <label className="alpha__text">
+              {postcustomerinfodata?.CertNumber}
+            </label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Plate Number</label>
-            <label className="alpha__text">{postcustomerinfodata?.PlateNumber}</label>
+            <label className="alpha__text">
+              {postcustomerinfodata?.PlateNumber}
+            </label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">MV File Number</label>
-            <label className="alpha__text">{postcustomerinfodata?.MVFileNumber}</label>
+            <label className="alpha__text">
+              {postcustomerinfodata?.MVFileNumber}
+            </label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Authen Code</label>
-            <label className="alpha__text">{postcustomerinfodata?.AuthenCode}</label>
+            <label className="alpha__text">
+              {postcustomerinfodata?.AuthenCode}
+            </label>
           </div>
           <div className="insured_vehicle_text">Insured Vehicle Photo</div>
           <div class="grid m-0">

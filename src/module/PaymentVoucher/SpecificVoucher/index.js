@@ -94,7 +94,7 @@ function SpecificVoucher() {
     dispatch(patchpaymentVocherInvoiceListMiddleware(valueWithId));
     toastRef.current.showToast();
     {
-      setTimeout(() => { }, 3000);
+      setTimeout(() => {}, 3000);
     }
     setVisible(false);
   };
@@ -108,9 +108,12 @@ function SpecificVoucher() {
     setEditID(rowData?.id);
     setVisible(true);
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const items = [
-    { label: "Payment Voucher", command: () => navigate("/accounts/paymentvoucher") },
+    {
+      label: "Payment Voucher",
+      command: () => navigate("/accounts/paymentvoucher"),
+    },
     { label: "Create Voucher", to: "/accounts/paymentvoucher/createvoucher" },
   ];
   const home = { label: "Accounts " };
@@ -151,7 +154,7 @@ function SpecificVoucher() {
     width: "9rem",
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     // padding: 4,
     color: "#000",
@@ -162,7 +165,6 @@ function SpecificVoucher() {
 
   return (
     <div className="overall__specific__container">
-      <NavBar />
       <CustomToast
         ref={toastRef}
         message="Invoice details updated successfully"
@@ -201,7 +203,7 @@ function SpecificVoucher() {
           <Column
             selectionMode="multiple"
             headerStyle={{ width: "4rem" }}
-            style={{ textAlign: 'center' }}
+            style={{ textAlign: "center" }}
           ></Column>
           <Column
             field="VoucherNumber"
@@ -267,7 +269,7 @@ function SpecificVoucher() {
             body={renderViewButton}
             header="Action"
             headerStyle={headerStyle}
-            style={{ textAlign: 'center' }}
+            style={{ textAlign: "center" }}
             className="fieldvalue_container"
           ></Column>
         </DataTable>
@@ -348,7 +350,7 @@ function SpecificVoucher() {
             label="Update"
             className="update_btnlabel"
             onClick={formik.handleSubmit}
-          // onClick={() => setVisible(false)}
+            // onClick={() => setVisible(false)}
           />
         </div>
       </Dialog>

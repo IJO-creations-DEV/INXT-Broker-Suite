@@ -22,13 +22,14 @@ import { getPaymentVocherListBySearchMiddleware } from "./store/paymentVocherMid
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { paymentVocherList, loading, paymentVocherSearchList } = useSelector(
     ({ paymentVoucherReducers }) => {
       return {
         loading: paymentVoucherReducers?.loading,
         paymentVocherList: paymentVoucherReducers?.paymentVocherList,
-        paymentVocherSearchList: paymentVoucherReducers?.paymentVocherSearchList
+        paymentVocherSearchList:
+          paymentVoucherReducers?.paymentVocherSearchList,
       };
     }
   );
@@ -83,7 +84,7 @@ const Index = () => {
     width: "19%",
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     paddingLeft: 6,
@@ -104,26 +105,27 @@ const Index = () => {
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
   const [globalFilter, setGlobalFilter] = useState("VoucherNumber");
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
   const cities = [
-    { name: 'VoucherNumber', code: 'VoucherNumber' },
-    { name: 'TransactionNumber', code: 'TransactionNumber' },
-    { name: 'CustomerCode', code: 'CustomerCode' },
+    { name: "VoucherNumber", code: "VoucherNumber" },
+    { name: "TransactionNumber", code: "TransactionNumber" },
+    { name: "CustomerCode", code: "CustomerCode" },
   ];
 
   useEffect(() => {
-    console.log(globalFilter, "as")
+    console.log(globalFilter, "as");
     if (globalFilter?.length > 0) {
       if (search?.length > 0) {
-        dispatch(getPaymentVocherListBySearchMiddleware({
-          field: globalFilter,
-          value: search
-        }))
-
+        dispatch(
+          getPaymentVocherListBySearchMiddleware({
+            field: globalFilter,
+            value: search,
+          })
+        );
       }
     }
-  }, [search])
+  }, [search]);
 
   const onGlobalFilterChange = (event) => {
     setGlobalFilter(event.target.value);
@@ -135,7 +137,6 @@ const Index = () => {
 
   return (
     <div className="overall__paymentvoucher__container">
-      <NavBar />
       <div className="overallfilter_container">
         <div>
           <label className="label_header">Payment Voucher</label>
@@ -179,14 +180,16 @@ const Index = () => {
           <div class="col-12 md:col-6 lg:col-2">
             {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" /> */}
 
-
-            <Dropdown value={globalFilter} onChange={(e) => setGlobalFilter(e.value)} options={cities} optionLabel="name"
+            <Dropdown
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={cities}
+              optionLabel="name"
               optionValue="code"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}
             />
-
 
             {/* <Button
               label="Search by"
@@ -257,7 +260,7 @@ const Index = () => {
                 <SvgIconeye onClick={() => handleView(columnData)} />
               )}
               header="Action"
-              style={{ textAlign: 'center' }}
+              style={{ textAlign: "center" }}
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>

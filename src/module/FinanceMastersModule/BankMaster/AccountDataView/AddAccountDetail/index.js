@@ -51,10 +51,9 @@ function AddAccountDetail() {
     return {
       loading: bankMasterReducer?.loading,
       BankList: bankMasterReducer?.BankList,
-
     };
   });
-  console.log(BankList,"BankList");
+  console.log(BankList, "BankList");
 
   const customValidation = (values) => {
     const errors = {};
@@ -139,17 +138,17 @@ function AddAccountDetail() {
     // width: '12rem',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
     border: "none",
   };
-  const headeraction={
-display:'flex',
-justifyContent:'center',
-alignItem:'center'
-  }
+  const headeraction = {
+    display: "flex",
+    justifyContent: "center",
+    alignItem: "center",
+  };
   const status = [
     { name: "Active", code: "NY" },
     { name: "Deactive", code: "RM" },
@@ -164,11 +163,10 @@ alignItem:'center'
   const home = { label: "Master" };
 
   const handlesaveTable = () => {
-    setVisible(false)
+    setVisible(false);
   };
 
   const handlesave = (value) => {
-
     // console.log(value, "value");
     // const valueWithId = {
     //   ...value,
@@ -176,7 +174,7 @@ alignItem:'center'
     // };
     dispatch(postAddAccountDetails(formik.values));
 
-      navigate("/master/finance/bank/accountdataview");
+    navigate("/master/finance/bank/accountdataview");
   };
   const handleNavigation = () => {
     // navigate("/master/finance/bank/accountdataview");
@@ -203,7 +201,6 @@ alignItem:'center'
 
   return (
     <div className="overall__addaccountdetail__container">
-      <NavBar />
       <div>
         <span onClick={() => Navigate(-1)}>
           <SvgBackicon />
@@ -393,16 +390,16 @@ alignItem:'center'
         ></Column> */}
 
             <Column
-            body={(params) => (
-              <div onClick={() => setVisible(true)}>
-                <SvgEditIcon />
+              body={(params) => (
+                <div onClick={() => setVisible(true)}>
+                  <SvgEditIcon />
                 </div>
-            )}
-            header="Action"
-            headerStyle={headeraction}
-            className="fieldvalue_container"
-            style={{textAlign:'center'}}
-        ></Column>
+              )}
+              header="Action"
+              headerStyle={headeraction}
+              className="fieldvalue_container"
+              style={{ textAlign: "center" }}
+            ></Column>
           </DataTable>
         </div>
       </Card>

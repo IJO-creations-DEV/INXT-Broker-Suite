@@ -31,9 +31,7 @@ const Index = () => {
   return (
     <div className="container__insurance_company_master">
       <div className="grid m-0 top__container">
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="main__account__title">Insurance Company</div>
         </div>

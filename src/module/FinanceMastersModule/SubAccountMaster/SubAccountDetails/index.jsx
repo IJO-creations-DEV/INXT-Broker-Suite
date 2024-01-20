@@ -13,19 +13,19 @@ import { useFormik } from "formik";
 import LabelWrapper from "../../../../components/LabelWrapper";
 
 const SubAdd = () => {
-  const { subAccountView, loading } = useSelector(({ subAccountMainReducers }) => {
-    return {
-      loading: subAccountMainReducers?.loading,
-      subAccountView: subAccountMainReducers?.subAccountView,
-
-    };
-  });
+  const { subAccountView, loading } = useSelector(
+    ({ subAccountMainReducers }) => {
+      return {
+        loading: subAccountMainReducers?.loading,
+        subAccountView: subAccountMainReducers?.subAccountView,
+      };
+    }
+  );
   console.log(subAccountView, "subAccountView");
   const navigation = useNavigate();
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOption1, setSelectedOption1] = useState(null);
-
 
   const items = [
     { label: "Sub Account", url: "/master/finance/subaccount" },
@@ -35,12 +35,11 @@ const SubAdd = () => {
     },
   ];
   const texts = [
-    { label: subAccountView.mainAccount, value: subAccountView.mainAccount }
+    { label: subAccountView.mainAccount, value: subAccountView.mainAccount },
   ];
   const texts1 = [
-    { label: subAccountView.currencyCode, value: subAccountView.currencyCode }
+    { label: subAccountView.currencyCode, value: subAccountView.currencyCode },
   ];
-
 
   const home = { label: "Master" };
   useEffect(() => {
@@ -53,9 +52,7 @@ const SubAdd = () => {
 
   return (
     <div className="grid sub__details">
-      <div className="col-12">
-        <NavBar />
-      </div>
+      <div className="col-12"></div>
       <div className="col-12 mb-2">
         <div className="svgback_container">
           <span onClick={() => navigation(-1)}>
@@ -81,8 +78,6 @@ const SubAdd = () => {
               classNames="dropdown__add__sub"
               className="label__sub__add"
               value={subAccountView.subAccountCode}
-              
-
             />
           </div>
 
@@ -91,7 +86,6 @@ const SubAdd = () => {
               label="Sub Account Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
-
               value={subAccountView.subAccountName}
             />
           </div>
@@ -112,25 +106,19 @@ const SubAdd = () => {
             <label className="main_acc_text">Main Account Code</label>
 
             <div>
-
-
-
               <ScrollPanel className="scrollpanal_container">
                 <div className="selected__data__view mt-2">
-                  
                   {texts.map((selectedValue, index) => (
                     <div key={index}>{selectedValue.value}</div>
                   ))}
                 </div>
               </ScrollPanel>
-
             </div>
           </div>
           <div class="sm-col-12  md:col-6 lg-col-6">
             <label className="main_acc_text">Currency</label>
 
             <div>
-
               <ScrollPanel className="scrollpanal_container">
                 <div className="selected__data__view mt-2">
                   {texts1.map((selectedValue, index) => (
@@ -138,8 +126,6 @@ const SubAdd = () => {
                   ))}
                 </div>
               </ScrollPanel>
-
-
             </div>
           </div>
         </div>

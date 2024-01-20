@@ -27,7 +27,6 @@ console.log(claimSettleViewData, "endrosementViewData");
   };
   return (
     <div className="claim__detailssettlemenet__container ">
-      <NavBar />
       <div>
         <div className="claim__details__container__titles">Clients</div>
         <div

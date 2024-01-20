@@ -16,7 +16,10 @@ import CustomToast from "../../../../../components/Toast";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../../assets/icons/SvgBackicon";
 import { useSelector, useDispatch } from "react-redux";
-import { patchInsuranceProductMiddleWare, postInsuranceProductMiddleWare } from "../store/insuranceProductMiddleware";
+import {
+  patchInsuranceProductMiddleWare,
+  postInsuranceProductMiddleWare,
+} from "../store/insuranceProductMiddleware";
 
 const ProductMatserDetailsAction = ({ action }) => {
   const dispatch = useDispatch();
@@ -100,10 +103,10 @@ const ProductMatserDetailsAction = ({ action }) => {
           formik.resetForm();
         }, 3000);
       }
-    }else if (action === "edit") {
+    } else if (action === "edit") {
       dispatch(patchInsuranceProductMiddleWare(values));
       navigation("/master/generals/insurancemanagement/productmaster");
-    }  else {
+    } else {
       navigation("/master/generals/insurancemanagement/productmaster");
     }
 
@@ -147,9 +150,7 @@ const ProductMatserDetailsAction = ({ action }) => {
     <div className="action__product__master_container">
       <div className="grid m-0 top-container">
         <CustomToast ref={toastRef} message="Product Code CC1234 is added" />
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="svgback_container">
             <span onClick={() => navigation(-1)}>

@@ -57,9 +57,7 @@ const AccountCategoryMaster = () => {
   return (
     <div className="container__account__category__master">
       <div className="grid m-0 top__container">
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="correction__title__reversal">
             Account Category Master

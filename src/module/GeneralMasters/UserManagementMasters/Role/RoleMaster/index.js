@@ -24,13 +24,13 @@ const RoleMaster = () => {
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
-const handleView =()=>{
-    navigate("/master/generals/usermanagement/role/view/2")
-}
+  const handleView = () => {
+    navigate("/master/generals/usermanagement/role/view/2");
+  };
 
-const handlEdit =()=>{
-    navigate('/master/generals/usermanagement/role/edit/3')
-}
+  const handlEdit = () => {
+    navigate("/master/generals/usermanagement/role/edit/3");
+  };
   const items = [
     { label: "User Management" },
     {
@@ -42,7 +42,7 @@ const handlEdit =()=>{
   const home = { label: "Master" };
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -50,7 +50,7 @@ const handlEdit =()=>{
   };
   const ViewheaderStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -73,12 +73,12 @@ const handlEdit =()=>{
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-            onClick={() => handleView()}
+          onClick={() => handleView()}
         />
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-            onClick={() => handlEdit()}
+          onClick={() => handlEdit()}
         />
       </div>
     );
@@ -123,9 +123,7 @@ const handlEdit =()=>{
   };
   return (
     <div className="grid overall__role__master__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
+      <div className="col-12"></div>
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Role Master</div>
         <div className="mt-3">
@@ -163,7 +161,9 @@ const handlEdit =()=>{
             </div>
           </div>
           <div className="col-12 ">
-            <div className="main__tabel__title__hierarchy p-2">Country List</div>
+            <div className="main__tabel__title__hierarchy p-2">
+              Country List
+            </div>
           </div>
           <div
             className="col-12 md:col-12 lg-col-12"
@@ -196,7 +196,7 @@ const handlEdit =()=>{
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                 ></Column>
-                
+
                 <Column
                   field="modifiedBy"
                   header="Modified By"

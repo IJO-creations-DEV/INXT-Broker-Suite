@@ -38,7 +38,6 @@ function DepartmentDetailsView() {
 
   return (
     <div className="overall_department_details_view_container">
-      <NavBar />
       <label className="label_header">Department Details</label>
       <div className="next_container">
         <div className="exit_print_buttons">

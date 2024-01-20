@@ -15,6 +15,10 @@ import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
 import { useNavigate } from "react-router-dom";
 import SvgUploadClose from "../../../assets/agentIcon/SvgUploadClose";
 import customHistory from "../../../routes/customHistory";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { postAdjusterSubmission } from "./store/adjusterSubmissionMiddleWare";
+import SvgUploadSuccess from "../../../assets/agentIcon/SvgUploadSuccess";
 
 const AdjusterSubmission = () => {
   const Navigate = useNavigate();
@@ -34,6 +38,95 @@ const AdjusterSubmission = () => {
   const handleBackNavigation = () => {
     customHistory.back();
   };
+  const codeOptions = [
+    { label: "India", value: "India" },
+    { label: "America", value: "America" },
+
+  ];
+  const codeOptionsProvice = [
+    { label: "Karnataka", value: "Karnataka" },
+    { label: "Tamil Nadu", value: "Tamil Nadu" },
+    { label: "Hydrabad", value: "Hydrabad" },
+  ]
+  const codeOptionsCity = [
+    { label: "Davanagere", value: "Davanagere" },
+    { label: "Channai", value: "Channai" },
+    { label: "Banglore", value: "Banglore" },
+  ]
+  const formInitialValue = {
+    adjusterName: "",
+    claimNumber: "",
+    dateOfReported: "",
+    dateOfLoss: "",
+    placeOfAccident: "",
+    driversName: "",
+    houseNumber: "",
+    barangay: "",
+    country: "",
+    province: "",
+    city: "",
+    zipCode: "",
+    file: null,
+  };
+  const customValidation = (values) => {
+    const errors = {};
+    if (!values.adjusterName) {
+      errors.adjusterName = "This field is required";
+    }
+    if (!values.claimNumber) {
+      errors.claimNumber = "This field is required";
+    }
+    if (!values.dateOfReported) {
+      errors.dateOfReported = "This field is required";
+    }
+    if (!values.dateOfLoss) {
+      errors.dateOfLoss = "This field is required";
+    } if (!values.placeOfAccident) {
+      errors.placeOfAccident = "This field is required";
+    }
+    if (!values.driversName) {
+      errors.driversName = "This field is required";
+    }
+    if (!values.houseNumber) {
+      errors.houseNumber = "This field is required";
+    }
+    if (!values.barangay) {
+      errors.barangay = "This field is required";
+    }
+
+    if (!values.country) {
+      errors.country = "This field is required";
+    }
+
+    if (!values.province) {
+      errors.province = "This field is required";
+    }
+
+    if (!values.city) {
+      errors.city = "This field is required";
+    }
+    if (!values.zipCode) {
+      errors.zipCode = "This field is required";
+    }
+    if (!values.file) {
+      errors.file = "Please select a file";
+    }
+    return errors;
+  };
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    if (!values.file) {
+      alert("please select file")
+      return;
+    }
+    dispatch(postAdjusterSubmission(formik.values))
+    Navigate("/agent/claimrequest/settlementapproval");
+  }
+  const formik = useFormik({
+    initialValues: formInitialValue,
+    validate: customValidation,
+    onSubmit: handleSubmit,
+  });
 
   return (
     <div className="claim__request__upload__container">
@@ -49,42 +142,172 @@ const AdjusterSubmission = () => {
 
         <div class="grid m-0 ">
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Adjuster Name" />
+            <InputTextField
+              label="Adjuster Name"
+              value={formik.values.adjusterName}
+              onChange={formik.handleChange("adjusterName")}
+            />
+            {formik.touched.adjusterName && formik.errors.adjusterName && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.adjusterName}
+              </div>
+            )}
+
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Claim Number" />
+            <InputTextField label="Claim Number"
+              value={formik.values.claimNumber}
+              onChange={formik.handleChange("claimNumber")}
+            />
+            {formik.touched.claimNumber && formik.errors.claimNumber && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.claimNumber}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <DatepickerField label="Date of Reported" />
+            <DatepickerField
+              label="Date of Reported"
+              value={
+                formik.values.dateOfReported
+                  ? new Date(formik.values.dateOfReported)
+                  : null
+              }
+              onChange={(e) => {
+                formik.handleChange("dateOfReported")(
+                  e.value.toISOString().split("T")[0]
+                );
+              }}
+
+              dateFormat="yy-mm-dd"
+            />
+            {formik.touched.dateOfReported && formik.errors.dateOfReported && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.dateOfReported}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <DatepickerField label="Date of Loss" />
+            <DatepickerField
+              label="Date of Loss"
+              value={
+                formik.values.dateOfLoss
+                  ? new Date(formik.values.dateOfLoss)
+                  : null
+              }
+              onChange={(e) => {
+                formik.handleChange("dateOfLoss")(
+                  e.value.toISOString().split("T")[0]
+                );
+              }}
+
+              dateFormat="yy-mm-dd"
+            />
+            {formik.touched.dateOfLoss && formik.errors.dateOfLoss && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.dateOfLoss}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Place of Accident" />
+            <InputTextField label="Place of Accident"
+              value={formik.values.placeOfAccident}
+              onChange={formik.handleChange("placeOfAccident")}
+            />
+            {formik.touched.placeOfAccident && formik.errors.placeOfAccident && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.placeOfAccident}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Driver’s name" />
+            <InputTextField label="Driver’s name"
+              value={formik.values.driversName}
+              onChange={formik.handleChange("driversName")}
+            />
+            {formik.touched.driversName && formik.errors.driversName && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.driversName}
+              </div>
+            )}
           </div>
 
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="House No / Unit No / Street " />
+            <InputTextField label="House No / Unit No / Street "
+              value={formik.values.houseNumber}
+              onChange={formik.handleChange("houseNumber")}
+            />
+            {formik.touched.houseNumber && formik.errors.houseNumber && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.houseNumber}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Barangay / Subd" />
+            <InputTextField label="Barangay / Subd"
+              value={formik.values.barangay}
+              onChange={formik.handleChange("barangay")}
+            />
+            {formik.touched.barangay && formik.errors.barangay && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.barangay}
+              </div>
+            )}
           </div>
 
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Country" />
+            <DropdownField
+              label="Country"
+
+              value={formik.values.country}
+              onChange={(e) =>
+                formik.setFieldValue("country", e.target.value)
+              }
+              options={codeOptions}
+              optionLabel="value"
+            />
+            {formik.touched.country && formik.errors.country && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.country}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Province" />
+            <DropdownField label="Province"
+              value={formik.values.province}
+              onChange={formik.handleChange("province")}
+              options={codeOptionsProvice}
+              optionLabel="value"
+            />
+            {formik.touched.province && formik.errors.province && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.province}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="City" />
+            <DropdownField label="City"
+              value={formik.values.city}
+              onChange={formik.handleChange("city")}
+              options={codeOptionsCity}
+              optionLabel="value"
+            />
+            {formik.touched.city && formik.errors.city && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.city}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="ZIP Code" />
+            <InputTextField label="ZIP Code"
+              value={formik.values.zipCode}
+              onChange={formik.handleChange("zipCode")}
+            />
+            {formik.touched.zipCode && formik.errors.zipCode && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.zipCode}
+              </div>
+            )}
           </div>
           <div className="col-12 claim__request__upload__subtitle mt-2 mb-2">
             Third Party Details (If Applicable)
@@ -121,10 +344,15 @@ const AdjusterSubmission = () => {
                 name="demo"
                 accept=".png,.jpg,.jpeg,.pdf"
                 maxFileSize={2000000}
+                // uploadHandler={(e) => {
+                //   handleUppendImg(e.options.props.name, e.files[0]);
+                // }}
                 uploadHandler={(e) => {
-                  handleUppendImg(e.options.props.name, e.files[0]);
+                  formik.setFieldValue("file", e.files[0]);
+                  handleUppendImg(e.options.props.name, e.files[0], "the data");
                 }}
               />
+             
               <div className="icon_click_option">
                 <SvgImageUpload />
               </div>
@@ -134,6 +362,11 @@ const AdjusterSubmission = () => {
               </div>
             </div>
           </div>
+          {formik.touched.file && formik.errors.file && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.file}
+                </div>
+              )}
           {uploadImage && (
             <div class="col-12 mt-2 ">
               <span onClick={handleCancelUplaoded}>
@@ -141,6 +374,7 @@ const AdjusterSubmission = () => {
               </span>
             </div>
           )}
+
           <div className="col-12">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
@@ -149,7 +383,7 @@ const AdjusterSubmission = () => {
                 </Button>
               </div>
               <div className="next__btn__container">
-                <Button className="next__btn" onClick={handlenext}>
+                <Button className="next__btn" onClick={formik.handleSubmit}>
                   Next
                 </Button>
               </div>

@@ -27,16 +27,12 @@ const Index = () => {
   const home = { label: "Master" };
 
   const handleAction = () => {
-    navigation(
-      `/master/generals/insurancemanagement/cover/add/${1}`
-    );
+    navigation(`/master/generals/insurancemanagement/cover/add/${1}`);
   };
   return (
     <div className="container__cover_master">
       <div className="grid m-0 top__container">
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="main__account__title">Cover Master</div>
         </div>

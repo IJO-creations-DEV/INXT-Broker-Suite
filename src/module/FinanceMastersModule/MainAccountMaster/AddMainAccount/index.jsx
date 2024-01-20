@@ -39,7 +39,6 @@ const AddMainAccount = () => {
   const codeOptionsType = [
     { label: "Option 1", value: "Credit" },
     { label: "Option 2", value: "Debit" },
-   
   ];
   const categoryOptionsCode = [
     { label: "Option 1", value: "Debtor" },
@@ -63,8 +62,8 @@ const AddMainAccount = () => {
     if (!values.mainAccountCode) {
       errors.mainAccountCode = "This field is required";
     }
-    if (!values.mainaccountname) {
-      errors.mainaccountname = "This field is required";
+    if (!values.mainAccountName) {
+      errors.mainAccountName = "This field is required";
     }
     if (!values.description) {
       errors.description = "This field is required";
@@ -86,7 +85,7 @@ const AddMainAccount = () => {
 
     return errors;
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // const handleSubmit = (values) => {
   //   // Handle form submission
   //   // toastRef.current.showToast();
@@ -112,30 +111,35 @@ const AddMainAccount = () => {
   // };
   const handleSubmit = (values) => {
     const openEntry = selectSwitch === "No" ? "Yes" : "No";
-    const updatedValues = { ...values, openEntry};
-  
-    dispatch(postMainAccountStatus(updatedValues))
-      .then(() => {
-        toastRef.current.showToast();
-        setTimeout(() => {
-          navigation("/master/finance/mainaccount");
-        }, 2000);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  
+    const updatedValues = { ...values, openEntry };
+    dispatch(postMainAccountStatus(updatedValues));
+    toastRef.current.showToast();
+    setTimeout(() => {
+      navigation("/master/finance/mainaccount");
+    }, 2000);
+    // dispatch(postMainAccountStatus(updatedValues))
+    //   .then(() => {
+    //     alert("hii")
+    //     toastRef.current.showToast();
+    //     setTimeout(() => {
+    //       navigation("/master/finance/mainaccount");
+    //     }, 2000);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
+
     console.log(updatedValues, "find values");
   };
-  
+
   const formik = useFormik({
     initialValues: {
       mainAccountCode: "",
-      mainaccountname: "",
+      mainAccountName: "",
       description: "",
       accountCategoryCode: "",
       accountType: "",
-      openEntry:"",
+      openEntry: "",
       companyCode: [],
       currencyCode: [],
       openEntryType: "",
@@ -153,9 +157,7 @@ const AddMainAccount = () => {
           ref={toastRef}
           message="Main Account Code MAC1234 is added"
         />
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="svgback_container">
             <span onClick={() => navigation(-1)}>
@@ -186,12 +188,12 @@ const AddMainAccount = () => {
                 formik.setFieldValue("mainAccountCode", e.target.value)
               }
             />
-            {formik.touched.mainAccountCode && formik.errors.mainAccountCode && (
-              <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.mainAccountCode}
-              </div>
-            )}
-
+            {formik.touched.mainAccountCode &&
+              formik.errors.mainAccountCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.mainAccountCode}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
             <InputField
@@ -199,16 +201,15 @@ const AddMainAccount = () => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Main Account Name"
-
-              value={formik.values.mainaccountname}
+              value={formik.values.mainAccountName}
               onChange={(e) =>
-                formik.setFieldValue("mainaccountname", e.target.value)
+                formik.setFieldValue("mainAccountName", e.target.value)
               }
             />
-            {formik.touched.mainaccountname &&
-              formik.errors.mainaccountname && (
+            {formik.touched.mainAccountName &&
+              formik.errors.mainAccountName && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.mainaccountname}
+                  {formik.errors.mainAccountName}
                 </div>
               )}
           </div>
@@ -219,8 +220,7 @@ const AddMainAccount = () => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               placeholder="Enter"
-              label="Description"
-
+              label="description"
               value={formik.values.description}
               onChange={(e) =>
                 formik.setFieldValue("description", e.target.value)
@@ -240,7 +240,6 @@ const AddMainAccount = () => {
               classNames="select__label__corrections"
               optionLabel="value"
               label="Account Type"
-
               value={formik.values.accountType}
               onChange={(e) => formik.setFieldValue("accountType", e.value)}
               options={codeOptionsType}
@@ -280,7 +279,6 @@ const AddMainAccount = () => {
                   : "select__label__corrections"
               }
               optionLabel="value"
-
               label="Open Entry type"
               value={formik.values.openEntryType}
               onChange={(e) => formik.setFieldValue("openEntryType", e.value)}

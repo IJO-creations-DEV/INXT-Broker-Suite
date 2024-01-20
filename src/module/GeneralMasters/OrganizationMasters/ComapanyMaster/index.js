@@ -161,7 +161,6 @@ const Index = () => {
 
   return (
     <div className="overall__company__container">
-      <NavBar />
       <div className="overallfilter_container">
         <div>
           <label className="label_header">Company Master</label>

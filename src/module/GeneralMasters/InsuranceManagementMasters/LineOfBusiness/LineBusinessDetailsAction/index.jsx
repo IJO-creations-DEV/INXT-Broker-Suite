@@ -148,9 +148,7 @@ const LineBusinessDetailsAction = ({ action }) => {
           ref={toastRef}
           message="Line of Business LOB1234 is added"
         />
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="svgback_container">
             <span onClick={() => navigation(-1)}>

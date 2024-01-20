@@ -1,39 +1,41 @@
-
-import { BreadCrumb } from 'primereact/breadcrumb'
-import React, { useEffect, useState, useRef } from 'react'
-import NavBar from '../../../../components/NavBar'
-import SvgDot from '../../../../assets/icons/SvgDot';
-import "../PettyCashdetails/index.scss"
-import InputField from '../../../../components/InputField';
-import { Button } from 'primereact/button';
-import { useFormik } from 'formik';
-import ArrowLeftIcon from '../../../../assets/icons/ArrowLeftIcon';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { BreadCrumb } from "primereact/breadcrumb";
+import React, { useEffect, useState, useRef } from "react";
+import NavBar from "../../../../components/NavBar";
+import SvgDot from "../../../../assets/icons/SvgDot";
+import "../PettyCashdetails/index.scss";
+import InputField from "../../../../components/InputField";
+import { Button } from "primereact/button";
+import { useFormik } from "formik";
+import ArrowLeftIcon from "../../../../assets/icons/ArrowLeftIcon";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PettyCashDetail = () => {
   const toastRef = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [visiblePopup, setVisiblePopup] = useState(false);
 
   const items = [
-    { label: 'Petty Cash', url: '/master/finance/pettycash' },
-    { label: 'Petty Cash Details', url: '/master/finance/pettycash/pettycashdetail' },
-
+    { label: "Petty Cash", url: "/master/finance/pettycash" },
+    {
+      label: "Petty Cash Details",
+      url: "/master/finance/pettycash/pettycashdetail",
+    },
   ];
-  const { pettyCashView, pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
-    return {
-      loading: pettyCashMainReducers?.loading,
-      pettyCashView: pettyCashMainReducers?.pettyCashView,
-      // pettyCashSearchList: pettyCashMainReducers?.pettyCashSearchList
+  const { pettyCashView, pettyCashSearchList, loading } = useSelector(
+    ({ pettyCashMainReducers }) => {
+      return {
+        loading: pettyCashMainReducers?.loading,
+        pettyCashView: pettyCashMainReducers?.pettyCashView,
+        // pettyCashSearchList: pettyCashMainReducers?.pettyCashSearchList
+      };
+    }
+  );
 
-    };
-  });
-
-  console.log(pettyCashView, "pettyCashView")
+  console.log(pettyCashView, "pettyCashView");
   const handleGoBack = () => {
-    navigate("/master/finance/pettycash")
-  }
+    navigate("/master/finance/pettycash");
+  };
   const home = { label: "Master" };
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -77,15 +79,14 @@ const PettyCashDetail = () => {
   //   return val
   // })
 
-
   const formik = useFormik({
     initialValues: {
-      prttycashcode: pettyCashView.pettycashcode || '',
-      pettycashname: pettyCashView.pettycashname || '',
-      pettycashsize: pettyCashView.pettycashsize || '',
-      avilabelcash: pettyCashView.avilabelcash || '',
-      mincashback: pettyCashView.minicashbox || '',
-      transactionlimit: pettyCashView.transactionlimit || ''
+      prttycashcode: pettyCashView.pettycashcode || "",
+      pettycashname: pettyCashView.pettycashname || "",
+      pettycashsize: pettyCashView.pettycashsize || "",
+      avilabelcash: pettyCashView.avilabelcash || "",
+      mincashback: pettyCashView.minicashbox || "",
+      transactionlimit: pettyCashView.transactionlimit || "",
     },
     validate: customValidation,
     onSubmit: (values) => {
@@ -95,14 +96,22 @@ const PettyCashDetail = () => {
   });
 
   return (
-    <div className='grid detail__add__container'>
-      <div className='col-12'>
-        <NavBar />
-      </div>
-      <div className='col-12 mb-2'>
-        <div className='add__sub__title '><div onClick={handleGoBack} className='mr-2 mt-1'><ArrowLeftIcon /></div> Petty Cash Details</div>
-        <div className='mt-3'>
-          <BreadCrumb home={home} className='breadCrums__view__add__screen' model={items} separatorIcon={<SvgDot color={"#000"} />} />
+    <div className="grid detail__add__container">
+      <div className="col-12"></div>
+      <div className="col-12 mb-2">
+        <div className="add__sub__title ">
+          <div onClick={handleGoBack} className="mr-2 mt-1">
+            <ArrowLeftIcon />
+          </div>{" "}
+          Petty Cash Details
+        </div>
+        <div className="mt-3">
+          <BreadCrumb
+            home={home}
+            className="breadCrums__view__add__screen"
+            model={items}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
       </div>
       <div className="grid card__container p-2">
@@ -116,15 +125,11 @@ const PettyCashDetail = () => {
             }
             label="Petty Cash Code"
             placeholder="Enter"
-            value={
-              pettyCashView.pettycashcode
-
-            }
+            value={pettyCashView.pettycashcode}
             disabled={true}
-          // onChange={(e) =>
-          //   formik.setFieldValue("prttycashcode", e.target.value)
-          // }
-
+            // onChange={(e) =>
+            //   formik.setFieldValue("prttycashcode", e.target.value)
+            // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -137,13 +142,11 @@ const PettyCashDetail = () => {
             }
             label="Petty Cash Name"
             placeholder="Enter"
-            value={
-              pettyCashView.pettycashname
-            }
+            value={pettyCashView.pettycashname}
             disabled={true}
-          // onChange={(e) =>
-          //   formik.setFieldValue("pettycashname", e.target.value)
-          // }
+            // onChange={(e) =>
+            //   formik.setFieldValue("pettycashname", e.target.value)
+            // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -156,14 +159,11 @@ const PettyCashDetail = () => {
             }
             label="Petty Cash Size"
             placeholder="Enter"
-            value={
-              pettyCashView.pettycashsize
-
-            }
+            value={pettyCashView.pettycashsize}
             disabled={true}
-          // onChange={(e) =>
-          //   formik.setFieldValue("pettycashsize", e.target.value)
-          // }
+            // onChange={(e) =>
+            //   formik.setFieldValue("pettycashsize", e.target.value)
+            // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -176,14 +176,11 @@ const PettyCashDetail = () => {
             }
             label="Available Cash"
             placeholder="Enter"
-            value={
-              pettyCashView.avilabelcash
-
-            }
+            value={pettyCashView.avilabelcash}
             disabled={true}
-          // onChange={(e) =>
-          //   formik.setFieldValue("avilabelcash", e.target.value)
-          // }
+            // onChange={(e) =>
+            //   formik.setFieldValue("avilabelcash", e.target.value)
+            // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -196,14 +193,11 @@ const PettyCashDetail = () => {
             }
             label="Minimum Cash Box"
             placeholder="Enter"
-            value={
-              pettyCashView.minicashbox
-
-            }
+            value={pettyCashView.minicashbox}
             disabled={true}
-          // onChange={(e) =>
-          //   formik.setFieldValue("mincashback", e.target.value)
-          // }
+            // onChange={(e) =>
+            //   formik.setFieldValue("mincashback", e.target.value)
+            // }
           />
         </div>
         <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
@@ -216,14 +210,11 @@ const PettyCashDetail = () => {
             }
             label="Transaction Limit"
             placeholder="Enter"
-            value={
-              pettyCashView.transactionlimit
-
-            }
+            value={pettyCashView.transactionlimit}
             disabled={true}
-          // onChange={(e) =>
-          //   formik.setFieldValue("transactionlimit", e.target.value)
-          // }
+            // onChange={(e) =>
+            //   formik.setFieldValue("transactionlimit", e.target.value)
+            // }
           />
         </div>
       </div>
@@ -235,10 +226,7 @@ const PettyCashDetail = () => {
           onClick={formik.handleSubmit}
         />
       </div> */}
-
     </div>
-  )
-}
-export default PettyCashDetail
-
-
+  );
+};
+export default PettyCashDetail;

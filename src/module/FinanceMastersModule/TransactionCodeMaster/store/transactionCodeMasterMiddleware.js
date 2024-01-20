@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_TRANSACTION_CODE_LIST, GET_TRANSACTION_CODE_LIST_SEARCH, POST_STATUS, POST_ADD_TRANSACTION, GET_TRANSACTION_CODE_SETUP, GET_USER_GROUP_ACCESS, POST_ADD_TRANSACTION_CODE_SETUP, POST_ADD_USER_GROUP_ACCESS, PATCH_TRANSACTION_CODE_DETAILS_EDIT, GET_TRANSACTION_CODE_DETAILS_VIEW, GET_PATCH_TRANSACTION_EDIT } from "../../../../redux/actionTypes";
+import { GET_TRANSACTION_CODE_LIST, GET_TRANSACTION_CODE_LIST_SEARCH, POST_STATUS, POST_ADD_TRANSACTION, GET_TRANSACTION_CODE_SETUP, GET_USER_GROUP_ACCESS, POST_ADD_TRANSACTION_CODE_SETUP, POST_ADD_USER_GROUP_ACCESS, PATCH_TRANSACTION_CODE_DETAILS_EDIT, GET_TRANSACTION_CODE_DETAILS_VIEW, GET_PATCH_TRANSACTION_EDIT, GET_PATCH_USER_ACCESS, POST_PATCH_USER_ACCESS } from "../../../../redux/actionTypes";
 
 
 export const getTransactioncodeListMiddleware = createAsyncThunk(
@@ -222,4 +222,36 @@ export const patchTrascationcodeDetailsEdit = createAsyncThunk(
             return rejectWithValue(error?.response.data.error.message);
         }
     }
+);
+
+export const getUserEditData = createAsyncThunk(
+    GET_PATCH_USER_ACCESS,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+
+export const patchUserRoleAccess = createAsyncThunk(
+    POST_PATCH_USER_ACCESS,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "payload")
+        const data={
+            id: payload?.id,
+            UserRole: payload?.UserRole,
+            MinimumTransaction: payload?.MinimumTransaction,
+            MaximumTransaction: payload?.MaximumTransaction,
+        }
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
 );

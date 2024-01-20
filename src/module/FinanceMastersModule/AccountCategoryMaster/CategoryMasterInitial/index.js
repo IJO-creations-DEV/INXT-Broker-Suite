@@ -10,7 +10,7 @@ import { Card } from "primereact/card";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-import  {data} from "../CategoryMasterInitial/mock"
+import { data } from "../CategoryMasterInitial/mock";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 import ToggleButton from "../../../../components/ToggleButton";
 import { Button } from "primereact/button";
@@ -51,7 +51,7 @@ const Index = () => {
     width: "10rem",
     // backgroundColor: 'red',
     fontSize: 14,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -86,7 +86,6 @@ const Index = () => {
   };
   return (
     <div className="overall_category_master_initial_container">
-      <NavBar />
       <div className="overallfilter_container">
         <div>
           <label className="label_header">Account Category Master</label>
@@ -156,15 +155,15 @@ const Index = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
-          
-          <Column
+
+            <Column
               field="status"
               header="Status"
               headerStyle={headerStyle}
               className="fieldvalue_container"
               body={(columnData) => <ToggleButton id={columnData.id} />}
             ></Column>
-           
+
             <Column
               header="View"
               headerStyle={headerStyle}

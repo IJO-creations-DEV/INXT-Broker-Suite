@@ -12,9 +12,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 import { InputText } from "primereact/inputtext";
-import EditUser from "../EditUser"
+import EditUser from "../EditUser";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserListByIdMiddleware, postAddUserMiddleware } from "../store/userMiddleware";
+import {
+  getUserListByIdMiddleware,
+  postAddUserMiddleware,
+} from "../store/userMiddleware";
 import moment from "moment";
 
 const AddUser = ({ action }) => {
@@ -23,26 +26,26 @@ const AddUser = ({ action }) => {
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (action === "edit" || action === "view") {
       dispatch(getUserListByIdMiddleware(id)).then(() => {
         setFormikValues();
-
-      })
+      });
       // setFormikValues();
     }
   }, [action, id]);
   const items = [
     { label: "User Management" },
     {
-      label: `${action === "add"
-        ? "Add User"
-        : action === "edit"
+      label: `${
+        action === "add"
+          ? "Add User"
+          : action === "edit"
           ? "Edit User"
           : "View User"
-        }`,
+      }`,
     },
   ];
   const home = { label: "Master" };
@@ -55,15 +58,16 @@ const AddUser = ({ action }) => {
     phoneNumber: "",
     assignedRole: "",
   };
-  const { loading, userList, searchList, userDetailList } = useSelector(({ userReducers }) => {
-    return {
-      loading: userReducers?.loading,
-      userList: userReducers?.userList,
-      searchList: userReducers?.userSearchList,
-      userDetailList: userReducers?.userDetailList
-
-    };
-  });
+  const { loading, userList, searchList, userDetailList } = useSelector(
+    ({ userReducers }) => {
+      return {
+        loading: userReducers?.loading,
+        userList: userReducers?.userList,
+        searchList: userReducers?.userSearchList,
+        userDetailList: userReducers?.userDetailList,
+      };
+    }
+  );
   const validate = (values) => {
     const errors = {};
     console.log(values, errors, "values");
@@ -90,29 +94,31 @@ const AddUser = ({ action }) => {
   minDate.setDate(minDate.getDate() + 1);
 
   const handleSubmit = (value) => {
-    console.log(value, "val")
-    dispatch(postAddUserMiddleware({
-      id: userList?.length + 1,
-      userName: value?.userName,
-      employeeCode: value?.employeeCode?.name,
-      assignedRole: value?.assignedRole?.name,
-      email: value?.email,
-      phoneNumber: value?.phoneNumber,
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    }))
+    console.log(value, "val");
+    dispatch(
+      postAddUserMiddleware({
+        id: userList?.length + 1,
+        userName: value?.userName,
+        employeeCode: value?.employeeCode?.name,
+        assignedRole: value?.assignedRole?.name,
+        email: value?.email,
+        phoneNumber: value?.phoneNumber,
+        modifiedBy: "Johnson",
+        modifiedOn: "12/12/23",
+        status: "",
+        action: "",
+      })
+    );
     toastRef.current.showToast();
 
     setTimeout(() => {
       setVisiblePopup(false);
     }, 3000);
-    navigate('/master/generals/usermanagement/user')
+    navigate("/master/generals/usermanagement/user");
   };
 
   const setFormikValues = () => {
-    console.log(userDetailList, "user details")
+    console.log(userDetailList, "user details");
     const userName = userDetailList?.userName;
     const employeeCode = userDetailList?.employeeCode;
     const email = userDetailList?.email;
@@ -120,9 +126,7 @@ const AddUser = ({ action }) => {
     const assignedRole = userDetailList?.assignedRole;
 
     const modifiedBy = userDetailList?.modifiedBy;
-    const modifiedOn = moment().format('DD/MM/YYYY');
-
-
+    const modifiedOn = moment().format("DD/MM/YYYY");
 
     const updatedValues = {
       userName: `${userName}`,
@@ -143,22 +147,24 @@ const AddUser = ({ action }) => {
   });
   return (
     <div className="grid add__user__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
-      <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+      <div className="col-12"></div>
+      <div
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+        }}
+      >
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
-
-
       </div>
       <div className="add__sub__title">
         {action === "add"
           ? "Add User"
           : action === "edit"
-            ? "Edit User"
-            : "View User"}
+          ? "Edit User"
+          : "View User"}
       </div>
       <div className="col-12 mb-2">
         <div className="mt-3">

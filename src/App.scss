@@ -27,6 +27,17 @@
 .App-link {
   color: #61dafb;
 }
+.css-esmk4o {
+  position: relative;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-color: #efefef;
+  -webkit-transition: width, left, right, 300ms;
+  transition: width, left, right, 300ms;
+  // width: 23vw !important;
+  min-width: 20vw !important;
+  background-color: #1c2536 !important;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -34,5 +45,19 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.parent__main__container {
+  width: 80vw;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+@media only screen and (max-width: 768px) {
+  .parent__main__container {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
   }
 }

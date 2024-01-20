@@ -11,6 +11,8 @@ import {
   getTrascationcodeDetailsView,
   patchTrascationcodeDetailsEdit,
   getpatchTrascationcodeDetailsEdit,
+  getUserEditData,
+  patchUserRoleAccess,
 } from "./transactionCodeMasterMiddleware";
 import SvgEditIcon from "../../../../assets/icons/SvgEditIcon";
 const initialState = {
@@ -56,6 +58,7 @@ const initialState = {
   TrascationcodeDetailsView: [],
   AddTransaction: {},
   Status: {},
+  getUserAccessData:{},
   TransactionCodeSetup: [
     {
       id: 1,
@@ -287,6 +290,45 @@ const transactionCodeMasterReducer = createSlice({
       state.loading = false;
 
       state.getTrascationcodeDetailsEdit = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+     builder.addCase(getUserEditData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getUserEditData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.getUserAccessData = action.payload;
+    });
+    builder.addCase(getUserEditData.rejected, (state, action) => {
+      state.loading = false;
+
+      state.getUserAccessData = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    
+    builder.addCase(patchUserRoleAccess.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      patchUserRoleAccess.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        const updatedIndex = state.UserGroupAccessList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.UserGroupAccessList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.UserGroupAccessList = updatedCurrencyList;
+        } else {
+          state.UserGroupAccessList = [...state.UserGroupAccessList, action.payload];
+        }
+      }
+    );
+    builder.addCase(patchUserRoleAccess.rejected, (state, action) => {
+      state.loading = false;
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 

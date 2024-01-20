@@ -1,0 +1,119 @@
+.datepicker__container {
+  position: relative;
+.icon__calender{
+  position: absolute;
+  z-index: 1;
+  right: 12px;
+  top: 20px;
+}
+
+
+  .datepicker__field {
+    height: 64px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Poppins;
+    line-height: 24px;
+    color: #111927;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+
+    &:focus {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 0.1rem #e5e7eb;
+      border-color: #e5e7eb;
+    }
+    .p-datepicker-trigger{
+        svg{
+            z-index: 2;
+            padding: 10px;
+        }
+    }
+  }
+
+  .label {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    color: #6c737f;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Poppins;
+    line-height: 21px;
+
+    &.focused {
+      top: 4px;
+      left: 10px;
+      font-size: 14px;
+      color: #6c737f;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 21px;
+    }
+  }
+
+  .p-calendar {
+    background: #ffffff;
+    border-top: 0px solid #ced4da;
+    border-bottom: 0px solid #ced4da;
+    border-left: 1px solid #ced4da;
+    border-right: 0px solid #ced4da;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
+    border-radius: 10px;
+    margin-top: 0rem !important;
+    width: 100%;
+
+    .p-inputtext {
+      font-family: Poppins;
+      color: #111927;
+      padding-top: 34px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      border-bottom-left-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+
+    .p-datepicker-trigger {
+      background: transparent;
+      color: #6b7280;
+      width: 3rem;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding-bottom: 0px !important;
+    }
+  }
+  .p-button {
+    color: #ffffff;
+    background: #6366F1;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    border-left: 0px solid #ced4da;
+    border-right: 1px solid #ced4da;
+    padding: 0rem 0rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 0px;
+}
+.p-inputtext {
+    font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings, normal);
+    font-size: 1rem;
+    color: #4b5563;
+    background: #ffffff;
+    padding: 0.75rem 0.75rem;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    border-left: 0px solid #ced4da !important;
+    border-right: 0px solid #ced4da !important;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    border-bottom-left-radius: 10px !important;
+    border-top-left-radius: 10px !important;
+}
+}

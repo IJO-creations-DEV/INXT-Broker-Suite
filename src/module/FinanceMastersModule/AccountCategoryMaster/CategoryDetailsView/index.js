@@ -28,7 +28,10 @@ function DepartmentDetailsView() {
       setVisiblePopup(false);
     }, 1000);
   };
-  const items = [{ label: "Account Category" }, { label: "Account Category Details" }];
+  const items = [
+    { label: "Account Category" },
+    { label: "Account Category Details" },
+  ];
   const item = [
     { name: "Active", code: "AC" },
     { name: "Comp012", code: "CM" },
@@ -38,7 +41,6 @@ function DepartmentDetailsView() {
 
   return (
     <div className="overall_category_details_view_container">
-      <NavBar />
       <label className="label_header">Account Category Details</label>
       <div className="next_container">
         <div className="exit_print_buttons">
@@ -57,7 +59,7 @@ function DepartmentDetailsView() {
         separatorIcon={<SvgDot color={"#000"} />}
       />
 
-<Card>
+      <Card>
         <div class="grid">
           <div class="sm-col-12  md:col-3 lg-col-4 col-offset-9">
             <DropDowns
@@ -99,7 +101,9 @@ function DepartmentDetailsView() {
               <InputField
                 classNames="field__container"
                 label="Description"
-                value={"A description is a detailed and informative explanation or portrayal of something"}
+                value={
+                  "A description is a detailed and informative explanation or portrayal of something"
+                }
               />
             </div>
           </div>

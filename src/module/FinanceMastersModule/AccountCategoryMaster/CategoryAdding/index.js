@@ -34,7 +34,6 @@ function CategoryAdding() {
 
   return (
     <div className="overall_category-adding_container">
-      <NavBar />
       <label className="label_header">Account Category Master</label>
       <BreadCrumb
         model={items}

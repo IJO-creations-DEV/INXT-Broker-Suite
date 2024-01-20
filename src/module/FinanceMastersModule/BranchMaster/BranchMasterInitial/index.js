@@ -51,7 +51,7 @@ const Index = () => {
     width: "10rem",
     // backgroundColor: 'red',
     fontSize: 14,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -81,7 +81,6 @@ const Index = () => {
 
   return (
     <div className="overall_branch_master_initial_container">
-      <NavBar />
       <div className="overallfilter_container">
         <div>
           <label className="label_header">Branch Master</label>

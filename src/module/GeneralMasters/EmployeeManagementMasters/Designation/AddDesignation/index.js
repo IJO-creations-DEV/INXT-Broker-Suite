@@ -1,5 +1,5 @@
 import { BreadCrumb } from "primereact/breadcrumb";
-import React, { useRef, useState,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import NavBar from "../../../../../components/NavBar";
 import SvgDot from "../../../../../assets/icons/SvgDot";
 import "./index.scss";
@@ -12,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 
-const AddDesignation = ({action}) => {
+const AddDesignation = ({ action }) => {
   const { id } = useParams();
   console.log(id, "find id");
   const navigate = useNavigate();
@@ -27,7 +27,10 @@ const AddDesignation = ({action}) => {
 
   const items = [
     { label: "Employee Management" },
-    { label: "Designation",url:"/master/generals/employeemanagement/designation" },
+    {
+      label: "Designation",
+      url: "/master/generals/employeemanagement/designation",
+    },
     ,
     {
       label: `${
@@ -94,14 +97,13 @@ const AddDesignation = ({action}) => {
   const setFormikValues = () => {
     const designationCode = "Des00123";
     const designationName = "HR";
-    const designationDescription="Designation description";
+    const designationDescription = "Designation description";
     const departmentCode = "1";
     const level = "2";
     const reportingto = "John";
     const modifiedBy = "Johnson";
     const modifiedOn = "RC1234";
-    const reportingtoLevel="2";
-   
+    const reportingtoLevel = "2";
 
     const updatedValues = {
       designationCode: `${designationCode}`,
@@ -123,23 +125,25 @@ const AddDesignation = ({action}) => {
   });
   return (
     <div className="grid add__designation__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
-      <div style={{justifyContent:'center',alignItems:'center',display:'flex'}}>
+      <div className="col-12"></div>
+      <div
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+        }}
+      >
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
-       
-    
       </div>
       <div className="add__sub__title">
-              {action === "add"
-                ? "Add Designation"
-                : action === "edit"
-                ? "Edit Designation"
-                : "View Designation"}
-            </div>
+        {action === "add"
+          ? "Add Designation"
+          : action === "edit"
+          ? "Edit Designation"
+          : "View Designation"}
+      </div>
       <div className="col-12 mb-2">
         <div className="mt-3">
           <BreadCrumb
@@ -154,7 +158,7 @@ const AddDesignation = ({action}) => {
         <div className="grid add__account__sub__container p-3">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-            disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.designationCode}
               onChange={formik.handleChange("designationCode")}
               error={formik.errors.designationCode}
@@ -166,7 +170,7 @@ const AddDesignation = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-            disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.designationName}
               onChange={formik.handleChange("designationName")}
               error={formik.errors.designationName}
@@ -179,7 +183,7 @@ const AddDesignation = ({action}) => {
 
           <div className="col-12 md:col-3 lg:col-6">
             <InputField
-            disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.designationDescription}
               onChange={formik.handleChange("designationDescription")}
               label="Designation Description"
@@ -190,7 +194,7 @@ const AddDesignation = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
-            disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.departmentCode}
               onChange={formik.handleChange("departmentCode")}
               error={formik.errors.departmentCode}
@@ -205,7 +209,7 @@ const AddDesignation = ({action}) => {
 
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
-            disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.level}
               onChange={formik.handleChange("level")}
               error={formik.errors.level}
@@ -219,7 +223,7 @@ const AddDesignation = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
-            disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.reportingtoLevel}
               onChange={formik.handleChange("reportingtoLevel")}
               error={formik.errors.reportingtoLevel}
@@ -233,7 +237,7 @@ const AddDesignation = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-            disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.modifiedBy}
               onChange={formik.handleChange("ModifiedBy")}
               error={formik.errors.modifiedBy}
@@ -245,7 +249,7 @@ const AddDesignation = ({action}) => {
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
-            disabled={action === "view" ? true : false}
+              disabled={action === "view" ? true : false}
               value={formik.values.modifiedOn}
               onChange={formik.handleChange("modifiedOn")}
               error={formik.errors.modifiedOn}
@@ -258,15 +262,15 @@ const AddDesignation = ({action}) => {
         </div>
       </div>
       <div className="col-12 btn__view__Add mt-2">
-      {action === "add" && (
-        <Button
-          label="Save"
-          className="save__add__btn"
-          onClick={() => {
-            formik.handleSubmit();
-          }}
-          disabled={!formik.isValid}
-        />
+        {action === "add" && (
+          <Button
+            label="Save"
+            className="save__add__btn"
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+            disabled={!formik.isValid}
+          />
         )}
         {action === "edit" && (
           <Button

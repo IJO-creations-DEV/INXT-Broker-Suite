@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSearchUserMiddleware } from "../store/userMiddleware";
 
 const UserMaster = () => {
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
   const handleNavigate = () => {
@@ -32,25 +32,23 @@ const UserMaster = () => {
     return {
       loading: userReducers?.loading,
       userList: userReducers?.userList,
-      searchList: userReducers?.userSearchList
-
+      searchList: userReducers?.userSearchList,
     };
   });
   const dispatch = useDispatch();
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getSearchUserMiddleware(search))
-
+      dispatch(getSearchUserMiddleware(search));
     }
-  }, [search])
+  }, [search]);
 
   const handleView = (id) => {
-    navigate(`/master/generals/usermanagement/user/view/${id}`)
-  }
+    navigate(`/master/generals/usermanagement/user/view/${id}`);
+  };
 
   const handlEdit = (id) => {
-    navigate(`/master/generals/usermanagement/user/edit/${id}`)
-  }
+    navigate(`/master/generals/usermanagement/user/edit/${id}`);
+  };
   const items = [
     { label: "User Management" },
     {
@@ -62,7 +60,7 @@ const UserMaster = () => {
   const home = { label: "Master" };
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -70,7 +68,7 @@ const UserMaster = () => {
   };
   const ViewheaderStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -85,7 +83,6 @@ const UserMaster = () => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
-
 
   const renderViewButton = (rowData) => {
     return (
@@ -143,9 +140,7 @@ const UserMaster = () => {
   };
   return (
     <div className="grid overall__user__master__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
+      <div className="col-12"></div>
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">User</div>
         <div className="mt-3">
@@ -203,8 +198,8 @@ const UserMaster = () => {
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-              // onPage={onPageChange}
-              // onPageChange={onPageChange}
+                // onPage={onPageChange}
+                // onPageChange={onPageChange}
               >
                 <Column
                   field="userName"
@@ -236,8 +231,6 @@ const UserMaster = () => {
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
                 ></Column>
-
-
 
                 <Column
                   field="modifiedBy"

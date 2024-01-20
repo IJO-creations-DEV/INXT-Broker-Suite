@@ -1,40 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import { Button } from 'primereact/button'
-import SvgAdd from '../../../assets/icons/SvgAdd'
-import "../TaxationMaster/index.scss"
-import { BreadCrumb } from 'primereact/breadcrumb'
-import SvgDot from '../../../assets/icons/SvgDot'
-import NavBar from "../../../components/NavBar"
-import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon'
-import { Paginator } from 'primereact/paginator'
-import { DataTable } from 'primereact/datatable'
-import { Column } from 'primereact/column'
-import { Dropdown } from 'primereact/dropdown'
-import { useNavigate } from 'react-router-dom'
-import { InputText } from 'primereact/inputtext'
+import React, { useEffect, useState } from "react";
+import { Button } from "primereact/button";
+import SvgAdd from "../../../assets/icons/SvgAdd";
+import "../TaxationMaster/index.scss";
+import { BreadCrumb } from "primereact/breadcrumb";
+import SvgDot from "../../../assets/icons/SvgDot";
+import NavBar from "../../../components/NavBar";
+import SvgSearchIcon from "../../../assets/icons/SvgSearchIcon";
+import { Paginator } from "primereact/paginator";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Dropdown } from "primereact/dropdown";
+import { useNavigate } from "react-router-dom";
+import { InputText } from "primereact/inputtext";
 import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../assets/icons/SvgEditicons";
 import ToggleButton from "../../../components/ToggleButton";
-import Productdata from './mock'
-import { useDispatch, useSelector } from 'react-redux'
-import { getTaxationSearchList, getTaxationView, getpatchTaxationEdit } from './store/taxationMiddleWare'
+import Productdata from "./mock";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getTaxationSearchList,
+  getTaxationView,
+  getpatchTaxationEdit,
+} from "./store/taxationMiddleWare";
 
 const TaxationMaster = () => {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate('/master/finance/taxation/addtaxation')
+    navigate("/master/finance/taxation/addtaxation");
   };
   const handleNavigateedit = () => {
-    navigate('/master/finance/taxation/taxationdetails')
-  }
+    navigate("/master/finance/taxation/taxationdetails");
+  };
 
-  const items = [
-    { label: 'Taxation', url: '/master/finance/taxation' },
-  ];
+  const items = [{ label: "Taxation", url: "/master/finance/taxation" }];
   const home = { label: "Master" };
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -42,7 +44,7 @@ const TaxationMaster = () => {
   };
   const ViewheaderStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -52,37 +54,45 @@ const TaxationMaster = () => {
   };
 
   const columns = [
-    { field: 'tax', headerName: 'Tax Code', flex: 1 },
-    { field: 'taxName', headerName: ' Tax Name', flex: 1 },
+    { field: "tax", headerName: "Tax Code", flex: 1 },
+    { field: "taxName", headerName: " Tax Name", flex: 1 },
 
-
-    { field: 'desc', headerName: 'Tax Rate', flex: 1 },
-    { field: 'effective', headerName: 'Effective From', flex: 1 },
-    { field: 'effectiveTo', headerName: 'Effective To', flex: 1 },
-    { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'action', headerName: 'Action', flex: 1 },
+    { field: "desc", headerName: "Tax Rate", flex: 1 },
+    { field: "effective", headerName: "Effective From", flex: 1 },
+    { field: "effectiveTo", headerName: "Effective To", flex: 1 },
+    { field: "status", headerName: "Status", flex: 1 },
+    { field: "action", headerName: "Action", flex: 1 },
   ];
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const onPageChange = (event) => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
-  const { taxationList, loading,taxationSearchList } = useSelector(({ taxationMainReducers }) => {
-    return {
-      loading: taxationMainReducers?.loading,
-      taxationList: taxationMainReducers?.taxationList,
-      taxationSearchList: taxationMainReducers?.taxationSearchList,
-
-    };
-  });
+  const { taxationList, loading, taxationSearchList } = useSelector(
+    ({ taxationMainReducers }) => {
+      return {
+        loading: taxationMainReducers?.loading,
+        taxationList: taxationMainReducers?.taxationList,
+        taxationSearchList: taxationMainReducers?.taxationSearchList,
+      };
+    }
+  );
   console.log(taxationList, "taxationList");
 
   const rows = [
-    { id: 1, tax: '', shorDesc: '', desc: '', effective: '', status: '', view: '' },
+    {
+      id: 1,
+      tax: "",
+      shorDesc: "",
+      desc: "",
+      effective: "",
+      status: "",
+      view: "",
+    },
   ];
   const renderViewButton = (rowData) => {
     return (
@@ -108,34 +118,43 @@ const TaxationMaster = () => {
       </div>
     );
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleView = (rowData) => {
-    console.log(rowData, "rowData")
-    dispatch(getTaxationView(rowData))
+    console.log(rowData, "rowData");
+    dispatch(getTaxationView(rowData));
     console.log("View clicked:", rowData);
-    navigate("/master/finance/taxation/taxationdetails")
+    navigate("/master/finance/taxation/taxationdetails");
   };
   const handlEdit = (rowData) => {
-    console.log(rowData,"rowData");
-    dispatch(getpatchTaxationEdit(rowData))
-    navigate("/master/finance/taxation/taxationedit")
-  }
+    console.log(rowData, "rowData");
+    dispatch(getpatchTaxationEdit(rowData));
+    navigate("/master/finance/taxation/taxationedit");
+  };
   const template2 = {
-    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 }
+        { label: 120, value: 120 },
       ];
 
       return (
-        <React.Fragment >
-          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-            Row count :{' '}
+        <React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Row count :{" "}
           </span>
-          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
         </React.Fragment>
       );
     },
@@ -143,60 +162,64 @@ const TaxationMaster = () => {
 
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getTaxationSearchList(search))
+      dispatch(getTaxationSearchList(search));
     }
-  }, [search])
+  }, [search]);
   return (
-    <div className='grid  container__taxation'>
-      <div className='col-12'>
-        <NavBar />
-      </div>
-      <div className='col-12 md:col-6 lg:col-6 mb-1'>
-        <div className='add__icon__title__taxation'>Taxation Master</div>
-        <div className='mt-3'>
-          <BreadCrumb home={home} className='breadCrums__view__reversal__taxation' model={items} separatorIcon={<SvgDot color={"#000"} />} />
+    <div className="grid  container__taxation">
+      <div className="col-12"></div>
+      <div className="col-12 md:col-6 lg:col-6 mb-1">
+        <div className="add__icon__title__taxation">Taxation Master</div>
+        <div className="mt-3">
+          <BreadCrumb
+            home={home}
+            className="breadCrums__view__reversal__taxation"
+            model={items}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
       </div>
-      <div className='col-12 md:col-6 lg:col-6 add__icon__alighn__taxation mb-1'>
-        <div className='add__icon__view__taxation' onClick={handleNavigate}>
-          <div className='add__icon__taxation' >
+      <div className="col-12 md:col-6 lg:col-6 add__icon__alighn__taxation mb-1">
+        <div className="add__icon__view__taxation" onClick={handleNavigate}>
+          <div className="add__icon__taxation">
             <SvgAdd />
           </div>
-          <div className='add__text__taxation'>
-            Add
-          </div>
-
+          <div className="add__text__taxation">Add</div>
         </div>
       </div>
-      <div className='col-12 m-0 '>
-        <div className='sub__account__sub__container__taxation'>
-          <div className='col-12 search__filter__view__taxation'>
-            <div className='col-12 md:col-12 lg:col-12'>
-              <div className='searchIcon__view__input__taxation'>
+      <div className="col-12 m-0 ">
+        <div className="sub__account__sub__container__taxation">
+          <div className="col-12 search__filter__view__taxation">
+            <div className="col-12 md:col-12 lg:col-12">
+              <div className="searchIcon__view__input__taxation">
                 {/* <span className='pl-3'> <SvgSearchIcon /></span> */}
 
                 <i className="pi pi-search pl-3" />
                 <InputText
-                  style={{ width: '100%' }}
-                  classNames='input__sub__account__taxation'
-                  placeholder='Search By Sub Account Code'
+                  style={{ width: "100%" }}
+                  classNames="input__sub__account__taxation"
+                  placeholder="Search By Sub Account Code"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
-
           </div>
-          <div className='col-12 '>
-            <div className='main__tabel__title__taxation p-2'>Taxation List</div>
+          <div className="col-12 ">
+            <div className="main__tabel__title__taxation p-2">
+              Taxation List
+            </div>
           </div>
-          <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
+          <div
+            className="col-12 md:col-12 lg-col-12"
+            style={{ maxWidth: "100%" }}
+          >
             <div className="card">
               <DataTable
-                value={search ? taxationSearchList :taxationList}
-                style={{ overflowY: 'auto', maxWidth: '100%' }}
+                value={search ? taxationSearchList : taxationList}
+                style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
-                className='table__view__taxation'
+                className="table__view__taxation"
                 paginator
                 paginatorLeft
                 rows={5}
@@ -206,7 +229,6 @@ const TaxationMaster = () => {
                 onPage={onPageChange}
                 onPageChange={onPageChange}
               >
-
                 <Column
                   field="taxCode"
                   header="Tax Code"
@@ -219,7 +241,7 @@ const TaxationMaster = () => {
                   header="Tax Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-                //   sortable
+                  //   sortable
                 ></Column>
                 <Column
                   field="taxRate"
@@ -241,33 +263,26 @@ const TaxationMaster = () => {
                   className="fieldvalue_container"
                 ></Column>
                 <Column
-                  field='status'
+                  field="status"
                   body={(columnData) => <ToggleButton id={columnData.id} />}
                   header="Status"
-                  headerStyle={{ textAlign: 'center', ...headerStyle }}
+                  headerStyle={{ textAlign: "center", ...headerStyle }}
                   className="fieldvalue_container"
                 ></Column>
                 <Column
-                  field='action'
+                  field="action"
                   body={renderViewButton}
                   header="Action"
                   headerStyle={{ ...ViewheaderStyle }}
                   className="fieldvalue_container centered"
                 ></Column>
-
               </DataTable>
-
-
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default TaxationMaster
-
+export default TaxationMaster;

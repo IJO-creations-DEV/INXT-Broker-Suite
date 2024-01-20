@@ -39,7 +39,11 @@ import insuranceCoverReducers from "../module/GeneralMasters/InsuranceManagement
 import insuranceSignatoriesReducers from "../module/GeneralMasters/InsuranceManagementMasters/SignatoriesMaster/store/insuranceSignatoriesReducers";
 import insuranceVehicleReducers from "../module/GeneralMasters/InsuranceManagementMasters/Vehicle/store/insuranceVehicleReducers";
 import stateReducers from "../module/GeneralMasters/LocationMasters/StateMaster/store/stateReducers";
-
+import agentPaymentMainReducers from "../agentModule/paymentsModule/store/paymentReducer";
+import endrosementViewMainReducers from "../agentModule/endorsementModule/endorsementDetailedView/store/endrosementViewReducers";
+import claimSettlementReducer from "../agentModule/claimsModule/settlementDetails/Store/claimSettlementReducer";
+import claimDetailsMainReducers from "../agentModule/claimsModule/claimDetails/store/claimDetailsReducers";
+import claimTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewClaimTable/store/getClaimTabelDataReducers"
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -77,7 +81,12 @@ const reducers = {
   insuranceCoverReducers,
   insuranceSignatoriesReducers,
   insuranceVehicleReducers,
-  stateReducers
+  stateReducers,
+  agentPaymentMainReducers,
+  endrosementViewMainReducers,
+  claimSettlementReducer,
+  claimDetailsMainReducers,
+  claimTabelMainReducers
 
 };
 

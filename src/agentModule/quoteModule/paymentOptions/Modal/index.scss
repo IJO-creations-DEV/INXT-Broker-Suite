@@ -1,0 +1,71 @@
+.paymet__options__document__upload__container {
+  overflow: hidden;
+  border-radius: 20px;
+  .file_icon_selector {
+    position: relative;
+    width: 100%;
+    display: grid;
+    gap: 4px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    .upload__caption {
+      color: #6366f1;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    .icon_click_option {
+      text-align: center;
+      margin-top: -56px;
+      height: max-content;
+      width: max-content;
+      text-align: center;
+      justify-self: center;
+    }
+    .p-fileupload .p-icon {
+      display: none;
+    }
+    .p-fileupload .p-button-label {
+      display: none;
+    }
+    .p-fileupload {
+      z-index: 1;
+      text-align: center;
+    }
+    .p-fileupload-choose {
+      background-color: transparent;
+      height: 50px;
+      width: 50px;
+      border-radius: none !important;
+      border: white;
+      border-style: none !important;
+    }
+  }
+  .p-dialog-header {
+    padding: 24px 24px 0 24px !important ;
+  }
+  .p-dialog-title {
+    color: #111927;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .p-dialog-header-icon {
+    margin: 0 !important;
+    svg {
+      color: #000000 !important;
+    }
+  }
+  .p-dialog-content {
+    padding: 24px !important;
+  }
+  .submit__container {
+    margin-top: 24px;
+  }
+}

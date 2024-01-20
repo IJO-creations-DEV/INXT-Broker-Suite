@@ -16,10 +16,10 @@ const AuthRoute = () => {
         <Route path="register" element={<Register />} />
         <Route path="resetpassward" element={<ResetPassward />} />
         <Route path="verifycode" element={<VerfyCode />} />
-        <Route
+        {/* <Route
           path=""
           element={token ? <Navigate to="/home" /> : <UnProtectedRoutes />}
-        />
+        /> */}
       </Routes>
     </>
   );

@@ -13,34 +13,33 @@ import SvgBack from "../../../assets/icons/SvgBack";
 import { useFormik } from "formik";
 import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../components/LabelWrapper";
-import { useSelector, useDispatch } from 'react-redux';
-import { postAddReceiptsMiddleware } from '../store/receiptsMiddleware';
-
+import { useSelector, useDispatch } from "react-redux";
+import { postAddReceiptsMiddleware } from "../store/receiptsMiddleware";
 
 function BranchAdding() {
-
   const [errors, setErrors] = useState("");
-  const addReceiptsList = useSelector(state => state.addReceiptsList);
-  const { receiptDetailList, loading, total, receiptsTableList } = useSelector(({ receiptsTableReducers }) => {
-    return {
-      loading: receiptsTableReducers?.loading,
-      receiptDetailList: receiptsTableReducers?.receiptDetailList,
-      total: receiptsTableReducers,
-      receiptsTableList: receiptsTableReducers?.receiptsTableList
-
-    };
-  });
-  const dispatch = useDispatch()
-
-
+  const addReceiptsList = useSelector((state) => state.addReceiptsList);
+  const { receiptDetailList, loading, total, receiptsTableList } = useSelector(
+    ({ receiptsTableReducers }) => {
+      return {
+        loading: receiptsTableReducers?.loading,
+        receiptDetailList: receiptsTableReducers?.receiptDetailList,
+        total: receiptsTableReducers,
+        receiptsTableList: receiptsTableReducers?.receiptsTableList,
+      };
+    }
+  );
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const items = [{ label: "Receipts", command: () => navigate("/accounts/receipts") }, { label: "Add Receipts", to: "/accounts/receipts/addreceipts" }];
+  const items = [
+    { label: "Receipts", command: () => navigate("/accounts/receipts") },
+    { label: "Add Receipts", to: "/accounts/receipts/addreceipts" },
+  ];
   const home = { label: "Accounts " };
   const item = [
     { name: "Premium", code: "PR" },
     { name: "Endorsement", code: "ER" },
-
   ];
   const item1 = [
     { name: "PHP001", code: "PH1" },
@@ -62,7 +61,6 @@ function BranchAdding() {
   const item4 = [
     { name: "INR", code: "IR" },
     { name: "USD", code: "US" },
-
   ];
   const item5 = [
     { name: "PRM", code: "PR" },
@@ -80,7 +78,6 @@ function BranchAdding() {
     currencyCode: "",
     transactionCode: "",
     remarks: "",
-
   };
   const validate = (values) => {
     console.log(values, "sss");
@@ -115,27 +112,23 @@ function BranchAdding() {
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
   const generateRandomName = () => {
-    const names = ['Ayesha', 'Sindhu', 'John', 'Doe', 'Alice', 'Bob'];
+    const names = ["Ayesha", "Sindhu", "John", "Doe", "Alice", "Bob"];
     const randomIndex = Math.floor(Math.random() * names.length);
     return names[randomIndex];
   };
 
-
   const generateRandomTransaction = () => {
-    const transactions = ['Transaction1', 'Transaction2', 'Transaction3'];
+    const transactions = ["Transaction1", "Transaction2", "Transaction3"];
     const randomIndex = Math.floor(Math.random() * transactions.length);
     return { name: transactions[randomIndex] };
   };
-
 
   const generateRandomAmount = () => {
     return (Math.random() * 1000).toFixed(2);
   };
 
-
   const handleSubmit = (values) => {
     const dataa = {
-
       transactionCode: generateRandomTransaction(),
       name: generateRandomName(),
       amount: generateRandomAmount(),
@@ -146,21 +139,18 @@ function BranchAdding() {
 
     const valueWithId = {
       ...formik.values,
-      id: (receiptsTableList).length + 1,
+      id: receiptsTableList.length + 1,
 
       // transactionCode: dataa.transactionCode,
       // name: dataa.name,
       // amount: dataa.amount
     };
 
-
     dispatch(postAddReceiptsMiddleware(valueWithId));
 
     navigate("/accounts/receipts/addreceiptedit");
-
   };
-  console.log(addReceiptsList, 'find valueWithId')
-
+  console.log(addReceiptsList, "find valueWithId");
 
   const formik = useFormik({
     initialValues: initialValue,
@@ -168,10 +158,8 @@ function BranchAdding() {
     onSubmit: handleSubmit,
   });
 
-
   return (
     <div className="overall_add_policy_receipts_container">
-      <NavBar />
       <div>
         <span onClick={() => navigate(-1)}>
           <SvgBack />
@@ -195,7 +183,6 @@ function BranchAdding() {
               showIcon
               value={formik.values.receiptDate}
               minDate={minDate}
-
               onChange={(e) => {
                 formik.setFieldValue("receiptDate", e.target.value);
               }}
@@ -281,11 +268,12 @@ function BranchAdding() {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
-              {formik.touched.departmentCode && formik.errors.departmentCode && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.departmentCode}
-                </div>
-              )}
+              {formik.touched.departmentCode &&
+                formik.errors.departmentCode && (
+                  <div style={{ fontSize: 12, color: "red" }}>
+                    {formik.errors.departmentCode}
+                  </div>
+                )}
             </div>
           </div>
         </div>
@@ -339,11 +327,12 @@ function BranchAdding() {
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.transactionCode && formik.errors.transactionCode && (
-              <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.transactionCode}
-              </div>
-            )}
+            {formik.touched.transactionCode &&
+              formik.errors.transactionCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.transactionCode}
+                </div>
+              )}
           </div>
         </div>
         <div class="grid">
@@ -369,7 +358,12 @@ function BranchAdding() {
 
       <div className="next_container">
         <div className="exit_print_buttons">
-          <Button label="Next" className="print" onClick={formik.handleSubmit} disabled={!formik.isValid} />
+          <Button
+            label="Next"
+            className="print"
+            onClick={formik.handleSubmit}
+            disabled={!formik.isValid}
+          />
         </div>
       </div>
     </div>

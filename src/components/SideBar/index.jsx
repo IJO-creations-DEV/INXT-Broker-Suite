@@ -227,7 +227,7 @@ const ResponsiveDrawer = () => {
       }}
       onHide={() => setVisible(false)}
     >
-      <div style={{ padding: "20px" }}>
+      <div style={{ padding: "1.25rem" }}>
         <div style={{ marginBottom: "20px", marginTop: "20px" ,marginLeft:"28px"}}>
           {/* <SvgLogo color={"#fff"} /> */}
           <SvgFinalLogo/>

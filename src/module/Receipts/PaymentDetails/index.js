@@ -18,7 +18,6 @@ import CustomToast from "../../../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import { getPaymentDetails } from "../store/receiptsMiddleware";
 
-
 function PolicyReceipts() {
   const toastRef = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState(false);
@@ -26,14 +25,15 @@ function PolicyReceipts() {
   const navigate = useNavigate();
   const [errors, setErrors] = useState("");
 
-  const { paymentDetails, loading, total } = useSelector(({ receiptsTableReducers }) => {
-    return {
-      loading: receiptsTableReducers?.loading,
-      paymentDetails: receiptsTableReducers?.paymentDetails,
-      total: receiptsTableReducers
-
-    };
-  });
+  const { paymentDetails, loading, total } = useSelector(
+    ({ receiptsTableReducers }) => {
+      return {
+        loading: receiptsTableReducers?.loading,
+        paymentDetails: receiptsTableReducers?.paymentDetails,
+        total: receiptsTableReducers,
+      };
+    }
+  );
   // console.log(paymentDetails[0].bankAccount, "paymentDetails")
   const initialValue = {
     totalPayment: "",
@@ -61,7 +61,7 @@ function PolicyReceipts() {
 
     return errors;
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
   const handleSubmit = (values) => {
@@ -69,19 +69,18 @@ function PolicyReceipts() {
     // setErrors(formErrors);
     // console.log(formErrors, "iiiii");
     // toastRef.current.showToast();
-    dispatch(getPaymentDetails(formik.values))
+    dispatch(getPaymentDetails(formik.values));
     // navigate('')
-    setProducts("Print")
+    setProducts("Print");
     if (products == "Print") {
       // toastRef.current.showToast();
       // setTimeout=()=>{
-        // navigate("/accounts/receipts")
-    //  ,2000 }
-    toastRef.current.showToast();
-    setTimeout(() => {
-      navigate("/accounts/receipts");
-    }, 2000);
-     
+      // navigate("/accounts/receipts")
+      //  ,2000 }
+      toastRef.current.showToast();
+      setTimeout(() => {
+        navigate("/accounts/receipts");
+      }, 2000);
     }
   };
   // const handleSubmit2 = () => {
@@ -100,7 +99,7 @@ function PolicyReceipts() {
     onSubmit: () => {
       handleSubmit();
       //  handleSubmit2()
-    }
+    },
   });
   const items = [
     { label: "Receipts", command: () => navigate("/accounts/receipts") },
@@ -152,22 +151,19 @@ function PolicyReceipts() {
   const dataa = [
     { label: "bank123", value: "bank123" },
     { label: "bank7844", value: "bank7844" },
-
   ];
   const data1 = [
     { label: "ICIC", value: "ICIC" },
     { label: "SBI", value: "SBI" },
-
   ];
   const data2 = [
     { label: "Credit Card", value: "Credit Card" },
     { label: "Debit Card", value: "Debit Card" },
-
   ];
 
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     color: "#000",
     border: "none",
@@ -176,10 +172,14 @@ function PolicyReceipts() {
 
   return (
     <div className="overall__payment_details_container">
-      <NavBar />
-
-
-      <CustomToast ref={toastRef} message={products == "Approve" ? "Approved Successfully" : "Printed Successfully"} />
+      <CustomToast
+        ref={toastRef}
+        message={
+          products == "Approve"
+            ? "Approved Successfully"
+            : "Printed Successfully"
+        }
+      />
       <span onClick={() => navigate(-1)}>
         <SvgBack />
       </span>
@@ -201,7 +201,6 @@ function PolicyReceipts() {
                 error={formik.errors.totalPayment}
                 classNames="field__policy "
                 label="Total Payment"
-
               />
             </div>
           </div>
@@ -212,7 +211,6 @@ function PolicyReceipts() {
             <div>
               <DropDowns
                 value={formik.values.bankcode}
-
                 onChange={(e) =>
                   formik.setFieldValue("bankcode", e.target.value)
                 }
@@ -234,7 +232,11 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-                value={formik.values.bankcode ? `bankcode ${formik.values.bankcode}` : ""}
+                value={
+                  formik.values.bankcode
+                    ? `bankcode ${formik.values.bankcode}`
+                    : ""
+                }
                 // onChange={formik.handleChange("bankName")}
                 error={formik.errors.bankName}
                 classNames="field__policy "
@@ -280,7 +282,11 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-              value={formik.values.bankAccount ? `bankAccount ${formik.values.bankAccount}` : ""}
+                value={
+                  formik.values.bankAccount
+                    ? `bankAccount ${formik.values.bankAccount}`
+                    : ""
+                }
                 // value={
                 //   formik.values.bankAccount
                 //     ? `654${formik.values.bankAccount}`
@@ -291,7 +297,7 @@ function PolicyReceipts() {
                 error={formik.errors.bankAccountName}
                 classNames="field__policy"
                 label="Bank Account Name"
-              // value={"Business Account"}
+                // value={"Business Account"}
               />
             </div>
           </div>
@@ -323,14 +329,12 @@ function PolicyReceipts() {
             <div>
               <InputField
                 // value={paymentDetails[0].paymentType && paymentDetails[0].cardNumber}
-                value={
-                  formik.values.cardNumber
-                }
+                value={formik.values.cardNumber}
                 onChange={formik.handleChange("cardNumber")}
                 error={formik.errors.cardNumber}
                 classNames="field__policy "
                 label="Card Number"
-              // value={"1234 5678 9874 5632"}
+                // value={"1234 5678 9874 5632"}
               />
             </div>
           </div>
@@ -348,27 +352,28 @@ function PolicyReceipts() {
       </div> */}
 
       <div className="exit_print_buttons">
-        {products == "Print" ? (<Button
-          // label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
-          label="Print"
-          className="print"
-          onClick={() => {
-            formik.handleSubmit();
-          }}
-          disabled={!formik.isValid}
-        />) : <Button
-          // label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
-          label="Approve"
-          className="print"
-          onClick={() => {
-            formik.handleSubmit();
-          }}
-          disabled={!formik.isValid}
-        />
-        }
-
+        {products == "Print" ? (
+          <Button
+            // label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
+            label="Print"
+            className="print"
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+            disabled={!formik.isValid}
+          />
+        ) : (
+          <Button
+            // label={selectedProducts?.status === "Approved" ? "Print" : "Approve"}
+            label="Approve"
+            className="print"
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+            disabled={!formik.isValid}
+          />
+        )}
       </div>
-
     </div>
   );
 }

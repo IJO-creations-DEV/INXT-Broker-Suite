@@ -5,10 +5,24 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router";
 import "./index.scss";
 import SvgTable from "../../../../../../assets/icons/SvgTable";
+import { useSelector } from "react-redux";
 
 const UserGroupAccessDetail = () => {
-  const [products, setProducts] = useState([]);
+  const { TransactioncodeListsearch, UserGroupAccessList, loading, getUserAccessData } = useSelector(({ transactionCodeMasterReducer }) => {
+    return {
+      loading: transactionCodeMasterReducer?.loading,
+      UserGroupAccessList: transactionCodeMasterReducer?.UserGroupAccessList,
+      // TransactioncodeListsearch: transactionCodeMasterReducer?.TransactioncodeListsearch,
+      getUserAccessData: transactionCodeMasterReducer?.getUserAccessData
 
+    };
+  });
+  const [products, setProducts] = useState([]);
+  // const handleEdit = (columnData) => {
+  //   // setShowEdit(true)
+  //   dispatch(getUserEditData(columnData))
+  //   console.log(columnData, "columnData");
+  // }
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
 
@@ -73,7 +87,7 @@ const UserGroupAccessDetail = () => {
       {/* <Card className="mt-1"> */}
       <div className="card">
         <DataTable
-          value={products}
+          value={UserGroupAccessList}
           tableStyle={{
             minWidth: "50rem",
             color: "#1C2536",
@@ -108,12 +122,19 @@ const UserGroupAccessDetail = () => {
             className="fieldvalue_container"
             //   sortable
           ></Column>
-          <Column
+          {/* <Column
             field="Edit"
+            body={(columnData) => (
+              <div onClick={() => handleEdit(columnData)}  style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
+
+
+                <SvgEditIcon  />
+              </div>
+            )}
             header="Edit"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-          ></Column>
+          ></Column> */}
         </DataTable>
       </div>
       {/* </Card> */}

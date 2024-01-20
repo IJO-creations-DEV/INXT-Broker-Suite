@@ -1,16 +1,16 @@
 // import React, { lazy, Suspense, useEffect, useState } from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import reportWebVitals from './reportWebVitals';
-import { ProSidebarProvider } from 'react-pro-sidebar';
-import { BrowserRouter } from 'react-router-dom';
-import 'primereact/resources/themes/lara-light-indigo/theme.css'; // theme
-import 'primereact/resources/primereact.css'; // core css
-import 'primeicons/primeicons.css'; // icons
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import App from './App';
-
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import reportWebVitals from "./reportWebVitals";
+import { ProSidebarProvider } from "react-pro-sidebar";
+import { BrowserRouter } from "react-router-dom";
+import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
+import "primereact/resources/primereact.css"; // core css
+import "primeicons/primeicons.css"; // icons
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import App from "./App";
+import customHistory from "./routes/customHistory";
 
 // Lazy load your application component
 // const LazyApp = lazy(() => import('./App'));
@@ -27,7 +27,7 @@ const Root = () => {
 
   // Render your application only after SCSS styles are loaded
   return (
-    <BrowserRouter>
+    <BrowserRouter history={customHistory}>
       <Provider store={store}>
         <ProSidebarProvider>
           <App />
@@ -37,7 +37,7 @@ const Root = () => {
   );
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Root />);
 
 // If you want to start measuring performance in your app, pass a function

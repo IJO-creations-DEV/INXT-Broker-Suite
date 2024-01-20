@@ -1,37 +1,42 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button } from 'primereact/button'
-import SvgAdd from '../../../assets/icons/SvgAdd'
-import "./index.scss"
-import { BreadCrumb } from 'primereact/breadcrumb'
-import SvgDot from '../../../assets/icons/SvgDot'
-import NavBar from "../../../components/NavBar"
-import SvgSearchIcon from '../../../assets/icons/SvgSearchIcon'
-import { Paginator } from 'primereact/paginator'
-import { DataTable } from 'primereact/datatable'
-import { Column } from 'primereact/column'
-import { Dropdown } from 'primereact/dropdown'
-import { useNavigate } from 'react-router-dom'
-import { InputText } from 'primereact/inputtext'
+import { Button } from "primereact/button";
+import SvgAdd from "../../../assets/icons/SvgAdd";
+import "./index.scss";
+import { BreadCrumb } from "primereact/breadcrumb";
+import SvgDot from "../../../assets/icons/SvgDot";
+import NavBar from "../../../components/NavBar";
+import SvgSearchIcon from "../../../assets/icons/SvgSearchIcon";
+import { Paginator } from "primereact/paginator";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Dropdown } from "primereact/dropdown";
+import { useNavigate } from "react-router-dom";
+import { InputText } from "primereact/inputtext";
 import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../assets/icons/SvgEditicons";
 import ToggleButton from "../../../components/ToggleButton";
-import Productdata from './mock';
+import Productdata from "./mock";
 import SvgUploade from "../../../assets/icons/SvgUploade";
 import { Dialog } from "primereact/dialog";
-import InputField from '../../../components/InputField';
-import DropDowns from '../../../components/DropDowns';
+import InputField from "../../../components/InputField";
+import DropDowns from "../../../components/DropDowns";
 import SvgDropdown from "../../../assets/icons/SvgDropdown";
-import { MultiSelect } from 'primereact/multiselect';
+import { MultiSelect } from "primereact/multiselect";
 import CustomToast from "../../../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import SvgTable from "../../../assets/icons/SvgTable";
 import { useFormik } from "formik";
-import { getSubAccountEdit, getSubAccountSearchList, getSubAccountView, postSubAccount } from "./store/subAccountMiddleWare";
+import {
+  getSubAccountEdit,
+  getSubAccountSearchList,
+  getSubAccountView,
+  postSubAccount,
+} from "./store/subAccountMiddleWare";
 
 const SubAccountMaster = () => {
   const navigate = useNavigate();
   const [visiblePopup, setVisiblePopup] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [visible, setVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedOption1, setSelectedOption1] = useState(null);
@@ -42,26 +47,24 @@ const SubAccountMaster = () => {
     setSelectedOption1(e.value);
   };
 
-  const handleClick = () => {
+  const handleClick = () => {};
 
-  };
-
-  const { subAccountList, loading,subAccountSearchList } = useSelector(({ subAccountMainReducers }) => {
-    return {
-      loading: subAccountMainReducers?.loading,
-      subAccountList: subAccountMainReducers?.subAccountList,
-      subAccountSearchList: subAccountMainReducers?.subAccountSearchList,
-    };
-  });
+  const { subAccountList, loading, subAccountSearchList } = useSelector(
+    ({ subAccountMainReducers }) => {
+      return {
+        loading: subAccountMainReducers?.loading,
+        subAccountList: subAccountMainReducers?.subAccountList,
+        subAccountSearchList: subAccountMainReducers?.subAccountSearchList,
+      };
+    }
+  );
   console.log(subAccountList, "subAccountList");
 
-  const items = [
-    { label: 'Sub Account', url: '/master/finance/subaccount' },
-  ];
+  const items = [{ label: "Sub Account", url: "/master/finance/subaccount" }];
   const home = { label: "Master" };
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -69,7 +72,7 @@ const SubAccountMaster = () => {
   };
   const ViewheaderStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -79,15 +82,14 @@ const SubAccountMaster = () => {
   };
 
   const columns = [
-    { field: 'tax', headerName: 'Tax Code', flex: 1 },
-    { field: 'taxName', headerName: ' Tax Name', flex: 1 },
+    { field: "tax", headerName: "Tax Code", flex: 1 },
+    { field: "taxName", headerName: " Tax Name", flex: 1 },
 
-
-    { field: 'desc', headerName: 'Tax Rate', flex: 1 },
-    { field: 'effective', headerName: 'Effective From', flex: 1 },
-    { field: 'effectiveTo', headerName: 'Effective To', flex: 1 },
-    { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'action', headerName: 'Action', flex: 1 },
+    { field: "desc", headerName: "Tax Rate", flex: 1 },
+    { field: "effective", headerName: "Effective From", flex: 1 },
+    { field: "effectiveTo", headerName: "Effective To", flex: 1 },
+    { field: "status", headerName: "Status", flex: 1 },
+    { field: "action", headerName: "Action", flex: 1 },
   ];
 
   const [first, setFirst] = useState(0);
@@ -97,8 +99,25 @@ const SubAccountMaster = () => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
-  const item = [{ label: "Main00123 - Main Account Description", value: "Main00123 - Main Account Description" }, { label: "Main00125 - Main Account Description", value: "Main00125 - Main Account Description" }, { label: "Main00128 - Main Account Description", value: "Main00128 - Main Account Description" }];
-  const item1 = [{ label: "INR-Indian Currency", value: "INR-Indian Currency" }, { label: "EUR-Euro", value: "EUR-Euro" }, { label: "HKD-Hong Kong Dollar", value: "HKD-Hong Kong Dollar" }]
+  const item = [
+    {
+      label: "Main00123 - Main Account Description",
+      value: "Main00123 - Main Account Description",
+    },
+    {
+      label: "Main00125 - Main Account Description",
+      value: "Main00125 - Main Account Description",
+    },
+    {
+      label: "Main00128 - Main Account Description",
+      value: "Main00128 - Main Account Description",
+    },
+  ];
+  const item1 = [
+    { label: "INR-Indian Currency", value: "INR-Indian Currency" },
+    { label: "EUR-Euro", value: "EUR-Euro" },
+    { label: "HKD-Hong Kong Dollar", value: "HKD-Hong Kong Dollar" },
+  ];
   const toastRef = useRef(null);
   const renderViewButton = (rowData) => {
     return (
@@ -128,9 +147,7 @@ const SubAccountMaster = () => {
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
     setVisiblePopup(true);
-
   };
-
 
   // const handleToast = (values) => {
   //   // Handle form submission
@@ -143,16 +160,16 @@ const SubAccountMaster = () => {
   //   }, 3000);
   // }
   const handlEdit = (rowData) => {
-    console.log(rowData, "rowData")
+    console.log(rowData, "rowData");
 
-    dispatch(getSubAccountEdit(rowData))
-    navigate("/master/finance/subaccount/subaccountedit")
-  }
+    dispatch(getSubAccountEdit(rowData));
+    navigate("/master/finance/subaccount/subaccountedit");
+  };
   const handleDetail = (rowData) => {
-    console.log(rowData, "rowData")
-    dispatch(getSubAccountView(rowData))
-    navigate("/master/finance/subaccount/subaccountdetails")
-  }
+    console.log(rowData, "rowData");
+    dispatch(getSubAccountView(rowData));
+    navigate("/master/finance/subaccount/subaccountdetails");
+  };
 
   const emptyTableIcon = (
     <div>
@@ -165,39 +182,43 @@ const SubAccountMaster = () => {
   const isEmpty = Productdata.length === 0;
 
   const template2 = {
-    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 }
+        { label: 120, value: 120 },
       ];
 
       return (
-        <React.Fragment >
-          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-            Row count :{' '}
+        <React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Row count :{" "}
           </span>
-          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
         </React.Fragment>
       );
     },
-
   };
 
-
-
-
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    console.log(values, "values")
+    console.log(values, "values");
     dispatch(postSubAccount(formik.values))
       .then(() => {
         toastRef.current.showToast();
         setTimeout(() => {
-          setVisiblePopup(false)
+          setVisiblePopup(false);
         }, 2000);
       })
       .catch((error) => {
@@ -208,23 +229,22 @@ const SubAccountMaster = () => {
     const errors = {};
 
     if (!values.subAccountCode) {
-      errors.subAccountCode = "This Field is Required"
+      errors.subAccountCode = "This Field is Required";
     }
     if (!values.description) {
-      errors.description = "This Field is Required"
+      errors.description = "This Field is Required";
     }
     if (!values.subAccountName) {
-      errors.subAccountName = "This Field is Required"
+      errors.subAccountName = "This Field is Required";
     }
     if (!values.mainAccount) {
-      errors.mainAccount = "This Field is Required"
+      errors.mainAccount = "This Field is Required";
     }
     if (!values.currencyCode) {
-      errors.currencyCode = "This Field is Required"
+      errors.currencyCode = "This Field is Required";
     }
     return errors;
-  }
-
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -242,20 +262,22 @@ const SubAccountMaster = () => {
 
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getSubAccountSearchList(search))
+      dispatch(getSubAccountSearchList(search));
     }
-  }, [search])
-
+  }, [search]);
 
   return (
-    <div className='grid  container__subaccount'>
-      <div className='col-12'>
-        <NavBar />
-      </div>
-      <div className='col-12 md:col-6 lg:col-6 mb-1'>
-        <div className='add__icon__title__taxation'>Sub Account Master</div>
-        <div className='mt-3'>
-          <BreadCrumb home={home} className='breadCrums__view__reversal__taxation' model={items} separatorIcon={<SvgDot color={"#000"} />} />
+    <div className="grid  container__subaccount">
+      <div className="col-12"></div>
+      <div className="col-12 md:col-6 lg:col-6 mb-1">
+        <div className="add__icon__title__taxation">Sub Account Master</div>
+        <div className="mt-3">
+          <BreadCrumb
+            home={home}
+            className="breadCrums__view__reversal__taxation"
+            model={items}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
       </div>
 
@@ -280,34 +302,38 @@ const SubAccountMaster = () => {
           />
         </div>
       </div>
-      <div className='col-12 m-0 '>
-        <div className='sub__account__sub__container__taxation'>
-          <div className='col-12 search__filter__view__taxation'>
-            <div className='col-12 md:col-12 lg:col-12'>
-              <div className='searchIcon__view__input__taxation'>
+      <div className="col-12 m-0 ">
+        <div className="sub__account__sub__container__taxation">
+          <div className="col-12 search__filter__view__taxation">
+            <div className="col-12 md:col-12 lg:col-12">
+              <div className="searchIcon__view__input__taxation">
                 {/* <span className='p-3'> <SvgSearchIcon /></span> */}
                 <i className="pi pi-search pl-3" />
                 <InputText
-                  style={{ width: '100%' }}
-                  classNames='input__sub__account__taxation'
-                  placeholder='Search By Sub Account Code'
+                  style={{ width: "100%" }}
+                  classNames="input__sub__account__taxation"
+                  placeholder="Search By Sub Account Code"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
-
           </div>
-          <div className='col-12 '>
-            <div className='main__tabel__title__taxation p-2'>Main Account List</div>
+          <div className="col-12 ">
+            <div className="main__tabel__title__taxation p-2">
+              Main Account List
+            </div>
           </div>
-          <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
+          <div
+            className="col-12 md:col-12 lg-col-12"
+            style={{ maxWidth: "100%" }}
+          >
             <div className="card">
               <DataTable
-                value={search ? subAccountSearchList :subAccountList}
-                style={{ overflowY: 'auto', maxWidth: '100%' }}
+                value={search ? subAccountSearchList : subAccountList}
+                style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
-                className='table__view__taxation'
+                className="table__view__taxation"
                 paginator
                 paginatorLeft
                 rows={5}
@@ -318,7 +344,6 @@ const SubAccountMaster = () => {
                 onPageChange={onPageChange}
                 emptyMessage={isEmpty ? emptyTableIcon : null}
               >
-
                 <Column
                   field="subAccountCode"
                   header="Sub Account Code"
@@ -331,15 +356,13 @@ const SubAccountMaster = () => {
                   header="Description"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-
                 ></Column>
-
 
                 <Column
                   field="status"
                   body={(columnData) => <ToggleButton id={columnData.id} />}
                   header="Status"
-                  headerStyle={{ textAlign: 'center', ...headerStyle }}
+                  headerStyle={{ textAlign: "center", ...headerStyle }}
                   className="fieldvalue_container"
                 ></Column>
                 <Column
@@ -349,17 +372,15 @@ const SubAccountMaster = () => {
                   headerStyle={{ ...ViewheaderStyle }}
                   className="fieldvalue_container centered"
                 ></Column>
-
               </DataTable>
 
               <div className="col-12">
-
                 <Dialog
                   header="Add Sub Account"
                   visible={visiblePopup}
                   className="dialog_fields"
                   onHide={() => setVisiblePopup(false)}
-                  style={{ width: '60vw' }}
+                  style={{ width: "60vw" }}
                 >
                   <div class="grid">
                     <div class="sm-col-12  md:col-4 lg-col-4">
@@ -368,21 +389,17 @@ const SubAccountMaster = () => {
                         label="Sub Account Code"
                         placeholder={"Enter"}
                         textWeight="500"
-                        value={
-                          formik.values.subAccountCode
-
-                        }
+                        value={formik.values.subAccountCode}
                         onChange={(e) =>
                           formik.setFieldValue("subAccountCode", e.target.value)
                         }
-
                       />
-                      {formik.touched.subAccountCode && formik.errors.subAccountCode && (
-                        <div style={{ fontSize: 12, color: "red" }}>
-                          {formik.errors.subAccountCode}
-                        </div>
-                      )}
-
+                      {formik.touched.subAccountCode &&
+                        formik.errors.subAccountCode && (
+                          <div style={{ fontSize: 12, color: "red" }}>
+                            {formik.errors.subAccountCode}
+                          </div>
+                        )}
                     </div>
                     <div class="sm-col-12  md:col-8 lg-col-8">
                       <InputField
@@ -390,20 +407,17 @@ const SubAccountMaster = () => {
                         label="Sub Account Name"
                         placeholder={"Enter"}
                         textWeight="500"
-                        value={
-                          formik.values.subAccountName
-
-                        }
+                        value={formik.values.subAccountName}
                         onChange={(e) =>
                           formik.setFieldValue("subAccountName", e.target.value)
                         }
-
                       />
-                      {formik.touched.subAccountName && formik.errors.subAccountName && (
-                        <div style={{ fontSize: 12, color: "red" }}>
-                          {formik.errors.subAccountName}
-                        </div>
-                      )}
+                      {formik.touched.subAccountName &&
+                        formik.errors.subAccountName && (
+                          <div style={{ fontSize: 12, color: "red" }}>
+                            {formik.errors.subAccountName}
+                          </div>
+                        )}
                     </div>
                   </div>
                   <div class="grid">
@@ -413,33 +427,31 @@ const SubAccountMaster = () => {
                         label="Description"
                         placeholder={"Enter"}
                         textWeight="500"
-                        value={
-                          formik.values.description
-
-                        }
+                        value={formik.values.description}
                         onChange={(e) =>
                           formik.setFieldValue("description", e.target.value)
                         }
-
                       />
-                      {formik.touched.description && formik.errors.description && (
-                        <div style={{ fontSize: 12, color: "red" }}>
-                          {formik.errors.description}
-                        </div>
-                      )}
+                      {formik.touched.description &&
+                        formik.errors.description && (
+                          <div style={{ fontSize: 12, color: "red" }}>
+                            {formik.errors.description}
+                          </div>
+                        )}
                     </div>
-
                   </div>
                   <div class="grid">
                     <div class="sm-col-12  md:col-8 lg-col-8">
-                      <label className='main_acc_text'>Main Account</label>
+                      <label className="main_acc_text">Main Account</label>
                       <MultiSelect
                         // value={selectedOption}
                         options={item}
                         // onChange={handleDropdownChange}
 
                         value={formik.values.mainAccount}
-                        onChange={(e) => formik.setFieldValue("mainAccount", e.value)}
+                        onChange={(e) =>
+                          formik.setFieldValue("mainAccount", e.value)
+                        }
                         className="dropdown__add__sub"
                         label="Main Account"
                         display="chip"
@@ -449,24 +461,25 @@ const SubAccountMaster = () => {
                         dropdownIcon={<SvgDropdown color={"#000"} />}
                       />
 
-                      {formik.touched.mainAccount && formik.errors.mainAccount && (
-                        <div
-                          style={{ fontSize: 12, color: "red" }}
-                          className="formik__errror__JV"
-                        >
-                          {formik.errors.mainAccount}
-                        </div>
-                      )}
+                      {formik.touched.mainAccount &&
+                        formik.errors.mainAccount && (
+                          <div
+                            style={{ fontSize: 12, color: "red" }}
+                            className="formik__errror__JV"
+                          >
+                            {formik.errors.mainAccount}
+                          </div>
+                        )}
                     </div>
-
                   </div>
                   <div class="grid">
-
                     <div class="sm-col-12  md:col-8 lg-col-8">
-                      <label className='main_acc_text'>Currency Code</label>
+                      <label className="main_acc_text">Currency Code</label>
                       <MultiSelect
                         value={formik.values.currencyCode}
-                        onChange={(e) => formik.setFieldValue("currencyCode", e.value)}
+                        onChange={(e) =>
+                          formik.setFieldValue("currencyCode", e.value)
+                        }
                         options={item1}
                         className="dropdown__add__sub"
                         display="chip"
@@ -475,27 +488,24 @@ const SubAccountMaster = () => {
                         placeholder={"Select"}
                         dropdownIcon={<SvgDropdown color={"#000"} />}
                       />
-                      {formik.touched.currencyCode && formik.errors.currencyCode && (
-                        <div
-                          style={{ fontSize: 12, color: "red" }}
-                          className="formik__errror__JV"
-                        >
-                          {formik.errors.currencyCode}
-                        </div>
-                      )}
-
+                      {formik.touched.currencyCode &&
+                        formik.errors.currencyCode && (
+                          <div
+                            style={{ fontSize: 12, color: "red" }}
+                            className="formik__errror__JV"
+                          >
+                            {formik.errors.currencyCode}
+                          </div>
+                        )}
                     </div>
-
                   </div>
 
                   <div className="update_btn">
                     <Button
-
                       label="Save"
                       className="update_btnlabel"
                       // onClick={() => handleToast()}
                       onClick={formik.handleSubmit}
-
                     />
                   </div>
                 </Dialog>
@@ -506,14 +516,10 @@ const SubAccountMaster = () => {
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default SubAccountMaster
-
+export default SubAccountMaster;

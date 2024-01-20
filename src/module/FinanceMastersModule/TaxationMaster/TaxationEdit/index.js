@@ -16,15 +16,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { patchTaxationEdit } from "../store/taxationMiddleWare";
 
 const AddTaxation = () => {
-  const { getTaxationEdit, loading } = useSelector(({ taxationMainReducers }) => {
-    return {
-      loading: taxationMainReducers?.loading,
-      getTaxationEdit: taxationMainReducers?.getTaxationEdit,
-
-    };
-  });
+  const { getTaxationEdit, loading } = useSelector(
+    ({ taxationMainReducers }) => {
+      return {
+        loading: taxationMainReducers?.loading,
+        getTaxationEdit: taxationMainReducers?.getTaxationEdit,
+      };
+    }
+  );
   console.log(getTaxationEdit, "getTaxationEdit");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("30%");
   const handleDropdownChange = (e) => {
@@ -69,9 +70,9 @@ const AddTaxation = () => {
     return errors;
   };
   const handleSubmit = (value) => {
-    console.log(value, "value")
+    console.log(value, "value");
     dispatch(patchTaxationEdit(value));
-    navigate("/master/finance/taxation")
+    navigate("/master/finance/taxation");
   };
   const setFormikValues = () => {
     const taxRatee = getTaxationEdit?.taxRate;
@@ -79,7 +80,7 @@ const AddTaxation = () => {
       id: getTaxationEdit.id,
       taxCode: getTaxationEdit?.taxCode,
       taxName: getTaxationEdit?.taxName,
-      remarks:getTaxationEdit?.remarks,
+      remarks: getTaxationEdit?.remarks,
       taxRate: taxRatee,
       basis: getTaxationEdit?.basis,
       taxationDescription: getTaxationEdit?.taxationDescription,
@@ -102,9 +103,8 @@ const AddTaxation = () => {
       basis: "",
       remarks: "",
       taxationDescription: "",
-      effectiveFrom: '1/24/2023',
-      effectiveTo: '1/25/2023',
-
+      effectiveFrom: "1/24/2023",
+      effectiveTo: "1/25/2023",
     },
     validate,
     onSubmit: (values) => {
@@ -117,13 +117,9 @@ const AddTaxation = () => {
     setFormikValues();
   }, [getTaxationEdit]);
 
-
-
   return (
     <div className="grid sub__add__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
+      <div className="col-12"></div>
       <div>
         <span onClick={() => navigate(-1)}>
           <SvgBack />
@@ -173,10 +169,8 @@ const AddTaxation = () => {
                 formik.setFieldValue("taxRate", e.value);
               }}
               optionLabel="label"
-
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-
             />
           </div>
 
@@ -221,9 +215,8 @@ const AddTaxation = () => {
                 showIcon
                 value={formik.values.effectiveFrom}
                 minDate={minDate}
-
                 onChange={(e) => {
-                  formik.setFieldValue("effectiveFrom", e.target.value);
+                  formik.setFieldValue("effectiveFrom", e.value);
                 }}
                 dateFormat="yy-mm-dd"
               />
@@ -240,12 +233,10 @@ const AddTaxation = () => {
                 showIcon
                 value={formik.values.effectiveTo}
                 minDate={minDate}
-
                 onChange={(e) => {
                   formik.setFieldValue("effectiveTo", e.target.value);
                 }}
                 dateFormat="yy-mm-dd"
-
               />
             </div>
           </div>

@@ -1,0 +1,35 @@
+.paymentapproval__status__container {
+  .claim__request__upload__main__title {
+    color: #111927;
+    font-family: Poppins;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .claim__request__upload__back__btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .claim__request__upload__back__btn__title {
+      font-size: 16px;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 24px;
+      color: #111927;
+    }
+  }
+  .paymentapproval__status__main__content__text {
+    color: #111927;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 24px;
+  }
+  .p-card .p-card-body {
+    padding: 8rem 0 !important;
+  }
+}

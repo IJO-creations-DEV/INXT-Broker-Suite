@@ -1,5 +1,5 @@
 import { BreadCrumb } from "primereact/breadcrumb";
-import React, { useRef, useState,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import NavBar from "../../../../../components/NavBar";
 import SvgDot from "../../../../../assets/icons/SvgDot";
 import "./index.scss";
@@ -8,18 +8,17 @@ import { Button } from "primereact/button";
 import { useFormik } from "formik";
 import SvgBack from "../../../../../assets/icons/SvgBack";
 import CustomToast from "../../../../../components/Toast";
-import { useNavigate,useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 import { Card } from "primereact/card";
 
-
-const AddRole = ({action}) => {
-    const { id } = useParams()
-    console.log(id,action,'--find id')
+const AddRole = ({ action }) => {
+  const { id } = useParams();
+  console.log(id, action, "--find id");
   const navigate = useNavigate();
   const toastRef = useRef(null);
-  const [visiblePopup,setVisiblePopup]=useState("")
+  const [visiblePopup, setVisiblePopup] = useState("");
 
   useEffect(() => {
     if (action === "edit" || action === "view") {
@@ -38,18 +37,19 @@ const AddRole = ({action}) => {
       }`,
     },
   ];
-  const item =[
-    {name:"Accounts"},{name:"Accounts 1"},{name:"Accounts 2"}
-  ]
-  const item1 =[
-    {name:"Receipts"},{name:"Payment voucher"},{name:"Pety cash"}
-  ]
-  const item2 =[
-    {name:"Read"},{name:"Read 1"},{name:"Read 2"}
-  ]
+  const item = [
+    { name: "Accounts" },
+    { name: "Accounts 1" },
+    { name: "Accounts 2" },
+  ];
+  const item1 = [
+    { name: "Receipts" },
+    { name: "Payment voucher" },
+    { name: "Pety cash" },
+  ];
+  const item2 = [{ name: "Read" }, { name: "Read 1" }, { name: "Read 2" }];
   const home = { label: "Master" };
 
-  
   const initialValue = {
     roleCode: "",
     roleName: "",
@@ -72,12 +72,11 @@ const AddRole = ({action}) => {
       errors.menuAccess = "Menu Access is required";
     }
     if (!values.subMenuAccess) {
-        errors.subMenuAccess = "SubMenu Access is required";
-      }
-      if (!values.permissions) {
-        errors.permissions = "Permissions is required";
-      }
-  
+      errors.subMenuAccess = "SubMenu Access is required";
+    }
+    if (!values.permissions) {
+      errors.permissions = "Permissions is required";
+    }
 
     return errors;
   };
@@ -86,37 +85,36 @@ const AddRole = ({action}) => {
 
   const handleSubmit = () => {
     toastRef.current.showToast();
-    
-      setTimeout(() => {
-        setVisiblePopup(false)
-      }, 3000);
-    }
-  
-    const setFormikValues = () => {
-      const designationCode = "Des00123";
-      const designationName = "HR";
-      const designationDescription="Designation description";
-      const departmentCode = "1";
-      const level = "2";
-      const reportingto = "John";
-      const modifiedBy = "Johnson";
-      const modifiedOn = "RC1234";
-      const reportingtoLevel="2";
-     
-  
-      const updatedValues = {
-        designationCode: `${designationCode}`,
-        designationName: `${designationName}`,
-        designationDescription: `${designationDescription}`,
-        departmentCode: `${departmentCode}`,
-        level: `${level}`,
-        reportingto: `${reportingto}`,
-        reportingtoLevel: `${reportingtoLevel}`,
-        modifiedBy: `${modifiedBy}`,
-        modifiedOn: `${modifiedOn}`,
-      };
-      formik.setValues({ ...formik.values, ...updatedValues });
+
+    setTimeout(() => {
+      setVisiblePopup(false);
+    }, 3000);
+  };
+
+  const setFormikValues = () => {
+    const designationCode = "Des00123";
+    const designationName = "HR";
+    const designationDescription = "Designation description";
+    const departmentCode = "1";
+    const level = "2";
+    const reportingto = "John";
+    const modifiedBy = "Johnson";
+    const modifiedOn = "RC1234";
+    const reportingtoLevel = "2";
+
+    const updatedValues = {
+      designationCode: `${designationCode}`,
+      designationName: `${designationName}`,
+      designationDescription: `${designationDescription}`,
+      departmentCode: `${departmentCode}`,
+      level: `${level}`,
+      reportingto: `${reportingto}`,
+      reportingtoLevel: `${reportingtoLevel}`,
+      modifiedBy: `${modifiedBy}`,
+      modifiedOn: `${modifiedOn}`,
     };
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
 
   const formik = useFormik({
     initialValues: initialValue,
@@ -125,23 +123,25 @@ const AddRole = ({action}) => {
   });
   return (
     <div className="grid add__role__container">
-      <div className="col-12">
-        <NavBar />
-      </div>
-      <div style={{justifyContent:'center',alignItems:'center',display:'flex'}}>
+      <div className="col-12"></div>
+      <div
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+        }}
+      >
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
-       
-    
       </div>
       <div className="add__sub__title">
-              {action === "add"
-                ? "Add Role"
-                : action === "edit"
-                ? "Edit Role"
-                : "View Role"}
-            </div>
+        {action === "add"
+          ? "Add Role"
+          : action === "edit"
+          ? "Edit Role"
+          : "View Role"}
+      </div>
       <div className="col-12 mb-2">
         <div className="mt-3">
           <BreadCrumb
@@ -152,131 +152,129 @@ const AddRole = ({action}) => {
           />
         </div>
       </div>
-     <Card>
-      <div className="col-12 m-0 ">
-        <div className="grid add__account__sub__container ">
-          <div className="col-12 md:col-3 lg:col-3">
-            <InputField
-             disabled={action === "view" ? true : false}
-              value={formik.values.roleCode}
-              onChange={formik.handleChange("roleCode")}
-              // error={formik.errors.roleCode}
-              label="Role Code"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <InputField
-             disabled={action === "view" ? true : false}
-              value={formik.values.roleName}
-              onChange={formik.handleChange("roleName")}
-              // error={formik.errors.roleName}
-              label="Role Name"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-          </div>
+      <Card>
+        <div className="col-12 m-0 ">
+          <div className="grid add__account__sub__container ">
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                disabled={action === "view" ? true : false}
+                value={formik.values.roleCode}
+                onChange={formik.handleChange("roleCode")}
+                // error={formik.errors.roleCode}
+                label="Role Code"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+              />
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                disabled={action === "view" ? true : false}
+                value={formik.values.roleName}
+                onChange={formik.handleChange("roleName")}
+                // error={formik.errors.roleName}
+                label="Role Name"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+              />
+            </div>
 
-          <div className="col-12 md:col-3 lg:col-6">
-            <InputField
-             disabled={action === "view" ? true : false}
-              value={formik.values.roleDescription}
-              onChange={formik.handleChange("roleDescription")}
-              // error={formik.errors.roleDescription}
-              label="Role Description"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
+            <div className="col-12 md:col-3 lg:col-6">
+              <InputField
+                disabled={action === "view" ? true : false}
+                value={formik.values.roleDescription}
+                onChange={formik.handleChange("roleDescription")}
+                // error={formik.errors.roleDescription}
+                label="Role Description"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+              />
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <DropDowns
+                disabled={action === "view" ? true : false}
+                value={formik.values.menuAccess}
+                onChange={formik.handleChange("menuAccess")}
+                // error={formik.errors.menuAccess}
+                className="dropdown__add__sub"
+                label="Menu Access"
+                classNames="label__sub__add"
+                placeholder={"Select"}
+                options={item}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <DropDowns
+                disabled={action === "view" ? true : false}
+                value={formik.values.subMenuAccess}
+                onChange={formik.handleChange("subMenuAccess")}
+                // error={formik.errors.subMenuAccess}
+                className="dropdown__add__sub"
+                label="Sub Menu Access"
+                classNames="label__sub__add"
+                placeholder={"Select"}
+                options={item1}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <DropDowns
+                disabled={action === "view" ? true : false}
+                value={formik.values.permissions}
+                onChange={formik.handleChange("permissions")}
+                // error={formik.errors.permissions}
+                className="dropdown__add__sub"
+                label="Permissions"
+                classNames="label__sub__add"
+                placeholder={"Select"}
+                options={item2}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
           </div>
-          <div className="col-12 md:col-3 lg:col-3">
-          <DropDowns
-           disabled={action === "view" ? true : false}
-              value={formik.values.menuAccess}
-              onChange={formik.handleChange("menuAccess")}
-              // error={formik.errors.menuAccess}
-              className="dropdown__add__sub"
-              label="Menu Access"
-              classNames="label__sub__add"
-              placeholder={"Select"}
-              options={item}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <DropDowns
-             disabled={action === "view" ? true : false}
-              value={formik.values.subMenuAccess}
-              onChange={formik.handleChange("subMenuAccess")}
-              // error={formik.errors.subMenuAccess}
-              className="dropdown__add__sub"
-              label="Sub Menu Access"
-              classNames="label__sub__add"
-              placeholder={"Select"}
-              options={item1}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <DropDowns
-             disabled={action === "view" ? true : false}
-              value={formik.values.permissions}
-              onChange={formik.handleChange("permissions")}
-              // error={formik.errors.permissions}
-              className="dropdown__add__sub"
-              label="Permissions"
-              classNames="label__sub__add"
-              placeholder={"Select"}
-              options={item2}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-          </div>
+          {(action === "view" || action === "edit") && (
+            <div className="grid ">
+              <div className="col-12 md:col-3 lg:col-3">
+                <InputField
+                  disabled={action === "view" ? true : false}
+                  // value={formik.values.roleCode}
+                  // onChange={formik.handleChange("roleCode")}
+                  // error={formik.errors.roleCode}
+                  label="Modified By"
+                  classNames="dropdown__add__sub"
+                  className="label__sub__add"
+                  placeholder="Enter"
+                />
+              </div>
+              <div className="col-12 md:col-3 lg:col-3">
+                <InputField
+                  disabled={action === "view" ? true : false}
+                  // value={formik.values.roleName}
+                  // onChange={formik.handleChange("roleName")}
+                  // error={formik.errors.roleName}
+                  label="Modified On"
+                  classNames="dropdown__add__sub"
+                  className="label__sub__add"
+                  placeholder="Enter"
+                />
+              </div>
+            </div>
+          )}
         </div>
-{(action === "view" || action ==="edit") && (
-        <div className="grid ">
-          <div className="col-12 md:col-3 lg:col-3">
-            <InputField
-             disabled={action === "view" ? true : false}
-              // value={formik.values.roleCode}
-              // onChange={formik.handleChange("roleCode")}
-              // error={formik.errors.roleCode}
-              label="Modified By"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <InputField
-             disabled={action === "view" ? true : false}
-              // value={formik.values.roleName}
-              // onChange={formik.handleChange("roleName")}
-              // error={formik.errors.roleName}
-              label="Modified On"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-          </div>
-          </div>
-)}
-      
-
-      </div>
       </Card>
       <div className="col-12 btn__view__Add mt-2">
-      {action === "add" && (
-        <Button
-          label="Save"
-          className="save__add__btn"
-          onClick={() => {
-            formik.handleSubmit();
-          }}
-          disabled={!formik.isValid}
-        />
+        {action === "add" && (
+          <Button
+            label="Save"
+            className="save__add__btn"
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+            disabled={!formik.isValid}
+          />
         )}
         {action === "edit" && (
           <Button

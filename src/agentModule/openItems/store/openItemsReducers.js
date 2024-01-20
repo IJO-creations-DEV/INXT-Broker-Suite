@@ -1,0 +1,64 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { getOpenItemsListMiddleware, postOpenItemsListMiddleware } from "./openItemsMiddleware.js";
+
+
+const initialState = {
+    loading: false,
+    error: "",
+    upcommingEventsList: [{
+        date: "22/01/2024",
+        description: 'Meeting With DR.Justin',
+        from: '17:00',
+        to: '18:00', id: 1
+    }],
+};
+
+const openItemsReducers = createSlice({
+    name: "openItems",
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(getOpenItemsListMiddleware.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            getOpenItemsListMiddleware.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                // state.paymenttabledata = action.payload
+            }
+        );
+        builder.addCase(
+            getOpenItemsListMiddleware.rejected,
+            (state, action) => {
+                state.loading = false;
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
+
+        builder.addCase(postOpenItemsListMiddleware.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            postOpenItemsListMiddleware.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                console.log(action?.payload, "open middleware")
+                state.upcommingEventsList = [...state.upcommingEventsList, action.payload]
+                // state.paymenttabledata = action.payload
+            }
+        );
+        builder.addCase(
+            postOpenItemsListMiddleware.rejected,
+            (state, action) => {
+                state.loading = false;
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
+
+    }
+})
+
+export default openItemsReducers.reducer;

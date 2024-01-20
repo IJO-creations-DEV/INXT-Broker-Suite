@@ -16,32 +16,37 @@ import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditicons from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrganizationBranchView, getSearchBranchMiddleware } from "./store/branchMiddleware";
+import {
+  getOrganizationBranchView,
+  getPatchBranchData,
+  getSearchBranchMiddleware,
+} from "./store/branchMiddleware";
 import { useFormik } from "formik";
 
 const Index = () => {
-  const { branchTableList, loading, branchTabelSearchList } = useSelector(({ organizationBranchMainReducers }) => {
-    return {
-      loading: organizationBranchMainReducers?.loading,
-      branchTableList: organizationBranchMainReducers?.branchTableList,
-      branchTabelSearchList: organizationBranchMainReducers?.branchTabelSearchList
-    };
-  });
+  const { branchTableList, loading, branchTabelSearchList } = useSelector(
+    ({ organizationBranchMainReducers }) => {
+      return {
+        loading: organizationBranchMainReducers?.loading,
+        branchTableList: organizationBranchMainReducers?.branchTableList,
+        branchTabelSearchList:
+          organizationBranchMainReducers?.branchTabelSearchList,
+      };
+    }
+  );
   console.log(branchTableList, "branchTableList");
 
   const handlePolicy = (id) => {
-    navigate(
-      `/master/generals/organization/branchmaster/add/${id}`
-    );
+    navigate(`/master/generals/organization/branchmaster/add/${id}`);
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
     console.log(values.search, "getSearchBranchMiddleware");
     dispatch(getSearchBranchMiddleware({ textSearch: values.search }));
-  }
+  };
   const formik = useFormik({
     initialValues: { search: "" },
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
   });
   useEffect(() => {
     if (formik.values.search !== "") {
@@ -49,15 +54,17 @@ const Index = () => {
     }
   }, [formik.values.search]);
   const handleView = (columnData) => {
-    dispatch(getOrganizationBranchView(columnData))
-    console.log(columnData, "columnData")
+    dispatch(getOrganizationBranchView(columnData));
+    console.log(columnData, "columnData");
     navigate(
       `/master/generals/organization/branchmaster/view/${columnData.id}`
     );
   };
-  const handleEdit = (id) => {
+  const handleEdit = (columnData) => {
+    dispatch(getPatchBranchData(columnData));
+    console.log(columnData, "columnData");
     navigate(
-      `/master/generals/organization/branchmaster/edit/${id}`
+      `/master/generals/organization/branchmaster/edit/${columnData.id}`
     );
   };
 
@@ -125,7 +132,7 @@ const Index = () => {
 
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -157,7 +164,6 @@ const Index = () => {
 
   return (
     <div className="overall__branch__container">
-      <NavBar />
       <div className="overallfilter_container">
         <div>
           <label className="label_header">Branch Master</label>
@@ -178,12 +184,7 @@ const Index = () => {
         </div>
       </div>
 
-      <Card
-
-
-      >
-
-
+      <Card>
         <div className="header_search_container">
           <div class="col-12 md:col-12 lg:col-12" style={{ paddingLeft: 0 }}>
             <span className="p-input-icon-left" style={{ width: "100%" }}>
@@ -196,12 +197,15 @@ const Index = () => {
               />
             </span>
           </div>
-
         </div>
         <div className="headlist_lable">Company List</div>
         <div>
           <DataTable
-            value={formik.values.search !== "" ? branchTabelSearchList : branchTableList}
+            value={
+              formik.values.search !== ""
+                ? branchTabelSearchList
+                : branchTableList
+            }
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}

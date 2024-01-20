@@ -3,7 +3,6 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import NavBar from "../../components/NavBar";
 import Cookies from "js-cookie";
 
-
 // import Header from "../../components/Header";
 // import Footer from "../../components/Footer";
 import "./index.scss";
@@ -19,22 +18,20 @@ const index = () => {
   return (
     <div className="protected__layout__container">
       <div className="protected__layout__header">
-        {/* <NavBar /> */}
+        <NavBar />
       </div>
       <div className="protected__layout__content__space">
         <div className="protected__layout__Footer__container">
           {/* <ResponsiveDrawer/> */}
         </div>
         <div className="main__content">
-          {/* {Auth() ?
-            <Outlet />
-            :
-            <Outlet />
+          {
+            Auth() ? <Outlet /> : <Outlet />
 
             // <Navigate to='login' replace />
-          } */}
+          }
 
-          <Outlet />
+          {/* <Outlet /> */}
         </div>
       </div>
     </div>

@@ -17,18 +17,17 @@ import { patchTrascationcodeDetailsEdit } from "../store/transactionCodeMasterMi
 import { useDispatch, useSelector } from "react-redux";
 import { PATCH_TRANSACTION_CODE_DETAILS_EDIT } from "../../../../redux/actionTypes";
 
-
-
-
 const TransactionCodeEdit = () => {
-
-  const { getTrascationcodeDetailsEdit, loading } = useSelector(({ transactionCodeMasterReducer }) => {
-    return {
-      loading: transactionCodeMasterReducer?.loading,
-      getTrascationcodeDetailsEdit: transactionCodeMasterReducer?.getTrascationcodeDetailsEdit,
-    };
-  });
-  console.log(getTrascationcodeDetailsEdit, "getTrascationcodeDetailsEdit")
+  const { getTrascationcodeDetailsEdit, loading } = useSelector(
+    ({ transactionCodeMasterReducer }) => {
+      return {
+        loading: transactionCodeMasterReducer?.loading,
+        getTrascationcodeDetailsEdit:
+          transactionCodeMasterReducer?.getTrascationcodeDetailsEdit,
+      };
+    }
+  );
+  console.log(getTrascationcodeDetailsEdit, "getTrascationcodeDetailsEdit");
 
   const toastRef = useRef(null);
   const navigate = useNavigate();
@@ -51,37 +50,45 @@ const TransactionCodeEdit = () => {
   };
 
   const handleSubmit = (value) => {
-    console.log(value, "valuesvalues")
+    console.log(value, "valuesvalues");
     dispatch(patchTrascationcodeDetailsEdit(value));
     navigate("/master/finance/transactioncode");
   };
-  const [basicc, setBasiscodeData] = useState([])
-  const [mainAccountC, setMainAccountcodeData] = useState([])
-  const [subAcc, setSubAccountData] = useState([])
-  const [branchC, setBranchCodeData] = useState([])
-  const [deptC, setDeptData] = useState([])
+  const [basicc, setBasiscodeData] = useState([]);
+  const [mainAccountC, setMainAccountcodeData] = useState([]);
+  const [subAcc, setSubAccountData] = useState([]);
+  const [branchC, setBranchCodeData] = useState([]);
+  const [deptC, setDeptData] = useState([]);
 
   const SetFormikValue = () => {
-    const Basis = getTrascationcodeDetailsEdit?.TransactionBasis
-    const MainAccount = getTrascationcodeDetailsEdit?.MainAccountCode
-    const subAccount = getTrascationcodeDetailsEdit?.SubAccountCode
-    const branchCode = getTrascationcodeDetailsEdit?.BranchCode
-    const dept = getTrascationcodeDetailsEdit?.Department
+    const Basis = getTrascationcodeDetailsEdit?.TransactionBasis;
+    const MainAccount = getTrascationcodeDetailsEdit?.MainAccountCode;
+    const subAccount = getTrascationcodeDetailsEdit?.SubAccountCode;
+    const branchCode = getTrascationcodeDetailsEdit?.BranchCode;
+    const dept = getTrascationcodeDetailsEdit?.DepartmentCode;
     const updatedValues = {
+      id: getTrascationcodeDetailsEdit?.id,
       TransactionCode: getTrascationcodeDetailsEdit?.TransactionCode || "",
       TransactionName: getTrascationcodeDetailsEdit?.TransactionName || "",
       Description: getTrascationcodeDetailsEdit?.Description || "",
       TransactionBasis: Basis || "",
       MainAccountCode: MainAccount || "",
-      MainAccountDescription: getTrascationcodeDetailsEdit?.MainAccountDescription || "",
+      MainAccountDescription:
+        getTrascationcodeDetailsEdit?.MainAccountDescription || "",
       SubAccountCode: subAccount || "",
-      SubAccountDescription: getTrascationcodeDetailsEdit?.SubAccountDescription || "",
+      SubAccountDescription:
+        getTrascationcodeDetailsEdit?.SubAccountDescription || "",
       BranchCode: branchCode || "",
       BranchDescription: getTrascationcodeDetailsEdit?.BranchDescription || "",
-      Department: dept || "",
-      DepartmentDescription: getTrascationcodeDetailsEdit?.DepartmentDescription || "",
+      DepartmentCode: dept || "",
+      DepartmentDescription:
+        getTrascationcodeDetailsEdit?.DepartmentDescription || "",
     };
-    console.log(updatedValues.SubAccountCode, subAccount, "updatedValues.TransactionBasis")
+    console.log(
+      updatedValues.SubAccountCode,
+      subAccount,
+      "updatedValues.TransactionBasis"
+    );
     if (Basis) {
       formik.setValues({ ...formik.values, ...updatedValues });
       setBasiscodeData([{ label: Basis, value: Basis }]);
@@ -103,7 +110,7 @@ const TransactionCodeEdit = () => {
       setDeptData([{ label: dept, value: dept }]);
     }
     formik.setValues({ ...formik.values, ...updatedValues });
-    console.log(updatedValues, "updatedValues")
+    console.log(updatedValues, "updatedValues");
   };
 
   const formik = useFormik({
@@ -118,7 +125,7 @@ const TransactionCodeEdit = () => {
       SubAccountDescription: "",
       BranchCode: "",
       BranchDescription: "",
-      Department: "",
+      DepartmentCode: "",
       DepartmentDescription: "",
     },
     validate: (values) => {
@@ -142,7 +149,6 @@ const TransactionCodeEdit = () => {
 
   return (
     <div className="transactioncode__master__Edit__view">
-      <NavBar />
       {/* <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully"/> */}
       <div className="grid  m-0">
         <div className="col-12 md:col-12 lg:col-12">
@@ -193,7 +199,6 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 value={formik.values.TransactionName}
                 onChange={formik.handleChange("TransactionName")}
                 error={
@@ -212,13 +217,9 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 value={formik.values.Description}
                 onChange={formik.handleChange("Description")}
-                error={
-                  formik.touched.Description &&
-                  formik.errors.Description
-                }
+                error={formik.touched.Description && formik.errors.Description}
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
@@ -229,7 +230,6 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 value={formik.values.TransactionBasis}
                 options={basicc}
@@ -255,7 +255,6 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 value={formik.values.MainAccountCode}
                 options={mainAccountC}
@@ -279,7 +278,6 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 value={formik.values.MainAccountDescription}
                 onChange={formik.handleChange("MainAccountDescription")}
                 error={
@@ -298,21 +296,18 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-
                 value={formik.values.SubAccountCode}
                 options={subAcc}
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("SubAccountCode", e.target.value);
-
                 }}
                 optionLabel="label"
-              // error={
-              //   formik.touched.BankAccountNumber &&
-              //   formik.errors.BankAccountNumber
-              // }
+                // error={
+                //   formik.touched.BankAccountNumber &&
+                //   formik.errors.BankAccountNumber
+                // }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -323,7 +318,6 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 value={formik.values.SubAccountDescription}
                 onChange={formik.handleChange("SubAccountDescription")}
                 error={
@@ -342,16 +336,11 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-
-
                 value={formik.values.BranchCode}
-
                 onChange={(e) => {
                   console.log(e.value);
                   formik.setFieldValue("BranchCode", e.target.value);
-
                 }}
                 options={branchC}
                 // onChange={(e) => {
@@ -360,10 +349,10 @@ const TransactionCodeEdit = () => {
                 //   handleAccountcode(e.value.);
                 // }}
                 optionLabel="label"
-              // error={
-              //   formik.touched.BankAccountNumber &&
-              //   formik.errors.BankAccountNumber
-              // }
+                // error={
+                //   formik.touched.BankAccountNumber &&
+                //   formik.errors.BankAccountNumber
+                // }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -374,10 +363,8 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 value={formik.values.BranchDescription}
                 onChange={formik.handleChange("BranchDescription")}
-
               />
             </div>
           </div>
@@ -390,21 +377,18 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.Department}
+                value={formik.values.DepartmentCode}
                 options={deptC}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("Department", e.target.value);
-
+                  formik.setFieldValue("DepartmentCode", e.target.value);
                 }}
-
                 optionLabel="label"
-              // error={
-              //   formik.touched.BankAccountNumber &&
-              //   formik.errors.BankAccountNumber
-              // }
+                // error={
+                //   formik.touched.BankAccountNumber &&
+                //   formik.errors.BankAccountNumber
+                // }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -415,13 +399,12 @@ const TransactionCodeEdit = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-
                 value={formik.values.DepartmentDescription}
                 onChange={formik.handleChange("DepartmentDescription")}
-              // error={
-              //   formik.touched.TransactionName &&
-              //   formik.errors.TransactionName
-              // }
+                // error={
+                //   formik.touched.TransactionName &&
+                //   formik.errors.TransactionName
+                // }
               />
             </div>
           </div>
@@ -441,4 +424,4 @@ const TransactionCodeEdit = () => {
   );
 };
 
-export default TransactionCodeEdit
+export default TransactionCodeEdit;

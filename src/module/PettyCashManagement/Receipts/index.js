@@ -25,7 +25,6 @@ const PettyCashReceipts = () => {
 
   return (
     <div className="pettycash__management">
-      <NavBar />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div className="pettycash__title">Petty Cash Receipts</div>

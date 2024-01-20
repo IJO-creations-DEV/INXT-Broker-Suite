@@ -15,26 +15,30 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function PolicyReceipts() {
-  const { receiptDetailList, loading, total,paymentDetails } = useSelector(({ receiptsTableReducers }) => {
-    return {
-      loading: receiptsTableReducers?.loading,
-      receiptDetailList: receiptsTableReducers?.receiptDetailList,
-      total: receiptsTableReducers,
-      paymentDetails: receiptsTableReducers?.paymentDetails
-
-    };
-  });
+  const { receiptDetailList, loading, total, paymentDetails } = useSelector(
+    ({ receiptsTableReducers }) => {
+      return {
+        loading: receiptsTableReducers?.loading,
+        receiptDetailList: receiptsTableReducers?.receiptDetailList,
+        total: receiptsTableReducers,
+        paymentDetails: receiptsTableReducers?.paymentDetails,
+      };
+    }
+  );
   useEffect(() => {
-    console.log(total, "sd")
-  }, [total])
-  console.log(total, "find receivableTableList")
-  const navigate = useNavigate()
-  const items = [{
-    label: "Receipts",
-    command: () => navigate('/accounts/receipts/policyreceipts')
-  }, {
-    label: "Receipt Detail View"
-  }];
+    console.log(total, "sd");
+  }, [total]);
+  console.log(total, "find receivableTableList");
+  const navigate = useNavigate();
+  const items = [
+    {
+      label: "Receipts",
+      command: () => navigate("/accounts/receipts/policyreceipts"),
+    },
+    {
+      label: "Receipt Detail View",
+    },
+  ];
 
   const home = { label: "Accounts " };
   const template2 = {
@@ -69,21 +73,19 @@ function PolicyReceipts() {
 
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     color: "#000",
     border: "none",
     textalign: "center",
-
   };
 
   return (
     <div className="overall__policy_receipts_view__container">
-      <NavBar />
-      <span onClick={()=>navigate(-1)}>
-      <SvgBack />
+      <span onClick={() => navigate(-1)}>
+        <SvgBack />
       </span>
-      
+
       <label className="label_header">Receipt Detail View</label>
       <BreadCrumb
         model={items}
@@ -206,7 +208,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy "
                 label="Bank Name"
-                value={'bankcode'}
+                value={"bankcode"}
               />
             </div>
           </div>
@@ -226,7 +228,7 @@ function PolicyReceipts() {
               <InputField
                 classNames="field__policy"
                 label="Bank Account Name"
-                value={'bankAccount'}
+                value={"bankAccount"}
               />
             </div>
           </div>

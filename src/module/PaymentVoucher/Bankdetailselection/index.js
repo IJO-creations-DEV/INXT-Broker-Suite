@@ -85,7 +85,7 @@ function Bankdetailselection() {
     // width: '12rem',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -143,7 +143,6 @@ function Bankdetailselection() {
   };
   return (
     <div className="overall__bankdetailview__container">
-      <NavBar />
       <CustomToast
         ref={toastRef}
         message={`Cheque book details ${actionToast} successfully`}
@@ -229,7 +228,7 @@ function Bankdetailselection() {
               selectionMode="single"
               selectedItem
               headerStyle={{ width: "4rem" }}
-              style={{textAlign:'center'}}
+              style={{ textAlign: "center" }}
             ></Column>
           )}
           <Column

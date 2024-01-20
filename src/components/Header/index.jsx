@@ -3,8 +3,8 @@ import "./index.scss";
 import { data } from "./mock";
 import { Button } from "primereact/button";
 import { Image } from "primereact/image";
-import SvgLogo from "../../Assets/Icon/SvgLogo";
-import SvgBell from "../../Assets/Icon/SvgBell";
+import SvgLogo from "../../assets/icons/SvgLogo";
+import SvgBell from "../../assets/icons/SvgBell";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);

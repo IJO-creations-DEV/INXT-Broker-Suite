@@ -48,8 +48,8 @@ const JournalVoucher = () => {
   const [visible, setVisible] = useState(false);
   const [newDataTable, setnewDataTable] = useState([]);
   const navigate = useNavigate();
-  const [globalFilter, setGlobalFilter] = useState('');
-  const [search, setSearch] = useState('')
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [search, setSearch] = useState("");
   const items = [
     { id: 1, label: "Journal Voucher", to: "/accounts/journalvoucher" },
   ];
@@ -74,16 +74,17 @@ const JournalVoucher = () => {
   useEffect(() => {
     if (globalFilter?.length > 0) {
       if (search?.length > 0) {
-        console.log(globalFilter, search, "as")
+        console.log(globalFilter, search, "as");
 
-        dispatch(getJournalVoucherSearchList({
-          field: globalFilter,
-          value: search
-        }))
-
+        dispatch(
+          getJournalVoucherSearchList({
+            field: globalFilter,
+            value: search,
+          })
+        );
       }
     }
-  }, [search])
+  }, [search]);
 
   const formik = useFormik({
     initialValues: { search: "" },
@@ -122,9 +123,7 @@ const JournalVoucher = () => {
 
   return (
     <div className="grid  container__Journal__Voture">
-      <div className="col-12">
-        <NavBar />
-      </div>
+      <div className="col-12"></div>
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__Journal__Voture">Journal Voucher</div>
         <div className="mt-4">
@@ -180,7 +179,10 @@ const JournalVoucher = () => {
               </div>
 
             // </form> */}
-            <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 10, paddingRight: 10 }}>
+            <div
+              class="col-12 md:col-6 lg:col-10"
+              style={{ paddingLeft: 10, paddingRight: 10 }}
+            >
               {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
               <span className="p-input-icon-left" style={{ width: "100%" }}>
                 <i className="pi pi-search" />
@@ -192,7 +194,6 @@ const JournalVoucher = () => {
                 />
               </span>
             </div>
-
 
             <div className="col-12 md:col-2 lg:col-2">
               {/* <div className='sort__filter__view__Journal__Voture' onClick={(e) => menu.current.toggle(e)}>
@@ -214,13 +215,21 @@ const JournalVoucher = () => {
             </div>
           </div>
           <div className="col-12 ">
-            <div className="main__tabel__title__Journal__Voture " style={{ paddingLeft: 10, paddingRight: 10 }}>
+            <div
+              className="main__tabel__title__Journal__Voture "
+              style={{ paddingLeft: 10, paddingRight: 10 }}
+            >
               Journal Voucher history
             </div>
           </div>
           <div
             className="col-12 md:col-12 lg-col-12"
-            style={{ maxWidth: "100%", maxHeight: "40vh", paddingLeft: 16, paddingRight: 16 }}
+            style={{
+              maxWidth: "100%",
+              maxHeight: "40vh",
+              paddingLeft: 16,
+              paddingRight: 16,
+            }}
           >
             <div className="card p-1">
               <DataTabelJV

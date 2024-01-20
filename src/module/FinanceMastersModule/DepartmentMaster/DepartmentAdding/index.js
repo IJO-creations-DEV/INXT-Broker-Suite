@@ -31,7 +31,6 @@ function DepartmentAdding() {
 
   return (
     <div className="overall_department-adding_container">
-      <NavBar />
       <label className="label_header">Add Department</label>
       <BreadCrumb
         model={items}

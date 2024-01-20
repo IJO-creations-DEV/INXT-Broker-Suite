@@ -69,10 +69,13 @@ function Createvoucher() {
     { name: "INR", code: "NY" },
     { name: "USD", code: "RM" },
   ];
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const home = { label: "Accounts" };
   const items = [
-    { label: "Payment Voucher", command: () => navigate("/accounts/paymentvoucher") },
+    {
+      label: "Payment Voucher",
+      command: () => navigate("/accounts/paymentvoucher"),
+    },
     { label: "Create Voucher", to: "/accounts/paymentvoucher/createvoucher" },
   ];
 
@@ -130,11 +133,9 @@ function Createvoucher() {
     validate: customValidation,
     onSubmit: handleSubmit,
   });
-  console.log("first", formik.values.Criteria?.name)
+  console.log("first", formik.values.Criteria?.name);
   return (
     <div className="overall__createvoucher__container">
-      <NavBar />
-
       <div>
         <span onClick={() => Navigate(-1)}>
           <SvgBackicon />
@@ -258,7 +259,8 @@ function Createvoucher() {
           </div>
         </div>
         <div className="grid">
-          {formik.values.Criteria === "" || formik.values.Criteria?.name === "Specific" ? (
+          {formik.values.Criteria === "" ||
+          formik.values.Criteria?.name === "Specific" ? (
             <div className="col-3 md:col-3 lg-col-3">
               <DropDowns
                 className="dropdown__container"
@@ -323,7 +325,6 @@ function Createvoucher() {
           </div>
           {/* </div> */}
         </div>
-
 
         <div class="grid">
           <div class="sm-col-12  md:col-3 lg-col-4">

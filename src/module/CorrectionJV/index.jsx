@@ -107,7 +107,7 @@ const Reversals = () => {
     setNetTotal(0);
     setDebitTotal(2600);
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handlePrint = () => {
     toastRef.current.showToast();
     // formik.resetForm();
@@ -122,7 +122,6 @@ const Reversals = () => {
     return total; // Important: Return the total for each iteration.
   }, 0);
 
-
   const totalLocalAmount = correctionJVList.reduce((total, item) => {
     if (item.entryType === "Debit") {
       const localAmount = parseFloat(item.foreignAmount);
@@ -130,7 +129,6 @@ const Reversals = () => {
     }
     return total;
   }, 0);
-
 
   return (
     <div className="container__corrections__jv">
@@ -143,9 +141,7 @@ const Reversals = () => {
         <CustomToast ref={toastRef} message="Successfully Printed" />
       )}
       <div className="grid m-0 top__container">
-        <div className="col-12 p-0">
-          <NavBar />
-        </div>
+        <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
           <div className="correction__title__reversal">
             <span onClick={() => setStep(step - 1)}>

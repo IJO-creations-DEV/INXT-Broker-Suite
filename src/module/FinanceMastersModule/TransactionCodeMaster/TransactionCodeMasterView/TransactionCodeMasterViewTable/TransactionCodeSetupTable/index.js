@@ -177,7 +177,7 @@ const TransactionCodeSetupTable = () => {
             className="fieldvalue_container"
           ></Column>
           <Column
-            field="LastUsed"
+            field="lastUsed"
             header="Last Used"
             headerStyle={headerStyle}
             className="fieldvalue_container"

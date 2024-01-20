@@ -14,22 +14,42 @@ import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
 import "./index.scss";
 import CustomToast from "../../../components/Toast";
 import customHistory from "../../../routes/customHistory";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
+import { postSettlementClaimMiddleware } from "./Store/claimSettlementMiddleware";
+
+const initialValues = {
+  SettlementType:"",
+  SettlementAmount:"",
+  IssueDate: new Date(),
+  SettleDate: new Date(),
+ 
+};
+const items =[
+  {label:'Cash'},
+  {label:'Card'},
+  {label:'Cheque'}
+]
 
 const SettlementDetails = () => {
   const navigate = useNavigate();
   const toastRef = useRef(null);
+  const dispatch = useDispatch();
   const params = useParams();
   const { id } = params;
   const handleEdit = () => {
     navigate("/agent/claimrequest/claimdetails");
   };
-  const handleSubmit = () => {
+  const handleSubmit = (value) => {
     toastRef.current.showToast();
+    console.log("find settlement",value)
+    dispatch(postSettlementClaimMiddleware(value));
     setTimeout(() => {
       navigate("/agent/claimdetailedview/12344");
     }, 2000);
   };
 
+ 
   const fileUploadRef = useRef(null);
   const [uploadImage, setuploadImage] = useState(null);
   const handleUppendImg = (name, src) => {
@@ -44,6 +64,14 @@ const SettlementDetails = () => {
   const handleBackNavigation = () => {
     customHistory.back();
   };
+  const formik = useFormik({
+    initialValues: initialValues,
+    // validate: customValidation,
+    // onSubmit: handleSubmit,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
+  });
   return (
     <div>
       <NavBar />
@@ -62,19 +90,53 @@ const SettlementDetails = () => {
           </div>
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
-              <DropdownField label="Settlement type" />
+            <DropdownField
+              
+                label="Settlement type"
+                
+                value={formik.values.SettlementType}
+                onChange={(e) =>
+                  formik.setFieldValue("SettlementType", e.value)
+                }
+                options={items}
+                optionLabel="name"
+                placeholder={"Select"}
+                
+              />
+             
             </div>
             <div className="col-12 md:col-6 lg:col-6">
-              <InputTextField label="Settlement Amount" />
+            <InputTextField label="Settlement Amount" 
+            value={formik.values.SettlementAmount}
+            onChange={formik.handleChange("SettlementAmount")}/>
+              
             </div>
           </div>
 
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
-              <DatepickerField label="Issue Date" />
+            <DatepickerField label="Issue Date"
+            value={formik.values.IssueDate}
+            
+            onChange={(e) => { 
+              formik.setFieldValue("IssueDate", e.target.value);
+            }}
+            dateFormat="yy-mm-dd"
+           
+            />
+             
             </div>
             <div className="col-12 md:col-6 lg:col-6">
-              <DatepickerField label="Settle date" />
+            <DatepickerField label="Settle date"
+            value={formik.values.SettleDate}
+          
+            onChange={(e) => { 
+              formik.setFieldValue("SettleDate", e.target.value);
+            }}
+            dateFormat="yy-mm-dd"
+           
+            />
+             
             </div>
           </div>
 
@@ -82,7 +144,7 @@ const SettlementDetails = () => {
             <div className="claim__request__upload__subtitle  mb-2">
               Documents
             </div>
-            {/* {!imageURL ? ( */}
+           
             <div className="upload__card__container mt-2">
               <div className="file_icon_selector">
                 <FileUpload
@@ -92,7 +154,7 @@ const SettlementDetails = () => {
                   mode="basic"
                   name="demo"
                   accept=".png,.jpg,.jpeg"
-                  // maxFileSize={2000000}
+                  
                   uploadHandler={(e) => {
                     handleUppendImg(
                       e.options.props.name,
@@ -110,12 +172,7 @@ const SettlementDetails = () => {
                 </div>
               </div>
             </div>
-            {/* ) : ( */}
-            {/* <div className="upload__image__area mt-2">
-                <img src={imageURL} alt="Image" className="image__view" />
-              </div>
-            ) */}
-            {/* } */}
+           
           </div>
 
           <div className="claimrequest__back__but">
@@ -126,64 +183,14 @@ const SettlementDetails = () => {
             >
               Back
             </Button>
-            <Button onClick={handleSubmit} className="claim__snd__but">
+            <Button onClick={formik.handleSubmit} className="claim__snd__but">
               Submit
             </Button>
           </div>
 
-          {/* <div>
-            Document
-          </div>
-          <div className="col-12">
-            <div className="file_icon_selector">
-              <FileUpload
-                ref={fileUploadRef}
-                url="./upload"
-                auto
-                customUpload
-                mode="basic"
-                name="demo"
-                accept=".png,.jpg,.jpeg,.pdf"
-                maxFileSize={2000000}
-                uploadHandler={(e) => {
-                  handleUppendImg(e.options.props.name, e.files[0]);
-                }}
-              />
-              <div className="icon_click_option">
-                <SvgImageUpload />
-              </div>
-              <div className="upload__caption text-center">Upload</div>
-              <div className="upload__caption text-center">
-                Maximum 2 MB (PNG, JPEG and PDF Files Only)
-              </div>
-            </div>
-            {uploadImage && (
-              <div class="col-12 mt-2 ">
-                <span onClick={handleCancelUplaoded}>
-                  <SvgImageShow />
-                </span>
-              </div>
-            )}
-            <div className="col-12">
-              <div className="back__next__btn__container">
-                <div className="back__btn__container">
-                  <Button className="back__btn" link>Back</Button>
-                </div>
-                <div className="next__btn__container">
-                  <Button className="next__btn" onClick={handleSubmit}>Submit</Button>
-                </div>
-              </div>
-            </div>
-          </div> */}
-          {/* <div>
-            <div>
-              
-            </div>
-          <DropdownField label="Country" />
-
-          </div> */}
+          
         </Card>
-        {/* <ClaimDetailsCard /> */}
+      
       </div>
     </div>
   );

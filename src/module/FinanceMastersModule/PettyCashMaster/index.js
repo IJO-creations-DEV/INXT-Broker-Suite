@@ -71,7 +71,6 @@ const PettyCashMaster = ({ response }) => {
       dispatch(getPettyCashSearchList({ textSearch: formik.values.search }));
     }
   }, [formik.values.search]);
-  const { pettyCashList, pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
 
  
   const { pettyCashList,pettyCashSearchList, loading } = useSelector(({ pettyCashMainReducers }) => {
@@ -84,7 +83,7 @@ const PettyCashMaster = ({ response }) => {
 
     };
   });
-  console.log(pettyCashList, "pettyCashList");
+  console.log(pettyCashSearchList, "pettyCashSearchList");
 
 
   useEffect(() => {
@@ -156,9 +155,9 @@ const PettyCashMaster = ({ response }) => {
           <div className="col-12 md:col-12 lg-col-12" style={{ maxWidth: '100%' }}>
             <div className="card p-1">
 
-              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} pettyCashList={formik.values.search !== "" ? pettyCashSearchList : pettyCashList} />
+              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible} pettyCashList={search? pettyCashSearchList : pettyCashList} />
 
-              <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}   pettyCashList={search ? pettyCashSearchList : pettyCashList} />
+              {/* <PettyDataTabel handleEdit={handleEdit} newDataTable={newDataTable} visible={visible}   pettyCashList={search ? pettyCashSearchList : pettyCashList} /> */}
 
             </div>
           </div>

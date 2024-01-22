@@ -8,7 +8,7 @@
     filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
     margin-top: 10px;
     .p-card-body {
-      padding: 24px;
+      padding: 24px 16px;
     }
   }
   .coverage__container__titles {
@@ -71,6 +71,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 24px;
   }
   .back__btn__container {
     .p-button {

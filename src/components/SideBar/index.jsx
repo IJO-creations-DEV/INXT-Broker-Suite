@@ -113,7 +113,6 @@ const ResponsiveDrawer = () => {
                 onClick={() => handleClick(data.name)}
               >
                 {data.submenu.map((subItem, subIndex) => {
-                  console.log(subItem, subIndex, "find real side datas");
                   return (
                     <React.Fragment key={subIndex}>
                       {subItem.submenu ? (
@@ -208,11 +207,15 @@ const ResponsiveDrawer = () => {
                         >
                           <div
                             className="menu__list"
-                            style={{
-                              display: "flex",
-                              gap: "10px",
-                              alignItems: "center",
-                            }}
+                            style={
+                              data.name === "Brokerage"
+                                ? {
+                                    display: "flex",
+                                    gap: "10px",
+                                    alignItems: "center",
+                                  }
+                                : {}
+                            }
                           >
                             {subItem.name === "Home" ||
                             subItem.name === "Leads" ||

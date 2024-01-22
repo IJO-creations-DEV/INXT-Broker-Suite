@@ -214,8 +214,8 @@ const UploadPolicyCard = () => {
           </div>
         )}
 
-        <div className="grid m-0 mt-2">
-          <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container ">
+        <div className="grid m-0">
+          <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container p-0 mt-4">
             <div className="back__btn__container">
               <Button className="back__btn" onClick={handleBackNavigation}>
                 Back

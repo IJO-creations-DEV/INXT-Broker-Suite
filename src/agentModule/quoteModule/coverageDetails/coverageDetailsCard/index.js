@@ -45,6 +45,51 @@ const CoverageDetailsCard = () => {
     setFormikValues();
     setshow(false)
   };
+  const customValidation = (values) => {
+    const errors = {}
+    if (!values.LossandDamagecoverage) {
+      errors.LossandDamagecoverage = "This field is required";
+    }
+    if (!values.LossandDamagecoverageRate) {
+      errors.LossandDamagecoverageRate = "This field is required";
+    }
+    if (!values.LossandDamagecoveragepremium) {
+      errors.LossandDamagecoveragepremium = "This field is required";
+    }
+    if (!values.ActsofNatureRate) {
+      errors.ActsofNatureRate = "This field is required";
+    }
+    if (!values.ActsofNaturepremium) {
+      errors.ActsofNaturepremium = "This field is required";
+    }
+    if (!values.BodilyInjury) {
+      errors.BodilyInjury = "This field is required";
+    }
+    if (!values.BodilyInjuryCoveragePremium) {
+      errors.BodilyInjuryCoveragePremium = "This field is required";
+    }
+    if (!values.PropertyDamage) {
+      errors.PropertyDamage = "This field is required";
+    }
+    if (!values.PropertyDamageCoveragePremium) {
+      errors.PropertyDamageCoveragePremium = "This field is required";
+    }
+
+    if (!values.AutopassengerpersonalAccident) {
+      errors.AutopassengerpersonalAccident = "This field is required";
+    }
+    if (!values.APPATotalCoverage) {
+      errors.APPATotalCoverage = "This field is required";
+    }
+    if (!values.APPACoveragePremium) {
+      errors.APPACoveragePremium = "This field is required";
+    }
+    if (!values.TotalSumInsured) {
+      errors.TotalSumInsured = "This field is required";
+    }
+  
+    return errors
+  }
 
   const setFormikValues = () => {
     const updatedValues = {
@@ -64,7 +109,7 @@ const CoverageDetailsCard = () => {
 
   const formik = useFormik({
     initialValues: initialValue,
-    // validate,
+    validate:customValidation,
     onSubmit: (values) => {
       handleclick(values);
       // hadlecalculation();
@@ -86,11 +131,15 @@ const CoverageDetailsCard = () => {
                 label="Loss and Damage coverage"
                 value={formik.values.LossandDamagecoverage}
                 onChange={formik.handleChange("LossandDamagecoverage")}
-                error={
-                  formik.touched.LossandDamagecoverage &&
-                  formik.errors.LossandDamagecoverage
-                }
+             
               />
+                {formik.touched.LossandDamagecoverage && formik.errors.LossandDamagecoverage && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.LossandDamagecoverage}
+                </div>
+              )}
+              
+              
             </div>
           </div>
           <div className="grid m-0 mt-2">
@@ -99,22 +148,26 @@ const CoverageDetailsCard = () => {
                 label="Loss and Damage coverage Rate"
                 value={formik.values.LossandDamagecoverageRate}
                 onChange={formik.handleChange("LossandDamagecoverageRate")}
-                error={
-                  formik.touched.LossandDamagecoverageRate &&
-                  formik.errors.LossandDamagecoverageRate
-                }
+               
               />
+                {formik.touched.LossandDamagecoverageRate && formik.errors.LossandDamagecoverageRate && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.LossandDamagecoverageRate}
+                </div>
+              )}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <CalculaitionTextInputs
                 label="Loss and Damage coverage premium"
                 value={formik.values.LossandDamagecoveragepremium}
                 onChange={formik.handleChange("LossandDamagecoveragepremium")}
-                error={
-                  formik.touched.LossandDamagecoveragepremium &&
-                  formik.errors.LossandDamagecoveragepremium
-                }
+              
               />
+                {formik.touched.LossandDamagecoveragepremium && formik.errors.LossandDamagecoveragepremium && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.LossandDamagecoveragepremium}
+                </div>
+              )}
             </div>
           </div>
           <div className="grid m-0 mt-2">
@@ -123,22 +176,26 @@ const CoverageDetailsCard = () => {
                 label="Acts of Nature Rate"
                 value={formik.values.ActsofNatureRate}
                 onChange={formik.handleChange("ActsofNatureRate")}
-                error={
-                  formik.touched.ActsofNatureRate &&
-                  formik.errors.ActsofNatureRate
-                }
+                 
               />
+                {formik.touched.ActsofNatureRate && formik.errors.ActsofNatureRate && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.ActsofNatureRate}
+                </div>
+              )}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <CalculaitionTextInputs
                 label="Acts of Nature premium"
                 value={formik.values.ActsofNaturepremium}
                 onChange={formik.handleChange("ActsofNaturepremium")}
-                error={
-                  formik.touched.ActsofNaturepremium &&
-                  formik.errors.ActsofNaturepremium
-                }
+               
               />
+                {formik.touched.ActsofNaturepremium && formik.errors.ActsofNaturepremium && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.ActsofNaturepremium}
+                </div>
+              )}
             </div>
           </div>
           <div className="grid m-0 mt-2">
@@ -152,21 +209,26 @@ const CoverageDetailsCard = () => {
                   formik.setFieldValue("BodilyInjury", e.value);
                 }}
                 optionLabel="label"
-                error={
-                  formik.touched.BodilyInjury && formik.errors.BodilyInjury
-                }
+                
               />
+                {formik.touched.BodilyInjury && formik.errors.BodilyInjury && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.BodilyInjury}
+                </div>
+              )}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <CalculaitionTextInputs
                 label="Bodily Injury Coverage Premium"
                 value={formik.values.BodilyInjuryCoveragePremium}
                 onChange={formik.handleChange("BodilyInjuryCoveragePremium")}
-                error={
-                  formik.touched.BodilyInjuryCoveragePremium &&
-                  formik.errors.BodilyInjuryCoveragePremium
-                }
+               
               />
+                {formik.touched.BodilyInjuryCoveragePremium && formik.errors.BodilyInjuryCoveragePremium && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.BodilyInjuryCoveragePremium}
+                </div>
+              )}
             </div>
           </div>
           <div className="grid m-0 mt-2">
@@ -180,21 +242,26 @@ const CoverageDetailsCard = () => {
                   formik.setFieldValue("PropertyDamage", e.value);
                 }}
                 optionLabel="label"
-                error={
-                  formik.touched.PropertyDamage && formik.errors.PropertyDamage
-                }
+              
               />
+                {formik.touched.PropertyDamage && formik.errors.PropertyDamage && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.PropertyDamage}
+                </div>
+              )}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <CalculaitionTextInputs
                 label="Property Damage Coverage Premium"
                 value={formik.values.PropertyDamageCoveragePremium}
                 onChange={formik.handleChange("PropertyDamageCoveragePremium")}
-                error={
-                  formik.touched.PropertyDamageCoveragePremium &&
-                  formik.errors.PropertyDamageCoveragePremium
-                }
+               
               />
+                {formik.touched.PropertyDamageCoveragePremium && formik.errors.PropertyDamageCoveragePremium && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.PropertyDamageCoveragePremium}
+                </div>
+              )}
             </div>
           </div>
           <div className="grid m-0 mt-2">
@@ -211,11 +278,13 @@ const CoverageDetailsCard = () => {
                   );
                 }}
                 optionLabel="label"
-                error={
-                  formik.touched.AutopassengerpersonalAccident &&
-                  formik.errors.AutopassengerpersonalAccident
-                }
+               
               />
+                {formik.touched.AutopassengerpersonalAccident && formik.errors.AutopassengerpersonalAccident && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.AutopassengerpersonalAccident}
+                </div>
+              )}
             </div>
           </div>
 
@@ -225,22 +294,26 @@ const CoverageDetailsCard = () => {
                 label="APPA Total Coverage"
                 value={formik.values.APPATotalCoverage}
                 onChange={formik.handleChange("APPATotalCoverage")}
-                error={
-                  formik.touched.APPATotalCoverage &&
-                  formik.errors.APPATotalCoverage
-                }
+               
               />
+                {formik.touched.APPATotalCoverage && formik.errors.APPATotalCoverage && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.APPATotalCoverage}
+                </div>
+              )}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <CalculaitionTextInputs
                 label="APPA Coverage Premium"
                 value={formik.values.APPACoveragePremium}
                 onChange={formik.handleChange("APPACoveragePremium")}
-                error={
-                  formik.touched.APPACoveragePremium &&
-                  formik.errors.APPACoveragePremium
-                }
+               
               />
+                {formik.touched.APPACoveragePremium && formik.errors.APPACoveragePremium && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.APPACoveragePremium}
+                </div>
+              )}
             </div>
           </div>
           <div className="grid m-0 mt-2">
@@ -249,11 +322,13 @@ const CoverageDetailsCard = () => {
                 label="Total Sum Insured"
                 value={formik.values.TotalSumInsured}
                 onChange={formik.handleChange("TotalSumInsured")}
-                error={
-                  formik.touched.TotalSumInsured &&
-                  formik.errors.TotalSumInsured
-                }
+             
               />
+                {formik.touched.TotalSumInsured && formik.errors.TotalSumInsured && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.TotalSumInsured}
+                </div>
+              )}
             </div>
           </div>
           <div className="grid m-0 mt-2">
@@ -265,6 +340,7 @@ const CoverageDetailsCard = () => {
                   onClick={
                     hadlecalculation}
                 />
+              
               </div>
             </div>
             <div className="col-12 md:col-6 lg:col-6 back__next__btn__container ">

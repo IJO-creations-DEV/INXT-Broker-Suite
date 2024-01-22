@@ -7,6 +7,8 @@ import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
 import { FileUpload } from "primereact/fileupload";
 import { useNavigate } from "react-router-dom";
 import customHistory from "../../../routes/customHistory";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
 
 const UploadVehiclePhotos = () => {
   const [imageURLLeft, setimageURLLeft] = useState(null);
@@ -39,6 +41,46 @@ const UploadVehiclePhotos = () => {
     console.log(name, src.objectURL, "find handleUppendImg");
   };
 
+  const formInitialValue = {
+    fileOne: null,
+    fileTwo: null,
+    fileThree: null,
+    fileFourth: null,
+    fileFifth: null,
+  };
+  const customValidation = (values) => {
+    const errors = {};
+    if (!values.fileOne) {
+      errors.fileOne = "This field is required";
+    }
+    if (!values.fileTwo) {
+      errors.fileTwo = "This field is required";
+    }
+    if (!values.fileThree) {
+      errors.fileThree = "Please select a file";
+    }
+    if (!values.fileFourth) {
+      errors.fileFourth = "This field is required";
+    }
+    if (!values.fileFifth) {
+      errors.fileFifth = "This field is required";
+    }
+    return errors;
+  };
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    // if (!values.file) {
+    //   alert("please select file")
+    //   return;
+    // }
+
+    navigate("/agent/coveragedetailedview");
+  }
+  const formik = useFormik({
+    initialValues: formInitialValue,
+    validate: customValidation,
+    onSubmit: handleSubmit,
+  });
   return (
     <div className="upload__vehicle__container">
       <div className="customer__info__main__title">Leads</div>
@@ -71,6 +113,7 @@ const UploadVehiclePhotos = () => {
                     accept=".png,.jpg,.jpeg"
                     maxFileSize={2000000}
                     uploadHandler={(e) => {
+                      formik.setFieldValue("fileOne", e.files[0]);
                       handleUppendImg(
                         e.options.props.name,
                         e.files[0],
@@ -93,6 +136,11 @@ const UploadVehiclePhotos = () => {
                 <img src={imageURLLeft} alt="Image" className="image__view" />
               </div>
             )}
+              {formik.touched.fileOne && formik.errors.fileOne && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.fileOne}
+                </div>
+              )}
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <div className="upload__label">Vehicle Right Side Photo</div>
@@ -108,6 +156,7 @@ const UploadVehiclePhotos = () => {
                     accept=".png,.jpg,.jpeg"
                     maxFileSize={2000000}
                     uploadHandler={(e) => {
+                      formik.setFieldValue("fileTwo", e.files[0]);
                       handleUppendImg(
                         e.options.props.name,
                         e.files[0],
@@ -130,6 +179,11 @@ const UploadVehiclePhotos = () => {
                 <img src={imageURLRight} alt="Image" className="image__view" />
               </div>
             )}
+              {formik.touched.fileTwo && formik.errors.fileTwo && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.fileTwo}
+                </div>
+              )}
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <div className="upload__label">Vehicle Front Side Photo</div>
@@ -145,6 +199,7 @@ const UploadVehiclePhotos = () => {
                     accept=".png,.jpg,.jpeg"
                     maxFileSize={2000000}
                     uploadHandler={(e) => {
+                      formik.setFieldValue("fileThree", e.files[0]);
                       handleUppendImg(
                         e.options.props.name,
                         e.files[0],
@@ -167,6 +222,11 @@ const UploadVehiclePhotos = () => {
                 <img src={imageURLFront} alt="Image" className="image__view" />
               </div>
             )}
+              {formik.touched.fileThree && formik.errors.fileThree && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.fileThree}
+                </div>
+              )}
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <div className="upload__label">Vehicle Rear Side Photo</div>
@@ -182,6 +242,7 @@ const UploadVehiclePhotos = () => {
                     accept=".png,.jpg,.jpeg"
                     maxFileSize={2000000}
                     uploadHandler={(e) => {
+                      formik.setFieldValue("fileFourth", e.files[0]);
                       handleUppendImg(
                         e.options.props.name,
                         e.files[0],
@@ -204,6 +265,11 @@ const UploadVehiclePhotos = () => {
                 <img src={imageURLRear} alt="Image" className="image__view" />
               </div>
             )}
+              {formik.touched.fileFourth && formik.errors.fileFourth && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.fileFourth}
+                </div>
+              )}
           </div>
           <div class="col-12 mt-2">
             <div className="upload__label">
@@ -221,6 +287,7 @@ const UploadVehiclePhotos = () => {
                     accept=".png,.jpg,.jpeg"
                     maxFileSize={2000000}
                     uploadHandler={(e) => {
+                      formik.setFieldValue("fileFifth", e.files[0]);
                       handleUppendImg(
                         e.options.props.name,
                         e.files[0],
@@ -247,6 +314,11 @@ const UploadVehiclePhotos = () => {
                 />
               </div>
             )}
+              {formik.touched.fileFifth && formik.errors.fileFifth && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.fileFifth}
+                </div>
+              )}
           </div>
         </div>
         <div class="grid m-0">
@@ -260,9 +332,7 @@ const UploadVehiclePhotos = () => {
               <div className="next__btn__container">
                 <Button
                   className="next__btn"
-                  onClick={() => {
-                    handleclick();
-                  }}
+                  onClick={formik.handleSubmit}
                 >
                   Next
                 </Button>

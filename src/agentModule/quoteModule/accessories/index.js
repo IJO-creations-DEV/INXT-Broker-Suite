@@ -31,10 +31,36 @@ const Accessories = () => {
   const handleBackNavigation = () => {
     customHistory.back();
   };
+  const customValidation = (values) => {
+    const errors = {}
+    if (!values.Aircon) {
+      errors.Aircon = "This field is required";
+    }
+    if (!values.Stereo) {
+      errors.Stereo = "This field is required";
+    }
+    if (!values.Magwheels) {
+      errors.Magwheels = "This field is required";
+    }
+    if (!values.Others) {
+      errors.Others = "This field is required";
+    }
+    if (!values.Deductible) {
+      errors.Deductible = "This field is required";
+    }
+    if (!values.Towing) {
+      errors.Towing = "This field is required";
+    }
+    if (!values.RepairLimit) {
+      errors.RepairLimit = "This field is required";
+    }
+   
+    return errors
+  }
 
   const formik = useFormik({
     initialValues: initialValue,
-    // validate,
+    validate:customValidation,
     onSubmit: (values) => {
       handleclick(values);
       // hadlecalculation();
@@ -60,16 +86,26 @@ const Accessories = () => {
                 label="Aircon"
                 value={formik.values.Aircon}
                 onChange={formik.handleChange("Aircon")}
-                error={formik.touched.Aircon && formik.errors.Aircon}
+                
               />
+                {formik.touched.Aircon && formik.errors.Aircon && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Aircon}
+                </div>
+              )}
             </div>
             <div class="col-6">
               <InputTextField
                 label="Stereo"
                 value={formik.values.Stereo}
                 onChange={formik.handleChange("Stereo")}
-                error={formik.touched.Stereo && formik.errors.Stereo}
+              
               />
+                {formik.touched.Stereo && formik.errors.Stereo && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Stereo}
+                </div>
+              )}
             </div>
           </div>
           <div className="grid mt-2">
@@ -78,16 +114,26 @@ const Accessories = () => {
                 label="Mag wheels"
                 value={formik.values.Magwheels}
                 onChange={formik.handleChange("Magwheels")}
-                error={formik.touched.Magwheels && formik.errors.Magwheels}
+                
               />
+                {formik.touched.Magwheels && formik.errors.Magwheels && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Magwheels}
+                </div>
+              )}
             </div>
             <div class="col-6">
               <InputTextField
                 label="Others"
                 value={formik.values.Others}
                 onChange={formik.handleChange("Others")}
-                error={formik.touched.Others && formik.errors.Others}
+              
               />
+                {formik.touched.Others && formik.errors.Others && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Others}
+                </div>
+              )}
             </div>
           </div>
           <div class="grid mt-6">
@@ -96,16 +142,26 @@ const Accessories = () => {
                 label="Deductible"
                 value={formik.values.Deductible}
                 onChange={formik.handleChange("Deductible")}
-                error={formik.touched.Deductible && formik.errors.Deductible}
+               
               />
+                {formik.touched.Deductible && formik.errors.Deductible && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Deductible}
+                </div>
+              )}
             </div>
             <div class="col-6">
               <InputTextField
                 label="Towing"
                 value={formik.values.Towing}
                 onChange={formik.handleChange("Towing")}
-                error={formik.touched.Towing && formik.errors.Towing}
+               
               />
+                {formik.touched.Towing && formik.errors.Towing && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Towing}
+                </div>
+              )}
             </div>
           </div>
           <div class="grid mt-2">
@@ -114,8 +170,13 @@ const Accessories = () => {
                 label="Repair Limit"
                 value={formik.values.RepairLimit}
                 onChange={formik.handleChange("RepairLimit")}
-                error={formik.touched.RepairLimit && formik.errors.RepairLimit}
+               
               />
+                {formik.touched.RepairLimit && formik.errors.RepairLimit && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.RepairLimit}
+                </div>
+              )}
             </div>
           </div>
           <div class="grid mt-2">
@@ -126,6 +187,7 @@ const Accessories = () => {
                 className="back__btn"
                 onClick={handleBackNavigation}
               />
+              
             </div>
             <div className="next__text__container">
               <Button

@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Card } from "primereact/card";
@@ -10,7 +10,7 @@ import { FileUpload } from "primereact/fileupload";
 import { useNavigate } from "react-router-dom";
 import customHistory from "../../../routes/customHistory";
 import { useFormik } from "formik";
-import { postinformationMiddleWare,patchinformationMiddleWare } from "./store/infoMiddleWare";
+import { postinformationMiddleWare, patchinformationMiddleWare } from "./store/infoMiddleWare";
 import { useDispatch, useSelector } from "react-redux";
 
 const initialValues = {
@@ -24,7 +24,8 @@ const initialValues = {
   Aluminium: "",
   AirBag: "",
   TNVS: "",
-  TruckType:""
+  TruckType: "",
+  file:null
 };
 
 
@@ -32,7 +33,7 @@ const initialValues = {
 const CustomerInfo = ({action}) => {
   const [imageURL, setimageURL] = useState("");
   const navigate = useNavigate();
-  
+
   const dispatch = useDispatch();
   // const handleSubmit= (value) => {
 
@@ -50,10 +51,14 @@ const CustomerInfo = ({action}) => {
   //   }
   // }
   const handleSubmit = (values) => {
+    if (!values.file) {
+      alert("please select file")
+      return;
+    }
     if (action === "edit" && postcustomerinfodata) {
       const valueWithId = {
         ...values,
-        id: postcustomerinfodata.id, 
+        id: postcustomerinfodata.id,
       };
       dispatch(patchinformationMiddleWare(values));
       navigate("/agent/convertpolicy/uploadvehiclephotos")
@@ -62,17 +67,17 @@ const CustomerInfo = ({action}) => {
       navigate("/agent/convertpolicy/uploadvehiclephotos");
     }
   };
-  
-  
-  const { postcustomerinfodata, loading } = useSelector(({  CustomerInfoReducer }) => {
+
+
+  const { postcustomerinfodata, loading } = useSelector(({ CustomerInfoReducer }) => {
     return {
       loading: CustomerInfoReducer?.loading,
-      postcustomerinfodata:  CustomerInfoReducer?.postcustomerinfodata,
+      postcustomerinfodata: CustomerInfoReducer?.postcustomerinfodata,
 
     };
   });
-  
-console.log("first21",postcustomerinfodata)
+
+  console.log("first21", postcustomerinfodata)
 
   const handleUppendImg = (name, src) => {
     setimageURL(src?.objectURL);
@@ -81,27 +86,27 @@ console.log("first21",postcustomerinfodata)
   const handleBackNavigation = () => {
     customHistory.back();
   };
-  const Mortgagedata = [   { label: "1,54,654", value: "AL" }, 
-    { label: "1,54,654", value: "AZ" },
-       { label: "1,54,654", value: "AR" },  
+  const Mortgagedata = [{ label: "1,54,654", value: "AL" },
+  { label: "1,54,654", value: "AZ" },
+  { label: "1,54,654", value: "AR" },
   ]
-  const TNVSdata =[   { label: "Yes", value: "AL" }, 
+  const TNVSdata = [{ label: "Yes", value: "AL" },
   { label: "No", value: "AZ" },
-      
-]
 
-const AirBag = [   { label: "Yes", value: "AL" }, 
-{ label: "No", value: "AZ" },
-    
-]
-const Aluminium = [   { label: "Yes", value: "AL" }, 
+  ]
+
+  const AirBag = [{ label: "Yes", value: "AL" },
   { label: "No", value: "AZ" },
-      
-]
-const TruckTypes = [   { label: "Heavy duty", value: "AL" }, 
+
+  ]
+  const Aluminium = [{ label: "Yes", value: "AL" },
+  { label: "No", value: "AZ" },
+
+  ]
+  const TruckTypes = [{ label: "Heavy duty", value: "AL" },
   { label: "Heavy Xl", value: "AZ" },
     //  { label: "duty", value: "AR" },  
-]
+  ]
 
   const customValidation = (values) => {
     const errors = {};
@@ -139,29 +144,32 @@ const TruckTypes = [   { label: "Heavy duty", value: "AL" },
     if (!values.TNVS) {
       errors.TNVS = "This field is required";
     }
+    if (!values.file) {
+      errors.file = "This field is required";
+    }
     return errors;
   };
 
 
-//   useEffect(() => {
-//     console.log(action,'find sction call')
-//     if (action === "edit") {
-// console.log(postcustomerinfodata,'find postcustomerinfodata')
-//     setFormikValues(postcustomerinfodata);
-//     }
-//   },[action]);
-useEffect(() => {
-  if (action === "edit" && postcustomerinfodata) {
-    setFormikValues(postcustomerinfodata);
-  }
-}, [action, postcustomerinfodata]);
+  //   useEffect(() => {
+  //     console.log(action,'find sction call')
+  //     if (action === "edit") {
+  // console.log(postcustomerinfodata,'find postcustomerinfodata')
+  //     setFormikValues(postcustomerinfodata);
+  //     }
+  //   },[action]);
+  useEffect(() => {
+    if (action === "edit" && postcustomerinfodata) {
+      setFormikValues(postcustomerinfodata);
+    }
+  }, [action, postcustomerinfodata]);
 
 
   const setFormikValues = (data) => {
-    console.log(data,"find data")
+    console.log(data, "find data")
     // const IsoCode = getExchangeEdit?.ISOcode;
     const updatedValues = {
-      MotorNumber:data?.MotorNumber ,
+      MotorNumber: data?.MotorNumber,
       ChassisNumber: data?.ChassisNumber,
       Mortgage: data?.Mortgage,
       CertNumber: data?.CertNumber,
@@ -171,19 +179,19 @@ useEffect(() => {
       Aluminium: data?.Aluminium,
       AirBag: data?.AirBag,
       TNVS: data?.TNVS,
-      TruckType:data?.TruckType
+      TruckType: data?.TruckType
     };
 
     formik.setValues({ ...formik.values, ...updatedValues });
-    console.log("1211",updatedValues)
+    console.log("1211", updatedValues)
   };
 
 
 
   const formik = useFormik({
     initialValues: initialValues,
-     validate: customValidation,
-     onSubmit: handleSubmit,
+    validate: customValidation,
+    onSubmit: handleSubmit,
   });
 
 
@@ -194,6 +202,7 @@ useEffect(() => {
         <div className="customer__info__back__btn__title">
           <span className="cursor-poiter icon__container">
             <SvgLeftArrow />
+
           </span>
           Lead ID: 12345678
         </div>
@@ -222,12 +231,17 @@ useEffect(() => {
                     accept=".png,.jpg,.jpeg"
                     // maxFileSize={2000000}
                     uploadHandler={(e) => {
-                      handleUppendImg(
-                        e.options.props.name,
-                        e.files[0],
-                        "the data"
-                      );
+                      formik.setFieldValue("file", e.files[0]);
+                      handleUppendImg(e.options.props.name, e.files[0], "the data");
                     }}
+                    // uploadHandler={(e) => {
+                    //   formik.setFieldValue("file", e.files[0]);
+                    //   handleUppendImg(
+                    //     e.options.props.name,
+                    //     e.files[0],
+                    //     "the data"
+                    //   );
+                    // }}
                   />
                   <div className="icon_click_option">
                     <SvgImageUpload />
@@ -243,9 +257,19 @@ useEffect(() => {
                 <img src={imageURL} alt="Image" className="image__view" />
               </div>
             )}
+              {formik.touched.file && formik.errors.file && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.file}
+              </div>
+            )}
           </div>
           <div class="col-12 mt-2">
             <InputTextField label="ID Card Number" />
+            {/* {formik.touched.MotorNumber && formik.errors.MotorNumber && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.MotorNumber}
+              </div>
+            )} */}
           </div>
         </div>
         <div className="customer__info__subtitle mt-2 mb-2">
@@ -330,7 +354,7 @@ useEffect(() => {
       
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Truck Type" 
+            <DropdownField label="Truck Type"
               options={TruckTypes}
               optionLabel="label"
              value={formik.values.TruckType}

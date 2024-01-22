@@ -5,7 +5,22 @@ import DatepickerField from "../../../component/datePicker";
 import SvgBlueArrow from "../../../../assets/agentIcon/SvgBlueArrow";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
-import SvgDot from "../../../../assets/agentIcon/SvgDot"
+import SvgDot from "../../../../assets/agentIcon/SvgDot";
+import { useSelector } from "react-redux";
+import { useFormik } from "formik";
+
+
+const initialValues = {
+  PolicyNumber: "",
+  Production: new Date(),
+  Inception: new Date(),
+  IssueDate: new Date(),
+  Expiry: new Date(),
+};
+
+const handleSubmit = () => {
+  // navigate("/agent/convertpolicy/uploadvehiclephotos");
+}
 
 const PolicyDetailedViewCard = ({ action }) => {
   const navigate = useNavigate();
@@ -17,6 +32,24 @@ const PolicyDetailedViewCard = ({ action }) => {
     navigate(`/agent/clientview/${123}`);
   };
 
+  const { policydetailedlist, loading } = useSelector(
+    ({ policyDetailedViewMainReducers }) => {
+      return {
+        loading: policyDetailedViewMainReducers?.loading,
+        policydetailedlist: policyDetailedViewMainReducers?.policydetailedlist,
+        
+      };
+    }
+  );
+  console.log(policydetailedlist,"find policydetailedlist")
+ 
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: () => {
+      handleSubmit();
+    },
+  });
   return (
     <div className="policy__detail__view__card__container mt-4">
       <Card>
@@ -26,25 +59,63 @@ const PolicyDetailedViewCard = ({ action }) => {
         </div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Policy Number" />
+          <InputTextField
+            label="Policy Number"
+                value={policydetailedlist.PolicyNumber}
+                onChange={formik.handleChange("PolicyNumber")}
+              />
+              
+           
           </div>
         </div>
 
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Production" />
+          <DatepickerField
+                label="Production"
+                value={policydetailedlist.Production}
+                onChange={(e) => {
+                  formik.setFieldValue("Production", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+              />
+            
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Inception" />
+          <DatepickerField
+                label="Inception"
+                value={policydetailedlist.Inception}
+                onChange={(e) => {
+                  formik.setFieldValue("Inception", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+              />
+          
           </div>
         </div>
 
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Issued Date" />
+          <DatepickerField
+                label="Issue Date"
+                value={policydetailedlist.IssueDate}
+                onChange={(e) => {
+                  formik.setFieldValue("IssueDate", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+              />
+            
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Expiry" />
+          <DatepickerField
+                label="Expiry"
+                value={policydetailedlist.Expiry}
+                onChange={(e) => {
+                  formik.setFieldValue("Expiry", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+              />
+          
           </div>
         </div>
 

@@ -9,6 +9,9 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { postClaimDetailsData } from '../store/claimDetailsMiddleWare';
 
+
+
+
 const ClaimDetailsCard = () => {
     const [checked, setChecked] = useState(false);
     const navigate = useNavigate()

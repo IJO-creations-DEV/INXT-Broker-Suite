@@ -1,175 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-// import SvgLogo from "../../assets/icons/SvgLogo";
-// import SvgDot from "../../assets/icons/SvgDot";
-// import { menuList } from "./list";
-// import "../SideBar/index.scss";
-// import { Link } from "react-router-dom";
-// import SvgAccountIcon from "../../assets/icons/SvgAccountIcon";
-// import SvgMassterIcon from "../../assets/icons/SvgMassterIcon";
-// import SvgReportsIcon from "../../assets/icons/SvgReportsIcon";
-
-// const ResponsiveDrawer = () => {
-//   const [findPath, setPath] = useState(null);
-//   const [openSubMenu, setOpenSubMenu] = useState("");
-//   const [visible, setVisible] = useState(true);
-
-//   const handleNavigation = (navigationPath) => {
-//     setPath(navigationPath);
-//     setOpenSubMenu("");
-//   };
-
-//   const handleClick = (name) => {
-//     setOpenSubMenu(openSubMenu === name ? "" : name);
-//   };
-
-//   useEffect(() => {
-//     const handleResize = () => {
-//       setVisible(window.innerWidth > 768);
-//     };
-
-//     window.addEventListener("resize", handleResize);
-
-//     return () => {
-//       window.removeEventListener("resize", handleResize);
-//     };
-//   }, []);
-
-//   return (
-//     <Sidebar
-//       visible={visible}
-//       style={{
-//         backgroundColor: "#1C2536 !important",
-//         display: visible ? "block" : "none",
-//         height: "100vh",
-//         overflowY: "auto",
-//         scrollbarWidth: "none", 
-//         msOverflowStyle: "none",
-//         "&::-webkit-scrollbar": {
-//           display: "none",
-//         },
-//       }}
-//       rootStyles={{
-//         backgroundColor: "#1C2536 !important",
-//       }}
-//       onHide={() => setVisible(false)}
-//     >
-//       <div style={{ padding: "20px" }}>
-//         <div style={{ marginBottom: "20px", marginTop: "20px" }}>
-//           <SvgLogo color={"#fff"} />
-//         </div>
-//         <Menu style={{ backgroundColor: "#1C2536 !important", border: "none" }}>
-//           {menuList.map((data, index) => (
-//             <React.Fragment key={data.name}>
-//               <SubMenu
-//                 style={{
-//                   color: "#fff",
-//                   width: "100%",
-//                   backgroundColor:
-//                     data.name === openSubMenu ||
-//                     data.submenu.some((subItem) => subItem.path === findPath)
-//                       ? "#36435c"
-//                       : "#1C2536",
-                      
-//                 }}
-//                 color="#fff"
-//                 label={data.name}
-//                 icon={
-//                   data.name === "Accounts" ? (
-//                     <SvgAccountIcon
-//                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
-//                     />
-//                   ) : 
-//                   data.name === "Petty Cash" ? (
-//                     <SvgAccountIcon
-//                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
-//                     />
-//                   ) :
-//                   data.name === "Master" ? (
-//                     <SvgMassterIcon
-//                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
-//                     />
-//                   ) : data.name === "Reports" ? (
-//                     <SvgReportsIcon
-//                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
-//                     />
-//                   ) : undefined
-//                 }
-//                 onClick={() => handleClick(data.name)}
-//               >
-//                 {data.submenu.map((subItem, subIndex) => (
-//                   <React.Fragment key={subIndex}>
-//                     {subItem.submenu ? (
-//                       <SubMenu
-//                         label={subItem.name}
-//                         style={{ /* Style for nested submenu */ }}
-//                       >
-//                         {subItem.submenu.map((nestedItem, nestedIndex) => (
-//                           <MenuItem
-//                             key={nestedIndex}
-//                             component={<Link to={nestedItem.path} />}
-//                             onClick={() => handleNavigation(nestedItem.path)}
-//                           >
-//                             <div className="menu__list">
-//                               <SvgDot
-//                                 color={
-//                                   nestedItem.path === findPath
-//                                     ? "#6366F1"
-//                                     : "#1C2536"
-//                                 }
-//                               />
-//                               <span
-//                                 style={{
-//                                   color:
-//                                     nestedItem.path === findPath
-//                                       ? "#fff"
-//                                       : "#9DA4AE",
-//                                 }}
-//                                 className="menu__text"
-//                               >
-//                                 {nestedItem.name}
-//                               </span>
-//                             </div>
-//                           </MenuItem>
-//                         ))}
-//                       </SubMenu>
-//                     ) : (
-//                       <MenuItem
-//                         key={subIndex}
-//                         component={<Link to={subItem.path} />}
-//                         onClick={() => handleNavigation(subItem.path)}
-//                       >
-//                         <div className="menu__list">
-//                           <SvgDot
-//                             color={
-//                               subItem.path === findPath ? "#6366F1" : "#1C2536"
-//                             }
-//                           />
-//                           <span
-//                             style={{
-//                               color:
-//                                 subItem.path === findPath ? "#fff" : "#9DA4AE",
-//                             }}
-//                             className="menu__text"
-//                           >
-//                             {subItem.name}
-//                           </span>
-//                         </div>
-//                       </MenuItem>
-//                     )}
-//                   </React.Fragment>
-//                 ))}
-//               </SubMenu>
-//             </React.Fragment>
-//           ))}
-//         </Menu>
-//       </div>
-//     </Sidebar>
-//   );
-// };
-
-// export default ResponsiveDrawer;
-
 import React, { useState, useEffect } from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import SvgLogo from "../../assets/icons/SvgLogo";
@@ -181,6 +9,11 @@ import SvgAccountIcon from "../../assets/icons/SvgAccountIcon";
 import SvgMassterIcon from "../../assets/icons/SvgMassterIcon";
 import SvgReportsIcon from "../../assets/icons/SvgReportsIcon";
 import SvgFinalLogo from "../../assets/icons/SvgFinalLogo";
+import SvgAgentClientIcon from "../../assets/agentIcon/SvgAgentClientIcon";
+import SvgAgentPaymentIcon from "../../assets/agentIcon/SvgAgentPaymentIcon";
+import SvgAgentHomeIcon from "../../assets/agentIcon/SvgAgentHomeIcon";
+import SvgAgentLeadIcon from "../../assets/agentIcon/SvgAgentLeadIcon";
+import SvgAgentItemsIcon from "../../assets/agentIcon/SvgAgentItemsIcon";
 
 const ResponsiveDrawer = () => {
   const [findPath, setPath] = useState(null);
@@ -198,7 +31,7 @@ const ResponsiveDrawer = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setVisible(window.innerWidth > 768);
+      setVisible(window.innerWidth > 800);
     };
 
     window.addEventListener("resize", handleResize);
@@ -216,7 +49,7 @@ const ResponsiveDrawer = () => {
         display: visible ? "block" : "none",
         height: "100vh",
         overflowY: "auto",
-        scrollbarWidth: "none", 
+        scrollbarWidth: "none",
         msOverflowStyle: "none",
         "&::-webkit-scrollbar": {
           display: "none",
@@ -228,9 +61,15 @@ const ResponsiveDrawer = () => {
       onHide={() => setVisible(false)}
     >
       <div style={{ padding: "1.25rem" }}>
-        <div style={{ marginBottom: "20px", marginTop: "20px" ,marginLeft:"28px"}}>
+        <div
+          style={{
+            marginBottom: "20px",
+            marginTop: "20px",
+            marginLeft: "28px",
+          }}
+        >
           {/* <SvgLogo color={"#fff"} /> */}
-          <SvgFinalLogo/>
+          <SvgFinalLogo />
         </div>
         <Menu style={{ backgroundColor: "#1C2536 !important", border: "none" }}>
           {menuList.map((data, index) => (
@@ -239,7 +78,7 @@ const ResponsiveDrawer = () => {
                 style={{
                   color: "#fff",
                   width: "100%",
-                  paddingLeft:"8px",
+                  paddingLeft: "8px",
                   backgroundColor:
                     data.name === openSubMenu ||
                     data.submenu.some((subItem) => subItem.path === findPath)
@@ -247,135 +86,207 @@ const ResponsiveDrawer = () => {
                       : "#1C2536",
                 }}
                 color="#fff"
-
                 label={data.name}
                 icon={
                   data.name === "Accounts" ? (
                     <SvgAccountIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />
-                  ) : 
-                  data.name === "Petty Cash" ? (
+                  ) : data.name === "Petty Cash" ? (
                     <SvgAccountIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />
-                  ) :
-                  data.name === "Master" ? (
+                  ) : data.name === "Master" ? (
                     <SvgMassterIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />
                   ) : data.name === "Reports" ? (
                     <SvgReportsIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
-                    /> 
-                  ) 
-                  : data.name === "Brokerage" ? (
+                    />
+                  ) : data.name === "Brokerage" ? (
                     <SvgReportsIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />
-                  ): undefined
+                  ) : undefined
                 }
                 onClick={() => handleClick(data.name)}
               >
-                {data.submenu.map((subItem, subIndex) => (
-                  <React.Fragment key={subIndex}>
-                    {subItem.submenu ? (
-                      <SubMenu
-                        label={subItem.name}
-                        style={{ marginLeft:-8 }}
-                      >
-                        {subItem.submenu.map((nestedItem, nestedIndex) => (
-                          <React.Fragment key={nestedIndex}>
-                            {nestedItem.submenu ? (
-                              <SubMenu
-                                label={nestedItem.name}
-                                style={{ 
-                                 
-                                  /* Style for nested submenu */ }}
-                              >
-                                {nestedItem.submenu.map((subsubmenuItem, subsubmenuIndex) => (
-                                  <MenuItem
-                                    key={subsubmenuIndex}
-                                    component={<Link to={subsubmenuItem.path} />}
-                                    onClick={() => handleNavigation(subsubmenuItem.path)}
-                                  >
-                                    <div className="menu__list">
-                                      <SvgDot
-                                        color={
-                                          subsubmenuItem.path === findPath
-                                            ? "#6366F1"
-                                            : "#1C2536"
-                                        }
-                                      />
-                                      <span
-                                        style={{
-                                          color:
-                                            subsubmenuItem.path === findPath
-                                              ? "#fff"
-                                              : "#9DA4AE",
-                                             
-                                        }}
-                                        className="menu__text"
-                                      >
-                                        {subsubmenuItem.name}
-                                      </span>
-                                    </div>
-                                  </MenuItem>
-                                ))}
-                              </SubMenu>
-                            ) : (
-                              <MenuItem
-                                key={nestedIndex}
-                                component={<Link to={nestedItem.path} />}
-                                onClick={() => handleNavigation(nestedItem.path)}
-                              >
-                                <div className="menu__list">
-                                  <SvgDot
-                                    color={
-                                      nestedItem.path === findPath ? "#6366F1" : "#1C2536"
+                {data.submenu.map((subItem, subIndex) => {
+                  console.log(subItem, subIndex, "find real side datas");
+                  return (
+                    <React.Fragment key={subIndex}>
+                      {subItem.submenu ? (
+                        <SubMenu
+                          label={subItem.name}
+                          style={{ marginLeft: -8 }}
+                        >
+                          {subItem.submenu.map((nestedItem, nestedIndex) => (
+                            <React.Fragment key={nestedIndex}>
+                              {nestedItem.submenu ? (
+                                <SubMenu
+                                  label={nestedItem.name}
+                                  style={
+                                    {
+                                      /* Style for nested submenu */
                                     }
-                                  />
-                                  <span
-                                    style={{
-                                      color:
-                                        nestedItem.path === findPath ? "#fff" : "#9DA4AE",
-                                    }}
-                                    className="menu__text"
-                                  >
-                                    {nestedItem.name}
-                                  </span>
-                                </div>
-                              </MenuItem>
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </SubMenu>
-                    ) : (
-                      <MenuItem
-                        key={subIndex}
-                        component={<Link to={subItem.path} />}
-                        onClick={() => handleNavigation(subItem.path)}
-                      >
-                        <div className="menu__list">
-                          <SvgDot
-                            color={
-                              subItem.path === findPath ? "#6366F1" : "#1C2536"
-                            }
-                          />
-                          <span
+                                  }
+                                >
+                                  {nestedItem.submenu.map(
+                                    (subsubmenuItem, subsubmenuIndex) => (
+                                      <MenuItem
+                                        key={subsubmenuIndex}
+                                        component={
+                                          <Link to={subsubmenuItem.path} />
+                                        }
+                                        onClick={() =>
+                                          handleNavigation(subsubmenuItem.path)
+                                        }
+                                      >
+                                        <div className="menu__list">
+                                          <SvgDot
+                                            color={
+                                              subsubmenuItem.path === findPath
+                                                ? "#6366F1"
+                                                : "#1C2536"
+                                            }
+                                          />
+                                          <span
+                                            style={{
+                                              color:
+                                                subsubmenuItem.path === findPath
+                                                  ? "#fff"
+                                                  : "#9DA4AE",
+                                            }}
+                                            className="menu__text"
+                                          >
+                                            {subsubmenuItem.name}
+                                          </span>
+                                        </div>
+                                      </MenuItem>
+                                    )
+                                  )}
+                                </SubMenu>
+                              ) : (
+                                <MenuItem
+                                  key={nestedIndex}
+                                  component={<Link to={nestedItem.path} />}
+                                  onClick={() =>
+                                    handleNavigation(nestedItem.path)
+                                  }
+                                >
+                                  <div className="menu__list">
+                                    <SvgDot
+                                      color={
+                                        nestedItem.path === findPath
+                                          ? "#6366F1"
+                                          : "#1C2536"
+                                      }
+                                    />
+                                    <span
+                                      style={{
+                                        color:
+                                          nestedItem.path === findPath
+                                            ? "#fff"
+                                            : "#9DA4AE",
+                                      }}
+                                      className="menu__text"
+                                    >
+                                      {nestedItem.name}
+                                    </span>
+                                  </div>
+                                </MenuItem>
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </SubMenu>
+                      ) : (
+                        <MenuItem
+                          key={subIndex}
+                          component={<Link to={subItem.path} />}
+                          onClick={() => handleNavigation(subItem.path)}
+                        >
+                          <div
+                            className="menu__list"
                             style={{
-                              color:
-                                subItem.path === findPath ? "#fff" : "#9DA4AE",
+                              display: "flex",
+                              gap: "10px",
+                              alignItems: "center",
                             }}
-                            className="menu__text"
                           >
-                            {subItem.name}
-                          </span>
-                        </div>
-                      </MenuItem>
-                    )}
-                  </React.Fragment>
-                ))}
+                            {subItem.name === "Home" ||
+                            subItem.name === "Leads" ||
+                            subItem.name === "Clients" ||
+                            subItem.name === "Open Items" ||
+                            subItem.name === "Payments" ? (
+                              subItem.name === "Home" ? (
+                                <SvgAgentHomeIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Leads" ? (
+                                <SvgAgentLeadIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Clients" ? (
+                                <SvgAgentClientIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Open Items" ? (
+                                <SvgAgentItemsIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : (
+                                <SvgAgentPaymentIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              )
+                            ) : (
+                              <SvgDot
+                                color={
+                                  subItem.path === findPath
+                                    ? "#6366F1"
+                                    : "#1C2536"
+                                }
+                              />
+                            )}
+
+                            <span
+                              style={{
+                                color:
+                                  subItem.path === findPath
+                                    ? "#fff"
+                                    : "#9DA4AE",
+                              }}
+                              className="menu__text"
+                            >
+                              {subItem.name}
+                            </span>
+                          </div>
+                        </MenuItem>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
               </SubMenu>
             </React.Fragment>
           ))}

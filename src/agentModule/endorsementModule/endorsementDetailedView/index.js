@@ -7,25 +7,26 @@ import { useNavigate } from "react-router-dom";
 import InputTextField from "../../component/inputText";
 import SvgBlueArrow from "../../../assets/agentIcon/SvgBlueArrow";
 import { useSelector } from "react-redux";
+import DatepickerField from "../../component/datePicker";
 
 const EndorsementDetailedView = () => {
-  const {endrosementViewData,  loading } = useSelector(
+  const { endrosmentData, loading } = useSelector(
     ({ endrosementViewMainReducers }) => {
       return {
         loading: endrosementViewMainReducers?.loading,
-        endrosementViewData: endrosementViewMainReducers?.endrosementViewData,
-       
+        endrosmentData: endrosementViewMainReducers?.endrosmentData,
+
       };
     }
   );
-  console.log(endrosementViewData.policyNumber, "endrosementViewData");
+  console.log(endrosmentData.production, "endrosmentData");
   const navigate = useNavigate();
 
   const handleCommonAction = () => {
     navigate(`/agent/clientview/${123}`);
   };
 
- 
+
   return (
     <div className="detailed__endorsement__container m-0">
       <div className="detailed__endorsement__container__title">Clients</div>
@@ -49,42 +50,49 @@ const EndorsementDetailedView = () => {
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Policy Number"
-                value={endrosementViewData.policyNumber}
+                value={endrosmentData.policyNumber}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Endorsement Number"
-                value={endrosementViewData.endrosementNumber}
+                value={endrosmentData.endrosementNumber}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
-              <InputTextField
+            <InputTextField
                 label="Production"
-                value={endrosementViewData.production}
+                value={endrosmentData.production}
+             
                 disabled={true}
+
               />
+              {/* <InputTextField
+                label="Production"
+                value={endrosmentData.production}
+                disabled={true}
+              /> */}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Inception"
-                value={endrosementViewData.inception}
+                value={endrosmentData.inception}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Issued Date"
-                value={endrosementViewData.issuedDate}
+                value={endrosmentData.issuedDate}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Expiry"
-                value={endrosementViewData.expiry}
+                value={endrosmentData.expiry}
                 disabled={true}
               />
             </div>

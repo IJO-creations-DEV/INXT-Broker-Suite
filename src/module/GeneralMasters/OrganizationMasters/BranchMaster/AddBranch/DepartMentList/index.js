@@ -78,6 +78,17 @@ const DepartMentList = () => {
     color: "#000",
     border: "none",
   };
+  const headeraction={
+    fontSize: 16,
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 500,
+    // padding: 6,
+    color: "#000",
+    border: "none",
+   display:"flex",
+   justifyContent:"center",
+   alignItem:'center'
+  }
   const dispatch = useDispatch()
   const initialValues = {
     DepartmentCode: "",
@@ -148,7 +159,7 @@ const DepartMentList = () => {
     <div className='overall_list'>
       <div className='cardlist_container'>
         <div className='subhead_list'>
-          <label className='head_lable'>DepartMent List</label>
+          <label className='head_lable'>Department List</label>
 
           <Button label="Add" icon={<SvgAdd />} onClick={() => setVisible(true)} />
 
@@ -175,7 +186,7 @@ const DepartMentList = () => {
               </div>
             )}
             header="Action"
-            headerStyle={headerStyle}
+            headerStyle={headeraction}
             className="fieldvalue_container"
           >
 

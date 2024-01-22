@@ -95,7 +95,7 @@ const BankAccountMaster = () => {
   };
   return (
     <div className='overall__bankaccount__container'>
-         <NavBar/>
+         
 <div className="overallfilter_container">
          <div >
             <label className='label_header'>Bank Account Master</label>

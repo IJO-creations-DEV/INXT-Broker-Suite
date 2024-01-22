@@ -199,7 +199,7 @@ const formik = useFormik({
     return (
         <div className='overall__addbankmaster__container'>
 
-            <NavBar/>
+            
             {/* <CustomToast ref={toastRef} 
             // detail="Some detail text"
             // content={"Voucher Details Save Successfully"}

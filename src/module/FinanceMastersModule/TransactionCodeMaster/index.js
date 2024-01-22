@@ -27,7 +27,7 @@ const TransactionCodeMaster = () => {
 
   return (
     <div className="Transaction__Code__Master__container">
-      <NavBar/>
+      
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div className="Transaction__Code__Master__title">

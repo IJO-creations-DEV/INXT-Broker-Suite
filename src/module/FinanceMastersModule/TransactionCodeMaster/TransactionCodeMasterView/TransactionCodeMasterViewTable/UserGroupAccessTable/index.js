@@ -32,7 +32,7 @@ const UserGroupAccess = () => {
   const [show, setShow] = useState(false);
 
   const handleClick = () => {
-    setShow(!show);
+    setShow(true);
   };
   const navigate = useNavigate();
   const isEmpty = products.length === 0;

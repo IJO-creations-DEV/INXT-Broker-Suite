@@ -44,7 +44,7 @@ function AddBankCheque() {
 
   return (
     <div className="overall_addbankcheque_container">
-      <NavBar/>
+      
       <label className="label_header">Add Bank Cheque</label>
       <BreadCrumb
         model={items}

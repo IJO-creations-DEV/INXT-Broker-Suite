@@ -96,7 +96,7 @@ const BankChequeMaster = () => {
   };
   return (
     <div className='overall__bankchequedetail__container'>
-         <NavBar/>
+         
 <div className="overallfilter_container">
          <div >
             <label className='label_header'>Bank Cheque Master</label>

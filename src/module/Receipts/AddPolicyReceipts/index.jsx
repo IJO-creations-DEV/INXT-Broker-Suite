@@ -96,7 +96,7 @@ const AddPolicyReceipts = () => {
         }));
     };
     return (
-        <div><NavBar/>
+        <div>
         <div className="grid container__addPolicy m-0">
             
             <div className="col-12">

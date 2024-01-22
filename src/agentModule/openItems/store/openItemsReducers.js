@@ -5,12 +5,38 @@ import { getOpenItemsListMiddleware, postOpenItemsListMiddleware } from "./openI
 const initialState = {
     loading: false,
     error: "",
-    upcommingEventsList: [{
+    upcommingEventsList: [
+        {
         date: "22/01/2024",
         description: 'Meeting With DR.Justin',
         from: '17:00',
         to: '18:00', id: 1
-    }]
+    },
+    {
+        date: "22/01/2024",
+        description: 'Meeting With DR.Justin',
+        from: '17:00',
+        to: '18:00', id: 1
+    },
+    {
+        date: "22/01/2024",
+        description: 'Meeting With DR.Justin',
+        from: '17:00',
+        to: '18:00', id: 1
+    },
+    {
+        date: "22/01/2024",
+        description: 'Meeting With DR.Justin',
+        from: '17:00',
+        to: '18:00', id: 1
+    },
+    {
+        date: "22/01/2024",
+        description: 'Meeting With DR.Justin',
+        from: '17:00',
+        to: '18:00', id: 1
+    }
+]
 };
 
 const openItemsReducers = createSlice({

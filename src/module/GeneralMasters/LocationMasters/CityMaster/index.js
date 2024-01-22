@@ -142,7 +142,7 @@ const City = () => {
 
   return (
     <div className='overall__city__container'>
-         <NavBar/>
+         
 <div className="overallfilter_container">
          <div >
             <label className='label_header'>City</label>

@@ -14,11 +14,12 @@ import SvgEdit from "../../../../assets/icons/SvgEdits";
 import SvgArrow from "../../../../assets/agentIcon/SvgArrow";
 // import { postinformationMiddleWare,patchinformationMiddleWare } from "./store/infoMiddleWare";
 // import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const QuoteListingCard = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
-
+const navigate =useNavigate()
   const TableData = [
     {
       id: "1",
@@ -154,7 +155,10 @@ const QuoteListingCard = () => {
         <div className="header__edit__btn">Edit</div>
       </div>
     ) : (
+      <div className="header__btn__container">
       <div className="header__delete__btn">Delete</div>
+      <div className="header__edit__btn" onClick={()=>navigate("/agent/quotecomparisonview")}>Compare</div>
+      </div>
     );
   };
 

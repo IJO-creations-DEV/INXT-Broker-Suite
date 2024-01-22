@@ -131,7 +131,7 @@ const Country = () => {
 
   return (
     <div className='overall__country__container'>
-         <NavBar/>
+         
 <div className="overallfilter_container">
          <div >
             <label className='label_header'>Country</label>

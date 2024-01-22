@@ -50,7 +50,7 @@
       font-size: 1rem;
       color: #4b5563;
       background: #ffffff;
-      padding: 0.75rem 0.75rem;
+      padding: 0.75rem 0.75rem 0.75rem 0rem;
       // border: 1px 0px 1px 1px solid #d1d5db;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s,
         box-shadow 0.2s;
@@ -153,7 +153,8 @@
       border-radius: 20px !important;
       fill: #fff !important;
       filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
-      margin-top: 10px;
+      // margin-top: 10px;
+      height: 100%;
     }
 
     .center__card__container__title {
@@ -234,6 +235,49 @@
       align-items: center;
       gap: 7px;
     }
+    .date__number__container {
+      background-color: #f3f4f6;
+      border-radius: 14px;
+      padding: 0.7rem 0.2rem;
+      .month__text {
+        color: #6c737f;
+        font-family: Poppins;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        text-align: center;
+      }
+      .month__date {
+        color: #111927;
+        font-family: Poppins;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 21px;
+        text-align: center;
+      }
+    }
+    .event__name {
+      color: #111927;
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+    .event__time {
+      color: #6c737f;
+      font-family: Poppins;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+    }
+    .date__svg__main__container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .date__text__container{
+      margin-top: 8px;
+    }
   }
 
   .bottom__card__container {
@@ -311,6 +355,7 @@
     line-height: 6px;
     color: #fff;
     border-radius: 6px;
+    cursor: pointer;
   }
 
   .dailog__box__inputs__existing {
@@ -346,6 +391,7 @@
     color: #fff;
     border-radius: 6px;
     padding: 0.5rem;
+    cursor: pointer;
   }
 }
 
@@ -380,4 +426,53 @@
 .p-menu .p-menuitem-text {
   line-height: 1;
   width: 100%;
+}
+
+.dialog__existingclient__container{
+  
+  .dialog__existingclient__header__container{
+    background-color: #F3F4F6;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap:10px;
+    border-radius: 8px;
+    margin-bottom:26px;
+    margin-top: 10px;
+  }
+  
+  
+  .dialog__existingclient___search{
+    color: #6C737F;
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .dialog__existingclient___tip{
+    color: #6C737F;
+font-family: Poppins;
+font-size: 12px;
+font-weight: 500;
+  }
+  .dialog__existingclient__carddata{
+    border:1px solid #d1d5db;
+    padding: 8px 425px 8px 11px;
+    margin-top: 12px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  .dialog__existingclient__carddata__name{
+    color: #111927;
+font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+  }
+  .dialog__existingclient__carddata__id{
+    color: #6C737F;
+font-family: Poppins;
+font-size: 14px;
+font-weight: 400;
+  }
+ 
 }

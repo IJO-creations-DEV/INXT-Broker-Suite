@@ -10,7 +10,7 @@ const initialState = {
         description: 'Meeting With DR.Justin',
         from: '17:00',
         to: '18:00', id: 1
-    }],
+    }]
 };
 
 const openItemsReducers = createSlice({

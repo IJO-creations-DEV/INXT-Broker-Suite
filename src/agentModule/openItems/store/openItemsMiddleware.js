@@ -24,8 +24,8 @@ export const getOpenItemsListMiddleware = createAsyncThunk(
 export const postOpenItemsListMiddleware = createAsyncThunk(
     POST_UPCOMMING_OPEN_ITEMS_LIST,
     async (payload, { rejectWithValue, getState }) => {
-        const { openItemsReducers } = getState();
-        const { upcommingEventsList } = openItemsReducers;
+        const { openitemsReducers } = getState();
+        const { upcommingEventsList } = openitemsReducers;
 
         const bodyTableData = {
             // id: payload?.id,

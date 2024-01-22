@@ -96,9 +96,9 @@ const OpenItems = () => {
     { "label": "23:00", "value": "23:00" }
   ]
 
-  const { upcommingList } = useSelector(({ openItemsReducers }) => {
+  const { upcommingList } = useSelector(({ openitemsReducers }) => {
     return {
-      upcommingList: openItemsReducers?.upcommingEventsList
+      upcommingList: openitemsReducers?.upcommingEventsList
     }
   })
   // const handlesubmit = () => {
@@ -204,7 +204,7 @@ const OpenItems = () => {
             <div className="upcoming__event__container__sub__title mt-1">
               Based on the Activity Monitor
             </div>
-            {upcommingList && upcommingList?.map((singleData, i) => (
+            {upcommingList?.map((singleData, i) => (
               <UpcommingEventCard data={singleData} />
 
             ))}

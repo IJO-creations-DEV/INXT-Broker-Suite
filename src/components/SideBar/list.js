@@ -1,5 +1,31 @@
 export const menuList = [
   {
+    name: "Brokerage",
+    // icons: <SvgReportsIcon/>,
+    submenu: [
+      {
+        name: "Home",
+        path: "/agent/home",
+      },
+      {
+        name: "Leads",
+        path: "/agent/leadlisting",
+      },
+      {
+        name: "Clients",
+        path: "/agent/clientlisting",
+      },
+      {
+        name: "Open Items",
+        path: "/agent/openitems",
+      },
+      {
+        name: "Payments",
+        path: "/agent/payments",
+      },
+    ],
+  },
+  {
     name: "Accounts",
     submenu: [
       {
@@ -253,30 +279,5 @@ export const menuList = [
     // icons: <SvgReportsIcon/>,
     submenu: [],
   },
-  {
-    name: "Brokerage",
-    // icons: <SvgReportsIcon/>,
-    submenu: [
-      {
-        name: "Home",
-        path: "/agent/home",
-      },
-      {
-        name: "Leads",
-        path: "/agent/leadlisting",
-      },
-      {
-        name: "Clients",
-        path: "/agent/clientlisting",
-      },
-      {
-        name: "Open Items",
-        path: "/agent/openitems",
-      },
-      {
-        name: "Payments",
-        path: "/agent/payments",
-      },
-    ],
-  },
+  
 ];

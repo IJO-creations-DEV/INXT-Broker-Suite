@@ -18,7 +18,8 @@ const initialValues = {
   Production: new Date(),
   Inception: new Date(),
   IssuedDate: new Date(),
-  Expiry:new Date()
+  Expiry:new Date(),
+  file:null
 };
 
 
@@ -38,7 +39,32 @@ const UploadPolicyCard = () => {
   };
   // const minDate = new Date();
   // minDate.setDate(minDate.getDate() + 1);
-
+  const customValidation = (values) => {
+    const errors = {}
+    if (!values.PolicyNumber) {
+      errors.PolicyNumber = "This field is required";
+    }
+    if (!values.InsuranceCompany) {
+      errors.InsuranceCompany = "This field is required";
+    }
+    if (!values.Production) {
+      errors.Production = "This field is required";
+    }
+    if (!values.Inception) {
+      errors.Inception = "This field is required";
+    }
+    if (!values.IssuedDate) {
+      errors.IssuedDate = "This field is required";
+    }
+    if (!values.Expiry) {
+      errors.Expiry = "This field is required";
+    }
+    if (!values.file) {
+      errors.file = "This field is required";
+    }
+  
+    return errors
+  }
   const handleUppendImg = (name, src) => {
     setimageURL(src.objectURL);
     console.log(name, src.objectURL, "find handleUppendImg");
@@ -50,7 +76,7 @@ const UploadPolicyCard = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    // validate: customValidation,
+    validate: customValidation,
     onSubmit: handleSubmit,
   });
 
@@ -66,12 +92,22 @@ const UploadPolicyCard = () => {
           <div className="col-12 md:col-6 lg:col-6">
             <InputTextField label="Insurance Company" 
             value={formik.values.InsuranceCompany}
-            onChange={formik.handleChange("InsuranceCompany")}/>
+            onChange={formik.handleChange("InsuranceCompany")}  />
+                {formik.touched.InsuranceCompany && formik.errors.InsuranceCompany && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.InsuranceCompany}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <InputTextField label="Policy Number" 
             value={formik.values.PolicyNumber}
-            onChange={formik.handleChange("PolicyNumber")}/>
+            onChange={formik.handleChange("PolicyNumber")}  />
+                {formik.touched.PolicyNumber && formik.errors.PolicyNumber && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.PolicyNumber}
+                </div>
+              )}
           </div>
         </div>
 
@@ -85,7 +121,12 @@ const UploadPolicyCard = () => {
             }}
             dateFormat="yy-mm-dd"
             // error={formik.errors.Production}
-            />
+              />
+                {formik.touched.Production && formik.errors.Production && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Production}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <DatepickerField label="Inception" 
@@ -95,7 +136,12 @@ const UploadPolicyCard = () => {
               formik.setFieldValue("Inception", e.target.value);
             }}
             dateFormat="yy-mm-dd"
-            />
+              />
+                {formik.touched.Inception && formik.errors.Inception && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Inception}
+                </div>
+              )}
           </div>
         </div>
 
@@ -107,7 +153,12 @@ const UploadPolicyCard = () => {
             onChange={(e) => { 
               formik.setFieldValue("IssuedDate", e.target.value);
             }}
-            dateFormat="yy-mm-dd"/>
+            dateFormat="yy-mm-dd"  />
+                {formik.touched.IssuedDate && formik.errors.IssuedDate && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.IssuedDate}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <DatepickerField label="Expiry" 
@@ -116,7 +167,12 @@ const UploadPolicyCard = () => {
             onChange={(e) => { 
               formik.setFieldValue("Expiry", e.target.value);
             }}
-            dateFormat="yy-mm-dd" />
+            dateFormat="yy-mm-dd"   />
+                {formik.touched.Expiry && formik.errors.Expiry && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.Expiry}
+                </div>
+              )}
           </div>
         </div>
 
@@ -135,9 +191,11 @@ const UploadPolicyCard = () => {
               accept=".png,.jpg,.jpeg"
               maxFileSize={2000000}
               uploadHandler={(e) => {
+                formik.setFieldValue("file", e.files[0]);
                 handleUppendImg(e.options.props.name, e.files[0], "the data");
               }}
-            />
+              />
+               
             <div className="icon_click_option">
               <SvgUpload />
             </div>
@@ -145,6 +203,11 @@ const UploadPolicyCard = () => {
             <div className="upload__caption text-center">Maximum 2 MB</div>
           </div>
         </div>
+        {formik.touched.file && formik.errors.file && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.file}
+                </div>
+              )}
         {imageURL === undefined ? null : (
           <div className="mt-4">
             <SvgUploadClose />

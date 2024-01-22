@@ -134,7 +134,7 @@ const OpenItems = () => {
       <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
           <Card>
-            <div class="grid">
+            <div class="grid"  onClick={handlePolicyExpiry}>
               <div
                 class="col-1 md:col-1 lg:col-1"
                 style={{ display: "flex", alignItems: "flex-end" }}
@@ -144,7 +144,7 @@ const OpenItems = () => {
               <div
                 class="col-5 md:col-5 lg:col-5"
                 style={{ display: "flex", alignItems: "flex-end" }}
-                onClick={handlePolicyExpiry}
+               
               >
                 <div className="sub__title">Policies Expiring soon</div>
               </div>
@@ -156,7 +156,7 @@ const OpenItems = () => {
         </div>
         <div class="col-12 md:col-6 lg:col-6">
           <Card>
-            <div class="grid">
+            <div class="grid" onClick={handlePendingPayments}>
               <div
                 class="col-1 md:col-1 lg:col-1"
                 style={{ display: "flex", alignItems: "flex-end" }}
@@ -165,7 +165,7 @@ const OpenItems = () => {
               </div>
               <div
                 class="col-5 md:col-5 lg:col-5"
-                style={{ display: "flex", alignItems: "center" }} onClick={handlePendingPayments}
+                style={{ display: "flex", alignItems: "center" }} 
               >
                 <div className="sub__title">Pending Payments</div>
               </div>
@@ -212,14 +212,23 @@ const OpenItems = () => {
             <div className="upcoming__event__container__sub__title mt-1">
               Based on the Activity Monitor
             </div>
+            <div>
+            {upcommingList.length > 0? ( 
+            <div>
             {upcommingList?.map((singleData, i) => (
               <UpcommingEventCard data={singleData} />
 
             ))}
+            {upcommingList.length > 4 && 
             <div className="see__more__container mt-2" onClick={() => handleSeeMore()}>
               <div className="see__more__text">See More</div>
               <SvgArrow />
+            </div>}
             </div>
+            ) :<div style={{textAlign:'center',paddingTop:"40px"}}>
+            No data available
+          </div>}
+          </div>
           </Card>
         </div>
       </div>

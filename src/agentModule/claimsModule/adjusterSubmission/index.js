@@ -141,6 +141,12 @@ const AdjusterSubmission = () => {
     return errors;
   };
   const dispatch = useDispatch()
+  // const toastRef = useRef(null);
+  // dispatch(postEndromentMiddleWare(formik.values))
+  // toastRef.current.showToast();
+  // setTimeout(() => {
+  //   navigate(`/agent/endorsementdetailedview/${123}`);
+  // }, 2000);
   const handleSubmit = (values) => {
     if (!values.file) {
       alert("please select file")
@@ -155,7 +161,7 @@ const AdjusterSubmission = () => {
     onSubmit: handleSubmit,
   });
 
-  
+
 
   return (
     <div className="claim__request__upload__container">
@@ -197,16 +203,20 @@ const AdjusterSubmission = () => {
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <DatepickerField
               label="Date of Reported"
-              value={
-                formik.values.dateOfReported
-                  ? new Date(formik.values.dateOfReported)
-                  : null
-              }
-              onChange={(e) => {
-                formik.handleChange("dateOfReported")(
-                  e.value.toISOString().split("T")[0]
-                );
-              }}
+              // value={
+              //   formik.values.dateOfReported
+              //     ?
+              //      new Date(formik.values.dateOfReported)
+              //     : null
+              // }
+              // onChange={(e) => {
+              //   formik.handleChange("dateOfReported")(
+              //     e.value.toISOString().split("T")[0]
+              //   );
+              // }}
+              value={new Date(formik?.values?.dateOfReported)}
+              onChange={(e) => formik.setFieldValue("dateOfReported", e.value.toISOString().split("T"))}
+
 
               dateFormat="yy-mm-dd"
             />
@@ -219,16 +229,19 @@ const AdjusterSubmission = () => {
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <DatepickerField
               label="Date of Loss"
-              value={
-                formik.values.dateOfLoss
-                  ? new Date(formik.values.dateOfLoss)
-                  : null
-              }
-              onChange={(e) => {
-                formik.handleChange("dateOfLoss")(
-                  e.value.toISOString().split("T")[0]
-                );
-              }}
+              // value={
+              //   formik.values.dateOfLoss
+              //     ? new Date(formik.values.dateOfLoss)
+              //     : null
+              // }
+              // onChange={(e) => {
+              //   formik.handleChange("dateOfLoss")(
+              //     e.value.toISOString().split("T")[0]
+              //   );
+              // }}
+              value={new Date(formik?.values?.dateOfLoss)}
+              onChange={(e) => formik.setFieldValue("dateOfLoss", e.value.toISOString().split("T"))}
+
 
               dateFormat="yy-mm-dd"
             />

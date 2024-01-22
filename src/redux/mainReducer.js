@@ -47,7 +47,7 @@ import agentPaymentMainReducers from "../agentModule/paymentsModule/store/paymen
 // import claimTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewClaimTable/store/getClaimTabelDataReducers"
 import claimSettleMainReducers from "../agentModule/claimsModule/claimSettlement/store/claimSettleReducers"
 import claimDocumentUploadMainReducers from "../agentModule/claimsModule/claimDocumentUpload/store/claimDocumentUploadReducers"
-import endrosementViewMainReducers from "../agentModule/endorsementModule/endorsementDetailedView/store/endrosementViewReducers";
+import endrosementViewMainReducers from "../agentModule/endorsementModule/uploadEndorsement/store/uploadEndrosmentReducers";
 import claimSettlementReducer from "../agentModule/claimsModule/settlementDetails/Store/claimSettlementReducer";
 import claimDetailsMainReducers from "../agentModule/claimsModule/claimDetails/store/claimDetailsReducers";
 import claimTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewClaimTable/store/getClaimTabelDataReducers"

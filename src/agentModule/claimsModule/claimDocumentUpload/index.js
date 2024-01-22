@@ -7,7 +7,27 @@ import DropdownField from "../../component/DropdwonField";
 import InputTextField from "../../component/inputText";
 import DatepickerField from "../../component/datePicker";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const ClaimDocumentUpload = () => {
+  const { claimDocumentUploadData, loading } = useSelector(
+    ({ claimDocumentUploadMainReducers }) => {
+      return {
+        loading: claimDocumentUploadMainReducers?.loading,
+        claimDocumentUploadData: claimDocumentUploadMainReducers?.claimDocumentUploadData,
+
+      };
+    }
+  );
+  const cityData = [
+    { label: claimDocumentUploadData.city, value: claimDocumentUploadData.city }
+  ]
+  const provinceData = [
+    { label: claimDocumentUploadData.province, value: claimDocumentUploadData.province }
+  ]
+  const cuntryData = [
+    { label: claimDocumentUploadData.country, value: claimDocumentUploadData.country }
+  ]
+  console.log(claimDocumentUploadData, "claimDocumentUploadData");
   const Navigate = useNavigate();
 
   const handleCommonAction = () => {
@@ -30,42 +50,81 @@ const ClaimDocumentUpload = () => {
 
         <div class="grid m-0 ">
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Adjuster Name" />
+            <InputTextField
+              label="Adjuster Name"
+              value={claimDocumentUploadData.adjusterName}
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Claim Number" />
+            <InputTextField label="Claim Number"
+              value={claimDocumentUploadData.claimNumber}
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <DatepickerField label="Date of Reported" />
+            <DatepickerField label="Date of Reported"
+              value={
+                new Date(claimDocumentUploadData.dateOfReported)
+              }
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <DatepickerField label="Date of Loss" />
+            <DatepickerField label="Date of Loss"
+
+              value={
+                new Date(claimDocumentUploadData.dateOfLoss)
+              }
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Place of Accident" />
+            <InputTextField label="Place of Accident"
+              value={claimDocumentUploadData.placeOfAccident}
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Driver’s name" />
+            <InputTextField label="Driver’s name"
+              value={claimDocumentUploadData.driversName}
+            />
           </div>
 
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="House No / Unit No / Street " />
+            <InputTextField label="House No / Unit No / Street "
+              value={claimDocumentUploadData.houseNumber}
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Barangay / Subd" />
+            <InputTextField label="Barangay / Subd"
+              value={claimDocumentUploadData.barangay}
+            />
           </div>
 
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Country" />
+            <DropdownField label="Country"
+              value={claimDocumentUploadData.country}
+              options={cuntryData}
+              optionLabel={"label"}
+
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Province" />
+            <DropdownField label="Province"
+              value={claimDocumentUploadData.province}
+              options={provinceData}
+              optionLabel={"label"}
+
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="City" />
+            <DropdownField label="City"
+              value={claimDocumentUploadData.city}
+              options={cityData}
+              optionLabel={"label"}
+
+            />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="ZIP Code" />
+            <InputTextField label="ZIP Code"
+              value={claimDocumentUploadData.zipCode}
+            />
           </div>
           <div className="col-12 claim__request__upload__subtitle mt-2 mb-2">
             Third Party Details (If Applicable)

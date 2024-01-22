@@ -17,7 +17,7 @@ const PaymentConfirmation = () => {
         <SvgLeftArrow />
         <label className="left__arrow__text">Client ID : 12345678</label>
       </div>
-      <Card className="mt-3">
+      <Card className="mt-4">
         <div className="table__header">Payment Confirmation</div>
         <div className="sub__title__header mt-3">
           <label className="sub__title">Payment Details</label>
@@ -48,6 +48,7 @@ const PaymentConfirmation = () => {
           <label className="net__premium">Discount</label>
           <label className="premium__id">-500.00</label>
         </div>
+        <hr className="one_line_divider mt-5"></hr>
         <div className="premium__header mt-5">
           <label className="gross__premium">Gross premium</label>
           <label className="gross__id">6500.00</label>

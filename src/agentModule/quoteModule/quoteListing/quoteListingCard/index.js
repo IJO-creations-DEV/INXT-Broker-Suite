@@ -12,6 +12,8 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../assets/agentIcon/SvgDownArrow";
 import SvgEdit from "../../../../assets/icons/SvgEdits";
 import SvgArrow from "../../../../assets/agentIcon/SvgArrow";
+// import { postinformationMiddleWare,patchinformationMiddleWare } from "./store/infoMiddleWare";
+// import { useDispatch, useSelector } from "react-redux";
 
 const QuoteListingCard = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);

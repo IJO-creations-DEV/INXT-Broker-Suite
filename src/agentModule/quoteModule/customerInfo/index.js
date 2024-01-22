@@ -28,6 +28,7 @@ const initialValues = {
 };
 
 
+
 const CustomerInfo = ({action}) => {
   const [imageURL, setimageURL] = useState("");
   const navigate = useNavigate();
@@ -254,12 +255,23 @@ useEffect(() => {
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <InputTextField label="Motor Number"
              value={formik.values.MotorNumber}
-              onChange={formik.handleChange("MotorNumber")} />
+              onChange={formik.handleChange("MotorNumber")} 
+              />
+              
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.MotorNumber}
+              </div>
+          
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <InputTextField label="Chassis Number"
             value={formik.values.ChassisNumber}
             onChange={formik.handleChange("ChassisNumber")} />
+                 
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.ChassisNumber}
+              </div>
+           
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField label="Mortgage" 
@@ -269,28 +281,53 @@ useEffect(() => {
                 onChange={(e) =>
                   formik.setFieldValue("Mortgage", e.value)
                 }
-                error={formik.touched.Mortgage && formik.errors.Mortgage}
+                
             />
+                 
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.Mortgage}
+              </div>
+       
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <InputTextField label="Cert Number"
             value={formik.values.CertNumber}
             onChange={formik.handleChange("CertNumber")} />
+             
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.CertNumber}
+              </div>
+           
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <InputTextField label="Plate Number" 
             value={formik.values.PlateNumber}
             onChange={formik.handleChange("PlateNumber")}/>
+             
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.PlateNumber}
+              </div>
+          
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <InputTextField label="MV File Number" 
             value={formik.values.MVFileNumber}
             onChange={formik.handleChange("MVFileNumber")}/>
+              
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.MVFileNumber}
+              </div>
+       
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <InputTextField label="Authen Code"
             value={formik.values.AuthenCode}
             onChange={formik.handleChange("AuthenCode")} />
+               
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.AuthenCode}
+              </div>
+      
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField label="Truck Type" 
@@ -300,8 +337,13 @@ useEffect(() => {
                  onChange={(e) =>
                    formik.setFieldValue("TruckType", e.value)
                  }
-                 error={formik.touched.TruckType && formik.errors.TruckType}
+                 
             />
+              
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.TruckType}
+              </div>
+         
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField label="Aluminium" 
@@ -311,10 +353,15 @@ useEffect(() => {
                onChange={(e) =>
                  formik.setFieldValue("Aluminium", e.value)
                }
-               error={formik.touched.Aluminium && formik.errors.Aluminium}
+               
             />
+              
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.Aluminium}
+              </div>
+           
           </div>
-          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-1">
             <DropdownField label="Air Bag"
              options={AirBag}
              optionLabel="label"
@@ -322,8 +369,11 @@ useEffect(() => {
                 onChange={(e) =>
                   formik.setFieldValue("AirBag", e.value)
                 }
-                error={formik.touched.AirBag && formik.errors.AirBag}
+               
             />
+            <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.AirBag}
+              </div>
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField label="TNVS" 
@@ -333,8 +383,11 @@ useEffect(() => {
                onChange={(e) =>
                  formik.setFieldValue("TNVS", e.value)
                }
-               error={formik.touched.TNVS && formik.errors.TNVS}
+             
             />
+            <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.TNVS}
+              </div>
           </div>
           <div className="col-12 mt-2">
             <div className="back__next__btn__container">
@@ -347,7 +400,9 @@ useEffect(() => {
                 <Button className="next__btn" 
                 onClick={() => {
                   formik.handleSubmit();
+              
                 }}
+                disabled={!formik.isValid}
                 >Next</Button>
               </div>
             </div>

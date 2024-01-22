@@ -396,3 +396,5 @@ export const GET_CLAIM_DATA_SEARCH_LIST="claimtabeldaya/GET_CLAIM_DATA_SEARCH_LI
 export const GET_CLAIM_SETTLE_DATA="claimsettlement/GET_CLAIM_SETTLE_DATA"
 export const GET_CLAIM_DOCUMENT_UPLOAD_DATA="claimdocumentupload/GET_CLAIM_DOCUMENT_UPLOAD_DATA"
 
+export const GET_POLICY_DETAILED_DATA ="policydetailedview/GET_POLICY_DETAILED_DATA"
+

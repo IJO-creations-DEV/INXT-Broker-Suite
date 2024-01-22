@@ -73,7 +73,7 @@ const PolicyDetailedViewCard = ({ action }) => {
           <div className="col-12 md:col-6 lg:col-6">
           <DatepickerField
                 label="Production"
-                value={policydetailedlist.Production}
+                value={formik.values.Production}
                 onChange={(e) => {
                   formik.setFieldValue("Production", e.target.value);
                 }}
@@ -84,7 +84,7 @@ const PolicyDetailedViewCard = ({ action }) => {
           <div className="col-12 md:col-6 lg:col-6">
           <DatepickerField
                 label="Inception"
-                value={policydetailedlist.Inception}
+                value={formik.values.Inception}
                 onChange={(e) => {
                   formik.setFieldValue("Inception", e.target.value);
                 }}
@@ -98,7 +98,7 @@ const PolicyDetailedViewCard = ({ action }) => {
           <div className="col-12 md:col-6 lg:col-6">
           <DatepickerField
                 label="Issue Date"
-                value={policydetailedlist.IssueDate}
+                value={formik.values.IssueDate}
                 onChange={(e) => {
                   formik.setFieldValue("IssueDate", e.target.value);
                 }}
@@ -109,7 +109,7 @@ const PolicyDetailedViewCard = ({ action }) => {
           <div className="col-12 md:col-6 lg:col-6">
           <DatepickerField
                 label="Expiry"
-                value={policydetailedlist.Expiry}
+                value={formik.values.Expiry}
                 onChange={(e) => {
                   formik.setFieldValue("Expiry", e.target.value);
                 }}

@@ -5,10 +5,10 @@ const initialState = {
   loading: false,
   error: "",
   policydetailedlist: { PolicyNumber: "1234",
-  Production:"20/01/2024",
-  Inception: "19/01/2024",
-  IssueDate: "2/01/2024",
-  Expiry: "22/01/2024",
+  Production:"",
+  Inception: "",
+  IssueDate: "",
+  Expiry: "",
 }
 };
 

@@ -31,6 +31,7 @@ const LeadListingAllTable = () => {
       Quotes: "01",
       LeadID: "123456",
       Svg: <SvgMotorTable />,
+      dateSortField:"11001"
     },
     {
       id: "2",
@@ -40,6 +41,7 @@ const LeadListingAllTable = () => {
       Quotes: "02",
       LeadID: "126",
       Svg: <SvgTravlesTable />,
+      dateSortField:"11002"
     },
     {
       id: "3",
@@ -49,6 +51,7 @@ const LeadListingAllTable = () => {
       Quotes: "02",
       LeadID: "1456",
       Svg: <SvgHomeTable />,
+      dateSortField:"11003"
     },
     {
       id: "4",
@@ -58,6 +61,7 @@ const LeadListingAllTable = () => {
       Quotes: "03",
       LeadID: "1236",
       Svg: <SvgTravlesTable />,
+      dateSortField:"11004"
     },
     {
       id: "5",
@@ -67,6 +71,7 @@ const LeadListingAllTable = () => {
       Quotes: "04",
       LeadID: "1456",
       Svg: <SvgMotorTable />,
+      dateSortField:"11005"
     },
     {
       id: "6",
@@ -76,6 +81,7 @@ const LeadListingAllTable = () => {
       Quotes: "05",
       LeadID: "123116",
       Svg: <SvgHomeTable />,
+      dateSortField:"11006"
     },
     {
       id: "7",
@@ -85,6 +91,7 @@ const LeadListingAllTable = () => {
       Quotes: "06",
       LeadID: "123411",
       Svg: <SvgTravlesTable />,
+      dateSortField:"11007"
     },
     {
       id: "8",
@@ -94,6 +101,7 @@ const LeadListingAllTable = () => {
       Quotes: "01",
       LeadID: "1234000",
       Svg: <SvgMotorTable />,
+      dateSortField:"11008"
     },
     {
       id: "9",
@@ -103,6 +111,7 @@ const LeadListingAllTable = () => {
       Quotes: "02",
       LeadID: "1234555",
       Svg: <SvgHomeTable />,
+      dateSortField:"11009"
     },
     {
       id: "10",
@@ -112,15 +121,7 @@ const LeadListingAllTable = () => {
       Quotes: "03",
       LeadID: "1234226",
       Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "11",
-      Name: "Ella Adams",
-      Category: "Individual",
-      Date: "2024-11-25",
-      Quotes: "04",
-      LeadID: "1234000",
-      Svg: <SvgMotorTable />,
+      dateSortField:"11010"
     },
   ];
 
@@ -306,6 +307,8 @@ const LeadListingAllTable = () => {
             body={renderDate}
             header={renderUncheckedHeader("Date")}
             headerStyle={headerStyle}
+            sortable
+            sortField="dateSortField"
           ></Column>
           <Column
             body={renderQuotes}

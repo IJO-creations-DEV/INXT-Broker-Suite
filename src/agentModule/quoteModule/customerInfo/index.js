@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Card } from "primereact/card";
@@ -10,7 +10,10 @@ import { FileUpload } from "primereact/fileupload";
 import { useNavigate } from "react-router-dom";
 import customHistory from "../../../routes/customHistory";
 import { useFormik } from "formik";
-import { postinformationMiddleWare,patchinformationMiddleWare } from "./store/infoMiddleWare";
+import {
+  postinformationMiddleWare,
+  patchinformationMiddleWare,
+} from "./store/infoMiddleWare";
 import { useDispatch, useSelector } from "react-redux";
 
 const initialValues = {
@@ -24,14 +27,13 @@ const initialValues = {
   Aluminium: "",
   AirBag: "",
   TNVS: "",
-  TruckType:""
+  TruckType: "",
 };
 
-
-const CustomerInfo = ({action}) => {
+const CustomerInfo = ({ action }) => {
   const [imageURL, setimageURL] = useState("");
   const navigate = useNavigate();
-  
+
   const dispatch = useDispatch();
   // const handleSubmit= (value) => {
 
@@ -52,26 +54,26 @@ const CustomerInfo = ({action}) => {
     if (action === "edit" && postcustomerinfodata) {
       const valueWithId = {
         ...values,
-        id: postcustomerinfodata.id, 
+        id: postcustomerinfodata.id,
       };
       dispatch(patchinformationMiddleWare(values));
-      navigate("/agent/convertpolicy/uploadvehiclephotos")
+      navigate("/agent/convertpolicy/uploadvehiclephotos");
     } else {
       dispatch(postinformationMiddleWare(values));
       navigate("/agent/convertpolicy/uploadvehiclephotos");
     }
   };
-  
-  
-  const { postcustomerinfodata, loading } = useSelector(({  CustomerInfoReducer }) => {
-    return {
-      loading: CustomerInfoReducer?.loading,
-      postcustomerinfodata:  CustomerInfoReducer?.postcustomerinfodata,
 
-    };
-  });
-  
-console.log("first21",postcustomerinfodata)
+  const { postcustomerinfodata, loading } = useSelector(
+    ({ CustomerInfoReducer }) => {
+      return {
+        loading: CustomerInfoReducer?.loading,
+        postcustomerinfodata: CustomerInfoReducer?.postcustomerinfodata,
+      };
+    }
+  );
+
+  console.log("first21", postcustomerinfodata);
 
   const handleUppendImg = (name, src) => {
     setimageURL(src?.objectURL);
@@ -80,27 +82,37 @@ console.log("first21",postcustomerinfodata)
   const handleBackNavigation = () => {
     customHistory.back();
   };
-  const Mortgagedata = [   { label: "1,54,654", value: "AL" }, 
-    { label: "1,54,654", value: "AZ" },
-       { label: "1,54,654", value: "AR" },  
-  ]
-  const TNVSdata =[   { label: "Yes", value: "AL" }, 
-  { label: "No", value: "AZ" },
-      
-]
+  const Mortgagedata = [
+    { label: "FEDERAL LAND", value: "FEDERAL LAND" },
+    {
+      label: "METROPOLITAN BANK & TRUST CO.",
+      value: "METROPOLITAN BANK & TRUST CO.",
+    },
+    { label: "OMNI BANK", value: "OMNI BANK" },
+    { label: "PHILAM SAVINGS BANK", value: "PHILAM SAVINGS BANK" },
+    {
+      label: "BANCO DE ORO UNIBANK, INC.",
+      value: "BANCO DE ORO UNIBANK, INC.",
+    },
+  ];
+  const TNVSdata = [
+    { label: "Yes", value: "AL" },
+    { label: "No", value: "AZ" },
+  ];
 
-const AirBag = [   { label: "Yes", value: "AL" }, 
-{ label: "No", value: "AZ" },
-    
-]
-const Aluminium = [   { label: "Yes", value: "AL" }, 
-  { label: "No", value: "AZ" },
-      
-]
-const TruckTypes = [   { label: "Heavy duty", value: "AL" }, 
-  { label: "Heavy Xl", value: "AZ" },
-    //  { label: "duty", value: "AR" },  
-]
+  const AirBag = [
+    { label: "Yes", value: "AL" },
+    { label: "No", value: "AZ" },
+  ];
+  const Aluminium = [
+    { label: "Yes", value: "AL" },
+    { label: "No", value: "AZ" },
+  ];
+  const TruckTypes = [
+    { label: "Heavy duty", value: "AL" },
+    { label: "Heavy Xl", value: "AZ" },
+    //  { label: "duty", value: "AR" },
+  ];
 
   const customValidation = (values) => {
     const errors = {};
@@ -141,26 +153,24 @@ const TruckTypes = [   { label: "Heavy duty", value: "AL" },
     return errors;
   };
 
-
-//   useEffect(() => {
-//     console.log(action,'find sction call')
-//     if (action === "edit") {
-// console.log(postcustomerinfodata,'find postcustomerinfodata')
-//     setFormikValues(postcustomerinfodata);
-//     }
-//   },[action]);
-useEffect(() => {
-  if (action === "edit" && postcustomerinfodata) {
-    setFormikValues(postcustomerinfodata);
-  }
-}, [action, postcustomerinfodata]);
-
+  //   useEffect(() => {
+  //     console.log(action,'find sction call')
+  //     if (action === "edit") {
+  // console.log(postcustomerinfodata,'find postcustomerinfodata')
+  //     setFormikValues(postcustomerinfodata);
+  //     }
+  //   },[action]);
+  useEffect(() => {
+    if (action === "edit" && postcustomerinfodata) {
+      setFormikValues(postcustomerinfodata);
+    }
+  }, [action, postcustomerinfodata]);
 
   const setFormikValues = (data) => {
-    console.log(data,"find data")
+    console.log(data, "find data");
     // const IsoCode = getExchangeEdit?.ISOcode;
     const updatedValues = {
-      MotorNumber:data?.MotorNumber ,
+      MotorNumber: data?.MotorNumber,
       ChassisNumber: data?.ChassisNumber,
       Mortgage: data?.Mortgage,
       CertNumber: data?.CertNumber,
@@ -170,21 +180,18 @@ useEffect(() => {
       Aluminium: data?.Aluminium,
       AirBag: data?.AirBag,
       TNVS: data?.TNVS,
-      TruckType:data?.TruckType
+      TruckType: data?.TruckType,
     };
 
     formik.setValues({ ...formik.values, ...updatedValues });
-    console.log("1211",updatedValues)
+    console.log("1211", updatedValues);
   };
-
-
 
   const formik = useFormik({
     initialValues: initialValues,
-     validate: customValidation,
-     onSubmit: handleSubmit,
+    validate: customValidation,
+    onSubmit: handleSubmit,
   });
-
 
   return (
     <div className="customer__info__container">
@@ -252,88 +259,95 @@ useEffect(() => {
         </div>
         <div class="grid m-0">
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Motor Number"
-             value={formik.values.MotorNumber}
-              onChange={formik.handleChange("MotorNumber")} />
-          </div>
-          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Chassis Number"
-            value={formik.values.ChassisNumber}
-            onChange={formik.handleChange("ChassisNumber")} />
-          </div>
-          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Mortgage" 
-            options={Mortgagedata}
-             optionLabel="label"
-            value={formik.values.Mortgage}
-                onChange={(e) =>
-                  formik.setFieldValue("Mortgage", e.value)
-                }
-                error={formik.touched.Mortgage && formik.errors.Mortgage}
+            <InputTextField
+              label="Motor Number"
+              value={formik.values.MotorNumber}
+              onChange={formik.handleChange("MotorNumber")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Cert Number"
-            value={formik.values.CertNumber}
-            onChange={formik.handleChange("CertNumber")} />
+            <InputTextField
+              label="Chassis Number"
+              value={formik.values.ChassisNumber}
+              onChange={formik.handleChange("ChassisNumber")}
+            />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Plate Number" 
-            value={formik.values.PlateNumber}
-            onChange={formik.handleChange("PlateNumber")}/>
+            <DropdownField
+              label="Mortgage"
+              options={Mortgagedata}
+              optionLabel="label"
+              value={formik.values.Mortgage}
+              onChange={(e) => formik.setFieldValue("Mortgage", e.value)}
+              error={formik.touched.Mortgage && formik.errors.Mortgage}
+            />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="MV File Number" 
-            value={formik.values.MVFileNumber}
-            onChange={formik.handleChange("MVFileNumber")}/>
+            <InputTextField
+              label="Cert Number"
+              value={formik.values.CertNumber}
+              onChange={formik.handleChange("CertNumber")}
+            />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Authen Code"
-            value={formik.values.AuthenCode}
-            onChange={formik.handleChange("AuthenCode")} />
+            <InputTextField
+              label="Plate Number"
+              value={formik.values.PlateNumber}
+              onChange={formik.handleChange("PlateNumber")}
+            />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Truck Type" 
+            <InputTextField
+              label="MV File Number"
+              value={formik.values.MVFileNumber}
+              onChange={formik.handleChange("MVFileNumber")}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="Authen Code"
+              value={formik.values.AuthenCode}
+              onChange={formik.handleChange("AuthenCode")}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Truck Type"
               options={TruckTypes}
               optionLabel="label"
-             value={formik.values.TruckType}
-                 onChange={(e) =>
-                   formik.setFieldValue("TruckType", e.value)
-                 }
-                 error={formik.touched.TruckType && formik.errors.TruckType}
+              value={formik.values.TruckType}
+              onChange={(e) => formik.setFieldValue("TruckType", e.value)}
+              error={formik.touched.TruckType && formik.errors.TruckType}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Aluminium" 
-            options={Aluminium}
-            optionLabel="label"
-           value={formik.values.Aluminium}
-               onChange={(e) =>
-                 formik.setFieldValue("Aluminium", e.value)
-               }
-               error={formik.touched.Aluminium && formik.errors.Aluminium}
+            <DropdownField
+              label="Aluminium"
+              options={Aluminium}
+              optionLabel="label"
+              value={formik.values.Aluminium}
+              onChange={(e) => formik.setFieldValue("Aluminium", e.value)}
+              error={formik.touched.Aluminium && formik.errors.Aluminium}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Air Bag"
-             options={AirBag}
-             optionLabel="label"
-            value={formik.values.AirBag}
-                onChange={(e) =>
-                  formik.setFieldValue("AirBag", e.value)
-                }
-                error={formik.touched.AirBag && formik.errors.AirBag}
+            <DropdownField
+              label="Air Bag"
+              options={AirBag}
+              optionLabel="label"
+              value={formik.values.AirBag}
+              onChange={(e) => formik.setFieldValue("AirBag", e.value)}
+              error={formik.touched.AirBag && formik.errors.AirBag}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="TNVS" 
-            options={TNVSdata}
-            optionLabel="label"
-           value={formik.values.TNVS}
-               onChange={(e) =>
-                 formik.setFieldValue("TNVS", e.value)
-               }
-               error={formik.touched.TNVS && formik.errors.TNVS}
+            <DropdownField
+              label="TNVS"
+              options={TNVSdata}
+              optionLabel="label"
+              value={formik.values.TNVS}
+              onChange={(e) => formik.setFieldValue("TNVS", e.value)}
+              error={formik.touched.TNVS && formik.errors.TNVS}
             />
           </div>
           <div className="col-12 mt-2">
@@ -344,11 +358,14 @@ useEffect(() => {
                 </Button>
               </div>
               <div className="next__btn__container">
-                <Button className="next__btn" 
-                onClick={() => {
-                  formik.handleSubmit();
-                }}
-                >Next</Button>
+                <Button
+                  className="next__btn"
+                  onClick={() => {
+                    formik.handleSubmit();
+                  }}
+                >
+                  Next
+                </Button>
               </div>
             </div>
           </div>

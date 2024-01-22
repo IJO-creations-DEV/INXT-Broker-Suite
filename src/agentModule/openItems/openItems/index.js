@@ -118,6 +118,9 @@ const OpenItems = () => {
   const handlePendingPayments = () => {
     navigate('/agent/payments')
   }
+  const handleDateSelect = (info) => {
+    console.log('Selected dates:', info.start, info.end);
+  };
   return (
     <div className="open__item__container  mt-3">
       <CustomToast ref={toastRef} message="Event Added Successfully" />
@@ -189,11 +192,16 @@ const OpenItems = () => {
       <div class="grid mt-3">
         <div class="col-12 md:col-8 lg:col-8">
           <Card>
+          <div className="custom__full__calendar">
 
             <FullCalendar
               plugins={[dayGridPlugin]}
               initialView="dayGridMonth"
+              editable={true}
+              selectable={true}
+              // select={handleDateSelect}
             />
+            </div>
           </Card>
         </div>
         <div class="col-12 md:col-4 lg:col-4">

@@ -10,7 +10,10 @@ import { FileUpload } from "primereact/fileupload";
 import { useNavigate } from "react-router-dom";
 import customHistory from "../../../routes/customHistory";
 import { useFormik } from "formik";
-import { postinformationMiddleWare, patchinformationMiddleWare } from "./store/infoMiddleWare";
+import {
+  postinformationMiddleWare,
+  patchinformationMiddleWare,
+} from "./store/infoMiddleWare";
 import { useDispatch, useSelector } from "react-redux";
 
 const initialValues = {
@@ -25,12 +28,9 @@ const initialValues = {
   AirBag: "",
   TNVS: "",
   TruckType: "",
-  file:null
 };
 
-
-
-const CustomerInfo = ({action}) => {
+const CustomerInfo = ({ action }) => {
   const [imageURL, setimageURL] = useState("");
   const navigate = useNavigate();
 
@@ -61,23 +61,23 @@ const CustomerInfo = ({action}) => {
         id: postcustomerinfodata.id,
       };
       dispatch(patchinformationMiddleWare(values));
-      navigate("/agent/convertpolicy/uploadvehiclephotos")
+      navigate("/agent/convertpolicy/uploadvehiclephotos");
     } else {
       dispatch(postinformationMiddleWare(values));
       navigate("/agent/convertpolicy/uploadvehiclephotos");
     }
   };
 
+  const { postcustomerinfodata, loading } = useSelector(
+    ({ CustomerInfoReducer }) => {
+      return {
+        loading: CustomerInfoReducer?.loading,
+        postcustomerinfodata: CustomerInfoReducer?.postcustomerinfodata,
+      };
+    }
+  );
 
-  const { postcustomerinfodata, loading } = useSelector(({ CustomerInfoReducer }) => {
-    return {
-      loading: CustomerInfoReducer?.loading,
-      postcustomerinfodata: CustomerInfoReducer?.postcustomerinfodata,
-
-    };
-  });
-
-  console.log("first21", postcustomerinfodata)
+  console.log("first21", postcustomerinfodata);
 
   const handleUppendImg = (name, src) => {
     setimageURL(src?.objectURL);
@@ -86,27 +86,37 @@ const CustomerInfo = ({action}) => {
   const handleBackNavigation = () => {
     customHistory.back();
   };
-  const Mortgagedata = [{ label: "1,54,654", value: "AL" },
-  { label: "1,54,654", value: "AZ" },
-  { label: "1,54,654", value: "AR" },
-  ]
-  const TNVSdata = [{ label: "Yes", value: "AL" },
-  { label: "No", value: "AZ" },
+  const Mortgagedata = [
+    { label: "FEDERAL LAND", value: "FEDERAL LAND" },
+    {
+      label: "METROPOLITAN BANK & TRUST CO.",
+      value: "METROPOLITAN BANK & TRUST CO.",
+    },
+    { label: "OMNI BANK", value: "OMNI BANK" },
+    { label: "PHILAM SAVINGS BANK", value: "PHILAM SAVINGS BANK" },
+    {
+      label: "BANCO DE ORO UNIBANK, INC.",
+      value: "BANCO DE ORO UNIBANK, INC.",
+    },
+  ];
+  const TNVSdata = [
+    { label: "Yes", value: "AL" },
+    { label: "No", value: "AZ" },
+  ];
 
-  ]
-
-  const AirBag = [{ label: "Yes", value: "AL" },
-  { label: "No", value: "AZ" },
-
-  ]
-  const Aluminium = [{ label: "Yes", value: "AL" },
-  { label: "No", value: "AZ" },
-
-  ]
-  const TruckTypes = [{ label: "Heavy duty", value: "AL" },
-  { label: "Heavy Xl", value: "AZ" },
-    //  { label: "duty", value: "AR" },  
-  ]
+  const AirBag = [
+    { label: "Yes", value: "AL" },
+    { label: "No", value: "AZ" },
+  ];
+  const Aluminium = [
+    { label: "Yes", value: "AL" },
+    { label: "No", value: "AZ" },
+  ];
+  const TruckTypes = [
+    { label: "Heavy duty", value: "AL" },
+    { label: "Heavy Xl", value: "AZ" },
+    //  { label: "duty", value: "AR" },
+  ];
 
   const customValidation = (values) => {
     const errors = {};
@@ -150,7 +160,6 @@ const CustomerInfo = ({action}) => {
     return errors;
   };
 
-
   //   useEffect(() => {
   //     console.log(action,'find sction call')
   //     if (action === "edit") {
@@ -164,9 +173,8 @@ const CustomerInfo = ({action}) => {
     }
   }, [action, postcustomerinfodata]);
 
-
   const setFormikValues = (data) => {
-    console.log(data, "find data")
+    console.log(data, "find data");
     // const IsoCode = getExchangeEdit?.ISOcode;
     const updatedValues = {
       MotorNumber: data?.MotorNumber,
@@ -179,21 +187,18 @@ const CustomerInfo = ({action}) => {
       Aluminium: data?.Aluminium,
       AirBag: data?.AirBag,
       TNVS: data?.TNVS,
-      TruckType: data?.TruckType
+      TruckType: data?.TruckType,
     };
 
     formik.setValues({ ...formik.values, ...updatedValues });
-    console.log("1211", updatedValues)
+    console.log("1211", updatedValues);
   };
-
-
 
   const formik = useFormik({
     initialValues: initialValues,
     validate: customValidation,
     onSubmit: handleSubmit,
   });
-
 
   return (
     <div className="customer__info__container">
@@ -277,35 +282,10 @@ const CustomerInfo = ({action}) => {
         </div>
         <div class="grid m-0">
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Motor Number"
-             value={formik.values.MotorNumber}
-              onChange={formik.handleChange("MotorNumber")} 
-              />
-              
-              <div style={{ fontSize: 12, color: "red" }} className="m-1">
-                {formik.errors.MotorNumber}
-              </div>
-          
-          </div>
-          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Chassis Number"
-            value={formik.values.ChassisNumber}
-            onChange={formik.handleChange("ChassisNumber")} />
-                 
-              <div style={{ fontSize: 12, color: "red" }} className="m-1">
-                {formik.errors.ChassisNumber}
-              </div>
-           
-          </div>
-          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Mortgage" 
-            options={Mortgagedata}
-             optionLabel="label"
-            value={formik.values.Mortgage}
-                onChange={(e) =>
-                  formik.setFieldValue("Mortgage", e.value)
-                }
-                
+            <InputTextField
+              label="Motor Number"
+              value={formik.values.MotorNumber}
+              onChange={formik.handleChange("MotorNumber")}
             />
                  
               <div style={{ fontSize: 12, color: "red" }} className="m-1">
@@ -314,54 +294,58 @@ const CustomerInfo = ({action}) => {
        
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Cert Number"
-            value={formik.values.CertNumber}
-            onChange={formik.handleChange("CertNumber")} />
-             
-              <div style={{ fontSize: 12, color: "red" }} className="m-1">
-                {formik.errors.CertNumber}
-              </div>
-           
+            <InputTextField
+              label="Chassis Number"
+              value={formik.values.ChassisNumber}
+              onChange={formik.handleChange("ChassisNumber")}
+            />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Plate Number" 
-            value={formik.values.PlateNumber}
-            onChange={formik.handleChange("PlateNumber")}/>
-             
-              <div style={{ fontSize: 12, color: "red" }} className="m-1">
-                {formik.errors.PlateNumber}
-              </div>
-          
+            <DropdownField
+              label="Mortgage"
+              options={Mortgagedata}
+              optionLabel="label"
+              value={formik.values.Mortgage}
+              onChange={(e) => formik.setFieldValue("Mortgage", e.value)}
+              error={formik.touched.Mortgage && formik.errors.Mortgage}
+            />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="MV File Number" 
-            value={formik.values.MVFileNumber}
-            onChange={formik.handleChange("MVFileNumber")}/>
-              
-              <div style={{ fontSize: 12, color: "red" }} className="m-1">
-                {formik.errors.MVFileNumber}
-              </div>
-       
+            <InputTextField
+              label="Cert Number"
+              value={formik.values.CertNumber}
+              onChange={formik.handleChange("CertNumber")}
+            />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Authen Code"
-            value={formik.values.AuthenCode}
-            onChange={formik.handleChange("AuthenCode")} />
-               
-              <div style={{ fontSize: 12, color: "red" }} className="m-1">
-                {formik.errors.AuthenCode}
-              </div>
-      
+            <InputTextField
+              label="Plate Number"
+              value={formik.values.PlateNumber}
+              onChange={formik.handleChange("PlateNumber")}
+            />
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Truck Type"
+            <InputTextField
+              label="MV File Number"
+              value={formik.values.MVFileNumber}
+              onChange={formik.handleChange("MVFileNumber")}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <InputTextField
+              label="Authen Code"
+              value={formik.values.AuthenCode}
+              onChange={formik.handleChange("AuthenCode")}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Truck Type"
               options={TruckTypes}
               optionLabel="label"
-             value={formik.values.TruckType}
-                 onChange={(e) =>
-                   formik.setFieldValue("TruckType", e.value)
-                 }
-                 
+              value={formik.values.TruckType}
+              onChange={(e) => formik.setFieldValue("TruckType", e.value)}
+              error={formik.touched.TruckType && formik.errors.TruckType}
             />
               
               <div style={{ fontSize: 12, color: "red" }} className="m-1">
@@ -370,14 +354,13 @@ const CustomerInfo = ({action}) => {
          
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Aluminium" 
-            options={Aluminium}
-            optionLabel="label"
-           value={formik.values.Aluminium}
-               onChange={(e) =>
-                 formik.setFieldValue("Aluminium", e.value)
-               }
-               
+            <DropdownField
+              label="Aluminium"
+              options={Aluminium}
+              optionLabel="label"
+              value={formik.values.Aluminium}
+              onChange={(e) => formik.setFieldValue("Aluminium", e.value)}
+              error={formik.touched.Aluminium && formik.errors.Aluminium}
             />
               
               <div style={{ fontSize: 12, color: "red" }} className="m-1">
@@ -385,29 +368,27 @@ const CustomerInfo = ({action}) => {
               </div>
            
           </div>
-          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-1">
-            <DropdownField label="Air Bag"
-             options={AirBag}
-             optionLabel="label"
-            value={formik.values.AirBag}
-                onChange={(e) =>
-                  formik.setFieldValue("AirBag", e.value)
-                }
-               
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+            <DropdownField
+              label="Air Bag"
+              options={AirBag}
+              optionLabel="label"
+              value={formik.values.AirBag}
+              onChange={(e) => formik.setFieldValue("AirBag", e.value)}
+              error={formik.touched.AirBag && formik.errors.AirBag}
             />
             <div style={{ fontSize: 12, color: "red" }} className="m-1">
                 {formik.errors.AirBag}
               </div>
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="TNVS" 
-            options={TNVSdata}
-            optionLabel="label"
-           value={formik.values.TNVS}
-               onChange={(e) =>
-                 formik.setFieldValue("TNVS", e.value)
-               }
-             
+            <DropdownField
+              label="TNVS"
+              options={TNVSdata}
+              optionLabel="label"
+              value={formik.values.TNVS}
+              onChange={(e) => formik.setFieldValue("TNVS", e.value)}
+              error={formik.touched.TNVS && formik.errors.TNVS}
             />
             <div style={{ fontSize: 12, color: "red" }} className="m-1">
                 {formik.errors.TNVS}
@@ -421,13 +402,14 @@ const CustomerInfo = ({action}) => {
                 </Button>
               </div>
               <div className="next__btn__container">
-                <Button className="next__btn" 
-                onClick={() => {
-                  formik.handleSubmit();
-              
-                }}
-                disabled={!formik.isValid}
-                >Next</Button>
+                <Button
+                  className="next__btn"
+                  onClick={() => {
+                    formik.handleSubmit();
+                  }}
+                >
+                  Next
+                </Button>
               </div>
             </div>
           </div>

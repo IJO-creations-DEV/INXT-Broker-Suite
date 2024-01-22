@@ -139,10 +139,10 @@
       font-weight: 400;
       line-height: 21px;
     }
-    .date__svg__main__container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .date__svg__main__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   .p-dialog .p-dialog-header .p-dialog-title {
@@ -151,41 +151,123 @@
     font-size: 24px !important;
     font-weight: 500 !important;
     line-height: 36px !important;
-}
-.p-inputtextarea-resizable {
+  }
+  .p-inputtextarea-resizable {
     overflow: hidden;
     resize: none;
     width: 100%;
-}
-.add__event__btn__container{
+  }
+  .add__event__btn__container {
     display: flex;
     justify-content: flex-end;
     .p-button-label {
-        color: #fff;
-        font-family: Poppins;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-      }
+      color: #fff;
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
   }
 
-  .see__more__container{
+  .see__more__container {
     display: flex;
     gap: 10px;
     align-items: center;
     cursor: default;
-    .see__more__text{
-        color: #111927;
-        font-family: Poppins;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 21px; 
+    .see__more__text {
+      color: #111927;
+      font-family: Poppins;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
     }
   }
+  .custom__full__calendar {
+    .fc-theme-standard .fc-scrollgrid {
+      border: 0px solid var(--fc-border-color);
+    }
+    table {
+      display: table;
+      border-collapse: separate;
+      box-sizing: border-box;
+      text-indent: initial;
+      border-spacing: 0px;
+      border-color: 0px gray;
+    }
+    .fc-theme-standard td,
+    .fc-theme-standard th {
+      border: 0px solid var(--fc-border-color);
+    }
+    .fc .fc-daygrid-day.fc-day-today {
+      background-color: #fff;
+      color: #fff;
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 400 !important;
+      line-height: 24px;
+      border-radius: 100%;
 
+      .fc-daygrid-day-number {
+        padding: 4px;
+        position: relative;
+        z-index: 4;
+        background-color: #6366f1 !important;
+        border-radius: 100%;
+        padding: 8px;
+        color: #fff;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 400 !important;
+        line-height: 24px;
+      }
+    }
+
+    
+    .fc .fc-daygrid-day-frame {
+      min-height: 100%;
+      position: relative;
+      text-align: center;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+    .fc .fc-button-primary:disabled {
+      background-color: #fff;
+      border-color: #fff;
+      color: #fff;
+    }
+    .fc .fc-button-primary {
+      background-color: #fff;
+      border-color: #fff;
+      color: #6366f1;
+    }
+    .fc .fc-toolbar-title {
+      color: #6366f1;
+      margin-top: 0px !important;
+      font-family: Poppins;
+      font-size: 29px;
+      font-weight: 500 !important;
+      line-height: 30px;
+    }
+    .fc table {
+      color: #6366f1;
+      margin-top: 0px !important;
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 400 !important;
+      line-height: 24px;
+    }
+    .fc .fc-button-primary:focus {
+      box-shadow: rgba(76, 91, 106, 0.5) 0px 0px 0px 0rem;
+      border: 0px;
+    }
+    .fc-scrollgrid-sync-inner {
+      font-weight: 400 !important;
+    }
+  }
 }
 .p-dialog .p-dialog-content {
-    background: #ffffff;
-    color: #4b5563;
-    padding: 0 1.5rem 1rem 1.5rem !important;
+  background: #ffffff;
+  color: #4b5563;
+  padding: 0 1.5rem 1rem 1.5rem !important;
 }

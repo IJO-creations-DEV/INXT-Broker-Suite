@@ -1,21 +1,23 @@
 export const CountryOptions = [
-    { label: "Afghanistan", value: "Afghanistan" },
-    { label: "Albania", value: "Albania" },
-    { label: "Algeria", value: "Algeria" },
-    { label: "Andorra", value: "Andorra" },
+    { label: "AFGHANISTAN", value: "AFGHANISTAN" },
+    { label: "ALBANIA", value: "ALBANIA" },
+    { label: "ALGERIA", value: "ALGERIA" },
+    { label: "AMERICAN SAMOA", value: "AMERICAN SAMOA" },
+    { label: "ANDORRA", value: "ANDORRA" },
   ];
   export const CityOptions = [
-    { label: "New York", value: "New York" },
-    { label: "Los Angeles", value: "Los Angeles" },
-    { label: "London", value: "London" },
-    { label: "Paris", value: "Paris" },
-    { label: "Alaba", value: "Alaba" },
+    { label: "Bangued", value: "Bangued" },
+    { label: "Boliney", value: "Boliney" },
+    { label: "Bucay", value: "Bucay" },
+    { label: "Bucloc", value: "Bucloc" },
+    { label: "Daguioman", value: "Daguioman" },
   ];
   export const ProvinceOptions = [
-    { label: "Alabama", value: "Alabama" },
-    { label: "Alaska", value: "Alaska" },
-    { label: "Arizona", value: "Arizona" },
-    { label: "Arkansas", value: "Arkansas" },
+    { label: "Abra", value: "Abra" },
+    { label: "Agusan del Norte", value: "Agusan del Norte" },
+    { label: "Agusan del Sur", value: "Agusan del Sur" },
+    { label: "Aklan", value: "Aklan" },
+    { label: "Albay", value: "Albay" },
   ];
 
   export const TNVSOptions = [
@@ -28,6 +30,7 @@ export const CountryOptions = [
     { label: "METROPOLITAN BANK & TRUST CO.", value: "METROPOLITAN BANK & TRUST CO." },
     { label: "OMNI BANK", value: "OMNI BANK" },
     { label: "PHILAM SAVINGS BANK", value: "PHILAM SAVINGS BANK" },
+    { label: "BANCO DE ORO UNIBANK, INC.", value: "BANCO DE ORO UNIBANK, INC." },
   ]; 
 
 

@@ -1,92 +1,6 @@
 export const menuList = [
-  {
-    name: "Brokerage",
-    // icons: <SvgReportsIcon/>,
-    submenu: [
-      {
-        name: "Home",
-        path: "/agent/home",
-      },
-      {
-        name: "Leads",
-        path: "/agent/leadlisting",
-      },
-      {
-        name: "Clients",
-        path: "/agent/clientlisting",
-      },
-      {
-        name: "Open Items",
-        path: "/agent/openitems",
-      },
-      {
-        name: "Payments",
-        path: "/agent/payments",
-      },
-    ],
-  },
-  {
-    name: "Accounts",
-    submenu: [
-      {
-        id: 1,
-        name: "Receipts",
-        path: "/accounts/receipts/policyreceipts",
-      },
-      {
-        id: 2,
-        name: "Payment Voucher",
-        path: "accounts/paymentvoucher",
-      },
-      {
-        id: 3,
-        name: "Petty Cash",
-        submenu: [
-          {
-            id: 1,
-            name: "Initiate",
-            path: "accounts/pettycash/pettycashcodeinitiate",
-          },
-          {
-            id: 2,
-            name: "Request",
-            path: "accounts/pettycash/request",
-          },
-          {
-            id: 3,
-            name: "Disbursement",
-            path: "accounts/pettycash/disbursement",
-          },
-          {
-            id: 4,
-            name: "Receipts",
-            path: "accounts/pettycash/receipts",
-          },
-          {
-            id: 5,
-            name: "Replenish",
-            path: "accounts/pettycash/replenish",
-          },
-        ],
-      },
-
-      {
-        id: 4,
-        name: "Journal Voucher",
-        path: "/accounts/journalvoucher",
-      },
-      {
-        id: 5,
-        name: "Correction JV",
-        path: "/accounts/correctionsjv/correctionsjvdetails",
-      },
-      {
-        id: 6,
-        name: "Reversal JV",
-        path: "/accounts/reversaljv/reversaljvdetails",
-      },
-    ],
-  },
+  
+  
   {
     name: "Master",
     submenu: [
@@ -271,6 +185,94 @@ export const menuList = [
             path: "master/finance/pettycash",
           },
         ],
+      },
+    ],
+  },
+  {
+    name: "Broker",
+    // icons: <SvgReportsIcon/>,
+    submenu: [
+      {
+        name: "Home",
+        path: "/agent/home",
+      },
+      {
+        name: "Leads",
+        path: "/agent/leadlisting",
+      },
+      {
+        name: "Clients",
+        path: "/agent/clientlisting",
+      },
+      {
+        name: "Open Items",
+        path: "/agent/openitems",
+      },
+      {
+        name: "Payments",
+        path: "/agent/payments",
+      },
+    ],
+  },
+  {
+    name: "Accounts",
+    submenu: [
+      {
+        id: 1,
+        name: "Receipts",
+        path: "/accounts/receipts/policyreceipts",
+      },
+      {
+        id: 2,
+        name: "Payment Voucher",
+        path: "accounts/paymentvoucher",
+      },
+      {
+        id: 3,
+        name: "Petty Cash",
+        submenu: [
+          {
+            id: 1,
+            name: "Initiate",
+            path: "accounts/pettycash/pettycashcodeinitiate",
+          },
+          {
+            id: 2,
+            name: "Request",
+            path: "accounts/pettycash/request",
+          },
+          {
+            id: 3,
+            name: "Disbursement",
+            path: "accounts/pettycash/disbursement",
+          },
+          {
+            id: 4,
+            name: "Receipts",
+            path: "accounts/pettycash/receipts",
+          },
+          {
+            id: 5,
+            name: "Replenish",
+            path: "accounts/pettycash/replenish",
+          },
+        ],
+      },
+
+      {
+        id: 4,
+        name: "Journal Voucher",
+        path: "/accounts/journalvoucher",
+      },
+      {
+        id: 5,
+        name: "Correction JV",
+        path: "/accounts/correctionsjv/correctionsjvdetails",
+      },
+      {
+        id: 6,
+        name: "Reversal JV",
+        path: "/accounts/reversaljv/reversaljvdetails",
       },
     ],
   },

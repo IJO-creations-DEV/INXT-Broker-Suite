@@ -33,7 +33,7 @@ function BranchAdding() {
 
   return (
     <div className="overall_branch-adding_container">
-        <NavBar/>
+        
       <label className="label_header">Add Branch</label>
       <BreadCrumb
         model={items}

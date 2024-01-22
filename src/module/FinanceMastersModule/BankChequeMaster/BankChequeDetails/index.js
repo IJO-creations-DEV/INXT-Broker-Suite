@@ -35,7 +35,7 @@ function BankChequeDetails() {
 
   return (
     <div className="overall_bankchequedetail_container">
-      <NavBar/>
+      
       <div className="bankaccountedit_container">
         <div>
       <label className="label_header">Bank Cheque Details</label>

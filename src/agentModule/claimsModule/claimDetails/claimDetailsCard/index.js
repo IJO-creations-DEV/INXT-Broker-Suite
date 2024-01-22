@@ -208,7 +208,7 @@ const ClaimDetailsCard = () => {
                     </div>
                 </div>
 
-                <div className="grid m-0 mt-2">
+                <div className="grid mt-2">
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField
                             label="Country"
@@ -222,7 +222,7 @@ const ClaimDetailsCard = () => {
                     </div>
                 </div>
 
-                <div className="grid m-0 mt-2">
+                <div className="grid  mt-2">
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField
                             label="City"

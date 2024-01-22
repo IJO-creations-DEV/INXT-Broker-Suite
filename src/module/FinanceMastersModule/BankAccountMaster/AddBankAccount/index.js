@@ -44,7 +44,7 @@ function AddBankAccount() {
 
   return (
     <div className="overall_addbankaccount_container">
-        <NavBar/>
+        
       <label className="label_header">Add Bank Account</label>
       <BreadCrumb
         model={items}

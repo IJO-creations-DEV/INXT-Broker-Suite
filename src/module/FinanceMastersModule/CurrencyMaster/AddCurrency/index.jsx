@@ -109,7 +109,7 @@ const AddCurrency = () => {
 
     return (
         <div className='grid sub__add__container'>
-          <NavBar/>
+          
               <CustomToast ref={toastRef} message="Add Currency Successfully"/>
             <div className='col-12 mb-2'>
               <div className='back_container'>

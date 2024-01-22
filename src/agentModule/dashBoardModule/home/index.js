@@ -15,9 +15,26 @@ import { useNavigate } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
 import { useSelector } from "react-redux";
 import NavBar from "../../../components/NavBar";
+import SvgFrame from "../../../assets/agentIcon/SvgFrame";
+import { InputText } from 'primereact/inputtext';
+        
+
 
 const Dashboard = () => {
+
+
+
+  const clientdata =[{
+    name:"Carson Darrin",
+    clientId:"123"
+  },
+  {
+    name:"qwerty",
+    clientId:"1234"
+  }]
+
   const [visible, setVisible] = useState(false);
+  const [existclient, setexistclient] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
 
@@ -105,10 +122,13 @@ const Dashboard = () => {
   const handleclick = () => {
     navigate("/agent/createlead");
   };
+  const handleclientid = ()=>{
+    navigate("/agent/createquote/policydetails");
+  }
 
   return (
     <div className="dasboard__container">
-      {/* <NavBar/> */}
+      {/*  */}
       <div className="grid  mt-2" style={{ padding: "0px 12px" }}>
         <div className="col-12 md:col-6 lg:col-6">
           <div className="dasboard__container__title">Good Day to You !</div>
@@ -145,14 +165,50 @@ const Dashboard = () => {
           >
             New Lead
           </div>
-          <div className="dailog__box__inputs__existing__container mt-3 mb-6">
-            <div className="dailog__box__inputs__existing">Existing Client</div>
+          <div className="dailog__box__inputs__existing__container mt-3 mb-6" onClick={() => setexistclient(true)  }>
+            <div className="dailog__box__inputs__existing"  >Existing Client</div>
             <div className="dailog__box__inputs__svg">
               <SvgSearch />
             </div>
           </div>
         </div>
       </Dialog>
+
+      <Dialog header="Search" visible={existclient} style={{ width: '40vw' }} onHide={() => setexistclient(false)}>
+                <div className="dialog__existingclient__container">
+<div className="dialog__existingclient__header__container">
+  <SvgFrame/>
+  <div style={{display:'flex'}}>
+  <span className="dialog__existingclient___tip">Tip.</span>
+   <div className="dialog__existingclient___search">Search by entering a Client Name or Client ID</div>
+   </div>
+</div>
+<div class="grid">
+          <div class="col-12 md:col-12 lg:col-12">
+            <span className="p-input-icon-left" style={{width:"100%"}}>
+              <i className="pi pi-search" />
+              <InputText placeholder="Search" style={{ width: "100%",borderRadius:"10px" }}/>
+            </span>
+          </div>
+          </div>
+
+      
+      {clientdata?.map((data,index)=>{
+        console.log(data,'find data is coming')
+        return(
+        
+        <div className="dialog__existingclient__carddata" onClick={()=>{handleclientid()}}>
+            <div className="dialog__existingclient__carddata__name">{data?.name}</div>
+            <div className="dialog__existingclient__carddata__id">Client ID :{data?.clientId}</div>
+            </div>
+        )
+      })}
+
+      
+          
+          
+                </div>
+            </Dialog>
     </div>
   );
 };

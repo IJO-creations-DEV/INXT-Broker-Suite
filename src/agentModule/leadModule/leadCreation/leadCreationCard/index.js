@@ -406,12 +406,12 @@ const LeadCreationCard = () => {
         </div>
 
         <div className="save_continue_conatiner">
-          <Button
+          {/* <Button
             label="Save Lead"
             onClick={handleSaveLead}
             text
             className="btn_lable_container"
-          />
+          /> */}
           <div className="btn_lable_save_container">
             <Button
               onClick={() => {

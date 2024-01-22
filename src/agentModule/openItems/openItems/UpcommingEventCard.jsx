@@ -1,6 +1,7 @@
 import React from 'react'
 import SvgCalendertracker from '../../../assets/agentIcon/SvgCalendertracker'
 import moment from 'moment'
+import './index.scss'
 
 const UpcommingEventCard = ({ data }) => {
     return (

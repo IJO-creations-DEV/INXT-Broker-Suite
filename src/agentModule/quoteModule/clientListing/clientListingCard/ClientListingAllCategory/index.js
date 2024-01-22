@@ -176,24 +176,31 @@ const ClientListingAllCategory = ({ TableData }) => {
       </div>
     );
   };
+  const handleSvg = (type, index) => {
+    const colors = [
+      '#D4635D',
+      '#67D07A',
+      '#D4635D',
+      '#874EFF',
+      '#EDC63B',
+      '#A36EFF',
+      '#5DCB67',
+      '#6366F1',
+      '#D8BFD8',
+      '#FFA07A'
+    ];
+    
+  const backgroundColor = colors[parseInt(index) % colors.length] || '#CCCCCC'; 
+  console.log(parseInt(index) % colors.length,'find')
 
-  const handleSvg = (type) => {
-    // if (type == 'motor') {
-    //   return <SvgMotorTable />
-    // }
-    // else if (type == 'travel') {
-    //   return <SvgTravlesTable />
-    // }
-    // else if (type == 'home') {
-    //   return <SvgHomeTable />
-    // }
-    return <Avatar label={type.charAt(0)} size="xlarge" shape="circle" />;
+  return <Avatar label={type.charAt(0)} size="xlarge" shape="circle" style={{ backgroundColor:backgroundColor,color:'#fff'}} />;
   };
+
 
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{handleSvg(rowData.Name)}</div>
+        <div>{handleSvg(rowData.Name,rowData.id)}</div>
         <div>
           <div className="name__text">{rowData.Name}</div>
           <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
@@ -305,16 +312,7 @@ const ClientListingAllCategory = ({ TableData }) => {
           scrollable={true}
           scrollHeight="60vh"
         >
-          <Column
-            selectionMode={selectionMode}
-            body={(rowData) => (
-              <Checkbox
-                checked={selectedProducts.includes(rowData)}
-                onChange={() => {}}
-              />
-            )}
-            headerStyle={headerStyle}
-          ></Column>
+          
           <Column
             body={renderName}
             header={rendercheckedHeader("Name")}

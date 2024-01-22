@@ -278,16 +278,7 @@ style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }} />
           scrollable={true}
           scrollHeight="60vh"
         >
-          <Column
-            selectionMode={selectionMode}
-            body={(rowData) => (
-              <Checkbox
-                checked={selectedProducts.includes(rowData)}
-                onChange={() => {}}
-              />
-            )}
-            headerStyle={headerStyle}
-          ></Column>
+          
           <Column
             body={renderName}
             header={rendercheckedHeader("Name")}

@@ -277,16 +277,7 @@ const ClientListingCompanyCategory = () => {
           scrollable={true}
           scrollHeight="60vh"
         >
-          <Column
-            selectionMode={selectionMode}
-            body={(rowData) => (
-              <Checkbox
-                checked={selectedProducts.includes(rowData)}
-                onChange={() => {}}
-              />
-            )}
-            headerStyle={headerStyle}
-          ></Column>
+          
           <Column
             body={renderName}
             header={rendercheckedHeader("Name")}

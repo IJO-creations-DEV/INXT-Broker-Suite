@@ -38,7 +38,7 @@ function BranchDetailsView() {
 
   return (
     <div className="overall_branch_details_view_container">
-      <NavBar/>
+      
       <label className="label_header">Branch Details</label>
       <div className="next_container">
         <div className="exit_print_buttons">

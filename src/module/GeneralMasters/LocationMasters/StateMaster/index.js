@@ -132,7 +132,7 @@ const State = () => {
 
   return (
     <div className='overall__state__container'>
-         <NavBar/>
+         
 <div className="overallfilter_container">
          <div >
             <label className='label_header'>State</label>

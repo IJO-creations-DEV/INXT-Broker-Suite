@@ -33,7 +33,7 @@ function BankAccountdetails() {
 
   return (
     <div className="overall_bankaccountdetail_container">
-        <NavBar/>
+        
         <div className="bankaccountedit_container">
         <div>
       <label className="label_header">Bank Account details</label>

@@ -104,7 +104,7 @@ const ResponsiveDrawer = () => {
                     <SvgReportsIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />
-                  ) : data.name === "Brokerage" ? (
+                  ) : data.name === "Broker" ? (
                     <SvgReportsIcon
                       color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
                     />

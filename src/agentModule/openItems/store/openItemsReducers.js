@@ -8,31 +8,31 @@ const initialState = {
     upcommingEventsList: [
         {
         date: "22/01/2024",
-        description: 'Meeting With DR.Justin',
+        description: 'Meeting With Dr.Justin',
         from: '17:00',
         to: '18:00', id: 1
     },
     {
         date: "22/01/2024",
-        description: 'Meeting With DR.Justin',
+        description: 'Meeting With Dr.Pathi',
         from: '17:00',
         to: '18:00', id: 1
     },
     {
         date: "22/01/2024",
-        description: 'Meeting With DR.Justin',
+        description: 'Meeting With Dr.Yuva',
         from: '17:00',
         to: '18:00', id: 1
     },
     {
         date: "22/01/2024",
-        description: 'Meeting With DR.Justin',
+        description: 'Meeting With Dr.Shanmu',
         from: '17:00',
         to: '18:00', id: 1
     },
     {
         date: "22/01/2024",
-        description: 'Meeting With DR.Justin',
+        description: 'Meeting With Dr.Leo',
         from: '17:00',
         to: '18:00', id: 1
     }

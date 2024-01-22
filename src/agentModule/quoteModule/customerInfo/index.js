@@ -51,6 +51,10 @@ const CustomerInfo = ({ action }) => {
   //   }
   // }
   const handleSubmit = (values) => {
+    if (!values.file) {
+      alert("please select file")
+      return;
+    }
     if (action === "edit" && postcustomerinfodata) {
       const valueWithId = {
         ...values,
@@ -150,6 +154,9 @@ const CustomerInfo = ({ action }) => {
     if (!values.TNVS) {
       errors.TNVS = "This field is required";
     }
+    if (!values.file) {
+      errors.file = "This field is required";
+    }
     return errors;
   };
 
@@ -200,6 +207,7 @@ const CustomerInfo = ({ action }) => {
         <div className="customer__info__back__btn__title">
           <span className="cursor-poiter icon__container">
             <SvgLeftArrow />
+
           </span>
           Lead ID: 12345678
         </div>
@@ -228,12 +236,17 @@ const CustomerInfo = ({ action }) => {
                     accept=".png,.jpg,.jpeg"
                     // maxFileSize={2000000}
                     uploadHandler={(e) => {
-                      handleUppendImg(
-                        e.options.props.name,
-                        e.files[0],
-                        "the data"
-                      );
+                      formik.setFieldValue("file", e.files[0]);
+                      handleUppendImg(e.options.props.name, e.files[0], "the data");
                     }}
+                    // uploadHandler={(e) => {
+                    //   formik.setFieldValue("file", e.files[0]);
+                    //   handleUppendImg(
+                    //     e.options.props.name,
+                    //     e.files[0],
+                    //     "the data"
+                    //   );
+                    // }}
                   />
                   <div className="icon_click_option">
                     <SvgImageUpload />
@@ -249,9 +262,19 @@ const CustomerInfo = ({ action }) => {
                 <img src={imageURL} alt="Image" className="image__view" />
               </div>
             )}
+              {formik.touched.file && formik.errors.file && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.file}
+              </div>
+            )}
           </div>
           <div class="col-12 mt-2">
             <InputTextField label="ID Card Number" />
+            {/* {formik.touched.MotorNumber && formik.errors.MotorNumber && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.MotorNumber}
+              </div>
+            )} */}
           </div>
         </div>
         <div className="customer__info__subtitle mt-2 mb-2">
@@ -264,6 +287,11 @@ const CustomerInfo = ({ action }) => {
               value={formik.values.MotorNumber}
               onChange={formik.handleChange("MotorNumber")}
             />
+                 
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.Mortgage}
+              </div>
+       
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <InputTextField
@@ -319,6 +347,11 @@ const CustomerInfo = ({ action }) => {
               onChange={(e) => formik.setFieldValue("TruckType", e.value)}
               error={formik.touched.TruckType && formik.errors.TruckType}
             />
+              
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.TruckType}
+              </div>
+         
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField
@@ -329,6 +362,11 @@ const CustomerInfo = ({ action }) => {
               onChange={(e) => formik.setFieldValue("Aluminium", e.value)}
               error={formik.touched.Aluminium && formik.errors.Aluminium}
             />
+              
+              <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.Aluminium}
+              </div>
+           
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField
@@ -339,6 +377,9 @@ const CustomerInfo = ({ action }) => {
               onChange={(e) => formik.setFieldValue("AirBag", e.value)}
               error={formik.touched.AirBag && formik.errors.AirBag}
             />
+            <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.AirBag}
+              </div>
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField
@@ -349,6 +390,9 @@ const CustomerInfo = ({ action }) => {
               onChange={(e) => formik.setFieldValue("TNVS", e.value)}
               error={formik.touched.TNVS && formik.errors.TNVS}
             />
+            <div style={{ fontSize: 12, color: "red" }} className="m-1">
+                {formik.errors.TNVS}
+              </div>
           </div>
           <div className="col-12 mt-2">
             <div className="back__next__btn__container">

@@ -9,6 +9,9 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { postClaimDetailsData } from '../store/claimDetailsMiddleWare';
 
+
+
+
 const ClaimDetailsCard = () => {
     const [checked, setChecked] = useState(false);
     const navigate = useNavigate()
@@ -75,21 +78,21 @@ const ClaimDetailsCard = () => {
     });
     const handleCheckboxChange = (e) => {
         setChecked(e.checked);
-        if (e.checked) {
-            formik.setValues({
-                InsuranceCompanyName: claimDetailsViewData.InsuranceCompanyName || '',
-                PolicyNumber: claimDetailsViewData.PolicyNumber || '',
-                PolicyHolderName: claimDetailsViewData.PolicyHolderName || '',
-                HouseNo: claimDetailsViewData.HouseNo || '',
-                Barangay: claimDetailsViewData.Barangay || '',
-                CountryName: claimDetailsViewData.CountryName || '',
-                Province: claimDetailsViewData.Province || '',
-                CityName: claimDetailsViewData.CityName || '',
-                ZipCode: claimDetailsViewData.ZipCode || '',
-            });
-        } else {
-            formik.resetForm();
-        }
+        // if (e.checked) {
+        //     formik.setValues({
+        //         InsuranceCompanyName: claimDetailsViewData.InsuranceCompanyName || '',
+        //         PolicyNumber: claimDetailsViewData.PolicyNumber || '',
+        //         PolicyHolderName: claimDetailsViewData.PolicyHolderName || '',
+        //         HouseNo: claimDetailsViewData.HouseNo || '',
+        //         Barangay: claimDetailsViewData.Barangay || '',
+        //         CountryName: claimDetailsViewData.CountryName || '',
+        //         Province: claimDetailsViewData.Province || '',
+        //         CityName: claimDetailsViewData.CityName || '',
+        //         ZipCode: claimDetailsViewData.ZipCode || '',
+        //     });
+        // } else {
+        //     formik.resetForm();
+        // }
     };
 
 
@@ -194,27 +197,27 @@ const ClaimDetailsCard = () => {
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField
                             label="House No / Unit No / Street"
-                            value={checked?claimDetailsViewData.HouseNo:""}
+                            value={checked ? claimDetailsViewData.HouseNo : ""}
                         />
                     </div>
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField
                             label="Barangay / Subd"
-                            value={checked?claimDetailsViewData.Barangay:""}
+                            value={checked ? claimDetailsViewData.Barangay : ""}
                         />
                     </div>
                 </div>
 
                 <div className="grid m-0 mt-2">
                     <div className="col-12 md:col-6 lg:col-6">
-                        <InputTextField 
-                        label="Country"
-                        value={checked?claimDetailsViewData.CountryName:""}
-                         />
+                        <InputTextField
+                            label="Country"
+                            value={checked ? claimDetailsViewData.CountryName : ""}
+                        />
                     </div>
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField label="Province"
-                            value={checked?claimDetailsViewData.Province:""}
+                            value={checked ? claimDetailsViewData.Province : ""}
                         />
                     </div>
                 </div>
@@ -223,13 +226,13 @@ const ClaimDetailsCard = () => {
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField
                             label="City"
-                            value={checked?claimDetailsViewData.CityName:""}
+                            value={checked ? claimDetailsViewData.CityName : ""}
                         />
                     </div>
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField
                             label="ZIP Code"
-                            value={checked?claimDetailsViewData.ZipCode:""}
+                            value={checked ? claimDetailsViewData.ZipCode : ""}
                         />
                     </div>
                 </div>

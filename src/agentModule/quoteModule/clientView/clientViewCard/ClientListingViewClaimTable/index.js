@@ -288,12 +288,28 @@ const LeadListingAllTable = () => {
   }
   const [search, setSearch] = useState("")
   const dispatch = useDispatch()
-  useEffect(() => {
-    if (search?.length > 0) {
-      dispatch(getClaimTabelSearchList(search))
-    }
-  }, [search])
+  // useEffect(() => {
+  //   if (search?.length > 0) {
+  //     dispatch(getClaimTabelSearchList(search))
+  //   }
+  // }, [search])
 
+  const [globalFilter, setGlobalFilter] = useState("policy Number");
+  const cities = [
+    { name: "Policy Number", code: "policy Number" },
+    { name: "ClientID", code: "ClientID" },
+  ];
+
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        getClaimTabelSearchList({
+          field: globalFilter,
+          value: search,
+        })
+      );
+    }
+  }, [search]);
   const handleView = (rowData) => {
     console.log(rowData, "find rowData");
     if (rowData?.Status === "Rejected") {
@@ -358,8 +374,16 @@ const LeadListingAllTable = () => {
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown optionLabel="name" className="feat_searchby_container"
-            placeholder="Search by" dropdownIcon={<SvgDownArrow />} />
+          <Dropdown
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.value)}
+            options={cities}
+            optionLabel="name"
+            optionValue="code"
+            placeholder="Search by"
+            className="feat_searchby_container"
+            dropdownIcon={<SvgDownArrow />}
+          />
         </div>
       </div>
       <div className="lead__table__container">

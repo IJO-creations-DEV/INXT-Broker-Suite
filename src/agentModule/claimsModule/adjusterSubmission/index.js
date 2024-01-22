@@ -66,6 +66,12 @@ const AdjusterSubmission = () => {
     province: "",
     city: "",
     zipCode: "",
+    name: "",
+    contactNumber: "",
+    plateNumber: "",
+    unit: "",
+    shop: "",
+    insuranceCompanyName: "",
     file: null,
   };
   const customValidation = (values) => {
@@ -108,6 +114,27 @@ const AdjusterSubmission = () => {
     if (!values.zipCode) {
       errors.zipCode = "This field is required";
     }
+    if (!values.name) {
+      errors.name = "This field is required";
+    }
+    if (!values.contactNumber) {
+      errors.contactNumber = "This field is required";
+    }
+    if (!values.plateNumber) {
+      errors.plateNumber = "This field is required";
+    }
+    if (!values.unit) {
+      errors.unit = "This field is required";
+    }
+    if (!values.shop) {
+      errors.shop = "This field is required";
+    }
+    if (!values.insuranceCompanyName) {
+      errors.insuranceCompanyName = "This field is required";
+    }
+    if (!values.zipCode) {
+      errors.zipCode = "This field is required";
+    }
     if (!values.file) {
       errors.file = "Please select a file";
     }
@@ -127,6 +154,8 @@ const AdjusterSubmission = () => {
     validate: customValidation,
     onSubmit: handleSubmit,
   });
+
+  
 
   return (
     <div className="claim__request__upload__container">
@@ -313,22 +342,69 @@ const AdjusterSubmission = () => {
             Third Party Details (If Applicable)
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Name" />
+            <InputTextField label="Name"
+              value={formik.values.name}
+              onChange={formik.handleChange("name")}
+            />
+            {formik.touched.name && formik.errors.name && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.name}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Contact Number" />
+            <InputTextField label="Contact Number"
+              value={formik.values.contactNumber}
+              onChange={formik.handleChange("contactNumber")}
+            />
+            {formik.touched.contactNumber && formik.errors.contactNumber && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.contactNumber}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Plate Number" />
+            <InputTextField label="Plate Number"
+              value={formik.values.plateNumber}
+              onChange={formik.handleChange("plateNumber")}
+            />
+            {formik.touched.plateNumber && formik.errors.plateNumber && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.plateNumber}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Unit" />
+            <InputTextField label="Unit"
+              value={formik.values.unit}
+              onChange={formik.handleChange("unit")}
+            />
+            {formik.touched.unit && formik.errors.unit && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.unit}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Shop" />
+            <InputTextField label="Shop" value={formik.values.shop}
+              onChange={formik.handleChange("shop")}
+            />
+            {formik.touched.shop && formik.errors.shop && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.shop}
+              </div>
+            )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Insurance Company Name*" />
+            <InputTextField label="Insurance Company Name*"
+              value={formik.values.insuranceCompanyName}
+              onChange={formik.handleChange("insuranceCompanyName")}
+            />
+            {formik.touched.insuranceCompanyName && formik.errors.insuranceCompanyName && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.insuranceCompanyName}
+              </div>
+            )}
           </div>
           <div className="col-12 claim__request__upload__subtitle mt-2 mb-2">
             Proof of Documents
@@ -352,7 +428,7 @@ const AdjusterSubmission = () => {
                   handleUppendImg(e.options.props.name, e.files[0], "the data");
                 }}
               />
-             
+
               <div className="icon_click_option">
                 <SvgImageUpload />
               </div>
@@ -363,10 +439,10 @@ const AdjusterSubmission = () => {
             </div>
           </div>
           {formik.touched.file && formik.errors.file && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.file}
-                </div>
-              )}
+            <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+              {formik.errors.file}
+            </div>
+          )}
           {uploadImage && (
             <div class="col-12 mt-2 ">
               <span onClick={handleCancelUplaoded}>

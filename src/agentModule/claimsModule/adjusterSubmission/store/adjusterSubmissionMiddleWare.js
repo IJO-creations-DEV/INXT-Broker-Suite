@@ -30,7 +30,12 @@ export const postAdjusterSubmission = createAsyncThunk(
             province: payload?.province,
             city: payload?.city,
             zipCode: payload?.zipCode,
-
+            name:payload?.name,
+            contactNumber:payload?.contactNumber,
+            plateNumber:payload?.plateNumber,
+            unit: payload?.unit,
+            shop: payload?.shop,
+            insuranceCompanyName: payload?.insuranceCompanyName,
         };
 
         try {

@@ -6,10 +6,12 @@ import ClientListingIndividualCategory from "./ClientListingIndividualCategory";
 import ClientListingCompanyCategory from "./ClientListingCompanyCategory";
 import { useSelector } from "react-redux";
 
+
 const ClientListingCard = () => {
-  const { allClientList } = useSelector(({ clientsReducers }) => {
+  const { allClientList,paymentSearchList } = useSelector(({ clientsReducers,agentPaymentMainReducers}) => {
     return {
       allClientList: clientsReducers?.clientListTable,
+      paymentSearchList: clientsReducers?.paymentSearchList,
     };
   });
   return (
@@ -17,13 +19,13 @@ const ClientListingCard = () => {
       <Card>
         <TabView>
           <TabPanel header="All">
-            <ClientListingAllCategory TableData={allClientList} />
+            <ClientListingAllCategory TableData={allClientList} paymentSearchList={paymentSearchList}/>
           </TabPanel>
           <TabPanel header="Individual">
-            <ClientListingIndividualCategory />
+            <ClientListingIndividualCategory TableData={allClientList} paymentSearchList={paymentSearchList}/>
           </TabPanel>
           <TabPanel header="Company">
-            <ClientListingCompanyCategory />
+            <ClientListingCompanyCategory TableData={allClientList} paymentSearchList={paymentSearchList}/>
           </TabPanel>
         </TabView>
       </Card>

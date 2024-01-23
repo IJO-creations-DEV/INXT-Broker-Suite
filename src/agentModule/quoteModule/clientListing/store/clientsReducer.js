@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getClientTableMiddleware } from "./clientsMiddleware";
+import { getClientTableMiddleware,getPaymentSearchDataMiddleWare} from "./clientsMiddleware";
 
 
 const initialState = {
@@ -150,6 +150,20 @@ const clientReducer = createSlice({
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );
+
+        builder.addCase(getPaymentSearchDataMiddleWare.pending, (state) => {
+            state.loading = true;
+          });
+          builder.addCase(getPaymentSearchDataMiddleWare.fulfilled, (state, action) => {
+            state.loading = false;
+            state.paymentSearchList = action.payload;
+          });
+          builder.addCase(getPaymentSearchDataMiddleWare.rejected, (state, action) => {
+            state.loading = false;
+      
+            state.paymentSearchList = {};
+            state.error = typeof action.payload === "string" ? action.payload : "";
+          });
     }
 
 

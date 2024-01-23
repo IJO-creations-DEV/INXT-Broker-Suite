@@ -3,6 +3,7 @@ import {
   POST_CREATELEAD_DATA,
   GET_LEADTABLE_DATA,
   PATCH_LEADEDIT_DATA,
+  GET_PAYMENT_SEARCH 
 } from "../../../redux/actionTypes";
 
 export const getleadtableMiddleware = createAsyncThunk(
@@ -61,5 +62,41 @@ export const patchLeadEditMiddleWare = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
+  }
+);
+export const getPaymentSearchDataMiddleWare = createAsyncThunk(
+  GET_PAYMENT_SEARCH,
+  async ({ field, value }, { rejectWithValue, getState }) => {
+      console.log(field, value, "data find");
+      const { leadReducers } = getState();
+      const { leadtabledata } = leadReducers;
+      console.log(leadReducers,"leadReducers");
+      
+      function filterPaymentsByField(data, field, value) {
+          const lowercasedValue = value.toLowerCase();
+          const outputData = data.filter(item => {
+
+              if (field === 'Name') {
+                  return item.Name.toLowerCase().includes(lowercasedValue);
+              } else if (field === 'LeadID') {
+                  return item.LeadID.toLowerCase().includes(lowercasedValue);
+              }
+              return (
+                  (item.Name.toLowerCase().includes(lowercasedValue) ||
+                      item.LeadID.toLowerCase().includes(lowercasedValue))
+
+              );
+
+
+          });
+          return outputData
+      }
+      try {
+          const filteredPayments = filterPaymentsByField(leadtabledata, field, value);
+          console.log(filteredPayments, "filteredPayments");
+          return filteredPayments;
+      } catch (error) {
+          return rejectWithValue(error?.response?.data?.error?.message);
+      }
   }
 );

@@ -14,11 +14,35 @@ import SvgHomeTable from "../../../../../assets/agentIcon/SvgHomeTable";
 import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
+import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const LeadListingHomeTable = () => {
+const LeadListingHomeTable = ({paymentSearchList}) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
+  const [globalFilter, setGlobalFilter] = useState("Name");
+  const [status,setStatus]=useState("")
+  const [search,setSearch]=useState("")
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cities = [
+    { name: "Name", code: "Name" },
+    { name: "LeadID", code: "LeadID" },
+   
+  ];
+
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        getPaymentSearchDataMiddleWare({
+          field: globalFilter,
+          value: search,
+          // status1: status,
+        })
+      );
+    }
+  }, [search]);
 
   const TableData = [
     {
@@ -256,22 +280,27 @@ const LeadListingHomeTable = () => {
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" />
+            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} style={{ width: "100%", padding: "1rem 2.75rem", borderRadius: "10px" }} />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
           {/* <TableDropdownField label="Search By" /> */}
           <Dropdown
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.value)}
+            options={cities}
             optionLabel="name"
-            className="feat_searchby_container"
+            optionValue="code"
             placeholder="Search by"
-            dropdownIcon={<SvgDownArrow />}
+            className="sorbyfilter__style"
+            dropdownIcon={<SvgDropdownicon />}
           />
+        
         </div>
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={TableData}
+          value={search ? paymentSearchList : TableData}
           paginator
           rows={5}
           selectionMode={selectionMode}

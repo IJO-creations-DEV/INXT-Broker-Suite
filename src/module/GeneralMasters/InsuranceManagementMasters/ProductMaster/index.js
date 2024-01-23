@@ -32,21 +32,11 @@ const Index = () => {
   return (
     <div className="container__product___master">
       <div className="grid m-0 top__container">
-        <div className="col-12 p-0"></div>
-        <div className="col-12 p-0">
+        
+        <div className="col-12 p-0 " 
+style={{display:'flex',justifyContent:'space-between'}}>
+          
           <div className="main__account__title">Product</div>
-        </div>
-        <div className="col-12 p-0 flex justify-content-end">
-          {/* <Button
-            icon={
-              <div className="pr-2">
-                <SvgUploade />
-              </div>
-            }
-            className="main__btn__action__upload mr-4"
-          >
-            Upload
-          </Button> */}
           <Button
             icon={
               <div className="pr-2">

@@ -42,26 +42,34 @@ const DepartMentList = () => {
 
 
   const template2 = {
-    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 }
+        { label: 120, value: 120 },
       ];
 
       return (
-        <React.Fragment >
-          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-            Row count :{' '}
-          </span>
-          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
-        </React.Fragment>
+        <div className="table__selector">
+          {/* <React.Fragment> */}
+            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdown_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          {/* </React.Fragment> */}
+        </div>
       );
     },
-
   };
+
   const handleView = (columnData) => {
     dispatch(getDepatmentView(columnData))
     setVisibleView(true)
@@ -74,7 +82,7 @@ const DepartMentList = () => {
     fontSize: 16,
     fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
   };
@@ -168,16 +176,16 @@ const DepartMentList = () => {
         <DataTable value={departmentList} tableStyle={{ minWidth: '50rem', marginTop: '1rem' }}
           paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
           // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-          currentPageReportTemplate="{first} - {last} of {totalRecords}"
+           currentPageReportTemplate="{first} - {last} of {totalRecords}"
           paginatorTemplate={template2} scrollable={true}
           scrollHeight="40vh"
           emptyMessage={isEmpty ? emptyTableIcon : null}
 
         >
 
-          <Column field="DepartmentCode" header="Department Code"></Column>
-          <Column field="DepartmentName" header="Department Name"></Column>
-          <Column field="Status" header="Status"></Column>
+          <Column field="DepartmentCode" header="Department Code" headerStyle={headerStyle}></Column>
+          <Column field="DepartmentName" header="Department Name" headerStyle={headerStyle}></Column>
+          <Column field="Status" header="Status" headerStyle={headerStyle}></Column>
           <Column
             body={(columnData) => (
               <div className="action_icons">
@@ -187,11 +195,14 @@ const DepartMentList = () => {
             )}
             header="Action"
             headerStyle={headeraction}
-            className="fieldvalue_container"
+            className="fieldactionvalue_container"
           >
 
           </Column>
         </DataTable>
+
+
+        
 
       </div>
       <Dialog header="Add Department" visible={visible} style={{ width: '40vw' }} onHide={() => setVisible(false)}>

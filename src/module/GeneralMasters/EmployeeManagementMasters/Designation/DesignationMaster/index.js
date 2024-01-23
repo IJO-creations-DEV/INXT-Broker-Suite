@@ -44,7 +44,7 @@ const DesignationMaster = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
   };
@@ -52,7 +52,7 @@ const DesignationMaster = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
     display: "flex",
@@ -104,23 +104,23 @@ const DesignationMaster = () => {
       ];
 
       return (
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdown_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+        <div className="table__selector">
+          
+            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdown_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+         
+        </div>
       );
     },
   };
+
   return (
     <div className="grid overall__designation__master__container">
       <div className="col-12"></div>
@@ -226,7 +226,7 @@ const DesignationMaster = () => {
                   body={renderViewButton}
                   header="Action"
                   headerStyle={{ ...ViewheaderStyle }}
-                  className="fieldvalue_container centered"
+                  className="fieldvalue_container_centered"
                 ></Column>
               </DataTable>
             </div>

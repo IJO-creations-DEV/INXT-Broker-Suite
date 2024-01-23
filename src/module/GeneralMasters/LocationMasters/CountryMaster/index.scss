@@ -1,5 +1,6 @@
 .overall__country__container{
     // background-color: green;
+   
     .label_header{
        
 color: #111927;
@@ -18,7 +19,8 @@ font-weight: 600;
     .action_icons {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
+        padding: 0rem 1rem !important;
     }
     .subheading_conatiner{
         color: #111927;
@@ -142,12 +144,15 @@ margin: 8px;
     font-size: 16px;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
+    padding: 1rem !important;
    
 }
+
 .menubutton_popup{
     background-color: #fff;
     border-style: hidden
 }
+
 // .p-button:not(:disabled):hover {
 //      background: #fff; 
 //     color: #ffffff;

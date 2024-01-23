@@ -13,6 +13,7 @@ import ToggleButton from "../../../../../components/ToggleButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { getSearchInsuranceCompanyMiddleware } from "../store/insuranceCompanyMiddleware";
+
 const TableData = ({ navigate }) => {
   const dispatch = useDispatch();
   const { InsuranceCompanyList, loading, SearchTableList } = useSelector(
@@ -24,7 +25,28 @@ const TableData = ({ navigate }) => {
       };
     }
   );
-
+  const headeraction ={
+    fontSize: 16,
+      fontFamily: 'Inter, sans-serif',
+      fontWeight: 500,
+      padding: "1rem",
+      color:'#000',
+      border: 'none',
+      // display:'flex',
+      // justifyContent:'space-around',
+      // alignItem:'center'
+  }
+  
+  const headerstyle = {
+    // width: '10rem',
+    // backgroundColor: 'red',
+    fontSize: 16,
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 500,
+    padding: "1rem",
+    color:'#000',
+    border: 'none',
+};
   const emptyTableIcon = (
     <div>
       <div className="empty-table-icon">
@@ -46,7 +68,7 @@ const TableData = ({ navigate }) => {
 
       return (
         <div className="table__selector">
-          <React.Fragment>
+          
             <span style={{ color: "var(--text-color)", userSelect: "none" }}>
               Row count :{" "}
             </span>
@@ -56,7 +78,7 @@ const TableData = ({ navigate }) => {
               options={dropdownOptions}
               onChange={options.onChange}
             />
-          </React.Fragment>
+         
         </div>
       );
     },
@@ -138,54 +160,63 @@ const TableData = ({ navigate }) => {
       >
         <Column
           field="insuranceCompanyCode"
-          header="Insurance Company  Code"
+          header="Company  Code"
           className="fieldvalue_container"
+          headerStyle={headerstyle}
           sortable
         ></Column>
         <Column
           field="insuranceCompanyName"
-          header="Insurance Company Name"
+          header="Company Name"
           className="fieldvalue_container"
+          headerStyle={headerstyle}
         ></Column>
         <Column
           field="email"
           header="E-mail"
           className="fieldvalue_container"
+          headerStyle={headerstyle}
         ></Column>
         <Column
           field="phoneNumber"
+          headerStyle={headerstyle}
           header="Phone Number"
           className="fieldvalue_container"
         ></Column>
         <Column
           field="modifiedby"
           header="Modified by"
+          headerStyle={headerstyle}
           className="fieldvalue_container"
         ></Column>
         <Column
           field="modifiedOn"
           header="Modified On"
           className="fieldvalue_container"
+          headerStyle={headerstyle}
         ></Column>
         <Column
           field="status"
           header="status"
           className="fieldvalue_container"
+          headerStyle={headerstyle}
           body={(columnData) => <ToggleButton id={columnData.id} />}
         ></Column>
         <Column
-          style={{
-            padding: "20px 1rem 17px 0px",
-          }}
+          // style={{
+          //   padding: "20px 1rem 17px 0px",
+          // }}
           field="id"
           body={renderActionButton}
           header="Action"
-          headerStyle={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          // className="fieldvalue_container"
+          // headerStyle={{
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          // }}
           className="fieldvalueaction_container"
+          headerStyle={headeraction}
         ></Column>
       </DataTable>
     </div>

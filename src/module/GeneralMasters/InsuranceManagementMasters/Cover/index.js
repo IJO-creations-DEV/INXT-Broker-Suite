@@ -33,11 +33,11 @@ const Index = () => {
     <div className="container__cover_master">
       <div className="grid m-0 top__container">
         <div className="col-12 p-0"></div>
-        <div className="col-12 p-0">
+        {/* <div className="col-12 p-0">
           <div className="main__account__title">Cover Master</div>
-        </div>
-        <div className="col-12 p-0 flex justify-content-end">
-          <Button
+        </div> */}
+        <div className="col-12 p-0 " style={{display:'flex',justifyContent:'space-between'}}>
+          {/* <Button
             icon={
               <div className="pr-2">
                 <SvgUploade />
@@ -46,7 +46,8 @@ const Index = () => {
             className="main__btn__action__upload mr-4"
           >
             Upload
-          </Button>
+          </Button> */}
+          <div className="main__account__title">Cover Master</div>
           <Button
             icon={
               <div className="pr-2">

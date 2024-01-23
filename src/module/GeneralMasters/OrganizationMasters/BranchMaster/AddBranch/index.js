@@ -110,7 +110,9 @@ function AddBranch({ action }) {
   minDate.setDate(minDate.getDate() + 1);
 
   const dispatch = useDispatch();
+
   const handleSubmit = (value) => {
+    console.log("find",action)
     // Handle form submission
     if (action == "add") {
       dispatch(postAddBranchMiddleware(formik.values));
@@ -120,14 +122,15 @@ function AddBranch({ action }) {
         Navigate("/master/generals/organization/branchmaster");
       }, 3000);
     }
-    if (action == "edit") {
+    else if (action == "edit") {
       dispatch(patchBranchEditMiddleware(value));
       toastRef.current.showToast();
       // {
       setTimeout(() => {
         Navigate("/master/generals/organization/branchmaster");
       }, 3000);
-    } else {
+    }
+     else  {
       alert("ji");
     }
   };
@@ -294,6 +297,7 @@ function AddBranch({ action }) {
             {formik.touched.BranchName && formik.errors.BranchName && (
               <div style={{ fontSize: 12, color: "red" }}>
                 {formik.errors.BranchName}
+
               </div>
             )}
           </div>

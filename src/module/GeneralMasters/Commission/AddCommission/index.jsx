@@ -156,7 +156,16 @@ const AddCommission = () => {
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-
+  const headerStyle = {
+    // width: '10rem',
+    // backgroundColor: 'red',
+    fontSize: 16,
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 500,
+    padding: "1rem",
+    color:'#000',
+    border: 'none'
+};
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -513,13 +522,14 @@ const AddCommission = () => {
             onPageChange={onPageChange}
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
-            <Column field="level" header="Level"></Column>
+            <Column field="level" header="Level" headerStyle={headerStyle}></Column>
             <Column
               field="commissionCode"
               header="Commission Code"
+              headerStyle={headerStyle}
               // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
             ></Column>
-            <Column field="sharingRate" header="Share Rate"></Column>
+            <Column field="sharingRate" header="Share Rate" headerStyle={headerStyle}></Column>
             <Column
               field="mainAC"
               header="Action"
@@ -529,6 +539,7 @@ const AddCommission = () => {
                 alignItems: "center",
                 justifyContent: "center",
               }}
+              headerStyle={headerStyle}
             ></Column>
           </DataTable>
         </div>

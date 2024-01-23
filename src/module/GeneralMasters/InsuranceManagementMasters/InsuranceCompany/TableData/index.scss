@@ -40,9 +40,10 @@
     }
   }
   .fieldvalueaction_container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    // display: flex;
+    // justify-content: space-around;
+    // align-items: center;
+    // padding: 1rem;
   }
   .empty-table-icon {
     display: flex;
@@ -128,6 +129,7 @@
         .pagedropdown_container {
           border: none;
           margin: 0 !important;
+          border-color: #FAFAFA;
         }
       }
     }

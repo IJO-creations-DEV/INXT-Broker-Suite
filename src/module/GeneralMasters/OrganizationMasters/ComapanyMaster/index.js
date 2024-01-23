@@ -71,24 +71,22 @@ const Index = () => {
       ];
 
       return (
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdown_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+        <div className="table__selector">
+          <React.Fragment>
+            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdown_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          </React.Fragment>
+        </div>
       );
     },
   };
-
   const menu = useRef(null);
   const menuitems = [
     {
@@ -116,7 +114,7 @@ const Index = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
   };

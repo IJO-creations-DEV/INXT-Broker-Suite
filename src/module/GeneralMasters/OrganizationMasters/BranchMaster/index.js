@@ -91,20 +91,19 @@ const Index = () => {
       ];
 
       return (
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdown_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+        <div className="table__selector">
+          
+            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdown_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+         
+        </div>
       );
     },
   };
@@ -134,10 +133,20 @@ const Index = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
   };
+  const headeractionStyle = {
+    display: "flex",
+    justifyContent: "center",
+    fontSize: 16,
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    padding: "1rem",
+    color: "#000",
+    border: "none",
+  }
 
   const items = [
     {
@@ -255,8 +264,8 @@ const Index = () => {
                 </div>
               )}
               header="Action"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
+              headerStyle={headeractionStyle}
+              className="fieldvalueaction_container"
             ></Column>
           </DataTable>
         </div>

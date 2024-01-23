@@ -128,7 +128,7 @@ const AddHierarchy = ({ action }) => {
   });
   return (
     <div className="grid add__hierarchy__container">
-      <div className="col-12"></div>
+      <div className="add_backbut_container">
       <div
         style={{
           justifyContent: "center",
@@ -146,6 +146,7 @@ const AddHierarchy = ({ action }) => {
           : action === "edit"
           ? "Edit Hierarchy"
           : "View Hierarchy"}
+      </div>
       </div>
       <div className="col-12 mb-2">
         <div className="mt-3">

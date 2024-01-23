@@ -105,10 +105,21 @@ const State = () => {
         fontSize: 16,
         fontFamily: 'Inter, sans-serif',
         fontWeight: 500,
-        padding: 6,
+        padding: "1rem",
         color:'#000',
-        border: 'none'
+        border: 'none',
     };
+    const headeraction ={
+      fontSize: 16,
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: 500,
+        padding: "1rem",
+        color:'#000',
+        border: 'none',
+        display:'flex',
+        justifyContent:'space-around',
+        alignItem:'center'
+    }
 
   const items = [
     { label: "Location" },
@@ -204,7 +215,7 @@ onClick={handleadd}
                 </div>
               )}
               header="Action"
-              headerStyle={headerStyle}
+              headerStyle={headeraction}
               className="fieldvalue_container"
             ></Column>
              

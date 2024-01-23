@@ -8,6 +8,7 @@
         font-weight: 400 !important;
         line-height: normal !important;
     }
+    
 
     .select__label__jv {
         color: #111927 !important;
@@ -70,4 +71,12 @@
     border-radius: 50%;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
     margin-right: 0.5rem;
+}
+.p-dialog .p-dialog-header {
+    border-bottom: 0 none;
+    background: #ffffff;
+    color: #374151;
+     padding:  1.5rem !important; 
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }

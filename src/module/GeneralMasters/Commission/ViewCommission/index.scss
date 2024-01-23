@@ -154,9 +154,12 @@
         width: 100% !important;
         border-radius: 10px;
         .p-inputtext {
-          margin: 6px 0 0 0;
-          border-radius: 5px;
-          height: 3.125rem;
+            margin: 8px 0 0 0;
+            border-radius: 10px;
+            border:1px solid #d1d5db;
+            /* padding: 0.45rem !important; */
+            height: 46px;
+        //   border-style: none
         //   border-style: none;
         }
           .p-inputtext::placeholder{
@@ -341,6 +344,16 @@
 
         }
     }
+    .table__selector {
+        text-align: center;
+        flex: 1 0;
+        .pagedropdown_container {
+          border: none;
+          margin: 0 !important;
+          background-color: #FAFAFA;
+        }
+      }
+
 
 }
 .centercontent{

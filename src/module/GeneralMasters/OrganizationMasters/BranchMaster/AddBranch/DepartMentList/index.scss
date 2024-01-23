@@ -8,11 +8,25 @@
     padding-right: 1.5rem;
     padding-bottom: 10px;
   }
+  .table__selector {
+    text-align: center;
+    flex: 1 0;
+    .pagedropdown_container {
+      border: none;
+      margin: 0 !important;
+      background-color: #FAFAFA;
+    }
+  }
+  .fieldactionvalue_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
   .action_icons{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:10px
+    gap:20px
   }
   .head_lable {
     color: #111927;

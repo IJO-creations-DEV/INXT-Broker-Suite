@@ -164,6 +164,7 @@ const AddEmployee = ({ action }) => {
 
     setTimeout(() => {
       setVisiblePopup(false);
+      navigate("/master/generals/employeemanagement/employee")
     }, 3000);
   };
 
@@ -214,7 +215,7 @@ const AddEmployee = ({ action }) => {
   });
   return (
     <div className="grid add__employee_container">
-      <div className="col-12"></div>
+      <div className="add_backbut_container">
       <div
         style={{
           justifyContent: "center",
@@ -233,6 +234,7 @@ const AddEmployee = ({ action }) => {
           ? "Edit Employee"
           : "View Employee"}
       </div>
+      </div>
       <div className="col-12 mb-2">
         <div className="mt-3">
           <BreadCrumb
@@ -250,24 +252,36 @@ const AddEmployee = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={formik.values.employeeCode}
               onChange={formik.handleChange("employeeCode")}
-              error={formik.errors.employeeCode}
+              // error={formik.errors.employeeCode}
               label="Employee Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+            {formik.touched.employeeCode &&
+              formik.errors.employeeCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.employeeCode}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
               value={formik.values.firstName}
               onChange={formik.handleChange("firstName")}
-              error={formik.errors.firstName}
+              // error={formik.errors.firstName}
               label="First Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+            {formik.touched.firstName &&
+              formik.errors.firstName && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.firstName}
+                </div>
+              )}
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
@@ -275,31 +289,43 @@ const AddEmployee = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={formik.values.middleName}
               onChange={formik.handleChange("middleName")}
-              error={formik.errors.middleName}
+              // error={formik.errors.middleName}
               label="Middle Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+            {formik.touched.middleName &&
+              formik.errors.middleName && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.middleName}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
               value={formik.values.lastName}
               onChange={formik.handleChange("lastName")}
-              error={formik.errors.lastName}
+              // error={formik.errors.lastName}
               label="Last Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+            {formik.touched.lastName &&
+              formik.errors.lastName && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.lastName}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.employeeType}
               onChange={formik.handleChange("employeeType")}
-              error={formik.errors.employeeType}
+              // error={formik.errors.employeeType}
               className="dropdown__add__sub"
               label="Employee Type"
               classNames="label__sub__add"
@@ -307,6 +333,12 @@ const AddEmployee = ({ action }) => {
               options={item}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.employeeType &&
+              formik.errors.employeeType && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.employeeType}
+                </div>
+              )}
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
@@ -314,7 +346,7 @@ const AddEmployee = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={formik.values.designation}
               onChange={formik.handleChange("designation")}
-              error={formik.errors.designation}
+              // error={formik.errors.designation}
               className="dropdown__add__sub"
               label="Designation"
               classNames="label__sub__add"
@@ -322,13 +354,19 @@ const AddEmployee = ({ action }) => {
               options={item1}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.designation &&
+              formik.errors.designation && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.designation}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.reportingto}
               onChange={formik.handleChange("reportingto")}
-              error={formik.errors.reportingto}
+              // error={formik.errors.reportingto}
               className="dropdown__add__sub"
               label="Reporting to"
               classNames="label__sub__add"
@@ -336,13 +374,19 @@ const AddEmployee = ({ action }) => {
               options={item2}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.reportingto &&
+              formik.errors.reportingto && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.reportingto}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.branchCode}
               onChange={formik.handleChange("branchCode")}
-              error={formik.errors.branchCode}
+              // error={formik.errors.branchCode}
               className="dropdown__add__sub"
               label="Branch code"
               classNames="label__sub__add"
@@ -350,13 +394,19 @@ const AddEmployee = ({ action }) => {
               options={item3}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.branchCode &&
+              formik.errors.branchCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.branchCode}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.departmentCode}
               onChange={formik.handleChange("departmentCode")}
-              error={formik.errors.departmentCode}
+              // error={formik.errors.departmentCode}
               className="dropdown__add__sub"
               label="Department code"
               classNames="label__sub__add"
@@ -364,13 +414,19 @@ const AddEmployee = ({ action }) => {
               options={item4}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.departmentCode &&
+              formik.errors.departmentCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.departmentCode}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.idProofType}
               onChange={formik.handleChange("idProofType")}
-              error={formik.errors.idProofType}
+              // error={formik.errors.idProofType}
               className="dropdown__add__sub"
               label="ID Proof Type"
               classNames="label__sub__add"
@@ -378,61 +434,91 @@ const AddEmployee = ({ action }) => {
               options={item5}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.idProofType &&
+              formik.errors.idProofType && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.idProofType}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
               value={formik.values.idNumber}
               onChange={formik.handleChange("idNumber")}
-              error={formik.errors.idNumber}
+              // error={formik.errors.idNumber}
               label="ID Number"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+            {formik.touched.idNumber &&
+              formik.errors.idNumber && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.idNumber}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
               value={formik.values.addressLine1}
               onChange={formik.handleChange("addressLine1")}
-              error={formik.errors.addressLine1}
+              // error={formik.errors.addressLine1}
               label="Address line 1"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+            {formik.touched.addressLine1 &&
+              formik.errors.addressLine1 && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.addressLine1}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
               value={formik.values.addressLine2}
               onChange={formik.handleChange("addressLine2")}
-              error={formik.errors.addressLine2}
+              // error={formik.errors.addressLine2}
               label="Address line 2"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+            {formik.touched.addressLine2 &&
+              formik.errors.addressLine2 && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.addressLine2}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
               value={formik.values.addressLine3}
               onChange={formik.handleChange("addressLine3")}
-              error={formik.errors.addressLine3}
+              // error={formik.errors.addressLine3}
               label="Address line 3"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+            {formik.touched.addressLine3 &&
+              formik.errors.addressLine3 && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.addressLine3}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.city}
               onChange={formik.handleChange("city")}
-              error={formik.errors.city}
+              // error={formik.errors.city}
               className="dropdown__add__sub"
               label="City"
               classNames="label__sub__add"
@@ -440,13 +526,19 @@ const AddEmployee = ({ action }) => {
               options={item6}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.city &&
+              formik.errors.city && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.city}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.state}
               onChange={formik.handleChange("state")}
-              error={formik.errors.state}
+              // error={formik.errors.state}
               className="dropdown__add__sub"
               label="State"
               classNames="label__sub__add"
@@ -454,6 +546,12 @@ const AddEmployee = ({ action }) => {
               options={item7}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.state &&
+              formik.errors.state && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.state}
+                </div>
+              )}
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
@@ -461,7 +559,7 @@ const AddEmployee = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={formik.values.country}
               onChange={formik.handleChange("country")}
-              error={formik.errors.country}
+              // error={formik.errors.country}
               label="Country"
               className="dropdown__add__sub"
               classNames="label__sub__add"
@@ -469,6 +567,12 @@ const AddEmployee = ({ action }) => {
               options={item8}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+            {formik.touched.country &&
+              formik.errors.country && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.country}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField

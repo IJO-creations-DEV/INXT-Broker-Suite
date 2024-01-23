@@ -17,7 +17,7 @@ const initialValue = {
   TaxNumber: "",
   FirstName: "",
   LastName: "",
-  PreferredName:"",
+  PreferredName: "",
   EmailID: "",
   ContactNumber: "",
   HouseNo: "",
@@ -47,12 +47,14 @@ const LeadCreationCard = () => {
   };
   const customValidation = (values) => {
     const errors = {}
+    if (values.category === "Company") {
     if (!values.CompanyName) {
       errors.CompanyName = "This field is required";
     }
     if (!values.TaxNumber) {
       errors.TaxNumber = "This field is required";
     }
+  }
     if (!values.FirstName) {
       errors.FirstName = "This field is required";
     }

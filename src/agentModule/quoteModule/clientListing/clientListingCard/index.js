@@ -12,6 +12,7 @@ const ClientListingCard = () => {
       allClientList: clientsReducers?.clientListTable,
     };
   });
+  console.log(allClientList,"allClientList");
   return (
     <div className="lead__listing__card__container mt-4">
       <Card>

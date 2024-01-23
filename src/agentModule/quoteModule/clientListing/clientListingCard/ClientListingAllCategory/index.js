@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { Avatar } from "primereact/avatar";
 
 const ClientListingAllCategory = ({ TableData }) => {
+  console.log(TableData,"allClientList");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();

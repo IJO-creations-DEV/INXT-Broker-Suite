@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getClientTableMiddleware } from "./clientsMiddleware";
+import { getClientTableMiddleware, getClientTableSearchListMiddleware } from "./clientsMiddleware";
 
 
 const initialState = {
@@ -122,7 +122,8 @@ const initialState = {
         },
     ],
     leadtabledata: [],
-    LeadEditdata: {}
+    LeadEditdata: {},
+    ClientTableSearchList:[]
 };
 const clientReducer = createSlice({
     name: "clientReducer",
@@ -139,7 +140,7 @@ const clientReducer = createSlice({
             getClientTableMiddleware.fulfilled,
             (state, action) => {
                 state.loading = false;
-                // state.clientListTable = action.payload
+                state.clientListTable = action.payload
 
             }
         );
@@ -147,6 +148,26 @@ const clientReducer = createSlice({
             getClientTableMiddleware.rejected,
             (state, action) => {
                 state.loading = false;
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
+        builder.addCase(getClientTableSearchListMiddleware.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(
+            getClientTableSearchListMiddleware.fulfilled,
+            (state, action) => {
+                state.loading = false;
+                state.ClientTableSearchList = action.payload
+
+            }
+        );
+        builder.addCase(
+            getClientTableSearchListMiddleware.rejected,
+            (state, action) => {
+                state.loading = false;
+                state.ClientTableSearchList = {};
                 state.error = typeof action.payload === "string" ? action.payload : "";
             }
         );

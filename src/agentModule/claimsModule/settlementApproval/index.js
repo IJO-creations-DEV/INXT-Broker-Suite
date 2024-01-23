@@ -30,7 +30,7 @@ const SettlementApproval = () => {
         </div>
       </div>
       <CustomToast ref={toastRef} message="Claim Rejected" />
-      <Card className="mt-4 border-round-3xl claimrequest__overall__card">
+      <Card className="mt-4 claimrequest__overall__card">
         <div>
           <div className="claim__title_txt mt-6">Waiting for Settlement</div>
           <div className="claimtitle__img__overallcontainer mt-4">

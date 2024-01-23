@@ -43,7 +43,7 @@ const MotorDetailsChange = ({
   const [vehicleColor, setVehicleColor] = useState([]);
   const [vehicleBrand, setVehicleBrand] = useState([]);
 
-  console.log(vehicleBrand,"tnvs")
+  console.log(vehicleBrand, "tnvs");
 
   const setFormikValues = () => {
     const TNVSvalue = personalDetails?.TNVS;
@@ -117,7 +117,7 @@ const MotorDetailsChange = ({
         Motor Details Change
       </div>
       {/* <form onSubmit={formik.handleSubmit}> */}
-      <div class="grid m-0">
+      <div class="grid">
         <div class="col-12 mt-2 p-0">
           <div class="grid m-0">
             <div class="col-12 md:col-6 lg:col-6 xl:col-6">
@@ -202,7 +202,11 @@ const MotorDetailsChange = ({
           <DropdownField
             label="Vehicle Brand"
             value={formik.values.VehicleBrand}
-            options={VehicleBrandOptions.length > 0 ? VehicleBrandOptions : vehicleBrand}
+            options={
+              VehicleBrandOptions.length > 0
+                ? VehicleBrandOptions
+                : vehicleBrand
+            }
             onChange={(e) => {
               console.log(e.value);
               formik.setFieldValue("VehicleBrand", e.value);
@@ -255,7 +259,7 @@ const MotorDetailsChange = ({
           <DropdownField
             label="Vehicle Color"
             value={formik.values.VehicleColor}
-            options={VehicleColorOptions || vehicleColor }
+            options={VehicleColorOptions || vehicleColor}
             onChange={(e) => {
               console.log(e.value);
               formik.setFieldValue("VehicleColor", e.value);

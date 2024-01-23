@@ -26,7 +26,7 @@ const RequestApproval = () => {
           Client ID :{id}
         </div>
       </div>
-      <Card className="mt-4 border-round-3xl claimrequest__overall__card">
+      <Card className="mt-4 claimrequest__overall__card">
 
         <div >
           <div className='claim__title_txt mt-6' >
@@ -40,7 +40,7 @@ const RequestApproval = () => {
         <div>  Kindly be patient while the Insurance Company processes the request and assigns an adjuster</div>
           </div>
         </div>
-        <div className='claimtitle__butt_container mt-8'>
+        <div className='claimtitle__butt_container mt-6'>
           <Button link onClick={handleEdit} className='claim__back__but' >
             Edit
           </Button>

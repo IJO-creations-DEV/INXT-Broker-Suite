@@ -208,7 +208,7 @@ const ResponsiveDrawer = () => {
                           <div
                             className="menu__list"
                             style={
-                              data.name === "Brokerage"
+                              data.name === "Broker"
                                 ? {
                                     display: "flex",
                                     gap: "10px",

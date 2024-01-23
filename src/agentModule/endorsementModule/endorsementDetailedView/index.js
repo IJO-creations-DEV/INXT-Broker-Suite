@@ -15,7 +15,6 @@ const EndorsementDetailedView = () => {
       return {
         loading: endrosementViewMainReducers?.loading,
         endrosmentData: endrosementViewMainReducers?.endrosmentData,
-
       };
     }
   );
@@ -25,15 +24,20 @@ const EndorsementDetailedView = () => {
   const handleCommonAction = () => {
     navigate(`/agent/clientview/${123}`);
   };
-
+  const handleclickNavigation = () => {
+    navigate("/agent/endorsement/paymentconfirmation");
+  };
+  const handlePayLater = () => {
+    navigate(`/agent/clientview/${123}`);
+  };
 
   return (
     <div className="detailed__endorsement__container m-0">
       <div className="detailed__endorsement__container__title">Clients</div>
-      <div className="grid mt-3">
+      <div className="mt-3">
         <div
           onClick={handleCommonAction}
-          className="detailed__endorsement__container__back__btn__container col-12 md:col-6 lg:col-6 cursor-pointer"
+          className="detailed__endorsement__container__back__btn__container cursor-pointer"
         >
           <SvgLeftArrow />
           <div className="detailed__endorsement__container__back__btn__title">
@@ -62,12 +66,10 @@ const EndorsementDetailedView = () => {
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField
+              <InputTextField
                 label="Production"
                 value={endrosmentData.production}
-             
                 disabled={true}
-
               />
               {/* <InputTextField
                 label="Production"
@@ -105,21 +107,35 @@ const EndorsementDetailedView = () => {
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
               <div className="endorsement__detail__view__box">
-                <div className="grid mt-2">
-                  <div className="col-12 md:col-6 lg:col-6">
-                    <div className="endorsement__detail__view__box__title">
-                      Endorsement
-                    </div>
-                  </div>
-                  <div className="col-12 md:col-6 lg:col-6">
-                    <div className="endorsement__detail__view__box__container">
-                      <div className="endorsement__detail__view__box__sub__title">
-                        View
-                      </div>
-                      <SvgBlueArrow />
-                    </div>
-                  </div>
+                <div className="endorsement__detail__view__box__title">
+                  Endorsement
                 </div>
+
+                <div className="endorsement__detail__view__box__container cursor-pointer">
+                  <div className="endorsement__detail__view__box__sub__title">
+                    View
+                  </div>
+                  <SvgBlueArrow />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="grid m-0 mt-3">
+            <div className="col-12 md:col-12 lg:col-12 p-0 back__complete__btn__container ">
+              <div className="back__btn__container">
+                <Button className="back__btn" onClick={handlePayLater}>
+                  Pay Later
+                </Button>
+              </div>
+              <div className="complete__btn__container">
+                <Button
+                  className="complete__btn"
+                  onClick={() => {
+                    handleclickNavigation();
+                  }}
+                >
+                  Proceed to payment
+                </Button>
               </div>
             </div>
           </div>

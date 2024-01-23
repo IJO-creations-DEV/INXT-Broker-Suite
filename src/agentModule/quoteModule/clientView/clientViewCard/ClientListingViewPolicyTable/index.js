@@ -455,11 +455,12 @@ const LeadListingAllTable = () => {
         style={{ height: "340px", width: "500px" }}
         modal
         onHide={hideDialogClose}
+        className="individual__client__list__modal__container"
       >
         <div className="p-fluid">
           {categories.map((category) => {
             return (
-              <div key={category.key} className="p-field-checkbox m-3">
+              <div key={category.key} className="p-field-checkbox m-3 pop__data__selection__container ">
                 <Checkbox id="checkbox" inputId={category.key} name="category" value={category} onChange={onCategoryChange} checked={selectedCategories.some((item) => item.key === category.key)} />
                 <label style={{
                   color: "#111927",
@@ -473,69 +474,7 @@ const LeadListingAllTable = () => {
               </div>
             );
           })}
-          {/* <div className="p-field-checkbox m-3">
-            <Checkbox
-              id="checkbox"
-              checked={checkboxValue}
-              onChange={(e) => setCheckboxValue(e.checked)}
-            />
-            <label
-              style={{
-                color: "#111927",
-                marginLeft: "16px",
-                fontFamily: "Poppins",
-                fontSize: "16px",
-                fontWeight: 400,
-              }}
-            >
-              Personal Details Change
-            </label>
-          </div>
-          <div className="p-field-checkbox m-3">
-            <Checkbox
-              id="checkbox"
-              checked={checkboxValue}
-              onChange={(e) => setCheckboxValue(e.checked)}
-            />
-            <label style={{
-              color: "#111927",
-              marginLeft: "16px",
-              fontFamily: "Poppins",
-              fontSize: "16px",
-              fontWeight: 400,
-            }}>Motor Details Change</label>
-          </div>
-          <div className="p-field-checkbox m-3">
-            <Checkbox
-              id="checkbox"
-              checked={checkboxValue}
-              onChange={(e) => setCheckboxValue(e.checked)}
-            />
-            <label style={{
-              color: "#111927",
-              marginLeft: "16px",
-              fontFamily: "Poppins",
-              fontSize: "16px",
-              fontWeight: 400,
-            }}>Coverage Change</label>
-          </div>
-          <div className="p-field-checkbox m-3">
-            <Checkbox
-              id="checkbox"
-              checked={checkboxValue}
-              onChange={(e) => setCheckboxValue(e.checked)}
-            />
-            <label style={{
-              color: "#111927",
-              marginLeft: "16px",
-              fontFamily: "Poppins",
-              fontSize: "16px",
-              fontWeight: 400,
-            }}>Policy Extend</label>
-          </div> */}
-
-
-          <div className="m-5">
+          <div className="mt-5">
             <Button label="Proceed" onClick={handleDialogButtonClick} />
           </div>
         </div>

@@ -79,10 +79,12 @@ const CoverageChange = ({
       LocalGovtTax: personalDetails?.LocalGovtTax,
       OthersPremium: personalDetails?.OthersPremium,
       Grosspremium: personalDetails?.Grosspremium,
-      Discount:personalDetails?.Discount
+      Discount: personalDetails?.Discount,
     };
     if (ActsofNatureRatevalue) {
-      setActsofNatureRate([{ label: ActsofNatureRatevalue, value: ActsofNatureRatevalue }]);
+      setActsofNatureRate([
+        { label: ActsofNatureRatevalue, value: ActsofNatureRatevalue },
+      ]);
     }
     if (BodilyInjuryvalue) {
       setBodilyInjury([{ label: BodilyInjuryvalue, value: BodilyInjuryvalue }]);
@@ -109,7 +111,7 @@ const CoverageChange = ({
   };
 
   useEffect(() => {
-    setFormikValues()
+    setFormikValues();
     if (isFormSubmitted) {
       formik.submitForm();
       setIsFormSubmitted(false);
@@ -129,7 +131,7 @@ const CoverageChange = ({
     <div>
       <div className="customer__info__subtitle mt-2 mb-2">Coverage Change</div>
       {/* <form onSubmit={formik.handleSubmit}> */}
-      <div class="grid m-0">
+      <div class="grid">
         <div class="col-12 mt-2">
           <InputTextField
             label="Loss and Damage coverage"
@@ -244,7 +246,10 @@ const CoverageChange = ({
           <DropdownField
             label="Auto passenger personal Accident"
             value={formik.values.AutopassengerpersonalAccident}
-            options={AutopassengerpersonalAccidentOptions || autopassengerpersonalAccident}
+            options={
+              AutopassengerpersonalAccidentOptions ||
+              autopassengerpersonalAccident
+            }
             onChange={(e) => {
               console.log(e.value);
               formik.setFieldValue("AutopassengerpersonalAccident", e.value);

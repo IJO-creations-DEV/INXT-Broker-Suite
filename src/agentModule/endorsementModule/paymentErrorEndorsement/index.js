@@ -38,7 +38,7 @@ const PaymentErrorEndorsment = () => {
         </div>
       </div>
       <CustomToast ref={toastRef} message="Endorsement Rejected" />
-      <Card className="mt-4 border-round-3xl claimrequest__overall__card">
+      <Card className="mt-4 claimrequest__overall__card">
         <div>
           <div className="endorsement__waiting__title_txt mt-6">
             Waiting for Update
@@ -57,7 +57,7 @@ const PaymentErrorEndorsment = () => {
             <div> Please wait until it has been processed.</div>
           </div>
         </div>
-        <div className="claimtitle__butt_container mt-8">
+        <div className="claimtitle__butt_container mt-6">
           <Button
             link
             onClick={handleReject}

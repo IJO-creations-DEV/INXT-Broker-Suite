@@ -84,8 +84,8 @@ const PersonalDetails = () => {
             personalDetails={personalDetails}
           />
         )}
-        <div className="grid m-0">
-          <div className="col-12">
+        <div className="grid mt-3">
+          <div className="col-12 p-0">
             <div className="back__next__btn__container">
               <div className="next__btn__container">
                 <Button

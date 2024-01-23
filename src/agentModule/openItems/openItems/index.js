@@ -15,8 +15,8 @@ import { InputTextarea } from "primereact/inputtextarea";
 import CustomToast from "../../../components/Toast";
 import SvgArrow from "../../../assets/agentIcon/SvgArrow";
 import { useNavigate } from "react-router-dom";
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import { useDispatch, useSelector } from "react-redux";
 import UpcommingEventCard from "./UpcommingEventCard";
 import { useFormik } from "formik";
@@ -29,13 +29,13 @@ const initialValues = {
   date: new Date(),
   startTime: "",
   endTime: "",
-  notes: ""
+  notes: "",
 };
 
 const customValidation = (values) => {
   const errors = {};
-  return errors
-}
+  return errors;
+};
 
 const OpenItems = () => {
   const [visible, setVisible] = useState(false);
@@ -46,22 +46,19 @@ const OpenItems = () => {
   const handleSubmit = (value) => {
     if (value) {
       dispatch(postOpenItemsListMiddleware(value));
-      handleclickClose()
-      console.log(value, "out Value")
+      handleclickClose();
+      console.log(value, "out Value");
     }
     // toastRef.current.showToast();
     // setTimeout(() => {
     //   setVisible(false);
     // }, 2000);
-
-  }
+  };
   const formik = useFormik({
     initialValues: initialValues,
     validate: customValidation,
     onSubmit: handleSubmit,
   });
-
-
 
   const handleclickOpen = () => {
     setVisible(true);
@@ -70,37 +67,37 @@ const OpenItems = () => {
     setVisible(false);
   };
   const timeSlots = [
-    { "label": "00:00", "value": "00:00" },
-    { "label": "01:00", "value": "01:00" },
-    { "label": "02:00", "value": "02:00" },
-    { "label": "03:00", "value": "03:00" },
-    { "label": "04:00", "value": "04:00" },
-    { "label": "05:00", "value": "05:00" },
-    { "label": "06:00", "value": "06:00" },
-    { "label": "07:00", "value": "07:00" },
-    { "label": "08:00", "value": "08:00" },
-    { "label": "09:00", "value": "09:00" },
-    { "label": "10:00", "value": "10:00" },
-    { "label": "11:00", "value": "11:00" },
-    { "label": "12:00", "value": "12:00" },
-    { "label": "13:00", "value": "13:00" },
-    { "label": "14:00", "value": "14:00" },
-    { "label": "15:00", "value": "15:00" },
-    { "label": "16:00", "value": "16:00" },
-    { "label": "17:00", "value": "17:00" },
-    { "label": "18:00", "value": "18:00" },
-    { "label": "19:00", "value": "19:00" },
-    { "label": "20:00", "value": "20:00" },
-    { "label": "21:00", "value": "21:00" },
-    { "label": "22:00", "value": "22:00" },
-    { "label": "23:00", "value": "23:00" }
-  ]
+    { label: "00:00", value: "00:00" },
+    { label: "01:00", value: "01:00" },
+    { label: "02:00", value: "02:00" },
+    { label: "03:00", value: "03:00" },
+    { label: "04:00", value: "04:00" },
+    { label: "05:00", value: "05:00" },
+    { label: "06:00", value: "06:00" },
+    { label: "07:00", value: "07:00" },
+    { label: "08:00", value: "08:00" },
+    { label: "09:00", value: "09:00" },
+    { label: "10:00", value: "10:00" },
+    { label: "11:00", value: "11:00" },
+    { label: "12:00", value: "12:00" },
+    { label: "13:00", value: "13:00" },
+    { label: "14:00", value: "14:00" },
+    { label: "15:00", value: "15:00" },
+    { label: "16:00", value: "16:00" },
+    { label: "17:00", value: "17:00" },
+    { label: "18:00", value: "18:00" },
+    { label: "19:00", value: "19:00" },
+    { label: "20:00", value: "20:00" },
+    { label: "21:00", value: "21:00" },
+    { label: "22:00", value: "22:00" },
+    { label: "23:00", value: "23:00" },
+  ];
 
   const { upcommingList } = useSelector(({ openitemsReducers }) => {
     return {
-      upcommingList: openitemsReducers?.upcommingEventsList
-    }
-  })
+      upcommingList: openitemsReducers?.upcommingEventsList,
+    };
+  });
   // const handlesubmit = () => {
   //   toastRef.current.showToast();
   //   setTimeout(() => {
@@ -110,31 +107,31 @@ const OpenItems = () => {
 
   const handleSeeMore = () => {
     navigate("/agent/openitems/upcomingevents");
-  }
+  };
   const handlePolicyExpiry = () => {
-    navigate('/agent/openitems/expiringpolicy')
-  }
+    navigate("/agent/openitems/expiringpolicy");
+  };
 
   const handlePendingPayments = () => {
-    navigate('/agent/payments')
-  }
+    navigate("/agent/payments");
+  };
   const handleDateSelect = (info) => {
-    console.log('Selected dates:', info.start, info.end);
+    console.log("Selected dates:", info.start, info.end);
   };
   return (
     <div className="open__item__container  mt-3">
       <CustomToast ref={toastRef} message="Event Added Successfully" />
       <div className="open__item__title">Open Items</div>
-      <div className="open__item__back_container mt-4">
+      {/* <div className="open__item__back_container mt-4">
         <SvgLeftArrow />
         <label className="arrowlabel_txt">Home</label>
       </div>
-      <div className="card__title mt-3">Notes</div>
+      <div className="card__title mt-3">Notes</div> */}
 
       <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
           <Card>
-            <div class="grid"  onClick={handlePolicyExpiry}>
+            <div class="grid" onClick={handlePolicyExpiry}>
               <div
                 class="col-1 md:col-1 lg:col-1"
                 style={{ display: "flex", alignItems: "flex-end" }}
@@ -144,7 +141,6 @@ const OpenItems = () => {
               <div
                 class="col-5 md:col-5 lg:col-5"
                 style={{ display: "flex", alignItems: "flex-end" }}
-               
               >
                 <div className="sub__title">Policies Expiring soon</div>
               </div>
@@ -165,7 +161,7 @@ const OpenItems = () => {
               </div>
               <div
                 class="col-5 md:col-5 lg:col-5"
-                style={{ display: "flex", alignItems: "center" }} 
+                style={{ display: "flex", alignItems: "center" }}
               >
                 <div className="sub__title">Pending Payments</div>
               </div>
@@ -192,15 +188,14 @@ const OpenItems = () => {
       <div class="grid mt-3">
         <div class="col-12 md:col-8 lg:col-8">
           <Card>
-          <div className="custom__full__calendar">
-
-            <FullCalendar
-              plugins={[dayGridPlugin]}
-              initialView="dayGridMonth"
-              editable={true}
-              selectable={true}
-              // select={handleDateSelect}
-            />
+            <div className="custom__full__calendar">
+              <FullCalendar
+                plugins={[dayGridPlugin]}
+                initialView="dayGridMonth"
+                editable={true}
+                selectable={true}
+                // select={handleDateSelect}
+              />
             </div>
           </Card>
         </div>
@@ -213,22 +208,27 @@ const OpenItems = () => {
               Based on the Activity Monitor
             </div>
             <div>
-            {upcommingList.length > 0? ( 
-            <div>
-            {upcommingList?.map((singleData, i) => (
-              <UpcommingEventCard data={singleData} />
-
-            ))}
-            {upcommingList.length > 4 && 
-            <div className="see__more__container mt-2" onClick={() => handleSeeMore()}>
-              <div className="see__more__text">See More</div>
-              <SvgArrow />
-            </div>}
+              {upcommingList.length > 0 ? (
+                <div>
+                  {upcommingList?.map((singleData, i) => (
+                    <UpcommingEventCard data={singleData} />
+                  ))}
+                  {upcommingList.length > 4 && (
+                    <div
+                      className="see__more__container mt-2"
+                      onClick={() => handleSeeMore()}
+                    >
+                      <div className="see__more__text">See More</div>
+                      <SvgArrow />
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div style={{ textAlign: "center", paddingTop: "40px" }}>
+                  No data available
+                </div>
+              )}
             </div>
-            ) :<div style={{textAlign:'center',paddingTop:"40px"}}>
-            No data available
-          </div>}
-          </div>
           </Card>
         </div>
       </div>
@@ -240,30 +240,59 @@ const OpenItems = () => {
       >
         <div class="grid mt-2">
           <div class="col-12 md:col-12 lg:col-12">
-            <DropdownField value={formik.values.reminder} options={[{
-              label: "Reminder", value: 'reminder'
-            }, {
-              label: "Appointment", value: 'appointment'
-            }, {
-              label: "Follow Back", value: 'followBack'
-            }]} onChange={(e) => formik.setFieldValue("reminder", e.value)} label="Select Remainder Type" />
+            <DropdownField
+              value={formik.values.reminder}
+              options={[
+                {
+                  label: "Reminder",
+                  value: "reminder",
+                },
+                {
+                  label: "Appointment",
+                  value: "appointment",
+                },
+                {
+                  label: "Follow Back",
+                  value: "followBack",
+                },
+              ]}
+              onChange={(e) => formik.setFieldValue("reminder", e.value)}
+              label="Select Remainder Type"
+            />
           </div>
         </div>
         <div class="grid mt-2">
           <div class="col-12 md:col-12 lg:col-12">
-
-            <InputTextField label="Search Client" value={formik?.values?.client} onChange={(e) => formik.setFieldValue("client", e.target.value)} />
+            <InputTextField
+              label="Search Client"
+              value={formik?.values?.client}
+              onChange={(e) => formik.setFieldValue("client", e.target.value)}
+            />
           </div>
         </div>
         <div class="grid mt-2">
           <div class="col-4 md:col-4 lg:col-4">
-            <DatepickerField label="Date" value={formik?.values?.date} onChange={(e) => formik.setFieldValue("date", e.value)} />
+            <DatepickerField
+              label="Date"
+              value={formik?.values?.date}
+              onChange={(e) => formik.setFieldValue("date", e.value)}
+            />
           </div>
           <div class="col-4 md:col-4 lg:col-4">
-            <DropdownField label="Time" options={timeSlots} value={formik?.values?.startTime} onChange={(e) => formik.setFieldValue("startTime", e.value)} />
+            <DropdownField
+              label="Time"
+              options={timeSlots}
+              value={formik?.values?.startTime}
+              onChange={(e) => formik.setFieldValue("startTime", e.value)}
+            />
           </div>
           <div class="col-4 md:col-4 lg:col-4">
-            <DropdownField label="Time" options={timeSlots} value={formik?.values?.endTime} onChange={(e) => formik.setFieldValue('endTime', e.value)} />
+            <DropdownField
+              label="Time"
+              options={timeSlots}
+              value={formik?.values?.endTime}
+              onChange={(e) => formik.setFieldValue("endTime", e.value)}
+            />
           </div>
         </div>
         <div className="mt-2">

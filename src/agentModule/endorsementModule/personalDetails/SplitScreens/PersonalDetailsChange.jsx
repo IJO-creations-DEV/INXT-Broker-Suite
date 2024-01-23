@@ -9,7 +9,7 @@ const initialValue = {
   TaxNumber: "",
   FirstName: "",
   LastName: "",
-  PreferredName:"",
+  PreferredName: "",
   EmailID: "",
   ContactNumber: "",
   HouseNo: "",
@@ -46,7 +46,7 @@ const PersonalDetailsChange = ({
       ContactNumber: personalDetails?.ContactNumber,
       HouseNo: personalDetails?.HouseNo,
       Barangay: personalDetails?.Barangay,
-      PreferredName:personalDetails?.PreferredName,
+      PreferredName: personalDetails?.PreferredName,
       Country: Countryvalue,
       Province: Provincevalue,
       City: Cityvalue,
@@ -90,7 +90,7 @@ const PersonalDetailsChange = ({
         Personal Details Change
       </div>
       {/* <form onSubmit={formik.handleSubmit}> */}
-      <div class="grid m-0">
+      <div class="grid">
         <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
           <InputTextField
             label="First Name*"

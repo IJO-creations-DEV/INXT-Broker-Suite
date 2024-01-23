@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./index.scss";
 import { Card } from "primereact/card";
-import SvgCountPlusIcon from "../../../assets/icons/SvgCountPlusIcon";
-import SvgCountMinusIcon from "../../../assets/icons/SvgCountMinusIcon";
-import CalculaitionTextInputs from "../../component/calculaitionTextInputs";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Button } from "primereact/button";
 import DropdownField from "../../component/DropdwonField";
@@ -11,14 +8,12 @@ import InputTextField from "../../component/inputText";
 import DatepickerField from "../../component/datePicker";
 import { FileUpload } from "primereact/fileupload";
 import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
-import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
 import { useNavigate } from "react-router-dom";
 import SvgUploadClose from "../../../assets/agentIcon/SvgUploadClose";
 import customHistory from "../../../routes/customHistory";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { postAdjusterSubmission } from "./store/adjusterSubmissionMiddleWare";
-import SvgUploadSuccess from "../../../assets/agentIcon/SvgUploadSuccess";
 
 const AdjusterSubmission = () => {
   const Navigate = useNavigate();
@@ -41,18 +36,17 @@ const AdjusterSubmission = () => {
   const codeOptions = [
     { label: "India", value: "India" },
     { label: "America", value: "America" },
-
   ];
   const codeOptionsProvice = [
     { label: "Karnataka", value: "Karnataka" },
     { label: "Tamil Nadu", value: "Tamil Nadu" },
     { label: "Hydrabad", value: "Hydrabad" },
-  ]
+  ];
   const codeOptionsCity = [
     { label: "Davanagere", value: "Davanagere" },
     { label: "Channai", value: "Channai" },
     { label: "Banglore", value: "Banglore" },
-  ]
+  ];
   const formInitialValue = {
     adjusterName: "",
     claimNumber: "",
@@ -87,7 +81,8 @@ const AdjusterSubmission = () => {
     }
     if (!values.dateOfLoss) {
       errors.dateOfLoss = "This field is required";
-    } if (!values.placeOfAccident) {
+    }
+    if (!values.placeOfAccident) {
       errors.placeOfAccident = "This field is required";
     }
     if (!values.driversName) {
@@ -140,7 +135,7 @@ const AdjusterSubmission = () => {
     }
     return errors;
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // const toastRef = useRef(null);
   // dispatch(postEndromentMiddleWare(formik.values))
   // toastRef.current.showToast();
@@ -149,19 +144,17 @@ const AdjusterSubmission = () => {
   // }, 2000);
   const handleSubmit = (values) => {
     if (!values.file) {
-      alert("please select file")
+      alert("please select file");
       return;
     }
-    dispatch(postAdjusterSubmission(formik.values))
+    dispatch(postAdjusterSubmission(formik.values));
     Navigate("/agent/claimrequest/settlementapproval");
-  }
+  };
   const formik = useFormik({
     initialValues: formInitialValue,
     validate: customValidation,
     onSubmit: handleSubmit,
   });
-
-
 
   return (
     <div className="claim__request__upload__container">
@@ -172,10 +165,10 @@ const AdjusterSubmission = () => {
           Client ID :123456
         </div>
       </div>
-      <Card className="mt-4 border-round-3xl">
+      <Card className="mt-4">
         <div className="claim__request__upload__title">Claim Request</div>
 
-        <div class="grid m-0 ">
+        <div class="grid mt-2">
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <InputTextField
               label="Adjuster Name"
@@ -187,10 +180,10 @@ const AdjusterSubmission = () => {
                 {formik.errors.adjusterName}
               </div>
             )}
-
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Claim Number"
+            <InputTextField
+              label="Claim Number"
               value={formik.values.claimNumber}
               onChange={formik.handleChange("claimNumber")}
             />
@@ -215,9 +208,12 @@ const AdjusterSubmission = () => {
               //   );
               // }}
               value={new Date(formik?.values?.dateOfReported)}
-              onChange={(e) => formik.setFieldValue("dateOfReported", e.value.toISOString().split("T"))}
-
-
+              onChange={(e) =>
+                formik.setFieldValue(
+                  "dateOfReported",
+                  e.value.toISOString().split("T")
+                )
+              }
               dateFormat="yy-mm-dd"
             />
             {formik.touched.dateOfReported && formik.errors.dateOfReported && (
@@ -240,9 +236,12 @@ const AdjusterSubmission = () => {
               //   );
               // }}
               value={new Date(formik?.values?.dateOfLoss)}
-              onChange={(e) => formik.setFieldValue("dateOfLoss", e.value.toISOString().split("T"))}
-
-
+              onChange={(e) =>
+                formik.setFieldValue(
+                  "dateOfLoss",
+                  e.value.toISOString().split("T")
+                )
+              }
               dateFormat="yy-mm-dd"
             />
             {formik.touched.dateOfLoss && formik.errors.dateOfLoss && (
@@ -252,18 +251,21 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Place of Accident"
+            <InputTextField
+              label="Place of Accident"
               value={formik.values.placeOfAccident}
               onChange={formik.handleChange("placeOfAccident")}
             />
-            {formik.touched.placeOfAccident && formik.errors.placeOfAccident && (
-              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                {formik.errors.placeOfAccident}
-              </div>
-            )}
+            {formik.touched.placeOfAccident &&
+              formik.errors.placeOfAccident && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.placeOfAccident}
+                </div>
+              )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Driver’s name"
+            <InputTextField
+              label="Driver’s name"
               value={formik.values.driversName}
               onChange={formik.handleChange("driversName")}
             />
@@ -275,7 +277,8 @@ const AdjusterSubmission = () => {
           </div>
 
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="House No / Unit No / Street "
+            <InputTextField
+              label="House No / Unit No / Street "
               value={formik.values.houseNumber}
               onChange={formik.handleChange("houseNumber")}
             />
@@ -286,7 +289,8 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Barangay / Subd"
+            <InputTextField
+              label="Barangay / Subd"
               value={formik.values.barangay}
               onChange={formik.handleChange("barangay")}
             />
@@ -300,11 +304,8 @@ const AdjusterSubmission = () => {
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField
               label="Country"
-
               value={formik.values.country}
-              onChange={(e) =>
-                formik.setFieldValue("country", e.target.value)
-              }
+              onChange={(e) => formik.setFieldValue("country", e.target.value)}
               options={codeOptions}
               optionLabel="value"
             />
@@ -315,7 +316,8 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Province"
+            <DropdownField
+              label="Province"
               value={formik.values.province}
               onChange={formik.handleChange("province")}
               options={codeOptionsProvice}
@@ -328,7 +330,8 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="City"
+            <DropdownField
+              label="City"
               value={formik.values.city}
               onChange={formik.handleChange("city")}
               options={codeOptionsCity}
@@ -341,7 +344,8 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="ZIP Code"
+            <InputTextField
+              label="ZIP Code"
               value={formik.values.zipCode}
               onChange={formik.handleChange("zipCode")}
             />
@@ -355,7 +359,8 @@ const AdjusterSubmission = () => {
             Third Party Details (If Applicable)
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Name"
+            <InputTextField
+              label="Name"
               value={formik.values.name}
               onChange={formik.handleChange("name")}
             />
@@ -366,7 +371,8 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Contact Number"
+            <InputTextField
+              label="Contact Number"
               value={formik.values.contactNumber}
               onChange={formik.handleChange("contactNumber")}
             />
@@ -377,7 +383,8 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Plate Number"
+            <InputTextField
+              label="Plate Number"
               value={formik.values.plateNumber}
               onChange={formik.handleChange("plateNumber")}
             />
@@ -388,7 +395,8 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Unit"
+            <InputTextField
+              label="Unit"
               value={formik.values.unit}
               onChange={formik.handleChange("unit")}
             />
@@ -399,7 +407,9 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Shop" value={formik.values.shop}
+            <InputTextField
+              label="Shop"
+              value={formik.values.shop}
               onChange={formik.handleChange("shop")}
             />
             {formik.touched.shop && formik.errors.shop && (
@@ -409,15 +419,17 @@ const AdjusterSubmission = () => {
             )}
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Insurance Company Name*"
+            <InputTextField
+              label="Insurance Company Name*"
               value={formik.values.insuranceCompanyName}
               onChange={formik.handleChange("insuranceCompanyName")}
             />
-            {formik.touched.insuranceCompanyName && formik.errors.insuranceCompanyName && (
-              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                {formik.errors.insuranceCompanyName}
-              </div>
-            )}
+            {formik.touched.insuranceCompanyName &&
+              formik.errors.insuranceCompanyName && (
+                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                  {formik.errors.insuranceCompanyName}
+                </div>
+              )}
           </div>
           <div className="col-12 claim__request__upload__subtitle mt-2 mb-2">
             Proof of Documents
@@ -464,7 +476,7 @@ const AdjusterSubmission = () => {
             </div>
           )}
 
-          <div className="col-12">
+          <div className="col-12 mt-2">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
                 <Button onClick={handleBackNavigation} className="back__btn">

@@ -27,7 +27,7 @@ const ClaimRejected = () => {
           Client ID : 1233333
         </div>
       </div>
-      <Card className="mt-8 border-round-3xl claimrequest__overall__card">
+      <Card className="mt-8 claimrequest__overall__card">
         <div className="claimtitle__card_overall">
           <div className="claimtitle__img__overallcontainer mt-8">
             <img
@@ -40,7 +40,7 @@ const ClaimRejected = () => {
             <div>You can still view all the information for your reference</div>
           </div>
         </div>
-        <div className="claimtitle__butt_container mt-8">
+        <div className="claimtitle__butt_container mt-6">
           <Button onClick={handleSubmit} className="claim__snd__but">
             Detail
           </Button>

@@ -13,14 +13,13 @@ import { useSelector } from "react-redux";
 const ClaimSettlement = () => {
   const { claimSettleViewData, loading } = useSelector(
     ({ claimSettleMainReducers }) => {
-        return {
-            loading: claimSettleMainReducers?.loading,
-            claimSettleViewData: claimSettleMainReducers?.claimSettleViewData,
-
-        };
+      return {
+        loading: claimSettleMainReducers?.loading,
+        claimSettleViewData: claimSettleMainReducers?.claimSettleViewData,
+      };
     }
-);
-console.log(claimSettleViewData, "endrosementViewData");
+  );
+  console.log(claimSettleViewData, "endrosementViewData");
   const navigate = useNavigate();
   const handleNavigation = () => {
     navigate(`/agent/clientview/${123}`);
@@ -43,57 +42,57 @@ console.log(claimSettleViewData, "endrosementViewData");
         <div className="claim__title">Claim Settlement</div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField value={claimSettleViewData?.policyNumber} label="Policy Number" />
+            <InputTextField
+              value={claimSettleViewData?.policyNumber}
+              label="Policy Number"
+            />
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField value={claimSettleViewData?.claimNumber} label="Claim Number" />
+            <InputTextField
+              value={claimSettleViewData?.claimNumber}
+              label="Claim Number"
+            />
           </div>
         </div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField value={claimSettleViewData?.dateReported} label="Date Reported" />
+            <InputTextField
+              value={claimSettleViewData?.dateReported}
+              label="Date Reported"
+            />
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField value={claimSettleViewData?.dateOfLoss} label="Date of Loss" />
+            <InputTextField
+              value={claimSettleViewData?.dateOfLoss}
+              label="Date of Loss"
+            />
           </div>
         </div>
-        <div className="claim__doc__title">Documents</div>
+        <div className="claim__doc__title mt-2">Documents</div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
             <div className="policy__detail__view__box">
-              <div className="grid mt-2">
-                <div className="col-12 md:col-6 lg:col-6">
-                  <div className="policy__detail__view__box__title">
-                    Acknowledgment letter
-                  </div>
+              <div className="policy__detail__view__box__title">
+                Acknowledgment letter
+              </div>
+              <div className="policy__detail__view__box__container cursor-pointer">
+                <div className="policy__detail__view__box__sub__title">
+                  View
                 </div>
-                <div className="col-12 md:col-6 lg:col-6">
-                  <div className="policy__detail__view__box__container">
-                    <div className="policy__detail__view__box__sub__title">
-                      View
-                    </div>
-                    <SvgBlueArrow />
-                  </div>
-                </div>
+                <SvgBlueArrow />
               </div>
             </div>
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <div className="policy__detail__view__box">
-              <div className="grid mt-2">
-                <div className="col-12 md:col-6 lg:col-6">
-                  <div className="policy__detail__view__box__title">
-                    Claims Discharge Voucher
-                  </div>
+              <div className="policy__detail__view__box__title">
+                Claims Discharge Voucher
+              </div>
+              <div className="policy__detail__view__box__container cursor-pointer">
+                <div className="policy__detail__view__box__sub__title">
+                  View
                 </div>
-                <div className="col-12 md:col-6 lg:col-6">
-                  <div className="policy__detail__view__box__container">
-                    <div className="policy__detail__view__box__sub__title">
-                      View
-                    </div>
-                    <SvgBlueArrow />
-                  </div>
-                </div>
+                <SvgBlueArrow />
               </div>
             </div>
           </div>
@@ -101,37 +100,26 @@ console.log(claimSettleViewData, "endrosementViewData");
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
             <div className="policy__detail__view__box">
-              <div className="grid mt-2">
-                <div className="col-12 md:col-6 lg:col-6">
-                  <div className="policy__detail__view__box__title">
-                    Claims Data sheet
-                  </div>
+              <div className="policy__detail__view__box__title">
+                Claims Data sheet
+              </div>
+
+              <div className="policy__detail__view__box__container cursor-pointer">
+                <div className="policy__detail__view__box__sub__title">
+                  View
                 </div>
-                <div className="col-12 md:col-6 lg:col-6">
-                  <div className="policy__detail__view__box__container">
-                    <div className="policy__detail__view__box__sub__title">
-                      View
-                    </div>
-                    <SvgBlueArrow />
-                  </div>
-                </div>
+                <SvgBlueArrow />
               </div>
             </div>
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             <div className="policy__detail__view__box">
-              <div className="grid mt-2">
-                <div className="col-12 md:col-6 lg:col-6">
-                  <div className="policy__detail__view__box__title">FIR</div>
+              <div className="policy__detail__view__box__title">FIR</div>
+              <div className="policy__detail__view__box__container cursor-pointer">
+                <div className="policy__detail__view__box__sub__title">
+                  View
                 </div>
-                <div className="col-12 md:col-6 lg:col-6">
-                  <div className="policy__detail__view__box__container">
-                    <div className="policy__detail__view__box__sub__title">
-                      View
-                    </div>
-                    <SvgBlueArrow />
-                  </div>
-                </div>
+                <SvgBlueArrow />
               </div>
             </div>
           </div>

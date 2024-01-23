@@ -56,15 +56,15 @@ const SendMail = () => {
     }
     return errors;
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
     if (!values.file) {
-      alert("please select file")
+      alert("please select file");
       return;
     }
-    dispatch(postSendData(formik.values))
+    dispatch(postSendData(formik.values));
     navigate("/agent/claimrequest/requestapproval/122344");
-  }
+  };
   const formik = useFormik({
     initialValues: formInitialValue,
     validate: customValidation,
@@ -139,14 +139,14 @@ const SendMail = () => {
                   formik.setFieldValue("file", e.files[0]);
                   handleUppendImg(e.options.props.name, e.files[0], "the data");
                 }}
-              // disabled={pending === "Pending"}
+                // disabled={pending === "Pending"}
               />
               <div className="icon_click_option">
                 <SvgImageUpload />
               </div>
               <div className="upload__caption text-center">Upload</div>
               <div className="upload__caption text-center">
-                Maximum 2 MB (PNG or JPEG Files Only)
+                Maximum 2 MB (PNG, JPEG and PDF Files Only)
               </div>
             </div>
           </div>

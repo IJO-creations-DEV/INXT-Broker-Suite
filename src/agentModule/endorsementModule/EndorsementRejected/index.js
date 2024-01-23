@@ -38,11 +38,11 @@ const EndorsementRejected = () => {
         </div>
       </div>
       <CustomToast ref={toastRef} message="Endorsement Rejected" />
-      <Card className="mt-4 border-round-3xl claimrequest__overall__card">
+      <Card className="mt-4 claimrequest__overall__card">
         <div className="mt-6">
           <div className="claimtitle__img__overallcontainer mt-4">
             <img
-              src="https://i.ibb.co/4pbj1hp/waiting-for-approval.png"
+              src="https://i.ibb.co/V21pJZs/REJECTED-1.png"
               className="claimtitle__img__container"
             />
           </div>

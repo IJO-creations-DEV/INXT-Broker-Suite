@@ -40,6 +40,9 @@ const PaymentOptions = () => {
   const handleSubmit = () => {
     navigate("/agent/policy/paymentapproval");
   };
+  const handleCommonAction = () => {
+    navigate(`/agent/clientview/${123}`);
+  };
   return (
     <div>
       <DocumentUpload
@@ -54,7 +57,10 @@ const PaymentOptions = () => {
       <div className="overall__payment__option__container">
         <div className="header__title">Clients</div>
         <div className="mt-3">
-          <div className="left__arrow">
+          <div
+            onClick={handleCommonAction}
+            className="left__arrow cursor-pointer"
+          >
             <SvgLeftArrow />
             <label className="left__arrow__text">Client ID : 12345678</label>
           </div>

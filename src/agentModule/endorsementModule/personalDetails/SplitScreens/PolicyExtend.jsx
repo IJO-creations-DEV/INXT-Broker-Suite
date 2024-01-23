@@ -5,7 +5,11 @@ import { InputTextarea } from "primereact/inputtextarea";
 import InputTextField from "../../../component/inputText";
 import DropdownField from "../../../component/DropdwonField";
 import { useFormik } from "formik";
-import { BodilyInjuryOptions, LossandDamagecoverageRateOptions, PropertyDamageOptions } from "../mock";
+import {
+  BodilyInjuryOptions,
+  LossandDamagecoverageRateOptions,
+  PropertyDamageOptions,
+} from "../mock";
 
 const initialValue = {
   FromDate: "",
@@ -24,14 +28,21 @@ const initialValue = {
   Declaration: "",
 };
 
-const PolicyExtend = ({handleFormSubmit,isFormSubmitted,setIsFormSubmitted,personalDetails}) => {
-
-  const [lossandDamagecoverageRate, setLossandDamagecoverageRate] = useState([])
-  const [bodilyInjury, setBodilyInjury] = useState([])
-  const [propertyDamage, setPropertyDamage] = useState([])
+const PolicyExtend = ({
+  handleFormSubmit,
+  isFormSubmitted,
+  setIsFormSubmitted,
+  personalDetails,
+}) => {
+  const [lossandDamagecoverageRate, setLossandDamagecoverageRate] = useState(
+    []
+  );
+  const [bodilyInjury, setBodilyInjury] = useState([]);
+  const [propertyDamage, setPropertyDamage] = useState([]);
 
   const setFormikValues = () => {
-    const LossandDamagecoverageRatevalue = personalDetails?.LossandDamagecoverageRate;
+    const LossandDamagecoverageRatevalue =
+      personalDetails?.LossandDamagecoverageRate;
     const BodilyInjuryvalue = personalDetails?.BodilyInjury;
     const PropertyDamagevalue = personalDetails?.PropertyDamage;
 
@@ -41,32 +52,41 @@ const PolicyExtend = ({handleFormSubmit,isFormSubmitted,setIsFormSubmitted,perso
       NumberofDays: personalDetails?.NumberofDays,
       LossandDamagecoverage: personalDetails?.LossandDamagecoverage,
       LossandDamagecoverageRate: LossandDamagecoverageRatevalue,
-      LossandDamagecoveragepremium: personalDetails?.LossandDamagecoveragepremium,
+      LossandDamagecoveragepremium:
+        personalDetails?.LossandDamagecoveragepremium,
       ActsOfNatureRate: personalDetails?.ActsOfNatureRate,
       ActsofNaturepremium: personalDetails?.ActsofNaturepremium,
-      BodilyInjury:BodilyInjuryvalue,
+      BodilyInjury: BodilyInjuryvalue,
       BodilyInjuryCoveragePremium: personalDetails?.BodilyInjuryCoveragePremium,
       PropertyDamage: PropertyDamagevalue,
-      PropertyDamageCoveragePremium: personalDetails?.PropertyDamageCoveragePremium,
+      PropertyDamageCoveragePremium:
+        personalDetails?.PropertyDamageCoveragePremium,
       Title: personalDetails?.Title,
       Declaration: personalDetails?.Declaration,
     };
     console.log(updatedValues.id, "updatedValues");
     if (LossandDamagecoverageRatevalue) {
-      setLossandDamagecoverageRate([{ label: LossandDamagecoverageRatevalue, value: LossandDamagecoverageRatevalue }]);
+      setLossandDamagecoverageRate([
+        {
+          label: LossandDamagecoverageRatevalue,
+          value: LossandDamagecoverageRatevalue,
+        },
+      ]);
     }
     if (BodilyInjuryvalue) {
       setBodilyInjury([{ label: BodilyInjuryvalue, value: BodilyInjuryvalue }]);
     }
     if (PropertyDamagevalue) {
-      setPropertyDamage([{ label: PropertyDamagevalue, value: PropertyDamagevalue }]);
+      setPropertyDamage([
+        { label: PropertyDamagevalue, value: PropertyDamagevalue },
+      ]);
     }
 
     formik.setValues({ ...formik.values, ...updatedValues });
   };
 
   useEffect(() => {
-    setFormikValues()
+    setFormikValues();
     if (isFormSubmitted) {
       formik.submitForm();
       setIsFormSubmitted(false);
@@ -78,16 +98,15 @@ const PolicyExtend = ({handleFormSubmit,isFormSubmitted,setIsFormSubmitted,perso
     initialValues: initialValue,
     // validate,
     onSubmit: (values) => {
-      handleFormSubmit( values);
+      handleFormSubmit(values);
     },
   });
-
 
   return (
     <div>
       <div className="customer__info__subtitle mt-2 mb-2">Policy Extend</div>
       {/* <form onSubmit={formik.handleSubmit}> */}
-      <div class="grid m-0">
+      <div class="grid">
         <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
           <DatepickerField
             label="From"
@@ -133,7 +152,9 @@ const PolicyExtend = ({handleFormSubmit,isFormSubmitted,setIsFormSubmitted,perso
           <DropdownField
             label="Loss and Damage coverage Rate"
             value={formik.values.LossandDamagecoverageRate}
-            options={LossandDamagecoverageRateOptions || lossandDamagecoverageRate}
+            options={
+              LossandDamagecoverageRateOptions || lossandDamagecoverageRate
+            }
             onChange={(e) => {
               console.log(e.value);
               formik.setFieldValue("LossandDamagecoverageRate", e.value);
@@ -213,7 +234,9 @@ const PolicyExtend = ({handleFormSubmit,isFormSubmitted,setIsFormSubmitted,perso
               formik.setFieldValue("PropertyDamage", e.value);
             }}
             optionLabel="label"
-            error={formik.touched.PropertyDamage && formik.errors.PropertyDamage}
+            error={
+              formik.touched.PropertyDamage && formik.errors.PropertyDamage
+            }
           />
         </div>
         <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">

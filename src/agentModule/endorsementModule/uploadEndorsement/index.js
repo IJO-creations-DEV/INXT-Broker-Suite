@@ -89,8 +89,8 @@ const UploadEndorsement = () => {
   return (
     <div className="upload__endorsement__container">
       <div className="upload__endorsement__container__title">Clients</div>
-      <div className="grid mt-3">
-        <div className="upload__endorsement__container__back__btn__container col-12 md:col-6 lg:col-6">
+      <div className="mt-3">
+        <div className="upload__endorsement__container__back__btn__container">
           <SvgLeftArrow />
           <div className="upload__endorsement__container__back__btn__title">
             Client ID :123456
@@ -277,8 +277,8 @@ const UploadEndorsement = () => {
             </div>
           )}
 
-          <div className="grid m-0 mt-2">
-            <div className="col-12 md:col-12 lg:col-12 back__complete__btn__container ">
+          <div className="grid m-0 mt-4">
+            <div className="col-12 md:col-12 lg:col-12 p-0 back__complete__btn__container ">
               <div className="complete__btn__container">
                 <Button
                   className="complete__btn"

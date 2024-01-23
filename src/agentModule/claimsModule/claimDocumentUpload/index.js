@@ -13,20 +13,29 @@ const ClaimDocumentUpload = () => {
     ({ claimDocumentUploadMainReducers }) => {
       return {
         loading: claimDocumentUploadMainReducers?.loading,
-        claimDocumentUploadData: claimDocumentUploadMainReducers?.claimDocumentUploadData,
-
+        claimDocumentUploadData:
+          claimDocumentUploadMainReducers?.claimDocumentUploadData,
       };
     }
   );
   const cityData = [
-    { label: claimDocumentUploadData.city, value: claimDocumentUploadData.city }
-  ]
+    {
+      label: claimDocumentUploadData.city,
+      value: claimDocumentUploadData.city,
+    },
+  ];
   const provinceData = [
-    { label: claimDocumentUploadData.province, value: claimDocumentUploadData.province }
-  ]
+    {
+      label: claimDocumentUploadData.province,
+      value: claimDocumentUploadData.province,
+    },
+  ];
   const cuntryData = [
-    { label: claimDocumentUploadData.country, value: claimDocumentUploadData.country }
-  ]
+    {
+      label: claimDocumentUploadData.country,
+      value: claimDocumentUploadData.country,
+    },
+  ];
   console.log(claimDocumentUploadData, "claimDocumentUploadData");
   const Navigate = useNavigate();
 
@@ -45,10 +54,10 @@ const ClaimDocumentUpload = () => {
           Client ID :123456
         </div>
       </div>
-      <Card className="mt-4 border-round-3xl">
+      <Card className="mt-4">
         <div className="claim__request__upload__title">Claim Request</div>
 
-        <div class="grid m-0 ">
+        <div class="grid">
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <InputTextField
               label="Adjuster Name"
@@ -56,73 +65,76 @@ const ClaimDocumentUpload = () => {
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Claim Number"
+            <InputTextField
+              label="Claim Number"
               value={claimDocumentUploadData.claimNumber}
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <DatepickerField label="Date of Reported"
-              value={
-                new Date(claimDocumentUploadData.dateOfReported)
-              }
+            <DatepickerField
+              label="Date of Reported"
+              value={new Date(claimDocumentUploadData.dateOfReported)}
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <DatepickerField label="Date of Loss"
-
-              value={
-                new Date(claimDocumentUploadData.dateOfLoss)
-              }
+            <DatepickerField
+              label="Date of Loss"
+              value={new Date(claimDocumentUploadData.dateOfLoss)}
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Place of Accident"
+            <InputTextField
+              label="Place of Accident"
               value={claimDocumentUploadData.placeOfAccident}
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Driver’s name"
+            <InputTextField
+              label="Driver’s name"
               value={claimDocumentUploadData.driversName}
             />
           </div>
 
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="House No / Unit No / Street "
+            <InputTextField
+              label="House No / Unit No / Street "
               value={claimDocumentUploadData.houseNumber}
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="Barangay / Subd"
+            <InputTextField
+              label="Barangay / Subd"
               value={claimDocumentUploadData.barangay}
             />
           </div>
 
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Country"
+            <DropdownField
+              label="Country"
               value={claimDocumentUploadData.country}
               options={cuntryData}
               optionLabel={"label"}
-
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="Province"
+            <DropdownField
+              label="Province"
               value={claimDocumentUploadData.province}
               options={provinceData}
               optionLabel={"label"}
-
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <DropdownField label="City"
+            <DropdownField
+              label="City"
               value={claimDocumentUploadData.city}
               options={cityData}
               optionLabel={"label"}
-
             />
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
-            <InputTextField label="ZIP Code"
+            <InputTextField
+              label="ZIP Code"
               value={claimDocumentUploadData.zipCode}
             />
           </div>
@@ -162,7 +174,7 @@ const ClaimDocumentUpload = () => {
             />
           </div>
 
-          <div className="col-12">
+          <div className="col-12 mt-3">
             <div className="back__next__btn__container">
               <div className="back__btn__container">
                 <Button className="back__btn" onClick={handleCommonAction}>

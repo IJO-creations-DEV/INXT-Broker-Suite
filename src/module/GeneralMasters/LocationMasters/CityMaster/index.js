@@ -96,10 +96,21 @@ const City = () => {
         fontSize: 16,
         fontFamily: 'Inter, sans-serif',
         fontWeight: 500,
-        padding: 6,
+        padding: "1rem",
         color:'#000',
         border: 'none'
     };
+    const headeraction={
+      fontSize: 16,
+      fontFamily: 'Inter, sans-serif',
+      fontWeight: 500,
+      padding: "1rem",
+      color:'#000',
+      border: 'none',
+      display:'flex',
+      justifyContent:'center',
+      alignItem:'center'
+    }
 
   const items = [
     { label: "Location" },
@@ -204,7 +215,7 @@ onClick={handleadd}
                     <Column field="Modifiedby" header="Modified by"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column field="ModifiedOn" header="Modified On" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     {/* <Column field="name" header="Phone" headerStyle={headerStyle}  className='fieldvalue_container'></Column> */}
-                    <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle}  className='fieldvalue_container'></Column>
+                    <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status"  headerStyle={headerStyle}  className='fieldvalue_container'></Column>
                     <Column
               body={(rowData) => (
                 <div className="action_icons">
@@ -214,7 +225,7 @@ onClick={handleadd}
                 </div>
               )}
               header="Action"
-              headerStyle={headerStyle}
+              headerStyle={headeraction}
               className="fieldvalue_container"
             ></Column>
              

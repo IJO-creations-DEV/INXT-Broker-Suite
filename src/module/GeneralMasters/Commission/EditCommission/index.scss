@@ -153,9 +153,12 @@
         width: 100% !important;
         border-radius: 10px;
         .p-inputtext {
-          margin: 6px 0 0 0;
-          border-radius: 5px;
-          height: 3.125rem;
+            margin: 8px 0 0 0;
+            border-radius: 10px;
+            border:1px solid #d1d5db;
+            /* padding: 0.45rem !important; */
+            height: 46px;
+        //   border-style: none
         //   border-style: none;
         }
           .p-inputtext::placeholder{
@@ -258,90 +261,21 @@
                     }
                 }
             }
-
-            // .add__icon__alighn__Journal__Voture {
-            //     display: flex;
-            //     justify-content: flex-end;
-            //     align-items: end;
-
-
-            //     .upload__icon__view__petty {
-            //         display: flex;
-            //         justify-content: space-between;
-            //         align-items: center;
-            //         // background-color: #6366F1;
-            //         border: 1px solid #6366F1;
-            //         height: 45px;
-            //         // width: 140px;
-            //         border-radius: 30px;
-            //         color: #000;
-            //         font-family: 'Inter', sans-serif;
-            //         padding: 0 20px;
-            //         cursor: pointer;
-            //         margin: 0 10px;
-
-            //         .upload__icon__petty {
-            //             display: flex;
-            //             justify-content: flex-end;
-            //             align-items: flex-end;
-            //             font-family: 'Inter', sans-serif;
-            //             padding: 0 5px;
-            //         }
-
-            //         .upload__text__petty {
-            //             color: #6366F1 !important;
-            //             font-size: 18px;
-            //             font-weight: 500;
-            //             background-color: transparent;
-            //             border-color: transparent;
-            //             font-family: 'Inter', sans-serif;
-            //             padding: 0 5px;
-            //         }
-
-            //     }
-
-
-
-
-            //     .add__icon__view__petty {
-            //         display: flex;
-            //         justify-content: space-evenly;
-            //         align-items: center;
-            //         background-color: #6366F1;
-            //         height: 45px;
-            //         // width: 140px;
-            //         border-radius: 30px;
-            //         color: #fff;
-            //         font-family: 'Inter', sans-serif;
-            //         padding: 0 20px;
-            //         cursor: pointer;
-
-            //         .add__icon__petty {
-            //             display: flex;
-            //             justify-content: flex-end;
-            //             align-items: flex-end;
-            //             padding: 0 5px;
-            //             font-family: 'Inter', sans-serif;
-            //         }
-
-            //         .add__text__petty {
-            //             color: #FFF !important;
-            //             font-size: 18px;
-            //             font-weight: 500;
-            //             background-color: transparent;
-            //             border-color: transparent;
-            //             font-family: 'Inter', sans-serif;
-            //             padding: 0 5px;
-            //         }
-
-            //     }
-            // }
-
-
         }
     }
    
-
+    .table__selector {
+        text-align: center;
+        flex: 1 0;
+        .pagedropdown_container {
+          border: none;
+          margin: 0 !important;
+          background-color: #FAFAFA;
+        }
+      }
+      .fieldvalue_container{
+        padding: 1rem !important;
+      }
 }
 .centercontent{
     display: flex !important;

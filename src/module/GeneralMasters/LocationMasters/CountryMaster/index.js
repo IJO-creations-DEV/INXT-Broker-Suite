@@ -105,10 +105,22 @@ const Country = () => {
         fontSize: 16,
         fontFamily: 'Inter, sans-serif',
         fontWeight: 500,
-        padding: 6,
+        padding: "1rem",
         color:'#000',
         border: 'none'
     };
+
+    const headeraction ={
+      fontSize: 16,
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: 500,
+        padding: "1rem",
+        color:'#000',
+        border: 'none',
+        display:'flex',
+        justifyContent:'center',
+        alignItem:"center"
+    }
 
   const items = [
     { label: "Location" },
@@ -203,8 +215,8 @@ onClick={handleadd}
                 </div>
               )}
               header="Action"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
+              headerStyle={headeraction}
+              className="fieldactionvalue_container"
             ></Column>
              
                 </DataTable>

@@ -31,11 +31,13 @@ const Index = () => {
   return (
     <div className="container__insurance_company_master">
       <div className="grid m-0 top__container">
-        <div className="col-12 p-0"></div>
-        <div className="col-12 p-0">
+       
+        
+        <div className="col-12 p-0 " style={{display:'flex',justifyContent:'space-between'}}>
+          <div>
           <div className="main__account__title">Insurance Company</div>
-        </div>
-        <div className="col-12 p-0 flex justify-content-end">
+          </div>
+          <div>
           <Button
             icon={
               <div className="pr-2">
@@ -57,6 +59,7 @@ const Index = () => {
           >
             Add
           </Button>
+          </div>
         </div>
         <div className="col-12 p-0">
           <BreadCrumb

@@ -11,6 +11,15 @@ font-weight: 600;
 margin-left: 10px;
 // line-height: normal;
     }
+    .p-inputtext:enabled:hover {
+        border-color: #d1d5db !important;
+    }
+    .p-inputtext:enabled:focus {
+        outline: 0 none;
+        outline-offset: 0;
+        box-shadow: 0 0 0 0rem #c7d2fe;
+        border-color: #d1d5db !important;
+    }
     .dropdown__container{
         width:100%;
         height:44px;

@@ -48,7 +48,7 @@ const TableData = ({ navigate }) => {
 
       return (
         <div className="table__selector">
-          <React.Fragment>
+          {/* <React.Fragment> */}
             <span style={{ color: "var(--text-color)", userSelect: "none" }}>
               Row count :{" "}
             </span>
@@ -58,7 +58,7 @@ const TableData = ({ navigate }) => {
               options={dropdownOptions}
               onChange={options.onChange}
             />
-          </React.Fragment>
+          {/* </React.Fragment> */}
         </div>
       );
     },

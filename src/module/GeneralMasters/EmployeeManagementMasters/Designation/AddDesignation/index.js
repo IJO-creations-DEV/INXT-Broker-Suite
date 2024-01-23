@@ -92,7 +92,9 @@ const AddDesignation = ({ action }) => {
 
     setTimeout(() => {
       setVisiblePopup(false);
+      navigate("/master/generals/employeemanagement/designation")
     }, 3000);
+  
   };
   const setFormikValues = () => {
     const designationCode = "Des00123";
@@ -125,7 +127,7 @@ const AddDesignation = ({ action }) => {
   });
   return (
     <div className="grid add__designation__container">
-      <div className="col-12"></div>
+      <div className="add_backbut_container">
       <div
         style={{
           justifyContent: "center",
@@ -144,6 +146,7 @@ const AddDesignation = ({ action }) => {
           ? "Edit Designation"
           : "View Designation"}
       </div>
+      </div>
       <div className="col-12 mb-2">
         <div className="mt-3">
           <BreadCrumb
@@ -161,24 +164,36 @@ const AddDesignation = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={formik.values.designationCode}
               onChange={formik.handleChange("designationCode")}
-              error={formik.errors.designationCode}
+              // error={formik.errors.designationCode}
               label="Designation Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+             {formik.touched.designationCode &&
+              formik.errors.designationCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.designationCode}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
               value={formik.values.designationName}
               onChange={formik.handleChange("designationName")}
-              error={formik.errors.designationName}
+              // error={formik.errors.designationName}
               label="Designation Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
             />
+             {formik.touched.designationName &&
+              formik.errors.designationName && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.designationName}
+                </div>
+              )}
           </div>
 
           <div className="col-12 md:col-3 lg:col-6">
@@ -191,13 +206,19 @@ const AddDesignation = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
+             {formik.touched.designationDescription &&
+              formik.errors.designationDescription && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.designationDescription}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.departmentCode}
               onChange={formik.handleChange("departmentCode")}
-              error={formik.errors.departmentCode}
+              // error={formik.errors.departmentCode}
               className="dropdown__add__sub"
               label="Department Code"
               classNames="label__sub__add"
@@ -205,6 +226,12 @@ const AddDesignation = ({ action }) => {
               options={item}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+             {formik.touched.departmentCode &&
+              formik.errors.departmentCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.departmentCode}
+                </div>
+              )}
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
@@ -212,7 +239,7 @@ const AddDesignation = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={formik.values.level}
               onChange={formik.handleChange("level")}
-              error={formik.errors.level}
+              // error={formik.errors.level}
               className="dropdown__add__sub"
               label="Level"
               classNames="label__sub__add"
@@ -220,13 +247,19 @@ const AddDesignation = ({ action }) => {
               options={item1}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+             {formik.touched.level &&
+              formik.errors.level && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.level}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
               value={formik.values.reportingtoLevel}
               onChange={formik.handleChange("reportingtoLevel")}
-              error={formik.errors.reportingtoLevel}
+              // error={formik.errors.reportingtoLevel}
               className="dropdown__add__sub"
               label="Reporting to Level"
               classNames="label__sub__add"
@@ -234,6 +267,12 @@ const AddDesignation = ({ action }) => {
               options={item1}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
+             {formik.touched.reportingtoLevel &&
+              formik.errors.reportingtoLevel && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.reportingtoLevel}
+                </div>
+              )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
@@ -246,6 +285,7 @@ const AddDesignation = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
+
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField

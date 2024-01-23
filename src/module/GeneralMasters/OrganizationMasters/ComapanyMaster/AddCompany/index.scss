@@ -253,6 +253,12 @@
     border-bottom-left-radius: 10px !important;
     /* border-radius: 10px; */
   }
+  .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0rem #c7d2fe;
+    border-color: #d1d5db;
+}
 }
 @media (min-width: 576px) {
   .md-col-6 {

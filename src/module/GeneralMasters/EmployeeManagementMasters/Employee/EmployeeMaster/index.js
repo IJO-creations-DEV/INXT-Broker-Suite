@@ -57,7 +57,7 @@ const EmployeeMaster = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
   };
@@ -65,7 +65,7 @@ const EmployeeMaster = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
     display: "flex",
@@ -246,7 +246,7 @@ const EmployeeMaster = () => {
                   body={renderViewButton}
                   header="Action"
                   headerStyle={{ ...ViewheaderStyle }}
-                  className="fieldvalue_container centered"
+                  className="fieldvalue_container_centered"
                 ></Column>
               </DataTable>
             </div>

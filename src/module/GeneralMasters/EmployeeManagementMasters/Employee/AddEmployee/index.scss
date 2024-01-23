@@ -11,8 +11,8 @@
       padding: 0;
       font-family: 'Inter', sans-serif;
       color: #111927;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 500;
       margin: 10px 0;
     }
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
@@ -26,7 +26,7 @@
   
       .dropdown__add__sub {
         width: 100%;
-        margin: 6px 0;
+        margin: 6px 0 !important;
         border-radius: 10px;
       }
   
@@ -78,7 +78,7 @@
       align-items: flex-end;
       .save__add__btn {
         height: 40px;
-        width: 130px;
+        // width: 130px;
         background-color: #6366f1;
         border-radius: 30px;
         font-size: 20px;
@@ -181,6 +181,11 @@
   
     .modal-body {
       color: #fff;
+    }
+    .add_backbut_container{
+      display: flex;
+      align-items: center;
+      gap:10px
     }
   }
   

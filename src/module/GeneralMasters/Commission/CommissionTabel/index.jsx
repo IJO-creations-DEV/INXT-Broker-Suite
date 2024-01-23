@@ -264,6 +264,29 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
         </div>
     );
 
+
+    const headerStyle = {
+        // width: '10rem',
+        // backgroundColor: 'red',
+        fontSize: 16,
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: 500,
+        padding: "1rem",
+        color:'#000',
+        border: 'none'
+    };
+    const headeraction={
+      fontSize: 16,
+      fontFamily: 'Inter, sans-serif',
+      fontWeight: 500,
+      padding: "1rem",
+      color:'#000',
+      border: 'none',
+      display:'flex',
+      justifyContent:'center',
+      alignItem:'center'
+    }
+
     const template2 = {
         layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
         RowsPerPageDropdown: (options) => {
@@ -299,14 +322,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
             </div>
         );
     };
-    const headerStyle = {
-        fontSize: 16,
-        fontFamily: 'Inter, sans-serif',
-        fontWeight: 500,
-        // padding: 6,
-        color: "#000",
-        border: "none",
-    };
+    
     const renderToggleButton = () => {
         return (
             <div>
@@ -339,6 +355,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     field="commissionCode"
                     header="Commission Code"
                     className="fieldvalue_container"
+                    headerStyle={headerStyle}
                     sortable
 
                 ></Column>
@@ -346,6 +363,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     field="product"
                     header="Product"
                     className="fieldvalue_container"
+                    headerStyle={headerStyle}
                     sortable
                 ></Column>
 
@@ -353,7 +371,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     field="selectCover"
                     header="Select Covers"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
 
                 ></Column>
                 <Column
@@ -361,35 +379,36 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     header="Effective From"
                     className="fieldvalue_container"
 
-
+                    headerStyle={headerStyle}
                 ></Column>
                 <Column
                     field="effectiveTo"
                     header="Effective To"
                     className="fieldvalue_container"
-
+                    headerStyle={headerStyle}
 
                 ></Column>
 
                 <Column
                     body={renderToggleButton}
-
+                    headerStyle={headerStyle}
                     field="status"
                     header="Status"
-                    headerStyle={{ textAlign: 'left', ...headerStyle }}
+                    
                     className="fieldvalue_container"
                 ></Column>
                 <Column
                     // body={renderEditButton}
                     body={(columnData) => (
                         <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
-                            <SvgEditicon onClick={() => handleEditNavigate(columnData)} />
                             <SvgIconeye onClick={() => handleNavigateView(columnData)} />
+                            <SvgEditicon onClick={() => handleEditNavigate(columnData)} />
+                            
                         </div>
                     )}
                     header="Action"
                     className="fieldvalue_container"
-
+                    headerStyle={headeraction}
 
                 ></Column>
             </DataTable>

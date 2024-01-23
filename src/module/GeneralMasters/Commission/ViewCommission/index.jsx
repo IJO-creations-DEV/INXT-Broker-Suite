@@ -754,7 +754,7 @@ const ViewCommission = () => {
               label="Effective From"
               textSize={"16px"}
               textColor={"#000"}
-              textWeight={"300"}
+              textWeight={"500"}
               classNames="label__sub__add"
             >
               <Calendar
@@ -776,7 +776,7 @@ const ViewCommission = () => {
               label="Effective To"
               textSize={"16px"}
               textColor={"#000"}
-              textWeight={"300"}
+              textWeight={"500"}
               classNames="label__sub__add"
             >
               <Calendar
@@ -869,21 +869,17 @@ const ViewCommission = () => {
             <Column
               field="level"
               header="Level"
-              style={{ width: "40%" }}
+              style={{ width: "40%" ,padding:'1rem'}}
             ></Column>
             <Column
               field="commissionCode"
               header="Commission Code"
-              style={{ width: "40%" }}
+              style={{ width: "40%" ,padding:'1rem'}}
             ></Column>
             <Column
               field="sharingRate"
               header="Share Rate"
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
+              style={{ width: "40%" ,padding:'1rem'}}
             ></Column>
           </DataTable>
         </div>

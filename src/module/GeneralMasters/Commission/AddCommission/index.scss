@@ -153,6 +153,7 @@
         font-weight: 400;
         font-family: 'Inter', sans-serif;
         color: #111927;
+        padding: 1rem !important;
     }
 
     .custom-modal-overlay {
@@ -235,7 +236,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-
+margin-bottom: 10px;
         .p-dropdown-label {
             color: #111927;
             font-family: 'Inter', sans-serif;
@@ -251,8 +252,8 @@
             margin: 6px 0 0 0;
             border-radius: 10px;
             height: 3.125rem;
-            border: 0.5px solid #b1b1b1;
-            border-color: #b1b1b1;
+            border: 0.5px solid #d1d5db;
+            border-color: #d1d5db;
             // border-style:inset;
         //   border-style: none;
         }
@@ -281,6 +282,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        margin-bottom: 10px !important;
 
         .p-component:disabled {
             opacity: 1 !important;
@@ -433,5 +435,6 @@
       bottom: 8px;
       z-index: 1;
     }
+    
 }
 

@@ -236,7 +236,7 @@ const AddEmployee = ({ action }) => {
       </div>
       </div>
       <div className="col-12 mb-2">
-        <div className="mt-3">
+        <div className="mt-2">
           <BreadCrumb
             home={home}
             className="breadCrums__view__add__screen"
@@ -245,7 +245,7 @@ const AddEmployee = ({ action }) => {
           />
         </div>
       </div>
-      <div className="col-12 m-0 ">
+      <div className="col-12 mt-3 ">
         <div className="grid add__account__sub__container p-3">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField

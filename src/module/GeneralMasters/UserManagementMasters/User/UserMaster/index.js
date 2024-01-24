@@ -140,7 +140,7 @@ const UserMaster = () => {
   };
   return (
     <div className="grid overall__user__master__container">
-      <div className="col-12"></div>
+     
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">User</div>
         <div className="mt-3">

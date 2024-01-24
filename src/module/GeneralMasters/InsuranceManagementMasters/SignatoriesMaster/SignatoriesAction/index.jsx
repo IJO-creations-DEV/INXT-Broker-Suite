@@ -143,7 +143,7 @@ const SignatoriesDetailsAction = ({ action }) => {
     },
   });
   return (
-    <div className="action__cover_container">
+    <div className="signtoriesaction__cover_container">
       <div className="grid m-0 top-container">
         <CustomToast ref={toastRef} message="Signatory Code 001234 is added" />
         <div className="col-12 p-0"></div>

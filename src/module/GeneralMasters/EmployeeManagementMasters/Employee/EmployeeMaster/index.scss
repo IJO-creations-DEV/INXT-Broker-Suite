@@ -11,7 +11,7 @@
 
     .breadCrums__view__reversal__hierarchy {
         border: none;
-        padding: 0;
+        padding:4px 0px;
         font-family: 'Inter', sans-serif;
         color: #111927;
         font-size: 14px;
@@ -46,7 +46,7 @@
     .add__icon__alighn__hierarchy {
         display: flex;
         justify-content: flex-end;
-        align-items: end;
+        align-items: center;
 
         .add__icon__view__hierarchy {
             display: flex;
@@ -83,8 +83,8 @@
 
     .sub__account__sub__container__hierarchy {
         box-shadow: 0px 0px 20px 0px #00000014;
-        border-radius: 10px;
-
+        border-radius: 20px;
+        padding: 0.82rem;
 
 
         .sort__filter__view__hierarchy {

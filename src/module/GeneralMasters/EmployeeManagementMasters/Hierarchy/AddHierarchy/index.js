@@ -148,15 +148,14 @@ const AddHierarchy = ({ action }) => {
           : "View Hierarchy"}
       </div>
       </div>
-      <div className="col-12 mb-2">
-        <div className="mt-3">
+      <div className="col-12 mb-2 mt-2">
           <BreadCrumb
             home={home}
             className="breadCrums__view__add__screen"
             model={items}
             separatorIcon={<SvgDot color={"#000"} />}
           />
-        </div>
+       
       </div>
       <div className="col-12 m-0 ">
         <div className="grid add__account__sub__container p-3">

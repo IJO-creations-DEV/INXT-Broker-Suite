@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 const QuoteListingCard = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
-const navigate =useNavigate()
+  const navigate = useNavigate();
   const TableData = [
     {
       id: "1",
@@ -156,8 +156,13 @@ const navigate =useNavigate()
       </div>
     ) : (
       <div className="header__btn__container">
-      <div className="header__delete__btn">Delete</div>
-      <div className="header__edit__btn" onClick={()=>navigate("/agent/quotecomparisonview")}>Compare</div>
+        <div className="header__delete__btn">Delete</div>
+        <div
+          className="header__edit__btn"
+          onClick={() => navigate("/agent/quotecomparisonview")}
+        >
+          Compare
+        </div>
       </div>
     );
   };
@@ -166,7 +171,9 @@ const navigate =useNavigate()
     return selectedProducts.length == 0 && value;
   };
 
-  const handleclick = () => {};
+  const handleclick = () => {
+    navigate("/agent/createquote/policydetails");
+  };
 
   const ViewheaderStyle = {
     justifyContent: "center",
@@ -281,7 +288,7 @@ const navigate =useNavigate()
             <div className="quote__listing__card__container__back__btn">
               <SvgLeftArrow />
               <div className="quote__listing__card__container__back__btn__title">
-              Carson Darrin
+                Carson Darrin
               </div>
             </div>
           </div>
@@ -303,8 +310,12 @@ const navigate =useNavigate()
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown   optionLabel="name" className="feat_searchby_container"
-                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
+            <Dropdown
+              optionLabel="name"
+              className="feat_searchby_container"
+              placeholder="Search by"
+              dropdownIcon={<SvgDownArrow />}
+            />
           </div>
         </div>
         <div className="quote__listing__card__table">

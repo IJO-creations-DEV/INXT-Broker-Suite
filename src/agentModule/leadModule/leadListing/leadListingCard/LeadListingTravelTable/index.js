@@ -18,17 +18,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const LeadListingTravelTable = ({paymentSearchList}) => {
+const LeadListingTravelTable = ({ paymentSearchList }) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
   const dispatch = useDispatch();
-  const [search,setSearch]=useState("")
- 
+  const [search, setSearch] = useState("");
+
   const cities = [
     { name: "Name", code: "Name" },
     { name: "LeadID", code: "LeadID" },
-   
   ];
 
   useEffect(() => {
@@ -53,7 +52,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "01",
       LeadID: "123456",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11001"
+      dateSortField: "11001",
     },
     {
       id: "2",
@@ -63,7 +62,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "02",
       LeadID: "126",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11002"
+      dateSortField: "11002",
     },
     {
       id: "3",
@@ -73,7 +72,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "02",
       LeadID: "1456",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11003"
+      dateSortField: "11003",
     },
     {
       id: "4",
@@ -83,7 +82,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "03",
       LeadID: "1236",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11004"
+      dateSortField: "11004",
     },
     {
       id: "5",
@@ -93,7 +92,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "04",
       LeadID: "1456",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11005"
+      dateSortField: "11005",
     },
     {
       id: "6",
@@ -103,7 +102,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "05",
       LeadID: "123116",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11006"
+      dateSortField: "11006",
     },
     {
       id: "7",
@@ -113,7 +112,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "06",
       LeadID: "123411",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11007"
+      dateSortField: "11007",
     },
     {
       id: "8",
@@ -123,7 +122,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "01",
       LeadID: "1234000",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11008"
+      dateSortField: "11008",
     },
     {
       id: "9",
@@ -133,7 +132,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "02",
       LeadID: "1234555",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11009"
+      dateSortField: "11009",
     },
     {
       id: "10",
@@ -143,7 +142,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
       Quotes: "03",
       LeadID: "1234226",
       Svg: <SvgTravlesTable />,
-      dateSortField:"11010"
+      dateSortField: "11010",
     },
   ];
 
@@ -279,7 +278,16 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} style={{ width: "100%", padding: "1rem 2.75rem", borderRadius: "10px" }} />
+            <InputText
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "1rem 2.75rem",
+                borderRadius: "10px",
+              }}
+            />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
@@ -292,7 +300,7 @@ const LeadListingTravelTable = ({paymentSearchList}) => {
             optionValue="code"
             placeholder="Search by"
             className="sorbyfilter__style"
-            dropdownIcon={<SvgDropdownicon />}
+            dropdownIcon={<SvgDownArrow />}
           />
         </div>
       </div>

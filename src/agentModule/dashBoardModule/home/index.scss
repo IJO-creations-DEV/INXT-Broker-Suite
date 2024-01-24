@@ -270,12 +270,12 @@
       font-weight: 400;
       line-height: 21px;
     }
-    .date__svg__main__container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .date__svg__main__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .date__text__container{
+    .date__text__container {
       margin-top: 8px;
     }
   }
@@ -395,7 +395,7 @@
   }
 }
 
-.p-dialog .p-dialog-header {
+.agent__flow__common__dialog__container .p-dialog-header {
   border-bottom: 0 none;
   background: #ffffff;
   color: #374151;
@@ -404,12 +404,12 @@
   border-top-left-radius: 20px;
 }
 
-.p-dialog .p-dialog-content:last-of-type {
+.agent__flow__common__dialog__container .p-dialog-content:last-of-type {
   border-bottom-right-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
 }
 
-.p-dialog {
+.agent__flow__common__dialog__container {
   display: flex;
   flex-direction: column;
   pointer-events: auto;
@@ -418,61 +418,59 @@
   position: relative;
   border-radius: 20px;
 }
-.p-dialog .p-dialog-content {
+.agent__flow__common__dialog__container .p-dialog-content {
   background: #ffffff;
   color: #4b5563;
   padding: 0 1.5rem 4rem 1.5rem;
 }
-.p-menu .p-menuitem-text {
-  line-height: 1;
-  width: 100%;
-}
 
-.dialog__existingclient__container{
-  
-  .dialog__existingclient__header__container{
-    background-color: #F3F4F6;
+// .p-menu .p-menuitem-text {
+//   line-height: 1;
+//   width: 100%;
+// }
+
+.dialog__existingclient__container {
+  .dialog__existingclient__header__container {
+    background-color: #f3f4f6;
     display: flex;
     // justify-content: center;
     align-items: center;
     padding: 10px;
-    gap:10px;
+    gap: 10px;
     border-radius: 8px;
-    margin-bottom:26px;
+    margin-bottom: 26px;
     margin-top: 10px;
   }
-  
-  
-  .dialog__existingclient___search{
-    color: #6C737F;
+
+  .dialog__existingclient___search {
+    color: #6c737f;
     font-family: Poppins;
     font-size: 12px;
     font-weight: 400;
   }
-  .dialog__existingclient___tip{
-    color: #6C737F;
-font-family: Poppins;
-font-size: 12px;
-font-weight: 500;
+  .dialog__existingclient___tip {
+    color: #6c737f;
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 500;
   }
-  .dialog__existingclient__carddata{
-    border:1px solid #d1d5db;
+  .dialog__existingclient__carddata {
+    border: 1px solid #d1d5db;
     padding: 8px 425px 8px 11px;
     margin-top: 12px;
     border-radius: 10px;
     margin-bottom: 1rem;
   }
-  .dialog__existingclient__carddata__name{
+  .dialog__existingclient__carddata__name {
     color: #111927;
-font-family: Poppins;
-font-size: 16px;
-font-weight: 400;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
   }
-  .dialog__existingclient__carddata__id{
-    color: #6C737F;
-font-family: Poppins;
-font-size: 14px;
-font-weight: 400;
+  .dialog__existingclient__carddata__id {
+    color: #6c737f;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 400;
   }
- 
 }

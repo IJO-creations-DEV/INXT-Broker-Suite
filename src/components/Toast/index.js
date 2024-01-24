@@ -2,10 +2,9 @@ import React, { useImperativeHandle, forwardRef, useRef } from "react";
 import { Toast } from "primereact/toast";
 import "./index.scss";
 
-const CustomToast = forwardRef((props, ref) => { 
-  
-  const { message } = props;
-
+const CustomToast = forwardRef((props, ref) => {
+  const { message, messageType } = props;
+  console.log(messageType, "find statusUpdate");
   const formatMessage = (Message) => {
     const parts = Message?.split(/\s+/);
 
@@ -16,7 +15,7 @@ const CustomToast = forwardRef((props, ref) => {
             key={index}
             style={{
               color: "#29CE00",
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: "Inter, sans-serif",
               fontSize: "16px",
               fontWeight: 500,
             }}
@@ -30,7 +29,7 @@ const CustomToast = forwardRef((props, ref) => {
             key={index}
             style={{
               color: "black",
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: "Inter, sans-serif",
               fontSize: "16px",
               fontWeight: 500,
             }}
@@ -50,9 +49,8 @@ const CustomToast = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     showToast() {
       toastRef.current.show({
-        severity: "success",
+        severity: `${messageType ? messageType : "success"}`,
         detail: formattedMessage,
-        life: 3000,
         icon: "pi pi-check-circle custom-icon",
         className: "custom-toast",
       });

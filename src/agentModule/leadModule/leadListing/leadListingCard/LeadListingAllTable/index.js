@@ -13,26 +13,23 @@ import SvgHomeTable from "../../../../../assets/agentIcon/SvgHomeTable";
 import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
-import '../../index.scss'
+import "../../index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
-
-
 
 const LeadListingAllTable = ({ paymentSearchList }) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
-  const [status, setStatus] = useState("")
-  const [search, setSearch] = useState("")
+  const [status, setStatus] = useState("");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const cities = [
     { name: "Name", code: "Name" },
     { name: "LeadID", code: "LeadID" },
-
   ];
 
   useEffect(() => {
@@ -56,7 +53,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "01",
       LeadID: "123456",
       Svg: <SvgMotorTable />,
-      dateSortField: "11001"
+      dateSortField: "11001",
     },
     {
       id: "2",
@@ -66,7 +63,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "02",
       LeadID: "126",
       Svg: <SvgTravlesTable />,
-      dateSortField: "11002"
+      dateSortField: "11002",
     },
     {
       id: "3",
@@ -76,7 +73,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "02",
       LeadID: "1456",
       Svg: <SvgHomeTable />,
-      dateSortField: "11003"
+      dateSortField: "11003",
     },
     {
       id: "4",
@@ -86,7 +83,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "03",
       LeadID: "1236",
       Svg: <SvgTravlesTable />,
-      dateSortField: "11004"
+      dateSortField: "11004",
     },
     {
       id: "5",
@@ -96,7 +93,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "04",
       LeadID: "1456",
       Svg: <SvgMotorTable />,
-      dateSortField: "11005"
+      dateSortField: "11005",
     },
     {
       id: "6",
@@ -106,7 +103,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "05",
       LeadID: "123116",
       Svg: <SvgHomeTable />,
-      dateSortField: "11006"
+      dateSortField: "11006",
     },
     {
       id: "7",
@@ -116,7 +113,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "06",
       LeadID: "123411",
       Svg: <SvgTravlesTable />,
-      dateSortField: "11007"
+      dateSortField: "11007",
     },
     {
       id: "8",
@@ -126,7 +123,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "01",
       LeadID: "1234000",
       Svg: <SvgMotorTable />,
-      dateSortField: "11008"
+      dateSortField: "11008",
     },
     {
       id: "9",
@@ -136,7 +133,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "02",
       LeadID: "1234555",
       Svg: <SvgHomeTable />,
-      dateSortField: "11009"
+      dateSortField: "11009",
     },
     {
       id: "10",
@@ -146,7 +143,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
       Quotes: "03",
       LeadID: "1234226",
       Svg: <SvgTravlesTable />,
-      dateSortField: "11010"
+      dateSortField: "11010",
     },
   ];
 
@@ -282,7 +279,16 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} style={{ width: "100%", padding: "1rem 2.75rem", borderRadius: "10px" }} />
+            <InputText
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "1rem 2.75rem",
+                borderRadius: "10px",
+              }}
+            />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
@@ -295,7 +301,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
             optionValue="code"
             placeholder="Search by"
             className="sorbyfilter__style"
-            dropdownIcon={<SvgDropdownicon />}
+            dropdownIcon={<SvgDownArrow />}
           />
         </div>
       </div>
@@ -321,7 +327,7 @@ const LeadListingAllTable = ({ paymentSearchList }) => {
             body={(rowData) => (
               <Checkbox
                 checked={selectedProducts.includes(rowData)}
-                onChange={() => { }}
+                onChange={() => {}}
               />
             )}
             headerStyle={headerStyle}

@@ -24,6 +24,7 @@ import SvgReceivables from "../../assets/agentIcon/SvgReceivables";
 import { useDispatch, useSelector } from "react-redux";
 import { getPaymentSearchDataMiddleWare } from "./store/paymentMiddleware";
 import SvgDropdownicon from "../../assets/icons/SvgDropdownicon";
+import SvgDownArrow from "../../assets/agentIcon/SvgDownArrow";
 
 const Payments = () => {
   const { paymenttabledata, paymentSearchList, loading } = useSelector(
@@ -241,7 +242,11 @@ const Payments = () => {
                     <i className="pi pi-search" />
                     <InputText
                       placeholder="Search"
-                      style={{ width: "100%", padding: "1rem 2.75rem",borderRadius:"10px" }}
+                      style={{
+                        width: "100%",
+                        padding: "1rem 2.75rem",
+                        borderRadius: "10px",
+                      }}
                       value={status && search}
                       onChange={(e) => setSearch(e.target.value)}
                     />
@@ -256,7 +261,7 @@ const Payments = () => {
                     optionValue="code"
                     placeholder="Search by"
                     className="sorbyfilter__style"
-                    dropdownIcon={<SvgDropdownicon />}
+                    dropdownIcon={<SvgDownArrow />}
                   />
                 </div>
               </div>
@@ -303,7 +308,7 @@ const Payments = () => {
                     optionValue="code"
                     placeholder="Search by"
                     className="sorbyfilter__style"
-                    dropdownIcon={<SvgDropdownicon />}
+                    dropdownIcon={<SvgDownArrow />}
                   />
                 </div>
               </div>
@@ -349,7 +354,7 @@ const Payments = () => {
                     optionValue="code"
                     placeholder="Search by"
                     className="sorbyfilter__style"
-                    dropdownIcon={<SvgDropdownicon />}
+                    dropdownIcon={<SvgDownArrow />}
                   />
                 </div>
               </div>

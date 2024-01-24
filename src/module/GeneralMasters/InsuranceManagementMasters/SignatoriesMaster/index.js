@@ -34,18 +34,17 @@ const Index = () => {
       <div className="grid m-0 top__container">
         
         
-        <div className="col-12 p-0 "style={{display:'flex',justifyContent:'space-between'}}>
-          {/* <Button
-            icon={
-              <div className="pr-2">
-                <SvgUploade />
-              </div>
-            }
-            className="main__btn__action__upload mr-4"
-          >
-            Upload
-          </Button> */}
+        <div className="col-12 p-0 "style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+          <div>
           <div className="main__account__title">Signatories</div>
+          <BreadCrumb
+            home={home}
+            className="breadCrums__view__reversal"
+            model={items}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
+          </div>
+          <div>
           <Button
             icon={
               <div className="pr-2">
@@ -57,14 +56,10 @@ const Index = () => {
           >
             Add
           </Button>
+          </div>
         </div>
         <div className="col-12 p-0">
-          <BreadCrumb
-            home={home}
-            className="breadCrums__view__reversal"
-            model={items}
-            separatorIcon={<SvgDot color={"#000"} />}
-          />
+         
         </div>
       </div>
       <div className="grid m-0 table__container">

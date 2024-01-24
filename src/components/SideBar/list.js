@@ -279,7 +279,13 @@ export const menuList = [
   {
     name: "Reports",
     // icons: <SvgReportsIcon/>,
-    submenu: [],
+    submenu: [
+      {
+        id: 1,
+        name: "Operational Reports",
+        path: "/reports/operationalreports",
+      },
+    ],
   },
   
 ];

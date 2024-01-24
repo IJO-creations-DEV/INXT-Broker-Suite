@@ -249,15 +249,17 @@ function AddCompany({ action }) {
             ? "Edit Company"
             : "Company details"}
         </label>
-      </div>
+      
+      
       <BreadCrumb
         model={items}
         home={home}
         className="breadcrumbs_container"
         separatorIcon={<SvgDot color={"#000"} />}
       />
+   </div>
 
-      <Card>
+      <Card style={{marginTop:"20px"}}>
         <div class="grid">
           <div class="col-12 md:col-6 lg:col-3">
             <InputField

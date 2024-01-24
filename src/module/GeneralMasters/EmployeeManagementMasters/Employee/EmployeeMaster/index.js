@@ -136,7 +136,7 @@ const EmployeeMaster = () => {
   };
   return (
     <div className="grid overall__employee__master__container">
-      <div className="col-12"></div>
+      
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Employee</div>
         <div className="mt-3">
@@ -156,7 +156,7 @@ const EmployeeMaster = () => {
           <div className="add__text__hierarchy">Add</div>
         </div>
       </div>
-      <div className="col-12 m-0 ">
+      <div className="col-12 mt-3 ">
         <div className="sub__account__sub__container__hierarchy">
           <div className="col-12 search__filter__view__hierarchy">
             <div className="col-12 md:col-12 lg:col-12">

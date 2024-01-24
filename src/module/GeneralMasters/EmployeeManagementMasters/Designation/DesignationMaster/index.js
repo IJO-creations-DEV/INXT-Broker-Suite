@@ -123,10 +123,10 @@ const DesignationMaster = () => {
 
   return (
     <div className="grid overall__designation__master__container">
-      <div className="col-12"></div>
+     
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Designation</div>
-        <div className="mt-3">
+        <div style={{margin:"20px 0px"}}>
           <BreadCrumb
             home={home}
             className="breadCrums__view__reversal__hierarchy"

@@ -4,7 +4,7 @@
        
 color: #111927;
  font-family: 'Inter', sans-serif;
-font-size: 26px;
+font-size: 30px;
 // font-style: normal;
 font-weight: 600;
 // line-height: normal;
@@ -60,7 +60,8 @@ margin: 8px;
     font-family: 'Inter', sans-serif;
     border: 1px solid #fff !important; 
     border-radius: 6px !important;
-    padding: 2rem 0rem !important;
+    padding: 0px !important;
+    margin:20px 0px;
 }
 .uploadbutton_container{
     border-radius: 60px;
@@ -101,12 +102,12 @@ margin: 8px;
 }
   .overallfilter_container{
     display: flex;
-    align-items: self-start;
+    align-items: center;
     justify-content: space-between;
 }
 .overallcard_container{
-   width:1236px;
-   height:700px;
+   margin-top: 20px;
+   border-radius: 20px;
 }
 .searchinput_left{
      width:100%;

@@ -6,11 +6,12 @@
     font-weight: 600;
     line-height: normal;
     font-family: 'Inter', sans-serif;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
   }
   .breadCrums__view__reversal {
     border: none;
     padding: 1px 0;
+    margin:20px 0px
   }
 
   .p-breadcrumb .p-breadcrumb-list li .p-menuitem-link .p-menuitem-text {
@@ -26,7 +27,8 @@
     background: #fff;
     filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08));
     padding: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
+    border-radius: 20px;
   }
   .select__label__corrections__inactive {
     color: #b1b1b1 !important;

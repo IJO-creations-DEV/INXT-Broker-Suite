@@ -201,6 +201,7 @@ import LeadEdit from "../agentModule/leadModule/leadEdit";
 import ViewEndorsement from "../agentModule/endorsementModule/viewUploadEndorsement";
 import EndorsementRejected from "../agentModule/endorsementModule/EndorsementRejected";
 import LoginScreen from "../module/AuthModule/Login/index";
+import OperationalReports from "../module/Reports/OperationalReports";
 
 const Maincomponent = () => {
   return (
@@ -1136,6 +1137,14 @@ const Maincomponent = () => {
                 path="/agent/openitems/expiringpolicy"
                 element={<ExpiringPolicy />}
               />
+
+{/* //Reports */}
+<Route
+                path="/reports/operationalreports"
+                element={<OperationalReports/>}
+              />
+
+
           </Route>
         </Routes>
       </div>

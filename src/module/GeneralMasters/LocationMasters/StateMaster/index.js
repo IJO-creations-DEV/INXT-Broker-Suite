@@ -167,7 +167,7 @@ onClick={handleadd}
 
 
           <Card 
-        //   className="overallcard_container"
+           className="overallcard_container"
           >
             {/* <div className="searchiput_container"> */}
     

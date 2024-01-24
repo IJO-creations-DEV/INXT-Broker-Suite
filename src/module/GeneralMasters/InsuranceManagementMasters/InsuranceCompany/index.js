@@ -33,9 +33,15 @@ const Index = () => {
       <div className="grid m-0 top__container">
        
         
-        <div className="col-12 p-0 " style={{display:'flex',justifyContent:'space-between'}}>
+        <div className="col-12 p-0 " style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
           <div>
           <div className="main__account__title">Insurance Company</div>
+          <BreadCrumb
+            home={home}
+            className="breadCrums__view__reversal"
+            model={items}
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
           </div>
           <div>
           <Button
@@ -61,14 +67,7 @@ const Index = () => {
           </Button>
           </div>
         </div>
-        <div className="col-12 p-0">
-          <BreadCrumb
-            home={home}
-            className="breadCrums__view__reversal"
-            model={items}
-            separatorIcon={<SvgDot color={"#000"} />}
-          />
-        </div>
+       
       </div>
       <div className="grid m-0 table__container">
         <div className="col-12 p-0">

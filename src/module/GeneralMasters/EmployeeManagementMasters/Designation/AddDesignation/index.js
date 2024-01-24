@@ -126,6 +126,7 @@ const AddDesignation = ({ action }) => {
     onSubmit: handleSubmit,
   });
   return (
+    <div>
     <div className="grid add__designation__container">
       <div className="add_backbut_container">
       <div
@@ -147,8 +148,8 @@ const AddDesignation = ({ action }) => {
           : "View Designation"}
       </div>
       </div>
-      <div className="col-12 mb-2">
-        <div className="mt-3">
+      <div className="col-12 " >
+        <div className="mt-2">
           <BreadCrumb
             home={home}
             className="breadCrums__view__add__screen"
@@ -157,8 +158,8 @@ const AddDesignation = ({ action }) => {
           />
         </div>
       </div>
-      <div className="col-12 m-0 ">
-        <div className="grid add__account__sub__container p-3">
+      <div className="col-12 mt-4 ">
+        <div className="grid add__account__sub__container p-3 ml-1">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
@@ -327,6 +328,7 @@ const AddDesignation = ({ action }) => {
         message="Designation Code CC1234 
 is added"
       />
+    </div>
     </div>
   );
 };

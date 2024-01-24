@@ -192,7 +192,7 @@ function AddExchange({ action }) {
         separatorIcon={<SvgDot color={"#000"} />}
       />
 
-      <Card>
+      <Card style={{borderRadius:"20px",marginTop:"20px"}}>
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <div>

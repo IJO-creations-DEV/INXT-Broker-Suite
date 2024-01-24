@@ -166,7 +166,7 @@ onClick={handleadd}
           </div>
 
 
-          <Card 
+          <Card  style={{marginTop:'20px',borderRadius:"20px"}}
         //   className="overallcard_container"
           >
             {/* <div className="searchiput_container"> */}

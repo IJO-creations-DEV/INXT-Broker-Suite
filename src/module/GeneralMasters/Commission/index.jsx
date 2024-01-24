@@ -74,12 +74,11 @@ const Commission = () => {
   console.log(commissionList, "commissionList");
   return (
     <div className="grid  container__commission">
-      <div className="col-12"></div>
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__Journal__Voture">
           Commissions Master
         </div>
-        <div className="mt-4">
+        <div style={{margin:"20px 0px"}}>
           <BreadCrumb
             home={home}
             className={items.map((val) => {

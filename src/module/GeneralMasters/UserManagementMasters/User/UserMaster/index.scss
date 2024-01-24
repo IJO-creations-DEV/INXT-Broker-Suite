@@ -8,6 +8,14 @@
         font-family: 'Inter', sans-serif;
 
     }
+    .p-breadcrumb ol {
+        margin: 0;
+        padding: 4px 0px;
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
 
     .breadCrums__view__reversal__hierarchy {
         border: none;

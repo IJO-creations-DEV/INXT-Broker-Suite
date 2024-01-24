@@ -10,8 +10,8 @@
       border: none;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      color: #111927;
-      font-size: 14px;
+      color: #000;
+      font-size: 16px;
       font-weight: 500;
       margin: 10px 0;
     }
@@ -22,7 +22,11 @@
     .add__account__sub__container {
       box-shadow: rgba(241, 244, 247, 0.3) 0px 1px 2px 0px,
         rgba(169, 174, 179, 0.15) 0px 2px 6px 2px;
-      border-radius: 10px;
+      border-radius: 20px;
+      margin-top: 8px;
+    
+    
+    
   
       .dropdown__add__sub {
         width: 100%;

@@ -16,23 +16,20 @@ import { Dropdown } from "primereact/dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../../../components/NavBar";
 import SvgFrame from "../../../assets/agentIcon/SvgFrame";
-import { InputText } from 'primereact/inputtext';
+import { InputText } from "primereact/inputtext";
 import { getClientTableSearchListMiddleware } from "../../quoteModule/clientListing/store/clientsMiddleware";
 
-
-
 const Dashboard = () => {
-
-
-
-  const clientdata = [{
-    name: "Carson Darrin",
-    clientId: "123"
-  },
-  {
-    name: "qwerty",
-    clientId: "1234"
-  }]
+  const clientdata = [
+    {
+      name: "Carson Darrin",
+      clientId: "123",
+    },
+    {
+      name: "qwerty",
+      clientId: "1234",
+    },
+  ];
 
   const [visible, setVisible] = useState(false);
   const [existclient, setexistclient] = useState(false);
@@ -47,13 +44,14 @@ const Dashboard = () => {
     };
   });
 
-
-  const { clientListTable, ClientTableSearchList } = useSelector(({ clientsReducers }) => {
-    return {
-      clientListTable: clientsReducers?.clientListTable,
-      ClientTableSearchList: clientsReducers?.ClientTableSearchList
-    };
-  });
+  const { clientListTable, ClientTableSearchList } = useSelector(
+    ({ clientsReducers }) => {
+      return {
+        clientListTable: clientsReducers?.clientListTable,
+        ClientTableSearchList: clientsReducers?.ClientTableSearchList,
+      };
+    }
+  );
   console.log(clientListTable, ClientTableSearchList, "clientListTableHHH");
   const dropdownOptions = [
     {
@@ -125,13 +123,13 @@ const Dashboard = () => {
       value: "Property",
     },
   ];
-  const [search, setSearch] = useState("")
-  const dispatch = useDispatch()
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getClientTableSearchListMiddleware(search))
+      dispatch(getClientTableSearchListMiddleware(search));
     }
-  }, [search])
+  }, [search]);
   const handleClickMotor = () => {
     setVisible(true);
   };
@@ -141,7 +139,7 @@ const Dashboard = () => {
   };
   const handleclientid = () => {
     navigate("/agent/createquote/policydetails");
-  }
+  };
 
   return (
     <div className="dasboard__container">
@@ -166,64 +164,93 @@ const Dashboard = () => {
       <TopCard detail={userDetails} />
       <CenterCard commission={commissionList} />
       <BottomCard detail={userDetails} />
-      <Dialog
-        className="dailog__box__container"
-        visible={visible}
-        style={{ width: "30vw" }}
-        onHide={() => setVisible(false)}
-      >
-        <div className="dailog__box__container__title">Choose a Quote for</div>
-        <div className="dailog__box__inputs__container mt-4">
-          <div
-            className="dailog__box__inputs"
-            onClick={() => {
-              handleclick();
-            }}
-          >
-            New Lead
+      <div className="home__dialog__container__control">
+        <Dialog
+          className="dailog__box__container agent__flow__common__dialog__container"
+          visible={visible}
+          style={{ width: "30vw" }}
+          onHide={() => setVisible(false)}
+          dismissableMask={true}
+        >
+          <div className="dailog__box__container__title">
+            Choose a Quote for
           </div>
-          <div className="dailog__box__inputs__existing__container mt-3 mb-6" onClick={() => setexistclient(true)}>
-            <div className="dailog__box__inputs__existing"  >Existing Client</div>
-            <div className="dailog__box__inputs__svg">
-              <SvgSearch />
+          <div className="dailog__box__inputs__container mt-4">
+            <div
+              className="dailog__box__inputs"
+              onClick={() => {
+                handleclick();
+              }}
+            >
+              New Lead
             </div>
-          </div>
-        </div>
-      </Dialog>
-
-      <Dialog header="Search" visible={existclient} style={{ width: '40vw' }} onHide={() => setexistclient(false)}>
-        <div className="dialog__existingclient__container">
-          <div className="dialog__existingclient__header__container">
-            <SvgFrame />
-            <div style={{ display: 'flex' }}>
-              <span className="dialog__existingclient___tip">Tip.</span>
-              <div className="dialog__existingclient___search">Search by entering a Client Name or Client ID</div>
-            </div>
-          </div>
-          <div class="grid">
-            <div class="col-12 md:col-12 lg:col-12">
-              <span className="p-input-icon-left" style={{ width: "100%" }}>
-                <i className="pi pi-search" />
-                <InputText placeholder="Search" style={{ width: "100%", borderRadius: "10px" }}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </span>
-            </div>
-          </div>
-
-
-          {search ? ClientTableSearchList : clientListTable.map((data, index) => {
-            console.log(data, 'find data is coming')
-            return (
-              <div className="dialog__existingclient__carddata" onClick={() => { handleclientid() }}>
-                <div className="dialog__existingclient__carddata__name">{data?.Name}</div>
-                <div className="dialog__existingclient__carddata__id">Client ID :{data?.Category}</div>
+            <div
+              className="dailog__box__inputs__existing__container mt-3 mb-6"
+              onClick={() => setexistclient(true)}
+            >
+              <div className="dailog__box__inputs__existing">
+                Existing Client
               </div>
-            )
-          })}
+              <div className="dailog__box__inputs__svg">
+                <SvgSearch />
+              </div>
+            </div>
+          </div>
+        </Dialog>
+        <Dialog
+          header="Search"
+          visible={existclient}
+          style={{ width: "40vw" }}
+          onHide={() => setexistclient(false)}
+          dismissableMask={true}
+          className="agent__flow__common__dialog__container"
+        >
+          <div className="dialog__existingclient__container">
+            <div className="dialog__existingclient__header__container">
+              <SvgFrame />
+              <div style={{ display: "flex" }}>
+                <span className="dialog__existingclient___tip">Tip.</span>
+                <div className="dialog__existingclient___search">
+                  Search by entering a Client Name or Client ID
+                </div>
+              </div>
+            </div>
+            <div class="grid">
+              <div class="col-12 md:col-12 lg:col-12">
+                <span className="p-input-icon-left" style={{ width: "100%" }}>
+                  <i className="pi pi-search" />
+                  <InputText
+                    placeholder="Search"
+                    style={{ width: "100%", borderRadius: "10px" }}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                </span>
+              </div>
+            </div>
 
-          {/* {search !== "" ? Array.isArray(ClientTableSearchList)
+            {search
+              ? ClientTableSearchList
+              : clientListTable.map((data, index) => {
+                  console.log(data, "find data is coming");
+                  return (
+                    <div
+                      className="dialog__existingclient__carddata"
+                      onClick={() => {
+                        handleclientid();
+                      }}
+                    >
+                      <div className="dialog__existingclient__carddata__name">
+                        {data?.Name}
+                      </div>
+                      <div className="dialog__existingclient__carddata__id">
+                        Client ID :{data?.Category}
+                      </div>
+                    </div>
+                  );
+                })}
+
+            {/* {search !== "" ? Array.isArray(ClientTableSearchList)
             : clientListTable.map((data) => (
               <div className="dialog__existingclient__carddata" onClick={() => { handleclientid() }}>
                 <div className="dialog__existingclient__carddata__name">{data?.Name}</div>
@@ -238,8 +265,9 @@ const Dashboard = () => {
             //   </div>
             // ))}
           } */}
-        </div>
-      </Dialog>
+          </div>
+        </Dialog>
+      </div>
     </div>
   );
 };

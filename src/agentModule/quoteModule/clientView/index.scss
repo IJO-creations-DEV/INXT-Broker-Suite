@@ -9,10 +9,18 @@
     font-weight: 400;
   }
   .feat_searchby_container {
-    margin-top: 0px !important;
-    border-radius: 10px;
+    height: 100%;
+    border-color: #d1d5db;
     width: 100%;
-    padding: 4px 0px;
+    margin: 0px !important;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+
+    .p-dropdown-label {
+      padding: 0 8px !important;
+      display: flex;
+      align-items: center;
+    }
   }
   .lead__table__container {
     margin-top: 1rem;
@@ -198,7 +206,6 @@
   }
 
   .breadCrums {
-    margin: 16px 0px;
     border: none;
     color: #000;
     font-family: Poppins !important;
@@ -209,7 +216,7 @@
 
   .p-breadcrumb {
     border-radius: 6px;
-    padding: 1rem 0rem;
+    padding: 0 0 1rem 0;
   }
 
   .lead__listing__card__container {

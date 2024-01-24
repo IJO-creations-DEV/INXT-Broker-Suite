@@ -293,7 +293,7 @@ const LeadListingHomeTable = ({paymentSearchList}) => {
             optionValue="code"
             placeholder="Search by"
             className="sorbyfilter__style"
-            dropdownIcon={<SvgDropdownicon />}
+            dropdownIcon={<SvgDownArrow/>}
           />
         
         </div>

@@ -17,7 +17,7 @@ const ExpiringPolicy = () => {
       </div>
 
 
-      <div className="expiring__policy__container__back__btn mt-4">
+      <div className="expiring__policy__container__back__btn">
         <SvgLeftArrow />
         <div className="expiring__policy__container__back__btn__title">
           Open Items

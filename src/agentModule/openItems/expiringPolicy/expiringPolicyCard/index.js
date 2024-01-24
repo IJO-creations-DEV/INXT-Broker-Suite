@@ -189,7 +189,7 @@ const ExpiringPolicyCard = () => {
   };
 
   const handlesubmit = () => {
-    navigate('/agent/policydetailedviewonly')
+    navigate("/agent/policydetailedviewonly");
   };
 
   return (
@@ -199,12 +199,23 @@ const ExpiringPolicyCard = () => {
           <div class="col-12 md:col-9 lg:col-9">
             <span className="p-input-icon-left">
               <i className="pi pi-search" />
-              <InputText placeholder="Search" style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
+              <InputText
+                placeholder="Search"
+                style={{
+                  width: "100%",
+                  padding: "1rem 2.75rem",
+                  borderRadius: "10px",
+                }}
+              />
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown   optionLabel="name" className="feat_searchby_container"
-                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
+            <Dropdown
+              optionLabel="name"
+              className="sorbyfilter__style"
+              placeholder="Search by"
+              dropdownIcon={<SvgDownArrow />}
+            />
           </div>
         </div>
         <div className="table__container">
@@ -217,7 +228,7 @@ const ExpiringPolicyCard = () => {
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             scrollable={true}
-          scrollHeight="60vh"
+            scrollHeight="60vh"
           >
             <Column
               body={renderAssuredName}

@@ -16,7 +16,7 @@ const QuoteDetailView = () => {
       <Card className="mt-4">
         <div className="table_header">Comparison</div>
 
-        <div class="grid m-0">
+        <div class="grid">
           <div class="col-6">
             <div className="quote__id__text">Quote ID : 123456</div>
           </div>
@@ -24,7 +24,7 @@ const QuoteDetailView = () => {
             <div className="quote__id">Quote ID : 123457</div>
           </div>
         </div>
-        <div className="grid m-0">
+        <div className="grid">
           <div className="col-6">
           <div className="sub_title">
           <label className="policy_text">Policy Details</label>
@@ -61,7 +61,7 @@ const QuoteDetailView = () => {
             </div>
           </div>
       
-       <div className="grid m-0">
+       <div className="grid">
         <div className="col-6">
         <div className="sub_title">
           <label className="policy_text">Assured Details</label>
@@ -100,7 +100,7 @@ const QuoteDetailView = () => {
 
        </div>
 
-<div className="grid m-0">
+<div className="grid">
         <div className="col-6">
         <div className="sub_title">
           <label className="policy_text">Insurance Vehicle Details</label>
@@ -163,7 +163,7 @@ const QuoteDetailView = () => {
         </div>
         </div>
 
-<div className="grid m-0">
+<div className="grid">
 <div className="col-6">
         <div className="sub_title">
           <label className="policy_text">Coverage details</label>
@@ -184,7 +184,7 @@ const QuoteDetailView = () => {
         </div>
         </div>
 
-        <div className="grid m-0">
+        <div className="grid">
         <div className="col-6">
         <div className="sub_title">
           <label className="policy_text">Payment Details</label>

@@ -37,7 +37,11 @@ const PaymentErrorEndorsment = () => {
           Client ID :{id}
         </div>
       </div>
-      <CustomToast ref={toastRef} message="Endorsement Rejected" />
+      <CustomToast
+        ref={toastRef}
+        message="Endorsement Rejected"
+        messageType="error"
+      />
       <Card className="mt-4 claimrequest__overall__card">
         <div>
           <div className="endorsement__waiting__title_txt mt-6">

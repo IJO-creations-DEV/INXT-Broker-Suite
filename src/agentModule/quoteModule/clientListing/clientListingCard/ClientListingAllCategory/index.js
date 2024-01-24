@@ -326,6 +326,7 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
                     placeholder="Search by"
                     className="sorbyfilter__style"
                     dropdownIcon={<SvgDropdownicon />}
+                    dropdownIcon={<SvgDownArrow/>}
                   />
         {/* // <Dropdown   optionLabel="name" className="feat_searchby_container" */}
         {/* //         placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/> */}

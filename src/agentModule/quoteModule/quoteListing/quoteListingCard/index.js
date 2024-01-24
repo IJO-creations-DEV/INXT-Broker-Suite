@@ -1,5 +1,5 @@
 import { Card } from "primereact/card";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SvgLeftArrow from "../../../../assets/agentIcon/SvgLeftArrow";
 import SvgAdd from "../../../../assets/agentIcon/SvgAdd";
 import { Button } from "primereact/button";
@@ -15,11 +15,46 @@ import SvgArrow from "../../../../assets/agentIcon/SvgArrow";
 // import { postinformationMiddleWare,patchinformationMiddleWare } from "./store/infoMiddleWare";
 // import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+import { getQuoteSearchDataMiddleWare } from "../quoteListingCard/store/quoteMiddleware"
+import ClientListing from "../../clientListing";
+
 
 const QuoteListingCard = () => {
+
+  const { quotetabledata, quoteSearchList, loading } = useSelector(
+    ({ agentQuoteMainReducers }) => {
+      return {
+        loading: agentQuoteMainReducers?.loading,
+        quotetabledata: agentQuoteMainReducers?.quotetabledata,
+        quoteSearchList: agentQuoteMainReducers?.quoteSearchList,
+      };
+    }
+  );
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
-const navigate =useNavigate()
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState("")
+  
+  const navigate = useNavigate()
+  const [globalFilter, setGlobalFilter] = useState("Company");
+  const cities = [
+    { name: "Company", code: "Company" },
+    { name: "QuoteID", code: "QuoteID" },
+
+  ];
+
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        getQuoteSearchDataMiddleWare({
+          field: globalFilter,
+          value: search,
+        })
+      );
+    }
+  }, [search]);
   const TableData = [
     {
       id: "1",
@@ -156,8 +191,8 @@ const navigate =useNavigate()
       </div>
     ) : (
       <div className="header__btn__container">
-      <div className="header__delete__btn">Delete</div>
-      <div className="header__edit__btn" onClick={()=>navigate("/agent/quotecomparisonview")}>Compare</div>
+        <div className="header__delete__btn">Delete</div>
+        <div className="header__edit__btn" onClick={() => navigate("/agent/quotecomparisonview")}>Compare</div>
       </div>
     );
   };
@@ -166,7 +201,7 @@ const navigate =useNavigate()
     return selectedProducts.length == 0 && value;
   };
 
-  const handleclick = () => {};
+  const handleclick = () => { };
 
   const ViewheaderStyle = {
     justifyContent: "center",
@@ -270,9 +305,10 @@ const navigate =useNavigate()
     );
   };
 
-  const handleEdit = () => {};
-  const handleView = () => {};
+  const handleEdit = () => { };
+  const handleView = () => { };
 
+  console.log(quoteSearchList,"find quoteSearchList")
   return (
     <div className="quote__listing__card__container mt-4">
       <Card>
@@ -281,7 +317,7 @@ const navigate =useNavigate()
             <div className="quote__listing__card__container__back__btn">
               <SvgLeftArrow />
               <div className="quote__listing__card__container__back__btn__title">
-              Carson Darrin
+                Carson Darrin
               </div>
             </div>
           </div>
@@ -299,17 +335,32 @@ const navigate =useNavigate()
           <div class="col-12 md:col-9 lg:col-9">
             <span className="p-input-icon-left">
               <i className="pi pi-search" />
-              <InputText placeholder="Search" />
+              <InputText
+                placeholder="Search"
+                style={{ width: "100%", borderRadius: "10px" }}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown   optionLabel="name" className="feat_searchby_container"
-                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
+
+
+            <Dropdown
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={cities}
+              optionLabel="name"
+              optionValue="code"
+              placeholder="Search by"
+              className="feat_searchby_container"
+              dropdownIcon={<SvgDropdownicon />}
+            />
           </div>
         </div>
         <div className="quote__listing__card__table">
           <DataTable
-            value={TableData}
+            value={search ? quoteSearchList : quotetabledata}
             paginator
             rows={5}
             selectionMode={selectionMode}
@@ -329,7 +380,7 @@ const navigate =useNavigate()
               body={(rowData) => (
                 <Checkbox
                   checked={selectedProducts.includes(rowData)}
-                  onChange={() => {}}
+                  onChange={() => { }}
                 />
               )}
               headerStyle={checkboxheaderStyle}

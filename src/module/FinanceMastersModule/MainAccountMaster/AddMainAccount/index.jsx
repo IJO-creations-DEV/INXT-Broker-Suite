@@ -37,12 +37,14 @@ const AddMainAccount = () => {
   const [entrySwitch, setentrySwitch] = useState(EntrySwitchoptions[0]);
 
   const codeOptionsType = [
-    { label: "Option 1", value: "Credit" },
-    { label: "Option 2", value: "Debit" },
+    { label: "Option 1", value: "FIXED ASSETS - LAND AND BUILDING" },
+    { label: "Option 2", value: "FIXED ASSETS - LEASE HOLD " },
   ];
   const categoryOptionsCode = [
-    { label: "Option 1", value: "Debtor" },
-    { label: "Option 2", value: "Debtor" },
+    { label: "Option 1", value: "Accruals" },
+    { label: "Option 2", value: "CATG. CR (CREDIOTRS)"},
+    { label: "Option 2", value: "EXPENSES"},
+    
   ];
   const companyCodeDatas = [
     { name: "Option 1", value: "Comp00123" },

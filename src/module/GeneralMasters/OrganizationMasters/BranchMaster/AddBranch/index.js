@@ -82,7 +82,7 @@ function AddBranch({ action }) {
   ];
   const currencyCode = [
     {
-      label: action === "add" ? "INR" : organizationBranchView.CompanyName,
+      label: action === "add" ? "ARIANS INSURANCE BROKERS INC": organizationBranchView.CompanyName,
       value: action === "add" ? "NY" : organizationBranchView.CompanyName,
     },
   ];

@@ -7,80 +7,80 @@ const initialState = {
   cityTableList: [
     {
       id: 1,
-      "Citycode": "C001",
-      "CityName": "New York",
+      "Citycode": "DVOMAT933",
+      "CityName": "MATI",
       "State": "NY",
       "Modifiedby": "Admin1",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 2,
-      "Citycode": "C002",
-      "CityName": "Los Angeles",
+      "Citycode": "NEODON434",
+      "CityName": "DON SALVADOR BENEDICTO",
       "State": "CA",
       "Modifiedby": "Admin2",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 3,
-      "Citycode": "C003",
-      "CityName": "London",
+      "Citycode": "QZNSAN984",
+      "CityName": "SANTA TERESITA",
       "State": "ENG",
       "Modifiedby": "Admin3",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 4,
-      "Citycode": "C004",
-      "CityName": "Berlin",
+      "Citycode": "QZNSAN985",
+      "CityName": "SANTOL",
       "State": "BE",
       "Modifiedby": "Admin4",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 5,
-      "Citycode": "C005",
-      "CityName": "Sydney",
+      "Citycode": "QZNSTO986",
+      "CityName": "STO. CRISTO",
       "State": "NSW",
       "Modifiedby": "Admin5",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 6,
-      "Citycode": "C006",
-      "CityName": "Mumbai",
+      "Citycode": "QZNSTO987",
+      "CityName": "STO. NIÑO",
       "State": "MH",
       "Modifiedby": "Admin6",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 7,
-      "Citycode": "C007",
-      "CityName": "Rio de Janeiro",
+      "Citycode": "QZNSAU988",
+      "CityName": "SAUYO",
       "State": "RJ",
       "Modifiedby": "Admin7",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 8,
-      "Citycode": "C008",
-      "CityName": "Tokyo",
+      "Citycode": "QZNSAU989",
+      "CityName": "SIENNA",
       "State": "13",
       "Modifiedby": "Admin8",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 9,
-      "Citycode": "C009",
-      "CityName": "Cape Town",
+      "Citycode": "QZNSIK990",
+      "CityName": "SIKATUNA VILLAGE",
       "State": "WC",
       "Modifiedby": "Admin9",
       "ModifiedOn": "2024-01-12"
     },
     {
       id: 10,
-      "Citycode": "C010",
-      "CityName": "Mexico City",
+      "Citycode": "QZNSIK991",
+      "CityName": "SILANGAN",
       "State": "CMX",
       "Modifiedby": "Admin10",
       "ModifiedOn": "2024-01-12"

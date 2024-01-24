@@ -15,8 +15,8 @@ const initialState = {
   MainAccountList: [
     {
       id: "1",
-      mainAccountCode: "main123",
-      mainAccountName: "mainAccountName",
+      mainAccountCode: "1101001",
+      mainAccountName: "FIXED ASSETS - LAND AND BUILDING",
       description: "description",
       accountType: "Credit",
       openEntry: "Yes",
@@ -27,8 +27,8 @@ const initialState = {
     },
     {
       id: "2",
-      mainAccountCode: "main456",
-      mainAccountName: "anotherAccountName",
+      mainAccountCode: "1101002",
+      mainAccountName: "FIXED ASSETS - LEASE HOLD ",
       description: "another description",
       accountType: "Debit",
       openEntry: "No",

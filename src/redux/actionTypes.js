@@ -399,3 +399,6 @@ export const GET_CLAIM_DOCUMENT_UPLOAD_DATA="claimdocumentupload/GET_CLAIM_DOCUM
 export const GET_POLICY_DETAILED_DATA ="policydetailedview/GET_POLICY_DETAILED_DATA"
 
 export const POST_UPLOAD_ENDROSMENT="uploadendrosemnt/POST_UPLOAD_ENDROSMENT"
+
+export const GET_QUOTETABLE_DATA="quote/GET_QUOTETABLE_DATA"
+export const GET_QUOTE_SEARCH = "quote/GET_QUOTE_SEARCH"

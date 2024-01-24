@@ -54,6 +54,7 @@ import claimTabelMainReducers from "../agentModule/quoteModule/clientView/client
 import policyDetailedViewMainReducers from "../agentModule/quoteModule/policyDetailedView/store/policyDetailedReducer"
 import clientsReducers from "../agentModule/quoteModule/clientListing/store/clientsReducer"
 import leadReducers from "../agentModule/leadModule/Store/leadReducer"
+import agentQuoteMainReducers from "../agentModule/quoteModule/quoteListing/quoteListingCard/store/quoteReducer"
 
 const reducers = {
   journalVoucherMainReducers,
@@ -104,6 +105,7 @@ const reducers = {
   policyDetailedViewMainReducers,
   clientsReducers,
   leadReducers,
+  agentQuoteMainReducers
 
 };
 

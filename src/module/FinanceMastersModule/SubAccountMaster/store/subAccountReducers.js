@@ -11,8 +11,8 @@ const initialState = {
     subAccountList: [
         {
             id: 1,
-            subAccountCode: "sub123",
-            description: "SubAccount",
+            subAccountCode: "1101001001",
+            description: "ORIGINAL COST",
             subAccountName: "ayesha",
             mainAccount: "m123",
             currencyCode: "cd123",
@@ -20,8 +20,8 @@ const initialState = {
           },
           {
             id: 2,
-            subAccountCode: "sub456",
-            description: "AnotherSubAccount",
+            subAccountCode: "1101001002",
+            description: "REVALUED COST",
             subAccountName: "john",
             mainAccount: "m456",
             currencyCode: "cd456",

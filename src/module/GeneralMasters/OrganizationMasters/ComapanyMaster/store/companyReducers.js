@@ -16,8 +16,8 @@ const initialState = {
   companyTableList: [
     {
       id: "1",
-      CompanyCode: "Zealeye123",
-      CompanyName: "Zealeye",
+      CompanyCode: "001",
+      CompanyName: "ARIANS INSURANCE BROKERS INC",
       LicenseNumber: "7642",
       EmailID: "test@gmail.com",
       Logo: "13",
@@ -35,8 +35,8 @@ const initialState = {
     },
     {
       id: "2",
-      CompanyCode: "Zealeye123",
-      CompanyName: "Zealeye",
+      CompanyCode: "002",
+      CompanyName: "ARIANS INSURANCE BROKERS INC",
       LicenseNumber: "7642",
       EmailID: "test@gmail.com",
       Logo: "13",

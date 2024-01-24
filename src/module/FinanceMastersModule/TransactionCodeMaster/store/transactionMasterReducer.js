@@ -21,8 +21,8 @@ const initialState = {
   TransactioncodeList: [
     {
       id: 1,
-      TransactionCode: "TC123",
-      TransactionName: "TNAys",
+      TransactionCode: "RVQP",
+      TransactionName: "RV Cheque - Premium",
       TransactionBasis: "TB123",
       BranchCode: "B123",
       DepartmentCode: "Dept123",
@@ -38,8 +38,8 @@ const initialState = {
     },
     {
       id: 2,
-      TransactionCode: "TC788",
-      TransactionName: "TNAys",
+      TransactionCode: "RVCP",
+      TransactionName: "RV Transfer - Premium",
       TransactionBasis: "TB123",
       BranchCode: "B123",
       DepartmentCode: "Dept123",

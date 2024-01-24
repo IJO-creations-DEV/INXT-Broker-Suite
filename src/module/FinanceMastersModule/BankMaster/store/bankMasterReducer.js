@@ -20,8 +20,8 @@ const initialState = {
   BankList: [
     {
       id: 1,
-      bankCode: "Bank42588",
-      bankName: "Johnson Finance",
+      bankCode: "BDO-SOTTO-CA",
+      bankName: "BANCO DE ORO RUFINO-SOTTO PESO CURRENT ACCOUNT",
       bankBranch: "East Sarahburgh",
       ifscCode: "mb78901",
       AddressLine1: "hydrabad",
@@ -38,8 +38,8 @@ const initialState = {
     },
     {
       id: 2,
-      bankCode: "Bank42588",
-      bankName: "Johnson Finance",
+      bankCode: "BDOSOTTO-USD",
+      bankName: "BANCO DE ORO SALCEDO PHP SA",
       bankBranch: "East Sarahburgh",
       ifscCode: "mb78901",
       AddressLine1: "hydrabad",

@@ -13,7 +13,7 @@ const initialState = {
         {
             id: "1",
             taxCode: "Tax0123",
-            taxName: "Income Tax",
+            taxName: "DOC. STAMPS",
             taxRate: "30%",
             basis: "basic",
             remarks: "remarks",

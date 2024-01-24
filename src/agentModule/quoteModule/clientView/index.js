@@ -22,10 +22,7 @@ const LeadListing = () => {
   ];
   const Initiate = { label: "Home" };
   
- 
 
-
-  
 
   return (
     <div className="client__listing__card__container">

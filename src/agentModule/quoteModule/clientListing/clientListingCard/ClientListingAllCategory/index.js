@@ -15,13 +15,38 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "primereact/avatar";
+// import PaymentCard from "./paymentCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
+import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const ClientListingAllCategory = ({ TableData }) => {
-  console.log(TableData,"allClientList");
+const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
+  const [globalFilter, setGlobalFilter] = useState("Name");
+  const [status,setStatus]=useState("")
+  const [search,setSearch]=useState("")
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cities = [
+    { name: "Name", code: "Name" },
+    { name: "ClientID", code: "ClientID" },
+   
+  ];
 
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        getPaymentSearchDataMiddleWare({
+          field: globalFilter,
+          value: search,
+          // status1: status,
+        })
+      );
+    }
+  }, [search]);
+
+  // console.log(status, "status");
   // const TableData = [
   //   {
   //     id: "1",
@@ -288,17 +313,27 @@ const ClientListingAllCategory = ({ TableData }) => {
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
+            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)}style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-        <Dropdown   optionLabel="name" className="feat_searchby_container"
-                placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
+        <Dropdown
+                    value={globalFilter}
+                    onChange={(e) => setGlobalFilter(e.value)}
+                    options={cities}
+                    optionLabel="name"
+                    optionValue="code"
+                    placeholder="Search by"
+                    className="sorbyfilter__style"
+                    dropdownIcon={<SvgDropdownicon />}
+                  />
+        {/* // <Dropdown   optionLabel="name" className="feat_searchby_container" */}
+        {/* //         placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/> */}
         </div>
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={TableData}
+          value={search?paymentSearchList:TableData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -340,6 +375,7 @@ const ClientListingAllCategory = ({ TableData }) => {
             headerStyle={ViewheadercenterStyle}
           ></Column>
         </DataTable>
+        
       </div>
     </div>
   );

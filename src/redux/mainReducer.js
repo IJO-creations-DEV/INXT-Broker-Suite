@@ -52,6 +52,9 @@ import claimSettlementReducer from "../agentModule/claimsModule/settlementDetail
 import claimDetailsMainReducers from "../agentModule/claimsModule/claimDetails/store/claimDetailsReducers";
 import claimTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewClaimTable/store/getClaimTabelDataReducers";
 import policyDetailedViewMainReducers from "../agentModule/quoteModule/policyDetailedView/store/policyDetailedReducer"
+import clientsReducers from "../agentModule/quoteModule/clientListing/store/clientsReducer"
+import leadReducers from "../agentModule/leadModule/Store/leadReducer"
+
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -98,7 +101,9 @@ const reducers = {
   claimSettleMainReducers,
   claimDocumentUploadMainReducers,
   // claimTabelMainReducers
-  policyDetailedViewMainReducers
+  policyDetailedViewMainReducers,
+  clientsReducers,
+  leadReducers,
 
 };
 

@@ -9,18 +9,17 @@ import SvgDot from "../../../../assets/agentIcon/SvgDot";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 
-
 const initialValues = {
   PolicyNumber: "",
-  Production: new Date(),
-  Inception: new Date(),
-  IssueDate: new Date(),
-  Expiry: new Date(),
+  Production: "12/12/2023",
+  Inception: "12/12/2023",
+  IssueDate: "12/12/2023",
+  Expiry: "12/12/2023",
 };
 
 const handleSubmit = () => {
   // navigate("/agent/convertpolicy/uploadvehiclephotos");
-}
+};
 
 const PolicyDetailedViewCard = ({ action }) => {
   const navigate = useNavigate();
@@ -37,12 +36,10 @@ const PolicyDetailedViewCard = ({ action }) => {
       return {
         loading: policyDetailedViewMainReducers?.loading,
         policydetailedlist: policyDetailedViewMainReducers?.policydetailedlist,
-        
       };
     }
   );
-  console.log(policydetailedlist,"find policydetailedlist")
- 
+  console.log(policydetailedlist, "find policydetailedlist");
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -55,67 +52,97 @@ const PolicyDetailedViewCard = ({ action }) => {
       <Card>
         <div className="policy__details__card__view__container__title">
           Policy details
-          <SvgDot/>
+          <SvgDot />
         </div>
         <div className="grid mt-2">
-          <div className="col-12 md:col-6 lg:col-6">
-          <InputTextField
-            label="Policy Number"
-                value={policydetailedlist.PolicyNumber}
-                onChange={formik.handleChange("PolicyNumber")}
-              />
-              
-           
-          </div>
-        </div>
-
-        <div className="grid mt-2">
-          <div className="col-12 md:col-6 lg:col-6">
-          <DatepickerField
-                label="Production"
-                value={formik.values.Production}
-                onChange={(e) => {
-                  formik.setFieldValue("Production", e.target.value);
-                }}
-                dateFormat="yy-mm-dd"
-              />
-            
+          <div className="col-12">
+            <InputTextField
+              label="Insurance Company"
+              value="Alpha Insurance company"
+            />
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-          <DatepickerField
-                label="Inception"
-                value={formik.values.Inception}
-                onChange={(e) => {
-                  formik.setFieldValue("Inception", e.target.value);
-                }}
-                dateFormat="yy-mm-dd"
-              />
-          
+            <InputTextField label="Product" value="Motor" />
+          </div>
+          <div className="col-12 md:col-6 lg:col-6">
+            <InputTextField
+              label="Policy Number"
+              value={policydetailedlist.PolicyNumber}
+              onChange={formik.handleChange("PolicyNumber")}
+            />
           </div>
         </div>
 
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-          <DatepickerField
-                label="Issue Date"
-                value={formik.values.IssueDate}
-                onChange={(e) => {
-                  formik.setFieldValue("IssueDate", e.target.value);
-                }}
-                dateFormat="yy-mm-dd"
-              />
-            
+            <InputTextField
+              label="Production"
+              value={formik.values.Production}
+              // onChange={formik.handleChange("Production")}
+            />
+            {/* <DatepickerField
+              label="Production"
+              value={formik.values.Production}
+              onChange={(e) => {
+                formik.setFieldValue("Production", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+            /> */}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-          <DatepickerField
-                label="Expiry"
-                value={formik.values.Expiry}
-                onChange={(e) => {
-                  formik.setFieldValue("Expiry", e.target.value);
-                }}
-                dateFormat="yy-mm-dd"
-              />
-          
+            <InputTextField
+              label="Inception"
+              value={formik.values.Inception}
+              // onChange={formik.handleChange("Inception")}
+            />
+            {/* <DatepickerField
+              label="Inception"
+              value={formik.values.Inception}
+              onChange={(e) => {
+                formik.setFieldValue("Inception", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+            /> */}
+          </div>
+        </div>
+
+        <div className="grid mt-2">
+          <div className="col-12 md:col-6 lg:col-6">
+            <InputTextField
+              label="Issue Date"
+              value={formik.values.IssueDate}
+              // onChange={formik.handleChange("IssueDate")}
+            />
+            {/* <DatepickerField
+              label="Issue Date"
+              value={formik.values.IssueDate}
+              onChange={(e) => {
+                formik.setFieldValue("IssueDate", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+            /> */}
+          </div>
+          <div className="col-12 md:col-6 lg:col-6">
+            <InputTextField
+              label="Expiry"
+              value={formik.values.Expiry}
+              // onChange={formik.handleChange("Expiry")}
+            />
+
+            {/* <DatepickerField
+              label="Expiry"
+              value={formik.values.Expiry}
+              onChange={(e) => {
+                formik.setFieldValue("Expiry", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+            /> */}
+          </div>
+          <div className="col-12 md:col-6 lg:col-6">
+            <InputTextField label="Total Coverage" value="1,00,000.00" />
+          </div>
+          <div className="col-12 md:col-6 lg:col-6">
+            <InputTextField label="Gross Premium" value="6,500.00" />
           </div>
         </div>
 

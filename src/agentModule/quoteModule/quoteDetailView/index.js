@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
@@ -6,9 +6,11 @@ import SvgRightarrow from "../../../assets/agentIcon/SvgRightArrow";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import ShareOption from "./Modal/ShareOption";
 
 const QuoteDetailView = () => {
   const navigate = useNavigate();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const { PolicyDetails, loading } = useSelector(({ policyDetailsReducer }) => {
     return {
@@ -169,10 +171,11 @@ const QuoteDetailView = () => {
       </Card>
       <div className="button_component">
         <Button
-          label="Download"
+          label="Share"
           severity="help"
           text
           className="download_button"
+          onClick={() => setModalVisible(true)}
         />
         <Button
           onClick={() => {
@@ -184,6 +187,10 @@ const QuoteDetailView = () => {
           <SvgRightarrow />
         </Button>
       </div>
+      <ShareOption
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </div>
   );
 };

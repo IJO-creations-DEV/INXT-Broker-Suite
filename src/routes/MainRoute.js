@@ -211,6 +211,8 @@ import Collectionreport from "../module/Reports/FinancialReports/CollectionRepor
 import Payables from "../module/Reports/FinancialReports/Payables";
 import Journal from "../module/Reports/FinancialReports/Journal";
 import TrailBalance from "../module/Reports/FinancialReports/TrailBalance";
+// import OperationalReports from "../module/Reports/OperationalReports";
+import PolicyRenewalWaiting from "../agentModule/renewalModule/WaitingScreen/PolicyRenewalWaiting";
 
 const Maincomponent = () => {
   return (
@@ -221,8 +223,6 @@ const Maincomponent = () => {
     >
       <ResponsiveDrawer />
       <div className="parent__main__container">
-
-
         {/* <AuthRoute /> */}
         <Routes>
           <Route path="/login" element={<LoginScreen />} />
@@ -1017,10 +1017,7 @@ const Maincomponent = () => {
               path="/agent/coveragedetailedview"
               element={<CoverageDetailedVew />}
             />
-            <Route
-              path="/agent/policyapproval"
-              element={<PolicyApproval />}
-            />
+            <Route path="/agent/policyapproval" element={<PolicyApproval />} />
             <Route path="/agent/uploadpolicy" element={<UploadPolicy />} />
             <Route
               path="/agent/policydetailedview"
@@ -1053,10 +1050,7 @@ const Maincomponent = () => {
               path="/agent/claimrequest/claimdetails"
               element={<ClaimDetails />}
             />
-            <Route
-              path="/agent/claimrequest/sendmail"
-              element={<SendMail />}
-            />
+            <Route path="/agent/claimrequest/sendmail" element={<SendMail />} />
             <Route
               path="/agent/claimrequest/requestapproval/:id"
               element={<RequestApproval />}
@@ -1182,18 +1176,47 @@ const Maincomponent = () => {
             <Route
               path="/reports/Financialreports/collectionreport"
               element={<Collectionreport />}
-            /><Route
-            path="/reports/Financialreports/payables"
-            element={<Payables />}
-          /><Route
-          path="/reports/Financialreports/journal"
-          element={<Journal />}
-        /><Route
-        path="/reports/Financialreports/trailbalance"
-        element={<TrailBalance />}
-      />
+            />
+            <Route
+              path="/reports/Financialreports/payables"
+              element={<Payables />}
+            />
+            <Route
+              path="/reports/Financialreports/journal"
+              element={<Journal />}
+            />
+            <Route
+              path="/reports/Financialreports/trailbalance"
+              element={<TrailBalance />}
+            />
 
+            {/* // Payments */}
+            <Route path="/agent/payments" element={<Payments />} />
+            <Route
+              path="/agent/payments/detail/:id"
+              element={<PaymentDetails />}
+            />
+            {/* // Open items */}
+            <Route path="/agent/openitems" element={<OpenItems />} />
+            <Route
+              path="/agent/openitems/upcomingevents"
+              element={<UpcomingEvents />}
+            />
+            <Route
+              path="/agent/openitems/expiringpolicy"
+              element={<ExpiringPolicy />}
+            />
+            {/* Renewal */}
+            <Route
+              path="/agent/renewal/waiting/:id"
+              element={<PolicyRenewalWaiting />}
+            />
 
+            {/* //Reports */}
+            {/* <Route
+              path="/reports/operationalreports"
+              element={<OperationalReports />}
+            /> */}
           </Route>
         </Routes>
       </div>

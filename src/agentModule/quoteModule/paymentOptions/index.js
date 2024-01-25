@@ -13,11 +13,17 @@ import SvgInternet from "../../../assets/agentIcon/SvgInternet";
 
 import { useNavigate } from "react-router-dom";
 import DocumentUpload from "./Modal/DocumentUpload";
+import SvgPaymentLinkIcon from "../../../assets/agentIcon/SvgPaymentLinkIcon";
+import SvgInxTlinkicon from "../../../assets/agentIcon/SvgInxTlinkicon";
+import ShareOption from "./Modal/ShareOption";
+import InternetBankingList from "./Modal/InternetBankingList";
 
 const PaymentOptions = () => {
   const fileUploadRef = useRef(null);
   const [uploadImage, setuploadImage] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisibleShare, setModalVisibleShare] = useState(false);
+  const [modalVisibleBankList, setModalVisibleBankList] = useState(false);
   const navigate = useNavigate();
   const handleUppendImg = (name, src) => {
     console.log(name, src, "find handleUppendImg");
@@ -43,6 +49,13 @@ const PaymentOptions = () => {
   const handleCommonAction = () => {
     navigate(`/agent/clientview/${123}`);
   };
+  const handleShareOption = () => {
+    setModalVisibleShare(true);
+  };
+  const handleBankingList = () => {
+    setModalVisibleBankList(true);
+  };
+
   return (
     <div>
       <DocumentUpload
@@ -53,6 +66,14 @@ const PaymentOptions = () => {
         handleSubmit={handleSubmit}
         handleCancelUplaoded={handleCancelUplaoded}
         setModalVisible={setModalVisible}
+      />
+      <ShareOption
+        modalVisible={modalVisibleShare}
+        setModalVisible={setModalVisibleShare}
+      />
+      <InternetBankingList
+        modalVisible={modalVisibleBankList}
+        setModalVisible={setModalVisibleBankList}
       />
       <div className="overall__payment__option__container">
         <div className="header__title">Clients</div>
@@ -67,45 +88,6 @@ const PaymentOptions = () => {
         </div>
         <Card className="mt-4">
           <div className="table__header">Payment Options</div>
-          <div className="grid">
-            <div className="col-6">
-              <div
-                className="atm__text cursor-pointer"
-                onClick={handleNavigation}
-              >
-                <SvgHomes />
-                <div className="input__text__style">
-                  ATM/Bank Transfer (Virtual Account)
-                </div>
-              </div>
-            </div>
-            <div className="col-6">
-              <div
-                className="atm__text cursor-pointer"
-                onClick={handleNavigation}
-              >
-                <SvgQr />
-                <div className="input__text__style">QRIS</div>
-              </div>
-            </div>
-          </div>
-          <div className="grid mt-2">
-            <div className="col-6">
-              <div
-                className="atm__text cursor-pointer "
-                onClick={handleNavigation}
-              >
-                <SvgCredit />
-                <div className="input__text__style">Credit Card</div>
-              </div>
-            </div>
-            <div className="col-6">
-              <div className="atm__text cursor-pointer">
-                <SvgEmoney />
-                <div className="input__text__style">E-Money</div>
-              </div>
-            </div>
-          </div>
           <div className="grid mt-2">
             <div className="col-6">
               <div
@@ -125,8 +107,6 @@ const PaymentOptions = () => {
                 <div className="input__text__style">Convenience Store</div>
               </div>
             </div>
-          </div>
-          <div className="grid mt-2">
             <div className="col-6">
               <div
                 className="atm__text cursor-pointer"
@@ -139,14 +119,31 @@ const PaymentOptions = () => {
             <div className="col-6">
               <div
                 className="atm__text cursor-pointer"
-                onClick={handleNavigation}
+                onClick={handleBankingList}
               >
                 <SvgInternet />
                 <div className="input__text__style">Internet Banking</div>
               </div>
             </div>
+            <div className="col-6">
+              <div
+                className="atm__text cursor-pointer"
+                onClick={handleNavigation}
+              >
+                <SvgInxTlinkicon />
+                <div className="input__text__style">INXT payment</div>
+              </div>
+            </div>
+            <div className="col-6">
+              <div
+                className="atm__text cursor-pointer"
+                onClick={handleShareOption}
+              >
+                <SvgPaymentLinkIcon />
+                <div className="input__text__style">Share to Customer</div>
+              </div>
+            </div>
           </div>
-          <div></div>
         </Card>
       </div>
     </div>

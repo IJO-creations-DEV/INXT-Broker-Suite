@@ -8,10 +8,10 @@ import SvgArrow from "../../../../../assets/icons/SvgArrow";
 import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
-import '../../../clientView/index.scss'
+import "../../../clientView/index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getClaimTabelSearchList } from "./store/getClaimTabelDataMiddleWare";
-
+import SvgMotorTable from "../../../../../assets/agentIcon/SvgMotorTable";
 
 const LeadListingAllTable = () => {
   const { claimListData, loading, claimSearchListData } = useSelector(
@@ -19,7 +19,7 @@ const LeadListingAllTable = () => {
       return {
         loading: claimTabelMainReducers?.loading,
         claimListData: claimTabelMainReducers?.claimListData,
-        claimSearchListData: claimTabelMainReducers?.claimSearchListData
+        claimSearchListData: claimTabelMainReducers?.claimSearchListData,
       };
     }
   );
@@ -28,9 +28,7 @@ const LeadListingAllTable = () => {
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
 
-  const TableData = [
-
-  ];
+  const TableData = [];
 
   const template2 = {
     layout:
@@ -46,7 +44,10 @@ const LeadListingAllTable = () => {
       return (
         <div className="table__selector">
           <React.Fragment>
-            <span className="table__selector__text" style={{ color: "var(--text-color)", userSelect: "none" }}>
+            <span
+              className="table__selector__text"
+              style={{ color: "var(--text-color)", userSelect: "none" }}
+            >
               Rows per page:{" "}
             </span>
             <Dropdown
@@ -73,10 +74,6 @@ const LeadListingAllTable = () => {
   //         { label: 120, value: 120 },
   //       ];
 
-
-
-
-
   //     const renderViewEditButton = (rowData) => {
 
   //         return (
@@ -92,7 +89,6 @@ const LeadListingAllTable = () => {
   //             </div>
   //         );
   //     };
-
 
   //     const renderPolicyNumber = (rowData) => {
   //         return (
@@ -113,7 +109,6 @@ const LeadListingAllTable = () => {
   //             </div>
   //         )
   //     }
-
 
   //     const renderDate = (rowData) => {
   //         return (
@@ -145,9 +140,6 @@ const LeadListingAllTable = () => {
   //     // const handleView = () => {
   //     //     navigate("/agent/leadedit")
   //     // }
-
-
-
 
   //     const ViewheaderStyle = {
 
@@ -251,7 +243,9 @@ const LeadListingAllTable = () => {
   const renderPolicyNumber = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{rowData.Svg}</div>
+        <div>
+          <SvgMotorTable />
+        </div>
         <div>
           <div className="name__text">{rowData.PolicyNumber}</div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
@@ -278,16 +272,16 @@ const LeadListingAllTable = () => {
           rowData.Status === "Processing"
             ? "company__status__type__green"
             : rowData.Status === "Completed"
-              ? "company__status__type__blue"
-              : "client__view__type__red"
+            ? "company__status__type__blue"
+            : "client__view__type__red"
         }
       >
         {rowData.Status}
       </div>
-    )
-  }
-  const [search, setSearch] = useState("")
-  const dispatch = useDispatch()
+    );
+  };
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
   // useEffect(() => {
   //   if (search?.length > 0) {
   //     dispatch(getClaimTabelSearchList(search))
@@ -367,7 +361,11 @@ const LeadListingAllTable = () => {
             {/* <SvgSearch/> */}
             <InputText
               placeholder="Search"
-              style={{ width: "100%", padding: "1rem 2.75rem", borderRadius: "10px" }}
+              style={{
+                width: "100%",
+                padding: "1rem 2.75rem",
+                borderRadius: "10px",
+              }}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -403,7 +401,7 @@ const LeadListingAllTable = () => {
         >
           <Column
             body={renderPolicyNumber}
-            header={rendercheckedHeader("PolicyNumber")}
+            header={rendercheckedHeader("Policy Number")}
             headerStyle={headerStyle}
           ></Column>
           <Column

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Card } from "primereact/card";
@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import DatepickerField from "../../component/datePicker";
 
 const EndorsementDetailedView = () => {
+  const [actionScreen, setActionScreen] = useState(false);
   const { endrosmentData, loading } = useSelector(
     ({ endrosementViewMainReducers }) => {
       return {
@@ -41,7 +42,7 @@ const EndorsementDetailedView = () => {
         >
           <SvgLeftArrow />
           <div className="detailed__endorsement__container__back__btn__title">
-            Client ID :123456
+            Carson Darrin / Client ID : 12345678
           </div>
         </div>
       </div>
@@ -49,6 +50,9 @@ const EndorsementDetailedView = () => {
         <Card className="card__container">
           <div className="detailed__endorsement__card__container__title">
             Endorsement
+          </div>
+          <div className="detailed__endorsement__card__sub__title mt-2 mb-2">
+            Personal Details Change
           </div>
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
@@ -108,7 +112,21 @@ const EndorsementDetailedView = () => {
             <div className="col-12 md:col-6 lg:col-6">
               <div className="endorsement__detail__view__box">
                 <div className="endorsement__detail__view__box__title">
-                  Endorsement
+                  Endorsement Slip
+                </div>
+
+                <div className="endorsement__detail__view__box__container cursor-pointer">
+                  <div className="endorsement__detail__view__box__sub__title">
+                    View
+                  </div>
+                  <SvgBlueArrow />
+                </div>
+              </div>
+            </div>
+            <div className="col-12 md:col-6 lg:col-6">
+              <div className="endorsement__detail__view__box">
+                <div className="endorsement__detail__view__box__title">
+                  Endorsement Schedule
                 </div>
 
                 <div className="endorsement__detail__view__box__container cursor-pointer">
@@ -137,6 +155,16 @@ const EndorsementDetailedView = () => {
                   Proceed to payment
                 </Button>
               </div>
+              {actionScreen && (
+                <div className="complete__btn__container">
+                  <Button
+                    className="complete__btn"
+                    onClick={handleCommonAction}
+                  >
+                    Go to Endorsement list
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </Card>

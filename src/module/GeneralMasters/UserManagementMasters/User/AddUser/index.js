@@ -147,12 +147,12 @@ const AddUser = ({ action }) => {
   });
   return (
     <div className="grid add__user__container">
-      <div className="col-12"></div>
+      
       <div
         style={{
           justifyContent: "center",
           alignItems: "center",
-          display: "flex",
+          display: "flex",gap:10
         }}
       >
         <span onClick={() => navigate(-1)}>
@@ -219,8 +219,8 @@ const AddUser = ({ action }) => {
           </div>
           <div class="col-3 md:col-3 lg-col-3">
             <label className="label_text">Phone Number</label>
-            <div className="p-inputgroup flex-1">
-              <span className="p-inputgroup-addon">
+            <div className="p-inputgroup flex-1 mt-2" >
+              <span className="p-inputgroup-addon" style={{borderTopLeftRadius:"10px",borderBottomLeftRadius:"10px"}}>
                 <div>+91</div>
                 <i className={<SvgDropdown />}></i>
               </span>
@@ -229,6 +229,7 @@ const AddUser = ({ action }) => {
                 placeholder="Enter"
                 value={formik.values.phoneNumber}
                 onChange={formik.handleChange("phoneNumber")}
+                style={{borderTopRightRadius:"10px",borderBottomRightRadius:"10px"}}
               />
             </div>
             {formik.touched.phoneNumber && formik.errors.phoneNumber && (

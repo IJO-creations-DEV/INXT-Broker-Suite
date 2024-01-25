@@ -62,7 +62,7 @@ const UserMaster = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
   };
@@ -70,7 +70,7 @@ const UserMaster = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: 6,
+    padding: "1rem",
     color: "#000",
     border: "none",
     display: "flex",
@@ -180,7 +180,7 @@ const UserMaster = () => {
             </div>
           </div>
           <div className="col-12 ">
-            <div className="main__tabel__title__hierarchy p-2">User List</div>
+            <div className="main__tabel__title__hierarchy pl-2">User List</div>
           </div>
           <div
             className="col-12 md:col-12 lg-col-12"
@@ -255,8 +255,8 @@ const UserMaster = () => {
                   field="action"
                   body={renderViewButton}
                   header="Action"
-                  headerStyle={{ ...ViewheaderStyle }}
-                  className="fieldvalue_container centered"
+                  headerStyle={ViewheaderStyle}
+                  className="fieldvalue_container_centered"
                 ></Column>
               </DataTable>
             </div>

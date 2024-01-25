@@ -32,6 +32,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import EditCommissionPopup from "../EditCommission/EditCommissionPopup";
 import ViewCommissionPopup from "../ViewCommission/ViewCommissionPopup";
+import { Card } from "primereact/card";
 
 const AddCommission = () => {
   const toastRef = useRef(null);
@@ -160,12 +161,12 @@ const AddCommission = () => {
     // width: '10rem',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "1rem",
-    color:'#000',
-    border: 'none'
-};
+    color: "#000",
+    border: "none",
+  };
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -227,18 +228,16 @@ const AddCommission = () => {
 
   return (
     <div className="grid commission__add__container">
-      <div className="col-12"></div>
-      <div className="col-12">
-        <CustomToast ref={toastRef} message="Add Commission" />
-      </div>
-      <div className="col-12 mb-2">
+      <CustomToast ref={toastRef} message="Add Commission" />
+
+      <div className="col-12 ">
         <div className="add__sub__title">
           <div onClick={handleGoBack} className="mr-2 mt-1">
             <ArrowLeftIcon />
           </div>
           Add Commissions
         </div>
-        <div className="mt-3">
+        <div className="mt-3 mb-3">
           <BreadCrumb
             home={home}
             className="breadCrums__view__add__screen"
@@ -247,250 +246,252 @@ const AddCommission = () => {
           />
         </div>
       </div>
-      <div className="grid card__container p-2 m-1">
-        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-          <InputField
-            classNames="input__field__reversal__inactive"
-            className={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Commission Code"
-            placeholder="Enter"
-            value={formik.values.commissioncode}
-            onChange={(e) =>
-              formik.setFieldValue("commissioncode", e.target.value)
-            }
-          />
-          {formik.touched.commissioncode && formik.errors.commissioncode && (
-            <div
-              style={{ fontSize: 12, color: "red" }}
-              className="formik__errror__JV"
-            >
-              {formik.errors.commissioncode}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
-          <InputField
-            classNames="input__field__reversal__inactive"
-            className={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Description"
-            placeholder="Enter"
-            value={formik.values.desc}
-            onChange={(e) => formik.setFieldValue("desc", e.target.value)}
-          />
-          {formik.touched.desc && formik.errors.desc && (
-            <div
-              style={{ fontSize: 12, color: "red" }}
-              className="formik__errror__JV"
-            >
-              {formik.errors.desc}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-          <DropDowns
-            // disabled={step === 0 ? false : true}
-            className={
-              step === 0
-                ? "input__field__reversal"
-                : "input__field__reversal__inactive"
-            }
-            classNames={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Product"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-            value={formik.values.product}
-            onChange={(e) => formik.setFieldValue("product", e.target.value)}
-            options={codeOptions}
-            optionLabel="value"
-            placeholder={"Select"}
-          />
-
-          {formik.touched.product && formik.errors.product && (
-            <div
-              style={{ fontSize: 12, color: "red" }}
-              className="formik__errror__JV"
-            >
-              {formik.errors.product}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-          <DropDowns
-            disabled={step === 0 ? false : true}
-            className={
-              step === 0
-                ? "input__field__reversal"
-                : "input__field__reversal__inactive"
-            }
-            classNames={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Select Covers"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-            value={formik.values.selectCovers}
-            onChange={(e) =>
-              formik.setFieldValue("selectCovers", e.target.value)
-            }
-            options={codeOptions}
-            optionLabel="value"
-            placeholder={"Select"}
-          />
-
-          {formik.touched.selectCovers && formik.errors.selectCovers && (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.selectCovers}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-          <InputField
-            classNames="input__field__reversal__inactive"
-            className={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Maximum Rate"
-            placeholder="Enter"
-            value={formik.values.maxRate}
-            onChange={(e) => formik.setFieldValue("maxRate", e.target.value)}
-          />
-          {formik.touched.maxRate && formik.errors.maxRate && (
-            <div
-              style={{ fontSize: 12, color: "red" }}
-              className="formik__errror__JV"
-            >
-              {formik.errors.maxRate}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
-          <div class="calender_container_claim p-0">
-            <LabelWrapper
-              label="Effective From"
-              textSize={"16px"}
-              textColor={"#000"}
-              textWeight={"300"}
-              classNames="input__field__reversal"
-            >
-              <Calendar
-                // value={date}
-                // onChange={(e) => setDate(e.value)}
-                value={
-                  formik.values.effectiveFrom
-                    ? new Date(formik.values.effectiveFrom)
-                    : null
-                }
-                onChange={(e) => {
-                  formik.handleChange("effectiveFrom")(
-                    e.value.toISOString().split("T")[0]
-                  );
-                }}
-                dateFormat="yy-mm-dd"
-                showIcon
-                minDate={minDate}
-                className="calender_field_claim"
-              />
-              <div className="calender_icon_claim">
-                <SvgDatePicker />
+      <Card className="card__container">
+        <div className="grid p-2 ">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+            <InputField
+              classNames="input__field__reversal__inactive"
+              className={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Commission Code"
+              placeholder="Enter"
+              value={formik.values.commissioncode}
+              onChange={(e) =>
+                formik.setFieldValue("commissioncode", e.target.value)
+              }
+            />
+            {formik.touched.commissioncode && formik.errors.commissioncode && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                className="formik__errror__JV"
+              >
+                {formik.errors.commissioncode}
               </div>
-            </LabelWrapper>
+            )}
           </div>
-          {formik.touched.effectiveFrom && formik.errors.effectiveFrom && (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.effectiveFrom}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
-          <div class="calender_container_claim p-0">
-            <LabelWrapper
-              label="Effective To"
-              textSize={"16px"}
-              textColor={"#000"}
-              textWeight={"300"}
-              classNames="input__field__reversal"
-            >
-              <Calendar
-                value={
-                  formik.values.effectiveTo
-                    ? new Date(formik.values.effectiveTo)
-                    : null
-                }
-                onChange={(e) => {
-                  formik.handleChange("effectiveTo")(
-                    e.value.toISOString().split("T")[0]
-                  );
-                }}
-                dateFormat="yy-mm-dd"
-                showIcon
-                minDate={minDate}
-                className="calender_field_claim"
-              />
-              <div className="calender_icon_claim">
-                <SvgDatePicker />
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
+            <InputField
+              classNames="input__field__reversal__inactive"
+              className={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Description"
+              placeholder="Enter"
+              value={formik.values.desc}
+              onChange={(e) => formik.setFieldValue("desc", e.target.value)}
+            />
+            {formik.touched.desc && formik.errors.desc && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                className="formik__errror__JV"
+              >
+                {formik.errors.desc}
               </div>
-            </LabelWrapper>
+            )}
           </div>
-          {formik.touched.effectiveTo && formik.errors.effectiveTo && (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.effectiveTo}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-          <DropDowns
-            // disabled={step === 0 ? false : true}
-            className={
-              step === 0
-                ? "input__field__reversal"
-                : "input__field__reversal__inactive"
-            }
-            classNames={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Select Agents"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-            value={formik.values.selectAgent}
-            onChange={(e) =>
-              formik.setFieldValue("selectAgent", e.target.value)
-            }
-            options={codeOptions}
-            optionLabel="value"
-            placeholder={"Select"}
-          />
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+            <DropDowns
+              // disabled={step === 0 ? false : true}
+              className={
+                step === 0
+                  ? "input__field__reversal"
+                  : "input__field__reversal__inactive"
+              }
+              classNames={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Product"
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.product}
+              onChange={(e) => formik.setFieldValue("product", e.target.value)}
+              options={codeOptions}
+              optionLabel="value"
+              placeholder={"Select"}
+            />
 
-          {formik.touched.selectAgent && formik.errors.selectAgent && (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.selectAgent}
+            {formik.touched.product && formik.errors.product && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                className="formik__errror__JV"
+              >
+                {formik.errors.product}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+            <DropDowns
+              disabled={step === 0 ? false : true}
+              className={
+                step === 0
+                  ? "input__field__reversal"
+                  : "input__field__reversal__inactive"
+              }
+              classNames={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Select Covers"
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.selectCovers}
+              onChange={(e) =>
+                formik.setFieldValue("selectCovers", e.target.value)
+              }
+              options={codeOptions}
+              optionLabel="value"
+              placeholder={"Select"}
+            />
+
+            {formik.touched.selectCovers && formik.errors.selectCovers && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.selectCovers}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+            <InputField
+              classNames="input__field__reversal__inactive"
+              className={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Maximum Rate"
+              placeholder="Enter"
+              value={formik.values.maxRate}
+              onChange={(e) => formik.setFieldValue("maxRate", e.target.value)}
+            />
+            {formik.touched.maxRate && formik.errors.maxRate && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                className="formik__errror__JV"
+              >
+                {formik.errors.maxRate}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
+            <div class="calender_container_claim p-0">
+              <LabelWrapper
+                label="Effective From"
+                textSize={"16px"}
+                textColor={"#000"}
+                textWeight={"300"}
+                classNames="input__field__reversal"
+              >
+                <Calendar
+                  // value={date}
+                  // onChange={(e) => setDate(e.value)}
+                  value={
+                    formik.values.effectiveFrom
+                      ? new Date(formik.values.effectiveFrom)
+                      : null
+                  }
+                  onChange={(e) => {
+                    formik.handleChange("effectiveFrom")(
+                      e.value.toISOString().split("T")[0]
+                    );
+                  }}
+                  dateFormat="yy-mm-dd"
+                  showIcon
+                  minDate={minDate}
+                  className="calender_field_claim"
+                />
+                <div className="calender_icon_claim">
+                  <SvgDatePicker />
+                </div>
+              </LabelWrapper>
             </div>
-          )}
+            {formik.touched.effectiveFrom && formik.errors.effectiveFrom && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.effectiveFrom}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
+            <div class="calender_container_claim p-0">
+              <LabelWrapper
+                label="Effective To"
+                textSize={"16px"}
+                textColor={"#000"}
+                textWeight={"300"}
+                classNames="input__field__reversal"
+              >
+                <Calendar
+                  value={
+                    formik.values.effectiveTo
+                      ? new Date(formik.values.effectiveTo)
+                      : null
+                  }
+                  onChange={(e) => {
+                    formik.handleChange("effectiveTo")(
+                      e.value.toISOString().split("T")[0]
+                    );
+                  }}
+                  dateFormat="yy-mm-dd"
+                  showIcon
+                  minDate={minDate}
+                  className="calender_field_claim"
+                />
+                <div className="calender_icon_claim">
+                  <SvgDatePicker />
+                </div>
+              </LabelWrapper>
+            </div>
+            {formik.touched.effectiveTo && formik.errors.effectiveTo && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.effectiveTo}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+            <DropDowns
+              // disabled={step === 0 ? false : true}
+              className={
+                step === 0
+                  ? "input__field__reversal"
+                  : "input__field__reversal__inactive"
+              }
+              classNames={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Select Agents"
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.selectAgent}
+              onChange={(e) =>
+                formik.setFieldValue("selectAgent", e.target.value)
+              }
+              options={codeOptions}
+              optionLabel="value"
+              placeholder={"Select"}
+            />
+
+            {formik.touched.selectAgent && formik.errors.selectAgent && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.selectAgent}
+              </div>
+            )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+            <div className="input__label__reversal">Modifiable</div>
+            <SelectButton
+              className="mt-2 select__switch__option"
+              value={selectSwitch}
+              onChange={(e) => setselectSwitch(e.value)}
+              options={selectSwitchoptions}
+            />
+          </div>
         </div>
-        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-          <div className="input__label__reversal">Modifiable</div>
-          <SelectButton
-            className="mt-2 select__switch__option"
-            value={selectSwitch}
-            onChange={(e) => setselectSwitch(e.value)}
-            options={selectSwitchoptions}
-          />
-        </div>
-      </div>
+      </Card>
       <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal"></div>
       <div className=" bottom__view p-2 m-1">
         <div className="  input__view__reversal p-2">
@@ -522,14 +523,22 @@ const AddCommission = () => {
             onPageChange={onPageChange}
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
-            <Column field="level" header="Level" headerStyle={headerStyle}></Column>
+            <Column
+              field="level"
+              header="Level"
+              headerStyle={headerStyle}
+            ></Column>
             <Column
               field="commissionCode"
               header="Commission Code"
               headerStyle={headerStyle}
               // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
             ></Column>
-            <Column field="sharingRate" header="Share Rate" headerStyle={headerStyle}></Column>
+            <Column
+              field="sharingRate"
+              header="Share Rate"
+              headerStyle={headerStyle}
+            ></Column>
             <Column
               field="mainAC"
               header="Action"

@@ -232,10 +232,13 @@
         font-weight: 400;
        
     }
-    .fieldvalue_container.centered {
+    .fieldvalue_container_centered {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: center;padding: 1rem !important;
+      }
+      .fieldvalue_container{
+        padding: 1rem !important;
       }
 
 }

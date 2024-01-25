@@ -201,7 +201,16 @@ import LeadEdit from "../agentModule/leadModule/leadEdit";
 import ViewEndorsement from "../agentModule/endorsementModule/viewUploadEndorsement";
 import EndorsementRejected from "../agentModule/endorsementModule/EndorsementRejected";
 import LoginScreen from "../module/AuthModule/Login/index";
-import OperationalReports from "../module/Reports/OperationalReports";
+import Production from "../module/Reports/OperationalReports/Production";
+import SoaPremiumReceivable from "../module/Reports/FinancialReports/SoaPremiumReceivable";
+import Claims from "../module/Reports/OperationalReports/Claims";
+import Renewal from "../module/Reports/OperationalReports/Renewal";
+import Remittance from "../module/Reports/OperationalReports/Remittance";
+import BrokerCommision from "../module/Reports/OperationalReports/BrokerCommission";
+import Collectionreport from "../module/Reports/FinancialReports/CollectionReport";
+import Payables from "../module/Reports/FinancialReports/Payables";
+import Journal from "../module/Reports/FinancialReports/Journal";
+import TrailBalance from "../module/Reports/FinancialReports/TrailBalance";
 
 const Maincomponent = () => {
   return (
@@ -212,11 +221,11 @@ const Maincomponent = () => {
     >
       <ResponsiveDrawer />
       <div className="parent__main__container">
-   
+
 
         {/* <AuthRoute /> */}
         <Routes>
-        <Route path="/login" element={<LoginScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
           <Route element={<ProtectedLayout />}>
             <Route
               path="/accounts/correctionsjv/correctionsjvdetails"
@@ -953,196 +962,236 @@ const Maincomponent = () => {
               element={<ViewCommission />}
             />
 
-              {/* <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} /> */}
-              {/* // Agent Dashboard, Notification & agent profile */}
-              <Route path="/agent/home" element={<Dashboard />} />
-              <Route path="/agent/notification" element={<Notification />} />
-              <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
-              <Route path="/agent/editprofile" element={<AgentEditProfile />} />
-              {/* // Lead Creation, edit lead & Lead listing */}
-              <Route path="/agent/createlead" element={<LeadCreation />} />
-              <Route path="/agent/leadlisting" element={<LeadListing />} />
-              <Route path="/agent/leadedit" element={<LeadEdit />} />
-              {/* // Quote Creation, Policy conversion & Client listing */}
-              <Route
-                path="/agent/createquote/policydetails"
-                element={<PolicyDetails />}
-              />
-              <Route
-                path="/agent/createquote/coveragedetails"
-                element={<CoverageDeatails />}
-              />
-              <Route
-                path="/agent/createquote/accessories"
-                element={<Accessories />}
-              />
-              <Route
-                path="/agent/createquote/ordersummary"
-                element={<OrderSummary />}
-              />
-              <Route
-                path="/agent/quotedetailview"
-                element={<QuoteDetailView />}
-              />
-              <Route path="/agent/quotelisting" element={<QuoteListing />} />
-              <Route
-                path="/agent/quotecomparisonview"
-                element={<QuoteComparisonView />}
-              />
-              <Route
-                path="/agent/convertpolicy/customerinfo"
-                element={<CustomerInfo action="view"/>}
-              />
+            {/* // Agent Dashboard, Notification & agent profile */}
+            <Route path="/agent/home" element={<Dashboard />} />
+            <Route path="/agent/notification" element={<Notification />} />
+            <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
+            <Route path="/agent/editprofile" element={<AgentEditProfile />} />
+            {/* // Lead Creation, edit lead & Lead listing */}
+            <Route path="/agent/createlead" element={<LeadCreation />} />
+            <Route path="/agent/leadlisting" element={<LeadListing />} />
+            <Route path="/agent/leadedit" element={<LeadEdit />} />
+            {/* // Quote Creation, Policy conversion & Client listing */}
+            <Route
+              path="/agent/createquote/policydetails"
+              element={<PolicyDetails />}
+            />
+            <Route
+              path="/agent/createquote/coveragedetails"
+              element={<CoverageDeatails />}
+            />
+            <Route
+              path="/agent/createquote/accessories"
+              element={<Accessories />}
+            />
+            <Route
+              path="/agent/createquote/ordersummary"
+              element={<OrderSummary />}
+            />
+            <Route
+              path="/agent/quotedetailview"
+              element={<QuoteDetailView />}
+            />
+            <Route path="/agent/quotelisting" element={<QuoteListing />} />
+            <Route
+              path="/agent/quotecomparisonview"
+              element={<QuoteComparisonView />}
+            />
+            <Route
+              path="/agent/convertpolicy/customerinfo"
+              element={<CustomerInfo action="view" />}
+            />
 
-<Route
-                path="/agent/convertpolicy/customerinfo/edit"
-                element={<CustomerInfo action="edit"/>}
-              />
+            <Route
+              path="/agent/convertpolicy/customerinfo/edit"
+              element={<CustomerInfo action="edit" />}
+            />
 
-              <Route
-                path="/agent/convertpolicy/uploadvehiclephotos"
-                element={<UploadVehiclePhotos />}
-              />
-              <Route
-                path="/agent/coveragedetailedview"
-                element={<CoverageDetailedVew />}
-              />
-              <Route
-                path="/agent/policyapproval"
-                element={<PolicyApproval />}
-              />
-              <Route path="/agent/uploadpolicy" element={<UploadPolicy />} />
-              <Route
-                path="/agent/policydetailedview"
-                element={<PolicyDetailedView action="edit"/>}
-              />
-               <Route
-                path="/agent/policydetailedviewonly"
-                element={<PolicyDetailedView action="view"/>}
-              />
-              <Route
-                path="/agent/policy/paymentconfirmation"
-                element={<PaymentConfirmation />}
-              />
-              <Route
-                path="/agent/policy/paymentoptions"
-                element={<PaymentOptions />}
-              />
-              <Route
-                path="/agent/policy/paymentapproval"
-                element={<PaymentApproval />}
-              />
-              <Route
-                path="/agent/policy/paymenterror"
-                element={<PaymentError />}
-              />
-              <Route path="/agent/clientlisting" element={<ClientListing />} />
-              <Route path="/agent/clientview/:id" element={<ClientView />} />
-              {/* // Claims */}
-              <Route
-                path="/agent/claimrequest/claimdetails"
-                element={<ClaimDetails />}
-              />
-              <Route
-                path="/agent/claimrequest/sendmail"
-                element={<SendMail />}
-              />
-              <Route
-                path="/agent/claimrequest/requestapproval/:id"
-                element={<RequestApproval />}
-              />
-              <Route
-                path="/agent/claimrequest/adjustersubmission"
-                element={<AdjusterSubmission />}
-              />
-              <Route
-                path="/agent/claimrequest/settlementapproval"
-                element={<SettlementApproval />}
-              />
-              <Route
-                path="/agent/claimrequest/settlementdetails/:id"
-                element={<SettlementDetails />}
-              />
-              <Route
-                path="/agent/claimdetailedview/:id"
-                element={<ClaimSettlement />}
-              />
+            <Route
+              path="/agent/convertpolicy/uploadvehiclephotos"
+              element={<UploadVehiclePhotos />}
+            />
+            <Route
+              path="/agent/coveragedetailedview"
+              element={<CoverageDetailedVew />}
+            />
+            <Route
+              path="/agent/policyapproval"
+              element={<PolicyApproval />}
+            />
+            <Route path="/agent/uploadpolicy" element={<UploadPolicy />} />
+            <Route
+              path="/agent/policydetailedview"
+              element={<PolicyDetailedView action="edit" />}
+            />
+            <Route
+              path="/agent/policydetailedviewonly"
+              element={<PolicyDetailedView action="view" />}
+            />
+            <Route
+              path="/agent/policy/paymentconfirmation"
+              element={<PaymentConfirmation />}
+            />
+            <Route
+              path="/agent/policy/paymentoptions"
+              element={<PaymentOptions />}
+            />
+            <Route
+              path="/agent/policy/paymentapproval"
+              element={<PaymentApproval />}
+            />
+            <Route
+              path="/agent/policy/paymenterror"
+              element={<PaymentError />}
+            />
+            <Route path="/agent/clientlisting" element={<ClientListing />} />
+            <Route path="/agent/clientview/:id" element={<ClientView />} />
+            {/* // Claims */}
+            <Route
+              path="/agent/claimrequest/claimdetails"
+              element={<ClaimDetails />}
+            />
+            <Route
+              path="/agent/claimrequest/sendmail"
+              element={<SendMail />}
+            />
+            <Route
+              path="/agent/claimrequest/requestapproval/:id"
+              element={<RequestApproval />}
+            />
+            <Route
+              path="/agent/claimrequest/adjustersubmission"
+              element={<AdjusterSubmission />}
+            />
+            <Route
+              path="/agent/claimrequest/settlementapproval"
+              element={<SettlementApproval />}
+            />
+            <Route
+              path="/agent/claimrequest/settlementdetails/:id"
+              element={<SettlementDetails />}
+            />
+            <Route
+              path="/agent/claimdetailedview/:id"
+              element={<ClaimSettlement />}
+            />
 
-              <Route path="/agent/claimrejected" element={<ClaimRejected />} />
-              <Route
-                path="/agent/claimdocumentupload"
-                element={<ClaimDocumentUpload />}
-              />
+            <Route path="/agent/claimrejected" element={<ClaimRejected />} />
+            <Route
+              path="/agent/claimdocumentupload"
+              element={<ClaimDocumentUpload />}
+            />
 
-              {/* // Endorsement */}
-              <Route
-                path="/agent/endorsement/personaldetails"
-                element={<PersonalDetails />}
-              />
-              <Route
-                path="/agent/endorsement/coveragedetails"
-                element={<CoverageDetails />}
-              />
-              <Route
-                path="/agent/endorsementapproval"
-                element={<EndorsementApproval />}
-              />
-              <Route
-                path="/agent/uploadendorsement"
-                element={<UploadEndorsement />}
-              />
-              <Route
-                path="/agent/viewendorsement"
-                element={<ViewEndorsement />}
-              />
-              <Route
-                path="/agent/endorsementdetailedview/:id"
-                element={<EndorsementDetailedView />}
-              />
-              <Route
-                path="/agent/endorsement/paymentconfirmation"
-                element={<PaymentConfirmationEndorsement />}
-              />
-              <Route
-                path="/agent/endorsement/paymentoptions"
-                element={<PaymentOptionsEndorsement />}
-              />
-              <Route
-                path="/agent/endorsement/paymentapproval"
-                element={<Endorsementpaymentapproval />}
-              />
-              <Route
-                path="/agent/endorsement/paymenterror/:id"
-                element={<PaymentErrorEndorsment />}
-              />
-               <Route
-                path="/agent/endorsement/rejected/:id"
-                element={<EndorsementRejected />}
-              />
-              
-              {/* // Payments */}
-              <Route path="/agent/payments" element={<Payments />} />
-              <Route
-                path="/agent/payments/detail/:id"
-                element={<PaymentDetails />}
-              />
-              {/* // Open items */}
-              <Route path="/agent/openitems" element={<OpenItems />} />
-              <Route
-                path="/agent/openitems/upcomingevents"
-                element={<UpcomingEvents />}
-              />
-              <Route
-                path="/agent/openitems/expiringpolicy"
-                element={<ExpiringPolicy />}
-              />
+            {/* // Endorsement */}
+            <Route
+              path="/agent/endorsement/personaldetails"
+              element={<PersonalDetails />}
+            />
+            <Route
+              path="/agent/endorsement/coveragedetails"
+              element={<CoverageDetails />}
+            />
+            <Route
+              path="/agent/endorsementapproval"
+              element={<EndorsementApproval />}
+            />
+            <Route
+              path="/agent/uploadendorsement"
+              element={<UploadEndorsement />}
+            />
+            <Route
+              path="/agent/viewendorsement"
+              element={<ViewEndorsement />}
+            />
+            <Route
+              path="/agent/endorsementdetailedview/:id"
+              element={<EndorsementDetailedView />}
+            />
+            <Route
+              path="/agent/endorsement/paymentconfirmation"
+              element={<PaymentConfirmationEndorsement />}
+            />
+            <Route
+              path="/agent/endorsement/paymentoptions"
+              element={<PaymentOptionsEndorsement />}
+            />
+            <Route
+              path="/agent/endorsement/paymentapproval"
+              element={<Endorsementpaymentapproval />}
+            />
+            <Route
+              path="/agent/endorsement/paymenterror/:id"
+              element={<PaymentErrorEndorsment />}
+            />
+            <Route
+              path="/agent/endorsement/rejected/:id"
+              element={<EndorsementRejected />}
+            />
 
-{/* //Reports */}
-<Route
-                path="/reports/operationalreports"
-                element={<OperationalReports/>}
-              />
+            {/* // Payments */}
+            <Route path="/agent/payments" element={<Payments />} />
+            <Route
+              path="/agent/payments/detail/:id"
+              element={<PaymentDetails />}
+            />
+            {/* // Open items */}
+            <Route path="/agent/openitems" element={<OpenItems />} />
+            <Route
+              path="/agent/openitems/upcomingevents"
+              element={<UpcomingEvents />}
+            />
+            <Route
+              path="/agent/openitems/expiringpolicy"
+              element={<ExpiringPolicy />}
+            />
+
+            {/* //Reports */}
+
+            {/* OperationalReports */}
+            <Route
+              path="/reports/operationalreports/production"
+              element={<Production />}
+            />
+
+            <Route
+              path="/reports/operationalreports/claims"
+              element={<Claims />}
+            />
+
+            <Route
+              path="/reports/operationalreports/renewal"
+              element={<Renewal />}
+            />
+            <Route
+              path="/reports/operationalreports/remittance"
+              element={<Remittance />}
+            />
+            <Route
+              path="/reports/operationalreports/brokercommision"
+              element={<BrokerCommision />}
+            />
+
+            {/* Finacial master */}
+
+            <Route
+              path="/reports/Financialreports/soapremiumreceivable"
+              element={<SoaPremiumReceivable />}
+            />
+            <Route
+              path="/reports/Financialreports/collectionreport"
+              element={<Collectionreport />}
+            /><Route
+            path="/reports/Financialreports/payables"
+            element={<Payables />}
+          /><Route
+          path="/reports/Financialreports/journal"
+          element={<Journal />}
+        /><Route
+        path="/reports/Financialreports/trailbalance"
+        element={<TrailBalance />}
+      />
 
 
           </Route>

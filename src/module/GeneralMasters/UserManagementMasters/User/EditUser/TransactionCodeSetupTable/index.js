@@ -130,7 +130,7 @@ const TransactionCodeSetupTable = ({action}) => {
     <div className="transactioncode__master__table_view">
       {/* <Card className="mt-1"> */}
       <div className="card">
-        <div className="col-12 md:col-12 lg-col-12 ">
+        {/* <div className="col-12 md:col-12 lg-col-12 "> */}
           <div className="btn__container__add">
             <Button
               label="Add"
@@ -141,7 +141,7 @@ const TransactionCodeSetupTable = ({action}) => {
               }}
             />
           </div>
-        </div>
+        {/* </div> */}
         <DataTable
           value={products}
           tableStyle={{

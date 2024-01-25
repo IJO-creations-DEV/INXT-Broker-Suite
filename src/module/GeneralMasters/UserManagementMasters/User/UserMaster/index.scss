@@ -54,7 +54,7 @@
     .add__icon__alighn__hierarchy {
         display: flex;
         justify-content: flex-end;
-        align-items: end;
+        align-items: center;
 
         .add__icon__view__hierarchy {
             display: flex;
@@ -92,7 +92,7 @@
     .sub__account__sub__container__hierarchy {
         box-shadow: 0px 0px 20px 0px #00000014;
         border-radius: 10px;
-
+margin-top: 20px;
 
 
         .sort__filter__view__hierarchy {
@@ -240,10 +240,13 @@
         font-weight: 400;
        
     }
-    .fieldvalue_container.centered {
+    .fieldvalue_container_centered {
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      .fieldvalue_container{
+        padding: 1rem  !important;
       }
 
 }

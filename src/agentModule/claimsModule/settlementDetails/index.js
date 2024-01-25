@@ -10,6 +10,7 @@ import { Checkbox } from "primereact/checkbox";
 import DatepickerField from "../../component/datePicker";
 import { FileUpload } from "primereact/fileupload";
 import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
+
 import SvgImageShow from "../../../assets/agentIcon/SvgHelp";
 import "./index.scss";
 import CustomToast from "../../../components/Toast";
@@ -17,6 +18,7 @@ import customHistory from "../../../routes/customHistory";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { postSettlementClaimMiddleware } from "./Store/claimSettlementMiddleware";
+import SvgUploadClose from "../../../assets/agentIcon/SvgUploadClose";
 
 const initialValues = {
   SettlementType: "",
@@ -134,6 +136,7 @@ const SettlementDetails = () => {
             <div className="upload__card__container mt-2">
               <div className="file_icon_selector">
                 <FileUpload
+                  ref={fileUploadRef}
                   url="./upload"
                   auto
                   customUpload
@@ -157,6 +160,11 @@ const SettlementDetails = () => {
                 </div>
               </div>
             </div>
+            {uploadImage && (
+              <div onClick={handleCancelUplaoded} className="mt-2">
+                <SvgUploadClose />
+              </div>
+            )}
           </div>
 
           <div className="claimrequest__back__but">

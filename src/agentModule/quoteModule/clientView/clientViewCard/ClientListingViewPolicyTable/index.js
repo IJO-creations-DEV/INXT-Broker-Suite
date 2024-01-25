@@ -18,17 +18,15 @@ const LeadListingAllTable = () => {
   const [displayDialog, setDisplayDialog] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
+  const [disableOption, setdisableOption] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
   const categories = [
     { name: "Personal Details Change", key: "personaldetail" },
     { name: "Motor Details Change", key: "motordetail" },
     { name: "Coverage Change", key: "coveragechange" },
     { name: "Policy Extend", key: "ploicyextend" },
   ];
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
-  const showDialog = () => {
-    setDisplayDialog(true);
-  };
 
   const hideDialogClose = () => {
     setDisplayDialog(false);
@@ -62,53 +60,13 @@ const LeadListingAllTable = () => {
   };
   const navigate = useNavigate();
 
-  const item = [
-    {
-      label: "View",
-      url: "/agent/policydetailedview",
-    },
-    {
-      label: "Claim",
-      url: "/agent/claimrequest/claimdetails",
-    },
-    {
-      label: "Renewal",
-      url: "/agent/policydetailedview",
-    },
-
-    {
-      label: "Endorsement",
-      command: () => setDisplayDialog(true),
-    },
-  ];
-  // const menuItems = [
-  //   {
-  //     label: "View",
-
-  //     command: () => handleMenuClick("view"),
-  //   },
-
-  //   {
-  //     label: "Claim",
-
-  //     command: () => handleMenuClick("claim"),
-  //   },
-  //   {
-  //     label: "Renewal",
-
-  //     command: () => handleMenuClick("renewal"),
-  //   },
-
-  //   {
-  //     label: "Endorsement",
-
-  //     command: () => handleMenuClick("endrosement"),
-  //   },
-  // ];
-
-  const handleMenuToggle = (event, menuRef) => {
+  const handleMenuToggle = (event, menuRef, rowData) => {
     menuRef.current.toggle(event);
+    setdisableOption(
+      rowData.Payment === "Pending" || rowData.Payment === "Reviewing"
+    );
   };
+
   const handleMenuClick = (menuItem, status) => {
     if (menuItem == "view") {
       navigate("/agent/policydetailedview");
@@ -269,8 +227,6 @@ const LeadListingAllTable = () => {
   };
 
   const renderViewEditButton = (rowData) => {
-    const isPending = rowData.Payment === "Pending";
-
     const menuItems = [
       {
         label: "View",
@@ -280,18 +236,18 @@ const LeadListingAllTable = () => {
       {
         label: "Claim",
         command: () => handleMenuClick("claim", rowData.Payment),
-        disabled: isPending,
+        disabled: disableOption,
       },
       {
         label: "Renewal",
         command: () => handleMenuClick("renewal", rowData.Payment),
-        disabled: isPending,
+        disabled: disableOption,
       },
 
       {
         label: "Endorsement",
         command: () => handleMenuClick("endrosement", rowData.Payment),
-        disabled: isPending,
+        disabled: disableOption,
       },
     ];
     return (
@@ -300,50 +256,11 @@ const LeadListingAllTable = () => {
         <Button
           icon={<SvgDot />}
           className="view__btn"
-          onClick={(event) => handleMenuToggle(event, menu)}
-          // onClick={(e) => menu.current.toggle(e)}
-          // onClick={() => handleItemClick(rowData)}
+          onClick={(event) => handleMenuToggle(event, menu, rowData)}
         />
       </div>
     );
   };
-  // const renderViewEditButton = (rowData) => {
-  //   const generateMenuItems = () => {
-  //     const menuItems = [
-  //       {
-  //         label: "View",
-  //         command: () => handleMenuClick("view"),
-  //       },
-
-  //       {
-  //         label: "Claim",
-  //         command: () => handleMenuClick("claim"),
-  //       },
-  //       {
-  //         label: "Renewal",
-  //         command: () => handleMenuClick("renewal"),
-  //       },
-
-  //       {
-  //         label: "Endorsement",
-  //         command: () => handleMenuClick("endrosement"),
-  //       },
-  //     ];
-
-  //     return menuItems;
-  //   };
-
-  //   return (
-  //     <div className="btn__container__view__edit">
-  //       <Menu model={generateMenuItems()} popup ref={menu} breakpoint="767px" />
-  //       <Button
-  //         icon={<SvgDot />}
-  //         className="view__btn"
-  //         onClick={(event) => handleMenuToggle(event, menu)}
-  //       />
-  //     </div>
-  //   );
-  // };
 
   const renderPolicyNumber = (rowData) => {
     return (
@@ -399,30 +316,12 @@ const LeadListingAllTable = () => {
     border: " none",
   };
 
-  // const rendercheckedHeader = (value) => {
-  //   return selectedProducts.length === 0 ? (
-  //     value
-  //   ) : selectedProducts.length === 1 ? (
-  //     <div className="header__btn__container">
-  //       <div className="header__delete__btn">Delete</div>
-  //       <div className="header__edit__btn">Edit</div>
-  //     </div>
-  //   ) : (
-  //     <div className="header__delete__btn">Delete</div>
-  //   );
-  // };
-
-  // const renderUncheckedHeader = (value) => {
-  //   return selectedProducts.length == 0 && value;
-  // };
-
   return (
     <div>
       <div class="grid">
         <div class="col-12 md:col-9 lg:col-9">
           <span className="p-input-icon-left" style={{ width: "100%" }}>
             <i className="pi pi-search" />
-            {/* <SvgSearch/> */}
             <InputText
               placeholder="Search"
               style={{
@@ -453,7 +352,6 @@ const LeadListingAllTable = () => {
           currentPageReportTemplate="{first} - {last} of {totalRecords}"
           paginatorTemplate={template2}
           className="corrections__table__main"
-          // onSelectionChange={(e) => setSelectedProducts(e.value)}
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
           scrollable={true}
@@ -491,7 +389,7 @@ const LeadListingAllTable = () => {
         style={{ height: "340px", width: "500px" }}
         modal
         onHide={hideDialogClose}
-        className="individual__client__list__modal__container"
+        className="agent__flow__common__dialog__container"
       >
         <div className="p-fluid">
           {categories.map((category) => {

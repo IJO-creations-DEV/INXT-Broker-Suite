@@ -237,6 +237,7 @@ const OpenItems = () => {
         visible={visible}
         style={{ width: "40vw" }}
         onHide={() => setVisible(false)}
+        className="agent__flow__common__dialog__container"
       >
         <div class="grid mt-2">
           <div class="col-12 md:col-12 lg:col-12">

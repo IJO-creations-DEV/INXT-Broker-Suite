@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const index = () => {
-  return (
-    <div>Renewal</div>
-  )
-}
+  return <div>No Renewals</div>;
+};
 
-export default index
+export default index;

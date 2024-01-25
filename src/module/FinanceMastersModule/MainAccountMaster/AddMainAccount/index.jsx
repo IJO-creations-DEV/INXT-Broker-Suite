@@ -37,19 +37,20 @@ const AddMainAccount = () => {
   const [entrySwitch, setentrySwitch] = useState(EntrySwitchoptions[0]);
 
   const codeOptionsType = [
-    { label: "Option 1", value: "FIXED ASSETS - LAND AND BUILDING" },
-    { label: "Option 2", value: "FIXED ASSETS - LEASE HOLD " },
+    { label: "Option 1", value: "Liability" },
+    { label: "Option 2", value: "Asset" },
+    { label: "Option 2", value: "Income" },
   ];
   const categoryOptionsCode = [
-    { label: "Option 1", value: "Accruals" },
-    { label: "Option 2", value: "CATG. CR (CREDIOTRS)"},
-    { label: "Option 2", value: "EXPENSES"},
+    { label: "Option 1", value: "AC001" },
+    { label: "Option 2", value: "AC002"},
+    { label: "Option 2", value: "AC003"},
     
   ];
   const companyCodeDatas = [
-    { name: "Option 1", value: "Comp00123" },
-    { name: "Option 2", value: "Comp00124" },
-    { name: "Option 3", value: "Comp00125" },
+    { name: "Option 1", value: "001" },
+    { name: "Option 2", value: "002" },
+    { name: "Option 3", value: "003" },
   ];
   const currencyCodeDatas = [
     { name: "EUR - Euro", value: "INR" },

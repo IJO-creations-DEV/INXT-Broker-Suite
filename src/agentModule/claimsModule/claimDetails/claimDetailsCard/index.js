@@ -31,41 +31,15 @@ const ClaimDetailsCard = () => {
     console.log(claimDetailsViewData.policyNumber, "endrosementViewData");
 
     const formInitialValue = {
-        InsuranceCompanyN: "",
-        name: "",
-        contactNumber: "",
-        plateNumber: "",
-        unit: "",
+        InsuranceCompanyN: "Pioneer Insurance and Surety Corp (PISC)",
+        name: "Yuva",
+        contactNumber: "7893546789",
+        plateNumber: "1",
+        unit: "1",
         shop: "",
 
     };
-    const customValidation = (values) => {
-        const errors = {};
-
-        if (!values.InsuranceCompanyN) {
-            errors.InsuranceCompanyN = "This field is required";
-        }
-        if (!values.name) {
-            errors.name = "This field is required";
-        }
-
-        if (!values.contactNumber) {
-            errors.contactNumber = "This field is required";
-        }
-
-        if (!values.plateNumber) {
-            errors.plateNumber = "This field is required";
-        }
-
-        if (!values.unit) {
-            errors.unit = "This field is required";
-        }
-        if (!values.shop) {
-            errors.shop = "This field is required";
-        }
-
-        return errors;
-    };
+   
     const dispatch = useDispatch()
     const handleSubmit = () => {
         dispatch(postClaimDetailsData(formik.values))
@@ -73,7 +47,7 @@ const ClaimDetailsCard = () => {
     }
     const formik = useFormik({
         initialValues: formInitialValue,
-        validate: customValidation,
+       
         onSubmit: handleSubmit,
     });
     const handleCheckboxChange = (e) => {

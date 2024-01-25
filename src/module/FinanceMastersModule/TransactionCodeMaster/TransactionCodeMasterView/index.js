@@ -32,24 +32,24 @@ const initialValue = {
 };
 
 const BankAccountCode = [
-  { label: "Trans00123", value: "Trans00123" },
-  { label: "Trans00124", value: "Trans00124" },
+  { label: "1101001", value: "1101001" },
+  { label: "1101002", value: "1101002" },
 ];
 const MainAccountCode = [
-  { label: "Trans00123", value: "Trans00123" },
-  { label: "Trans00124", value: "Trans00124" },
+  { label: "1101001", value: "1101001" },
+  { label: "1101002", value: "1101002" },
 ];
 const BranchCode = [
-  { label: "Trans00123", value: "Trans00123" },
-  { label: "Trans00124", value: "Trans00124" },
+  { label: "101", value: "101" },
+  { label: "102", value: "102" },
 ];
 const Department = [
-  { label: "Depart00123", value: "NY" },
-  { label: "Depart001234", value: "RM" },
+  { label: "1101002", value: "1101002" },
+  { label: "1101003", value: "1101003" },
 ];
 const SubAccountCode = [
-  { label: "Trans00123", value: "Trans00123" },
-  { label: "Trans00124", value: "Trans00124" },
+  { label: "1101001", value: "1101001" },
+  { label: "1101002", value: "1101002" },
 ];
 
 const TransactionCodeMasterView = () => {

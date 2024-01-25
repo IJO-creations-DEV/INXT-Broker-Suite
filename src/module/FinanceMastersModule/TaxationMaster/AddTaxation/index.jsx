@@ -28,9 +28,9 @@ const AddTaxation = () => {
   const home = { label: "Master" };
 
   const item = [
-    { label: "30%", value: "30%" },
-    { label: "40%", value: "40%" },
-    { label: "70%", value: "70%" },
+    { label: "DST", value: "DST" },
+    { label: "VAT", value: "VAT" },
+    { label: "LGT", value: "LGT" },
   ];
   const initialValue = {
     taxCode: "",

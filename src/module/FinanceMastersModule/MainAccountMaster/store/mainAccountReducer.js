@@ -17,24 +17,24 @@ const initialState = {
       id: "1",
       mainAccountCode: "1101001",
       mainAccountName: "FIXED ASSETS - LAND AND BUILDING",
-      description: "description",
+      description: "FIXED ASSETS - LAND AND BUILDING",
       accountType: "Credit",
       openEntry: "Yes",
       openEntryType: "credit",
       accountCategoryCode: "acc123",
-      companyCode: "cc123",
+      companyCode: "001",
       currencyCode: "cc112"
     },
     {
       id: "2",
       mainAccountCode: "1101002",
       mainAccountName: "FIXED ASSETS - LEASE HOLD ",
-      description: "another description",
+      description: "FIXED ASSETS - LAND AND BUILDING AMORTIZATION AC",
       accountType: "Debit",
       openEntry: "No",
       openEntryType: "debit",
       accountCategoryCode: "acc456",
-      companyCode: "cc456",
+      companyCode: "002",
       currencyCode: "cc223"
     },
     // {

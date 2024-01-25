@@ -53,40 +53,7 @@ const CoverageDetailsCard = () => {
     if (!values.LossandDamagecoverageRate) {
       errors.LossandDamagecoverageRate = "This field is required";
     }
-    if (!values.LossandDamagecoveragepremium) {
-      errors.LossandDamagecoveragepremium = "This field is required";
-    }
-    if (!values.ActsofNatureRate) {
-      errors.ActsofNatureRate = "This field is required";
-    }
-    if (!values.ActsofNaturepremium) {
-      errors.ActsofNaturepremium = "This field is required";
-    }
-    if (!values.BodilyInjury) {
-      errors.BodilyInjury = "This field is required";
-    }
-    if (!values.BodilyInjuryCoveragePremium) {
-      errors.BodilyInjuryCoveragePremium = "This field is required";
-    }
-    if (!values.PropertyDamage) {
-      errors.PropertyDamage = "This field is required";
-    }
-    if (!values.PropertyDamageCoveragePremium) {
-      errors.PropertyDamageCoveragePremium = "This field is required";
-    }
-
-    if (!values.AutopassengerpersonalAccident) {
-      errors.AutopassengerpersonalAccident = "This field is required";
-    }
-    if (!values.APPATotalCoverage) {
-      errors.APPATotalCoverage = "This field is required";
-    }
-    if (!values.APPACoveragePremium) {
-      errors.APPACoveragePremium = "This field is required";
-    }
-    if (!values.TotalSumInsured) {
-      errors.TotalSumInsured = "This field is required";
-    }
+  
   
     return errors
   }

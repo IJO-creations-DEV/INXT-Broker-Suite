@@ -101,16 +101,16 @@ const SubAccountMaster = () => {
   };
   const item = [
     {
-      label: "Main00123 - Main Account Description",
-      value: "Main00123 - Main Account Description",
+      label: "1101001 -FIXED ASSETS - LAND AND BUILDING",
+      value: "1101001 - FIXED ASSETS - LAND AND BUILDING",
     },
     {
-      label: "Main00125 - Main Account Description",
-      value: "Main00125 - Main Account Description",
+      label: "1101002 - FIXED ASSETS - LEASE HOLD ",
+      value: "1101002 - FIXED ASSETS - LEASE HOLD ",
     },
     {
-      label: "Main00128 - Main Account Description",
-      value: "Main00128 - Main Account Description",
+      label: "1101003 - FIXED ASSETS - MOTOR CARS",
+      value: "1101003 - FIXED ASSETS - MOTOR CARS",
     },
   ];
   const item1 = [

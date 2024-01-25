@@ -13,8 +13,8 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { postUploadPolicyMiddleWare } from "../store/uploadPolicyMiddleWare";
 const initialValues = {
-  PolicyNumber:"",
-  InsuranceCompany:"",
+  PolicyNumber:"001",
+  InsuranceCompany:"Pioneer Insurance and Surety Corp (PISC)",
   Production: new Date(),
   Inception: new Date(),
   IssuedDate: new Date(),

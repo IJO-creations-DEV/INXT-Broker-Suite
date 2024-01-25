@@ -20,6 +20,7 @@ import {
   postInsuranceCompanyMiddleWare,
 } from "../store/insuranceCompanyMiddleware";
 import { useSelector, useDispatch } from "react-redux";
+import countriesData from "./data";
 
 const InsuranceDetailsAction = ({ action }) => {
   const dispatch = useDispatch();
@@ -69,24 +70,18 @@ const InsuranceDetailsAction = ({ action }) => {
   ];
   const home = { label: "Master" };
 
-  const cityOptionsList = [
-    { label: "Option 1", value: "City 1" },
-    { label: "Option 2", value: "City 2" },
-    { label: "Option 3", value: "City 3" },
-    { label: "Option 4", value: "City 4" },
-  ];
-  const stateOptionsList = [
-    { label: "Option 1", value: "State 1" },
-    { label: "Option 2", value: "State 2" },
-    { label: "Option 3", value: "State 3" },
-    { label: "Option 4", value: "State 4" },
-  ];
-  const countryOptionsList = [
-    { label: "Option 1", value: "Country 1" },
-    { label: "Option 2", value: "Country 2" },
-    { label: "Option 3", value: "Country 3" },
-    { label: "Option 4", value: "Country 4" },
-  ];
+  const City = countriesData.city.map(city => ({
+    label: city,
+  }));
+
+  const State = countriesData.state.map(state => ({
+    label: state,
+  }));
+
+
+  const Country = countriesData.countries.map(country => ({
+    label: country,
+  }));
 
   const customValidation = (values) => {
     const errors = {};
@@ -367,11 +362,11 @@ const InsuranceDetailsAction = ({ action }) => {
               dropdownIcon={<SvgDropdown color={"#000"} />}
               placeholder="Select "
               classNames="select__label__corrections"
-              optionLabel="value"
+              optionLabel="label"
               label="City"
               value={formik.values.city}
               onChange={(e) => formik.setFieldValue("city", e.value)}
-              options={cityOptionsList}
+              options={City}
             />
             {formik.touched.city && formik.errors.city && (
               <div
@@ -389,11 +384,11 @@ const InsuranceDetailsAction = ({ action }) => {
               dropdownIcon={<SvgDropdown color={"#000"} />}
               placeholder="Select "
               classNames="select__label__corrections"
-              optionLabel="value"
+              optionLabel="label"
               label="State"
               value={formik.values.state}
               onChange={(e) => formik.setFieldValue("state", e.value)}
-              options={stateOptionsList}
+              options={State}
             />
             {formik.touched.state && formik.errors.state && (
               <div
@@ -411,11 +406,11 @@ const InsuranceDetailsAction = ({ action }) => {
               dropdownIcon={<SvgDropdown color={"#000"} />}
               placeholder="Select "
               classNames="select__label__corrections"
-              optionLabel="value"
+              optionLabel="label"
               label="Country"
               value={formik.values.country}
               onChange={(e) => formik.setFieldValue("country", e.value)}
-              options={countryOptionsList}
+              options={Country}
             />
             {formik.touched.country && formik.errors.country && (
               <div

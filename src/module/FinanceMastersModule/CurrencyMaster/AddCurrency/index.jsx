@@ -45,9 +45,13 @@ const AddCurrency = () => {
     ];
 
     const ISOcode = [
-        { name: "ISO 3166-2:IN", code: "NY" },
-        { name: "ISO 3166-2:USD", code: "RM" },
+        { name: "INR", code: "INR" },
+        { name: "USD", code: "USD" },
+        { name: "AUD", code: "AUD" },
+        { name: "AUD", code: "AUD" },
       ];
+
+     
     const home = { label: "Master" };
 
     const handleSubmit = (value) => {

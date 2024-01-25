@@ -27,6 +27,8 @@ import {
   postAddCompanyMiddleware,
 } from "../store/companyMiddleware";
 
+import countriesData from "./data";
+
 function AddCompany({ action }) {
   console.log(action, "find action");
   const { companyView, loading } = useSelector(
@@ -51,36 +53,30 @@ function AddCompany({ action }) {
     },
   ];
 
-  const cityOptionsList = [
-    { label: "Option 1", value: "Channai" },
-    { label: "Option 2", value: "Channai 2" },
-    { label: "Option 3", value: "Channai 3" },
-    { label: "Option 4", value: "Channai 4" },
-  ];
-  const State = [
-    { label: "Option 1", value: "TamilNadu" },
-    { label: "Option 2", value: "TamilNadu 2" },
-    { label: "Option 3", value: "TamilNadu 3" },
-    { label: "Option 4", value: "TamilNadu 4" },
-  ];
-  const Country = [
-    { label: "Option 1", value: "India" },
-    { label: "Option 2", value: "India 2" },
-    { label: "Option 3", value: "India 3" },
-    { label: "Option 4", value: "India 4" },
-  ];
+  const City = countriesData.city.map(city => ({
+    label: city,
+  }));
+
+  const State = countriesData.state.map(state => ({
+    label: state,
+  }));
+
+
+  const Country = countriesData.countries.map(country => ({
+    label: country,
+  }));
+
 
   const home = { label: "Master" };
   const items = [
     { label: "Company", url: "/master/generals/organization/companymaster" },
     {
-      label: `${
-        action === "add"
+      label: `${action === "add"
           ? " Add Company"
           : action === "edit"
-          ? "Edit Company"
-          : "Company details"
-      }`,
+            ? "Edit Company"
+            : "Company details"
+        }`,
     },
   ];
 
@@ -246,20 +242,20 @@ function AddCompany({ action }) {
           {action === "add"
             ? " Add Company"
             : action === "edit"
-            ? "Edit Company"
-            : "Company details"}
+              ? "Edit Company"
+              : "Company details"}
         </label>
-      
-      
-      <BreadCrumb
-        model={items}
-        home={home}
-        className="breadcrumbs_container"
-        separatorIcon={<SvgDot color={"#000"} />}
-      />
-   </div>
 
-      <Card style={{marginTop:"20px"}}>
+
+        <BreadCrumb
+          model={items}
+          home={home}
+          className="breadcrumbs_container"
+          separatorIcon={<SvgDot color={"#000"} />}
+        />
+      </div>
+
+      <Card style={{ marginTop: "20px" }}>
         <div class="grid">
           <div class="col-12 md:col-6 lg:col-3">
             <InputField
@@ -269,7 +265,7 @@ function AddCompany({ action }) {
               //   value={formik.values.CurrencyDescription}
               value={formik.values.CompanyCode}
               onChange={formik.handleChange("CompanyCode")}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.CompanyCode && formik.errors.CompanyCode && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -285,7 +281,7 @@ function AddCompany({ action }) {
               //   value={formik.values.CurrencyDescription}
               value={formik.values.CompanyName}
               onChange={formik.handleChange("CompanyName")}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.CompanyName && formik.errors.CompanyName && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -301,7 +297,7 @@ function AddCompany({ action }) {
               //   value={formik.values.CurrencyDescription}
               value={formik.values.LicenseNumber}
               onChange={formik.handleChange("LicenseNumber")}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.LicenseNumber && formik.errors.LicenseNumber && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -317,7 +313,7 @@ function AddCompany({ action }) {
               //   value={formik.values.CurrencyDescription}
               value={formik.values.EmailID}
               onChange={formik.handleChange("EmailID")}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.EmailID && formik.errors.EmailID && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -360,7 +356,7 @@ function AddCompany({ action }) {
                 }
               </i>
 
-              <InputText className="field__container" disabled={action === "view" ? true: false}/>
+              <InputText className="field__container" disabled={action === "view" ? true : false} />
             </span>
           </div>
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
@@ -372,7 +368,7 @@ function AddCompany({ action }) {
                 //   value={formik.values.CurrencyDescription}
                 value={formik.values.Websitelink}
                 onChange={formik.handleChange("Websitelink")}
-                disabled={action === "view" ? true: false}
+                disabled={action === "view" ? true : false}
               />
               {formik.touched.Websitelink && formik.errors.Websitelink && (
                 <div style={{ fontSize: 12, color: "red" }}>
@@ -390,7 +386,7 @@ function AddCompany({ action }) {
                 //   value={formik.values.CurrencyDescription}
                 value={formik.values.Description}
                 onChange={formik.handleChange("Description")}
-                disabled={action === "view" ? true: false}
+                disabled={action === "view" ? true : false}
               />
               {formik.touched.Description && formik.errors.Description && (
                 <div style={{ fontSize: 12, color: "red" }}>
@@ -410,7 +406,7 @@ function AddCompany({ action }) {
               //   value={formik.values.CurrencyDescription}
               value={formik.values.AddressLine1}
               onChange={formik.handleChange("AddressLine1")}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.AddressLine1 && formik.errors.AddressLine1 && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -426,7 +422,7 @@ function AddCompany({ action }) {
               //   value={formik.values.CurrencyDescription}
               value={formik.values.AddressLine2}
               onChange={formik.handleChange("AddressLine2")}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.AddressLine2 && formik.errors.AddressLine2 && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -442,7 +438,7 @@ function AddCompany({ action }) {
               //   value={formik.values.CurrencyDescription}
               value={formik.values.AddressLine3}
               onChange={formik.handleChange("AddressLine3")}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.AddressLine3 && formik.errors.AddressLine3 && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -458,7 +454,7 @@ function AddCompany({ action }) {
               //   value={formik.values.CurrencyDescription}
               value={formik.values.PinCode}
               onChange={formik.handleChange("PinCode")}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.PinCode && formik.errors.PinCode && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -477,11 +473,11 @@ function AddCompany({ action }) {
               // onChange={(e) => setDepartmentCode(e.value)}
               value={formik.values.City}
               onChange={(e) => formik.setFieldValue("City", e.value)}
-              options={cityOptionsList}
-              optionLabel="value"
+              options={City}
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.City && formik.errors.City && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -498,10 +494,10 @@ function AddCompany({ action }) {
               value={formik.values.State}
               onChange={(e) => formik.setFieldValue("State", e.value)}
               options={State}
-              optionLabel="value"
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.State && formik.errors.State && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -518,10 +514,10 @@ function AddCompany({ action }) {
               value={formik.values.Country}
               onChange={(e) => formik.setFieldValue("Country", e.value)}
               options={Country}
-              optionLabel="value"
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              disabled={action === "view" ? true: false}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.Country && formik.errors.Country && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -540,7 +536,7 @@ function AddCompany({ action }) {
                 placeholder="Enter"
                 value={formik.values.PhoneNumber}
                 onChange={formik.handleChange("PhoneNumber")}
-                disabled={action === "view" ? true: false}
+                disabled={action === "view" ? true : false}
               />
             </div>
             {formik.touched.PhoneNumber && formik.errors.PhoneNumber && (
@@ -563,7 +559,7 @@ function AddCompany({ action }) {
                 placeholder="Enter"
                 value={formik.values.Fax}
                 onChange={formik.handleChange("Fax")}
-                disabled={action === "view" ? true: false}
+                disabled={action === "view" ? true : false}
               />
             </div>
             {formik.touched.Fax && formik.errors.Fax && (
@@ -592,7 +588,7 @@ function AddCompany({ action }) {
             label="update"
             disabled={!formik.isValid}
             onClick={formik.handleSubmit}
-            // onClick={()=>{formik.handleSubmit();}}
+          // onClick={()=>{formik.handleSubmit();}}
           />
         )}
       </div>

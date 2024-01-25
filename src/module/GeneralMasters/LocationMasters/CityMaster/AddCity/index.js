@@ -23,6 +23,7 @@ import {
   patchCityEditMiddleware,
   postAddCityMiddleware,
 } from "../store/cityMiddleware";
+import countriesData from "./data";
 
 const initialValues = {
   CityCode: "",
@@ -68,10 +69,9 @@ function AddCity({ action }) {
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
 
-  const State = [
-    { name: "Davao", code: "NY" },
-    { name: "Rome", code: "RM" },
-  ];
+  const State = countriesData.state.map(state => ({
+    label: state,
+  }));
   console.log(statedata, "statedata");
   const setFormikValues = () => {
     const statedatas = CityListById?.State;
@@ -289,7 +289,7 @@ function AddCity({ action }) {
                 value={formik.values.State}
                 onChange={(e) => formik.setFieldValue("State", e.value)}
                 options={State}
-                optionLabel="name"
+                optionLabel="label"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 disabled={

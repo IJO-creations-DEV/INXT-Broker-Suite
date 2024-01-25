@@ -92,7 +92,7 @@ const SettlementDetails = () => {
                   formik.setFieldValue("SettlementType", e.value)
                 }
                 options={items}
-                optionLabel="name"
+                optionLabel="label"
                 placeholder={"Select"}
               />
             </div>

@@ -8,7 +8,7 @@ const initialState = {
     {
       id: 1,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp001",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -20,7 +20,7 @@ const initialState = {
     {
       id: 2,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp002",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -31,7 +31,7 @@ const initialState = {
     }, {
       id: 3,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp003",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -43,7 +43,7 @@ const initialState = {
     {
       id: 4,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp003",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -55,7 +55,7 @@ const initialState = {
     {
       id: 5,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp004",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -67,7 +67,7 @@ const initialState = {
     {
       id: 6,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp005",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -79,7 +79,7 @@ const initialState = {
     {
       id: 7,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp006",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -91,7 +91,7 @@ const initialState = {
     {
       id: 8,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp007",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -103,7 +103,7 @@ const initialState = {
     {
       id: 9,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp008",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",
@@ -115,7 +115,7 @@ const initialState = {
     {
       id: 10,
       userName: "Johnson99",
-      employeeCode: "EC12345",
+      employeeCode: "Emp009",
       assignedRole: "Role",
       email: "johnson@gmail.com",
       phoneNumber: "63-1234567",

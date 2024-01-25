@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { postCreateleadMiddleware } from "../../Store/leadMiddleware";
 import { useFormik } from "formik";
 import { CountryOptions, CityOptions, StateOptions } from "../mock";
+import countriesData from "../mock";
 
 const initialValue = {
   CompanyName: "",
@@ -115,6 +116,18 @@ const LeadCreationCard = () => {
       handleclick(values);
     },
   });
+  const City = countriesData.city.map(city => ({
+    label: city,
+  }));
+
+  const State = countriesData.state.map(state => ({
+    label: state,
+  }));
+
+
+  const Country = countriesData.countries.map(country => ({
+    label: country,
+  }));
 
   return (
     <div className="card_overall_container mt-4">
@@ -231,7 +244,7 @@ const LeadCreationCard = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-6">
             {/* <InputTextField label="Date of Birth" /> */}
-            <DatepickerField
+            {/* <DatepickerField
               label="Date of Birth"
               value={formik.values.DateofBirth}
               onChange={(date) => {
@@ -239,7 +252,33 @@ const LeadCreationCard = () => {
                 return formik.setFieldValue("DateofBirth", date.target.value);
               }}
 
-            />
+            /> */}
+
+<DatepickerField
+    label="Date of Birth"
+    value={formik.values.DateofBirth}
+    maxDate={new Date(2005, 11, 31)}
+    onChange={(date) => {
+        
+        const selectedDate = new Date(date);
+        
+        if (selectedDate.getFullYear() === 2024) {
+            console.log("You cannot select a date in the year 2024.");
+            return;
+        }
+        
+        const minDateOfBirth = new Date("2000-01-01");
+        const maxDateOfBirth = new Date();
+        
+        if (selectedDate < minDateOfBirth || selectedDate > maxDateOfBirth) {
+            console.log("Please select a valid date of birth.");
+            return;
+        }
+
+        formik.setFieldValue("DateofBirth", selectedDate);
+    }}
+/>
+
             {formik.touched.DateofBirth && formik.errors.DateofBirth && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                 {formik.errors.DateofBirth}
@@ -339,7 +378,7 @@ const LeadCreationCard = () => {
             <DropdownField
               label="Country"
               value={formik.values.Country}
-              options={CountryOptions}
+              options={Country}
               onChange={(e) => {
                 console.log(e.value);
                 formik.setFieldValue("Country", e.value);
@@ -357,7 +396,7 @@ const LeadCreationCard = () => {
             <DropdownField
               label="Province"
               value={formik.values.Province}
-              options={StateOptions}
+              options={State}
               onChange={(e) => {
                 console.log(e.value);
                 formik.setFieldValue("Province", e.value);
@@ -378,7 +417,7 @@ const LeadCreationCard = () => {
             <DropdownField
               label="City"
               value={formik.values.City}
-              options={CityOptions}
+              options={City}
               onChange={(e) => {
                 console.log(e.value);
                 formik.setFieldValue("City", e.value);

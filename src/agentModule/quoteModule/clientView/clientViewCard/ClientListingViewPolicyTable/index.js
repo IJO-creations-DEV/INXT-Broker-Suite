@@ -64,7 +64,6 @@ const LeadListingAllTable = () => {
     {
       label: "View",
       url: "/agent/policydetailedview",
-     
     },
     {
       label: "Claim",
@@ -105,14 +104,14 @@ const LeadListingAllTable = () => {
   //   },
   // ];
 
-  const handleMenuToggle = (event, menuRef,rowData) => {
+  const handleMenuToggle = (event, menuRef, rowData) => {
     menuRef.current.toggle(event);
     setdisableOption(
       rowData.Payment === "Pending" || rowData.Payment === "Reviewing"
     );
   };
 
-  const handleMenuClick = (menuItem, status) => {
+  const handleMenuClick = (menuItem) => {
     if (menuItem == "view") {
       navigate("/agent/policydetailedview");
     }
@@ -122,8 +121,6 @@ const LeadListingAllTable = () => {
     if (menuItem == "endrosement") {
       setDisplayDialog(true);
     }
-    // Handle the menu item click here
-    console.log(`${menuItem} clicked`);
   };
 
   const TableData = [
@@ -275,24 +272,28 @@ const LeadListingAllTable = () => {
     const menuItems = [
       {
         label: "View",
-        command: () => handleMenuClick("view", rowData.Payment),
-        
+        command: () => handleMenuClick("view"),
       },
 
       {
         label: "Claim",
-        command: () => handleMenuClick("claim", rowData.Payment),
+        command: () => handleMenuClick("claim"),
         disabled: disableOption,
       },
       {
         label: "Renewal",
-        command: () => handleMenuClick("renewal", rowData.Payment),
+        command: () => handleMenuClick("renewal"),
         disabled: disableOption,
       },
 
       {
         label: "Endorsement",
-        command: () => handleMenuClick("endrosement", rowData.Payment),
+        command: () => handleMenuClick("endrosement"),
+        disabled: disableOption,
+      },
+      {
+        label: "Reminder",
+        command: () => handleMenuClick("reminder"),
         disabled: disableOption,
       },
     ];
@@ -311,10 +312,11 @@ const LeadListingAllTable = () => {
   const renderPolicyNumber = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{rowData.Svg}</div>
+        <div>
+          <SvgMotorTable />
+        </div>
         <div>
           <div className="name__text">{rowData.PolicyNumber}</div>
-          {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
         </div>
       </div>
     );
@@ -405,7 +407,7 @@ const LeadListingAllTable = () => {
         >
           <Column
             body={renderPolicyNumber}
-            header="PolicyNumber"
+            header="Policy Number"
             headerStyle={headerStyle}
           ></Column>
           <Column

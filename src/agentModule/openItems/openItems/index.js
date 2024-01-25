@@ -22,6 +22,8 @@ import UpcommingEventCard from "./UpcommingEventCard";
 import { useFormik } from "formik";
 import moment from "moment";
 import { postOpenItemsListMiddleware } from "../store/openItemsMiddleware";
+import SvgBackArrow from "../../../assets/icons/SvgBackArrow";
+import Notification from "../upcomingEvents";
 
 const initialValues = {
   reminder: "",
@@ -121,14 +123,9 @@ const OpenItems = () => {
   return (
     <div className="open__item__container  mt-3">
       <CustomToast ref={toastRef} message="Event Added Successfully" />
-      <div className="open__item__title">Open Items</div>
-      {/* <div className="open__item__back_container mt-4">
-        <SvgLeftArrow />
-        <label className="arrowlabel_txt">Home</label>
-      </div>
-      <div className="card__title mt-3">Notes</div> */}
+      <div className="open__item__title">Activity Tracker</div>
 
-      <div class="grid mt-3">
+      {/* <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
           <Card>
             <div class="grid" onClick={handlePolicyExpiry}>
@@ -171,10 +168,13 @@ const OpenItems = () => {
             </div>
           </Card>
         </div>
-      </div>
+      </div> */}
       <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
-          <div className="activity__tracker">Activity Tracker</div>
+          <div className="left__arrow">
+            <SvgLeftArrow />
+            <label className="activity__tracker">HOME</label>
+          </div>
         </div>
         <div class="btn__container__new__event col-12 md:col-6 lg:col-6">
           <Button
@@ -314,6 +314,7 @@ const OpenItems = () => {
           <Button label="Add Event" onClick={formik.handleSubmit} />
         </div>
       </Dialog>
+      <Notification />
     </div>
   );
 };

@@ -10,7 +10,7 @@ const PolicyDetailedView = ({ action }) => {
       <div className="policy__details__view__back__btn__container mt-3">
         <SvgLeftArrow />
         <div className="policy__details__view__back__btn__container__title">
-          Client ID: 12345678
+          Carson Darrin / Client ID : 12345678
         </div>
       </div>
       <PolicyDetailedViewCard action={action} />

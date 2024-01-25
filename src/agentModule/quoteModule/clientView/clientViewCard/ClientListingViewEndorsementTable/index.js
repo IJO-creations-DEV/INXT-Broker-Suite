@@ -9,6 +9,7 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import "../../../clientView/index.scss";
+import SvgMotorTable from "../../../../../assets/agentIcon/SvgMotorTable";
 const LeadListingAllTable = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
@@ -19,6 +20,7 @@ const LeadListingAllTable = () => {
       id: "1",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Personal Details",
       Date: "01 JAN 2024",
       Status: "Processing",
       payment: "N/A",
@@ -28,6 +30,7 @@ const LeadListingAllTable = () => {
       id: "2",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Coverage",
       Date: "01 JAN 2024",
       Status: "Completed",
       payment: "Completed",
@@ -37,6 +40,7 @@ const LeadListingAllTable = () => {
       id: "3",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Motor Details",
       Date: "01 JAN 2024",
       Status: "Completed",
       payment: "Pending",
@@ -46,6 +50,7 @@ const LeadListingAllTable = () => {
       id: "4",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Personal Details",
       Date: "01 JAN 2024",
       Status: "Rejected",
       payment: "N/A",
@@ -55,6 +60,7 @@ const LeadListingAllTable = () => {
       id: "5",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Coverage",
       Date: "01 JAN 2024",
       Status: "Completed",
       payment: "Reviewing",
@@ -64,6 +70,7 @@ const LeadListingAllTable = () => {
       id: "6",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Personal Details",
       Date: "01 JAN 2024",
       Status: "Rejected",
       payment: "N/A",
@@ -73,6 +80,7 @@ const LeadListingAllTable = () => {
       id: "7",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Coverage",
       Date: "01 JAN 2024",
       Status: "Processing",
       payment: "N/A",
@@ -82,6 +90,7 @@ const LeadListingAllTable = () => {
       id: "8",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Motor Details",
       Date: "01 JAN 2024",
       Status: "Rejected",
       payment: "N/A",
@@ -91,6 +100,7 @@ const LeadListingAllTable = () => {
       id: "9",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Personal Details",
       Date: "01 JAN 2024",
       Status: "Processing",
       payment: "N/A",
@@ -100,6 +110,7 @@ const LeadListingAllTable = () => {
       id: "10",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Coverage",
       Date: "01 JAN 2024",
       Status: "Completed",
       payment: "Reviewing",
@@ -109,6 +120,7 @@ const LeadListingAllTable = () => {
       id: "11",
       PolicyNumber: "Policy0123",
       EndorsementID: "7000.00",
+      Type: "Coverage",
       Date: "01 JAN 2024",
       Status: "Processing",
       payment: "N/A",
@@ -166,7 +178,9 @@ const LeadListingAllTable = () => {
   const renderPolicyNumber = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{rowData.Svg}</div>
+        <div>
+          <SvgMotorTable />
+        </div>
         <div>
           <div className="name__text">{rowData.PolicyNumber}</div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
@@ -323,7 +337,7 @@ const LeadListingAllTable = () => {
         >
           <Column
             body={renderPolicyNumber}
-            header={rendercheckedHeader("PolicyNumber")}
+            header={rendercheckedHeader("Policy Number")}
             headerStyle={headerStyle}
           ></Column>
           <Column
@@ -331,6 +345,7 @@ const LeadListingAllTable = () => {
             header={renderUncheckedHeader("EndorsementID")}
             headerStyle={headerStyle}
           ></Column>
+          <Column header="Type" field="Type" headerStyle={headerStyle}></Column>
           <Column
             body={renderDate}
             header={renderUncheckedHeader("Date")}

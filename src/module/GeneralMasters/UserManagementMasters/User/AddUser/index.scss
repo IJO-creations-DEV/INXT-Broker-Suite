@@ -4,15 +4,24 @@
       font-size: 30px;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
+      margin-left: 10px;
     }
   
+    .p-tabview .p-tabview-panels {
+      background: #ffffff;
+      padding: 0rem !important;
+      border: 0 none;
+      color: #4b5563;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 6px;
+  }
     .breadCrums__view__add__screen {
       border: none;
       padding: 0;
       font-family: 'Inter', sans-serif;
       color: #111927;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 500;
       margin: 10px 0;
     }
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {

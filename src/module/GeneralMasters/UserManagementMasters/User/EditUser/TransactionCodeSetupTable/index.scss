@@ -5,8 +5,17 @@
     align-items: center;
     padding-top: 2%;
     padding-bottom: 2%;
+  }.p-tabview .p-tabview-panels {
+    background: #ffffff;
+    padding: 0rem !important; 
+    border: 0 none;
+    color: #4b5563;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+  .pagedropdown_container{
+    margin-right: 20px;
   }
-  
   .paginator__container {
     margin-right: 30%;
     display: flex;

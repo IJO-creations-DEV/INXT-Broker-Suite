@@ -1,6 +1,6 @@
 export const menuList = [
-  
-  
+
+
   {
     name: "Master",
     submenu: [
@@ -283,9 +283,62 @@ export const menuList = [
       {
         id: 1,
         name: "Operational Reports",
-        path: "/reports/operationalreports",
+        // path: "/reports/operationalreports",
+        submenu: [
+          {
+            id: 1,
+            name: "Production",
+            path: "/reports/operationalreports/production"
+          },
+          {
+            id: 2,
+            name: "Claims",
+            path: "/reports/operationalreports/claims"
+          }, {
+            id: 3,
+            name: "Renewal",
+            path: "/reports/operationalreports/renewal"
+          }, {
+            id: 4,
+            name: "Remittance",
+            path: "/reports/operationalreports/remittance"
+          }, {
+            id: 5,
+            name: "Broker Commission",
+            path: "/reports/operationalreports/brokercommision"
+          }
+        ]
+      },
+      {
+        id: 2,
+        name: "Financial Reports",
+        // path: "/reports/operationalreports",
+        submenu: [
+          {
+            id: 1,
+            name: "SOA/Premium Receivable",
+            path: "/reports/Financialreports/soapremiumreceivable"
+          },
+          {
+            id: 2,
+            name: "Collection Report",
+            path: "/reports/Financialreports/collectionreport"
+          }, {
+            id: 3,
+            name: "Payables",
+            path: "/reports/Financialreports/Payables"
+          }, {
+            id: 4,
+            name: "Journal",
+            path: "/reports/Financialreports/journal"
+          }, {
+            id: 5,
+            name: "Trail Balance",
+            path: "/reports/Financialreports/trailbalance"
+          }
+        ]
       },
     ],
   },
-  
+
 ];

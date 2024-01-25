@@ -23,12 +23,12 @@ const UploadEndorsement = () => {
   const fileUploadRef = useRef(null);
 
   const initialValues = {
-    policyNumber: "",
-    endrosementNumber: "",
-    production: "",
-    inception: "",
-    issuedDate: "",
-    expiry: "",
+    policyNumber: "001",
+    endrosementNumber: "013",
+    production: "20/10/2023",
+    inception: "25/01/2024",
+    issuedDate: "29/01/2024",
+    expiry: "01/02/2024",
     file: null
   }
 
@@ -247,7 +247,7 @@ const UploadEndorsement = () => {
                 mode="basic"
                 name="demo"
                 accept=".png,.jpg,.jpeg"
-                maxFileSize={2000000}
+               
                 // uploadHandler={(e) => {
                 //   handleUppendImg(e.options.props.name, e.files[0], "the data");
                 // }}
@@ -261,7 +261,7 @@ const UploadEndorsement = () => {
               </div>
               <div className="upload__caption text-center">Upload</div>
               <div className="upload__caption text-center">
-                Maximum 2 MB (PNG, JPEG and PDF Files Only)
+              (PNG, JPEG and PDF Files Only)
               </div>
             </div>
           </div>

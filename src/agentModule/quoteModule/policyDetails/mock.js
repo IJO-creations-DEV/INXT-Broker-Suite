@@ -9,12 +9,10 @@ export const InsuranceCompanyOptions = [
   ];
 
   export const InsurancePolicyTypes = [
+    { label: "PC", value: "PC" },
+    { label: "MCY", value: "HL" },
     { label: "CV", value: "CV" },
-    { label: "HL", value: "HL" },
-    { label: "CV", value: "CV" },
-    { label: "HL", value: "HL" },
-    { label: "HL", value: "HL" },
-    { label: "CV", value: "CV" },
+   
   ];
 
   export const AccountCodes = [

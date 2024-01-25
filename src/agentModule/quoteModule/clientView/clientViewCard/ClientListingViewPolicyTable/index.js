@@ -60,7 +60,56 @@ const LeadListingAllTable = () => {
   };
   const navigate = useNavigate();
 
+<<<<<<< Updated upstream
   const handleMenuToggle = (event, menuRef, rowData) => {
+=======
+  const item = [
+    {
+      label: "View",
+      url: "/agent/policydetailedview",
+     
+    },
+    {
+      label: "Claim",
+      url: "/agent/claimrequest/claimdetails",
+    },
+    {
+      label: "Renewal",
+      url: "/agent/policydetailedview",
+    },
+
+    {
+      label: "Endorsement",
+      command: () => setDisplayDialog(true),
+    },
+  ];
+  // const menuItems = [
+  //   {
+  //     label: "View",
+
+  //     command: () => handleMenuClick("view"),
+  //   },
+
+  //   {
+  //     label: "Claim",
+
+  //     command: () => handleMenuClick("claim"),
+  //   },
+  //   {
+  //     label: "Renewal",
+
+  //     command: () => handleMenuClick("renewal"),
+  //   },
+
+  //   {
+  //     label: "Endorsement",
+
+  //     command: () => handleMenuClick("endrosement"),
+  //   },
+  // ];
+
+  const handleMenuToggle = (event, menuRef) => {
+>>>>>>> Stashed changes
     menuRef.current.toggle(event);
     setdisableOption(
       rowData.Payment === "Pending" || rowData.Payment === "Reviewing"
@@ -231,6 +280,7 @@ const LeadListingAllTable = () => {
       {
         label: "View",
         command: () => handleMenuClick("view", rowData.Payment),
+        
       },
 
       {

@@ -11,6 +11,7 @@ import CustomToast from "../../../../../components/Toast";
 import { useNavigate, useParams } from "react-router-dom";
 import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
+import countriesData from "./data";
 
 const AddEmployee = ({ action }) => {
   const { id } = useParams();
@@ -66,21 +67,19 @@ const AddEmployee = ({ action }) => {
     { name: "Aadhar" },
     { name: "Pan" },
   ];
-  const item6 = [
-    { name: "Krishnagiri" },
-    { name: "Chennai" },
-    { name: "Salem" },
-  ];
-  const item7 = [
-    { name: "Tamil nadu" },
-    { name: "Kerala" },
-    { name: "Banglore" },
-  ];
-  const item8 = [
-    { name: "Philippines" },
-    { name: "India" },
-    { name: "Sri lanka" },
-  ];
+
+   const City = countriesData.city.map(city => ({
+    label: city,
+  }));
+
+  const State = countriesData.state.map(state => ({
+    label: state,
+  }));
+
+
+  const Country = countriesData.countries.map(country => ({
+    label: country,
+  }));
 
   const initialValue = {
     employeeCode: "",
@@ -523,7 +522,8 @@ const AddEmployee = ({ action }) => {
               label="City"
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={item6}
+              options={City}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.city &&
@@ -543,7 +543,8 @@ const AddEmployee = ({ action }) => {
               label="State"
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={item7}
+              options={State}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.state &&
@@ -564,7 +565,8 @@ const AddEmployee = ({ action }) => {
               className="dropdown__add__sub"
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={item8}
+              options={Country}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.country &&

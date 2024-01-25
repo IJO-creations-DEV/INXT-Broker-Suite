@@ -18,6 +18,7 @@ import { useFormik } from "formik";
 import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../components/Toast";
 import { InputText } from "primereact/inputtext";
+import countriesData from "./data";
 
 import { postAddBankMiddleware,postAddBank } from '../store/bankMasterMiddleware';
 import { useDispatch, useSelector } from 'react-redux';
@@ -78,18 +79,18 @@ function AddBankMaster() {
       };
     });
 
-      const City = [
-        { name: "Davio", code: "NY" },
-        { name: "UK", code: "RM" },
-      ];
-      const state = [
-        { name: "Davio", code: "NY" },
-        { name: "Davio2", code: "RM" },
-      ];
-      const Country = [
-        { name: "Philippiness", code: "NY" },
-        { name: "USA", code: "RM" },
-      ];
+    const City = countriesData.city.map(city => ({
+      label: city,
+    }));
+  
+    const State = countriesData.state.map(state => ({
+      label: state,
+    }));
+  
+  
+    const Country = countriesData.countries.map(country => ({
+      label: country,
+    }));
     
     const home = { label: "Master" };
     const items = [
@@ -375,7 +376,7 @@ const formik = useFormik({
                 formik.setFieldValue("City", e.value)
               }
               options={City}
-              optionLabel="name"
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -396,8 +397,8 @@ const formik = useFormik({
               onChange={(e) =>
                 formik.setFieldValue("state", e.value)
               }
-              options={state}
-              optionLabel="name"
+              options={State}
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -419,7 +420,7 @@ const formik = useFormik({
                 formik.setFieldValue("Country", e.value)
               }
               options={Country}
-              optionLabel="name"
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />

@@ -25,6 +25,7 @@ import {
   patchBranchEditMiddleware,
   postAddBranchMiddleware,
 } from "../store/branchMiddleware";
+import countriesData from "./data";
 
 const initialValues = {
   BranchCode: "",
@@ -87,25 +88,37 @@ function AddBranch({ action }) {
     },
   ];
 
-  const City = [
-    {
-      label: action === "add" ? "INR" : organizationBranchView.City,
-      value: action === "add" ? "NY" : organizationBranchView.City,
-    },
-  ];
-  const State = [
-    {
-      label: action === "add" ? "INR" : organizationBranchView.State,
-      value: action === "add" ? "NY" : organizationBranchView.State,
-    },
-  ];
-  const Country = [
-    {
-      label: action === "add" ? "INR" : organizationBranchView.Country,
-      value: action === "add" ? "NY" : organizationBranchView.Country,
-    },
-  ];
+  // const City = [
+  //   {
+  //     label: action === "add" ? "INR" : organizationBranchView.City,
+  //     value: action === "add" ? "NY" : organizationBranchView.City,
+  //   },
+  // ];
+  // const State = [
+  //   {
+  //     label: action === "add" ? "INR" : organizationBranchView.State,
+  //     value: action === "add" ? "NY" : organizationBranchView.State,
+  //   },
+  // ];
+  // const Country = [
+  //   {
+  //     label: action === "add" ? "INR" : organizationBranchView.Country,
+  //     value: action === "add" ? "NY" : organizationBranchView.Country,
+  //   },
+  // ];
 
+  const City = countriesData.city.map(city => ({
+    label: action === "add" ? city :organizationBranchView.City,
+  }));
+
+  const State = countriesData.state.map(state => ({
+    label: action === "add" ? state :organizationBranchView.State,
+  }));
+
+
+  const Country = countriesData.countries.map(country => ({
+    label: action === "add" ? country :organizationBranchView.Country,
+  }));
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
 
@@ -465,7 +478,7 @@ function AddBranch({ action }) {
                   ? cityDataOption
                   : City
               }
-              optionLabel="value"
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -494,7 +507,7 @@ function AddBranch({ action }) {
                   ? stateDataOption
                   : State
               }
-              optionLabel="value"
+              optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -508,7 +521,7 @@ function AddBranch({ action }) {
             <DropDowns
               className="dropdown__container"
               label="Country"
-              optionLabel="value"
+              optionLabel="label"
               value={
                 action == "add"
                   ? formik.values.Country

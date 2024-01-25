@@ -19,6 +19,7 @@ import { Toast } from 'primereact/toast';
 import CustomToast from "../../../../../components/Toast";
 import { InputText } from "primereact/inputtext";
 import { useDispatch, useSelector } from 'react-redux';
+import countriesData from "./data";
 import { patchStateEditMiddleware, postAddStateMiddleware } from '../store/stateMiddleware';
 
 
@@ -57,10 +58,9 @@ function AddState({action}) {
       }
     );
 console.log(getStateListById,"getStateListById");
-    const Country = [
-        { name: "India", code: "NY" },
-        { name: "USA", code: "RM" },
-      ];
+const Country = countriesData.countries.map(country => ({
+  label: country,
+}));
      
     
     const home = { label: "Master" };
@@ -317,7 +317,7 @@ const formik = useFormik({
                   formik.setFieldValue("Country", e.value)
                 }
                 options={Country}
-                optionLabel="name"
+                optionLabel="label"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 disabled={action === "add"

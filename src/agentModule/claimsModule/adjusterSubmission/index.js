@@ -14,6 +14,7 @@ import customHistory from "../../../routes/customHistory";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { postAdjusterSubmission } from "./store/adjusterSubmissionMiddleWare";
+import countriesData from "./data";
 
 const AdjusterSubmission = () => {
   const Navigate = useNavigate();
@@ -33,20 +34,18 @@ const AdjusterSubmission = () => {
   const handleBackNavigation = () => {
     customHistory.back();
   };
-  const codeOptions = [
-    { label: "India", value: "India" },
-    { label: "America", value: "America" },
-  ];
-  const codeOptionsProvice = [
-    { label: "Karnataka", value: "Karnataka" },
-    { label: "Tamil Nadu", value: "Tamil Nadu" },
-    { label: "Hydrabad", value: "Hydrabad" },
-  ];
-  const codeOptionsCity = [
-    { label: "Davanagere", value: "Davanagere" },
-    { label: "Channai", value: "Channai" },
-    { label: "Banglore", value: "Banglore" },
-  ];
+  const City = countriesData.city.map(city => ({
+    label: city,
+  }));
+
+  const State = countriesData.state.map(state => ({
+    label: state,
+  }));
+
+
+  const Country = countriesData.countries.map(country => ({
+    label: country,
+  }));
   const formInitialValue = {
     adjusterName: "",
     claimNumber: "",
@@ -60,12 +59,12 @@ const AdjusterSubmission = () => {
     province: "",
     city: "",
     zipCode: "",
-    name: "",
-    contactNumber: "",
-    plateNumber: "",
-    unit: "",
-    shop: "",
-    insuranceCompanyName: "",
+    name: "Yuva",
+    contactNumber: "9856473809",
+    plateNumber: "2",
+    unit: "1",
+    shop: "Vehicle",
+    insuranceCompanyName: "Paramount Life & General lnsurance Corporation",
     file: null,
   };
   const customValidation = (values) => {
@@ -109,24 +108,7 @@ const AdjusterSubmission = () => {
     if (!values.zipCode) {
       errors.zipCode = "This field is required";
     }
-    if (!values.name) {
-      errors.name = "This field is required";
-    }
-    if (!values.contactNumber) {
-      errors.contactNumber = "This field is required";
-    }
-    if (!values.plateNumber) {
-      errors.plateNumber = "This field is required";
-    }
-    if (!values.unit) {
-      errors.unit = "This field is required";
-    }
-    if (!values.shop) {
-      errors.shop = "This field is required";
-    }
-    if (!values.insuranceCompanyName) {
-      errors.insuranceCompanyName = "This field is required";
-    }
+ 
     if (!values.zipCode) {
       errors.zipCode = "This field is required";
     }
@@ -306,8 +288,8 @@ const AdjusterSubmission = () => {
               label="Country"
               value={formik.values.country}
               onChange={(e) => formik.setFieldValue("country", e.target.value)}
-              options={codeOptions}
-              optionLabel="value"
+              options={Country}
+              optionLabel="label"
             />
             {formik.touched.country && formik.errors.country && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -320,8 +302,8 @@ const AdjusterSubmission = () => {
               label="Province"
               value={formik.values.province}
               onChange={formik.handleChange("province")}
-              options={codeOptionsProvice}
-              optionLabel="value"
+              options={State}
+              optionLabel="label"
             />
             {formik.touched.province && formik.errors.province && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -334,8 +316,8 @@ const AdjusterSubmission = () => {
               label="City"
               value={formik.values.city}
               onChange={formik.handleChange("city")}
-              options={codeOptionsCity}
-              optionLabel="value"
+              options={City}
+              optionLabel="label"
             />
             {formik.touched.city && formik.errors.city && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">

@@ -33,18 +33,7 @@ const Accessories = () => {
   };
   const customValidation = (values) => {
     const errors = {}
-    if (!values.Aircon) {
-      errors.Aircon = "This field is required";
-    }
-    if (!values.Stereo) {
-      errors.Stereo = "This field is required";
-    }
-    if (!values.Magwheels) {
-      errors.Magwheels = "This field is required";
-    }
-    if (!values.Others) {
-      errors.Others = "This field is required";
-    }
+   
     if (!values.Deductible) {
       errors.Deductible = "This field is required";
     }
@@ -191,9 +180,13 @@ const Accessories = () => {
             </div>
             <div className="next__text__container">
               <Button
-                onClick={() => {
-                  formik.handleSubmit();
-                }}
+                // onClick={() => {
+                //   formik.handleSubmit();
+                  
+                // }}
+                onClick={
+                  formik.handleSubmit}
+                
                 label="Next"
                 className="next__btn"
               />

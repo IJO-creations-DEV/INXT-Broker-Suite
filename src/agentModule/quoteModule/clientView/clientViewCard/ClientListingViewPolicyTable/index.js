@@ -60,9 +60,6 @@ const LeadListingAllTable = () => {
   };
   const navigate = useNavigate();
 
-<<<<<<< Updated upstream
-  const handleMenuToggle = (event, menuRef, rowData) => {
-=======
   const item = [
     {
       label: "View",
@@ -108,8 +105,7 @@ const LeadListingAllTable = () => {
   //   },
   // ];
 
-  const handleMenuToggle = (event, menuRef) => {
->>>>>>> Stashed changes
+  const handleMenuToggle = (event, menuRef,rowData) => {
     menuRef.current.toggle(event);
     setdisableOption(
       rowData.Payment === "Pending" || rowData.Payment === "Reviewing"

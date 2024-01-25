@@ -200,8 +200,8 @@ const Production = () => {
                             label="Agent"
                             // value={departmentcode}
                             // onChange={(e) => setDepartmentCode(e.value)}
-                            value={formik.values.DepartmentCode}
-                            onChange={(e) => formik.setFieldValue("DepartmentCode", e.value)}
+                            value={formik.values.Agent}
+                            onChange={(e) => formik.setFieldValue("Agent", e.value)}
                             options={AgentCode}
                             optionLabel="label"
                             placeholder={"Select"}
@@ -221,8 +221,8 @@ const Production = () => {
                             label="Company"
                             // value={departmentcode}
                             // onChange={(e) => setDepartmentCode(e.value)}
-                            value={formik.values.DepartmentCode}
-                            onChange={(e) => formik.setFieldValue("DepartmentCode", e.value)}
+                            value={formik.values.Company}
+                            onChange={(e) => formik.setFieldValue("Company", e.value)}
                             options={CompanyCode}
                             optionLabel="label"
                             placeholder={"Select"}
@@ -241,8 +241,8 @@ const Production = () => {
                             label="Branch"
                             // value={departmentcode}
                             // onChange={(e) => setDepartmentCode(e.value)}
-                            value={formik.values.DepartmentCode}
-                            onChange={(e) => formik.setFieldValue("DepartmentCode", e.value)}
+                            value={formik.values.Branch}
+                            onChange={(e) => formik.setFieldValue("Branch", e.value)}
                             options={BranchCode}
                             optionLabel="label"
                             placeholder={"Select"}
@@ -261,8 +261,8 @@ const Production = () => {
                                 formik.values.ReportCriteria === "Principle Insurance" ? "#B1B1B1" : null}
                             // value={departmentcode}
                             // onChange={(e) => setDepartmentCode(e.value)}
-                            value={formik.values.DepartmentCode}
-                            onChange={(e) => formik.setFieldValue("DepartmentCode", e.value)}
+                            value={formik.values.Client}
+                            onChange={(e) => formik.setFieldValue("Client", e.value)}
                             options={ClientCode}
                             optionLabel="label"
                             placeholder={"Select"}

@@ -11,7 +11,7 @@ import { mock } from './mock';
 const OpenItemsListData = () => {
     const navigate = useNavigate()
     const handleNavigate = () => {
-        navigate("/agent/openitems")
+        navigate("/agent/openitems/expiringpolicy")
     }
     return (
         <div className="grid m-0 open_item_container">

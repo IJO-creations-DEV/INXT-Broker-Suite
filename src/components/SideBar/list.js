@@ -206,7 +206,7 @@ export const menuList = [
       },
       {
         name: "Open Items",
-        path: "/agent/openitems",
+        path: "/agent/openitemslistdata",
       },
       {
         name: "Payments",

@@ -213,6 +213,7 @@ import Journal from "../module/Reports/FinancialReports/Journal";
 import TrailBalance from "../module/Reports/FinancialReports/TrailBalance";
 // import OperationalReports from "../module/Reports/OperationalReports";
 import PolicyRenewalWaiting from "../agentModule/renewalModule/WaitingScreen/PolicyRenewalWaiting";
+import OpenItemsListData from "../agentModule/openItems/OpenItemsListData";
 
 const Maincomponent = () => {
   return (
@@ -1189,6 +1190,22 @@ const Maincomponent = () => {
               path="/reports/Financialreports/trailbalance"
               element={<TrailBalance />}
             />
+            <Route
+            path="/reports/Financialreports/payables"
+            element={<Payables />}
+          /><Route
+          path="/reports/Financialreports/journal"
+          element={<Journal />}
+        /><Route
+        path="/reports/Financialreports/trailbalance"
+        element={<TrailBalance />}
+      />
+            <Route path="/agent/openitemslistdata" element={<OpenItemsListData />} />
+            {/* //Reports */}
+            {/* <Route
+              path="/reports/operationalreports"
+              element={<OperationalReports />}
+            /> */}
 
             {/* // Payments */}
             <Route path="/agent/payments" element={<Payments />} />

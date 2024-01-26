@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPaymentSearchDataMiddleWare } from "./store/paymentMiddleware";
 import SvgDropdownicon from "../../assets/icons/SvgDropdownicon";
 import SvgDownArrow from "../../assets/agentIcon/SvgDownArrow";
+import PyamentTabelCard from "./PaymentTabel";
 
 const Payments = () => {
   const { paymenttabledata, paymentSearchList, loading } = useSelector(
@@ -232,8 +233,8 @@ const Payments = () => {
             </Card>
           </div>
         </div>
-
-        <Card className="paymentCard_container">
+         <PyamentTabelCard/>
+        {/* <Card className="paymentCard_container">
           <TabView>
             <TabPanel header="Paid">
               <div class="grid">
@@ -290,7 +291,7 @@ const Payments = () => {
                 <div class="col-12 md:col-9 lg:col-9">
                   <span className="p-input-icon-left" style={{ width: "100%" }}>
                     <i className="pi pi-search" />
-                    {/* <SvgSearch/> */}
+                   
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
@@ -333,7 +334,7 @@ const Payments = () => {
                 <div class="col-12 md:col-9 lg:col-9">
                   <span className="p-input-icon-left" style={{ width: "100%" }}>
                     <i className="pi pi-search" />
-                    {/* <SvgSearch/> */}
+                   
                     <InputText
                       placeholder="Search"
                       style={{ width: "100%", borderRadius: "10px" }}
@@ -342,9 +343,7 @@ const Payments = () => {
                     />
                   </span>
                 </div>
-                {/* <div class="col-12 md:col-3 lg:col-3">
-                  <TableDropdownField label="Search By" />
-                </div> */}
+               
                 <div class="col-12 md:col-3 lg:col-3">
                   <Dropdown
                     value={globalFilter}
@@ -375,7 +374,7 @@ const Payments = () => {
               </div>
             </TabPanel>
           </TabView>
-        </Card>
+        </Card> */}
         <div></div>
       </div>
     </div>

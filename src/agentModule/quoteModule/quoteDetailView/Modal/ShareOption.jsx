@@ -16,6 +16,19 @@ const ShareOption = ({ modalVisible, setModalVisible }) => {
       console.error(err);
     }
   };
+
+  const handleSubmit = () =>{
+    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FQuotation%20Template%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf"; // specify the filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+
+  }
+
   return (
     <Dialog
       visible={modalVisible}
@@ -26,7 +39,7 @@ const ShareOption = ({ modalVisible, setModalVisible }) => {
       dismissableMask={true}
     >
       <div className="grid m-0">
-        <div className="col-2 p-0">
+        <div onClick={()=>handleSubmit()} className="col-2 p-0">
           <div className="common__div mb-2 cursor-pointer ">
             <SvgDownloadIcon />
           </div>

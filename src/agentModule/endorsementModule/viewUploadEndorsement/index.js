@@ -17,6 +17,16 @@ const ViewEndorsement = () => {
     navigate(`/agent/clientview/${123}`);
   };
 
+  const handleEndorsement=()=>{
+    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FEndorsement%20Schedule%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf"; // specify the filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   return (
     <div className="view__endorsement__container">
       <div className="view__endorsement__container__title">Clients</div>
@@ -84,7 +94,7 @@ const ViewEndorsement = () => {
 
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
-              <div className="endorsement__detail__view__box">
+              <div onClick={()=>handleEndorsement()} className="endorsement__detail__view__box">
                 <div className="grid mt-2">
                   <div className="col-12 md:col-6 lg:col-6">
                     <div className="endorsement__detail__view__box__title">

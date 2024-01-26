@@ -24,6 +24,37 @@ const ClaimSettlement = () => {
   const handleNavigation = () => {
     navigate(`/agent/clientview/${123}`);
   };
+
+  const handleAcknowledgmentsubmit = ()=>{
+    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FClaims%20Acknowledgement%20letter%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf"; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  const handleClaimsDischargeVouchersubmit  = ()=>{
+    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FDISCHARGE%20VOUCHER%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf"; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  const handleClaimsDatasheetubmit = ()=>{
+    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FCLAIMS%20DATA%20SHEET%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf"; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   return (
     <div className="claim__detailssettlemenet__container ">
       <div>
@@ -71,7 +102,7 @@ const ClaimSettlement = () => {
         <div className="claim__doc__title mt-2">Documents</div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <div className="policy__detail__view__box">
+            <div onClick={()=>handleAcknowledgmentsubmit()} className="policy__detail__view__box">
               <div className="policy__detail__view__box__title">
                 Acknowledgment letter
               </div>
@@ -84,7 +115,7 @@ const ClaimSettlement = () => {
             </div>
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <div className="policy__detail__view__box">
+            <div onClick={()=>handleClaimsDischargeVouchersubmit()} className="policy__detail__view__box">
               <div className="policy__detail__view__box__title">
                 Claims Discharge Voucher
               </div>
@@ -99,7 +130,7 @@ const ClaimSettlement = () => {
         </div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <div className="policy__detail__view__box">
+            <div onClick={()=>handleClaimsDatasheetubmit()} className="policy__detail__view__box">
               <div className="policy__detail__view__box__title">
                 Claims Data sheet
               </div>

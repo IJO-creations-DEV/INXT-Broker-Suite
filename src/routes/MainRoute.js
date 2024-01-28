@@ -214,9 +214,10 @@ import TrailBalance from "../module/Reports/FinancialReports/TrailBalance";
 // import OperationalReports from "../module/Reports/OperationalReports";
 import PolicyRenewalWaiting from "../agentModule/renewalModule/WaitingScreen/PolicyRenewalWaiting";
 import OpenItemsListData from "../agentModule/openItems/OpenItemsListData";
+import { Navigate } from "react-router-dom";
 
 const Maincomponent = () => {
-  const isLoginPage = window.location.pathname === "/login";
+  const isLoginPage = window.location.pathname === "/login" || "/";
 
   return (
     <div
@@ -228,6 +229,11 @@ const Maincomponent = () => {
       <div className="parent__main__container">
         {/* <AuthRoute /> */}
         <Routes>
+        <Route
+            path="/"
+            element={<Navigate to="/login" replace />}
+          />
+
           <Route path="/login" element={<LoginScreen />} />
           <Route element={<ProtectedLayout />}>
             <Route

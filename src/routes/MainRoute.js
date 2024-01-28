@@ -216,13 +216,15 @@ import PolicyRenewalWaiting from "../agentModule/renewalModule/WaitingScreen/Pol
 import OpenItemsListData from "../agentModule/openItems/OpenItemsListData";
 
 const Maincomponent = () => {
+  const isLoginPage = window.location.pathname === "/login";
+
   return (
     <div
       style={{
         display: "flex",
       }}
     >
-      <ResponsiveDrawer />
+       {isLoginPage === false && <ResponsiveDrawer />}
       <div className="parent__main__container">
         {/* <AuthRoute /> */}
         <Routes>
@@ -1191,16 +1193,21 @@ const Maincomponent = () => {
               element={<TrailBalance />}
             />
             <Route
-            path="/reports/Financialreports/payables"
-            element={<Payables />}
-          /><Route
-          path="/reports/Financialreports/journal"
-          element={<Journal />}
-        /><Route
-        path="/reports/Financialreports/trailbalance"
-        element={<TrailBalance />}
-      />
-            <Route path="/agent/openitemslistdata" element={<OpenItemsListData />} />
+              path="/reports/Financialreports/payables"
+              element={<Payables />}
+            />
+            <Route
+              path="/reports/Financialreports/journal"
+              element={<Journal />}
+            />
+            <Route
+              path="/reports/Financialreports/trailbalance"
+              element={<TrailBalance />}
+            />
+            <Route
+              path="/agent/openitemslistdata"
+              element={<OpenItemsListData />}
+            />
             {/* //Reports */}
             {/* <Route
               path="/reports/operationalreports"

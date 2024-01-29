@@ -47,6 +47,27 @@ const PolicyDetailedViewCard = ({ action }) => {
       handleSubmit();
     },
   });
+
+  const handlePolicySubmit = () =>{
+    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FPolicy%20Schedule%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf"; // specify the filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  const handleInvoiceSubmit = () =>{
+    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FBilling%20Statement%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf"; // specify the filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   return (
     <div className="policy__detail__view__card__container mt-4">
       <Card>
@@ -149,7 +170,7 @@ const PolicyDetailedViewCard = ({ action }) => {
         <div className="policy__detail__view__title mt-2">Documents</div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <div className="policy__detail__view__box">
+            <div onClick={()=>handlePolicySubmit()} className="policy__detail__view__box">
               <div className="grid mt-2">
                 <div className="col-12 md:col-6 lg:col-6">
                   <div className="policy__detail__view__box__title">Policy</div>
@@ -166,7 +187,7 @@ const PolicyDetailedViewCard = ({ action }) => {
             </div>
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <div className="policy__detail__view__box">
+            <div onClick={()=>handleInvoiceSubmit()} className="policy__detail__view__box">
               <div className="grid mt-2">
                 <div className="col-12 md:col-6 lg:col-6">
                   <div className="policy__detail__view__box__title">

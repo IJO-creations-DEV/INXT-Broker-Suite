@@ -214,18 +214,26 @@ import TrailBalance from "../module/Reports/FinancialReports/TrailBalance";
 // import OperationalReports from "../module/Reports/OperationalReports";
 import PolicyRenewalWaiting from "../agentModule/renewalModule/WaitingScreen/PolicyRenewalWaiting";
 import OpenItemsListData from "../agentModule/openItems/OpenItemsListData";
+import { Navigate } from "react-router-dom";
 
 const Maincomponent = () => {
+  const isLoginPage = window.location.pathname === "/login" || "/";
+
   return (
     <div
       style={{
         display: "flex",
       }}
     >
-      <ResponsiveDrawer />
+       {isLoginPage === false && <ResponsiveDrawer />}
       <div className="parent__main__container">
         {/* <AuthRoute /> */}
         <Routes>
+        <Route
+            path="/"
+            element={<Navigate to="/login" replace />}
+          />
+
           <Route path="/login" element={<LoginScreen />} />
           <Route element={<ProtectedLayout />}>
             <Route
@@ -1191,16 +1199,21 @@ const Maincomponent = () => {
               element={<TrailBalance />}
             />
             <Route
-            path="/reports/Financialreports/payables"
-            element={<Payables />}
-          /><Route
-          path="/reports/Financialreports/journal"
-          element={<Journal />}
-        /><Route
-        path="/reports/Financialreports/trailbalance"
-        element={<TrailBalance />}
-      />
-            <Route path="/agent/openitemslistdata" element={<OpenItemsListData />} />
+              path="/reports/Financialreports/payables"
+              element={<Payables />}
+            />
+            <Route
+              path="/reports/Financialreports/journal"
+              element={<Journal />}
+            />
+            <Route
+              path="/reports/Financialreports/trailbalance"
+              element={<TrailBalance />}
+            />
+            <Route
+              path="/agent/openitemslistdata"
+              element={<OpenItemsListData />}
+            />
             {/* //Reports */}
             {/* <Route
               path="/reports/operationalreports"

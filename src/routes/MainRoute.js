@@ -215,9 +215,11 @@ import TrailBalance from "../module/Reports/FinancialReports/TrailBalance";
 import PolicyRenewalWaiting from "../agentModule/renewalModule/WaitingScreen/PolicyRenewalWaiting";
 import OpenItemsListData from "../agentModule/openItems/OpenItemsListData";
 import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
+import { TOKEN } from "../utility/constant";
 
 const Maincomponent = () => {
-  const isLoginPage = window.location.pathname === "/login" || "/";
 
   return (
     <div
@@ -225,1026 +227,1043 @@ const Maincomponent = () => {
         display: "flex",
       }}
     >
-       {isLoginPage === false && <ResponsiveDrawer />}
-      <div className="parent__main__container">
-        {/* <AuthRoute /> */}
-        <Routes>
-          {/* <Route path="/login" element={<LoginScreen />} /> */}
-          <Route element={<ProtectedLayout />}>
-            <Route
-              path="/accounts/correctionsjv/correctionsjvdetails"
-              element={<CorrectionJV />}
-            />
+      <ResponsiveDrawer />
+  
+        <div className="parent__main__container">
+          {/* <AuthRoute /> */}
+          <Routes>
+            {/* <Route path="/login" element={<LoginScreen />} /> */}
+            <Route element={<ProtectedLayout />}>
+              <Route
+                path="/accounts/correctionsjv/correctionsjvdetails"
+                element={<CorrectionJV />}
+              />
 
-            {/* Receipts */}
+              {/* Receipts */}
 
-            {/* <Route path="/accounts/receipts" element={<Receipts />} /> */}
+              {/* <Route path="/accounts/receipts" element={<Receipts />} /> */}
 
-            <Route
-              path="/accounts/receipts/addpolicyreceipts"
-              element={<AddPolicyReceipts />}
-            />
+              <Route
+                path="/accounts/receipts/addpolicyreceipts"
+                element={<AddPolicyReceipts />}
+              />
 
-            <Route
-              path="/accounts/receipts/policyreceiptsview"
-              element={<PolicyReceiptsView />}
-            />
+              <Route
+                path="/accounts/receipts/policyreceiptsview"
+                element={<PolicyReceiptsView />}
+              />
 
-            {/* <Route path="/accounts/receipts/addreceipt" element={<AddPolicyReceipts1 />} /> */}
+              {/* <Route path="/accounts/receipts/addreceipt" element={<AddPolicyReceipts1 />} /> */}
 
-            <Route path="/accounts/receipts" element={<PolicyReceipts />} />
-            <Route
-              path="/accounts/receipts/addreceiptedit"
-              element={<AddPolicyEdit />}
-            />
-            <Route
-              path="/accounts/receipts/receiptdetailview"
-              element={<PolicyReceiptsView />}
-            />
-            <Route
-              path="/accounts/receipts/paymentdetails"
-              element={<PaymentDetails />}
-            />
+              <Route path="/accounts/receipts" element={<PolicyReceipts />} />
+              <Route
+                path="/accounts/receipts/addreceiptedit"
+                element={<AddPolicyEdit />}
+              />
+              <Route
+                path="/accounts/receipts/receiptdetailview"
+                element={<PolicyReceiptsView />}
+              />
+              <Route
+                path="/accounts/receipts/paymentdetails"
+                element={<PaymentDetails />}
+              />
 
-            <Route
-              path="/accounts/receipts/addreceipts"
-              element={<AddPolicyReceipts1 />}
-            />
-            <Route
-              path="/accounts/receipts/policyreceipts"
-              element={<PolicyReceipts />}
-            />
+              <Route
+                path="/accounts/receipts/addreceipts"
+                element={<AddPolicyReceipts1 />}
+              />
+              <Route
+                path="/accounts/receipts/policyreceipts"
+                element={<PolicyReceipts />}
+              />
 
-            {/* Payment Vouchers */}
+              {/* Payment Vouchers */}
 
-            <Route
-              path="accounts/paymentvoucher"
-              element={<Paymentvoucher />}
-            />
-            <Route
-              path="accounts/paymentvoucher/createvoucher"
-              element={<CreateVoucher />}
-            />
-            <Route
-              path="accounts/paymentvoucher/detailview/:id"
-              element={<Detailview />}
-            />
-            <Route
-              path="accounts/paymentvoucher/bankdetailselection"
-              element={<Bankdetailselection />}
-            />
+              <Route
+                path="accounts/paymentvoucher"
+                element={<Paymentvoucher />}
+              />
+              <Route
+                path="accounts/paymentvoucher/createvoucher"
+                element={<CreateVoucher />}
+              />
+              <Route
+                path="accounts/paymentvoucher/detailview/:id"
+                element={<Detailview />}
+              />
+              <Route
+                path="accounts/paymentvoucher/bankdetailselection"
+                element={<Bankdetailselection />}
+              />
 
-            {/* <Route path="/payallvoucher" element={<Payallvoucher />} /> */}
-            <Route
-              path="accounts/paymentvoucher/SpecificVoucher"
-              element={<SpecificVoucher />}
-            />
+              {/* <Route path="/payallvoucher" element={<Payallvoucher />} /> */}
+              <Route
+                path="accounts/paymentvoucher/SpecificVoucher"
+                element={<SpecificVoucher />}
+              />
 
-            {/* Journal voucher */}
+              {/* Journal voucher */}
 
-            <Route
-              path="/accounts/journalvoucher"
-              element={<Journalvoucher />}
-            />
-            <Route
-              path="/accounts/journalvoucher/addjournalvoucture"
-              element={<AddJournalVoucture />}
-            />
-            <Route
-              path="/accounts/journalvoucher/detailsjournalvocture/:id"
-              element={<DetailsJournalVocture />}
-            />
+              <Route
+                path="/accounts/journalvoucher"
+                element={<Journalvoucher />}
+              />
+              <Route
+                path="/accounts/journalvoucher/addjournalvoucture"
+                element={<AddJournalVoucture />}
+              />
+              <Route
+                path="/accounts/journalvoucher/detailsjournalvocture/:id"
+                element={<DetailsJournalVocture />}
+              />
 
-            {/* Corrections JV */}
+              {/* Corrections JV */}
 
-            {/* Reversals JV */}
+              {/* Reversals JV */}
 
-            <Route
-              path="/accounts/reversaljv/reversaljvdetails"
-              element={<Reversalsjv />}
-            />
+              <Route
+                path="/accounts/reversaljv/reversaljvdetails"
+                element={<Reversalsjv />}
+              />
 
-            {/* Petty Cash Management */}
-            <Route
-              path="accounts/pettycash/pettycashcodeinitiate"
-              element={<Initiate />}
-            />
-            <Route
-              path="accounts/pettycash/pettycashcodeinitiate/initiate"
-              element={<InitiateForm />}
-            />
-            <Route
-              path="accounts/pettycash/PettyCashCodeDetails"
-              element={<PettyCashCodeDetails />}
-            />
-            <Route
-              path="accounts/pettycash/pettycashrequest"
-              element={<PettyCashRequest />}
-            />
-            <Route
-              path="accounts/pettycash/addrequest"
-              element={<RequestForm />}
-            />
-            <Route
-              path="accounts/pettycash/addrequesttable"
-              element={<AddRequestTable />}
-            />
-            <Route
-              path="accounts/pettycash/disbursement"
-              element={<Disbursement />}
-            />
-            <Route
-              path="accounts/pettycash/adddisbursement"
-              element={<AddDisbursement />}
-            />
-            <Route
-              path="accounts/pettycash/adddisbursementtable"
-              element={<AddDisbursementTable />}
-            />
-            <Route
-              path="accounts/pettycash/disbursementdetailview"
-              element={<DisbursementDetailview />}
-            />
-            <Route path="accounts/pettycash/request" element={<Request />} />
-            <Route
-              path="accounts/pettycash/receipts"
-              element={<PettyCashReceipts />}
-            />
-            <Route
-              path="accounts/pettycash/addreceipts"
-              element={<AddReceipts />}
-            />
-            <Route
-              path="accounts/pettycash/addreceiptstable"
-              element={<AddReceiptsTable />}
-            />
-            <Route
-              path="accounts/pettycash/receiptlist"
-              element={<ReceiptList />}
-            />
-            <Route
-              path="accounts/pettycash/replenish"
-              element={<PettyCashReplenish />}
-            />
-            <Route
-              path="accounts/pettycash/addreplenish"
-              element={<AddReplenish />}
-            />
-            <Route
-              path="accounts/pettycash/addreplenishtable"
-              element={<AddReplenishTable />}
-            />
-            <Route
-              path="accounts/pettycash/replenishtdetailview"
-              element={<ReplenishtDetailView />}
-            />
-            {/* <Route
+              {/* Petty Cash Management */}
+              <Route
+                path="accounts/pettycash/pettycashcodeinitiate"
+                element={<Initiate />}
+              />
+              <Route
+                path="accounts/pettycash/pettycashcodeinitiate/initiate"
+                element={<InitiateForm />}
+              />
+              <Route
+                path="accounts/pettycash/PettyCashCodeDetails"
+                element={<PettyCashCodeDetails />}
+              />
+              <Route
+                path="accounts/pettycash/pettycashrequest"
+                element={<PettyCashRequest />}
+              />
+              <Route
+                path="accounts/pettycash/addrequest"
+                element={<RequestForm />}
+              />
+              <Route
+                path="accounts/pettycash/addrequesttable"
+                element={<AddRequestTable />}
+              />
+              <Route
+                path="accounts/pettycash/disbursement"
+                element={<Disbursement />}
+              />
+              <Route
+                path="accounts/pettycash/adddisbursement"
+                element={<AddDisbursement />}
+              />
+              <Route
+                path="accounts/pettycash/adddisbursementtable"
+                element={<AddDisbursementTable />}
+              />
+              <Route
+                path="accounts/pettycash/disbursementdetailview"
+                element={<DisbursementDetailview />}
+              />
+              <Route path="accounts/pettycash/request" element={<Request />} />
+              <Route
+                path="accounts/pettycash/receipts"
+                element={<PettyCashReceipts />}
+              />
+              <Route
+                path="accounts/pettycash/addreceipts"
+                element={<AddReceipts />}
+              />
+              <Route
+                path="accounts/pettycash/addreceiptstable"
+                element={<AddReceiptsTable />}
+              />
+              <Route
+                path="accounts/pettycash/receiptlist"
+                element={<ReceiptList />}
+              />
+              <Route
+                path="accounts/pettycash/replenish"
+                element={<PettyCashReplenish />}
+              />
+              <Route
+                path="accounts/pettycash/addreplenish"
+                element={<AddReplenish />}
+              />
+              <Route
+                path="accounts/pettycash/addreplenishtable"
+                element={<AddReplenishTable />}
+              />
+              <Route
+                path="accounts/pettycash/replenishtdetailview"
+                element={<ReplenishtDetailView />}
+              />
+              {/* <Route
               path="/pettycashmanagement"
               element={<Pettycashmanagement />}
             /> */}
-            {/* Finacel Master Route*/}
-            {/* <Route
+              {/* Finacel Master Route*/}
+              {/* <Route
               path="master/finance/accountcate"
               element={<AccountCategoryMaster />}
             /> */}
 
-            {/* General Master */}
+              {/* General Master */}
 
-            {/* Organization Master */}
-            <Route
-              path="master/generals/organization/companymaster"
-              element={<CompanyMasters />}
-            />
+              {/* Organization Master */}
+              <Route
+                path="master/generals/organization/companymaster"
+                element={<CompanyMasters />}
+              />
 
-            <Route
-              path="master/generals/organization/companymaster/add/:id"
-              element={<AddCompany action="add" />}
-            />
-            <Route
-              path="master/generals/organization/companymaster/edit/:id"
-              element={<AddCompany action="edit" />}
-            />
-            <Route
-              path="master/generals/organization/companymaster/view/:id"
-              element={<AddCompany action="view" />}
-            />
+              <Route
+                path="master/generals/organization/companymaster/add/:id"
+                element={<AddCompany action="add" />}
+              />
+              <Route
+                path="master/generals/organization/companymaster/edit/:id"
+                element={<AddCompany action="edit" />}
+              />
+              <Route
+                path="master/generals/organization/companymaster/view/:id"
+                element={<AddCompany action="view" />}
+              />
 
-            {/* Branch master */}
-            <Route
-              path="master/generals/organization/branchmaster"
-              element={<BranchMasters />}
-            />
-            <Route
-              path="master/generals/organization/branchmaster/add/:id"
-              element={<AddBranch action="add" />}
-            />
-            <Route
-              path="master/generals/organization/branchmaster/edit/:id"
-              element={<AddBranch action="edit" />}
-            />
-            <Route
-              path="master/generals/organization/branchmaster/view/:id"
-              element={<AddBranch action="view" />}
-            />
-            {/* Insurance Management Masters */}
-            <Route
-              path="master/generals/insurancemanagement/insurancecompany"
-              element={<InsuranceCompany />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/insurancecompany/add/:id"
-              element={<InsuranceDetailsAction action="add" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/insurancecompany/edit/:id"
-              element={<InsuranceDetailsAction action="edit" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/insurancecompany/view/:id"
-              element={<InsuranceDetailsAction action="view" />}
-            />
+              {/* Branch master */}
+              <Route
+                path="master/generals/organization/branchmaster"
+                element={<BranchMasters />}
+              />
+              <Route
+                path="master/generals/organization/branchmaster/add/:id"
+                element={<AddBranch action="add" />}
+              />
+              <Route
+                path="master/generals/organization/branchmaster/edit/:id"
+                element={<AddBranch action="edit" />}
+              />
+              <Route
+                path="master/generals/organization/branchmaster/view/:id"
+                element={<AddBranch action="view" />}
+              />
+              {/* Insurance Management Masters */}
+              <Route
+                path="master/generals/insurancemanagement/insurancecompany"
+                element={<InsuranceCompany />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/insurancecompany/add/:id"
+                element={<InsuranceDetailsAction action="add" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/insurancecompany/edit/:id"
+                element={<InsuranceDetailsAction action="edit" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/insurancecompany/view/:id"
+                element={<InsuranceDetailsAction action="view" />}
+              />
 
-            <Route
-              path="master/generals/insurancemanagement/lineofbusiness"
-              element={<LineOfBusiness />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/lineofbusiness/add/:id"
-              element={<LineBusinessDetailsAction action="add" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/lineofbusiness/edit/:id"
-              element={<LineBusinessDetailsAction action="edit" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/lineofbusiness/view/:id"
-              element={<LineBusinessDetailsAction action="view" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/productmaster"
-              element={<ProductMaster />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/productmaster/add/:id"
-              element={<ProductMatserDetailsAction action="add" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/productmaster/edit/:id"
-              element={<ProductMatserDetailsAction action="edit" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/productmaster/view/:id"
-              element={<ProductMatserDetailsAction action="view" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/policytype"
-              element={<PolicyType />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/policytype/add/:id"
-              element={<PolicyTypeDetailsAction action="add" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/policytype/edit/:id"
-              element={<PolicyTypeDetailsAction action="edit" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/policytype/view/:id"
-              element={<PolicyTypeDetailsAction action="view" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/cover"
-              element={<Cover />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/cover/add/:id"
-              element={<CoverDetailsAction action="add" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/cover/edit/:id"
-              element={<CoverDetailsAction action="edit" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/cover/view/:id"
-              element={<CoverDetailsAction action="view" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/signatories"
-              element={<Signatories />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/signatories/add/:id"
-              element={<SignatoriesDetailsAction action="add" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/signatories/edit/:id"
-              element={<SignatoriesDetailsAction action="edit" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/signatories/view/:id"
-              element={<SignatoriesDetailsAction action="view" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/vehicle"
-              element={<Vahicle />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/vehicle/add/:id"
-              element={<VehicleDetailsAction action="add" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/vehicle/edit/:id"
-              element={<VehicleDetailsAction action="edit" />}
-            />
-            <Route
-              path="master/generals/insurancemanagement/vehicle/view/:id"
-              element={<VehicleDetailsAction action="view" />}
-            />
+              <Route
+                path="master/generals/insurancemanagement/lineofbusiness"
+                element={<LineOfBusiness />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/lineofbusiness/add/:id"
+                element={<LineBusinessDetailsAction action="add" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/lineofbusiness/edit/:id"
+                element={<LineBusinessDetailsAction action="edit" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/lineofbusiness/view/:id"
+                element={<LineBusinessDetailsAction action="view" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/productmaster"
+                element={<ProductMaster />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/productmaster/add/:id"
+                element={<ProductMatserDetailsAction action="add" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/productmaster/edit/:id"
+                element={<ProductMatserDetailsAction action="edit" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/productmaster/view/:id"
+                element={<ProductMatserDetailsAction action="view" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/policytype"
+                element={<PolicyType />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/policytype/add/:id"
+                element={<PolicyTypeDetailsAction action="add" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/policytype/edit/:id"
+                element={<PolicyTypeDetailsAction action="edit" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/policytype/view/:id"
+                element={<PolicyTypeDetailsAction action="view" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/cover"
+                element={<Cover />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/cover/add/:id"
+                element={<CoverDetailsAction action="add" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/cover/edit/:id"
+                element={<CoverDetailsAction action="edit" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/cover/view/:id"
+                element={<CoverDetailsAction action="view" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/signatories"
+                element={<Signatories />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/signatories/add/:id"
+                element={<SignatoriesDetailsAction action="add" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/signatories/edit/:id"
+                element={<SignatoriesDetailsAction action="edit" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/signatories/view/:id"
+                element={<SignatoriesDetailsAction action="view" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/vehicle"
+                element={<Vahicle />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/vehicle/add/:id"
+                element={<VehicleDetailsAction action="add" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/vehicle/edit/:id"
+                element={<VehicleDetailsAction action="edit" />}
+              />
+              <Route
+                path="master/generals/insurancemanagement/vehicle/view/:id"
+                element={<VehicleDetailsAction action="view" />}
+              />
 
-            {/* Location */}
+              {/* Location */}
 
-            {/* {Country} */}
-            <Route
-              path="master/generals/location/country"
-              element={<Country />}
-            />
-            <Route
-              path="master/generals/location/country/edit"
-              element={<AddCountry action="edit" />}
-            />
-            <Route
-              path="master/generals/location/country/view"
-              element={<AddCountry action="view" />}
-            />
-            <Route
-              path="master/generals/location/country/add"
-              element={<AddCountry action="add" />}
-            />
+              {/* {Country} */}
+              <Route
+                path="master/generals/location/country"
+                element={<Country />}
+              />
+              <Route
+                path="master/generals/location/country/edit"
+                element={<AddCountry action="edit" />}
+              />
+              <Route
+                path="master/generals/location/country/view"
+                element={<AddCountry action="view" />}
+              />
+              <Route
+                path="master/generals/location/country/add"
+                element={<AddCountry action="add" />}
+              />
 
-            {/* {State} */}
-            <Route path="master/generals/location/state" element={<State />} />
+              {/* {State} */}
+              <Route
+                path="master/generals/location/state"
+                element={<State />}
+              />
 
-            <Route
-              path="master/generals/location/state/edit"
-              element={<AddState action="edit" />}
-            />
-            <Route
-              path="master/generals/location/state/view"
-              element={<AddState action="view" />}
-            />
-            <Route
-              path="master/generals/location/state/add"
-              element={<AddState action="add" />}
-            />
+              <Route
+                path="master/generals/location/state/edit"
+                element={<AddState action="edit" />}
+              />
+              <Route
+                path="master/generals/location/state/view"
+                element={<AddState action="view" />}
+              />
+              <Route
+                path="master/generals/location/state/add"
+                element={<AddState action="add" />}
+              />
 
-            {/* {City} */}
-            <Route path="master/generals/location/city" element={<City />} />
+              {/* {City} */}
+              <Route path="master/generals/location/city" element={<City />} />
 
-            <Route
-              path="master/generals/location/city/edit"
-              element={<AddCity action="edit" />}
-            />
-            <Route
-              path="master/generals/location/city/view"
-              element={<AddCity action="view" />}
-            />
-            <Route
-              path="master/generals/location/city/add"
-              element={<AddCity action="add" />}
-            />
+              <Route
+                path="master/generals/location/city/edit"
+                element={<AddCity action="edit" />}
+              />
+              <Route
+                path="master/generals/location/city/view"
+                element={<AddCity action="view" />}
+              />
+              <Route
+                path="master/generals/location/city/add"
+                element={<AddCity action="add" />}
+              />
 
-            {/* Employee Management */}
+              {/* Employee Management */}
 
-            {/* Hierarchy */}
+              {/* Hierarchy */}
 
-            <Route
-              path="master/generals/employeemanagement/hierarchy"
-              element={<HierarchyMaster />}
-            />
-            <Route
-              path="master/generals/employeemanagement/hierarchy/add"
-              element={<AddHierarchy action="add" />}
-            />
-            <Route
-              path="master/generals/employeemanagement/hierarchy/edit/:id"
-              element={<AddHierarchy action="edit" />}
-            />
-            <Route
-              path="master/generals/employeemanagement/hierarchy/view/:id"
-              element={<AddHierarchy action="view" />}
-            />
-            <Route
-              path="master/generals/employeemanagement/:id"
-              element={<AddHierarchy />}
-            />
+              <Route
+                path="master/generals/employeemanagement/hierarchy"
+                element={<HierarchyMaster />}
+              />
+              <Route
+                path="master/generals/employeemanagement/hierarchy/add"
+                element={<AddHierarchy action="add" />}
+              />
+              <Route
+                path="master/generals/employeemanagement/hierarchy/edit/:id"
+                element={<AddHierarchy action="edit" />}
+              />
+              <Route
+                path="master/generals/employeemanagement/hierarchy/view/:id"
+                element={<AddHierarchy action="view" />}
+              />
+              <Route
+                path="master/generals/employeemanagement/:id"
+                element={<AddHierarchy />}
+              />
 
-            <Route
-              path="master/generals/employeemanagement/designation"
-              element={<Designation />}
-            />
-            <Route
-              path="master/generals/employeemanagement/designation/add/:id"
-              element={<AddDesignation action="add" />}
-            />
-            <Route
-              path="master/generals/employeemanagement/designation/edit/:id"
-              element={<AddDesignation action="edit" />}
-            />
-            <Route
-              path="master/generals/employeemanagement/designation/view/:id"
-              element={<AddDesignation action="view" />}
-            />
+              <Route
+                path="master/generals/employeemanagement/designation"
+                element={<Designation />}
+              />
+              <Route
+                path="master/generals/employeemanagement/designation/add/:id"
+                element={<AddDesignation action="add" />}
+              />
+              <Route
+                path="master/generals/employeemanagement/designation/edit/:id"
+                element={<AddDesignation action="edit" />}
+              />
+              <Route
+                path="master/generals/employeemanagement/designation/view/:id"
+                element={<AddDesignation action="view" />}
+              />
 
-            <Route
-              path="master/generals/employeemanagement/adddesignation"
-              element={<AddDesignation />}
-            />
-            <Route
-              path="master/generals/employeemanagement/employee"
-              element={<Employee />}
-            />
-            <Route
-              path="master/generals/employeemanagement/employee/add/:id"
-              element={<AddEmployee action="add" />}
-            />
-            <Route
-              path="master/generals/employeemanagement/employee/edit/:id"
-              element={<AddEmployee action="edit" />}
-            />
-            <Route
-              path="master/generals/employeemanagement/employee/view/:id"
-              element={<AddEmployee action="view" />}
-            />
-            <Route
-              path="master/generals/employeemanagement/addemployee"
-              element={<AddEmployee />}
-            />
+              <Route
+                path="master/generals/employeemanagement/adddesignation"
+                element={<AddDesignation />}
+              />
+              <Route
+                path="master/generals/employeemanagement/employee"
+                element={<Employee />}
+              />
+              <Route
+                path="master/generals/employeemanagement/employee/add/:id"
+                element={<AddEmployee action="add" />}
+              />
+              <Route
+                path="master/generals/employeemanagement/employee/edit/:id"
+                element={<AddEmployee action="edit" />}
+              />
+              <Route
+                path="master/generals/employeemanagement/employee/view/:id"
+                element={<AddEmployee action="view" />}
+              />
+              <Route
+                path="master/generals/employeemanagement/addemployee"
+                element={<AddEmployee />}
+              />
 
-            {/* User Management */}
-            <Route
-              path="master/generals/usermanagement/user"
-              element={<User />}
-            />
-            <Route
-              path="master/generals/usermanagement/useredit"
-              element={<UserEdit />}
-            />
-            <Route
-              path="master/generals/usermanagement/user/add"
-              element={<AddUser action="add" />}
-            />
-            <Route
-              path="master/generals/usermanagement/user/edit/:id"
-              element={<AddUser action="edit" />}
-            />
-            <Route
-              path="master/generals/usermanagement/user/view/:id"
-              element={<AddUser action="view" />}
-            />
-            <Route
-              path="master/generals/usermanagement/adduser"
-              element={<AddUser />}
-            />
-            <Route
-              path="master/generals/usermanagement/role"
-              element={<Role />}
-            />
-            <Route
-              path="master/generals/usermanagement/role/add/:id"
-              element={<AddRole action="add" />}
-            />
-            <Route
-              path="master/generals/usermanagement/role/edit/:id"
-              element={<AddRole action="edit" />}
-            />
-            <Route
-              path="master/generals/usermanagement/role/view/:id"
-              element={<AddRole action="view" />}
-            />
-            {/* <Route
+              {/* User Management */}
+              <Route
+                path="master/generals/usermanagement/user"
+                element={<User />}
+              />
+              <Route
+                path="master/generals/usermanagement/useredit"
+                element={<UserEdit />}
+              />
+              <Route
+                path="master/generals/usermanagement/user/add"
+                element={<AddUser action="add" />}
+              />
+              <Route
+                path="master/generals/usermanagement/user/edit/:id"
+                element={<AddUser action="edit" />}
+              />
+              <Route
+                path="master/generals/usermanagement/user/view/:id"
+                element={<AddUser action="view" />}
+              />
+              <Route
+                path="master/generals/usermanagement/adduser"
+                element={<AddUser />}
+              />
+              <Route
+                path="master/generals/usermanagement/role"
+                element={<Role />}
+              />
+              <Route
+                path="master/generals/usermanagement/role/add/:id"
+                element={<AddRole action="add" />}
+              />
+              <Route
+                path="master/generals/usermanagement/role/edit/:id"
+                element={<AddRole action="edit" />}
+              />
+              <Route
+                path="master/generals/usermanagement/role/view/:id"
+                element={<AddRole action="view" />}
+              />
+              {/* <Route
               path="master/generals/usermanagement/addrole"
               element={<AddRole />}
             /> */}
 
-            {/* Branch Master Module */}
-            <Route
-              path="master/finance/branch/branchadding"
-              element={<BranchAdding />}
-            />
-            <Route
-              path="master/finance/branch/branchdetailsview"
-              element={<BranchDetailsView />}
-            />
-            <Route
-              path="master/finance/branch"
-              element={<BranchMasterInitial />}
-            />
+              {/* Branch Master Module */}
+              <Route
+                path="master/finance/branch/branchadding"
+                element={<BranchAdding />}
+              />
+              <Route
+                path="master/finance/branch/branchdetailsview"
+                element={<BranchDetailsView />}
+              />
+              <Route
+                path="master/finance/branch"
+                element={<BranchMasterInitial />}
+              />
 
-            {/* Department Master Module */}
-            <Route
-              path="master/finance/department/departmentadding"
-              element={<DepartmentAdding />}
-            />
-            <Route
-              path="master/finance/department/departmentdetailsview"
-              element={<DepartmentDetailsView />}
-            />
-            <Route
-              path="master/finance/department"
-              element={<DepartmentMasterInitial />}
-            />
+              {/* Department Master Module */}
+              <Route
+                path="master/finance/department/departmentadding"
+                element={<DepartmentAdding />}
+              />
+              <Route
+                path="master/finance/department/departmentdetailsview"
+                element={<DepartmentDetailsView />}
+              />
+              <Route
+                path="master/finance/department"
+                element={<DepartmentMasterInitial />}
+              />
 
-            {/* Main Account Master */}
+              {/* Main Account Master */}
 
-            {/* Account Category Master */}
+              {/* Account Category Master */}
 
-            <Route
-              path="master/finance/accountcategory"
-              element={<AccountCategoryMaster />}
-            />
+              <Route
+                path="master/finance/accountcategory"
+                element={<AccountCategoryMaster />}
+              />
 
-            <Route
-              path="master/finance/bankaccount"
-              element={<BankAccountMaster />}
-            />
-            <Route
-              path="master/finance/bankcheque"
-              element={<BankChequeMaster />}
-            />
+              <Route
+                path="master/finance/bankaccount"
+                element={<BankAccountMaster />}
+              />
+              <Route
+                path="master/finance/bankcheque"
+                element={<BankChequeMaster />}
+              />
 
-            {/* bankacountmaster */}
-            <Route
-              path="master/finance/bankaccount"
-              element={<BankAccountMaster />}
-            />
-            <Route
-              path="master/finance/bankaccount/addbankaccount"
-              element={<AddBankAccount />}
-            />
-            <Route
-              path="master/finance/bankaccount/bankaccountdetails"
-              element={<BankAccountdetails />}
-            />
+              {/* bankacountmaster */}
+              <Route
+                path="master/finance/bankaccount"
+                element={<BankAccountMaster />}
+              />
+              <Route
+                path="master/finance/bankaccount/addbankaccount"
+                element={<AddBankAccount />}
+              />
+              <Route
+                path="master/finance/bankaccount/bankaccountdetails"
+                element={<BankAccountdetails />}
+              />
 
-            {/* bankchequemaster */}
-            <Route
-              path="master/finance/bankcheque"
-              element={<BankChequeMaster />}
-            />
-            <Route
-              path="master/finance/bankcheque/addbankcheque"
-              element={<AddBankCheque />}
-            />
-            <Route
-              path="master/finance/bankcheque/bankchequedetails"
-              element={<BankChequeDetails />}
-            />
+              {/* bankchequemaster */}
+              <Route
+                path="master/finance/bankcheque"
+                element={<BankChequeMaster />}
+              />
+              <Route
+                path="master/finance/bankcheque/addbankcheque"
+                element={<AddBankCheque />}
+              />
+              <Route
+                path="master/finance/bankcheque/bankchequedetails"
+                element={<BankChequeDetails />}
+              />
 
-            {/* pettycash */}
-            <Route
-              path="master/finance/pettycash"
-              element={<PettyCashMaster />}
-            />
-            <Route
-              path="master/finance/pettycash/addpettycash"
-              element={<AddPettyCash />}
-            />
-            <Route
-              path="master/finance/pettycash/pettycashdetail/:id"
-              element={<PettyCashdetails />}
-            />
+              {/* pettycash */}
+              <Route
+                path="master/finance/pettycash"
+                element={<PettyCashMaster />}
+              />
+              <Route
+                path="master/finance/pettycash/addpettycash"
+                element={<AddPettyCash />}
+              />
+              <Route
+                path="master/finance/pettycash/pettycashdetail/:id"
+                element={<PettyCashdetails />}
+              />
 
-            <Route
-              path="master/finance/pettycash/editpettycash/:id"
-              element={<EditPettyCash />}
-            />
+              <Route
+                path="master/finance/pettycash/editpettycash/:id"
+                element={<EditPettyCash />}
+              />
 
-            <Route />
-            <Route path="master/finance/company" element={<CompanyMaster />} />
-            <Route
-              path="master/finance/currency"
-              element={<CurrencyMaster />}
-            />
+              <Route />
+              <Route
+                path="master/finance/company"
+                element={<CompanyMaster />}
+              />
+              <Route
+                path="master/finance/currency"
+                element={<CurrencyMaster />}
+              />
 
-            {/* Bank */}
+              {/* Bank */}
 
-            <Route path="master/finance/bank" element={<BankMaster />} />
-            <Route
-              path="master/finance/bank/addbankmaster"
-              element={<AddBankMaster />}
-            />
-            <Route
-              path="master/finance/bank/accountdataview"
-              element={<Accountdataview />}
-            />
-            <Route
-              path="master/finance/bank/accountdataview/addaccountdetail"
-              element={<AddAccountDetail />}
-            />
-            <Route
-              path="master/finance/bank/accountdataview/viewaccountdetail"
-              element={<ViewAccountDetail />}
-            />
-            <Route
-              path="master/finance/bank/accountdataview/editaccountdetail"
-              element={<EditAccountDetail />}
-            />
+              <Route path="master/finance/bank" element={<BankMaster />} />
+              <Route
+                path="master/finance/bank/addbankmaster"
+                element={<AddBankMaster />}
+              />
+              <Route
+                path="master/finance/bank/accountdataview"
+                element={<Accountdataview />}
+              />
+              <Route
+                path="master/finance/bank/accountdataview/addaccountdetail"
+                element={<AddAccountDetail />}
+              />
+              <Route
+                path="master/finance/bank/accountdataview/viewaccountdetail"
+                element={<ViewAccountDetail />}
+              />
+              <Route
+                path="master/finance/bank/accountdataview/editaccountdetail"
+                element={<EditAccountDetail />}
+              />
 
-            {/* exchangeRate */}
-            <Route
-              path="master/finance/exchangerate"
-              element={<ExchangeRateMaster />}
-            />
-            <Route
-              path="master/finance/exchangerate/addexchange"
-              element={<AddExchange />}
-            />
-            <Route
-              path="master/finance/exchangerate/saveandeditexchange"
-              element={<SaveAndEditExchange />}
-            />
-            <Route
-              path="master/finance/exchangerate/viewexchange"
-              element={<ViewExchange />}
-            />
+              {/* exchangeRate */}
+              <Route
+                path="master/finance/exchangerate"
+                element={<ExchangeRateMaster />}
+              />
+              <Route
+                path="master/finance/exchangerate/addexchange"
+                element={<AddExchange />}
+              />
+              <Route
+                path="master/finance/exchangerate/saveandeditexchange"
+                element={<SaveAndEditExchange />}
+              />
+              <Route
+                path="master/finance/exchangerate/viewexchange"
+                element={<ViewExchange />}
+              />
 
-            {/*  */}
+              {/*  */}
 
-            <Route
-              path="master/finance/mainaccount"
-              element={<MainAccountMaster />}
-            />
-            <Route
-              path="master/finance/mainaccount/addmainaccount"
-              element={<AddMainAccount />}
-            />
-            <Route
-              path="master/finance/mainaccount/editmainaccount"
-              element={<EditMainAccount />}
-            />
-            <Route
-              path="master/finance/mainaccount/viewmainaccount"
-              element={<ViewMainAccount />}
-            />
+              <Route
+                path="master/finance/mainaccount"
+                element={<MainAccountMaster />}
+              />
+              <Route
+                path="master/finance/mainaccount/addmainaccount"
+                element={<AddMainAccount />}
+              />
+              <Route
+                path="master/finance/mainaccount/editmainaccount"
+                element={<EditMainAccount />}
+              />
+              <Route
+                path="master/finance/mainaccount/viewmainaccount"
+                element={<ViewMainAccount />}
+              />
 
-            <Route
-              path="master/finance/subaccount"
-              element={<SubAccountMaster />}
-            />
-            <Route
-              path="master/finance/taxation"
-              element={<TaxationMaster />}
-            />
-            <Route
-              path="master/finance/taxation/addtaxation"
-              element={<AddTaxation />}
-            />
-            <Route
-              path="master/finance/taxation/taxationedit"
-              element={<TaxationEdit />}
-            />
-            <Route
-              path="master/finance/taxation/taxationdetails"
-              element={<TaxationDetails />}
-            />
+              <Route
+                path="master/finance/subaccount"
+                element={<SubAccountMaster />}
+              />
+              <Route
+                path="master/finance/taxation"
+                element={<TaxationMaster />}
+              />
+              <Route
+                path="master/finance/taxation/addtaxation"
+                element={<AddTaxation />}
+              />
+              <Route
+                path="master/finance/taxation/taxationedit"
+                element={<TaxationEdit />}
+              />
+              <Route
+                path="master/finance/taxation/taxationdetails"
+                element={<TaxationDetails />}
+              />
 
-            {/* Transactioncode */}
+              {/* Transactioncode */}
 
-            <Route
-              path="master/finance/transactioncode"
-              element={<TransactionCodeMaster />}
-            />
-            <Route
-              path="master/finance/transactioncode/addtransactioncode"
-              element={<TransactionCodeMasterView />}
-            />
-            <Route
-              path="master/finance/transactioncode/transactioncodedetails"
-              element={<TransactionCodeDetails />}
-            />
+              <Route
+                path="master/finance/transactioncode"
+                element={<TransactionCodeMaster />}
+              />
+              <Route
+                path="master/finance/transactioncode/addtransactioncode"
+                element={<TransactionCodeMasterView />}
+              />
+              <Route
+                path="master/finance/transactioncode/transactioncodedetails"
+                element={<TransactionCodeDetails />}
+              />
 
-            <Route
-              path="master/finance/transactioncode/transactioncodeedit"
-              element={<TransactioncodeEdit />}
-            />
+              <Route
+                path="master/finance/transactioncode/transactioncodeedit"
+                element={<TransactioncodeEdit />}
+              />
 
-            <Route
-              path="master/finance/subaccount/subaccountdetails"
-              element={<SubAccountDetails />}
-            />
-            <Route
-              path="master/finance/subaccount/subaccountedit"
-              element={<SubAccountEdit />}
-            />
-            <Route
-              path="master/finance/currency/addcurrency"
-              element={<AddCurrency />}
-            />
-            <Route
-              path="master/finance/currency/editcurrency"
-              element={<EditCurrency />}
-            />
-            <Route
-              path="master/finance/currency/viewcurrency"
-              element={<ViewCurrency />}
-            />
-            <Route path="master/generals/commission" element={<Commission />} />
-            <Route
-              path="master/generals/commission/addcommission"
-              element={<AddCommission />}
-            />
-            <Route
-              path="master/generals/commission/editcommission"
-              element={<EditCommission />}
-            />
-            <Route
-              path="master/generals/commission/editcommissionpopup"
-              element={<EditCommissionPopup />}
-            />
-            <Route
-              path="master/generals/commission/viewcommission/:id"
-              element={<ViewCommission />}
-            />
+              <Route
+                path="master/finance/subaccount/subaccountdetails"
+                element={<SubAccountDetails />}
+              />
+              <Route
+                path="master/finance/subaccount/subaccountedit"
+                element={<SubAccountEdit />}
+              />
+              <Route
+                path="master/finance/currency/addcurrency"
+                element={<AddCurrency />}
+              />
+              <Route
+                path="master/finance/currency/editcurrency"
+                element={<EditCurrency />}
+              />
+              <Route
+                path="master/finance/currency/viewcurrency"
+                element={<ViewCurrency />}
+              />
+              <Route
+                path="master/generals/commission"
+                element={<Commission />}
+              />
+              <Route
+                path="master/generals/commission/addcommission"
+                element={<AddCommission />}
+              />
+              <Route
+                path="master/generals/commission/editcommission"
+                element={<EditCommission />}
+              />
+              <Route
+                path="master/generals/commission/editcommissionpopup"
+                element={<EditCommissionPopup />}
+              />
+              <Route
+                path="master/generals/commission/viewcommission/:id"
+                element={<ViewCommission />}
+              />
 
-            {/* <Route path="/login" element={<Login />} />
+              {/* <Route path="/login" element={<Login />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} /> */}
-            {/* // Agent Dashboard, Notification & agent profile */}
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/agent/notification" element={<Notification />} />
-            <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
-            <Route path="/agent/editprofile" element={<AgentEditProfile />} />
-            {/* // Lead Creation, edit lead & Lead listing */}
-            <Route path="/agent/createlead" element={<LeadCreation />} />
-            <Route path="/agent/leadlisting" element={<LeadListing />} />
-            <Route path="/agent/leadedit" element={<LeadEdit />} />
-            {/* // Quote Creation, Policy conversion & Client listing */}
-            <Route
-              path="/agent/createquote/policydetails"
-              element={<PolicyDetails />}
-            />
-            <Route
-              path="/agent/createquote/coveragedetails"
-              element={<CoverageDeatails />}
-            />
-            <Route
-              path="/agent/createquote/accessories"
-              element={<Accessories />}
-            />
-            <Route
-              path="/agent/createquote/ordersummary"
-              element={<OrderSummary />}
-            />
-            <Route
-              path="/agent/quotedetailview"
-              element={<QuoteDetailView />}
-            />
-            <Route path="/agent/quotelisting" element={<QuoteListing />} />
-            <Route
-              path="/agent/quotecomparisonview"
-              element={<QuoteComparisonView />}
-            />
-            <Route
-              path="/agent/convertpolicy/customerinfo"
-              element={<CustomerInfo action="view" />}
-            />
+              {/* // Agent Dashboard, Notification & agent profile */}
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/agent/notification" element={<Notification />} />
+              <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
+              <Route path="/agent/editprofile" element={<AgentEditProfile />} />
+              {/* // Lead Creation, edit lead & Lead listing */}
+              <Route path="/agent/createlead" element={<LeadCreation />} />
+              <Route path="/agent/leadlisting" element={<LeadListing />} />
+              <Route path="/agent/leadedit" element={<LeadEdit />} />
+              {/* // Quote Creation, Policy conversion & Client listing */}
+              <Route
+                path="/agent/createquote/policydetails"
+                element={<PolicyDetails />}
+              />
+              <Route
+                path="/agent/createquote/coveragedetails"
+                element={<CoverageDeatails />}
+              />
+              <Route
+                path="/agent/createquote/accessories"
+                element={<Accessories />}
+              />
+              <Route
+                path="/agent/createquote/ordersummary"
+                element={<OrderSummary />}
+              />
+              <Route
+                path="/agent/quotedetailview"
+                element={<QuoteDetailView />}
+              />
+              <Route path="/agent/quotelisting" element={<QuoteListing />} />
+              <Route
+                path="/agent/quotecomparisonview"
+                element={<QuoteComparisonView />}
+              />
+              <Route
+                path="/agent/convertpolicy/customerinfo"
+                element={<CustomerInfo action="view" />}
+              />
 
-            <Route
-              path="/agent/convertpolicy/customerinfo/edit"
-              element={<CustomerInfo action="edit" />}
-            />
+              <Route
+                path="/agent/convertpolicy/customerinfo/edit"
+                element={<CustomerInfo action="edit" />}
+              />
 
-            <Route
-              path="/agent/convertpolicy/uploadvehiclephotos"
-              element={<UploadVehiclePhotos />}
-            />
-            <Route
-              path="/agent/coveragedetailedview"
-              element={<CoverageDetailedVew />}
-            />
-            <Route path="/agent/policyapproval" element={<PolicyApproval />} />
-            <Route path="/agent/uploadpolicy" element={<UploadPolicy />} />
-            <Route
-              path="/agent/policydetailedview"
-              element={<PolicyDetailedView action="edit" />}
-            />
-            <Route
-              path="/agent/policydetailedviewonly"
-              element={<PolicyDetailedView action="view" />}
-            />
-            <Route
-              path="/agent/policy/paymentconfirmation"
-              element={<PaymentConfirmation />}
-            />
-            <Route
-              path="/agent/policy/paymentoptions"
-              element={<PaymentOptions />}
-            />
-            <Route
-              path="/agent/policy/paymentapproval"
-              element={<PaymentApproval />}
-            />
-            <Route
-              path="/agent/policy/paymenterror"
-              element={<PaymentError />}
-            />
-            <Route path="/agent/clientlisting" element={<ClientListing />} />
-            <Route path="/agent/clientview/:id" element={<ClientView />} />
-            {/* // Claims */}
-            <Route
-              path="/agent/claimrequest/claimdetails"
-              element={<ClaimDetails />}
-            />
-            <Route path="/agent/claimrequest/sendmail" element={<SendMail />} />
-            <Route
-              path="/agent/claimrequest/requestapproval/:id"
-              element={<RequestApproval />}
-            />
-            <Route
-              path="/agent/claimrequest/adjustersubmission"
-              element={<AdjusterSubmission />}
-            />
-            <Route
-              path="/agent/claimrequest/settlementapproval"
-              element={<SettlementApproval />}
-            />
-            <Route
-              path="/agent/claimrequest/settlementdetails/:id"
-              element={<SettlementDetails />}
-            />
-            <Route
-              path="/agent/claimdetailedview/:id"
-              element={<ClaimSettlement />}
-            />
+              <Route
+                path="/agent/convertpolicy/uploadvehiclephotos"
+                element={<UploadVehiclePhotos />}
+              />
+              <Route
+                path="/agent/coveragedetailedview"
+                element={<CoverageDetailedVew />}
+              />
+              <Route
+                path="/agent/policyapproval"
+                element={<PolicyApproval />}
+              />
+              <Route path="/agent/uploadpolicy" element={<UploadPolicy />} />
+              <Route
+                path="/agent/policydetailedview"
+                element={<PolicyDetailedView action="edit" />}
+              />
+              <Route
+                path="/agent/policydetailedviewonly"
+                element={<PolicyDetailedView action="view" />}
+              />
+              <Route
+                path="/agent/policy/paymentconfirmation"
+                element={<PaymentConfirmation />}
+              />
+              <Route
+                path="/agent/policy/paymentoptions"
+                element={<PaymentOptions />}
+              />
+              <Route
+                path="/agent/policy/paymentapproval"
+                element={<PaymentApproval />}
+              />
+              <Route
+                path="/agent/policy/paymenterror"
+                element={<PaymentError />}
+              />
+              <Route path="/agent/clientlisting" element={<ClientListing />} />
+              <Route path="/agent/clientview/:id" element={<ClientView />} />
+              {/* // Claims */}
+              <Route
+                path="/agent/claimrequest/claimdetails"
+                element={<ClaimDetails />}
+              />
+              <Route
+                path="/agent/claimrequest/sendmail"
+                element={<SendMail />}
+              />
+              <Route
+                path="/agent/claimrequest/requestapproval/:id"
+                element={<RequestApproval />}
+              />
+              <Route
+                path="/agent/claimrequest/adjustersubmission"
+                element={<AdjusterSubmission />}
+              />
+              <Route
+                path="/agent/claimrequest/settlementapproval"
+                element={<SettlementApproval />}
+              />
+              <Route
+                path="/agent/claimrequest/settlementdetails/:id"
+                element={<SettlementDetails />}
+              />
+              <Route
+                path="/agent/claimdetailedview/:id"
+                element={<ClaimSettlement />}
+              />
 
-            <Route path="/agent/claimrejected" element={<ClaimRejected />} />
-            <Route
-              path="/agent/claimdocumentupload"
-              element={<ClaimDocumentUpload />}
-            />
+              <Route path="/agent/claimrejected" element={<ClaimRejected />} />
+              <Route
+                path="/agent/claimdocumentupload"
+                element={<ClaimDocumentUpload />}
+              />
 
-            {/* // Endorsement */}
-            <Route
-              path="/agent/endorsement/personaldetails"
-              element={<PersonalDetails />}
-            />
-            <Route
-              path="/agent/endorsement/coveragedetails"
-              element={<CoverageDetails />}
-            />
-            <Route
-              path="/agent/endorsementapproval"
-              element={<EndorsementApproval />}
-            />
-            <Route
-              path="/agent/uploadendorsement"
-              element={<UploadEndorsement />}
-            />
-            <Route
-              path="/agent/viewendorsement"
-              element={<ViewEndorsement />}
-            />
-            <Route
-              path="/agent/endorsementdetailedview/:id"
-              element={<EndorsementDetailedView />}
-            />
-            <Route
-              path="/agent/endorsement/paymentconfirmation"
-              element={<PaymentConfirmationEndorsement />}
-            />
-            <Route
-              path="/agent/endorsement/paymentoptions"
-              element={<PaymentOptionsEndorsement />}
-            />
-            <Route
-              path="/agent/endorsement/paymentapproval"
-              element={<Endorsementpaymentapproval />}
-            />
-            <Route
-              path="/agent/endorsement/paymenterror/:id"
-              element={<PaymentErrorEndorsment />}
-            />
-            <Route
-              path="/agent/endorsement/rejected/:id"
-              element={<EndorsementRejected />}
-            />
+              {/* // Endorsement */}
+              <Route
+                path="/agent/endorsement/personaldetails"
+                element={<PersonalDetails />}
+              />
+              <Route
+                path="/agent/endorsement/coveragedetails"
+                element={<CoverageDetails />}
+              />
+              <Route
+                path="/agent/endorsementapproval"
+                element={<EndorsementApproval />}
+              />
+              <Route
+                path="/agent/uploadendorsement"
+                element={<UploadEndorsement />}
+              />
+              <Route
+                path="/agent/viewendorsement"
+                element={<ViewEndorsement />}
+              />
+              <Route
+                path="/agent/endorsementdetailedview/:id"
+                element={<EndorsementDetailedView />}
+              />
+              <Route
+                path="/agent/endorsement/paymentconfirmation"
+                element={<PaymentConfirmationEndorsement />}
+              />
+              <Route
+                path="/agent/endorsement/paymentoptions"
+                element={<PaymentOptionsEndorsement />}
+              />
+              <Route
+                path="/agent/endorsement/paymentapproval"
+                element={<Endorsementpaymentapproval />}
+              />
+              <Route
+                path="/agent/endorsement/paymenterror/:id"
+                element={<PaymentErrorEndorsment />}
+              />
+              <Route
+                path="/agent/endorsement/rejected/:id"
+                element={<EndorsementRejected />}
+              />
 
-            {/* // Payments */}
-            <Route path="/agent/payments" element={<Payments />} />
-            <Route
-              path="/agent/payments/detail/:id"
-              element={<PaymentDetails />}
-            />
-            {/* // Open items */}
-            <Route path="/agent/openitems" element={<OpenItems />} />
-            <Route
-              path="/agent/openitems/upcomingevents"
-              element={<UpcomingEvents />}
-            />
-            <Route
-              path="/agent/openitems/expiringpolicy"
-              element={<ExpiringPolicy />}
-            />
+              {/* // Payments */}
+              <Route path="/agent/payments" element={<Payments />} />
+              <Route
+                path="/agent/payments/detail/:id"
+                element={<PaymentDetails />}
+              />
+              {/* // Open items */}
+              <Route path="/agent/openitems" element={<OpenItems />} />
+              <Route
+                path="/agent/openitems/upcomingevents"
+                element={<UpcomingEvents />}
+              />
+              <Route
+                path="/agent/openitems/expiringpolicy"
+                element={<ExpiringPolicy />}
+              />
 
-            {/* //Reports */}
+              {/* //Reports */}
 
-            {/* OperationalReports */}
-            <Route
-              path="/reports/operationalreports/production"
-              element={<Production />}
-            />
+              {/* OperationalReports */}
+              <Route
+                path="/reports/operationalreports/production"
+                element={<Production />}
+              />
 
-            <Route
-              path="/reports/operationalreports/claims"
-              element={<Claims />}
-            />
+              <Route
+                path="/reports/operationalreports/claims"
+                element={<Claims />}
+              />
 
-            <Route
-              path="/reports/operationalreports/renewal"
-              element={<Renewal />}
-            />
-            <Route
-              path="/reports/operationalreports/remittance"
-              element={<Remittance />}
-            />
-            <Route
-              path="/reports/operationalreports/brokercommision"
-              element={<BrokerCommision />}
-            />
+              <Route
+                path="/reports/operationalreports/renewal"
+                element={<Renewal />}
+              />
+              <Route
+                path="/reports/operationalreports/remittance"
+                element={<Remittance />}
+              />
+              <Route
+                path="/reports/operationalreports/brokercommision"
+                element={<BrokerCommision />}
+              />
 
-            {/* Finacial master */}
+              {/* Finacial master */}
 
-            <Route
-              path="/reports/Financialreports/soapremiumreceivable"
-              element={<SoaPremiumReceivable />}
-            />
-            <Route
-              path="/reports/Financialreports/collectionreport"
-              element={<Collectionreport />}
-            />
-            <Route
-              path="/reports/Financialreports/payables"
-              element={<Payables />}
-            />
-            <Route
-              path="/reports/Financialreports/journal"
-              element={<Journal />}
-            />
-            <Route
-              path="/reports/Financialreports/trailbalance"
-              element={<TrailBalance />}
-            />
-            <Route
-              path="/reports/Financialreports/payables"
-              element={<Payables />}
-            />
-            <Route
-              path="/reports/Financialreports/journal"
-              element={<Journal />}
-            />
-            <Route
-              path="/reports/Financialreports/trailbalance"
-              element={<TrailBalance />}
-            />
-            <Route
-              path="/agent/openitemslistdata"
-              element={<OpenItemsListData />}
-            />
-            {/* //Reports */}
-            {/* <Route
+              <Route
+                path="/reports/Financialreports/soapremiumreceivable"
+                element={<SoaPremiumReceivable />}
+              />
+              <Route
+                path="/reports/Financialreports/collectionreport"
+                element={<Collectionreport />}
+              />
+              <Route
+                path="/reports/Financialreports/payables"
+                element={<Payables />}
+              />
+              <Route
+                path="/reports/Financialreports/journal"
+                element={<Journal />}
+              />
+              <Route
+                path="/reports/Financialreports/trailbalance"
+                element={<TrailBalance />}
+              />
+              <Route
+                path="/reports/Financialreports/payables"
+                element={<Payables />}
+              />
+              <Route
+                path="/reports/Financialreports/journal"
+                element={<Journal />}
+              />
+              <Route
+                path="/reports/Financialreports/trailbalance"
+                element={<TrailBalance />}
+              />
+              <Route
+                path="/agent/openitemslistdata"
+                element={<OpenItemsListData />}
+              />
+              {/* //Reports */}
+              {/* <Route
               path="/reports/operationalreports"
               element={<OperationalReports />}
             /> */}
 
-            {/* // Payments */}
-            <Route path="/agent/payments" element={<Payments />} />
-            <Route
-              path="/agent/payments/detail/:id"
-              element={<PaymentDetails />}
-            />
-            {/* // Open items */}
-            <Route path="/agent/openitems" element={<OpenItems />} />
-            <Route
-              path="/agent/openitems/upcomingevents"
-              element={<UpcomingEvents />}
-            />
-            <Route
-              path="/agent/openitems/expiringpolicy"
-              element={<ExpiringPolicy />}
-            />
-            {/* Renewal */}
-            <Route
-              path="/agent/renewal/waiting/:id"
-              element={<PolicyRenewalWaiting />}
-            />
+              {/* // Payments */}
+              <Route path="/agent/payments" element={<Payments />} />
+              <Route
+                path="/agent/payments/detail/:id"
+                element={<PaymentDetails />}
+              />
+              {/* // Open items */}
+              <Route path="/agent/openitems" element={<OpenItems />} />
+              <Route
+                path="/agent/openitems/upcomingevents"
+                element={<UpcomingEvents />}
+              />
+              <Route
+                path="/agent/openitems/expiringpolicy"
+                element={<ExpiringPolicy />}
+              />
+              {/* Renewal */}
+              <Route
+                path="/agent/renewal/waiting/:id"
+                element={<PolicyRenewalWaiting />}
+              />
 
-            {/* //Reports */}
-            {/* <Route
+              {/* //Reports */}
+              {/* <Route
               path="/reports/operationalreports"
               element={<OperationalReports />}
             /> */}
-          </Route>
-        </Routes>
-      </div>
+            </Route>
+          </Routes>
+        </div>
+ 
       {/* <AuthRoute /> */}
     </div>
   );

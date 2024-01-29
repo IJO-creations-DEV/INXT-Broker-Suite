@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import "./index.scss";
 import { TOKEN } from "../../utility/constant";
 import ResponsiveDrawer from "../../components/SideBar";
+import AgentNavBar from "../../agentModule/component/navBar";
 
 const index = () => {
   const Auth = () => {
@@ -21,7 +22,8 @@ const index = () => {
   return (
     <div className="protected__layout__container">
       <div className="protected__layout__header">
-        <NavBar />
+        {/* <NavBar /> */}
+        <AgentNavBar/>
       </div>
       <div className="protected__layout__content__space">
         <div className="protected__layout__Footer__container">

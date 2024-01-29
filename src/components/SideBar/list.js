@@ -194,7 +194,7 @@ export const menuList = [
     submenu: [
       {
         name: "Home",
-        path: "/agent/home",
+        path: "/",
       },
       {
         name: "Leads",

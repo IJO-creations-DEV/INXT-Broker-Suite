@@ -66,6 +66,9 @@ const Login = () => {
     if (location.pathname === "/login" && Cookies.get(TOKEN)) {
       navigate("/");
     }
+    if (location.pathname === "/" && Cookies.get(TOKEN) === undefined) {
+      navigate("/login");
+    }
   });
   
 

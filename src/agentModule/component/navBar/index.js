@@ -8,10 +8,23 @@ import SvgClose from "../../../assets/agentIcon/SvgClose";
 import SvgProfile from "../../../assets/agentIcon/SvgProfile";
 import SvgHelp from "../../../assets/agentIcon/SvgHelp";
 import SvgLogOut from "../../../assets/agentIcon/SvgLogout";
+import Cookies from "js-cookie";
+import { TOKEN } from "../../../utility/constant";
+import { useNavigate } from "react-router-dom";
 
 const AgentNavBar = () => {
   const menuRight = useRef(null);
   const menuProfile = useRef(null);
+  const navigate = useNavigate();
+
+  const handleLogOut= ()=>{
+    Cookies.remove(TOKEN)
+    navigate("/login");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+    console.log("object")
+  }
   const items = [
     {
       label: (
@@ -170,6 +183,7 @@ const AgentNavBar = () => {
                 fontSize: "16px",
                 color: "#111927",
               }}
+              onClick={()=>handleLogOut()}
             >
               Logout
             </div>

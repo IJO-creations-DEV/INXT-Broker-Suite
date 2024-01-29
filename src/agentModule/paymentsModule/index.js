@@ -28,16 +28,10 @@ import SvgDownArrow from "../../assets/agentIcon/SvgDownArrow";
 import PyamentTabelCard from "./PaymentTabel";
 
 const Payments = () => {
-  const { paymenttabledata, paymentSearchList, loading } = useSelector(
-    ({ agentPaymentMainReducers }) => {
-      return {
-        loading: agentPaymentMainReducers?.loading,
-        paymenttabledata: agentPaymentMainReducers?.paymenttabledata,
-        paymentSearchList: agentPaymentMainReducers?.paymentSearchList,
-      };
-    }
-  );
-  console.log(paymenttabledata, "paymenttabledata");
+ 
+
+ 
+  
   const [search, setSearch] = useState("");
   const menuRight = useRef(null);
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_UPCOMMING_OPEN_ITEMS_LIST, POST_UPCOMMING_OPEN_ITEMS_LIST } from "../../../redux/agentActionTypes";
+import { GET_UPCOMMING_OPEN_ITEMS_LIST, POST_UPCOMMING_OPEN_ITEMS_LIST} from "../../../redux/agentActionTypes";
 
 import moment from "moment";
 
@@ -45,3 +45,34 @@ export const postOpenItemsListMiddleware = createAsyncThunk(
         }
     }
 );
+
+// export const getOpenitemTabelSearchList = createAsyncThunk(
+//     GET_OPENITEM_DATA_SEARCH_LIST ,
+//     async ({ field, value }, { rejectWithValue, getState }) => {
+//         console.log(field, value, "kkkk");
+//         const { openitemTabelMainReducers } = getState();
+//         const { endorsementListData } = openitemTabelMainReducers;
+//         function filterEndorsementListByField(endorsementListData, field, value) {
+//             const lowercasedValue = value.toLowerCase();
+//             const outputData = endorsementListData.filter(item => {
+//                 if (field === 'policy Number') {
+//                     return item.PolicyNumber.toLowerCase().includes(lowercasedValue);
+//                 } else if (field === 'EndorsementID') {
+//                     return item.EndorsementID.toLowerCase().includes(lowercasedValue);
+//                 }
+//                 return (
+//                     (item.PolicyNumber.toLowerCase().includes(lowercasedValue) ||
+//                         item.EndorsementID.toLowerCase().includes(lowercasedValue))
+//                 );
+//             });
+//             return outputData
+//         }
+//         try {
+//             const filteredEndorsementList = filterEndorsementListByField(endorsementListData, field, value);
+//             console.log(filteredEndorsementList, "filteredEndorsementList");
+//             return filteredEndorsementList;
+//         } catch (error) {
+//             return rejectWithValue(error?.response?.data?.error?.message);
+//         }
+//     }
+// );

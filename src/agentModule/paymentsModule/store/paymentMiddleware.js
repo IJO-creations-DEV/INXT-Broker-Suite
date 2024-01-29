@@ -48,33 +48,32 @@ export const postpaymentdataMiddleWare = createAsyncThunk(
 
 export const getPaymentSearchDataMiddleWare = createAsyncThunk(
   GET_PAYMENT_SEARCH,
-  async ({ field, value, status1 }, { rejectWithValue, getState }) => {
-    console.log( field, value, status1, "kkkk");
+  async ({ field, value }, { rejectWithValue, getState }) => {
+    console.log(field, value, "kkkk");
     const { agentPaymentMainReducers } = getState();
     const { paymenttabledata } = agentPaymentMainReducers;
-    function filterPaymentsByField(data, field, value, status1) {
+    function filterPaymentsByField(data, field, value) {
       const lowercasedValue = value.toLowerCase();
       const outputData = data.filter(item => {
-        if (item.status == status1) {
-          if (field === 'Name') {
-            return item.name.toLowerCase().includes(lowercasedValue);
-          } else if (field === 'ClientID') {
-            return item.clintid.toLowerCase().includes(lowercasedValue);
-          } else if (field === 'Gross Premium') {
-            return item.grosspremium.toLowerCase().includes(lowercasedValue);
-          }
-          return (
-            (item.name.toLowerCase().includes(lowercasedValue) ||
-              item.clintid.toLowerCase().includes(lowercasedValue) ||
-              item.grosspremium.toLowerCase().includes(lowercasedValue))
-          );
+        if (field === "PolicyNumber") {
+         
+          return item?.policyNo.toLowerCase().includes(lowercasedValue);
         }
-      
+        if(field === "ClientId"){
+          return item.clintid.toLowerCase().includes(lowercasedValue);
+        }
+        return (
+          (item?.policyNo.toLowerCase().includes(lowercasedValue)
+          ||
+            item.clintid.toLowerCase().includes(lowercasedValue) )
+        );
+       
+
       });
       return outputData
     }
     try {
-      const filteredPayments = filterPaymentsByField(paymenttabledata, field, value, status1);
+      const filteredPayments = filterPaymentsByField(paymenttabledata, field, value);
       console.log(filteredPayments, "filteredPayments");
       return filteredPayments;
     } catch (error) {

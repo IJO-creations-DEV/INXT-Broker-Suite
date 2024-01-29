@@ -12,6 +12,33 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 
 const ExpiringPolicyCard = () => {
+
+  // const { openitemtListData, loading, openitemSearchListData } = useSelector(
+  //   ({ openitemTabelMainReducers }) => {
+  //     return {
+  //       loading: openitemTabelMainReducers?.loading,
+  //       openitemtListData: openitemTabelMainReducers?.openitemtListData,
+  //       openitemSearchListData: openitemTabelMainReducers?.openitemSearchListData,
+  //     };
+  //   }
+  // );
+
+  // const [globalFilter, setGlobalFilter] = useState("policy Number");
+  // const cities = [
+  //   { name: "Policy Number", code: "policy Number" },
+  //   { name: "EndorsementID", code: "EndorsementID" },
+  // ];
+
+  // useEffect(() => {
+  //   if (globalFilter && search) {
+  //     dispatch(
+  //       getEndoresementTabelSearchList({
+  //         field: globalFilter,
+  //         value: search,
+  //       })
+  //     );
+  //   }
+  // }, [search]);
   const navigate = useNavigate();
   const TableData = [
     {
@@ -200,27 +227,34 @@ const ExpiringPolicyCard = () => {
             <span className="p-input-icon-left">
               <i className="pi pi-search" />
               <InputText
-                placeholder="Search"
-                style={{
-                  width: "100%",
-                  padding: "1rem 2.75rem",
-                  borderRadius: "10px",
-                }}
-              />
+              placeholder="Search"
+              style={{
+                width: "100%",
+                padding: "1rem 2.75rem",
+                borderRadius: "10px",
+              }}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-            <Dropdown
-              optionLabel="name"
-              className="sorbyfilter__style"
-              placeholder="Search by"
-              dropdownIcon={<SvgDownArrow />}
-            />
+          <Dropdown
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.value)}
+            options={cities}
+            optionLabel="name"
+            optionValue="code"
+            placeholder="Search by"
+            className="feat_searchby_container"
+            dropdownIcon={<SvgDownArrow />}
+          />
           </div>
         </div>
         <div className="table__container">
           <DataTable
-            value={TableData}
+          value={TableData}
+            //  value={search ? openitemSearchListData : openitemtListData}
             tableStyle={{ minWidth: "50rem" }}
             paginator
             rows={5}

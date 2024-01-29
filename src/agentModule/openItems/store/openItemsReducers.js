@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getOpenItemsListMiddleware, postOpenItemsListMiddleware } from "./openItemsMiddleware.js";
+import { getOpenItemsListMiddleware, postOpenItemsListMiddleware} from "./openItemsMiddleware.js";
 
 
 const initialState = {
@@ -39,7 +39,7 @@ const initialState = {
 ]
 };
 
-const openItemsReducers = createSlice({
+const openitemTabelMainReducers = createSlice({
     name: "openItems",
     initialState,
     reducers: {},
@@ -83,8 +83,25 @@ const openItemsReducers = createSlice({
             }
         );
 
+        // builder.addCase(getOpenitemTabelSearchList.pending, (state) => {
+        //     state.loading = true;
+        // });
+        // builder.addCase(
+        //     getOpenitemTabelSearchList.fulfilled, (state, action) => {
+        //         state.loading = false;
+        //         state.openitemSearchListData = action.payload;
+        //     }
+        // );
+        // builder.addCase(
+        //     getOpenitemTabelSearchList.rejected, (state, action) => {
+        //         state.loading = false;
+
+        //         state.openitemSearchListData = {};
+        //         state.error = typeof action.payload === "string" ? action.payload : "";
+        //     }
+        // );
 
     }
 })
 
-export default openItemsReducers.reducer;
+export default openitemTabelMainReducers.reducer;

@@ -1,5 +1,5 @@
 import { InputText } from "primereact/inputtext";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect} from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Checkbox } from "primereact/checkbox";
@@ -13,9 +13,21 @@ import SvgDot from "../../../../../assets/agentIcon/SvgDot";
 import { Dialog } from "primereact/dialog";
 import { Menu } from "primereact/menu";
 import { element } from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { getRenewalTabelSearchList } from "./store/getRenewalTabelDataMiddleWare"
 
 const Index = () => {
+  const { renewalListData, loading, renewalSearchListData } = useSelector(
+    ({ renewalTabelMainReducers }) => {
+      return {
+        loading: renewalTabelMainReducers?.loading,
+        renewalListData: renewalTabelMainReducers?.renewalListData,
+        renewalSearchListData: renewalTabelMainReducers?.renewalSearchListData,
+      };
+    }
+  );
   const menu = useRef(null);
+  const dispatch = useDispatch();
   const [displayDialog, setDisplayDialog] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
@@ -23,6 +35,23 @@ const Index = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [paymentStatus, setPaymentStatus] = useState("");
   const [statusAction, setstatusAction] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("policy Number");
+  const [search,setSearch]=useState("")
+  const cities = [
+    { name: "Policy Number", code: "policy Number" },
+    
+  ];
+
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        getRenewalTabelSearchList({
+          field: globalFilter,
+          value: search,
+        })
+      );
+    }
+  }, [search]);
 
   const categories = [
     { name: "Personal Details Change", key: "personaldetail" },
@@ -388,21 +417,27 @@ const Index = () => {
                 padding: "1rem 2.75rem",
                 borderRadius: "10px",
               }}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown
+        <Dropdown
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.value)}
+            options={cities}
             optionLabel="name"
-            className="feat_searchby_container"
+            optionValue="code"
             placeholder="Search by"
+            className="feat_searchby_container"
             dropdownIcon={<SvgDownArrow />}
           />
         </div>
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={TableData}
+          value={search ? renewalSearchListData : renewalListData}
           paginator
           rows={5}
           selectionMode={selectionMode}

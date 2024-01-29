@@ -23,10 +23,10 @@ import SvgDownArrow from "../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import "../../PaymentTabel/index.scss";
 import { useDispatch, useSelector } from "react-redux";
-// import { getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
-// import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
+import { getPaymentSearchDataMiddleWare } from "../../store/paymentMiddleware";
+import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
-const PendingListTabelData = () => {
+const PendingListTabelData = ({paymentSearchList}) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
@@ -36,45 +36,67 @@ const PendingListTabelData = () => {
   const dispatch = useDispatch();
 
   const cities = [
-    { name: "Name", code: "Name" },
+    { name: "PolicyNumber", code: "PolicyNumber" },
     { name: "ClientId", code: "ClientId" },
   ];
 
-//   useEffect(() => {
-//     if (globalFilter && search) {
-//       dispatch(
-//         getPaymentSearchDataMiddleWare({
-//           field: globalFilter,
-//           value: search,
-//           // status1: status,
-//         })
-//       );
-//     }
-//   }, [search]);
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        getPaymentSearchDataMiddleWare({
+          field: globalFilter,
+          value: search,
+          // status1: status,
+        })
+      );
+    }
+  }, [search]);
 
 const paymenttabledata=[
-    {
-      id: 1,
-      type:"Policy",
-      name:"Carson Darrin",
-      clintid:"123",
-      policyNo:"123456",
-      grosspremium: "355",
-      policyIssued:"13/12/12",
-      policyExpird:"13/12/12",
-      status:"PENDING"
-    },
-    {
-      id: 2,
-      type:"Renewal Policy",
-      name:"Carson Darrin",
-      clintid:"456",
-      policyNo:"123456",
-      grosspremium: "655",
-      policyIssued:"13/12/12",
-      policyExpird:"13/12/12",
-      status:"PENDING"
-    },
+  {
+    id: 1,
+    type:"Policy",
+    name:"CarsonDarrin",
+    clintid:"123",
+    policyNo:"999",
+    grosspremium: "355",
+    policyIssued:"13/12/12",
+    policyExpird:"13/12/12",
+    status:"PAID"
+  },
+  {
+    id: 2,
+    type:"Renewal Policy",
+    name:"Carson Darrin",
+    clintid:"456",
+    policyNo:"98456",
+    grosspremium: "655",
+    policyIssued:"13/12/12",
+    policyExpird:"13/12/12",
+    status:"PAID"
+  },
+  {
+    id: 3,
+    type:"Renewal Policy",
+    name:"Carson Darrin",
+    clintid:"566",
+    policyNo:"123456",
+    grosspremium: "655",
+    policyIssued:"13/12/12",
+    policyExpird:"13/12/12",
+    status:"PAID"
+  },
+  {
+    id: 4,
+    type:"Renewal Policy",
+    name:"Carson Darrin",
+    clintid:"786",
+    policyNo:"67856",
+    grosspremium: "655",
+    policyIssued:"13/12/12",
+    policyExpird:"13/12/12",
+    status:"PAID"
+  },
     // {
     //   id: 1,
     //   grosspremium: "677",
@@ -251,35 +273,27 @@ const paymenttabledata=[
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText
-              placeholder="Search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "1rem 2.75rem",
-                borderRadius: "10px",
-              }}
-            />
+            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)}style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
           {/* <TableDropdownField label="Search By" /> */}
           <Dropdown
-            value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.value)}
-            options={cities}
-            optionLabel="name"
-            optionValue="code"
-            placeholder="Search by"
-            className="sorbyfilter__style"
-            dropdownIcon={<SvgDownArrow />}
-          />
+                    value={globalFilter}
+                    onChange={(e) => setGlobalFilter(e.value)}
+                    options={cities}
+                    optionLabel="name"
+                    optionValue="code"
+                    placeholder="Search by"
+                    className="sorbyfilter__style"
+                    dropdownIcon={<SvgDropdownicon />}
+                   
+                  />
         </div>
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={paymenttabledata}
+          value={search?paymentSearchList:paymenttabledata}
           paginator
           rows={5}
           selectionMode={selectionMode}

@@ -201,7 +201,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{rowData.Svg}</div>
+        <div><SvgTravlesTable /></div>
         <div>
           <div className="name__text">{rowData.Name}</div>
           <div className="lead__id__text">Client Id:{rowData.LeadID} </div>

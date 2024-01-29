@@ -1,17 +1,18 @@
+import React from "react";
 import Maincomponent from "./routes/MainRoute";
 import "./App.scss";
 import Login from "./module/AuthModule/Login";
 import Cookies from "js-cookie";
 import { TOKEN } from "./utility/constant";
 
-
 const App = () => {
-  const hasToken = Cookies.get(TOKEN) === "token";
-  console.log(hasToken,'hasToken')
+  const hasToken = !!Cookies.get(TOKEN);
+
+  console.log(hasToken, "hasToken");
+
   return (
     <div className="App">
-    {hasToken === false && (   <Login />)}
-      {hasToken === true && (  <Maincomponent />)}
+      {hasToken ? <Maincomponent /> : <Login />}
     </div>
   );
 };

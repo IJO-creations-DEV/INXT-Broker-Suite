@@ -7,58 +7,49 @@ const initialState = {
     paymenttabledata:[
       {
         id: 1,
-        grosspremium: "355",
+        type:"Policy",
+        name:"CarsonDarrin",
         clintid:"123",
-        date:"13/12/12",
-        name:"sindhu",
-        subtitle:"policy no : 12345",
+        policyNo:"999",
+        grosspremium: "355",
+        policyIssued:"13/12/12",
+        policyExpird:"13/12/12",
         status:"PAID"
       },
       {
         id: 2,
-        grosspremium: "655",
+        type:"Renewal Policy",
+        name:"Carson Darrin",
         clintid:"456",
-        date:"13/12/12",
-        name:"ayesha",
-        subtitle:"policy no : 12345",
+        policyNo:"98456",
+        grosspremium: "655",
+        policyIssued:"13/12/12",
+        policyExpird:"13/12/12",
         status:"PAID"
       },
       {
-        id: 1,
-        grosspremium: "677",
-        clintid:"789",
-        date:"13/12/12",
-        name:"youraj",
-        subtitle:"policy no : 12345",
-        status:"PENDING"
+        id: 3,
+        type:"Renewal Policy",
+        name:"Carson Darrin",
+        clintid:"566",
+        policyNo:"123456",
+        grosspremium: "655",
+        policyIssued:"13/12/12",
+        policyExpird:"13/12/12",
+        status:"PAID"
       },
       {
-        id: 2,
-        grosspremium: "788",
-        clintid:"912",
-        date:"13/12/12",
-        name:"pandiyan",
-        subtitle:"policy no : 12345",
-        status:"PENDING"
+        id: 4,
+        type:"Renewal Policy",
+        name:"Carson Darrin",
+        clintid:"786",
+        policyNo:"67856",
+        grosspremium: "655",
+        policyIssued:"13/12/12",
+        policyExpird:"13/12/12",
+        status:"PAID"
       },
-      {
-        id: 1,
-        grosspremium: "888",
-        clintid:"812",
-        date:"13/12/12",
-        name:"manoj",
-        subtitle:"policy no : 888",
-        status:"REVIEWING"
-      },
-      {
-        id: 2,
-        grosspremium: "988",
-        clintid:"765",
-        date:"13/12/12",
-        name:"sudarshan",
-        subtitle:"policy no : 988",
-        status:"REVIEWING"
-      },
+
     ],
     paymentSearchList:[],
     postpaymentdata:{}

@@ -205,7 +205,7 @@ const LeadListingHomeTable = ({paymentSearchList}) => {
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{rowData.Svg}</div>
+        <div><SvgHomeTable /></div>
         <div>
           <div className="name__text">{rowData.Name}</div>
           <div className="lead__id__text">Lead Id :{rowData.LeadID} </div>

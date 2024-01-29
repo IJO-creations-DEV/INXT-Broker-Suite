@@ -1000,7 +1000,6 @@ const Maincomponent = () => {
               />
               <Route
                 path="/agent/createquote/accessories"
-                element={<Accessories />}
               />
               <Route
                 path="/agent/createquote/ordersummary"

@@ -1,6 +1,6 @@
 import { InputText } from "primereact/inputtext";
 import TableDropdownField from "../../../../component/tableDropDwonField";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
@@ -9,11 +9,41 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import "../../../clientView/index.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { getEndoresementTabelSearchList } from "./store/getEndorsementTabelDataMiddleWare"
 import SvgMotorTable from "../../../../../assets/agentIcon/SvgMotorTable";
+
 const LeadListingAllTable = () => {
+  const { endorsementListData, loading, endorsementSearchListData } = useSelector(
+    ({ endorsementTabelMainReducers }) => {
+      return {
+        loading: endorsementTabelMainReducers?.loading,
+        endorsementListData: endorsementTabelMainReducers?.endorsementListData,
+        endorsementSearchListData: endorsementTabelMainReducers?.endorsementSearchListData,
+      };
+    }
+  );
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [search,setSearch]=useState("")
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [globalFilter, setGlobalFilter] = useState("policy Number");
+  const cities = [
+    { name: "Policy Number", code: "policy Number" },
+    { name: "EndorsementID", code: "EndorsementID" },
+  ];
+
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        getEndoresementTabelSearchList({
+          field: globalFilter,
+          value: search,
+        })
+      );
+    }
+  }, [search]);
 
   const TableData = [
     {
@@ -306,21 +336,27 @@ const LeadListingAllTable = () => {
                 padding: "1rem 2.75rem",
                 borderRadius: "10px",
               }}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown
+        <Dropdown
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.value)}
+            options={cities}
             optionLabel="name"
-            className="feat_searchby_container"
+            optionValue="code"
             placeholder="Search by"
+            className="feat_searchby_container"
             dropdownIcon={<SvgDownArrow />}
           />
         </div>
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={TableData}
+          value={search ? endorsementSearchListData : endorsementListData}
           paginator
           rows={5}
           selectionMode={selectionMode}

@@ -55,6 +55,9 @@ import policyDetailedViewMainReducers from "../agentModule/quoteModule/policyDet
 import clientsReducers from "../agentModule/quoteModule/clientListing/store/clientsReducer"
 import leadReducers from "../agentModule/leadModule/Store/leadReducer"
 import agentQuoteMainReducers from "../agentModule/quoteModule/quoteListing/quoteListingCard/store/quoteReducer"
+import endorsementTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewEndorsementTable/store/getEndorsementTabelDataReducers"
+import policyTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewPolicyTable/store/getPolicyTabelDataReducers"
+import renewalTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewRenewaleTable/store/getRenewalTabelDataReducers"
 
 const reducers = {
   journalVoucherMainReducers,
@@ -105,7 +108,11 @@ const reducers = {
   policyDetailedViewMainReducers,
   clientsReducers,
   leadReducers,
-  agentQuoteMainReducers
+  agentQuoteMainReducers,
+  endorsementTabelMainReducers,
+  policyTabelMainReducers,
+  renewalTabelMainReducers,
+  // openitemTabelMainReducers
 
 };
 

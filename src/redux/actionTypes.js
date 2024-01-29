@@ -285,6 +285,7 @@ export const POST_ADD_COMPANY = "company/POST_ADD_COMPANY";
 export const PATCH_COMPANY_EDIT = "company/PATCH_COMPANY_EDIT";
 export const GET_SERACH_COMPANY = "company/GET_SERACH_COMPANY";
 export const GET_COMPANY_VIEW = "company/GET_COMPANY_VIEW";
+export const GET_COMPANY_EDIT="company/GET_COMPANY_EDIT"
 
 export const GET_CITY_DETAILS = "city/GET_CITY_DETAILS";
 export const GET_CITY_BY_ID = "city/GET_CITY_BY_ID";

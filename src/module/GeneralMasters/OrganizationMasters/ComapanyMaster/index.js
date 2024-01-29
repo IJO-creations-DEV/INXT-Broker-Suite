@@ -16,6 +16,7 @@ import ToggleButton from "../../../../components/ToggleButton";
 import SvgEditicons from "../../../../assets/icons/SvgEdits";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import {
+  getCompanyEditData,
   getCompanyViewMiddleWare,
   getSearchCompanyMiddleware,
 } from "./store/companyMiddleware";
@@ -39,8 +40,9 @@ const Index = () => {
       `/master/generals/organization/companymaster/view/${columnData.id}`
     );
   };
-  const handleEdit = (id) => {
-    navigate(`/master/generals/organization/companymaster/edit/${id}`);
+  const handleEdit = (columnData) => {
+    dispatch(getCompanyEditData(columnData))
+    navigate(`/master/generals/organization/companymaster/edit/${columnData?.id}`);
   };
   const handlePolicy = (id) => {
     navigate(`/master/generals/organization/companymaster/add/${id}`);
@@ -259,7 +261,7 @@ const Index = () => {
               body={(columnData) => (
                 <div className="action_icons">
                   <SvgIconeye onClick={() => handleView(columnData)} />
-                  <SvgEditicons onClick={() => handleEdit(columnData.id)} />
+                  <SvgEditicons onClick={() => handleEdit(columnData)} />
                 </div>
               )}
               header="View"

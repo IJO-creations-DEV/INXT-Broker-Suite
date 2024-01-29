@@ -8,6 +8,7 @@ import {
   getComapnyListByIdMiddleware,
   getCompanyView,
   getCompanyViewMiddleWare,
+  getCompanyEditData,
 } from "./companyMiddleware";
 
 const initialState = {
@@ -54,6 +55,8 @@ const initialState = {
     },
   ],
   companySearchList: [],
+  companyView: {},
+  getcompanyEdit:{}
 };
 let nextId = 3;
 const receiptsReducer = createSlice({
@@ -121,23 +124,65 @@ const receiptsReducer = createSlice({
     builder.addCase(getCompanyViewMiddleWare.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getCompanyViewMiddleWare.fulfilled, (state, action) => {
-      state.loading = false;
-      state.companyView = action.payload;
+    builder.addCase(
+      getCompanyViewMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.companyView = action.payload;
+        console.log( state.companyView = action.payload," state.companyView = action.payload;");
+   
+      }
+    );
+    builder.addCase(
+      getCompanyViewMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.companyView = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    
+    builder.addCase(getCompanyEditData.pending, (state) => {
+      state.loading = true;
     });
-    builder.addCase(getCompanyViewMiddleWare.rejected, (state, action) => {
-      state.loading = false;
-      state.companyView = {};
-      state.error = typeof action.payload === "string" ? action.payload : "";
-    });
+    builder.addCase(
+      getCompanyEditData.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.getcompanyEdit= action.payload;
+      }
+    );
+    builder.addCase(
+      getCompanyEditData.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.getcompanyEdit = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+  
     builder.addCase(patchCompanyEditMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(patchCompanyEditMiddleware.fulfilled, (state, action) => {
-      state.loading = false;
-
-      state.companyTableList = action.payload;
-    });
+    builder.addCase(
+      patchCompanyEditMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        const updatedIndex = state.companyTableList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        console.log(updatedIndex,"updatedIndex");
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.companyTableList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.companyTableList = updatedCurrencyList;
+        } else {
+          state.companyTableList = [...state.companyTableList, action.payload];
+        }
+      }
+    );
     builder.addCase(patchCompanyEditMiddleware.rejected, (state, action) => {
       state.loading = false;
 

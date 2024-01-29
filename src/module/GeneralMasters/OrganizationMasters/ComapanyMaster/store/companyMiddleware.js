@@ -7,6 +7,7 @@ import {
   PATCH_COMPANY_EDIT,
   GET_SERACH_COMPANY,
   GET_COMPANY_VIEW,
+  GET_COMPANY_EDIT,
 } from "../../../../../redux/actionTypes";
 
 export const getCompanyListMiddleware = createAsyncThunk(
@@ -55,47 +56,52 @@ export const getCompanyViewMiddleWare = createAsyncThunk(
     }
   }
 );
-export const patchCompanyEditMiddleware = createAsyncThunk(
-  PATCH_COMPANY_EDIT,
-  async (payload, { rejectWithValue, getState }) => {
-    console.log(payload, "find payload in midd");
-    const { organizationCompanyMainReducers } = getState();
-    const { companyTableList } = organizationCompanyMainReducers;
-    console.log(companyTableList, "find companyTableList");
-    const updatedData = companyTableList?.map((item) => {
-      if (parseInt(item.id) === parseInt(payload?.id)) {
-        return {
-          ...item,
-          CompanyCode: payload?.CompanyCode,
-          CompanyName: payload?.CompanyName,
-          LicenseNumber: payload?.LicenseNumber,
-          EmailID: payload?.EmailID,
-          Logo: payload?.Logo,
-          Websitelink: payload?.Websitelink,
-          Description: payload?.Description,
-          AddressLine1: payload?.AddressLine1,
-          AddressLine2: payload?.AddressLine2,
-          AddressLine3: payload?.AddressLine3,
-          PinCode: payload?.PinCode,
-          City: payload?.CompanyCode,
-          State: payload?.State,
-          Country: payload?.Country,
-          PhoneNumber: payload?.PhoneNumber,
-          Fax: payload?.Fax,
-        };
-      }
-      return item;
-    });
-    console.log(updatedData, "find updatedData");
 
+export const getCompanyEditData = createAsyncThunk(
+  GET_COMPANY_EDIT,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return updatedData;
+      return payload;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
   }
 );
+
+
+export const patchCompanyEditMiddleware = createAsyncThunk(
+  PATCH_COMPANY_EDIT,
+  async (payload, { rejectWithValue }) => {
+    const data = {
+      id: payload?.id,
+      CompanyCode: payload?.CompanyCode,
+      CompanyName: payload?.CompanyName,
+      LicenseNumber: payload?.LicenseNumber,
+      EmailID: payload?.EmailID,
+      Logo: payload?.Logo,
+      Websitelink: payload?.Websitelink,
+      Description: payload?.Description,
+      AddressLine1: payload?.AddressLine1,
+      AddressLine2: payload?.AddressLine2,
+      AddressLine3: payload?.AddressLine3,
+      PinCode: payload?.PinCode,
+      City: payload?.CompanyCode,
+      State: payload?.State,
+      Country: payload?.Country,
+      PhoneNumber: payload?.PhoneNumber,
+      Fax: payload?.Fax,
+    }
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
 
 export const getSearchCompanyMiddleware = createAsyncThunk(
   GET_SERACH_COMPANY,
@@ -109,7 +115,9 @@ export const getSearchCompanyMiddleware = createAsyncThunk(
     try {
       if (textSearch.trim() !== "") {
         const searchResults = companyTableList.filter((item) => {
-          return item.CompanyName.toLowerCase().includes(
+          return item.CompanyCode.toLowerCase().includes(
+            textSearch.toLowerCase()
+          ) || item.CompanyName.toLowerCase().includes(
             textSearch.toLowerCase()
           );
         });

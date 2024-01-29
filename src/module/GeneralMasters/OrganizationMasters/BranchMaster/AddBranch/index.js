@@ -72,18 +72,17 @@ function AddBranch({ action }) {
   const items = [
     { label: "Branch", url: "/master/generals/organization/branchmaster" },
     {
-      label: `${
-        action === "add"
-          ? "Add Branch"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add Branch"
+        : action === "edit"
           ? "Edit Branch"
           : "Branch details"
-      }`,
+        }`,
     },
   ];
   const currencyCode = [
     {
-      label: action === "add" ? "ARIANS INSURANCE BROKERS INC": organizationBranchView.CompanyName,
+      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : organizationBranchView.CompanyName,
       value: action === "add" ? "NY" : organizationBranchView.CompanyName,
     },
   ];
@@ -106,18 +105,39 @@ function AddBranch({ action }) {
   //     value: action === "add" ? "NY" : organizationBranchView.Country,
   //   },
   // ];
+  // const City = [
+  //   {
+  //     label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : organizationBranchView.CompanyName,
+  //     value: action === "add" ? "ARIANS INSURANCE BROKERS INC" : organizationBranchView.CompanyName,
+  //   },
+  //   {
+  //     label: action === "add" ? "ARIANS gh BROKERS INC" : organizationBranchView.CompanyName,
+  //     value: action === "add" ? "ARIANS gh BROKERS INC" : organizationBranchView.CompanyName,
+  //   },
+  //   // Add more options as needed
+  // ];
+
+  // const City=countriesData.city.map((val)=>({
+  //   label:val
+  // }))
+
 
   const City = countriesData.city.map(city => ({
-    label: action === "add" ? city :organizationBranchView.City,
+
+    label: action === "add" ? city : organizationBranchView.City,
+    value: action === "add" ? city : organizationBranchView.City,
   }));
+  console.log(City, "CitCityy");
 
   const State = countriesData.state.map(state => ({
-    label: action === "add" ? state :organizationBranchView.State,
+    label: action === "add" ? state : organizationBranchView.State,
+    value: action === "add" ? state : organizationBranchView.State,
   }));
 
 
   const Country = countriesData.countries.map(country => ({
-    label: action === "add" ? country :organizationBranchView.Country,
+    label: action === "add" ? country : organizationBranchView.Country,
+    value: action === "add" ? country : organizationBranchView.Country,
   }));
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
@@ -125,7 +145,7 @@ function AddBranch({ action }) {
   const dispatch = useDispatch();
 
   const handleSubmit = (value) => {
-    console.log("find",action)
+    console.log("find", action)
     // Handle form submission
     if (action == "add") {
       dispatch(postAddBranchMiddleware(formik.values));
@@ -143,7 +163,7 @@ function AddBranch({ action }) {
         Navigate("/master/generals/organization/branchmaster");
       }, 3000);
     }
-     else  {
+    else {
       alert("ji");
     }
   };
@@ -259,8 +279,8 @@ function AddBranch({ action }) {
           {action === "add"
             ? "Add Branch"
             : action === "edit"
-            ? "Edit Branch"
-            : "Branch details"}
+              ? "Edit Branch"
+              : "Branch details"}
         </label>
       </div>
       <BreadCrumb
@@ -281,8 +301,8 @@ function AddBranch({ action }) {
                 action == "add"
                   ? formik.values.BranchCode
                   : action == "edit"
-                  ? formik.values.BranchCode
-                  : organizationBranchView.BranchCode
+                    ? formik.values.BranchCode
+                    : organizationBranchView.BranchCode
               }
               onChange={formik.handleChange("BranchCode")}
             />
@@ -302,8 +322,8 @@ function AddBranch({ action }) {
                 action == "add"
                   ? formik.values.BranchName
                   : action == "edit"
-                  ? formik.values.BranchName
-                  : organizationBranchView.BranchName
+                    ? formik.values.BranchName
+                    : organizationBranchView.BranchName
               }
               onChange={formik.handleChange("BranchName")}
             />
@@ -322,16 +342,16 @@ function AddBranch({ action }) {
                 action == "add"
                   ? formik.values.CompanyName
                   : action == "edit"
-                  ? formik.values.CompanyName
-                  : organizationBranchView.CompanyName
+                    ? formik.values.CompanyName
+                    : organizationBranchView.CompanyName
               }
               onChange={(e) => formik.setFieldValue("CompanyName", e.value)}
               options={
                 action == "add"
                   ? currencyCode
                   : action == "edit"
-                  ? companyNameOptionData
-                  : currencyCode
+                    ? companyNameOptionData
+                    : currencyCode
               }
               optionLabel="label"
               placeholder={"Select"}
@@ -353,8 +373,8 @@ function AddBranch({ action }) {
                 action == "add"
                   ? formik.values.EmailID
                   : action == "edit"
-                  ? formik.values.EmailID
-                  : organizationBranchView.EmailID
+                    ? formik.values.EmailID
+                    : organizationBranchView.EmailID
               }
               onChange={formik.handleChange("EmailID")}
             />
@@ -378,8 +398,8 @@ function AddBranch({ action }) {
                   action == "add"
                     ? formik.values.Description
                     : action == "edit"
-                    ? formik.values.Description
-                    : organizationBranchView.Description
+                      ? formik.values.Description
+                      : organizationBranchView.Description
                 }
                 onChange={formik.handleChange("Description")}
               />
@@ -400,8 +420,8 @@ function AddBranch({ action }) {
                   action == "add"
                     ? formik.values.AddressLine1
                     : action == "edit"
-                    ? formik.values.AddressLine1
-                    : organizationBranchView.AddressLine1
+                      ? formik.values.AddressLine1
+                      : organizationBranchView.AddressLine1
                 }
                 onChange={formik.handleChange("AddressLine1")}
               />
@@ -422,8 +442,8 @@ function AddBranch({ action }) {
                   action == "add"
                     ? formik.values.AddressLine2
                     : action == "edit"
-                    ? formik.values.AddressLine2
-                    : organizationBranchView?.AddressLine2
+                      ? formik.values.AddressLine2
+                      : organizationBranchView?.AddressLine2
                 }
                 onChange={formik.handleChange("AddressLine2")}
               />
@@ -447,8 +467,8 @@ function AddBranch({ action }) {
                   action == "add"
                     ? formik.values.AddressLine3
                     : action == "edit"
-                    ? formik.values.AddressLine3
-                    : organizationBranchView.AddressLine3
+                      ? formik.values.AddressLine3
+                      : organizationBranchView.AddressLine3
                 }
                 onChange={formik.handleChange("AddressLine3")}
               />
@@ -467,16 +487,16 @@ function AddBranch({ action }) {
                 action == "add"
                   ? formik.values.City
                   : action == "edit"
-                  ? formik.values.City
-                  : organizationBranchView.City
+                    ? formik.values.City
+                    : organizationBranchView.City
               }
               onChange={(e) => formik.setFieldValue("City", e.value)}
               options={
                 action == "add"
                   ? City
                   : action == "edit"
-                  ? cityDataOption
-                  : City
+                    ? cityDataOption
+                    : City
               }
               optionLabel="label"
               placeholder={"Select"}
@@ -496,16 +516,16 @@ function AddBranch({ action }) {
                 action == "add"
                   ? formik.values.State
                   : action == "edit"
-                  ? formik.values.State
-                  : organizationBranchView.State
+                    ? formik.values.State
+                    : organizationBranchView.State
               }
               onChange={(e) => formik.setFieldValue("State", e.value)}
               options={
                 action == "add"
                   ? State
                   : action == "edit"
-                  ? stateDataOption
-                  : State
+                    ? stateDataOption
+                    : State
               }
               optionLabel="label"
               placeholder={"Select"}
@@ -526,16 +546,16 @@ function AddBranch({ action }) {
                 action == "add"
                   ? formik.values.Country
                   : action == "edit"
-                  ? formik.values.Country
-                  : organizationBranchView.Country
+                    ? formik.values.Country
+                    : organizationBranchView.Country
               }
               onChange={(e) => formik.setFieldValue("Country", e.value)}
               options={
                 action == "add"
                   ? Country
                   : action == "edit"
-                  ? countryDataOption
-                  : Country
+                    ? countryDataOption
+                    : Country
               }
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
@@ -562,8 +582,8 @@ function AddBranch({ action }) {
                   action == "add"
                     ? formik.values.PhoneNumber
                     : action == "edit"
-                    ? formik.values.PhoneNumber
-                    : organizationBranchView.PhoneNumber
+                      ? formik.values.PhoneNumber
+                      : organizationBranchView.PhoneNumber
                 }
                 onChange={formik.handleChange("PhoneNumber")}
               />
@@ -587,8 +607,8 @@ function AddBranch({ action }) {
                   action == "add"
                     ? formik.values.Fax
                     : action == "edit"
-                    ? formik.values.Fax
-                    : organizationBranchView.Fax
+                      ? formik.values.Fax
+                      : organizationBranchView.Fax
                 }
                 onChange={formik.handleChange("Fax")}
               />

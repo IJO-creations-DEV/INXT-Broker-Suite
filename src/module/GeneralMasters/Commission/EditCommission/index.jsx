@@ -87,8 +87,8 @@ const EditCommission = () => {
     if (!values.product) {
       errors.product = "product is required";
     }
-    if (!values.selectCovers) {
-      errors.selectCovers = "This field Code is required";
+    if (!values.selectCover) {
+      errors.selectCover = "This field Code is required";
     }
     if (!values.maxRate) {
       errors.maxRate = "This field is required";
@@ -119,14 +119,14 @@ const EditCommission = () => {
   const [selectAgentDataOption, setSelectAgentDataOption] = useState([]);
   const setFormikValues = () => {
     const productData = getCommissionEdit?.product;
-    const selectCoversData = getCommissionEdit?.selectCovers;
+    const selectCoversData = getCommissionEdit?.selectCover;
     const selectAgentData = getCommissionEdit?.selectAgent;
     const updatedValues = {
       id: getCommissionEdit?.id,
       commissionCode: getCommissionEdit?.commissionCode,
       product: productData,
       desc: getCommissionEdit?.desc,
-      selectCovers: selectCoversData,
+      selectCover: selectCoversData,
       effectiveFrom: getCommissionEdit?.effectiveFrom,
       effectiveTo: getCommissionEdit?.effectiveTo,
       maxRate: getCommissionEdit?.maxRate,
@@ -156,7 +156,7 @@ const EditCommission = () => {
       commissionCode: "",
       desc: "",
       product: "",
-      selectCovers: "",
+      selectCover: "",
       maxRate: "",
       selectAgent: "",
       effectiveFrom: "",
@@ -188,7 +188,7 @@ const EditCommission = () => {
   //         desc: "",
   //         // pettycashname: "",
   //         product: "",
-  //         selectCovers: "",
+  //         selectCover: "",
   //         maxRate: "",
   //         selectAgent: "",
   //         effectiveFrom: "",
@@ -251,7 +251,7 @@ const EditCommission = () => {
       );
     },
   };
-  const handleNavigateView = () => {};
+  const handleNavigateView = () => { };
   const handleEditNavigate = (rowData) => {
     setVisiblePopup(true);
     dispatch(getEditCommissionPopup(rowData));
@@ -381,18 +381,18 @@ const EditCommission = () => {
               }
               label="Select Covers"
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.selectCovers}
+              value={formik.values.selectCover}
               onChange={(e) =>
-                formik.setFieldValue("selectCovers", e.target.value)
+                formik.setFieldValue("selectCover", e.target.value)
               }
               options={selectedCoverOption}
               optionLabel="value"
               placeholder={"Select"}
             />
 
-            {formik.touched.selectCovers && formik.errors.selectCovers && (
+            {formik.touched.selectCover && formik.errors.selectCover && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.selectCovers}
+                {formik.errors.selectCover}
               </div>
             )}
           </div>
@@ -571,7 +571,7 @@ const EditCommission = () => {
               field="commissionCode"
               header="Commission Code"
               className="fieldvalue_container"
-              // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
+            // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
             ></Column>
             <Column
               field="sharingRate"

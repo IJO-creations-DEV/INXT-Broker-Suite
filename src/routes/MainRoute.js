@@ -229,12 +229,7 @@ const Maincomponent = () => {
       <div className="parent__main__container">
         {/* <AuthRoute /> */}
         <Routes>
-        <Route
-            path="/"
-            element={<Navigate to="/login" replace />}
-          />
-
-          <Route path="/login" element={<LoginScreen />} />
+          {/* <Route path="/login" element={<LoginScreen />} /> */}
           <Route element={<ProtectedLayout />}>
             <Route
               path="/accounts/correctionsjv/correctionsjvdetails"
@@ -974,7 +969,7 @@ const Maincomponent = () => {
             {/* <Route path="/login" element={<Login />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} /> */}
             {/* // Agent Dashboard, Notification & agent profile */}
-            <Route path="/agent/home" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/agent/notification" element={<Notification />} />
             <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
             <Route path="/agent/editprofile" element={<AgentEditProfile />} />

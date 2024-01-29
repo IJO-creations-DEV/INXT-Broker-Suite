@@ -11,10 +11,13 @@ import ResponsiveDrawer from "../../components/SideBar";
 
 const index = () => {
   const Auth = () => {
-    const user = Cookies.get(TOKEN);
-    return user && user;
-  };
 
+    const user = Cookies.get(TOKEN);
+    console.log(user, "user")
+
+    return user && user;
+
+  };
   return (
     <div className="protected__layout__container">
       <div className="protected__layout__header">
@@ -26,9 +29,9 @@ const index = () => {
         </div>
         <div className="main__content">
           {
-            Auth() ? <Outlet /> : <Outlet />
+            Auth() ? <Outlet /> :
 
-            // <Navigate to='login' replace />
+              <Navigate to='/login' replace />
           }
 
           {/* <Outlet /> */}

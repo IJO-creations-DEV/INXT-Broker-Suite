@@ -17,20 +17,20 @@ const AgentNavBar = () => {
   const menuProfile = useRef(null);
   const navigate = useNavigate();
 
-  const handleLogOut= ()=>{
-    Cookies.remove(TOKEN)
+  const handleLogOut = () => {
+    Cookies.remove(TOKEN);
     navigate("/login");
     setTimeout(() => {
       window.location.reload();
     }, 500);
-    console.log("object")
-  }
+    console.log("object");
+  };
   const items = [
     {
       label: (
         <div
           style={{
-            fontFamily: "Inter var",
+            fontFamily: "Poppins",
             fontWeight: 500,
             fontSize: "24px",
             color: "#111927",
@@ -50,7 +50,7 @@ const AgentNavBar = () => {
                 <div
                   style={{
                     color: "#111927",
-                    fontFamily: "Inter var",
+                    fontFamily: "Poppins",
                     fontWeight: 500,
                     fontSize: "14px",
                   }}
@@ -60,7 +60,7 @@ const AgentNavBar = () => {
                 <div
                   style={{
                     color: "#6C737F",
-                    fontFamily: "Inter var",
+                    fontFamily: "Poppins",
                     fontWeight: 500,
                     fontSize: "14px",
                   }}
@@ -71,7 +71,7 @@ const AgentNavBar = () => {
                 <div
                   style={{
                     color: "#6366F1",
-                    fontFamily: "Inter var",
+                    fontFamily: "Poppins",
                     fontWeight: 500,
                     fontSize: "14px",
                   }}
@@ -82,7 +82,7 @@ const AgentNavBar = () => {
                 <div
                   style={{
                     color: "#6C737F",
-                    fontFamily: "Inter var",
+                    fontFamily: "Poppins",
                     fontWeight: 500,
                     fontSize: "12px",
                   }}
@@ -114,7 +114,7 @@ const AgentNavBar = () => {
         <div>
           <div
             style={{
-              fontFamily: "Inter var",
+              fontFamily: "Poppins",
               fontWeight: 400,
               fontSize: "16px",
               color: "#111927",
@@ -124,7 +124,7 @@ const AgentNavBar = () => {
           </div>
           <div
             style={{
-              fontFamily: "Inter var",
+              fontFamily: "Poppins",
               fontWeight: 400,
               fontSize: "16px",
               color: "#6C737F",
@@ -140,7 +140,7 @@ const AgentNavBar = () => {
           label: (
             <div
               style={{
-                fontFamily: "Inter var",
+                fontFamily: "Poppins",
                 fontWeight: 400,
                 fontSize: "16px",
                 color: "#111927",
@@ -159,7 +159,7 @@ const AgentNavBar = () => {
           label: (
             <div
               style={{
-                fontFamily: "Inter var",
+                fontFamily: "Poppins",
                 fontWeight: 400,
                 fontSize: "16px",
                 color: "#111927",
@@ -178,12 +178,12 @@ const AgentNavBar = () => {
           label: (
             <div
               style={{
-                fontFamily: "Inter var",
+                fontFamily: "Poppins",
                 fontWeight: 400,
                 fontSize: "16px",
                 color: "#111927",
               }}
-              onClick={()=>handleLogOut()}
+              onClick={() => handleLogOut()}
             >
               Logout
             </div>
@@ -231,6 +231,7 @@ const AgentNavBar = () => {
         //   style={menuStyle}
       />
       <Button
+        className="p-0"
         onClick={(event) => menuProfile.current.toggle(event)}
         aria-controls="popup_menu_right"
         aria-haspopup

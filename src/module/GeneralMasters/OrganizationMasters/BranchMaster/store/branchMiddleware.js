@@ -137,7 +137,7 @@ export const getSearchBranchMiddleware = createAsyncThunk(
     try {
       if (textSearch.trim() !== "") {
         const searchResults = branchTableList.filter(item => {
-          return item.BranchName.toLowerCase().includes(textSearch.toLowerCase());
+          return item.CompanyName.toLowerCase().includes(textSearch.toLowerCase()) || item.BranchCode.toLowerCase().includes(textSearch.toLowerCase())
         });
         console.log(searchResults, "searchResults")
         return searchResults;
@@ -165,13 +165,13 @@ export const getPatchBranchData = createAsyncThunk(
 export const postPatchDepatmentEdit = createAsyncThunk(
   POST_PATCH_DEPARTMENT_EDIT,
   async (payload, { rejectWithValue }) => {
-    console.log(payload.id,"payloadpayload");
-    const data={
+    console.log(payload.id, "payloadpayload");
+    const data = {
       id: payload.id,
       DepartmentCode: payload?.DepartmentCode,
       DepartmentName: payload?.DepartmentName,
-      Description:payload?.Description,
-      Status:'Credit'
+      Description: payload?.Description,
+      Status: 'Credit'
     }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);

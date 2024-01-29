@@ -69,8 +69,8 @@ const AddCommission = () => {
   const customValidation = (values) => {
     const errors = {};
 
-    if (!values.commissioncode) {
-      errors.commissioncode = "commission code is required";
+    if (!values.commissionCode) {
+      errors.commissionCode = "commission code is required";
     }
 
     if (!values.desc) {
@@ -79,8 +79,8 @@ const AddCommission = () => {
     if (!values.product) {
       errors.product = "product is required";
     }
-    if (!values.selectCovers) {
-      errors.selectCovers = "This field Code is required";
+    if (!values.selectCover) {
+      errors.selectCover = "This field Code is required";
     }
     if (!values.maxRate) {
       errors.maxRate = "This field is required";
@@ -115,11 +115,11 @@ const AddCommission = () => {
   };
   const formik = useFormik({
     initialValues: {
-      commissioncode: "",
+      commissionCode: "",
       desc: "",
       // pettycashname: "",
       product: "",
-      selectCovers: "",
+      selectCover: "",
       maxRate: "",
       selectAgent: "",
       effectiveFrom: new Date(),
@@ -258,17 +258,17 @@ const AddCommission = () => {
               }
               label="Commission Code"
               placeholder="Enter"
-              value={formik.values.commissioncode}
+              value={formik.values.commissionCode}
               onChange={(e) =>
-                formik.setFieldValue("commissioncode", e.target.value)
+                formik.setFieldValue("commissionCode", e.target.value)
               }
             />
-            {formik.touched.commissioncode && formik.errors.commissioncode && (
+            {formik.touched.commissionCode && formik.errors.commissionCode && (
               <div
                 style={{ fontSize: 12, color: "red" }}
                 className="formik__errror__JV"
               >
-                {formik.errors.commissioncode}
+                {formik.errors.commissionCode}
               </div>
             )}
           </div>
@@ -340,18 +340,18 @@ const AddCommission = () => {
               }
               label="Select Covers"
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.selectCovers}
+              value={formik.values.selectCover}
               onChange={(e) =>
-                formik.setFieldValue("selectCovers", e.target.value)
+                formik.setFieldValue("selectCover", e.target.value)
               }
               options={codeOptions}
               optionLabel="value"
               placeholder={"Select"}
             />
 
-            {formik.touched.selectCovers && formik.errors.selectCovers && (
+            {formik.touched.selectCover && formik.errors.selectCover && (
               <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.selectCovers}
+                {formik.errors.selectCover}
               </div>
             )}
           </div>

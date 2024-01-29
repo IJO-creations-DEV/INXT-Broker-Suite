@@ -215,7 +215,7 @@ import { useDispatch } from "react-redux";
 import { getCommissionView, getPatchCommissionEditMiddleware } from "../store/commissionMiddleWare"
 
 const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissionEdit }) => {
-    console.log(commissionList, "commissionList")
+    console.log(commissionList.selectCover, "commissionList")
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [first, setFirst] = useState(0);

@@ -240,7 +240,9 @@ export const postAddCommission = createAsyncThunk(
             id: payload?.id,
             commissionCode: payload?.commissionCode,
             product: payload?.product,
-            selectCover: payload?.product,
+            desc: payload?.desc,
+            selectCover: payload?.selectCover,
+            maxRate: payload?.maxRate,
             effectiveFrom: payload?.effectiveFrom.toLocaleDateString("en-US", {
                 month: "numeric",
                 day: "2-digit",
@@ -251,6 +253,7 @@ export const postAddCommission = createAsyncThunk(
                 day: "2-digit",
                 year: "numeric",
             }),
+            selectAgent: payload?.selectAgent,
             status: payload?.status,
 
         };
@@ -276,7 +279,7 @@ export const getCommissionSearchList = createAsyncThunk(
         try {
             if (textSearch.trim() !== "") {
                 const searchResults = commissionList.filter(item => {
-                    return item.product.toLowerCase().includes(textSearch.toLowerCase());
+                    return item.commissionCode.toLowerCase().includes(textSearch.toLowerCase());
                 });
                 console.log(searchResults, "searchResults")
                 return searchResults;
@@ -305,27 +308,30 @@ export const patchCommissionEdit = createAsyncThunk(
     PATCH_COMMISSION_EDIT,
     async (payload, { rejectWithValue }) => {
         console.log(payload, "payload");
-        const data = {
+        let data = {
             id: payload?.id,
             commissionCode: payload?.commissionCode,
             product: payload?.product,
             desc: payload?.desc,
-            selectCovers: payload?.selectCovers,
-            effectiveFrom: payload?.effectiveFrom.toLocaleDateString("en-US", {
-                month: "numeric",
-                day: "2-digit",
-                year: "numeric",
-            }),
-            effectiveTo: payload?.effectiveTo.toLocaleDateString("en-US", {
-                month: "numeric",
-                day: "2-digit",
-                year: "numeric",
-            }),
+            selectCover: payload?.selectCover,
+            effectiveFrom:payload?.effectiveFrom,
+            effectiveTo:payload?.effectiveTo,
+            // effectiveFrom: payload?.effectiveFrom.toLocaleDateString("en-US", {
+            //     month: "numeric",
+            //     day: "2-digit",
+            //     year: "numeric",
+            // }),
+            // effectiveTo: payload?.effectiveTo.toLocaleDateString("en-US", {
+            //     month: "numeric",
+            //     day: "2-digit",
+            //     year: "numeric",
+            // }),
             selectAgent: payload?.selectAgent,
             maxRate: payload?.maxRate
         }
-        console.log(data, "commissionCode");
+
         try {
+            console.log(data, "allahData");
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return data;
         } catch (error) {
@@ -408,9 +414,9 @@ export const addLevelPatchEditPopup = createAsyncThunk(
             const randomIndex = Math.floor(Math.random() * commissionCode.length);
             return { name: commissionCode[randomIndex] };
         };
-        const data={
-            id:payload?.id,
-            level:payload?.level,
+        const data = {
+            id: payload?.id,
+            level: payload?.level,
             commissionCode: payload?.commissionCode,
             sharingRate: payload?.sharingRate,
         }

@@ -29,10 +29,16 @@ export const getDisbursmentSearchMiddleware = createAsyncThunk(
     const { DisbursmentList } = pettyCashDisbursementReducers;
     function filterReceiptsByField(receipts, field, value) {
       const lowercasedValue = value.toLowerCase();
-      return receipts.filter(receipt => receipt[field].toLowerCase().startsWith(lowercasedValue));
+      return receipts.filter((receipt) =>
+        receipt[field].toLowerCase().startsWith(lowercasedValue)
+      );
     }
     try {
-      const filteredReceipts = filterReceiptsByField(DisbursmentList, field, value);
+      const filteredReceipts = filterReceiptsByField(
+        DisbursmentList,
+        field,
+        value
+      );
 
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return filteredReceipts;
@@ -93,7 +99,7 @@ export const postEditDisbursmentMiddleware = createAsyncThunk(
     const TotalAmount = parseFloat(payload?.TotalAmount) || 0;
     const EWTinAdd = parseFloat(EWTin) || 0;
     const VATinAdd = parseFloat(VATin) || 0;
-    const Totalin =TotalAmount+EWTinAdd+VATinAdd
+    const Totalin = TotalAmount + EWTinAdd + VATinAdd;
     const TableData = {
       id: payload?.id,
       RequestNumber: payload.RequestNumber,

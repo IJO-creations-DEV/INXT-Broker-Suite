@@ -124,6 +124,8 @@ const initialState = {
       Date: "16/01/2023",
       Amount: "100",
       Remarks: "Remarks",
+      DocNumber: "0123456",
+      Narration: "Lorem ipsum",
     },
     {
       id: 2,
@@ -134,6 +136,8 @@ const initialState = {
       Date: "22/05/2023",
       Amount: "75",
       Remarks: "Remarks",
+      DocNumber: "0123456",
+      Narration: "Lorem ipsum",
     },
     {
       id: 3,
@@ -144,6 +148,8 @@ const initialState = {
       Date: "11/11/2023",
       Amount: "150",
       Remarks: "Remarks",
+      DocNumber: "0123456",
+      Narration: "Lorem ipsum",
     },
     {
       id: 4,
@@ -154,6 +160,8 @@ const initialState = {
       Date: "05/08/2023",
       Amount: "200",
       Remarks: "Remarks",
+      DocNumber: "0123456",
+      Narration: "Lorem ipsum",
     },
     {
       id: 5,
@@ -164,6 +172,8 @@ const initialState = {
       Date: "30/03/2023",
       Amount: "50",
       Remarks: "Remarks",
+      DocNumber: "0123456",
+      Narration: "Lorem ipsum",
     },
   ],
   ViewReplenish: {},

@@ -35,7 +35,10 @@ const DisbursementDetailview = () => {
   console.log(ViewDisbursment, "ViewDisbursment");
 
   const items = [
-    { label: "Petty Cash", command: () => navigate("/accounts/pettycash/disbursement") },
+    {
+      label: "Petty Cash",
+      command: () => navigate("/accounts/pettycash/disbursement"),
+    },
     {
       label: "Disbursement Detail view",
       to: "/accounts/pettycash/disbursementdetailview",
@@ -105,122 +108,120 @@ const DisbursementDetailview = () => {
       </div>
       <Card className="mt-3">
         <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
-              label="Petty Cash Code"
-              placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              disabled={true}
-              textWeight={400}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              optionValue="value"
-              optionLabel="label"
-              value={ViewDisbursment?.PettycashCode}
-              options={PettycashCodetOptions}
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view">
             <InputField
               classNames="input__filed"
-              label="Petty Cash Description"
-              // placeholder="Enter"
-              disabled={true}
+              label="Date"
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value={"PettyCashDescription"}
+              value="24/01/2024"
             />
           </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
-              label="Transaction Code"
-              placeholder="Select"
-              textColor={"#111927"}
-              disabled={true}
-              textSize={"16"}
-              textWeight={400}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              optionValue="value"
-              optionLabel="label"
-              value={ViewDisbursment?.Transactioncode}
-              options={TransactioncodeOptions}
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view">
             <InputField
               classNames="input__filed"
-              label="Transaction Description"
-              // placeholder="Enter"
-              disabled={true}
+              label="Transaction Number"
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value={"TransactionDescription"}
+              value=""
             />
           </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
+
+          <div className="col-12 md:col-3 lg:col-3 input__view">
             <DropDowns
               className="input__filed"
-              label="Branch Code"
+              label="Petty Cash Code*"
               placeholder="Select"
-              textColor={"#111927"}
-              disabled={true}
-              textSize={"16"}
-              textWeight={400}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              optionValue="value"
-              optionLabel="label"
-              value={ViewDisbursment?.Branchcode}
-              options={BranchcodeOptions}
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Branch Description"
-              // placeholder="Enter"
-              disabled={true}
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value={"BranchDescription"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // value="PC00123"
+              options={[]}
+              // optionLabel="pettycashcode"
             />
           </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
+          <div className="col-12 md:col-3 lg:col-3 input__view">
             <DropDowns
               className="input__filed"
-              label="Department Code"
+              label="Criteria*"
               placeholder="Select"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={400}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              optionValue="value"
-              optionLabel="label"
-              value={ViewDisbursment?.Departmentcode}
-              options={DepartmentcodeOptions}
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Department Description"
-              // placeholder="Enter"
-              disabled={true}
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value={"DepartmentDescription"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // value="PC00123"
+              options={[]}
+              // optionLabel="pettycashcode"
+            />
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="VAT Main Account"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // value="PC00123"
+              options={[]}
+              // optionLabel="pettycashcode"
+            />
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="VAT Sub Account"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // value="PC00123"
+              options={[]}
+              // optionLabel="pettycashcode"
+            />
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="WHT Main Account"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // value="PC00123"
+              options={[]}
+              // optionLabel="pettycashcode"
+            />
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="WHT Sub Account"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // value="PC00123"
+              options={[]}
+              // optionLabel="pettycashcode"
+            />
+          </div>
+          <div className="col-12 md:col-6 lg:col-6 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Remarks"
+              placeholder="Enter remarks"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value="Remarks are entered here"
             />
           </div>
         </div>

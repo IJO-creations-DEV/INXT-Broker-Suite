@@ -31,7 +31,7 @@ const AddReplenishTable = () => {
   );
 
   const isEmpty = AddReplenishTable.length === 0;
-  console.log(AddReplenishTable.Transactioncode,"AddReceiptTable")
+  console.log(AddReplenishTable.Transactioncode, "AddReceiptTable");
   const totalAmount = selectedRows.reduce((total, item) => {
     const Amount = parseFloat(item.Amount);
     return !isNaN(Amount) ? total + Amount : total;
@@ -53,7 +53,10 @@ const AddReplenishTable = () => {
   );
 
   const items = [
-    { label: "Petty Cash",command: () => navigate( "/accounts/pettycash/replenish") },
+    {
+      label: "Petty Cash",
+      command: () => navigate("/accounts/pettycash/replenish"),
+    },
     {
       label: "Add Replenish",
       to: "/accounts/pettycash/addreceiptstable",
@@ -74,7 +77,7 @@ const AddReplenishTable = () => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -114,7 +117,7 @@ const AddReplenishTable = () => {
 
   return (
     <div className="add__replenish__table">
-      <CustomToast ref={toastRef}   message="Petty Cash Replenish Successfully" />
+      <CustomToast ref={toastRef} message="Petty Cash Replenish Successfully" />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div
@@ -158,59 +161,32 @@ const AddReplenishTable = () => {
             emptyMessage={isEmpty ? emptyTableIcon : null}
             selection={selectedRows}
             onSelectionChange={(e) => setSelectedRows(e.value)}
-           
+
             // rowClassName={(rowData) => getStatusClassName(rowData.status)}
           >
-            {/* <Column
-              header={<input type="checkbox" />}
-              body={(rowData) => (
-                <input
-                  type="checkbox"
-                  style={{}}
-                   onClick={() => {
-                    handleClick(rowData); 
-                  }}
-                />
-              )}
-              headerStyle={headerStyle}
-              style={{ textAlign: "start" }}
-              
-            /> */}
-
-
             <Column
               selectionMode="multiple"
               selectedItem
               className="multipleicon_container"
-              
-              headerStyle={{ width: "4rem" ,paddingLeft:10}}
+              headerStyle={{ width: "4rem", paddingLeft: 10 }}
             ></Column>
-         
-
             <Column
               field="Transactioncode"
               header="Transaction Code"
               headerStyle={headerStyle}
-              
             ></Column>
             <Column
-              field="RequestNumber"
-              header="Request Number"
+              field="DocNumber"
+              header="Disbursement Doc Number"
               headerStyle={headerStyle}
-              sortable
             ></Column>
+
             <Column
-              field="MainAccount"
-              header="Main Account"
+              field="Narration"
+              header="Narration"
               headerStyle={headerStyle}
-              
             ></Column>
-            <Column
-              field="SubAccount"
-              header="Sub Account"
-              headerStyle={headerStyle}
-              
-            ></Column>
+
             <Column
               field="Date"
               header="Date"
@@ -218,16 +194,15 @@ const AddReplenishTable = () => {
               sortable
             ></Column>
             <Column
+              field="Remarks"
+              header="Remarks"
+              headerStyle={headerStyle}
+            ></Column>
+            <Column
               field="Amount"
               header="Amount"
               headerStyle={headerStyle}
               sortable
-            ></Column>
-            <Column
-              field="Remarks"
-              header="Remarks"
-              headerStyle={headerStyle}
-              
             ></Column>
           </DataTable>
         </div>
@@ -273,7 +248,7 @@ const AddReplenishTable = () => {
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">
           <div className="btn__container">
-          <Button
+            <Button
               label="Approve"
               className="add__btn"
               disabled={selectedRows.length === 0}

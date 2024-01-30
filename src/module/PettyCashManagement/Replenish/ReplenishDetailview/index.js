@@ -9,25 +9,30 @@ import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
 import ReplenishtDetailViewTable from "./ReplenishDetailviewTable";
 import { useSelector } from "react-redux";
+import LabelWrapper from "../../../../components/LabelWrapper";
+import { Calendar } from "primereact/calendar";
 
 const ReplenishtDetailView = () => {
   const navigate = useNavigate();
 
-  const { ViewReplenish, loading,AddReplenishTable } = useSelector(
+  const { ViewReplenish, loading, AddReplenishTable } = useSelector(
     ({ pettyCashReplenishReducer }) => {
       return {
         loading: pettyCashReplenishReducer?.loading,
         ViewReplenish: pettyCashReplenishReducer?.ViewReplenish,
-        AddReplenishTable:pettyCashReplenishReducer?.AddReplenishTable
+        AddReplenishTable: pettyCashReplenishReducer?.AddReplenishTable,
       };
     }
   );
 
-  console.log(ViewReplenish,"ViewReplenish")
+  console.log(ViewReplenish, "ViewReplenish");
 
-//   const toastRef = useRef(null);
+  //   const toastRef = useRef(null);
   const items = [
-    { label: "Petty Cash", command: () => navigate( "/accounts/pettycash/replenish") },
+    {
+      label: "Petty Cash",
+      command: () => navigate("/accounts/pettycash/replenish"),
+    },
     {
       label: "Replenish Detail view",
       to: "/accounts/pettycash/replenishtdetailview",
@@ -65,7 +70,45 @@ const ReplenishtDetailView = () => {
       </div>
       <Card className="mt-3">
         <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
+          <div className="col-12 md:col-3 lg:col-3 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Date"
+              //   placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value="24/01/2024"
+            />
+          </div>
+          <div className="col-12 md:col-6 lg:col-3 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Transaction Code"
+              //   placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value="Trans0012"
+            />
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Transaction Number"
+              //   placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value="Trans0012"
+            />
+          </div>
+        </div>
+        <div className="grid mt-1">
+          <div className="col-12 md:col-3 lg:col-3 input__view">
             <InputField
               classNames="input__filed"
               label="Petty cash Code"
@@ -77,7 +120,7 @@ const ReplenishtDetailView = () => {
               value={ViewReplenish.Pettycashcode}
             />
           </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
+          <div className="col-12 md:col-6 lg:col-6 input__view">
             <InputField
               classNames="input__filed"
               label="Petty cash Description"
@@ -91,7 +134,7 @@ const ReplenishtDetailView = () => {
           </div>
         </div>
         <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
+          <div className="col-12 md:col-3 lg:col-3 input__view">
             <InputField
               classNames="input__filed"
               label="Bank Code"
@@ -103,7 +146,7 @@ const ReplenishtDetailView = () => {
               value={ViewReplenish.BankCode}
             />
           </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
+          <div className="col-12 md:col-6 lg:col-6 input__view">
             <InputField
               classNames="input__filed"
               label="Bank Account Name"
@@ -117,7 +160,7 @@ const ReplenishtDetailView = () => {
           </div>
         </div>
         <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
+          <div className="col-12 md:col-3 lg:col-3 input__view">
             <InputField
               classNames="input__filed"
               label="Sub Account Code"
@@ -129,7 +172,7 @@ const ReplenishtDetailView = () => {
               value={ViewReplenish.SubAccount}
             />
           </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
+          <div className="col-12 md:col-6 lg:col-6 input__view">
             <InputField
               classNames="input__filed"
               label="Sub Account Description"
@@ -143,86 +186,36 @@ const ReplenishtDetailView = () => {
           </div>
         </div>
         <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Transaction Code"
-              //   placeholder="Enter"
+          <div className="calender__container col-12 md:col-3 lg:col-3 ">
+            <LabelWrapper className="calenderlable__container">
+              Disbursement From date
+            </LabelWrapper>
+            <Calendar
               disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={ViewReplenish.Transactioncode}
+              showIcon
+              placeholder="Select"
+              className="calendar_container"
+              value={new Date()}
+              dateFormat="yy-mm-dd"
             />
           </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Transaction description"
-              //   placeholder="Enter"
+          <div className="calender__container col-12 md:col-3 lg:col-3 ">
+            <LabelWrapper className="calenderlable__container">
+              Disbursement To date
+            </LabelWrapper>
+            <Calendar
               disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={"Transactioncode-01"}
-            />
-          </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Branch Code"
-              //   placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={ViewReplenish.Branchcode}
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Branch description"
-              //   placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={"Branchcode-01"}
-            />
-          </div>
-        </div>
-        <div className="grid mt-1">
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Department Code"
-              //   placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={"Depart-00101"}
-            />
-          </div>
-          <div className="col-12 md:col-6 lg-col-6 input__view">
-            <InputField
-              classNames="input__filed"
-              label="Department description"
-              //   placeholder="Enter"
-              disabled={true}
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              value={"Depart-01"}
+              showIcon
+              placeholder="Select"
+              className="calendar_container"
+              value={new Date()}
+              dateFormat="yy-mm-dd"
             />
           </div>
         </div>
       </Card>
       <Card className="mt-3">
-        <ReplenishtDetailViewTable AddReplenishTable={AddReplenishTable}/>
+        <ReplenishtDetailViewTable AddReplenishTable={AddReplenishTable} />
       </Card>
     </div>
   );

@@ -21,7 +21,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import SvgDeleteIcon from "../../../../assets/icons/SvgDeleteIcon";
 import { Dialog } from "primereact/dialog";
-
+import { Checkbox } from "primereact/checkbox";
 
 const initialValue = {
   PettyCashCode: "",
@@ -32,16 +32,18 @@ const initialValue = {
   Branchdescription: "",
   DepartmentCode: "",
   Departmentdescription: "",
-  TransactionCode:"",
-  TransactionNumber:"",
-  RequestDate:""
+  TransactionCode: "",
+  TransactionNumber: "",
+  RequestDate: "",
 };
-const RequestForm = ({action}) => {
+const RequestForm = ({ action }) => {
+  console.log(action, "component working fine");
   const [value, setValue] = useState(null);
   const toastRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("first",action)
+  console.log("first", action);
+  const [checked, setChecked] = useState(false);
 
   const { RequestList, loading } = useSelector(
     ({ pettyCashRequestReducer }) => {
@@ -51,7 +53,7 @@ const RequestForm = ({action}) => {
       };
     }
   );
- 
+
   const handleSubmit = (value) => {
     const valueWithId = {
       ...value,
@@ -87,7 +89,7 @@ const RequestForm = ({action}) => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -96,7 +98,10 @@ const RequestForm = ({action}) => {
   };
 
   const items = [
-    { label: "Petty Cash", command: () => navigate("/accounts/pettycash/pettycashrequest") },
+    {
+      label: "Petty Cash",
+      command: () => navigate("/accounts/pettycash/pettycashrequest"),
+    },
     {
       label: "Add Request",
       to: "/accounts/pettycash/addrequest",
@@ -108,9 +113,9 @@ const RequestForm = ({action}) => {
     navigate("/accounts/pettycash/pettycashrequest");
   };
 
-  const handleAddClick =()=>{
-    setVisible(true)
-  }
+  const handleAddClick = () => {
+    setVisible(true);
+  };
 
   const formik = useFormik({
     initialValues: initialValue,
@@ -142,7 +147,7 @@ const RequestForm = ({action}) => {
         description = "Unknown";
         break;
     }
-    
+
     switch (value.pettycashcode) {
       case "PC001":
         Requestnumber = "29292";
@@ -218,7 +223,11 @@ const RequestForm = ({action}) => {
             }}
           >
             <SvgBackArrow />
-            Add Request
+            {action === "view"
+              ? "Petty Cash Request View"
+              : action === "edit"
+              ? "Edit Petty Cash Request"
+              : "Add Request"}
           </div>
           <div className="mt-3">
             <BreadCrumb
@@ -234,25 +243,23 @@ const RequestForm = ({action}) => {
       <form onSubmit={formik.handleSubmit}>
         <Card className="mt-4">
           <div className="grid mt-1">
-          <div class="col-12 md:col-6 lg:col-3">
-                        <label className="labelfield_container">Date</label>
-                        <Calendar
+            <div class="col-12 md:col-6 lg:col-3">
+              <label className="labelfield_container">Date</label>
+              <Calendar
+                showIcon
+                // placeholder="Select"
 
-                            showIcon
-                            // placeholder="Select"
-
-                            className="calendar_container"
-                            value={formik.values.Date}
-                            // minDate={minDate}
-                            onChange={(e) => {
-                                formik.setFieldValue("Date", e.target.value);
-                            }}
-                            dateFormat="yy-mm-dd"
-
-                        />
-                    </div>
+                className="calendar_container"
+                value={formik.values.Date}
+                // minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("Date", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+              />
+            </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
+              <DropDowns
                 className="input__filed"
                 label="Transaction Code"
                 placeholder="Select"
@@ -263,15 +270,15 @@ const RequestForm = ({action}) => {
                 value={formik.values.TransactionCode}
                 options={PettyCashCode}
                 name="PettyCashCode"
-                onChange={(e) =>{ 
-                  formik.setFieldValue("TransactionCode",e.value).then(()=>{
-                    handlePettyCashDescribtion(e.value)
-                  })
-                  }
-                }
+                onChange={(e) => {
+                  formik.setFieldValue("TransactionCode", e.value).then(() => {
+                    handlePettyCashDescribtion(e.value);
+                  });
+                }}
                 optionLabel="pettycashcode"
                 error={
-                  formik.touched.TransactionCode && formik.errors.TransactionCode
+                  formik.touched.TransactionCode &&
+                  formik.errors.TransactionCode
                 }
               />
             </div>
@@ -287,29 +294,27 @@ const RequestForm = ({action}) => {
                 value={formik.values.TransactionNumber}
                 onChange={formik.handleChange("TransactionNumber")}
                 error={
-                  formik.touched.TransactionNumber && formik.errors.TransactionNumber
+                  formik.touched.TransactionNumber &&
+                  formik.errors.TransactionNumber
                 }
               />
             </div>
           </div>
           <div className="grid mt-1">
+            <div className="col-12 md:col-3 lg-col-3 input__view">
+              <label className="labelfield_container">Request Date</label>
+              <Calendar
+                showIcon
+                // placeholder="Select"
 
-          <div className="col-12 md:col-3 lg-col-3 input__view">
-          <label className="labelfield_container">Request Date</label>
-                        <Calendar
-
-                            showIcon
-                            // placeholder="Select"
-
-                            className="calendar_container"
-                            value={formik.values.RequestDate}
-                            // minDate={minDate}
-                            onChange={(e) => {
-                                formik.setFieldValue("RequestDate", e.target.value);
-                            }}
-                            dateFormat="yy-mm-dd"
-
-                        />
+                className="calendar_container"
+                value={formik.values.RequestDate}
+                // minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("RequestDate", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+              />
             </div>
 
             <div className="col-12 md:col-3 lg-col-3 input__view">
@@ -325,7 +330,7 @@ const RequestForm = ({action}) => {
                 options={Name}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("RequesterName", e.value)
+                  formik.setFieldValue("RequesterName", e.value);
                 }}
                 optionLabel="Name"
                 error={
@@ -333,70 +338,87 @@ const RequestForm = ({action}) => {
                 }
               />
             </div>
-           
           </div>
-          
+          <div className="grid mt-1">
+            <div className="col-12 input__view">
+              <div className="flex checkbox__container">
+                <Checkbox
+                  onChange={(e) => setChecked(e.checked)}
+                  checked={checked}
+                ></Checkbox>
+                <label className="labelfield_container">Cash in advance</label>
+              </div>
+            </div>
+          </div>
         </Card>
       </form>
 
-      <Card className="mt-6">
-        <div className="sub__container grid ">
-          <div className="sub__container__title col-12 md:col-6 lg:col-6">
-            <div className="sub__request__title">Request List</div>
-          </div>
-          <div className="col-12 md:col-6 lg:col-6">
-            <div className="btn__container">
-              <Button
-                label="Add"
-                icon={<SvgAdd color={"#fff"} />}
-                className="add__btn"
-                onClick={() => {
-                  handleAddClick();
-                }}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="table__container">
-          <DataTable
-            // value={AddRequestTable}
-            tableStyle={{ minWidth: "50rem" }}
-            // emptyMessage={isEmpty ? emptyTableIcon : null}
-            scrollable={true}
-            scrollHeight="40vh"
-          >
-            <Column
-              field="Narration"
-              header="Narration"
-              headerStyle={headerStyle}
-              sortable
-            ></Column>
-            <Column
-              field="Amount"
-              header="Amount"
-              headerStyle={headerStyle}
-              sortable
-            ></Column>
-            <Column
-              field="Action"
-              header="Action"
-              headerStyle={{ ...headerStyle, display:"flex",justifyContent: 'flex-end' }}
-              body={(rowData) => (
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  icon={<SvgDeleteIcon />}
-                  className="delete__btn"
-                  // onClick={() => handleDelete(rowData.id)}
-                />
+      {action === "edit" || action === "view" ? (
+        <>
+          <Card className="mt-6">
+            <div className="sub__container grid ">
+              <div className="sub__container__title col-12 md:col-6 lg:col-6">
+                <div className="sub__request__title">Request List</div>
               </div>
-              )}
-            ></Column>
-          </DataTable>
-        </div>
-      </Card>
-<div className="grid mt-4">
-<div className="col-12 md:col-3 lg-col-3 ">
-  <InputField
+              <div className="col-12 md:col-6 lg:col-6">
+                <div className="btn__container">
+                  <Button
+                    label="Add"
+                    icon={<SvgAdd color={"#fff"} />}
+                    className="add__btn"
+                    onClick={() => {
+                      handleAddClick();
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="table__container">
+              <DataTable
+                // value={AddRequestTable}
+                tableStyle={{ minWidth: "50rem" }}
+                // emptyMessage={isEmpty ? emptyTableIcon : null}
+                scrollable={true}
+                scrollHeight="40vh"
+              >
+                <Column
+                  field="Narration"
+                  header="Narration"
+                  headerStyle={headerStyle}
+                  sortable
+                ></Column>
+                <Column
+                  field="Amount"
+                  header="Amount"
+                  headerStyle={headerStyle}
+                  sortable
+                ></Column>
+                <Column
+                  field="Action"
+                  header="Action"
+                  headerStyle={{
+                    ...headerStyle,
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
+                  body={(rowData) => (
+                    <div
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <Button
+                        icon={<SvgDeleteIcon />}
+                        className="delete__btn"
+                        // onClick={() => handleDelete(rowData.id)}
+                      />
+                    </div>
+                  )}
+                ></Column>
+              </DataTable>
+            </div>
+          </Card>
+          <div className="grid mt-4">
+            <div className="col-12 md:col-3 lg-col-3 ">
+              <InputField
                 classNames="input__filed"
                 label="Total Amount"
                 // placeholder="Enter"
@@ -410,13 +432,10 @@ const RequestForm = ({action}) => {
                 //   formik.touched.TransactionNumber && formik.errors.TransactionNumber
                 // }
               />
-  </div>
-</div>
-
-
-
-
-
+            </div>
+          </div>
+        </>
+      ) : null}
 
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">
@@ -428,12 +447,10 @@ const RequestForm = ({action}) => {
                 formik.handleSubmit();
               }}
               disabled={!formik.isValid}
-
             />
           </div>
         </div>
       </div>
-
 
       <Dialog
         header="Add Request Item"
@@ -442,7 +459,7 @@ const RequestForm = ({action}) => {
         onHide={() => setVisible(false)}
         headerStyle={{
           color: "#343434",
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: "Inter, sans-serif",
           fontSize: 16,
           fontWeight: 500,
           // lineHeight: "150%",
@@ -462,10 +479,7 @@ const RequestForm = ({action}) => {
                 textWeight={500}
                 value={formik.values.Narration}
                 onChange={formik.handleChange("Narration")}
-                error={
-                  formik.touched.Narration &&
-                  formik.errors.Narration
-                }
+                error={formik.touched.Narration && formik.errors.Narration}
               />
             </div>
             <div className="col-12 md:col-4 lg:col-4">
@@ -478,10 +492,7 @@ const RequestForm = ({action}) => {
                 textWeight={500}
                 value={formik.values.Amount}
                 onChange={formik.handleChange("Amount")}
-                error={
-                  formik.touched.Amount &&
-                  formik.errors.Amount
-                }
+                error={formik.touched.Amount && formik.errors.Amount}
               />
             </div>
           </div>
@@ -498,8 +509,6 @@ const RequestForm = ({action}) => {
           </div>
         </div>
       </Dialog>
-
-
     </div>
   );
 };

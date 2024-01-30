@@ -19,6 +19,8 @@ import DropDowns from "../../../../components/DropDowns";
 import { Maincode, SubAccount } from "../../mock";
 import { useDispatch, useSelector } from "react-redux";
 import { postEditDisbursmentMiddleware } from "../store/pettyCashDisbursementMiddleware";
+import { Dropdown } from "primereact/dropdown";
+import SvgAdd from "../../../../assets/icons/SvgAdd";
 
 const initialValue = {
   RequestNumber: "",
@@ -38,6 +40,7 @@ const AddDisbursementTable = () => {
   const [moduleData, setModuleData] = useState();
   const [selectedRows, setSelectedRows] = useState([]);
   const [totalAmounts, setTotalAmounts] = useState(0);
+  const [formAction, setformAction] = useState(null);
   const [show, setshow] = useState(false);
   const dispatch = useDispatch();
   const toastRef = useRef(null);
@@ -71,7 +74,10 @@ const AddDisbursementTable = () => {
   );
 
   const items = [
-    { label: "Petty Cash", command: () => navigate( "/accounts/pettycash/disbursement" )},
+    {
+      label: "Petty Cash",
+      command: () => navigate("/accounts/pettycash/disbursement"),
+    },
     {
       label: "Add Disbursement",
       to: "/accounts/pettycash/adddisbursementtable",
@@ -80,7 +86,7 @@ const AddDisbursementTable = () => {
   const Initiate = { label: "Accounts" };
 
   const handleClick = (rowData) => {
-    console.log(rowData,"rowData")
+    console.log(rowData, "rowData");
     const clickedAmount = parseInt(rowData.TotalAmount);
     setTotalAmounts((prevTotalAmounts) => prevTotalAmounts + clickedAmount);
   };
@@ -88,39 +94,42 @@ const AddDisbursementTable = () => {
   const handleBack = () => {
     navigate("/accounts/pettycash/adddisbursement");
   };
-  const headaction ={
-    justifyContent: 'center',
-// textalign: center,
-fontSize: 16,
-fontFamily: 'Inter, sans-serif',
-fontWeight: 500,
-// padding: "18px 8px",
-// paddingTop:4,
-color: "#000",
-border:" none",
-display: "flex",
-// paddingBottom:"28px",
-// paddingTop:"8px"
-  }
+  const headaction = {
+    justifyContent: "center",
+    // textalign: center,
+    fontSize: 16,
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    // padding: "18px 8px",
+    // paddingTop:4,
+    color: "#000",
+    border: " none",
+    display: "flex",
+    // paddingBottom:"28px",
+    // paddingTop:"8px"
+  };
 
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 8,
     color: "#000",
     border: "none",
     textAlign: "center",
-    paddingLeft:0
+    paddingLeft: 0,
   };
   const handleEdit = (data) => {
     console.log(data, "sata");
-
+    setformAction("Edit");
     setModuleData({ ...data });
     setVisible(true);
   };
-
+  const handleView = () => {
+    setformAction("Add");
+    setVisible(true);
+  };
   const validate = (values) => {
     const errors = {};
 
@@ -193,7 +202,6 @@ display: "flex",
     }
     formik.setFieldValue("MainAccountDescription", description);
   };
- 
 
   const SetFormikValue = () => {
     const updatedValues = {
@@ -210,8 +218,39 @@ display: "flex",
     formik.setFieldValue("TotalAmount", moduleData?.TotalAmount || "");
   }, [moduleData]);
 
-
   console.log(AddDisbursmentTable, "RequestList");
+  const template2 = {
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    RowsPerPageDropdown: (options) => {
+      const dropdownOptions = [
+        { label: 5, value: 5 },
+        { label: 10, value: 10 },
+        { label: 20, value: 20 },
+        { label: 120, value: 120 },
+      ];
+
+      return (
+        <div className="paginator__container">
+          <React.Fragment>
+            <span
+              className="mx-1"
+              style={{ color: "var(--text-color)", userSelect: "none" }}
+            >
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdownunique_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          </React.Fragment>
+        </div>
+      );
+    },
+  };
+
   return (
     <div className="add__disbursement__table">
       <CustomToast
@@ -241,8 +280,19 @@ display: "flex",
       </div>
       <Card>
         <div className="sub__container grid ">
-          <div className="sub__container__title col-12 md:col-12 lg:col-6">
-            <div className="sub__request__title">Request List</div>
+          <div className="sub__container__title col-12">
+            <div className="table__top__btn__container">
+              <div className="sub__request__title">Request List</div>
+
+              <Button
+                label="Add"
+                icon={<SvgAdd color={"#fff"} />}
+                className="add__btn"
+                onClick={() => {
+                  handleView();
+                }}
+              />
+            </div>
           </div>
         </div>
         <div className="table__container">
@@ -253,87 +303,71 @@ display: "flex",
             selection={selectedRows}
             onSelectionChange={(e) => setSelectedRows(e.value)}
             selectionMode="checkbox"
+            scrollable={true}
+            scrollHeight="40vh"
+            paginator
+            rows={5}
+            rowsPerPageOptions={[5, 10, 25, 50]}
+            // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+            paginatorTemplate={template2}
           >
-            {/* <Column
-              header={<input type="checkbox" />}
-              body={(rowData) => (
-                <input
-                  type="checkbox"
-                  onClick={() => {
-                    handleClick(rowData); 
-                  }}
-                />
-              )}
-              headerStyle={headerStyle}
-              style={{ textAlign: "center" }}
-            /> */}
-
-<Column
-headerStyle={headaction}
+            <Column
+              headerStyle={headaction}
               selectionMode="multiple"
               selectedItem
-              style={{textAlign:'center'}}
+              style={{ textAlign: "center" }}
               // headerStyle={{ width: "4rem" }}
             ></Column>
             <Column
-              field="RequestNumber"
-              header="Request Number"
+              field="RequesterName"
+              header="Requested By"
               headerStyle={headerStyle}
               sortable
             ></Column>
             <Column
-              field="RequesterName"
-              header="Requester"
+              field="ExpenseCode"
+              header="Expense Code"
               headerStyle={headerStyle}
               sortable
+            ></Column>
+
+            <Column
+              field="SubAc"
+              header="Sub Ac"
+              headerStyle={headerStyle}
+            ></Column>
+            <Column
+              field="Purpose"
+              header="Purpose"
+              headerStyle={headerStyle}
             ></Column>
             <Column
               field="Remarks"
               header="Remarks"
               headerStyle={headerStyle}
-              body={(rowData) => rowData.Remarks || "-"}
+              sortable
             ></Column>
             <Column
               field="Amount"
               header="Amount"
               headerStyle={headerStyle}
-              body={(rowData) => rowData.Amount || "-"}
               sortable
             ></Column>
+
+            <Column field="VAT" header="VAT" headerStyle={headerStyle}></Column>
+            <Column field="WHT" header="WHT" headerStyle={headerStyle}></Column>
             <Column
-              field="VAT"
-              header="VAT%"
-              headerStyle={headerStyle}
-              body={(rowData) => rowData.VAT || "-"}
-            ></Column>
-            <Column
-              field="EWT"
-              header="EWT%"
-              headerStyle={headerStyle}
-              body={(rowData) => rowData.EWT || "-"}
-            ></Column>
-            <Column
-              field="MainAccount"
-              header="Main Account"
-              headerStyle={headerStyle}
-              body={(rowData) => rowData.MainAccount || "-"}
-            ></Column>
-            <Column
-              field="SubAccount"
-              header="Sub Account"
-              headerStyle={headerStyle}
-              body={(rowData) => rowData.SubAccount || "-"}
-            ></Column>
-            <Column
-              field="TotalAmount"
-              header="Total Amount"
+              field="NetAmount"
+              header="Net Amount"
               headerStyle={headerStyle}
             ></Column>
+
             <Column
               field="Action"
               header="Action"
               headerStyle={headaction}
-              style={{textAlign:'center'}}
+              style={{ textAlign: "center" }}
               body={(rowData) => (
                 <Button
                   icon={<SvgEditIcon />}
@@ -373,47 +407,129 @@ headerStyle={headaction}
         </div>
       </div>
       <Dialog
-        header="Edit Disbursement"
+        header={`${formAction} Disbursement`}
         visible={visible}
         style={{ width: "40vw" }}
         onHide={() => setVisible(false)}
         headerStyle={{
           color: "#343434",
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: "Inter, sans-serif",
           fontSize: "24px",
           fontWeight: "600",
           lineHeight: "150%",
         }}
         className="dailog__container"
       >
-        <form onSubmit={formik.handleSubmit}>
+        <div>
           <div className="grid">
-            <div className="col-12 md:col-6 lg:col-6">
+            <div className="col-12 md:col-6 lg:col-6 xl:col-6">
+              <DropDowns
+                className="input__filed"
+                label="Requested By"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formik.values.SubAccountCode}
+                // options={SubAccount}
+                // onChange={(e) => {
+                //   formik.setFieldValue("SubAccountCode", e.value);
+                // }}
+                // optionLabel="SubAccount"
+                // error={
+                //   formik.touched.SubAccountCode && formik.errors.SubAccountCode
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6 xl:col-6">
+              <DropDowns
+                className="input__filed"
+                label="Expense Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formik.values.SubAccountCode}
+                // options={SubAccount}
+                // onChange={(e) => {
+                //   formik.setFieldValue("SubAccountCode", e.value);
+                // }}
+                // optionLabel="SubAccount"
+                // error={
+                //   formik.touched.SubAccountCode && formik.errors.SubAccountCode
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6 xl:col-6">
+              <DropDowns
+                className="input__filed"
+                label="Sub Account"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formik.values.SubAccountCode}
+                // options={SubAccount}
+                // onChange={(e) => {
+                //   formik.setFieldValue("SubAccountCode", e.value);
+                // }}
+                // optionLabel="SubAccount"
+                // error={
+                //   formik.touched.SubAccountCode && formik.errors.SubAccountCode
+                // }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6 xl:col-6">
               <InputField
                 classNames="input__filed"
-                label="Request Number"
-                // placeholder="Enter"
+                label="Purpose"
                 disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.RequestNumber}
+
+                // value={formik.values.RequestNumber}
+              />
+            </div>
+            <div className="col-12 ">
+              <InputField
+                classNames="input__filed"
+                label="Remarks"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.Remarks}
+                onChange={formik.handleChange("Remarks")}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputField
                 classNames="input__filed"
-                label="Requester"
-                // placeholder="Enter"
-                disabled={true}
+                label="VAT"
+                placeholder="Enter"
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.Requester}
+                value={formik.values.VAT}
+                onChange={formik.handleChange("VAT")}
               />
             </div>
-          </div>
-          <div className="grid">
+            <div className="col-12 md:col-6 lg:col-6">
+              <InputField
+                classNames="input__filed"
+                label="WHT"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                // value={formik.values.EWT}
+                // onChange={formik.handleChange("EWT")}
+              />
+            </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputField
                 classNames="input__filed"
@@ -426,125 +542,24 @@ headerStyle={headaction}
                 onChange={formik.handleChange("Amount")}
               />
             </div>
-          </div>
-          <div className="grid">
             <div className="col-12 md:col-6 lg:col-6">
               <InputField
                 classNames="input__filed"
-                label="VAT (Optional)"
-                placeholder="Enter"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.VAT}
-                onChange={formik.handleChange("VAT")}
-              />
-            </div>
-            <div className="col-12 md:col-6 lg:col-6">
-              <InputField
-                classNames="input__filed"
-                label="EWT (Optional)"
-                placeholder="Enter"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.EWT}
-                onChange={formik.handleChange("EWT")}
-              />
-            </div>
-          </div>
-          <div className="grid">
-            <div className="col-12 md:col-4 lg:col-4">
-              <DropDowns
-                className="input__filed"
-                label="Main Account Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.MainAccountCode}
-                options={Maincode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("MainAccountCode", e.value);
-                  handlePettyCashMainAccountDescribtion(e.value);
-                }}
-                optionLabel="Maincode"
-                error={
-                  formik.touched.MainAccountCode &&
-                  formik.errors.MainAccountCode
-                }
-              />
-            </div>
-            <div className="col-12 md:col-8 lg:col-8">
-              <InputField
-                classNames="input__filed"
-                label="Main Account Description"
+                label="Net Amount"
                 // placeholder="Enter"
-                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.MainAccountDescription}
+                // value={formik.values.Amount}
+                // onChange={formik.handleChange("Amount")}
               />
             </div>
           </div>
-          <div className="grid">
-            <div className="col-12 md:col-4 lg:col-4">
-              <DropDowns
-                className="input__filed"
-                label="Sub Account Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.SubAccountCode}
-                options={SubAccount}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("SubAccountCode", e.value);
-                  handlePettyCashSubAccountCodedecription(e.value);
-                }}
-                optionLabel="SubAccount"
-                error={
-                  formik.touched.SubAccountCode && formik.errors.SubAccountCode
-                }
-              />
-            </div>
-            <div className="col-12 md:col-8 lg:col-8">
-              <InputField
-                classNames="input__filed"
-                label="Sub Account Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.SubAccountDescription}
-              />
-            </div>
-          </div>
-          <div className="grid">
-            <div className="col-12 md:col-12 lg:col-12">
-              <InputField
-                classNames="input__filed"
-                label="Remarks (Optional)"
-                placeholder="Enter"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Remarks}
-                onChange={formik.handleChange("Remarks")}
-              />
-            </div>
-          </div>
-        </form>
+        </div>
         <div className="grid">
           <div className="col-12 md:col-12 lg:col-12 bt__container">
             <Button
-              label="Update"
+              label={formAction === "Edit" ? "Update" : "Add"}
               className="add__btn"
               onClick={() => {
                 formik.handleSubmit();

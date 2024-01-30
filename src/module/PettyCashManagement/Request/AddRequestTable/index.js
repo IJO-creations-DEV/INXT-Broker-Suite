@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import { useFormik } from "formik";
@@ -16,7 +16,10 @@ import InputField from "../../../../components/InputField";
 import SvgDelete from "../../../../assets/icons/SvgDeleteIcon";
 import { Card } from "primereact/card";
 import { useDispatch, useSelector } from "react-redux";
-import { postAddRequestMiddleware, postEditRequestMiddleware } from "../store/pettyCashRequestMiddleware";
+import {
+  postAddRequestMiddleware,
+  postEditRequestMiddleware,
+} from "../store/pettyCashRequestMiddleware";
 
 const initialValue = {
   Narration: "",
@@ -29,6 +32,7 @@ const AddRequestTable = () => {
   const dispatch = useDispatch();
   const toastRef = useRef(null);
   const navigate = useNavigate();
+  const [toastMessage, setToastMessage] = useState("");
 
   const { AddRequestTable, loading } = useSelector(
     ({ pettyCashRequestReducer }) => {
@@ -39,11 +43,20 @@ const AddRequestTable = () => {
     }
   );
 
-  
   const isEmpty = AddRequestTable.length === 0;
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    if (toastMessage != null) {
+    }
+  }, [toastMessage]);
+
+  const handleSubmit = (actionName) => {
     dispatch(postAddRequestMiddleware(totalAmount));
+    // if (actionName === "save") {
+    //   setToastMessage("Successfully saved");
+    // } else if (actionName === "approve") {
+    //   setToastMessage("Transaction Number 1234 is created");
+    // }
     toastRef.current.showToast();
     {
       setTimeout(() => {
@@ -62,7 +75,10 @@ const AddRequestTable = () => {
   );
 
   const items = [
-    { label: "Petty Cash", command: () => navigate( "/accounts/pettycash/pettycashrequest" )},
+    {
+      label: "Petty Cash",
+      command: () => navigate("/accounts/pettycash/pettycashrequest"),
+    },
     {
       label: "Add Request",
       to: "/accounts/pettycash/addrequesttable",
@@ -81,7 +97,7 @@ const AddRequestTable = () => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -120,14 +136,17 @@ const AddRequestTable = () => {
     },
   });
 
-  const totalAmount = AddRequestTable.reduce((total, item) => total + parseInt(item.Amount), 0);
+  const totalAmount = AddRequestTable.reduce(
+    (total, item) => total + parseInt(item.Amount),
+    0
+  );
 
-  const handleDelete = (id) => {
-  };
+  const handleDelete = (id) => {};
 
   return (
     <div className="add__request__table">
-      <CustomToast ref={toastRef} message="Petty Cash Request Successfully"/>
+      <CustomToast ref={toastRef} message="Successfully saved" />
+
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
           <div
@@ -149,7 +168,7 @@ const AddRequestTable = () => {
           </div>
         </div>
       </div>
-      <Card>
+      <Card className="table__container__outer mt-4">
         <div className="sub__container grid ">
           <div className="sub__container__title col-12 md:col-6 lg:col-6">
             <div className="sub__request__title">Request List</div>
@@ -188,15 +207,19 @@ const AddRequestTable = () => {
             <Column
               field="Action"
               header="Action"
-              headerStyle={{ ...headerStyle, display:"flex",justifyContent: 'flex-end' }}
+              headerStyle={{
+                ...headerStyle,
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
               body={(rowData) => (
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  icon={<SvgDelete />}
-                  className="delete__btn"
-                  onClick={() => handleDelete(rowData.id)}
-                />
-              </div>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <Button
+                    icon={<SvgDelete />}
+                    className="delete__btn"
+                    onClick={() => handleDelete(rowData.id)}
+                  />
+                </div>
               )}
             ></Column>
           </DataTable>
@@ -222,10 +245,17 @@ const AddRequestTable = () => {
         <div className="col-12 md:col-12 lg:col-12">
           <div className="btn__container">
             <Button
+              label="Save"
+              className="add__btn"
+              onClick={() => {
+                handleSubmit("save");
+              }}
+            />
+            <Button
               label="Approve"
               className="add__btn"
               onClick={() => {
-                handleSubmit();
+                handleSubmit("approve");
               }}
             />
           </div>
@@ -236,9 +266,10 @@ const AddRequestTable = () => {
         visible={visible}
         style={{ width: "50vw" }}
         onHide={() => setVisible(false)}
+        dismissableMask={true}
         headerStyle={{
           color: "#343434",
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: "Inter, sans-serif",
           fontSize: 16,
           fontWeight: 500,
           // lineHeight: "150%",
@@ -258,10 +289,7 @@ const AddRequestTable = () => {
                 textWeight={500}
                 value={formik.values.Narration}
                 onChange={formik.handleChange("Narration")}
-                error={
-                  formik.touched.Narration &&
-                  formik.errors.Narration
-                }
+                error={formik.touched.Narration && formik.errors.Narration}
               />
             </div>
             <div className="col-12 md:col-4 lg:col-4">
@@ -274,10 +302,7 @@ const AddRequestTable = () => {
                 textWeight={500}
                 value={formik.values.Amount}
                 onChange={formik.handleChange("Amount")}
-                error={
-                  formik.touched.Amount &&
-                  formik.errors.Amount
-                }
+                error={formik.touched.Amount && formik.errors.Amount}
               />
             </div>
           </div>

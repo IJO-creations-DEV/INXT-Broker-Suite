@@ -1,6 +1,6 @@
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
-import React from "react";
+import React, { useState } from "react";
 import TableDropdownField from "../../../component/tableDropDwonField";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -12,6 +12,8 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 
 const ExpiringPolicyCard = () => {
+  const [search,setSearch]=useState("")
+  const [globalFilter,setGlobalFilter]=useState("")
 
   // const { openitemtListData, loading, openitemSearchListData } = useSelector(
   //   ({ openitemTabelMainReducers }) => {
@@ -24,10 +26,10 @@ const ExpiringPolicyCard = () => {
   // );
 
   // const [globalFilter, setGlobalFilter] = useState("policy Number");
-  // const cities = [
-  //   { name: "Policy Number", code: "policy Number" },
-  //   { name: "EndorsementID", code: "EndorsementID" },
-  // ];
+  const policy = [
+    { name: "Policy Number", code: "policy Number" },
+    { name: "EndorsementID", code: "EndorsementID" },
+  ];
 
   // useEffect(() => {
   //   if (globalFilter && search) {
@@ -242,7 +244,7 @@ const ExpiringPolicyCard = () => {
           <Dropdown
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.value)}
-            options={cities}
+            options={policy}
             optionLabel="name"
             optionValue="code"
             placeholder="Search by"

@@ -16,7 +16,7 @@ import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchUserMiddleware } from "../store/userMiddleware";
+import { getSearchUserMiddleware, getUserViewDataMiddleWare } from "../store/userMiddleware";
 
 const UserMaster = () => {
   const [search, setSearch] = useState("");
@@ -42,8 +42,9 @@ const UserMaster = () => {
     }
   }, [search]);
 
-  const handleView = (id) => {
-    navigate(`/master/generals/usermanagement/user/view/${id}`);
+  const handleView = (rowData) => {
+    dispatch(getUserViewDataMiddleWare(rowData))
+    navigate(`/master/generals/usermanagement/user/view/${rowData?.id}`);
   };
 
   const handlEdit = (id) => {
@@ -90,7 +91,7 @@ const UserMaster = () => {
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-          onClick={() => handleView(rowData?.id)}
+          onClick={() => handleView(rowData)}
         />
         <Button
           icon={<SvgEditIcon />}
@@ -220,7 +221,7 @@ const UserMaster = () => {
                   className="fieldvalue_container"
                 ></Column>
                 <Column
-                  field="e-mail"
+                  field="email"
                   header="E-mail"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"

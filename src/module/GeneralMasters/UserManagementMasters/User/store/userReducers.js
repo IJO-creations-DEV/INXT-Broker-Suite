@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSearchUserMiddleware, getUserListByIdMiddleware, getUserMiddleware, patchUserEditMiddleware, postAddUserMiddleware } from "./userMiddleware";
+import { getSearchUserMiddleware, getUserListByIdMiddleware, getUserMiddleware, getUserViewDataMiddleWare, patchUserEditMiddleware, postAddUserMiddleware } from "./userMiddleware";
 // import SvgIconeye from "../../../assets/icons/SvgIconeye";
 const initialState = {
   loading: false,
@@ -126,7 +126,8 @@ const initialState = {
     },
   ],
   userSearchList: [],
-  userDetailList: {}
+  userDetailList: {},
+  userViewData:{}
 };
 const usersReducer = createSlice({
   name: "user",
@@ -209,6 +210,28 @@ const usersReducer = createSlice({
         state.loading = false;
 
         state.editList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    builder.addCase(getUserViewDataMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getUserViewDataMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+
+        state.userViewData = action.payload;
+      }
+    );
+    builder.addCase(
+      getUserViewDataMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.userViewData = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

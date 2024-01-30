@@ -88,7 +88,7 @@ const initialState = {
   ]
   ,
   CityListById: "",
-  SearchCity: "",
+  SearchCity: [],
   CityEdit: ""
 };
 const cityReducer = createSlice({

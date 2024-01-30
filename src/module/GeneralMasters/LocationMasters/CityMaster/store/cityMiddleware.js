@@ -62,16 +62,31 @@ export const patchCityEditMiddleware = createAsyncThunk(
     }
   }
 );
+
+
 export const getSearchCityMiddleware = createAsyncThunk(
   GET_SERACH_CITY,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, getState }) => {
+    const { textSearch } = payload;
+    const { cityReducers } = getState();
+
+    const { cityTableList } = cityReducers;
+    console.log(cityTableList, "1234")
+
     try {
-      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      if (textSearch.trim() !== "") {
+        const searchResults = cityTableList.filter(item => {
+          return item.CityName.toLowerCase().includes(textSearch.toLowerCase())
+        });
+        console.log(searchResults, "searchResults")
+        return searchResults;
+      } else {
+        return cityTableList;
+      }
     } catch (error) {
-      return rejectWithValue(error?.response.data.error.message);
+      return rejectWithValue(error?.response?.data?.error?.message);
     }
-  }
+  },
 );
 
 

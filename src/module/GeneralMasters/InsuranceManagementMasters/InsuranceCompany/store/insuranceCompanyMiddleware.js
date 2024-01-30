@@ -6,6 +6,8 @@ import {
   GET_INSURANCE_COMPANY_LIST,
   POST_INSURANCE_COMPANY_DATA,
   PATCH_INSURANCE_COMPANY_DATA,
+  GET_INSURANCE_VIEW,
+  GET_INSURANCE_PATCH_DATA,
 } from "../../../../../redux/actionTypes";
 
 export const getInsuranceCompanyListMiddleWare = createAsyncThunk(
@@ -27,12 +29,17 @@ export const postInsuranceCompanyMiddleWare = createAsyncThunk(
       id: payload?.id,
       modifiedby: "Name",
       modifiedOn: "12/12/2023",
-      Status: 0,
       insuranceCompanyCode: payload?.insuranceCompanyCode,
       insuranceCompanyName: payload?.insuranceCompanyName,
+      insuranceCompanyDescription:payload?.insuranceCompanyDescription,
       email: payload?.email,
       phoneNumber: payload?.phoneNumber,
-      action: payload?.id,
+      addressLine1: payload?.addressLine1,
+      addressLine2: payload?.addressLine2,
+      addressLine3: payload?.addressLine3,
+      city: payload?.city,
+      state: payload?.state,
+      country: payload?.country,
     };
     console.log(bodyTableData, "find add datas in midd");
 
@@ -49,29 +56,45 @@ export const patchInsuranceCompanyMiddleWare = createAsyncThunk(
   async (payload, { rejectWithValue, getState }) => {
     const { insuranceCompanyReducers } = getState();
     const { InsuranceCompanyList } = insuranceCompanyReducers;
-    const updatedData = InsuranceCompanyList?.map((item) => {
-      if (parseInt(item.id) === parseInt(payload?.id)) {
-        return {
-          ...item,
-          insuranceCompanyCode: payload?.insuranceCompanyCode,
-          insuranceCompanyName: payload?.insuranceCompanyName,
-          email: payload?.email,
-          phoneNumber: payload?.phoneNumber,
-          addressLine1: payload?.addressLine1,
-          addressLine2: payload?.addressLine2,
-          addressLine3: payload?.addressLine3,
-          city: payload?.city,
-          state: payload?.state,
-          country: payload?.country,
-        };
-      }
-      return item;
-    });
-    console.log(updatedData, "find updatedData");
+    const data={
+      id: payload?.id,
+      modifiedby: "Name",
+      modifiedOn: "12/12/2023",
+      insuranceCompanyCode: payload?.insuranceCompanyCode,
+      insuranceCompanyName: payload?.insuranceCompanyName,
+      insuranceCompanyDescription:payload?.insuranceCompanyDescription,
+      email: payload?.email,
+      phoneNumber: payload?.phoneNumber,
+      addressLine1: payload?.addressLine1,
+      addressLine2: payload?.addressLine2,
+      addressLine3: payload?.addressLine3,
+      city: payload?.city,
+      state: payload?.state,
+      country: payload?.country,
+    }
+    // const updatedData = InsuranceCompanyList?.map((item) => {
+    //   if (parseInt(item.id) === parseInt(payload?.id)) {
+    //     return {
+    //       id: payload?.id,
+    //       insuranceCompanyCode: payload?.insuranceCompanyCode,
+    //       insuranceCompanyName: payload?.insuranceCompanyName,
+    //       email: payload?.email,
+    //       phoneNumber: payload?.phoneNumber,
+    //       addressLine1: payload?.addressLine1,
+    //       addressLine2: payload?.addressLine2,
+    //       addressLine3: payload?.addressLine3,
+    //       city: payload?.city,
+    //       state: payload?.state,
+    //       country: payload?.country,
+    //     };
+    //   }
+    //   return item;
+    // });
+    // console.log(updatedData, "find updatedData");
 
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return updatedData;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -100,6 +123,31 @@ export const getSearchInsuranceCompanyMiddleware = createAsyncThunk(
       }
     } catch (error) {
       return rejectWithValue(error?.response?.data?.error?.message);
+    }
+  }
+);
+export const getInsuranceViewMiddleWare = createAsyncThunk(
+  GET_INSURANCE_VIEW,
+  async (payload, { rejectWithValue, getState }) => {
+    const { insuranceCompanyReducers } = getState();
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getInsurancePatchData = createAsyncThunk(
+  GET_INSURANCE_PATCH_DATA,
+  async (payload, { rejectWithValue, getState }) => {
+    const { insuranceCompanyReducers } = getState();
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
     }
   }
 );

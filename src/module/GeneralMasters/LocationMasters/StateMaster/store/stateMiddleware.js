@@ -66,16 +66,30 @@ export const patchStateEditMiddleware = createAsyncThunk(
     }
   }
 );
+
 export const getSearchStateMiddleware = createAsyncThunk(
   GET_SERACH_STATE,
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, getState }) => {
+    const { textSearch } = payload;
+    const { stateReducers } = getState();
+
+    const { stateTableList } = stateReducers;
+    console.log(stateTableList, "1234")
+
     try {
-      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      if (textSearch.trim() !== "") {
+        const searchResults = stateTableList.filter(item => {
+          return item.StateName.toLowerCase().includes(textSearch.toLowerCase())
+        });
+        console.log(searchResults, "searchResults")
+        return searchResults;
+      } else {
+        return stateTableList;
+      }
     } catch (error) {
-      return rejectWithValue(error?.response.data.error.message);
+      return rejectWithValue(error?.response?.data?.error?.message);
     }
-  }
+  },
 );
 
 

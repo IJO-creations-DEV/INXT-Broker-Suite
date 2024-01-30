@@ -264,6 +264,7 @@ export const POST_ADD_USER = "user/POST_ADD_USER";
 export const PATCH_USER_EDIT = "user/PATCH_USER_EDIT";
 export const GET_SERACH_USER = "user/GET_SERACH_USER";
 export const GET_ADD_BRANCH_USER = "user/GET_SERACH_ROLE";
+export const GET_USER_DATA_VIEW="user/GET_USER_DATA_VIEW"
 
 export const GET_BRANCH_DETAILS = "branch/GET_BRANCH_DETAILS";
 export const GET_BRANCH_BY_ID = "branch/GET_BRANCH_BY_ID";
@@ -313,6 +314,8 @@ export const POST_INSURANCE_COMPANY_DATA =
   "insurancecompany/POST_INSURANCE_COMPANY_DATA";
 export const PATCH_INSURANCE_COMPANY_DATA =
   "insurancecompany/PATCH_INSURANCE_COMPANY_DATA";
+  export const GET_INSURANCE_VIEW="insurancecompany/GET_INSURANCE_VIEW"
+  export const GET_INSURANCE_PATCH_DATA="insurancecompany/GET_INSURANCE_PATCH_DATA"
 
 export const GET_INSURANCE_LIST_OF_BUSINESS_SEARCH_LIST =
   "insurancecompany/ GET_INSURANCE_LIST_OF_BUSINESS_SEARCH_LIST";

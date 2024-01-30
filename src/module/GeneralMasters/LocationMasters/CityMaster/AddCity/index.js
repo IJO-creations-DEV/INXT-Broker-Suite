@@ -37,7 +37,7 @@ const initialValues = {
 function AddCity({ action }) {
   const toastRef = useRef(null);
   const dispatch = useDispatch();
-  const [statedata, setstatedata] = useState();
+  const [statedata, setstatedata] = useState([]);
   const Navigate = useNavigate();
   const { id } = useParams();
 
@@ -56,21 +56,21 @@ function AddCity({ action }) {
   const items = [
     { label: "Location", url: "/master/finance/exchangerate" },
     {
-      label: `${
-        action === "add"
-          ? "Add City"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add City"
+        : action === "edit"
           ? "Edit City"
           : "City details"
-      }`,
+        }`,
     },
   ];
 
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-
+  const [stateOptionData, setStateOptionData] = useState([])
   const State = countriesData.state.map(state => ({
-    label: state,
+    label: action === "add" ? state : CityListById?.State,
+    value: action === "add" ? state : CityListById?.State,
   }));
   console.log(statedata, "statedata");
   const setFormikValues = () => {
@@ -80,23 +80,40 @@ function AddCity({ action }) {
       CityCode: CityListById?.Citycode || "",
       CityName: CityListById?.CityName || "",
       Description: "Description",
-      State: statedata || "",
+      State: statedatas || "",
       ModifiedBy: CityListById?.Modifiedby || "",
       ModifiedOn: CityListById?.ModifiedOn || "",
     };
-
     if (action === "view") {
       if (statedatas) {
         formik.setValues({ ...formik.values, ...updatedValues });
-        formik.setFieldValue("State", statedatas);
-        setstatedata([{ name: statedatas, code: statedatas }]);
+        formik.setFieldValue("statedatas", statedatas);
+        setStateOptionData([{ label: statedatas, value: statedatas }]);
       }
     } else {
       if (statedatas) {
         formik.setValues({ ...formik.values, ...updatedValues });
-        setstatedata([{ name: statedatas, code: statedatas }]);
+        setStateOptionData([{ label: statedatas, value: statedatas }]);
       }
     }
+    // if (statedatas) {
+    //   formik.setValues({ ...formik.values, ...updatedValues });
+    //   setstatedata([{ label: statedatas, value: statedatas }]);
+    // }
+    formik.setValues({ ...formik.values, ...updatedValues });
+
+    // if (action === "edit") {
+    //   if (statedatas) {
+    //     formik.setValues({ ...formik.values, ...updatedValues });
+    //     formik.setFieldValue("State", statedatas);
+    //     setstatedata([{ label: statedatas, value: statedatas }]);
+    //   }
+    // } else {
+    //   if (statedatas) {
+    //     formik.setValues({ ...formik.values, ...updatedValues });
+    //     setstatedata([{ label: statedatas, value: statedatas }]);
+    //   }
+    // }
 
     console.log(updatedValues, "updatedValues");
     console.log(statedata, "statedata");
@@ -126,12 +143,13 @@ function AddCity({ action }) {
   };
 
   const handleSubmitEdit = (values) => {
+    console.log(values, "valuesvalues");
     const data = {
       id: values?.id,
       Citycode: values?.CityCode || "",
       CityName: values?.CityName || "",
       Description: "Description",
-      State: values.State.name || "",
+      State: values.State || "",
       Modifiedby: values?.ModifiedBy || "",
       ModifiedOn: values?.ModifiedOn || "",
     };
@@ -203,8 +221,8 @@ function AddCity({ action }) {
           {action === "add"
             ? "Add City"
             : action === "edit"
-            ? "Edit City"
-            : "City details"}
+              ? "Edit City"
+              : "City details"}
         </label>
       </div>
       <BreadCrumb
@@ -288,7 +306,7 @@ function AddCity({ action }) {
                 // onChange={(e) => setDepartmentCode(e.value)}
                 value={formik.values.State}
                 onChange={(e) => formik.setFieldValue("State", e.value)}
-                options={State}
+                options={action === "add" ? State : action === "edit" ? stateOptionData : State}
                 optionLabel="label"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}

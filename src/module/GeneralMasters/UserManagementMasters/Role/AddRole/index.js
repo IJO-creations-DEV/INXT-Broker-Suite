@@ -123,27 +123,28 @@ const AddRole = ({ action }) => {
   });
   return (
     <div className="grid add__role__container">
-      <div className="col-12"></div>
+     
       <div
         style={{
           justifyContent: "center",
           alignItems: "center",
-          display: "flex",
+          display: "flex", gap: 10, padding: "8px 0px"
         }}
       >
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
-      </div>
-      <div className="add__sub__title">
+        <div className="add__sub__title">
         {action === "add"
           ? "Add Role"
           : action === "edit"
           ? "Edit Role"
           : "View Role"}
       </div>
-      <div className="col-12 mb-2">
-        <div className="mt-3">
+      </div>
+      
+      <div className="col-12 mb-4">
+        <div >
           <BreadCrumb
             home={home}
             className="breadCrums__view__add__screen"
@@ -152,7 +153,7 @@ const AddRole = ({ action }) => {
           />
         </div>
       </div>
-      <Card>
+      <Card className="common__card__container">
         <div className="col-12 m-0 ">
           <div className="grid add__account__sub__container ">
             <div className="col-12 md:col-3 lg:col-3">
@@ -265,7 +266,7 @@ const AddRole = ({ action }) => {
           )}
         </div>
       </Card>
-      <div className="col-12 btn__view__Add mt-2">
+      <div className="col-12 btn__view__Add mt-4">
         {action === "add" && (
           <Button
             label="Save"

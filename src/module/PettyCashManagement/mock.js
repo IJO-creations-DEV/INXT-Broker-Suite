@@ -33,6 +33,12 @@ export const Branchcode = [
   { Branchcode: "PHP003" },
   { Branchcode: "PHP004" },
 ];
+export const TransactionCode = [
+  { Branchcode: "Trans001" },
+  { Branchcode: "Trans002" },
+  { Branchcode: "Trans003" },
+  { Branchcode: "Trans004" },
+];
 export const Departcode = [
   { Departcode: "FIN" },
   { Departcode: "MKT" },

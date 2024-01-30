@@ -12,7 +12,7 @@ const EditUser = () => {
         <div className="col-12 md:col-12 lg-col-12 ">
           <TabView >
             <TabPanel header="Multi Branch Access" ><TransactionCodeSetupTable/></TabPanel>
-            <TabPanel header="Additional Role"><UserGroupAccess/></TabPanel>
+            <TabPanel header="Additional Role" ><UserGroupAccess/></TabPanel>
           </TabView>
         </div>
       </div>

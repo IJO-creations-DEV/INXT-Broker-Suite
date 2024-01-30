@@ -345,8 +345,16 @@ const Maincomponent = () => {
                 element={<PettyCashRequest />}
               />
               <Route
-                path="accounts/pettycash/addrequest"
-                element={<RequestForm />}
+                path="accounts/pettycash/addrequest/add/:id"
+                element={<RequestForm action="add" />}
+              />
+               <Route
+                path="accounts/pettycash/addrequest/view/id"
+                element={<RequestForm  action="view" />}
+              />
+               <Route
+                path="accounts/pettycash/addrequest/edit/id"
+                element={<RequestForm  action="edit" />}
               />
               <Route
                 path="accounts/pettycash/addrequesttable"

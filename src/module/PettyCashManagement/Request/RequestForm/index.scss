@@ -6,6 +6,7 @@
     color: #000;
     font-size: 16px;
   }
+  
   .p-dropdown {
     background: #ffffff;
     border: 1px solid #d1d5db;
@@ -86,5 +87,47 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+  }
+  
+  .calendar_container {
+    width: 100% !important;
+    margin-top: 8px;
+  }
+  .labelfield_container {
+    color: #111927;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .p-calendar-w-btn-right .p-datepicker-trigger {
+    background-color: #fff !important;
+    border-left: none !important;
+    border: 1px solid #d1d5db;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #6366f1;
+  }
+  .btn__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .sub__request__title {
+    color: #111927;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+//   .sub__container{
+//     padding-left: 5%;
+//     padding-right: 5%;
+//   }
+  .sub__container__title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    // padding-left: 4%;
   }
 }

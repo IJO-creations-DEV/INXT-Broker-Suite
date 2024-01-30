@@ -11,12 +11,15 @@
       padding: 0;
       font-family: 'Inter', sans-serif;
       color: #111927;
-      font-size: 14px;
-      font-weight: 600;
-      margin: 10px 0;
+      font-size: 16px;
+      font-weight: 500;
+      margin: 4px 0 10px 0px;
     }
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
       color: #b1b1b1;
+    }
+    .common__card__container{
+      border-radius: 20px;
     }
   
     .add__account__sub__container {
@@ -78,7 +81,7 @@
       align-items: flex-end;
       .save__add__btn {
         height: 40px;
-        width: 130px;
+      
         background-color: #6366f1;
         border-radius: 30px;
         font-size: 20px;

@@ -13,6 +13,11 @@
       border-style: hidden;
       background-color: #FAFAFA
     }
+    .action_icons{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+  }
     .paginatoroverall__container{
       // margin-right: 30%;
       flex:1 0;

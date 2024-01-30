@@ -55,19 +55,9 @@ const TransactionCodeSetupTable = ({action}) => {
       ];
 
       return (
-        <div className="paginator__container">
+        <div className="table__selector">
           <React.Fragment>
-            <span
-              className="mx-1"
-              style={{
-                color: "var(--text-color)",
-                userSelect: "none",
-                width: "127%",
-                textAlign: "center",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
+            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
               Row count :{" "}
             </span>
             <Dropdown
@@ -81,6 +71,7 @@ const TransactionCodeSetupTable = ({action}) => {
       );
     },
   };
+
 
   const handleSubmit = ()=>{
     setShow(false)

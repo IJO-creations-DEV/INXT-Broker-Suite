@@ -1,4 +1,6 @@
 .transactioncode__master__table_view {
+
+ 
   .empty-table-icon {
     display: flex;
     justify-content: center;
@@ -12,6 +14,16 @@
     color: #4b5563;
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
+}
+
+.table__selector {
+  text-align: center;
+  flex: 1 0;
+  .pagedropdown_container {
+    border: none;
+    margin: 0 !important;
+    background-color: #FAFAFA;
+  }
 }
   .pagedropdown_container{
     margin-right: 20px;
@@ -34,15 +46,7 @@
     display: flex !important;
     justify-content: flex-end !important;
   }
-  .dropdown__add__sub.p-dropdown {
-    background: #ffffff;
-    border: 1px solid #d1d5db;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
-      box-shadow 0.2s;
-    border-radius: 6px;
-    margin-top: 0.5rem !important;
-    width: 100% !important; 
-  }
+  
   .input__block .p-inputtext {
     font-family: var(--font-family);
     font-feature-settings: var(--font-feature-settings, normal);
@@ -81,6 +85,7 @@
     border-bottom-right-radius: 6px;
     border-top-left-radius: 0px !important;
 }
+
 }
 .calenderlable__container {
   color: #000;
@@ -129,3 +134,14 @@
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
   }
+  .dialogue_style{
+  .dropdown__add__sub {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
+    border-radius: 6px;
+    margin-top: 0.5rem !important;
+    width: 100% !important; 
+  }
+}

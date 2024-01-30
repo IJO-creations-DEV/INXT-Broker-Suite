@@ -11,7 +11,8 @@ const initialState = {
       "ISOCode": "PHR11",
       "PhoneCode": "+1",
       "Modifiedby": "Admin1",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 2,
@@ -19,7 +20,8 @@ const initialState = {
       "ISOCode": "PHR06",
       "PhoneCode": "+1",
       "Modifiedby": "Admin2",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 3,
@@ -27,7 +29,8 @@ const initialState = {
       "ISOCode": "PHNCR",
       "PhoneCode": "+44",
       "Modifiedby": "Admin3",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 4,
@@ -35,7 +38,8 @@ const initialState = {
       "ISOCode": "PHR01",
       "PhoneCode": "+49",
       "Modifiedby": "Admin4",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 5,
@@ -43,7 +47,8 @@ const initialState = {
       "ISOCode": "PHR06",
       "PhoneCode": "+61",
       "Modifiedby": "Admin5",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 6,
@@ -51,7 +56,8 @@ const initialState = {
       "ISOCode": "PHR09",
       "PhoneCode": "+91",
       "Modifiedby": "Admin6",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 7,
@@ -59,7 +65,8 @@ const initialState = {
       "ISOCode": "PHR01",
       "PhoneCode": "+55",
       "Modifiedby": "Admin7",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 8,
@@ -67,7 +74,8 @@ const initialState = {
       "ISOCode": "PHR01",
       "PhoneCode": "+81",
       "Modifiedby": "Admin8",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 9,
@@ -75,7 +83,8 @@ const initialState = {
       "ISOCode": "PHR4A",
       "PhoneCode": "+27",
       "Modifiedby": "Admin9",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     },
     {
       id: 10,
@@ -83,13 +92,14 @@ const initialState = {
       "ISOCode": "PHARM",
       "PhoneCode": "+52",
       "Modifiedby": "Admin10",
-      "ModifiedOn": "2024-01-12"
+      "ModifiedOn": "2024-01-12",
+      Description: "Description"
     }
   ]
   ,
   countryDetailList: {},
   postAddCountry: "",
-  getSearchCountry: "",
+  getSearchCountry: [],
   patchCountry: ""
 };
 const countryReducer = createSlice({

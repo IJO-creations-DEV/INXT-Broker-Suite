@@ -29,7 +29,7 @@ const initialValues = {
   ISOCode: "",
   Description: "",
   PhoneCode: "",
-  ModifiedBy: "",
+  Modifiedby: "",
   ModifiedOn: "",
 };
 
@@ -56,25 +56,23 @@ function AddExchange({ action }) {
   const items = [
     { label: "Location", url: "/master/finance/exchangerate" },
     {
-      label: `${
-        action === "add"
-          ? "Add Country"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add Country"
+        : action === "edit"
           ? "Edit Country"
           : "Country Details"
-      }`,
+        }`,
     },
   ];
 
   const setFormikValues = () => {
-    // const getCorrectionJVEdit = correctionJVList.find((item) => item.id === EditID);
     const updatedValues = {
       id: countryDetailList?.id,
       CountryName: countryDetailList?.CountryName,
       ISOCode: countryDetailList?.ISOCode,
-      Description: "Description",
-      PhoneCode: "892919072",
-      ModifiedBy: countryDetailList?.Modifiedby,
+      Description: countryDetailList?.Description,
+      PhoneCode: countryDetailList?.PhoneCode,
+      Modifiedby: countryDetailList?.Modifiedby,
       ModifiedOn: countryDetailList?.ModifiedOn,
     };
     console.log(updatedValues, "updatedValues");
@@ -113,6 +111,7 @@ function AddExchange({ action }) {
   };
 
   const handleSubmitEdit = (values) => {
+
     dispatch(patchCountryEditMiddleware(values));
     console.log("Handle Edit Submission", values);
     setTimeout(() => {
@@ -145,8 +144,8 @@ function AddExchange({ action }) {
     // if (!values.PhoneCode) {
     //     errors.PhoneCode = "This field is required";
     // }
-    if (!values.ModifiedBy) {
-      errors.ModifiedBy = "This field is required";
+    if (!values.Modifiedby) {
+      errors.Modifiedby = "This field is required";
     }
 
     if (!values.ModifiedOn) {
@@ -181,8 +180,8 @@ function AddExchange({ action }) {
           {action === "add"
             ? "Add Country"
             : action === "edit"
-            ? "Edit Country"
-            : "Country Details"}
+              ? "Edit Country"
+              : "Country Details"}
         </label>
       </div>
       <BreadCrumb
@@ -192,7 +191,7 @@ function AddExchange({ action }) {
         separatorIcon={<SvgDot color={"#000"} />}
       />
 
-      <Card style={{borderRadius:"20px",marginTop:"20px"}}>
+      <Card style={{ borderRadius: "20px", marginTop: "20px" }}>
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <div>
@@ -289,15 +288,15 @@ function AddExchange({ action }) {
                 label="Modified By"
                 placeholder={"Enter"}
                 //   value={formik.values.CurrencyDescription}
-                value={formik.values.ModifiedBy}
-                onChange={formik.handleChange("ModifiedBy")}
+                value={formik.values.Modifiedby}
+                onChange={formik.handleChange("Modifiedby")}
                 disabled={
                   action === "add" ? false : action === "edit" ? false : true
                 }
               />
-              {formik.touched.ModifiedBy && formik.errors.ModifiedBy && (
+              {formik.touched.Modifiedby && formik.errors.Modifiedby && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.ModifiedBy}
+                  {formik.errors.Modifiedby}
                 </div>
               )}
             </div>

@@ -12,7 +12,7 @@ import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../../components/ToggleButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { getSearchInsuranceCompanyMiddleware } from "../store/insuranceCompanyMiddleware";
+import { getInsurancePatchData, getInsuranceViewMiddleWare, getSearchInsuranceCompanyMiddleware } from "../store/insuranceCompanyMiddleware";
 
 const TableData = ({ navigate }) => {
   const dispatch = useDispatch();
@@ -25,18 +25,19 @@ const TableData = ({ navigate }) => {
       };
     }
   );
-  const headeraction ={
+  console.log(InsuranceCompanyList, "InsuranceCompanyList");
+  const headeraction = {
     fontSize: 16,
-      fontFamily: 'Inter, sans-serif',
-      fontWeight: 500,
-      padding: "1rem",
-      color:'#000',
-      border: 'none',
-      // display:'flex',
-      // justifyContent:'space-around',
-      // alignItem:'center'
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 500,
+    padding: "1rem",
+    color: '#000',
+    border: 'none',
+    // display:'flex',
+    // justifyContent:'space-around',
+    // alignItem:'center'
   }
-  
+
   const headerstyle = {
     // width: '10rem',
     // backgroundColor: 'red',
@@ -44,9 +45,9 @@ const TableData = ({ navigate }) => {
     fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: "1rem",
-    color:'#000',
+    color: '#000',
     border: 'none',
-};
+  };
   const emptyTableIcon = (
     <div>
       <div className="empty-table-icon">
@@ -68,46 +69,50 @@ const TableData = ({ navigate }) => {
 
       return (
         <div className="table__selector">
-          
-            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-         
+
+          <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+            Row count :{" "}
+          </span>
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
+
         </div>
       );
     },
   };
   const renderActionButton = (rowData) => {
+    console.log(rowData, "rowDatarowData");
     return (
       <div className="action__button__container">
         <Button
           icon={<SvgIconeye />}
-          onClick={() => handleView(rowData.id)}
+          onClick={() => handleView(rowData)}
           className="action__button p-0"
         />
         <Button
           icon={<SvgEdit />}
-          onClick={() => handleEdit(rowData.id)}
+          onClick={() => handleEdit(rowData)}
           className="action__button p-0 w-auto"
         />
       </div>
     );
   };
 
-  const handleView = (id) => {
+  const handleView = (rowData) => {
+    dispatch(getInsuranceViewMiddleWare(rowData))
     navigate(
-      `/master/generals/insurancemanagement/insurancecompany/view/${id}`
+      `/master/generals/insurancemanagement/insurancecompany/view/${rowData?.id}`
     );
   };
-  const handleEdit = (id) => {
+  const handleEdit = (rowData) => {
+    console.log(rowData, "rowData");
+    dispatch(getInsurancePatchData(rowData))
     navigate(
-      `/master/generals/insurancemanagement/insurancecompany/edit/${id}`
+      `/master/generals/insurancemanagement/insurancecompany/edit/${rowData?.id}`
     );
   };
   const handleSubmit = (values) => {
@@ -206,7 +211,7 @@ const TableData = ({ navigate }) => {
           // style={{
           //   padding: "20px 1rem 17px 0px",
           // }}
-          field="id"
+          // field="id"
           body={renderActionButton}
           header="Action"
           // className="fieldvalue_container"

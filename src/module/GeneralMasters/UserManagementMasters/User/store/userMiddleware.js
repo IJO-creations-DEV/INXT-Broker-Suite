@@ -4,7 +4,8 @@ import {
   POST_ADD_USER,
   PATCH_USER_EDIT,
   GET_SERACH_USER,
-  GET_ADD_BRANCH_USER
+  GET_ADD_BRANCH_USER,
+  GET_USER_DATA_VIEW
 } from "../../../../../redux/actionTypes";
 // import { getRequest } from "../../../utility/commonServices";
 // import { APIROUTES } from "../../../routes/apiRoutes";
@@ -102,6 +103,18 @@ export const getSearchUserMiddleware = createAsyncThunk(
 
 export const getBranchAddUserMiddleware = createAsyncThunk(
   GET_ADD_BRANCH_USER,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getUserViewDataMiddleWare = createAsyncThunk(
+  GET_USER_DATA_VIEW,
   async (payload, { rejectWithValue }) => {
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);

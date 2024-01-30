@@ -4,6 +4,8 @@ import {
   postInsuranceCompanyMiddleWare,
   patchInsuranceCompanyMiddleWare,
   getSearchInsuranceCompanyMiddleware,
+  getInsuranceViewMiddleWare,
+  getInsurancePatchData,
 } from "./insuranceCompanyMiddleware";
 const initialState = {
   loading: false,
@@ -25,6 +27,7 @@ const initialState = {
       city: "City 1",
       state: "State 1",
       country: "Country 1",
+      
     },
     {
       id: 2,
@@ -60,95 +63,97 @@ const initialState = {
       state: "State 1",
       country: "Country 1",
     },
-    {
-      id: 4,
-      modifiedby: "Name",
-      modifiedOn: "12/12/2023",
-      Status: 1,
-      insuranceCompanyCode: "004",
-      insuranceCompanyName: "Etiqa Life and General Assurance Philippines,",
-      email: "zealinsurance@abc.com",
-      phoneNumber: "9874563210",
-      action: 4,
-      addressLine1: "addressLine1",
-      addressLine2: "addressLine2",
-      addressLine3: "addressLine3",
-      city: "City 1",
-      state: "State 1",
-      country: "Country 1",
-    },
-    {
-      id: 5,
-      modifiedby: "Name",
-      modifiedOn: "12/12/2023",
-      Status: 0,
-      insuranceCompanyCode: "005",
-      insuranceCompanyName: "Paramount Life & General lnsurance Corporation",
-      email: "zealinsurance@abc.com",
-      phoneNumber: "9874563210",
-      action: 5,
-      addressLine1: "addressLine1",
-      addressLine2: "addressLine2",
-      addressLine3: "addressLine3",
-      city: "City 1",
-      state: "State 1",
-      country: "Country 1",
-    },
-    {
-      id: 6,
-      modifiedby: "Name",
-      modifiedOn: "12/12/2023",
-      Status: 1,
-      insuranceCompanyCode: "006",
-      insuranceCompanyName: "The Premier Life and General Assurance Corporation",
-      email: "zealinsurance@abc.com",
-      phoneNumber: "9874563210",
-      action: 6,
-      addressLine1: "addressLine1",
-      addressLine2: "addressLine2",
-      addressLine3: "addressLine3",
-      city: "City 1",
-      state: "State 1",
-      country: "Country 1",
-    },
-    {
-      id: 7,
-      modifiedby: "Name",
-      modifiedOn: "12/12/2023",
-      Status: 0,
-      insuranceCompanyCode: "007",
-      insuranceCompanyName: "Alliedbankers lnsurance Corporation",
-      email: "zealinsurance@abc.com",
-      phoneNumber: "9874563210",
-      action: 7,
-      addressLine1: "addressLine1",
-      addressLine2: "addressLine2",
-      addressLine3: "addressLine3",
-      city: "City 1",
-      state: "State 1",
-      country: "Country 1",
-    },
-    {
-      id: 8,
-      modifiedby: "Name",
-      modifiedOn: "12/12/2023",
-      Status: 1,
-      insuranceCompanyCode: "008",
-      insuranceCompanyName: "Corporate Guarantee and lnsurance Company,",
-      email: "zealinsurance@abc.com",
-      phoneNumber: "9874563210",
-      action: 8,
-      addressLine1: "addressLine1",
-      addressLine2: "addressLine2",
-      addressLine3: "addressLine3",
-      city: "City 1",
-      state: "State 1",
-      country: "Country 1",
-    },
+    // {
+    //   id: 4,
+    //   modifiedby: "Name",
+    //   modifiedOn: "12/12/2023",
+    //   Status: 1,
+    //   insuranceCompanyCode: "004",
+    //   insuranceCompanyName: "Etiqa Life and General Assurance Philippines,",
+    //   email: "zealinsurance@abc.com",
+    //   phoneNumber: "9874563210",
+    //   action: 4,
+    //   addressLine1: "addressLine1",
+    //   addressLine2: "addressLine2",
+    //   addressLine3: "addressLine3",
+    //   city: "City 1",
+    //   state: "State 1",
+    //   country: "Country 1",
+    // },
+    // {
+    //   id: 5,
+    //   modifiedby: "Name",
+    //   modifiedOn: "12/12/2023",
+    //   Status: 0,
+    //   insuranceCompanyCode: "005",
+    //   insuranceCompanyName: "Paramount Life & General lnsurance Corporation",
+    //   email: "zealinsurance@abc.com",
+    //   phoneNumber: "9874563210",
+    //   action: 5,
+    //   addressLine1: "addressLine1",
+    //   addressLine2: "addressLine2",
+    //   addressLine3: "addressLine3",
+    //   city: "City 1",
+    //   state: "State 1",
+    //   country: "Country 1",
+    // },
+    // {
+    //   id: 6,
+    //   modifiedby: "Name",
+    //   modifiedOn: "12/12/2023",
+    //   Status: 1,
+    //   insuranceCompanyCode: "006",
+    //   insuranceCompanyName: "The Premier Life and General Assurance Corporation",
+    //   email: "zealinsurance@abc.com",
+    //   phoneNumber: "9874563210",
+    //   action: 6,
+    //   addressLine1: "addressLine1",
+    //   addressLine2: "addressLine2",
+    //   addressLine3: "addressLine3",
+    //   city: "City 1",
+    //   state: "State 1",
+    //   country: "Country 1",
+    // },
+    // {
+    //   id: 7,
+    //   modifiedby: "Name",
+    //   modifiedOn: "12/12/2023",
+    //   Status: 0,
+    //   insuranceCompanyCode: "007",
+    //   insuranceCompanyName: "Alliedbankers lnsurance Corporation",
+    //   email: "zealinsurance@abc.com",
+    //   phoneNumber: "9874563210",
+    //   action: 7,
+    //   addressLine1: "addressLine1",
+    //   addressLine2: "addressLine2",
+    //   addressLine3: "addressLine3",
+    //   city: "City 1",
+    //   state: "State 1",
+    //   country: "Country 1",
+    // },
+    // {
+    //   id: 8,
+    //   modifiedby: "Name",
+    //   modifiedOn: "12/12/2023",
+    //   Status: 1,
+    //   insuranceCompanyCode: "008",
+    //   insuranceCompanyName: "Corporate Guarantee and lnsurance Company,",
+    //   email: "zealinsurance@abc.com",
+    //   phoneNumber: "9874563210",
+    //   action: 8,
+    //   addressLine1: "addressLine1",
+    //   addressLine2: "addressLine2",
+    //   addressLine3: "addressLine3",
+    //   city: "City 1",
+    //   state: "State 1",
+    //   country: "Country 1",
+    // },
   
    
   ],
   SearchTableList: [],
+  getInsuranceView:{},
+  getInsurancePatchData:{}
 };
 const insuranceManagementCompanyMasterReducer = createSlice({
   name: "mainAccountMaster",
@@ -208,8 +213,17 @@ const insuranceManagementCompanyMasterReducer = createSlice({
       patchInsuranceCompanyMiddleWare.fulfilled,
       (state, action) => {
         state.loading = false;
-
-        state.InsuranceCompanyList = action.payload;
+        const updatedIndex = state.InsuranceCompanyList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        console.log(updatedIndex,"updatedIndex");
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.InsuranceCompanyList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.InsuranceCompanyList = updatedCurrencyList;
+        } else {
+          state.InsuranceCompanyList = [...state.InsuranceCompanyList, action.payload];
+        }
       }
     );
     builder.addCase(
@@ -238,6 +252,47 @@ const insuranceManagementCompanyMasterReducer = createSlice({
         state.loading = false;
 
         state.SearchTableList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    builder.addCase(getInsuranceViewMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getInsuranceViewMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.getInsuranceView = action.payload;
+      }
+    );
+    builder.addCase(
+      getInsuranceViewMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getInsuranceView = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    builder.addCase(getInsurancePatchData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getInsurancePatchData.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.getInsurancePatchData = action.payload;
+      }
+    );
+    builder.addCase(
+      getInsurancePatchData.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getInsurancePatchData = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

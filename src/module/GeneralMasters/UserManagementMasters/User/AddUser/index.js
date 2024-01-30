@@ -28,14 +28,7 @@ const AddUser = ({ action }) => {
   const [visiblePopup, setVisiblePopup] = useState("");
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (action === "edit" || action === "view") {
-      dispatch(getUserListByIdMiddleware(id)).then(() => {
-        setFormikValues();
-      });
-      // setFormikValues();
-    }
-  }, [action, id]);
+
   const items = [
     { label: "User Management" },
     {
@@ -48,7 +41,6 @@ const AddUser = ({ action }) => {
     },
   ];
   const home = { label: "Master" };
-  const item = [{ name: "Em00123" }, { name: "Em00167" }, { name: "Em00673" }];
 
   const initialValue = {
     userName: "",
@@ -57,17 +49,23 @@ const AddUser = ({ action }) => {
     phoneNumber: "",
     assignedRole: "",
   };
-  const { loading, userList, searchList, userDetailList } = useSelector(
+  const { loading, userList, searchList, userDetailList,userViewData } = useSelector(
     ({ userReducers }) => {
       return {
         loading: userReducers?.loading,
         userList: userReducers?.userList,
         searchList: userReducers?.userSearchList,
         userDetailList: userReducers?.userDetailList,
+        userViewData:userReducers?.userViewData
       };
     }
   );
+  console.log(userDetailList, "userDetailList");
+  const item = [action === "add" ? { label: "Em00123", value: "Em00123" } : userViewData?.employeeCode];
+  const item2 = [action === "add" ? { label: "Em00123", value: "Em00123" } : userViewData?.assignedRole];
+
   const validate = (values) => {
+    // if (action === "add" || action === "edit") {
     const errors = {};
     console.log(values, errors, "values");
     if (!values.userName) {
@@ -88,6 +86,7 @@ const AddUser = ({ action }) => {
     }
 
     return errors;
+    // }
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
@@ -115,28 +114,29 @@ const AddUser = ({ action }) => {
     }, 3000);
     navigate("/master/generals/usermanagement/user");
   };
-
+  const [assignedRoleOptionData, setAssignedRoleData] = useState([])
+  const [employeeCodeOption, setEmployeeCodeOption] = useState([])
   const setFormikValues = () => {
     console.log(userDetailList, "user details");
-    const userName = userDetailList?.userName;
-    const employeeCode = userDetailList?.employeeCode;
-    const email = userDetailList?.email;
-    const phoneNumber = userDetailList?.phoneNumber;
-    const assignedRole = userDetailList?.assignedRole;
-
-    const modifiedBy = userDetailList?.modifiedBy;
-    const modifiedOn = moment().format("DD/MM/YYYY");
-
+    const assignedRoleData = userDetailList?.assignedRole
+    const employeeCodeData = userDetailList?.employeeCode
     const updatedValues = {
-      userName: `${userName}`,
-      employeeCode: `${employeeCode}`,
-      email: `${email}`,
-      phoneNumber: `${phoneNumber}`,
-      assignedRole: `${assignedRole}`,
-
-      modifiedBy: `${modifiedBy}`,
-      modifiedOn: `${modifiedOn}`,
+      userName: userDetailList?.userName,
+      employeeCode: employeeCodeData,
+      email: userDetailList?.email,
+      phoneNumber: userDetailList?.phoneNumber,
+      assignedRole: assignedRoleData,
+      modifiedBy: userDetailList?.modifiedBy,
+      modifiedOn: moment().format("DD/MM/YYYY"),
     };
+    if (assignedRoleData) {
+      setAssignedRoleData([{ label: assignedRoleData, value: assignedRoleData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if (employeeCodeData) {
+      setEmployeeCodeOption([{ label: employeeCodeData, value: employeeCodeData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
     formik.setValues({ ...formik.values, ...updatedValues });
   };
   const formik = useFormik({
@@ -144,6 +144,15 @@ const AddUser = ({ action }) => {
     validate,
     onSubmit: handleSubmit,
   });
+
+  useEffect(() => {
+    if (action === "edit" || action === "view") {
+      dispatch(getUserListByIdMiddleware(id)).then(() => {
+
+      });
+      setFormikValues();
+    }
+  }, [action, id]);
   return (
     <div className="grid add__user__container">
 
@@ -182,9 +191,9 @@ const AddUser = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.userName}
+              value={action === "add" ? formik.values.userName : action === "edit" ? formik.values.userName : userViewData?.userName}
               onChange={formik.handleChange("userName")}
-              error={formik.errors.userName}
+              error={action === "add" && formik.errors.userName}
               label="Username"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -194,14 +203,17 @@ const AddUser = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.employeeCode}
+              value={action === "add" ? formik.values.employeeCode : action === "edit" ? formik.values.employeeCode : userViewData?.employeeCode}
+
               onChange={formik.handleChange("employeeCode")}
-              error={formik.errors.employeeCode}
+              error={action === "add" && formik.errors.employeeCode}
               className="dropdown__add__sub"
               label="Employee code "
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={item}
+              options={action === "add" ? item : action === "edit" ? employeeCodeOption : item}
+              optionValue={"label"}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
@@ -209,9 +221,10 @@ const AddUser = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.email}
+              value={action === "add" ? formik.values.email : action === "edit" ? formik.values.email : userViewData?.email}
+
               onChange={formik.handleChange("email")}
-              error={formik.errors.email}
+              error={action === "add" && formik.errors.email}
               label="Email"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -228,7 +241,7 @@ const AddUser = ({ action }) => {
               <InputText
                 disabled={action === "view" ? true : false}
                 placeholder="Enter"
-                value={formik.values.phoneNumber}
+                value={action === "add" ? formik.values.phoneNumber : action === "edit" ? formik.values.phoneNumber : userViewData?.phoneNumber}
                 onChange={formik.handleChange("phoneNumber")}
                 style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}
               />
@@ -240,14 +253,17 @@ const AddUser = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.assignedRole}
+              value={action === "add" ? formik.values.assignedRole : action === "edit" ? formik.values.assignedRole : userViewData?.assignedRole}
+
               onChange={formik.handleChange("assignedRole")}
-              error={formik.errors.assignedRole}
+              error={action === "add" && formik.errors.assignedRole}
               className="dropdown__add__sub"
               label="Assigned Role"
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={item}
+              options={action === "add" ? item2 : action === "edit" ? assignedRoleOptionData : item2}
+              optionValue={"label"}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>

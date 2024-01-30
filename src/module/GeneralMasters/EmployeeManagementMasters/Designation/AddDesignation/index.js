@@ -11,19 +11,28 @@ import CustomToast from "../../../../../components/Toast";
 import { useNavigate, useParams } from "react-router-dom";
 import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { patchDesignationEditMiddleware, postAddDesignationMiddleware } from "../store/designationMiddleware";
 
 const AddDesignation = ({ action }) => {
+
+  const { getEditData, loading, getViewData } = useSelector(
+    ({ designationMainReducers }) => {
+      return {
+        loading: designationMainReducers?.loading,
+        getEditData: designationMainReducers?.getEditData,
+        getViewData: designationMainReducers?.getViewData,
+      };
+    }
+  );
+  console.log(getViewData, "getViewData");
   const { id } = useParams();
   console.log(id, "find id");
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState("");
 
-  useEffect(() => {
-    if (action === "edit" || action === "view") {
-      setFormikValues();
-    }
-  }, [action]);
+
 
   const items = [
     { label: "Employee Management" },
@@ -33,33 +42,28 @@ const AddDesignation = ({ action }) => {
     },
     ,
     {
-      label: `${
-        action === "add"
-          ? "Add Designation"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add Designation"
+        : action === "edit"
           ? "Edit Designation"
           : "View Designation"
-      }`,
+        }`,
     },
   ];
   const home = { label: "Master" };
-
-  const item = [
-    { name: "Depart0012" },
-    { name: "Depart0018" },
-    { name: "Depart0019" },
-  ];
-  const item1 = [{ name: "1" }, { name: "2" }, { name: "3" }];
+  const item = [{ label: "1", value: "1" }];
+  const item1 = [{ label: "1", value: "1" }];
+  const item2 = [{ label: "1", value: "1" }];
 
   const initialValue = {
-    designationCode: "",
-    designationName: "",
-    designationDescription: "",
-    departmentCode: "",
-    level: "",
-    reportingtoLevel: "",
-    modifiedBy: "",
-    modifiedOn: "",
+    designationCode: action === "view" ? getViewData?.designationCode : "",
+    designationName: action === "view" ? getViewData?.designationName : "",
+    designationDescription: action === "view" ? getViewData?.designationDescription : "",
+    departmentCode: action === "view" ? getViewData?.departmentCode : "",
+    level: action === "view" ? getViewData?.level : "",
+    reportingtoLevel: action === "view" ? getViewData?.reportingtoLevel : "",
+    ModifiedBy: action === "view" ? getViewData?.ModifiedBy : "",
+    modifiedOn: action === "view" ? getViewData?.modifiedOn : "",
   };
   const validate = (values) => {
     const errors = {};
@@ -86,40 +90,60 @@ const AddDesignation = ({ action }) => {
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-
-  const handleSubmit = () => {
+  const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    console.log(values, "values");
+    if (action === "add") {
+      dispatch(postAddDesignationMiddleware(formik.values))
+    }
+    if (action === "edit") {
+      dispatch(patchDesignationEditMiddleware(values))
+    }
     toastRef.current.showToast();
 
     setTimeout(() => {
       setVisiblePopup(false);
       navigate("/master/generals/employeemanagement/designation")
     }, 3000);
-  
-  };
-  const setFormikValues = () => {
-    const designationCode = "Des00123";
-    const designationName = "HR";
-    const designationDescription = "Designation description";
-    const departmentCode = "1";
-    const level = "2";
-    const reportingto = "John";
-    const modifiedBy = "Johnson";
-    const modifiedOn = "RC1234";
-    const reportingtoLevel = "2";
 
+  };
+  const [designationCodeDataOption, setDesignationCodeDataOption] = useState([])
+  const [levelDataOption, setLevelDataOption] = useState([])
+  const [reportingToLevelData, setReportingToLevelData] = useState([])
+  const setFormikValues = () => {
+    const designationCodeData = getEditData?.departmentCode
+    const levelData = getEditData?.level
+    const reportingToLevelDataOption = getEditData?.reportingtoLevel
     const updatedValues = {
-      designationCode: `${designationCode}`,
-      designationName: `${designationName}`,
-      designationDescription: `${designationDescription}`,
-      departmentCode: `${departmentCode}`,
-      level: `${level}`,
-      reportingto: `${reportingto}`,
-      reportingtoLevel: `${reportingtoLevel}`,
-      modifiedBy: `${modifiedBy}`,
-      modifiedOn: `${modifiedOn}`,
+      id: getEditData?.id,
+      designationCode: getEditData?.designationCode,
+      designationName: getEditData.designationName,
+      designationDescription: getEditData?.designationDescription,
+      departmentCode: designationCodeData,
+      level: levelData,
+      reportingto: getEditData?.reportingto,
+      ModifiedBy: getEditData?.ModifiedBy,
+      modifiedOn: getEditData?.modifiedOn,
+      reportingtoLevel: reportingToLevelDataOption,
     };
+    if (designationCodeData) {
+      setDesignationCodeDataOption([{ label: designationCodeData, value: designationCodeData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if (levelData) {
+      setLevelDataOption([{ label: levelData, value: levelData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if (reportingToLevelDataOption) {
+      setReportingToLevelData([{ label: reportingToLevelDataOption, value: reportingToLevelDataOption }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+
+    }
     formik.setValues({ ...formik.values, ...updatedValues });
   };
+  useEffect(() => {
+    setFormikValues();
+  }, [getEditData]);
   const formik = useFormik({
     initialValues: initialValue,
     validate,
@@ -127,208 +151,217 @@ const AddDesignation = ({ action }) => {
   });
   return (
     <div>
-    <div className="grid add__designation__container">
-      <div className="add_backbut_container">
-      <div
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
-        }}
-      >
-        <span onClick={() => navigate(-1)}>
-          <SvgBack />
-        </span>
-      </div>
-      <div className="add__sub__title">
-        {action === "add"
-          ? "Add Designation"
-          : action === "edit"
-          ? "Edit Designation"
-          : "View Designation"}
-      </div>
-      </div>
-      <div className="col-12 " >
-        <div className="mt-2">
-          <BreadCrumb
-            home={home}
-            className="breadCrums__view__add__screen"
-            model={items}
-            separatorIcon={<SvgDot color={"#000"} />}
-          />
-        </div>
-      </div>
-      <div className="col-12 mt-4 ">
-        <div className="grid add__account__sub__container p-3 ml-1">
-          <div className="col-12 md:col-3 lg:col-3">
-            <InputField
-              disabled={action === "view" ? true : false}
-              value={formik.values.designationCode}
-              onChange={formik.handleChange("designationCode")}
-              // error={formik.errors.designationCode}
-              label="Designation Code"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-             {formik.touched.designationCode &&
-              formik.errors.designationCode && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.designationCode}
-                </div>
-              )}
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <InputField
-              disabled={action === "view" ? true : false}
-              value={formik.values.designationName}
-              onChange={formik.handleChange("designationName")}
-              // error={formik.errors.designationName}
-              label="Designation Name"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-             {formik.touched.designationName &&
-              formik.errors.designationName && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.designationName}
-                </div>
-              )}
-          </div>
-
-          <div className="col-12 md:col-3 lg:col-6">
-            <InputField
-              disabled={action === "view" ? true : false}
-              value={formik.values.designationDescription}
-              onChange={formik.handleChange("designationDescription")}
-              label="Designation Description"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-             {formik.touched.designationDescription &&
-              formik.errors.designationDescription && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.designationDescription}
-                </div>
-              )}
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <DropDowns
-              disabled={action === "view" ? true : false}
-              value={formik.values.departmentCode}
-              onChange={formik.handleChange("departmentCode")}
-              // error={formik.errors.departmentCode}
-              className="dropdown__add__sub"
-              label="Department Code"
-              classNames="label__sub__add"
-              placeholder={"Select"}
-              options={item}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-             {formik.touched.departmentCode &&
-              formik.errors.departmentCode && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.departmentCode}
-                </div>
-              )}
-          </div>
-
-          <div className="col-12 md:col-3 lg:col-3">
-            <DropDowns
-              disabled={action === "view" ? true : false}
-              value={formik.values.level}
-              onChange={formik.handleChange("level")}
-              // error={formik.errors.level}
-              className="dropdown__add__sub"
-              label="Level"
-              classNames="label__sub__add"
-              placeholder={"Select"}
-              options={item1}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-             {formik.touched.level &&
-              formik.errors.level && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.level}
-                </div>
-              )}
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <DropDowns
-              disabled={action === "view" ? true : false}
-              value={formik.values.reportingtoLevel}
-              onChange={formik.handleChange("reportingtoLevel")}
-              // error={formik.errors.reportingtoLevel}
-              className="dropdown__add__sub"
-              label="Reporting to Level"
-              classNames="label__sub__add"
-              placeholder={"Select"}
-              options={item1}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-            />
-             {formik.touched.reportingtoLevel &&
-              formik.errors.reportingtoLevel && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.reportingtoLevel}
-                </div>
-              )}
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <InputField
-              disabled={action === "view" ? true : false}
-              value={formik.values.modifiedBy}
-              onChange={formik.handleChange("ModifiedBy")}
-              error={formik.errors.modifiedBy}
-              label="Modified by"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-
-          </div>
-          <div className="col-12 md:col-3 lg:col-3">
-            <InputField
-              disabled={action === "view" ? true : false}
-              value={formik.values.modifiedOn}
-              onChange={formik.handleChange("modifiedOn")}
-              error={formik.errors.modifiedOn}
-              label="Modified On"
-              classNames="dropdown__add__sub"
-              className="label__sub__add"
-              placeholder="Enter"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="col-12 btn__view__Add mt-2">
-        {action === "add" && (
-          <Button
-            label="Save"
-            className="save__add__btn"
-            onClick={() => {
-              formik.handleSubmit();
+      <div className="grid add__designation__container">
+        <div className="add_backbut_container">
+          <div
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
             }}
-            disabled={!formik.isValid}
-          />
-        )}
-        {action === "edit" && (
-          <Button
-            className="save__add__btn"
-            disabled={!formik.isValid}
-            onClick={formik.handleSubmit}
           >
-            Update
-          </Button>
-        )}
-      </div>
-      <CustomToast
-        ref={toastRef}
-        message="Designation Code CC1234 
+            <span onClick={() => navigate(-1)}>
+              <SvgBack />
+            </span>
+          </div>
+          <div className="add__sub__title">
+            {action === "add"
+              ? "Add Designation"
+              : action === "edit"
+                ? "Edit Designation"
+                : "View Designation"}
+          </div>
+        </div>
+        <div className="col-12 " >
+          <div className="mt-2">
+            <BreadCrumb
+              home={home}
+              className="breadCrums__view__add__screen"
+              model={items}
+              separatorIcon={<SvgDot color={"#000"} />}
+            />
+          </div>
+        </div>
+        <div className="col-12 mt-4 ">
+          <div className="grid add__account__sub__container p-3 ml-1">
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                disabled={action === "view" ? true : false}
+                value={action === "view" ? getViewData?.designationCode : formik.values.designationCode}
+                onChange={formik.handleChange("designationCode")}
+                // error={formik.errors.designationCode}
+                label="Designation Code"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+              />
+              {formik.touched.designationCode &&
+                formik.errors.designationCode && (
+                  <div style={{ fontSize: 12, color: "red" }}>
+                    {formik.errors.designationCode}
+                  </div>
+                )}
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                disabled={action === "view" ? true : false}
+                value={action === "view" ? getViewData?.designationName : formik.values.designationName}
+                onChange={formik.handleChange("designationName")}
+                // error={formik.errors.designationName}
+                label="Designation Name"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+              />
+              {formik.touched.designationName &&
+                formik.errors.designationName && (
+                  <div style={{ fontSize: 12, color: "red" }}>
+                    {formik.errors.designationName}
+                  </div>
+                )}
+            </div>
+
+            <div className="col-12 md:col-3 lg:col-6">
+              <InputField
+                disabled={action === "view" ? true : false}
+                value={action === "view" ? getViewData?.designationDescription : formik.values.designationDescription}
+                onChange={formik.handleChange("designationDescription")}
+                label="Designation Description"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+              />
+              {formik.touched.designationDescription &&
+                formik.errors.designationDescription && (
+                  <div style={{ fontSize: 12, color: "red" }}>
+                    {formik.errors.designationDescription}
+                  </div>
+                )}
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <DropDowns
+                disabled={action === "view" ? true : false}
+                value={action === "view" ? getViewData?.departmentCode : formik.values.departmentCode}
+                onChange={formik.handleChange("departmentCode")}
+                // error={formik.errors.departmentCode}
+                className="dropdown__add__sub"
+                label="Department Code"
+                classNames="label__sub__add"
+                placeholder={"Select"}
+                options={action === "add" ? item : action === "edit" ? designationCodeDataOption : item}
+                optionValue={"label"}
+                optionLabel="label"
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+              {formik.touched.departmentCode &&
+                formik.errors.departmentCode && (
+                  <div style={{ fontSize: 12, color: "red" }}>
+                    {formik.errors.departmentCode}
+                  </div>
+                )}
+            </div>
+
+            <div className="col-12 md:col-3 lg:col-3">
+              <DropDowns
+                disabled={action === "view" ? true : false}
+                value={action === "view" ? getViewData?.level : formik.values.level}
+                onChange={formik.handleChange("level")}
+                // error={formik.errors.level}
+                className="dropdown__add__sub"
+                label="Level"
+                classNames="label__sub__add"
+                placeholder={"Select"}
+                // options={item1}
+                options={action === "add" ? item1 : action === "edit" ? levelDataOption : item}
+
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                optionValue={"label"}
+                optionLabel="label"
+              />
+              {formik.touched.level &&
+                formik.errors.level && (
+                  <div style={{ fontSize: 12, color: "red" }}>
+                    {formik.errors.level}
+                  </div>
+                )}
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <DropDowns
+                disabled={action === "view" ? true : false}
+                value={action === "view" ? getViewData?.reportingtoLevel : formik.values.reportingtoLevel}
+                onChange={formik.handleChange("reportingtoLevel")}
+                // error={formik.errors.reportingtoLevel}
+                className="dropdown__add__sub"
+                label="Reporting to Level"
+                classNames="label__sub__add"
+                placeholder={"Select"}
+                options={action === "add" ? item2 : action === "edit" ? reportingToLevelData : item}
+
+                optionValue={"label"}
+                optionLabel="label"
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+              {formik.touched.reportingtoLevel &&
+                formik.errors.reportingtoLevel && (
+                  <div style={{ fontSize: 12, color: "red" }}>
+                    {formik.errors.reportingtoLevel}
+                  </div>
+                )}
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                disabled={action === "view" ? true : false}
+                value={action === "view" ? getViewData?.ModifiedBy : formik.values.ModifiedBy}
+                onChange={formik.handleChange("ModifiedBy")}
+                error={formik.errors.ModifiedBy}
+                label="Modified by"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+              />
+
+            </div>
+            <div className="col-12 md:col-3 lg:col-3">
+              <InputField
+                disabled={action === "view" ? true : false}
+                value={action === "view" ? getViewData?.modifiedOn : formik.values.modifiedOn}
+                onChange={formik.handleChange("modifiedOn")}
+                error={formik.errors.modifiedOn}
+                label="Modified On"
+                classNames="dropdown__add__sub"
+                className="label__sub__add"
+                placeholder="Enter"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="col-12 btn__view__Add mt-2">
+          {action === "add" && (
+            <Button
+              label="Save"
+              className="save__add__btn"
+              onClick={() => {
+                formik.handleSubmit();
+              }}
+              disabled={!formik.isValid}
+            />
+          )}
+          {action === "edit" && (
+            <Button
+              className="save__add__btn"
+              disabled={!formik.isValid}
+              onClick={formik.handleSubmit}
+            >
+              Update
+            </Button>
+          )}
+        </div>
+        <CustomToast
+          ref={toastRef}
+          message="Designation Code CC1234 
 is added"
-      />
-    </div>
+        />
+      </div>
     </div>
   );
 };

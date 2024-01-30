@@ -26,6 +26,7 @@ import reversalMainReducers from "../module/Reversals/store/reversalReducers";
 import correctionJVMainReducers from "../module/CorrectionJV/store/correctionJVReducers";
 import insuranceCompanyReducers from "../module/GeneralMasters/InsuranceManagementMasters/InsuranceCompany/store/insuranceCompanyReducers";
 import hierarchyTableReducers from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/store/hierarchyReducers";
+import designationMainReducers from "../module/GeneralMasters/EmployeeManagementMasters/Designation/store/designationReducers"
 import organizationBranchMainReducers from "../module/GeneralMasters/OrganizationMasters/BranchMaster/store/branchReducers";
 import organizationCompanyMainReducers from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/store/companyReducers";
 import countryReducers from "../module/GeneralMasters/LocationMasters/CountryMaster/store/countryReducers";
@@ -117,7 +118,8 @@ const reducers = {
   renewalTabelMainReducers,
   agentExpiringMainReducers,
   agentQuotependingMainReducers,
-  agentRenewalrequestMainReducers
+  agentRenewalrequestMainReducers,
+  designationMainReducers
   // openitemTabelMainReducers
 
 };

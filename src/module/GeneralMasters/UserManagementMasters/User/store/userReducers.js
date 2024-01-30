@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSearchUserMiddleware, getUserListByIdMiddleware, getUserMiddleware, getUserViewDataMiddleWare, patchUserEditMiddleware, postAddUserMiddleware } from "./userMiddleware";
+import { getMainBranchAccessMiddleWare, getSearchUserMiddleware, getUserEditDataMiddleWare, getUserListByIdMiddleware, getUserMiddleware, getUserViewDataMiddleWare, patchUserEditMiddleware, postAddUserMiddleware } from "./userMiddleware";
 // import SvgIconeye from "../../../assets/icons/SvgIconeye";
 const initialState = {
   loading: false,
@@ -40,94 +40,22 @@ const initialState = {
       status: "",
       action: ""
     },
-    {
-      id: 4,
-      userName: "Johnson99",
-      employeeCode: "Emp003",
-      assignedRole: "Role",
-      email: "johnson@gmail.com",
-      phoneNumber: "63-1234567",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 5,
-      userName: "Johnson99",
-      employeeCode: "Emp004",
-      assignedRole: "Role",
-      email: "johnson@gmail.com",
-      phoneNumber: "63-1234567",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 6,
-      userName: "Johnson99",
-      employeeCode: "Emp005",
-      assignedRole: "Role",
-      email: "johnson@gmail.com",
-      phoneNumber: "63-1234567",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 7,
-      userName: "Johnson99",
-      employeeCode: "Emp006",
-      assignedRole: "Role",
-      email: "johnson@gmail.com",
-      phoneNumber: "63-1234567",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 8,
-      userName: "Johnson99",
-      employeeCode: "Emp007",
-      assignedRole: "Role",
-      email: "johnson@gmail.com",
-      phoneNumber: "63-1234567",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 9,
-      userName: "Johnson99",
-      employeeCode: "Emp008",
-      assignedRole: "Role",
-      email: "johnson@gmail.com",
-      phoneNumber: "63-1234567",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 10,
-      userName: "Johnson99",
-      employeeCode: "Emp009",
-      assignedRole: "Role",
-      email: "johnson@gmail.com",
-      phoneNumber: "63-1234567",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
   ],
   userSearchList: [],
   userDetailList: {},
-  userViewData:{}
+  userViewData: {},
+  userEditData: {},
+  mainBranchAccessTableList: [
+    {
+      id: 1,
+      branchCode: "branchCode",
+      branchName: "branchName",
+      TransactionNofrom: "TransactionNofrom",
+      departmentCode: "departmentCode",
+      departmentName: "departmentName",
+      action:""
+    }
+  ]
 };
 const usersReducer = createSlice({
   name: "user",
@@ -196,12 +124,22 @@ const usersReducer = createSlice({
     builder.addCase(patchUserEditMiddleware.pending, (state) => {
       state.loading = true;
     });
+
     builder.addCase(
       patchUserEditMiddleware.fulfilled,
       (state, action) => {
         state.loading = false;
-
-        state.userTableList = action.payload;
+        console.log(state.userTableList, "state.countryTableList");
+        const updatedIndex = state.userTableList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedAddDisbursmentTable = [...state.userTableList];
+          updatedAddDisbursmentTable[updatedIndex] = action.payload;
+          state.userTableList = updatedAddDisbursmentTable;
+        } else {
+          state.userTableList = [...state.userTableList, action.payload];
+        }
       }
     );
     builder.addCase(
@@ -236,26 +174,41 @@ const usersReducer = createSlice({
       }
     );
 
-    // builder.addCase(getBranchAddUserMiddleware.pending, (state) => {
-    //   state.loading = true;
-    // });
-    // builder.addCase(
-    //   getBranchAddUserMiddleware.fulfilled,
-    //   (state, action) => {
-    //     state.loading = false;
 
-    //     state.userTableList = action.payload;
-    //   }
-    // );
-    // builder.addCase(
-    //   getBranchAddUserMiddleware.rejected,
-    //   (state, action) => {
-    //     state.loading = false;
+    builder.addCase(getUserEditDataMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getUserEditDataMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
 
-    //     state.editList = {};
-    //     state.error = typeof action.payload === "string" ? action.payload : "";
-    //   }
-    // );
+        state.userEditData = action.payload;
+      }
+    );
+    builder.addCase(
+      getUserEditDataMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.userEditData = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    builder.addCase(getMainBranchAccessMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getMainBranchAccessMiddleWare.fulfilled, (state, action) => {
+      state.loading = false;
+      state.mainBranchAccessTableList = action.payload;
+    });
+    builder.addCase(getMainBranchAccessMiddleWare.rejected, (state, action) => {
+      state.loading = false;
+
+      state.mainBranchAccessTableList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
   },
 });

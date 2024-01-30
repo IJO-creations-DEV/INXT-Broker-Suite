@@ -14,19 +14,28 @@ import InputField from "../../../../../../components/InputField";
 import { useFormik } from "formik";
 import DropDowns from "../../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
+import { useSelector } from "react-redux";
 
-const TransactionCodeSetupTable = ({action}) => {
+const TransactionCodeSetupTable = ({ action }) => {
+
+  const { loading, mainBranchAccessTableList, searchList } = useSelector(({ userReducers }) => {
+    return {
+      loading: userReducers?.loading,
+      mainBranchAccessTableList: userReducers?.mainBranchAccessTableList,
+      searchList: userReducers?.userSearchList,
+    };
+  });
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
 
-  const item=[
-    {name:'123'}
+  const item = [
+    { name: '123' }
   ]
-  const initialValues ={
+  const initialValues = {
     AccountingPeriodStart: new Date(),
-    AccountingPeriodEnd:new Date(),
-    TransactionNumberFrom:"",
-    TransactionNumberTo:"",
+    AccountingPeriodEnd: new Date(),
+    TransactionNumberFrom: "",
+    TransactionNumberTo: "",
   }
 
   const handleClick = () => {
@@ -37,10 +46,10 @@ const TransactionCodeSetupTable = ({action}) => {
 
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable/>
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
   const template2 = {
@@ -73,7 +82,7 @@ const TransactionCodeSetupTable = ({action}) => {
   };
 
 
-  const handleSubmit = ()=>{
+  const handleSubmit = () => {
     setShow(false)
   }
 
@@ -91,14 +100,14 @@ const TransactionCodeSetupTable = ({action}) => {
   };
   const customValidation = (values) => {
     const errors = {};
-  
+
     if (!values.TransactionNumberFrom) {
       errors.TransactionNumberFrom = "This field Code is required";
     }
     if (!values.TransactionNumberTo) {
       errors.TransactionNumberTo = "This field is required";
     }
-   
+
     return errors;
   };
 
@@ -106,35 +115,35 @@ const TransactionCodeSetupTable = ({action}) => {
   minDate.setDate(minDate.getDate() + 1);
 
   const formik = useFormik({
-    initialValues:initialValues,
+    initialValues: initialValues,
     validate: customValidation,
     // onSubmit: (values) => {
     //   // Handle form submission
     //    handleSubmit(values);
-      
+
     // },
-     onSubmit:handleSubmit
+    onSubmit: handleSubmit
   });
 
-  
+
   return (
     <div className="transactioncode__master__table_view">
       {/* <Card className="mt-1"> */}
       <div className="card">
         {/* <div className="col-12 md:col-12 lg-col-12 "> */}
-          <div className="btn__container__add">
-            <Button
-              label="Add"
-              icon={<SvgAdd color={"#fff"} />}
-              className="add__btn"
-              onClick={() => {
-                handleClick();
-              }}
-            />
-          </div>
+        <div className="btn__container__add">
+          <Button
+            label="Add"
+            icon={<SvgAdd color={"#fff"} />}
+            className="add__btn"
+            onClick={() => {
+              handleClick();
+            }}
+          />
+        </div>
         {/* </div> */}
         <DataTable
-          value={products}
+          value={mainBranchAccessTableList}
           tableStyle={{
             minWidth: "50rem",
             color: "#1C2536",
@@ -151,6 +160,7 @@ const TransactionCodeSetupTable = ({action}) => {
         >
           <Column
             field="branchCode"
+
             header="Branch Code"
             headerStyle={headerStyle}
             className="fieldvalue_container"
@@ -160,14 +170,14 @@ const TransactionCodeSetupTable = ({action}) => {
             header="Branch Name"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            //   sortable
+          //   sortable
           ></Column>
           <Column
             field="TransactionNofrom"
             header="Transaction No from"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            //   sortable
+          //   sortable
           ></Column>
           <Column
             field="departmentCode"
@@ -181,7 +191,7 @@ const TransactionCodeSetupTable = ({action}) => {
             headerStyle={headerStyle}
             className="fieldvalue_container"
           ></Column>
-           <Column
+          <Column
             field="action"
             header="Action"
             headerStyle={headerStyle}
@@ -197,13 +207,13 @@ const TransactionCodeSetupTable = ({action}) => {
         className="dialogue_style"
       >
         <div className="grid mt-1">
-       
-         
+
+
         </div>
         <div className="grid mt-1">
           <div className="col-12 md:col-6 lg-col-6 ">
-          <DropDowns
-             disabled={action === "view" ? true : false}
+            <DropDowns
+              disabled={action === "view" ? true : false}
               value={formik.values.employeeType}
               onChange={formik.handleChange("employeeType")}
               error={formik.errors.employeeType}
@@ -214,11 +224,11 @@ const TransactionCodeSetupTable = ({action}) => {
               options={item}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-           
+
           </div>
           <div className="col-12 md:col-6 lg-col-6 ">
-          <DropDowns
-             disabled={action === "view" ? true : false}
+            <DropDowns
+              disabled={action === "view" ? true : false}
               value={formik.values.employeeType}
               onChange={formik.handleChange("employeeType")}
               error={formik.errors.employeeType}
@@ -232,15 +242,15 @@ const TransactionCodeSetupTable = ({action}) => {
           </div>
         </div>
         <div className="btn__container">
-            <Button
-              label="Save"
-              className="add__btn"
-              // onClick={() => {
-              //   handleSave();
-              // }}
-              onClick={()=>{formik.handleSubmit();}} 
-            />
-          </div>
+          <Button
+            label="Save"
+            className="add__btn"
+            // onClick={() => {
+            //   handleSave();
+            // }}
+            onClick={() => { formik.handleSubmit(); }}
+          />
+        </div>
       </Dialog>
       {/* </Card> */}
     </div>

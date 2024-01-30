@@ -1,6 +1,5 @@
 import { BreadCrumb } from "primereact/breadcrumb";
 import React, { useRef, useState, useEffect } from "react";
-import NavBar from "../../../../../components/NavBar";
 import SvgDot from "../../../../../assets/icons/SvgDot";
 import "./index.scss";
 import InputField from "../../../../../components/InputField";
@@ -12,73 +11,90 @@ import { useNavigate, useParams } from "react-router-dom";
 import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 import countriesData from "./data";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddEmployeeMiddleware } from "../store/employeeMiddleware";
 
 const AddEmployee = ({ action }) => {
+  const { employeeEditData, loading, total, employeeViewData } = useSelector(
+    ({ employeeReducers }) => {
+      return {
+        loading: employeeReducers?.loading,
+        employeeEditData: employeeReducers?.employeeEditData,
+        employeeViewData: employeeReducers?.employeeViewData,
+        total: employeeReducers,
+      };
+
+    }
+  );
+  console.log(employeeEditData, "employeeEditData");
   const { id } = useParams();
   console.log(id, "find id");
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState("");
 
-  useEffect(() => {
-    if (action === "edit" || action === "view") {
-      setFormikValues();
-    }
-  }, [action]);
+  // useEffect(() => {
+  //   if (action === "edit" || action === "view") {
+  //     setFormikValues();
+  //   }
+  // }, [action]);
   const items = [
     { label: "Employee Management" },
     { label: "Employee", url: "/master/generals/employeemanagement/employee" },
     ,
     {
-      label: `${
-        action === "add"
-          ? "Add Employee"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add Employee"
+        : action === "edit"
           ? "Edit Employee Details"
           : "View Employee Details"
-      }`,
+        }`,
     },
   ];
   const home = { label: "Master" };
 
-  const item = [{ name: "Em0012" }, { name: "Em0046" }, { name: "Em0056" }];
+  const item = [{ label: "Em0012" }, { label: "Em0046" }, { label: "Em0056" }];
   const item1 = [
-    { name: "Level 1 Agent" },
-    { name: "Level 2 Agent" },
-    { name: "Level 3 Agent" },
+    { label: "Level 1 Agent" },
+    { label: "Level 2 Agent" },
+    { label: "Level 3 Agent" },
   ];
   const item2 = [
-    { name: "John Doe" },
-    { name: "Sudarshan" },
-    { name: "Uttam" },
+    { label: "John Doe" },
+    { label: "Sudarshan" },
+    { label: "Uttam" },
   ];
   const item3 = [
-    { name: "Branch0123" },
-    { name: "Branch0128" },
-    { name: "Branch0148" },
+    { label: "Branch0123" },
+    { label: "Branch0128" },
+    { label: "Branch0148" },
   ];
   const item4 = [
-    { name: "Depart123" },
-    { name: "Depart163" },
-    { name: "Depart190" },
+    { label: "Depart123" },
+    { label: "Depart163" },
+    { label: "Depart190" },
   ];
   const item5 = [
-    { name: "Driving License" },
-    { name: "Aadhar" },
-    { name: "Pan" },
+    { label: "Driving License" },
+    { label: "Aadhar" },
+    { label: "Pan" },
   ];
 
-   const City = countriesData.city.map(city => ({
-    label: city,
+  const City = countriesData.city.map(city => ({
+
+    label: action === "add" ? city : employeeViewData.city,
+    value: action === "add" ? city : employeeViewData.city,
   }));
 
   const State = countriesData.state.map(state => ({
-    label: state,
+    label: action === "add" ? state : employeeViewData.state,
+    value: action === "add" ? state : employeeViewData.state,
   }));
 
 
   const Country = countriesData.countries.map(country => ({
-    label: country,
+    label: action === "add" ? country : employeeViewData.country,
+    value: action === "add" ? country : employeeViewData.country,
   }));
 
   const initialValue = {
@@ -157,8 +173,11 @@ const AddEmployee = ({ action }) => {
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-
+  const dispatch = useDispatch()
   const handleSubmit = () => {
+    if (action === "add") {
+      dispatch(postAddEmployeeMiddleware(formik.values))
+    }
     toastRef.current.showToast();
 
     setTimeout(() => {
@@ -167,46 +186,52 @@ const AddEmployee = ({ action }) => {
     }, 3000);
   };
 
+  const [cityDataOption, setCityDataOption] = useState([]);
+  const [stateDataOption, setStateDataOption] = useState([]);
+  const [countryDataOption, setCountryDataOption] = useState([]);
+
   const setFormikValues = () => {
-    const employeeCode = "RC1234";
-    const firstName = "John";
-    const middleName = "Peterson";
-    const lastName = "Watson";
-    const employeeType = "Agent";
-    const designation = "Level 2 Agent";
-    const reportingto = "John Doe";
-    const branchCode = "Branch0123";
-    const departmentCode = "Depart123";
-    const idProofType = "Driving License";
-    const idNumber = "12345678";
-    const addressLine1 = "Enter";
-    const city = "Chennai";
-    const state = "Tamil nadu";
-    const country = "Philippines";
-    const modifiedBy = "John";
-    const modifiedOn = "12/12/2023";
+    const cityData = employeeEditData?.City;
+    const stateData = employeeEditData?.State;
+    const countryData = employeeEditData?.Country;
 
     const updatedValues = {
-      employeeCode: `${employeeCode}`,
-      firstName: `${firstName}`,
-      middleName: `${middleName}`,
-      lastName: `${lastName}`,
-      employeeType: `${employeeType}`,
-      designation: `${designation}`,
-      reportingto: `${reportingto}`,
-      branchCode: `${branchCode}`,
-      departmentCode: `${departmentCode}`,
-      idProofType: `${idProofType}`,
-      addressLine1: `${addressLine1}`,
-      city: `${city}`,
-      state: `${state}`,
-      country: `${country}`,
-      idNumber: `${idNumber}`,
-      modifiedBy: `${modifiedBy}`,
-      modifiedOn: `${modifiedOn}`,
+      employeeCode: employeeEditData?.employeeCode,
+      firstName: employeeEditData?.firstName,
+      middleName: employeeEditData?.middleName,
+      lastName: employeeEditData?.lastName,
+      employeeType: employeeEditData?.employeeType,
+      designation: employeeEditData?.designation,
+      reportingto: employeeEditData?.reportingto,
+      branchCode: employeeEditData?.branchCode,
+      departmentCode: employeeEditData?.departmentCode,
+      idProofType: employeeEditData?.idProofType,
+      idNumber: employeeEditData?.idNumber,
+      addressLine1: employeeEditData?.addressLine1,
+      City: cityData,
+      State: stateData,
+      Country: countryData,
+      modifiedBy: employeeEditData?.modifiedBy,
+      modifiedOn: employeeEditData?.modifiedOn,
     };
+
+    if (cityData) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setCityDataOption([{ label: cityData, value: cityData }]);
+    }
+    if (stateData) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setStateDataOption([{ label: stateData, value: stateData }]);
+    }
+    if (countryData) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setCountryDataOption([{ label: countryData, value: countryData }]);
+    }
     formik.setValues({ ...formik.values, ...updatedValues });
   };
+  useEffect(() => {
+    setFormikValues();
+  }, [employeeEditData]);
   const formik = useFormik({
     initialValues: initialValue,
     validate,
@@ -215,24 +240,24 @@ const AddEmployee = ({ action }) => {
   return (
     <div className="grid add__employee_container">
       <div className="add_backbut_container">
-      <div
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
-        }}
-      >
-        <span onClick={() => navigate(-1)}>
-          <SvgBack />
-        </span>
-      </div>
-      <div className="add__sub__title">
-        {action === "add"
-          ? "Add Employee"
-          : action === "edit"
-          ? "Edit Employee"
-          : "View Employee"}
-      </div>
+        <div
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+          }}
+        >
+          <span onClick={() => navigate(-1)}>
+            <SvgBack />
+          </span>
+        </div>
+        <div className="add__sub__title">
+          {action === "add"
+            ? "Add Employee"
+            : action === "edit"
+              ? "Edit Employee"
+              : "View Employee"}
+        </div>
       </div>
       <div className="col-12 mb-2">
         <div className="mt-2">
@@ -249,7 +274,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.employeeCode}
+              value={action === "view" ? employeeViewData?.employeeCode : formik.values.employeeCode}
               onChange={formik.handleChange("employeeCode")}
               // error={formik.errors.employeeCode}
               label="Employee Code"
@@ -267,7 +292,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.firstName}
+              value={action === "view" ? employeeViewData?.firstName : formik.values.firstName}
               onChange={formik.handleChange("firstName")}
               // error={formik.errors.firstName}
               label="First Name"
@@ -304,7 +329,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.lastName}
+              value={action === "view" ? employeeViewData?.lastName : formik.values.lastName}
               onChange={formik.handleChange("lastName")}
               // error={formik.errors.lastName}
               label="Last Name"
@@ -322,13 +347,15 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.employeeType}
+              value={action === "view" ? employeeViewData?.employeeType : formik.values.employeeType}
               onChange={formik.handleChange("employeeType")}
               // error={formik.errors.employeeType}
               className="dropdown__add__sub"
               label="Employee Type"
               classNames="label__sub__add"
               placeholder={"Select"}
+              optionValue={"label"}
+              optionLabel="label"
               options={item}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -343,7 +370,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.designation}
+              value={action === "view" ? employeeViewData?.designation : formik.values.designation}
               onChange={formik.handleChange("designation")}
               // error={formik.errors.designation}
               className="dropdown__add__sub"
@@ -351,6 +378,8 @@ const AddEmployee = ({ action }) => {
               classNames="label__sub__add"
               placeholder={"Select"}
               options={item1}
+              optionValue={"label"}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.designation &&
@@ -363,7 +392,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.reportingto}
+              value={action === "view" ? employeeViewData?.reportingto : formik.values.reportingto}
               onChange={formik.handleChange("reportingto")}
               // error={formik.errors.reportingto}
               className="dropdown__add__sub"
@@ -371,6 +400,8 @@ const AddEmployee = ({ action }) => {
               classNames="label__sub__add"
               placeholder={"Select"}
               options={item2}
+              optionValue={"label"}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.reportingto &&
@@ -383,7 +414,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.branchCode}
+              value={action === "view" ? employeeViewData?.branchCode : formik.values.branchCode}
               onChange={formik.handleChange("branchCode")}
               // error={formik.errors.branchCode}
               className="dropdown__add__sub"
@@ -391,6 +422,8 @@ const AddEmployee = ({ action }) => {
               classNames="label__sub__add"
               placeholder={"Select"}
               options={item3}
+              optionValue={"label"}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.branchCode &&
@@ -403,7 +436,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.departmentCode}
+              value={action === "view" ? employeeViewData?.departmentCode : formik.values.departmentCode}
               onChange={formik.handleChange("departmentCode")}
               // error={formik.errors.departmentCode}
               className="dropdown__add__sub"
@@ -411,6 +444,8 @@ const AddEmployee = ({ action }) => {
               classNames="label__sub__add"
               placeholder={"Select"}
               options={item4}
+              optionValue={"label"}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.departmentCode &&
@@ -423,7 +458,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.idProofType}
+              value={action === "view" ? employeeViewData?.idProofType : formik.values.idProofType}
               onChange={formik.handleChange("idProofType")}
               // error={formik.errors.idProofType}
               className="dropdown__add__sub"
@@ -431,6 +466,8 @@ const AddEmployee = ({ action }) => {
               classNames="label__sub__add"
               placeholder={"Select"}
               options={item5}
+              optionValue={"label"}
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.idProofType &&
@@ -443,7 +480,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.idNumber}
+              value={action === "view" ? employeeViewData?.idNumber : formik.values.idNumber}
               onChange={formik.handleChange("idNumber")}
               // error={formik.errors.idNumber}
               label="ID Number"
@@ -461,7 +498,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.addressLine1}
+              value={action === "view" ? employeeViewData?.addressLine1 : formik.values.addressLine1}
               onChange={formik.handleChange("addressLine1")}
               // error={formik.errors.addressLine1}
               label="Address line 1"
@@ -479,7 +516,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.addressLine2}
+              value={action === "view" ? employeeViewData?.addressLine2 : formik.values.addressLine2}
               onChange={formik.handleChange("addressLine2")}
               // error={formik.errors.addressLine2}
               label="Address line 2"
@@ -497,7 +534,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.addressLine3}
+              value={action === "view" ? employeeViewData?.addressLine3 : formik.values.addressLine3}
               onChange={formik.handleChange("addressLine3")}
               // error={formik.errors.addressLine3}
               label="Address line 3"
@@ -515,15 +552,24 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.city}
+              value={action === "view" ? employeeViewData?.city : formik.values.city}
               onChange={formik.handleChange("city")}
               // error={formik.errors.city}
               className="dropdown__add__sub"
               label="City"
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={City}
+              // options={City}
+              options={
+                action == "add"
+                  ? City
+                  : action == "edit"
+                    ? cityDataOption
+                    : City
+              }
               optionLabel="label"
+              optionValue={"label"}
+
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
             {formik.touched.city &&
@@ -536,14 +582,22 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.state}
+              value={action === "view" ? employeeViewData?.state : formik.values.state}
               onChange={formik.handleChange("state")}
               // error={formik.errors.state}
               className="dropdown__add__sub"
               label="State"
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={State}
+
+              options={
+                action == "add"
+                  ? State
+                  : action == "edit"
+                    ? stateDataOption
+                    : State
+              }
+              optionValue={"label"}
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -558,14 +612,20 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.country}
+              value={action === "view" ? employeeViewData?.country : formik.values.country}
               onChange={formik.handleChange("country")}
-              // error={formik.errors.country}
               label="Country"
               className="dropdown__add__sub"
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={Country}
+              options={
+                action == "add"
+                  ? Country
+                  : action == "edit"
+                    ? countryDataOption
+                    : Country
+              }
+              optionValue={"label"}
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -579,7 +639,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.modifiedBy}
+              value={action === "view" ? employeeViewData?.modifiedBy : formik.values.modifiedBy}
               onChange={formik.handleChange("modifiedBy")}
               error={formik.errors.modifiedBy}
               label="Modified By"
@@ -591,7 +651,7 @@ const AddEmployee = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.modifiedOn}
+              value={action === "view" ? employeeViewData?.modifiedOn : formik.values.modifiedOn}
               onChange={formik.handleChange("modifiedOn")}
               error={formik.errors.modifiedOn}
               label="Modified On"

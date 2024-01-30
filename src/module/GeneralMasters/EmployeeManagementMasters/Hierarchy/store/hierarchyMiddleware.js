@@ -7,6 +7,8 @@ import {
   POST_ADD_HIERARCHY,
   PATCH_HIERARCHY_EDIT,
   GET_SERACH_HIERARCHY,
+  GET_HIERARCHY_VIEW_DETAILS,
+  GET_HIERARCHY_PATCH_DETAILS,
 } from "../../../../../redux/actionTypes";
 import moment from "moment";
 
@@ -67,22 +69,18 @@ export const postAddHirarchyMiddleware = createAsyncThunk(
 export const patchHirarchyEditMiddleware = createAsyncThunk(
   PATCH_HIERARCHY_EDIT,
   async (payload, { rejectWithValue, getState }) => {
-    console.log(payload, "asd")
-    function updateObjectById(array, id, updatedData) {
-      return array.map(obj => (obj.id === id ? { ...obj, ...updatedData } : obj));
+    const data = {
+      id:payload?.id,
+      rankCode: payload?.rankCode,
+      rankName: payload?.rankName,
+      description: "description",
+      levelNumber: payload?.levelNumber,
+      modifiedBy: payload?.modifiedBy,
+      modifiedOn: moment().format("DD/MM/YYYY"),
     }
-
     try {
-      const { hierarchyTableReducers } = getState();
-      console.log(hierarchyTableReducers, "dta");
-      const { hierarchTableList } = hierarchyTableReducers;
-      console.log(hierarchTableList, payload, "hierarchy")
-
-      let arrayOfObjects = updateObjectById(arrayOfObjects, payload?.id, payload);
-
-      console.log(arrayOfObjects, "array of object")
-      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return arrayOfObjects;
+      console.log(data, "kkkkkk");
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -107,6 +105,29 @@ export const getSearchHirarchyMiddleware = createAsyncThunk(
 
     }
     catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getHierarchyViewMiddleWare = createAsyncThunk(
+  GET_HIERARCHY_VIEW_DETAILS,
+  async (payload, { rejectWithValue, getState }) => {
+
+    try {
+      return payload
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+export const getHierarchyPatchMiddleWare = createAsyncThunk(
+  GET_HIERARCHY_PATCH_DETAILS,
+  async (payload, { rejectWithValue, getState }) => {
+
+    try {
+      return payload
+    } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
   }

@@ -15,7 +15,8 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getEmployeEditMiddleWare, getEmployeViewMiddleWare } from "../store/employeeMiddleware";
 
 const EmployeeMaster = () => {
   const navigate = useNavigate();
@@ -26,22 +27,26 @@ const EmployeeMaster = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
 
-  const { hierarchTableList, loading, total, hierarchSeachList } = useSelector(
+  const { employeeTableList, loading, total, hierarchSeachList } = useSelector(
     ({ employeeReducers }) => {
       return {
         loading: employeeReducers?.loading,
-        hierarchTableList: employeeReducers?.hierarchTableList,
+        employeeTableList: employeeReducers?.employeeTableList,
         hierarchSeachList: employeeReducers?.hierarchSeachList,
         total: employeeReducers,
       };
     }
   );
+  const dispatch = useDispatch()
 
-  const handleView = () => {
+  const handleView = (rowData) => {
+    console.log(rowData, "rowData");
+    dispatch(getEmployeViewMiddleWare(rowData))
     navigate(`/master/generals/employeemanagement/employee/view/2`);
   };
 
-  const handlEdit = () => {
+  const handlEdit = (rowData) => {
+    dispatch(getEmployeEditMiddleWare(rowData))
     navigate("/master/generals/employeemanagement/employee/edit/3");
   };
   const items = [
@@ -86,12 +91,12 @@ const EmployeeMaster = () => {
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-          onClick={() => handleView()}
+          onClick={() => handleView(rowData)}
         />
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-          onClick={() => handlEdit()}
+          onClick={() => handlEdit(rowData)}
         />
       </div>
     );
@@ -136,7 +141,7 @@ const EmployeeMaster = () => {
   };
   return (
     <div className="grid overall__employee__master__container">
-      
+
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Employee</div>
         <div className="mt-3">
@@ -184,7 +189,7 @@ const EmployeeMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={Productdata}
+                value={employeeTableList}
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"
@@ -210,7 +215,7 @@ const EmployeeMaster = () => {
                   className="fieldvalue_container"
                 ></Column>
                 <Column
-                  field="name"
+                  field="firstName"
                   header="Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"

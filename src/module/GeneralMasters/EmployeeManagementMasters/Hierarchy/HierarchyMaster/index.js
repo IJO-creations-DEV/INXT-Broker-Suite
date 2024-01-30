@@ -16,7 +16,7 @@ import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchHirarchyMiddleware } from "../store/hierarchyMiddleware";
+import { getHierarchyPatchMiddleWare, getHierarchyViewMiddleWare, getSearchHirarchyMiddleware } from "../store/hierarchyMiddleware";
 
 const HierarchyMaster = () => {
   const [products, setProducts] = useState([]);
@@ -50,12 +50,15 @@ const HierarchyMaster = () => {
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
-  const handleView = (id) => {
-    navigate(`/master/generals/employeemanagement/hierarchy/view/${id}`);
+  const handleView = (rowData) => {
+    console.log(rowData,"rowData");
+    dispatch(getHierarchyViewMiddleWare(rowData))
+    navigate(`/master/generals/employeemanagement/hierarchy/view/${rowData.id}`);
   };
 
-  const handlEdit = (id) => {
-    navigate(`/master/generals/employeemanagement/hierarchy/edit/${id}`);
+  const handlEdit = (rowData) => {
+    dispatch(getHierarchyPatchMiddleWare(rowData))
+    navigate(`/master/generals/employeemanagement/hierarchy/edit/${rowData?.id}`);
   };
   const items = [
     { label: "Employee Management" },
@@ -100,12 +103,12 @@ const HierarchyMaster = () => {
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-          onClick={() => handleView(rowData?.id)}
+          onClick={() => handleView(rowData)}
         />
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-          onClick={() => handlEdit(rowData?.id)}
+          onClick={() => handlEdit(rowData)}
         />
       </div>
     );

@@ -7,6 +7,8 @@ import {
   POST_ADD_EMPLOYEE,
   PATCH_EMPLOYEE_EDIT,
   GET_SERACH_EMPLOYEE,
+  GET_VIEW_EMPLOYEE,
+  GET_EDIT_EMPLOYEE,
 } from "../../../../../redux/actionTypes";
 
 export const getEmployeeListMiddleware = createAsyncThunk(
@@ -34,9 +36,30 @@ export const getEmployeeListByIdMiddleware = createAsyncThunk(
 export const postAddEmployeeMiddleware = createAsyncThunk(
   POST_ADD_EMPLOYEE,
   async (payload, { rejectWithValue }) => {
+    const data = {
+      employeeCode: payload?.employeeCode,
+      firstName: payload?.firstName,
+      middleName: payload?.middleName,
+      lastName: payload?.lastName,
+      employeeType: payload?.employeeType,
+      designation: payload?.designation,
+      reportingto: payload?.reportingto,
+      branchCode: payload?.branchCode,
+      departmentCode: payload?.departmentCode,
+      idProofType: payload?.idProofType,
+      idNumber: payload?.idNumber,
+      addressLine1: payload?.addressLine1,
+      addressLine2: payload?.addressLine2,
+      addressLine3: payload?.addressLine3,
+      city: payload?.city,
+      state: payload?.state,
+      country: payload?.country,
+      modifiedBy: payload?.modifiedBy,
+      modifiedOn: payload?.modifiedOn,
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -45,9 +68,30 @@ export const postAddEmployeeMiddleware = createAsyncThunk(
 export const patchEmployeeEditMiddleware = createAsyncThunk(
   PATCH_EMPLOYEE_EDIT,
   async (payload, { rejectWithValue }) => {
+    const data = {
+      employeeCode: payload?.employeeCode,
+      firstName: payload?.firstName,
+      middleName: payload?.middleName,
+      lastName: payload?.lastName,
+      employeeType: payload?.employeeType,
+      designation: payload?.designation,
+      reportingto: payload?.reportingto,
+      branchCode: payload?.branchCode,
+      departmentCode: payload?.departmentCode,
+      idProofType: payload?.idProofType,
+      idNumber: payload?.idNumber,
+      addressLine1: payload?.addressLine1,
+      addressLine2: payload?.addressLine2,
+      addressLine3: payload?.addressLine3,
+      city: payload?.city,
+      state: payload?.state,
+      country: payload?.country,
+      modifiedBy: payload?.modifiedBy,
+      modifiedOn: payload?.modifiedOn,
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -64,4 +108,30 @@ export const getSearchEmployeeMiddleware = createAsyncThunk(
     }
   }
 );
+
+export const getEmployeViewMiddleWare = createAsyncThunk(
+  GET_VIEW_EMPLOYEE,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+
+export const getEmployeEditMiddleWare = createAsyncThunk(
+  GET_EDIT_EMPLOYEE,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
 

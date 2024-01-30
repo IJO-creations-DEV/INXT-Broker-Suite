@@ -5,7 +5,9 @@ import {
   PATCH_USER_EDIT,
   GET_SERACH_USER,
   GET_ADD_BRANCH_USER,
-  GET_USER_DATA_VIEW
+  GET_USER_DATA_VIEW,
+  GET_USER_DATA_EDIT,
+  GET_MAIN_BRANCH_ACCESS_VIEW
 } from "../../../../../redux/actionTypes";
 // import { getRequest } from "../../../utility/commonServices";
 // import { APIROUTES } from "../../../routes/apiRoutes";
@@ -52,9 +54,23 @@ export const getUserListByIdMiddleware = createAsyncThunk(
 export const postAddUserMiddleware = createAsyncThunk(
   POST_ADD_USER,
   async (payload, { rejectWithValue }) => {
+    const data = {
+
+      id: payload?.id,
+      userName: payload?.userName,
+      employeeCode: payload?.employeeCode,
+      assignedRole: payload?.assignedRole,
+      email: payload?.email,
+      phoneNumber: payload?.phoneNumber,
+      modifiedBy: "Johnson",
+      modifiedOn: "12/12/23",
+      status: "",
+      action: "",
+
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -63,9 +79,19 @@ export const postAddUserMiddleware = createAsyncThunk(
 export const patchUserEditMiddleware = createAsyncThunk(
   PATCH_USER_EDIT,
   async (payload, { rejectWithValue }) => {
+    const data = {
+      id: payload?.id,
+      userName: payload?.userName,
+      employeeCode: payload?.employeeCode,
+      email: payload?.email,
+      phoneNumber: payload?.phoneNumber,
+      assignedRole: payload?.assignedRole,
+      modifiedBy: payload?.modifiedBy,
+      modifiedOn: "01/12/2023",
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -124,3 +150,27 @@ export const getUserViewDataMiddleWare = createAsyncThunk(
     }
   }
 );
+export const getUserEditDataMiddleWare = createAsyncThunk(
+  GET_USER_DATA_EDIT,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getMainBranchAccessMiddleWare = createAsyncThunk(
+  GET_MAIN_BRANCH_ACCESS_VIEW,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+

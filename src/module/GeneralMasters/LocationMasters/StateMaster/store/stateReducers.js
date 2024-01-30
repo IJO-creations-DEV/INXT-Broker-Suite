@@ -1,195 +1,195 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getStateMiddleware, getStateListByIdMiddleware,postAddStateMiddleware,patchStateEditMiddleware,getSearchStateMiddleware } from "./stateMiddleware";
+import { getStateMiddleware, getStateListByIdMiddleware, postAddStateMiddleware, patchStateEditMiddleware, getSearchStateMiddleware } from "./stateMiddleware";
 
 const initialState = {
-    loading: false,
-    error: "",
-    stateTableList: [
-      {
-        id: "1",
-        StateCode: "PHR11DVO",
-        StateName: "DAVAO ORIENTAL",
-        Country: "Philippines",
-        Modifiedby: "User1",
-        ModifiedOn: "2024-01-11",
-      },
-      {
-        id: "2",
-        StateCode: "PHR06NEO",
-        StateName: "NEGROS OCCIDENTAL",
-        Country: "USA",
-        Modifiedby: "User2",
-        ModifiedOn: "2024-01-12",
-      },
-      {
-        id: "3",
-        StateCode: "PHNCRQZN",
-        StateName: "QUEZON CITY",
-        Country: "Canada",
-        Modifiedby: "User3",
-        ModifiedOn: "2024-01-13",
-      },
-      {
-        id: "4",
-        StateCode: "PHNCRQZN",
-        StateName: "LA UNION",
-        Country: "Australia",
-        Modifiedby: "User4",
-        ModifiedOn: "2024-01-14",
-      },
-      {
-        id: "5",
-        StateCode: "PHR4AQUP",
-        StateName: "LEYTE",
-        Country: "UK",
-        Modifiedby: "User5",
-        ModifiedOn: "2024-01-15",
-      },
-      {
-        id: "6",
-        StateCode: "PHR01PAN",
-        StateName: "MAKATI CITY",
-        Country: "Germany",
-        Modifiedby: "User6",
-        ModifiedOn: "2024-01-16",
-      },
-      {
-        id: "7",
-        StateCode: "PHNCRMAK",
-        StateName: "CAPIZ",
-        Country: "France",
-        Modifiedby: "User7",
-        ModifiedOn: "2024-01-17",
-      },
-      {
-        id: "8",
-        StateCode: "PHR4AQUP",
-        StateName: "CATANDUANES",
-        Country: "Japan",
-        Modifiedby: "User8",
-        ModifiedOn: "2024-01-18",
-      },
-      {
-        id: "9",
-        StateCode: "PHCARABR",
-        StateName: "ILOCOS SUR",
-        Country: "Brazil",
-        Modifiedby: "User9",
-        ModifiedOn: "2024-01-19",
-      },
-      {
-        id: "10",
-        StateCode: "PHR06AKL",
-        StateName: "PANGASINAN",
-        Country: "South Africa",
-        Modifiedby: "User10",
-        ModifiedOn: "2024-01-20",
-      }
-    ],
-    getStateListById:[],
-    getSearchState:[],
-    postAddState:"",
-    patchStateEdit:{}
+  loading: false,
+  error: "",
+  stateTableList: [
+    {
+      id: "1",
+      StateCode: "PHR11DVO",
+      StateName: "DAVAO ORIENTAL",
+      Country: "AFGHANISTAN",
+      Modifiedby: "User1",
+      ModifiedOn: "2024-01-11",
+    },
+    {
+      id: "2",
+      StateCode: "PHR06NEO",
+      StateName: "NEGROS OCCIDENTAL",
+      Country: "ALBANIA",
+      Modifiedby: "User2",
+      ModifiedOn: "2024-01-12",
+    },
+    {
+      id: "3",
+      StateCode: "PHNCRQZN",
+      StateName: "QUEZON CITY",
+      Country: "AGBANIA",
+      Modifiedby: "User3",
+      ModifiedOn: "2024-01-13",
+    },
+    {
+      id: "4",
+      StateCode: "PHNCRQZN",
+      StateName: "LA UNION",
+      Country: "AMERICAN SAMOA",
+      Modifiedby: "User4",
+      ModifiedOn: "2024-01-14",
+    },
+    {
+      id: "5",
+      StateCode: "PHR4AQUP",
+      StateName: "LEYTE",
+      Country: "ANDORRA",
+      Modifiedby: "User5",
+      ModifiedOn: "2024-01-15",
+    },
+    {
+      id: "6",
+      StateCode: "PHR01PAN",
+      StateName: "MAKATI CITY",
+      Country: "Germany",
+      Modifiedby: "User6",
+      ModifiedOn: "2024-01-16",
+    },
+    {
+      id: "7",
+      StateCode: "PHNCRMAK",
+      StateName: "CAPIZ",
+      Country: "France",
+      Modifiedby: "User7",
+      ModifiedOn: "2024-01-17",
+    },
+    {
+      id: "8",
+      StateCode: "PHR4AQUP",
+      StateName: "CATANDUANES",
+      Country: "Japan",
+      Modifiedby: "User8",
+      ModifiedOn: "2024-01-18",
+    },
+    {
+      id: "9",
+      StateCode: "PHCARABR",
+      StateName: "ILOCOS SUR",
+      Country: "Brazil",
+      Modifiedby: "User9",
+      ModifiedOn: "2024-01-19",
+    },
+    {
+      id: "10",
+      StateCode: "PHR06AKL",
+      StateName: "PANGASINAN",
+      Country: "South Africa",
+      Modifiedby: "User10",
+      ModifiedOn: "2024-01-20",
+    }
+  ],
+  getStateListById: [],
+  getSearchState: [],
+  postAddState: "",
+  patchStateEdit: {}
 
 };
 const stateReducer = createSlice({
-    name: "employee",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(getStateMiddleware.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(getStateMiddleware.fulfilled, (state, action) => {
-            state.loading = false;
-            state.stateTableList = action.payload;
-        });
-        builder.addCase(getStateMiddleware.rejected, (state, action) => {
-            state.loading = false;
+  name: "employee",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getStateMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getStateMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.stateTableList = action.payload;
+    });
+    builder.addCase(getStateMiddleware.rejected, (state, action) => {
+      state.loading = false;
 
-            state.stateTableList = {};
-            state.error = typeof action.payload === "string" ? action.payload : "";
-        });
-        builder.addCase(getStateListByIdMiddleware.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(getStateListByIdMiddleware.fulfilled, (state, action) => {
-            state.loading = false;
-            state.getStateListById = action.payload;
-        });
-        builder.addCase(getStateListByIdMiddleware.rejected, (state, action) => {
-            state.loading = false;
+      state.stateTableList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+    builder.addCase(getStateListByIdMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getStateListByIdMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.getStateListById = action.payload;
+    });
+    builder.addCase(getStateListByIdMiddleware.rejected, (state, action) => {
+      state.loading = false;
 
-            state.getStateListById = {};
-            state.error = typeof action.payload === "string" ? action.payload : "";
-        });
+      state.getStateListById = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
-        builder.addCase(getSearchStateMiddleware.pending, (state) => {
-          state.loading = true;
-      });
-      builder.addCase(getSearchStateMiddleware.fulfilled, (state, action) => {
-          state.loading = false;
-          state.getSearchState = action.payload;
-      });
-      builder.addCase(getSearchStateMiddleware.rejected, (state, action) => {
-          state.loading = false;
+    builder.addCase(getSearchStateMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getSearchStateMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.getSearchState = action.payload;
+    });
+    builder.addCase(getSearchStateMiddleware.rejected, (state, action) => {
+      state.loading = false;
 
-          state.getSearchState = {};
-          state.error = typeof action.payload === "string" ? action.payload : "";
-      });
-     
-     
+      state.getSearchState = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
 
-          builder.addCase(postAddStateMiddleware.pending, (state) => {
-            state.loading = true;
-          });
-          builder.addCase(postAddStateMiddleware.fulfilled, (state, action) => {
-            console.log(action.payload, 'find action.payload')
-            state.loading = false;
-            state.stateTableList = [...state.stateTableList, action.payload];
-          });
-          builder.addCase(postAddStateMiddleware.rejected, (state, action) => {
-            state.loading = false;
-       
-            //   state.paymentVocherList = state.paymentVocherList;
-            state.error = typeof action.payload === "string" ? action.payload : "";
-          });
 
-      
-          builder.addCase(patchStateEditMiddleware.pending, (state) => {
-            state.loading = true;
-          });
-          builder.addCase(
-            patchStateEditMiddleware.fulfilled,
-            (state, action) => {
-              state.loading = false;
-              console.log(state.stateTableList, "state.countryTableList");
-              const updatedIndex = state.stateTableList.findIndex(
-                (item) => item.id === action.payload.id
-              );
-              if (updatedIndex !== -1) {
-                const updatedAddDisbursmentTable = [...state.stateTableList];
-                updatedAddDisbursmentTable[updatedIndex] = action.payload;
-                state.stateTableList = updatedAddDisbursmentTable;
-              } else {
-                state.stateTableList = [...state.stateTableList, action.payload];
-              }
-            }
-          );
-          builder.addCase(
-            patchStateEditMiddleware.rejected,
-            (state, action) => {
-              state.loading = false;
-      
-              state.editList = {};
-              state.error = typeof action.payload === "string" ? action.payload : "";
-            }
-          );
 
-        
+    builder.addCase(postAddStateMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(postAddStateMiddleware.fulfilled, (state, action) => {
+      console.log(action.payload, 'find action.payload')
+      state.loading = false;
+      state.stateTableList = [...state.stateTableList, action.payload];
+    });
+    builder.addCase(postAddStateMiddleware.rejected, (state, action) => {
+      state.loading = false;
 
-          
-    },
+      //   state.paymentVocherList = state.paymentVocherList;
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+
+    builder.addCase(patchStateEditMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      patchStateEditMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        console.log(state.stateTableList, "state.countryTableList");
+        const updatedIndex = state.stateTableList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedAddDisbursmentTable = [...state.stateTableList];
+          updatedAddDisbursmentTable[updatedIndex] = action.payload;
+          state.stateTableList = updatedAddDisbursmentTable;
+        } else {
+          state.stateTableList = [...state.stateTableList, action.payload];
+        }
+      }
+    );
+    builder.addCase(
+      patchStateEditMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.editList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+
+
+  },
 });
 
 export default stateReducer.reducer;

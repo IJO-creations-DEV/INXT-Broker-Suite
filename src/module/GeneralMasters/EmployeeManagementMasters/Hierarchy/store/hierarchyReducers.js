@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getHirarchyListMiddleware, getHirarchyListByIdMiddleware, postAddHirarchyMiddleware, patchHirarchyEditMiddleware, getSearchHirarchyMiddleware } from "./hierarchyMiddleware";
+import { getHirarchyListMiddleware, getHirarchyListByIdMiddleware, postAddHirarchyMiddleware, patchHirarchyEditMiddleware, getSearchHirarchyMiddleware, getHierarchyViewMiddleWare, getHierarchyPatchMiddleWare } from "./hierarchyMiddleware";
 import SvgIconeye from "../../../../../assets/icons/SvgIconeye";
 const initialState = {
   loading: false,
@@ -10,6 +10,7 @@ const initialState = {
       rankCode: "RC1234",
       rankName: "RankName",
       levelNumber: "50",
+      description: "description",
       modifiedBy: "Johnson",
       modifiedOn: "12/12/23",
       status: "",
@@ -24,90 +25,13 @@ const initialState = {
       modifiedOn: "2/1/24",
       status: "",
       action: ""
-    }, {
-      id: 3,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 4,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 5,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 6,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 7,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 8,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 9,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
-    {
-      id: 10,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
-      modifiedBy: "Johnson",
-      modifiedOn: "12/12/23",
-      status: "",
-      action: ""
-    },
+    }, 
   ]
   ,
   hierarchSeachList: [],
-  hierarchListDetails: {}
+  hierarchListDetails: {},
+  getViewData: {},
+  getPatchData: {}
 
 };
 const receiptsReducer = createSlice({
@@ -164,7 +88,7 @@ const receiptsReducer = createSlice({
     builder.addCase(postAddHirarchyMiddleware.fulfilled, (state, action) => {
       console.log(action.payload, 'find action.payload')
       state.loading = false;
-      state.hierarchyTableList = [...state.receiptsTableList, action.payload];
+      state.hierarchTableList = [...state.hierarchTableList, action.payload];
     });
     builder.addCase(postAddHirarchyMiddleware.rejected, (state, action) => {
       state.loading = false;
@@ -181,8 +105,17 @@ const receiptsReducer = createSlice({
       patchHirarchyEditMiddleware.fulfilled,
       (state, action) => {
         state.loading = false;
-
-        state.hierarchTableList = action.payload;
+        const updatedIndex = state.hierarchTableList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        console.log(updatedIndex, "updatedIndex");
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.hierarchTableList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.hierarchTableList = updatedCurrencyList;
+        } else {
+          state.hierarchTableList = [...state.hierarchTableList, action.payload];
+        }
       }
     );
     builder.addCase(
@@ -190,7 +123,50 @@ const receiptsReducer = createSlice({
       (state, action) => {
         state.loading = false;
 
-        state.editList = {};
+        state.branchList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    builder.addCase(getHierarchyViewMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getHierarchyViewMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+
+        state.getViewData = action.payload;
+      }
+    );
+    builder.addCase(
+      getHierarchyViewMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getViewData = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    builder.addCase(getHierarchyPatchMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getHierarchyPatchMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+
+        state.getPatchData = action.payload;
+      }
+    );
+    builder.addCase(
+      getHierarchyPatchMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getPatchData = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

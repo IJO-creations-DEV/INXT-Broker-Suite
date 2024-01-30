@@ -96,24 +96,10 @@ function AddCity({ action }) {
         setStateOptionData([{ label: statedatas, value: statedatas }]);
       }
     }
-    // if (statedatas) {
-    //   formik.setValues({ ...formik.values, ...updatedValues });
-    //   setstatedata([{ label: statedatas, value: statedatas }]);
-    // }
+
     formik.setValues({ ...formik.values, ...updatedValues });
 
-    // if (action === "edit") {
-    //   if (statedatas) {
-    //     formik.setValues({ ...formik.values, ...updatedValues });
-    //     formik.setFieldValue("State", statedatas);
-    //     setstatedata([{ label: statedatas, value: statedatas }]);
-    //   }
-    // } else {
-    //   if (statedatas) {
-    //     formik.setValues({ ...formik.values, ...updatedValues });
-    //     setstatedata([{ label: statedatas, value: statedatas }]);
-    //   }
-    // }
+
 
     console.log(updatedValues, "updatedValues");
     console.log(statedata, "statedata");

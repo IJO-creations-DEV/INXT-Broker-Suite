@@ -146,7 +146,7 @@ function AddState({ action }) {
   const handleSubmit = (values) => {
     if (action === "add") {
       handleSubmitAdd(values);
-    } else if (action === "edit") {
+    }  if (action === "edit") {
       handleSubmitEdit(values);
     }
   };

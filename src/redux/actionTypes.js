@@ -237,20 +237,26 @@ export const PATCH_REVERSAL_JV_EDIT = "reversal/PATCH_REVERSAL_JV_EDIT";
 export const GET_DESIGNATION_DETAILS = "designation/GET_DESIGNATION_DETAILS";
 export const GET_DESIGNATION_BY_ID = "designation/GET_DESIGNATION_BY_ID";
 export const POST_ADD_DESIGNATION = "designation/POST_ADD_DESIGNATION";
-export const PATCH_DESIGNATION_EDIT = "designation/GET_DESIGNATION_DETAILS";
-export const GET_SEARCH_DESIGNATION = "designation/GET_DESIGNATION_DETAILS";
+export const PATCH_DESIGNATION_EDIT = "designation/PATCH_DESIGNATION_EDIT";
+export const GET_SERACH_DESIGANTION = "designation/GET_SERACH_DESIGANTION";
+export const GET_DESIGNATION_VIEW="designation/GET_DESIGNATION_VIEW";
+export const GET_DESIGNATION_EDIT="designation/GET_DESIGNATION_EDIT";
 
 export const GET_EMPLOYEE_DETAILS = "employee/GET_EMPLOYEE_DETAILS";
 export const GET_EMPLOYEE_BY_ID = "employee/GET_EMPLOYEE_BY_ID";
 export const POST_ADD_EMPLOYEE = "employee/POST_ADD_EMPLOYEE";
 export const PATCH_EMPLOYEE_EDIT = "employee/PATCH_EMPLOYEE_EDIT";
 export const GET_SERACH_EMPLOYEE = "employee/GET_SERACH_EMPLOYEE";
+export const GET_VIEW_EMPLOYEE="employee/GET_VIEW_EMPLOYEE";
+export const GET_EDIT_EMPLOYEE="employee/GET_EDIT_EMPLOYEE"
 
 export const GET_HIERARCHY_DETAILS = "hierarchy/GET_HIERARCHY_DETAILS";
 export const GET_HIERARCHY_BY_ID = "hierarchy/GET_HIERARCHY_BY_ID";
 export const POST_ADD_HIERARCHY = "hierarchy/POST_ADD_HIERARCHY";
 export const PATCH_HIERARCHY_EDIT = "hierarchy/PATCH_HIERARCHY_EDIT";
 export const GET_SERACH_HIERARCHY = "hierarchy/GET_SERACH_HIERARCHY";
+export const GET_HIERARCHY_VIEW_DETAILS="hierarchy/GET_HIERARCHY_VIEW_DETAILS";
+export const GET_HIERARCHY_PATCH_DETAILS="hierarchy/GET_HIERARCHY_PATCH_DETAILS"
 
 export const GET_ROLE_DETAILS = "role/GET_ROLE_DETAILS";
 export const GET_ROLE_BY_ID = "role/GET_ROLE_BY_ID";
@@ -264,7 +270,9 @@ export const POST_ADD_USER = "user/POST_ADD_USER";
 export const PATCH_USER_EDIT = "user/PATCH_USER_EDIT";
 export const GET_SERACH_USER = "user/GET_SERACH_USER";
 export const GET_ADD_BRANCH_USER = "user/GET_SERACH_ROLE";
-export const GET_USER_DATA_VIEW="user/GET_USER_DATA_VIEW"
+export const GET_USER_DATA_VIEW="user/GET_USER_DATA_VIEW";
+export const GET_USER_DATA_EDIT="user/GET_USER_DATA_EDIT";
+export const GET_MAIN_BRANCH_ACCESS_VIEW="user/GET_MAIN_BRANCH_ACCESS_VIEW"
 
 export const GET_BRANCH_DETAILS = "branch/GET_BRANCH_DETAILS";
 export const GET_BRANCH_BY_ID = "branch/GET_BRANCH_BY_ID";

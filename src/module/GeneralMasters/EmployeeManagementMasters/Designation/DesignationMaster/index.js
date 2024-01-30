@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../../../assets/icons/SvgAdd";
 import "./index.scss";
@@ -15,20 +15,35 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
+import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
+import { getDesignationPatchData, getDesignationViewData, getSearchDesignationMiddleware } from "../store/designationMiddleware";
 
 const DesignationMaster = () => {
   const navigate = useNavigate();
+  const { designationDetailList, loading,  designationSearchList } = useSelector(
+    ({ designationMainReducers }) => {
+      return {
+        loading: designationMainReducers?.loading,
+        designationDetailList: designationMainReducers?.designationDetailList,
+        designationSearchList: designationMainReducers?.designationSearchList,
+      };
+    }
+  );
+  console.log(designationDetailList, "list of master");
   const handleNavigate = () => {
     navigate("/master/generals/employeemanagement/designation/add/1");
   };
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
-  const handleView = () => {
+  const handleView = (rowData) => {
+    dispatch(getDesignationViewData(rowData))
     navigate("/master/generals/employeemanagement/designation/view/2");
   };
 
-  const handlEdit = () => {
+  const handlEdit = (rowData) => {
+    dispatch(getDesignationPatchData(rowData))
     navigate("/master/generals/employeemanagement/designation/edit/3");
   };
   const items = [
@@ -58,6 +73,7 @@ const DesignationMaster = () => {
     display: "flex",
     justifyContent: "center",
   };
+  const dispatch=useDispatch()
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -66,6 +82,23 @@ const DesignationMaster = () => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
+  const [search, setSearch]=useState()
+
+  
+  const handleSubmit = (values) => {
+    console.log(values.search, "getSearchDesignationMiddleware");
+    dispatch(getSearchDesignationMiddleware({ textSearch: values.search }));
+  };
+  const formik = useFormik({
+    initialValues: { search: "" },
+    onSubmit: handleSubmit,
+  });
+  
+  useEffect(() => {
+    if (formik.values.search !== "") {
+      dispatch(getSearchDesignationMiddleware({ textSearch: formik.values.search }));
+    }
+  }, [formik.values.search]);
 
   const renderViewButton = (rowData) => {
     return (
@@ -73,12 +106,12 @@ const DesignationMaster = () => {
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-          onClick={() => handleView()}
+          onClick={() => handleView(rowData)}
         />
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-          onClick={() => handlEdit()}
+          onClick={() => handlEdit(rowData)}
         />
       </div>
     );
@@ -156,6 +189,8 @@ const DesignationMaster = () => {
                   style={{ width: "100%" }}
                   classNames="input__sub__account__hierarchy"
                   placeholder="Search By Designation Code"
+                  value={formik.values.search}
+                  onChange={formik.handleChange("search")}
                 />
               </div>
             </div>
@@ -171,7 +206,11 @@ const DesignationMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={Productdata}
+                value={
+                  formik.values.search !== ""
+                    ? designationSearchList
+                    : designationDetailList
+                }
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"
@@ -203,7 +242,7 @@ const DesignationMaster = () => {
                   className="fieldvalue_container"
                 ></Column>
                 <Column
-                  field="modifiedBy"
+                  field="ModifiedBy"
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"

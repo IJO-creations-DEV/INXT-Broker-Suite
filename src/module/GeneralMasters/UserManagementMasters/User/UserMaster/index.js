@@ -16,7 +16,7 @@ import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchUserMiddleware, getUserViewDataMiddleWare } from "../store/userMiddleware";
+import { getSearchUserMiddleware, getUserEditDataMiddleWare, getUserViewDataMiddleWare } from "../store/userMiddleware";
 
 const UserMaster = () => {
   const [search, setSearch] = useState("");
@@ -43,12 +43,15 @@ const UserMaster = () => {
   }, [search]);
 
   const handleView = (rowData) => {
+    console.log(rowData, "rowData");
     dispatch(getUserViewDataMiddleWare(rowData))
     navigate(`/master/generals/usermanagement/user/view/${rowData?.id}`);
   };
 
-  const handlEdit = (id) => {
-    navigate(`/master/generals/usermanagement/user/edit/${id}`);
+  const handlEdit = (rowData) => {
+    console.log(rowData, "gg");
+    dispatch(getUserEditDataMiddleWare(rowData))
+    navigate(`/master/generals/usermanagement/user/edit/${rowData?.id}`);
   };
   const items = [
     { label: "User Management" },
@@ -86,6 +89,7 @@ const UserMaster = () => {
   };
 
   const renderViewButton = (rowData) => {
+    console.log(rowData, "rowDatarowData");
     return (
       <div className="center-content">
         <Button
@@ -96,7 +100,7 @@ const UserMaster = () => {
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-          onClick={() => handlEdit(rowData?.id)}
+          onClick={() => handlEdit(rowData)}
         />
       </div>
     );
@@ -141,7 +145,7 @@ const UserMaster = () => {
   };
   return (
     <div className="grid overall__user__master__container">
-     
+
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">User</div>
         <div className="mt-3">
@@ -199,8 +203,8 @@ const UserMaster = () => {
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                // onPage={onPageChange}
-                // onPageChange={onPageChange}
+              // onPage={onPageChange}
+              // onPageChange={onPageChange}
               >
                 <Column
                   field="userName"

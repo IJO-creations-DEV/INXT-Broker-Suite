@@ -21,41 +21,40 @@ const AddHierarchy = ({ action }) => {
   const { id } = useParams();
   console.log(id, "find actions");
 
-  const { hierarchyListDetails, loading, total } = useSelector(
+  const { hierarchyListDetails, loading, total, getViewData, getPatchData } = useSelector(
     ({ hierarchyTableReducers }) => {
       return {
         loading: hierarchyTableReducers?.loading,
         hierarchyListDetails: hierarchyTableReducers?.hierarchListDetails,
         total: hierarchyTableReducers,
+        getViewData: hierarchyTableReducers?.getViewData,
+        getPatchData: hierarchyTableReducers?.getPatchData
       };
     }
   );
-  console.log(total, "find id");
+  console.log(getViewData, "find getViewData");
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState("");
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (action === "edit" || action === "view") {
-      dispatch(getHirarchyListByIdMiddleware(id)).then(() => {
-        setFormikValues();
-      });
-    }
-  }, [action, id]);
-  useEffect(() => {
-    setFormikValues();
-  }, [hierarchyListDetails]);
+  // useEffect(() => {
+  //   if (action === "edit") {
+  //     dispatch(getHirarchyListByIdMiddleware(id)).then(() => {
+  //       setFormikValues();
+  //     });
+  //   }
+  // }, [action, id]);
+
   const items = [
     { label: "Employee Management" },
 
     {
-      label: `${
-        action === "add"
-          ? "Add Hierarchy"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add Hierarchy"
+        : action === "edit"
           ? "Edit Hierarchy"
           : "View Hierarchy"
-      }`,
+        }`,
     },
   ];
   const home = { label: "Master" };
@@ -89,10 +88,11 @@ const AddHierarchy = ({ action }) => {
 
   const handleSubmit = (values) => {
     console.log(values, "asddd");
-    if (action == "edit") {
-      dispatch(patchHirarchyEditMiddleware({ ...values, id }));
-    } else {
+    if (action == "add") {
       dispatch(postAddHirarchyMiddleware(values));
+    } else {
+      dispatch(patchHirarchyEditMiddleware(values));
+
     }
     toastRef.current.showToast();
 
@@ -103,20 +103,14 @@ const AddHierarchy = ({ action }) => {
   };
   console.log(hierarchyListDetails, "hierarcy details");
   const setFormikValues = () => {
-    const rankCode = hierarchyListDetails?.rankCode;
-    const rankName = hierarchyListDetails?.rankName;
-    const description = "description";
-    const levelNumber = hierarchyListDetails?.levelNumber;
-    const modifiedBy = hierarchyListDetails?.modifiedBy;
-    const modifiedOn = moment().format("DD/MM/YYYY");
-
     const updatedValues = {
-      rankCode: `${rankCode}`,
-      rankName: `${rankName}`,
-      description: `${description}`,
-      levelNumber: `${levelNumber}`,
-      modifiedBy: `${modifiedBy}`,
-      modifiedOn: `${modifiedOn}`,
+      id: getPatchData?.id,
+      rankCode: getPatchData?.rankCode,
+      rankName: getPatchData?.rankName,
+      description: "description",
+      levelNumber: getPatchData?.levelNumber,
+      modifiedBy: getPatchData?.modifiedBy,
+      modifiedOn: moment().format("DD/MM/YYYY"),
     };
     formik.setValues({ ...formik.values, ...updatedValues });
   };
@@ -126,45 +120,48 @@ const AddHierarchy = ({ action }) => {
     validate,
     onSubmit: handleSubmit,
   });
+  useEffect(() => {
+    setFormikValues();
+  }, [getPatchData]);
   return (
     <div className="grid add__hierarchy__container">
       <div className="add_backbut_container">
-      <div
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
-        }}
-      >
-        <span onClick={() => navigate(-1)}>
-          <SvgBack />
-        </span>
-      </div>
-      <div className="add__sub__title">
-        {action === "add"
-          ? "Add Hierarchy"
-          : action === "edit"
-          ? "Edit Hierarchy"
-          : "View Hierarchy"}
-      </div>
+        <div
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+          }}
+        >
+          <span onClick={() => navigate(-1)}>
+            <SvgBack />
+          </span>
+        </div>
+        <div className="add__sub__title">
+          {action === "add"
+            ? "Add Hierarchy"
+            : action === "edit"
+              ? "Edit Hierarchy"
+              : "View Hierarchy"}
+        </div>
       </div>
       <div className="col-12 mb-2 mt-2">
-          <BreadCrumb
-            home={home}
-            className="breadCrums__view__add__screen"
-            model={items}
-            separatorIcon={<SvgDot color={"#000"} />}
-          />
-       
+        <BreadCrumb
+          home={home}
+          className="breadCrums__view__add__screen"
+          model={items}
+          separatorIcon={<SvgDot color={"#000"} />}
+        />
+
       </div>
       <div className="col-12 m-0 ">
         <div className="grid add__account__sub__container p-3">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.rankCode}
+              value={action === "view" ? getViewData.rankCode : formik.values.rankCode}
               onChange={formik.handleChange("rankCode")}
-              error={formik.errors.rankCode}
+              error={action === "view" ? "" : formik.errors.rankCode}
               label="Rank Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -174,9 +171,9 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.rankName}
+              value={action === "view" ? getViewData.rankName : formik.values.rankName}
               onChange={formik.handleChange("rankName")}
-              error={formik.errors.rankName}
+              error={action === "view" ? "" : formik.errors.rankName}
               label="Rank Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -187,9 +184,9 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-6">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.description}
+              value={action === "view" ? getViewData.description : formik.values.description}
               onChange={formik.handleChange("description")}
-              error={formik.errors.basis}
+              error={action === "view" ? "" : formik.errors.basis}
               label="Description"
               classNames="dropdown__add__sub"
               className="label__sub__add"
@@ -199,9 +196,9 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={formik.values.levelNumber}
+              value={action === "view" ? getViewData.levelNumber : formik.values.levelNumber}
               onChange={formik.handleChange("levelNumber")}
-              error={formik.errors.levelNumber}
+              error={action === "view" ? "" : formik.errors.levelNumber}
               label="Level Number"
               classNames="dropdown__add__sub"
               className="label__sub__add"

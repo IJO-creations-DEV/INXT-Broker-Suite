@@ -1,105 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getEmployeeListMiddleware, getEmployeeListByIdMiddleware, postAddEmployeeMiddleware, patchEmployeeEditMiddleware, getSearchEmployeeMiddleware } from "./employeeMiddleware";
+import { getEmployeeListMiddleware, getEmployeeListByIdMiddleware, postAddEmployeeMiddleware, patchEmployeeEditMiddleware, getSearchEmployeeMiddleware, getEmployeViewMiddleWare, getEmployeEditMiddleWare } from "./employeeMiddleware";
 // import SvgIconeye from "../../../assets/icons/SvgIconeye";
 const initialState = {
   loading: false,
   error: "",
-  employeeList: [
+  employeeTableList: [
     {
       id: 1,
-      employeeCode: "Em00123",
+      employeeCode: "RC1234",
+      firstName: "John",
+      middleName: "Peterson",
+      lastName: "Watson",
       employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
+      designation: "Level 2 Agent",
+      reportingto: "John Doe",
+      branchCode: "Branch0123",
+      departmentCode: "Depart123",
+      idProofType: "Driving License",
+      idNumber: "12345678",
+      addressLine1: "Enter",
+      city: "Chennai",
+      state: "Tamil nadu",
+      country: "India",
       modifiedBy: "John",
       modifiedOn: "12/12/2023",
 
     },
     {
       id: 2,
-      employeeCode: "Em00123",
+      employeeCode: "RC1234",
+      firstName: "John",
+      middleName: "Peterson",
+      lastName: "Watson",
       employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
-      modifiedBy: "John",
-      modifiedOn: "12/12/2023",
-
-    },
-    {
-      id: 3,
-      employeeCode: "Em00123",
-      employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
-      modifiedBy: "John",
-      modifiedOn: "12/12/2023",
-
-    },
-    {
-      id: 4,
-      employeeCode: "Em00123",
-      employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
-      modifiedBy: "John",
-      modifiedOn: "12/12/2023",
-
-    },
-    {
-      id: 1,
-      employeeCode: "Em00123",
-      employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
-      modifiedBy: "John",
-      modifiedOn: "12/12/2023",
-
-    },
-    {
-      id: 5,
-      employeeCode: "Em00123",
-      employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
-      modifiedBy: "John",
-      modifiedOn: "12/12/2023",
-
-    },
-    {
-      id: 6,
-      employeeCode: "Em00123",
-      employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
-      modifiedBy: "John",
-      modifiedOn: "12/12/2023",
-
-    },
-    {
-      id: 7,
-      employeeCode: "Em00123",
-      employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
-      modifiedBy: "John",
-      modifiedOn: "12/12/2023",
-
-    },
-    {
-      id: 8,
-      employeeCode: "Em00123",
-      employeeType: "Agent",
-      name: "John Peterson watson",
-      designation: "Level to Agent",
-      reportingTo: "John Doe",
+      designation: "Level 2 Agent",
+      reportingto: "John Doe",
+      branchCode: "Branch0123",
+      departmentCode: "Depart123",
+      idProofType: "Driving License",
+      idNumber: "12345678",
+      addressLine1: "Enter",
+      city: "Chennai",
+      state: "Tamil nadu",
+      country: "India",
       modifiedBy: "John",
       modifiedOn: "12/12/2023",
 
@@ -107,8 +50,12 @@ const initialState = {
 
 
 
-  ]
+
+  ],
+  employeeEditData: {},
+  employeeViewData: {}
 };
+let nextId1 = 4
 const employeeReducer = createSlice({
   name: "employee",
   initialState,
@@ -160,11 +107,14 @@ const employeeReducer = createSlice({
     builder.addCase(postAddEmployeeMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(postAddEmployeeMiddleware.fulfilled, (state, action) => {
-      console.log(action.payload, 'find action.payload')
-      state.loading = false;
-      state.employeeTableList = [...state.receiptsTableList, action.payload];
-    });
+    builder.addCase(
+      postAddEmployeeMiddleware.fulfilled, (state, action) => {
+        state.loading = false;
+        const newItem2 = { ...action.payload, id: nextId1++ };
+        state.employeeTableList = [...state.employeeTableList, newItem2];
+        console.log(state.employeeTableList, "departmentList")
+      }
+    );
     builder.addCase(postAddEmployeeMiddleware.rejected, (state, action) => {
       state.loading = false;
 
@@ -193,6 +143,51 @@ const employeeReducer = createSlice({
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
+
+
+    builder.addCase(getEmployeViewMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getEmployeViewMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+
+        state.employeeViewData = action.payload;
+      }
+    );
+    builder.addCase(
+      getEmployeViewMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.employeeViewData = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    builder.addCase(getEmployeEditMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getEmployeEditMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+
+        state.employeeEditData = action.payload;
+      }
+    );
+    builder.addCase(
+      getEmployeEditMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.employeeEditData = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
 
   },
 });

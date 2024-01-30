@@ -16,6 +16,7 @@ import EditUser from "../EditUser";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getUserListByIdMiddleware,
+  patchUserEditMiddleware,
   postAddUserMiddleware,
 } from "../store/userMiddleware";
 import moment from "moment";
@@ -49,21 +50,33 @@ const AddUser = ({ action }) => {
     phoneNumber: "",
     assignedRole: "",
   };
-  const { loading, userList, searchList, userDetailList,userViewData } = useSelector(
+  const { loading, userList, searchList, userDetailList, userViewData,userEditData } = useSelector(
     ({ userReducers }) => {
       return {
         loading: userReducers?.loading,
         userList: userReducers?.userList,
         searchList: userReducers?.userSearchList,
         userDetailList: userReducers?.userDetailList,
-        userViewData:userReducers?.userViewData
+        userViewData: userReducers?.userViewData,
+        userEditData:userReducers?.userEditData
       };
     }
   );
-  console.log(userDetailList, "userDetailList");
-  const item = [action === "add" ? { label: "Em00123", value: "Em00123" } : userViewData?.employeeCode];
-  const item2 = [action === "add" ? { label: "Em00123", value: "Em00123" } : userViewData?.assignedRole];
-
+  console.log(userViewData, "userViewData");
+  // const item = [action === "add" ? { label: "Em00123", value: "Em00123" } : userViewData?.employeeCode];
+  // const item2 = [action === "add" ? { label: "Em00123", value: "Em00123" } : userViewData?.assignedRole];
+  const item = [
+    {
+      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData.employeeCode,
+      value: action === "add" ? "NY" : userViewData.employeeCode,
+    },
+  ];
+  const item2 = [
+    {
+      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData.assignedRole,
+      value: action === "add" ? "NY" : userViewData.assignedRole,
+    },
+  ];
   const validate = (values) => {
     // if (action === "add" || action === "edit") {
     const errors = {};
@@ -92,20 +105,12 @@ const AddUser = ({ action }) => {
   minDate.setDate(minDate.getDate() + 1);
 
   const handleSubmit = (value) => {
+    if (action === "edit") {
+      dispatch(patchUserEditMiddleware(value))
+    }
     console.log(value, "val");
     dispatch(
-      postAddUserMiddleware({
-        id: userList?.length + 1,
-        userName: value?.userName,
-        employeeCode: value?.employeeCode?.name,
-        assignedRole: value?.assignedRole?.name,
-        email: value?.email,
-        phoneNumber: value?.phoneNumber,
-        modifiedBy: "Johnson",
-        modifiedOn: "12/12/23",
-        status: "",
-        action: "",
-      })
+      postAddUserMiddleware(formik.values)
     );
     toastRef.current.showToast();
 
@@ -117,16 +122,17 @@ const AddUser = ({ action }) => {
   const [assignedRoleOptionData, setAssignedRoleData] = useState([])
   const [employeeCodeOption, setEmployeeCodeOption] = useState([])
   const setFormikValues = () => {
-    console.log(userDetailList, "user details");
-    const assignedRoleData = userDetailList?.assignedRole
-    const employeeCodeData = userDetailList?.employeeCode
+    console.log(userEditData, "user details");
+    const assignedRoleData = userEditData?.assignedRole
+    const employeeCodeData = userEditData?.employeeCode
     const updatedValues = {
-      userName: userDetailList?.userName,
+      id: userEditData?.id,
+      userName: userEditData?.userName,
       employeeCode: employeeCodeData,
-      email: userDetailList?.email,
-      phoneNumber: userDetailList?.phoneNumber,
+      email: userEditData?.email,
+      phoneNumber: userEditData?.phoneNumber,
       assignedRole: assignedRoleData,
-      modifiedBy: userDetailList?.modifiedBy,
+      modifiedBy: userEditData?.modifiedBy,
       modifiedOn: moment().format("DD/MM/YYYY"),
     };
     if (assignedRoleData) {
@@ -144,15 +150,18 @@ const AddUser = ({ action }) => {
     validate,
     onSubmit: handleSubmit,
   });
-
   useEffect(() => {
-    if (action === "edit" || action === "view") {
-      dispatch(getUserListByIdMiddleware(id)).then(() => {
+    setFormikValues()
+  }, [userEditData])
 
-      });
-      setFormikValues();
-    }
-  }, [action, id]);
+  // useEffect(() => {
+  //   if (action === "edit" || action === "view") {
+  //     dispatch(getUserListByIdMiddleware(id)).then(() => {
+  //       setFormikValues();
+  //     });
+  //     setFormikValues();
+  //   }
+  // }, [action, id]);
   return (
     <div className="grid add__user__container">
 

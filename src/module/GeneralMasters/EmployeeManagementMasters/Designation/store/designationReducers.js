@@ -1,208 +1,182 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDesinationListMiddleware, getDesignationListByIdMiddleware,postAddDesignationMiddleware,patchDesignationEditMiddleware,getSearchDesignationMiddleware } from "./designationMiddleware";
-import SvgIconeye from "../../../assets/icons/SvgIconeye";
+import { getDesignationListByIdMiddleware, postAddDesignationMiddleware, patchDesignationEditMiddleware, getSearchDesignationMiddleware, getDesignationViewData, getDesignationPatchData } from "./designationMiddleware";
 const initialState = {
-    loading: false,
-    error: "",
-    // receiptsTableList:[
-    //     {
-    //         id: 1,
-    //         receiptNumber: "01Rep012302",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00123",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 2,
-    //         receiptNumber: "01Rep012302",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00123",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 3,
-    //         receiptNumber: "01Rep012302",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00123",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 4,
-    //         receiptNumber: "01Rep012303",
-    //         transactionCode: "123457",
-    //         transactionNumber: "Transac00124",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 5,
-    //         receiptNumber: "01Rep012307",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00129",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 6,
-    //         receiptNumber: "01Rep012307",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00123",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 7,
-    //         receiptNumber: "01Rep012302",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00123",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 8,
-    //         receiptNumber: "01Rep012301",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00123",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 9,
-    //         receiptNumber: "01Rep012302",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00123",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    //       {
-    //         id: 10,
-    //         receiptNumber: "01Rep012302",
-    //         transactionCode: "123456",
-    //         transactionNumber: "Transac00123",
-    //         name: "Name",
-    //         customerCode: "CC0102",
-    //         date: "11/12/2023",
-    //         amount: "500.37",
-    //         action: "Action",
-    //       },
-    // ],
-};
-const receiptsReducer = createSlice({
-    name: "designation",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(getDesinationListMiddleware.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(getDesinationListMiddleware.fulfilled, (state, action) => {
-            state.loading = false;
-            state.designationTableList = action.payload;
-        });
-        builder.addCase(getDesinationListMiddleware.rejected, (state, action) => {
-            state.loading = false;
-
-            state.receiptsTableList = {};
-            state.error = typeof action.payload === "string" ? action.payload : "";
-        });
-        builder.addCase(getDesignationListByIdMiddleware.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(getDesignationListByIdMiddleware.fulfilled, (state, action) => {
-            state.loading = false;
-            state.designationDetailList = action.payload;
-        });
-        builder.addCase(getDesignationListByIdMiddleware.rejected, (state, action) => {
-            state.loading = false;
-
-            state.designationDetailList = {};
-            state.error = typeof action.payload === "string" ? action.payload : "";
-        });
-
-        builder.addCase(getSearchDesignationMiddleware.pending, (state) => {
-          state.loading = true;
-      });
-      builder.addCase(getSearchDesignationMiddleware.fulfilled, (state, action) => {
-          state.loading = false;
-          state.designationDetailList = action.payload;
-      });
-      builder.addCase(getSearchDesignationMiddleware.rejected, (state, action) => {
-          state.loading = false;
-
-          state.designationDetailList = {};
-          state.error = typeof action.payload === "string" ? action.payload : "";
-      });
-     
-     
-
-          builder.addCase(postAddDesignationMiddleware.pending, (state) => {
-            state.loading = true;
-          });
-          builder.addCase(postAddDesignationMiddleware.fulfilled, (state, action) => {
-            console.log(action.payload,'find action.payload')
-            state.loading = false;
-            state.designationTableList = [...state.receiptsTableList, action.payload];
-          });
-          builder.addCase(postAddDesignationMiddleware.rejected, (state, action) => {
-            state.loading = false;
-       
-            //   state.paymentVocherList = state.paymentVocherList;
-            state.error = typeof action.payload === "string" ? action.payload : "";
-          });
-
-      
-          builder.addCase(patchDesignationEditMiddleware.pending, (state) => {
-            state.loading = true;
-          });
-          builder.addCase(
-            patchDesignationEditMiddleware.fulfilled,
-            (state, action) => {
-              state.loading = false;
-            
-              state.designationTableList = action.payload;
-            }
-          );
-          builder.addCase(
-            patchDesignationEditMiddleware.rejected,
-            (state, action) => {
-              state.loading = false;
-      
-              state.editList = {};
-              state.error = typeof action.payload === "string" ? action.payload : "";
-            }
-          );
-
+  loading: false,
+  error: "",
+  designationDetailList: [
+    {
+      id: 1,
+      designationCode: "Des0123",
+      designationName: "ss",
+      designationDescription: "designationDescription",
+      departmentCode: "Depart0123",
+      reportingtoLevel:"reportingtoLevel",
+      level:"level",
+      ModifiedBy: "Johnson",
+      modifiedOn: "12/12/23",
+      status: "",
+      action: ""
     },
+    {
+      id: 2,
+      designationCode: "Des0123",
+      designationName: "HR",
+      designationDescription: "designationDescription",
+      departmentCode: "Depart0123",
+      reportingtoLevel:"reportingtoLevel",
+      level:"level",
+      ModifiedBy: "Johnson",
+      modifiedOn: "12/12/23",
+      status: "",
+      action: ""
+    },
+    {
+      id: 3,
+      designationCode: "Des0123",
+      designationName: "ss",
+      designationDescription: "designationDescription",
+      departmentCode: "Depart0123",
+      reportingtoLevel:"reportingtoLevel",
+      level:"level",
+      ModifiedBy: "Johnson",
+      modifiedOn: "12/12/23",
+      status: "",
+      action: ""
+    },
+  ],
+  designationSearchList: [],
+  getEditData: {},
+  getViewData: {}
+};
+let nextId1=4
+const receiptsReducer = createSlice({
+  name: "designation",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getDesignationListByIdMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getDesignationListByIdMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.designationDetailList = action.payload;
+    });
+    builder.addCase(getDesignationListByIdMiddleware.rejected, (state, action) => {
+      state.loading = false;
+
+      state.designationDetailList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    builder.addCase(getSearchDesignationMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getSearchDesignationMiddleware.fulfilled, (state, action) => {
+      state.loading = false;
+      state.designationSearchList = action.payload;
+    });
+    builder.addCase(getSearchDesignationMiddleware.rejected, (state, action) => {
+      state.loading = false;
+      state.designationSearchList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+
+
+    builder.addCase(postAddDesignationMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      postAddDesignationMiddleware.fulfilled, (state, action) => {
+        state.loading = false;
+        const newItem2 = { ...action.payload, id: nextId1++ };
+        state.designationDetailList = [...state.designationDetailList, newItem2];
+        console.log(state.designationDetailList, "departmentList")
+      }
+    );
+    builder.addCase(postAddDesignationMiddleware.rejected, (state, action) => {
+      state.loading = false;
+
+      //   state.paymentVocherList = state.paymentVocherList;
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+
+    builder.addCase(patchDesignationEditMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      patchDesignationEditMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        const updatedIndex = state.designationDetailList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        console.log(updatedIndex,"updatedIndex");
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.designationDetailList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.designationDetailList = updatedCurrencyList;
+        } else {
+          state.designationDetailList = [...state.designationDetailList, action.payload];
+        }
+      }
+    );
+    builder.addCase(
+      patchDesignationEditMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.editList = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    builder.addCase(getDesignationViewData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getDesignationViewData.fulfilled,
+      (state, action) => {
+        state.loading = false;
+
+        state.getViewData = action.payload;
+      }
+    );
+    builder.addCase(
+      getDesignationViewData.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getViewData = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    builder.addCase(getDesignationPatchData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getDesignationPatchData.fulfilled,
+      (state, action) => {
+        state.loading = false;
+
+        state.getEditData = action.payload;
+      }
+    );
+    builder.addCase(
+      getDesignationPatchData.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.getEditData = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+  },
 });
 
 export default receiptsReducer.reducer;

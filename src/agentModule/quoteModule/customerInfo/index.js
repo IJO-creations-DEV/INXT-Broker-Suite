@@ -223,7 +223,7 @@ const CustomerInfo = ({ action }) => {
             <InputTextField label="Insured Name*" value="Carson Darrin" />
           </div>
           <div class="col-12 mt-2">
-            <div className="upload__label">ID Card</div>
+            <div className="upload__label">ID Card*</div>
             {!imageURL ? (
               <div className="upload__card__container mt-2">
                 <div className="file_icon_selector">
@@ -269,7 +269,7 @@ const CustomerInfo = ({ action }) => {
             )}
           </div>
           <div class="col-12 mt-2">
-            <InputTextField label="ID Card Number" />
+            <InputTextField label="ID Card Number*" />
             {/* {formik.touched.MotorNumber && formik.errors.MotorNumber && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                 {formik.errors.MotorNumber}
@@ -282,7 +282,7 @@ const CustomerInfo = ({ action }) => {
         </div>
         <div class="grid m-0">
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Motor Number"
+            <InputTextField label="Motor Number*"
               value={formik.values.MotorNumber}
               onChange={formik.handleChange("MotorNumber")}
             />
@@ -293,9 +293,9 @@ const CustomerInfo = ({ action }) => {
             )}
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Chassis Number"
+            <InputTextField label="Chassis Number*"
               value={formik.values.ChassisNumber}
-              onChange={formik.handleChange("ChassisNumber")} />
+              onChange={formik.handleChange("ChassisNumber*")} />
             {formik.touched.ChassisNumber && formik.errors.ChassisNumber && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                 {formik.errors.ChassisNumber}

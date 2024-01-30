@@ -114,7 +114,7 @@ const SubAccountMaster = () => {
     },
   ];
   const item1 = [
-    { label: "INR-Indian Currency", value: "INR-Indian Currency" },
+    { label: "PHP-Indian Currency", value: "PHP-Indian Currency" },
     { label: "EUR-Euro", value: "EUR-Euro" },
     { label: "HKD-Hong Kong Dollar", value: "HKD-Hong Kong Dollar" },
   ];

@@ -37,8 +37,8 @@ const SendMail = () => {
   };
 
   const formInitialValue = {
-    mailSubject: "",
-    write: "",
+    mailSubject: "Claim Request for Policy Number",
+    write: "Hello,I hope this email finds you well.i am writing regarding a claim request for a client [Ritchad] with policy number 001",
     file: null,
   };
   const customValidation = (values) => {

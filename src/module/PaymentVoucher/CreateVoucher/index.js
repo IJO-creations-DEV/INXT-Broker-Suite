@@ -66,7 +66,7 @@ function Createvoucher() {
     { name: "REMT", code: "RM" },
   ];
   const SelectInstrumentCurrency = [
-    { name: "INR", code: "NY" },
+    { name: "PHP", code: "NY" },
     { name: "USD", code: "RM" },
   ];
   const navigate = useNavigate();

@@ -45,11 +45,11 @@ export const menuList = [
                 name: "Product",
                 path: "master/generals/insurancemanagement/productmaster",
               },
-              {
-                id: 4,
-                name: "Policy Type",
-                path: "master/generals/insurancemanagement/policytype",
-              },
+              // {
+              //   id: 4,
+              //   name: "Policy Type",
+              //   path: "master/generals/insurancemanagement/policytype",
+              // },
               {
                 id: 5,
                 name: "Cover",

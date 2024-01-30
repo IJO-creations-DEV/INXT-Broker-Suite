@@ -352,6 +352,9 @@ const Index = () => {
     return <div className="category__text">{rowData.GrossPremium}</div>;
   };
 
+  const renderDes = (rowData) => {
+    return <div className="category__text">{rowData.ProductDescription}</div>;
+  };
   const renderExpiryDate = (rowData) => {
     return <div className="date__text">{rowData.ExpiryDate}</div>;
   };
@@ -472,6 +475,12 @@ const Index = () => {
             header="Expiry"
             headerStyle={headerStyle}
           ></Column>
+           <Column
+            body={renderDes}
+            header="Product Description"
+            headerStyle={headerStyle}
+          ></Column>
+          
           <Column
             body={renderStatus}
             header="Status"

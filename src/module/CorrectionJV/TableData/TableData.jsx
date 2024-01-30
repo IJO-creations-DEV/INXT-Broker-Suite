@@ -106,7 +106,7 @@ const TableData = ({ newDataTable, editID }) => {
     { label: "Option 2", value: "Debit" },
   ];
   const codeCurrencyType = [
-    { label: "Option 1", value: "INR" },
+    { label: "Option 1", value: "PHP" },
     { label: "Option 2", value: "EURO" },
   ];
 

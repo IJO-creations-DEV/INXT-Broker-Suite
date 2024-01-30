@@ -1,6 +1,6 @@
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
-import React, { useState } from "react";
+import React, { useState,useRef,useEffect } from "react";
 import TableDropdownField from "../../../component/tableDropDwonField";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -10,108 +10,171 @@ import SvgArrow from "../../../../assets/agentIcon/SvgArrow";
 import SvgDownArrow from "../../../../assets/agentIcon/SvgDownArrow";
 import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
+import SvgDot from "../../../../assets/icons/SvgDot";
+import SvgDots from "../../../../assets/agentIcon/SvgDot";
+import { Button} from "primereact/button";
+import { Menu } from "primereact/menu";
+import { useSelector,useDispatch } from "react-redux";
+import ClientListing from "../../../quoteModule/clientListing";
+import { getExpiringSearchDataMiddleWare } from "../expiringPolicyCard/store/expiringMiddleware"
 
 const ExpiringPolicyCard = () => {
   const [search,setSearch]=useState("")
-  const [globalFilter,setGlobalFilter]=useState("")
+  const [globalFilter,setGlobalFilter]=useState("Name")
+  const [displayDialog,setDisplayDialog]=useState("")
+  const [disableOption,setdisableOption] =useState("")
+  const dispatch =useDispatch()
+  const menu = useRef(null);
 
-  // const { openitemtListData, loading, openitemSearchListData } = useSelector(
-  //   ({ openitemTabelMainReducers }) => {
-  //     return {
-  //       loading: openitemTabelMainReducers?.loading,
-  //       openitemtListData: openitemTabelMainReducers?.openitemtListData,
-  //       openitemSearchListData: openitemTabelMainReducers?.openitemSearchListData,
-  //     };
-  //   }
-  // );
+  const { expiringtabledata, expiringSearchList, loading } = useSelector(
+    ({ agentExpiringMainReducers }) => {
+      return {
+        loading: agentExpiringMainReducers?.loading,
+        expiringtabledata: agentExpiringMainReducers?.expiringtabledata,
+        expiringSearchList: agentExpiringMainReducers?.expiringSearchList,
+      };
+    }
+  );
+  console.log(expiringSearchList,"find1")
 
   // const [globalFilter, setGlobalFilter] = useState("policy Number");
   const policy = [
+   { name: "Name", code: "Name" },
     { name: "Policy Number", code: "policy Number" },
-    { name: "EndorsementID", code: "EndorsementID" },
+    
   ];
 
-  // useEffect(() => {
-  //   if (globalFilter && search) {
-  //     dispatch(
-  //       getEndoresementTabelSearchList({
-  //         field: globalFilter,
-  //         value: search,
-  //       })
-  //     );
-  //   }
-  // }, [search]);
+  const handleMenuToggle = (event, menuRef, rowData) => {
+    menuRef.current.toggle(event);
+    setdisableOption(
+      rowData.Payment === "Pending" || rowData.Payment === "Reviewing"
+    );
+  };
+  const handleMenuClick = (menuItem) => {
+   
+    if (menuItem == "renewal") {
+      navigate("/agent/createquote/coveragedetails");
+    }
+   
+  };
+
+  const renderViewEditButton = (rowData) => {
+    const menuItems = [
+      {
+        label: "Reminder",
+        
+      },
+
+      {
+        label: "Renewal",
+        command: () => handleMenuClick("renewal"),
+        
+      },
+      
+     
+    ];
+     return (
+      <div className="action__container">
+      <Menu model={menuItems} popup ref={menu} breakpoint="767px" />
+        <div
+          className="action__Svg"
+          onClick={(event) => handleMenuToggle(event, menu, rowData)}
+        >
+          <SvgDots/>
+        </div>
+      </div>
+      // <div className="btn__container__view__edit">
+      //   <Menu model={menuItems} popup ref={menu} breakpoint="767px" />
+      //   <Button
+      //     icon={<SvgDot />}
+      //     className="view__btn"
+      //     onClick={(event) => handleMenuToggle(event, menu, rowData)}
+      //   />
+      // </div>
+    );
+  };
+
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        getExpiringSearchDataMiddleWare({
+          field: globalFilter,
+          value: search,
+        })
+      );
+    }
+  }, [search]);
   const navigate = useNavigate();
   const TableData = [
     {
       AssuredName: "John Doe",
       PolicyNumber: "P12345",
       ExpiryDate: "2024 JAN 15",
-      DaysCount: "30 Days",
-      ClientID: "127332",
+      Expiry: "30 Days",
+      Actions: "127332",
     },
     {
       AssuredName: "Jane Smith",
       PolicyNumber: "P67890",
       ExpiryDate: "2024 JAN 22",
-      DaysCount: "15 Days",
-      ClientID: "1272721",
+      Expiry: "Expired",
+      Actions: "1272721",
     },
     {
       AssuredName: "Bob Johnson",
       PolicyNumber: "P54321",
       ExpiryDate: "2024 JAN 10",
-      DaysCount: "45 Days",
-      ClientID: "1270002",
+      Expiry: "45 Days",
+      Actions: "1270002",
     },
     {
       AssuredName: "Alice Williams",
       PolicyNumber: "P98765",
       ExpiryDate: "2024 JAN 05",
-      DaysCount: "10 Days",
-      ClientID: "120002",
+      Expiry: "10 Days",
+      Actions: "120002",
     },
     {
       AssuredName: "Mike Davis",
       PolicyNumber: "P23456",
       ExpiryDate: "2024 JAN 18",
-      DaysCount: "25 Days",
-      ClientID: "111172",
+      Expiry: "25 Days",
+      Actions: "111172",
     },
     {
       AssuredName: "Sara Miller",
       PolicyNumber: "P78901",
       ExpiryDate: "2024 JAN 01",
-      DaysCount: "20 Days",
-      ClientID: "12000",
+      Expiry: "20 Days",
+      Actions: "12000",
     },
     {
       AssuredName: "Chris Brown",
       PolicyNumber: "P65432",
       ExpiryDate: "2024 JAN 12",
-      DaysCount: "35 Days",
-      ClientID: "1221112",
+      Expiry: "35 Days",
+      Actions: "1221112",
     },
     {
       AssuredName: "Emily Taylor",
       PolicyNumber: "P12398",
       ExpiryDate: "2024 JAN 28",
-      DaysCount: "28 Days",
-      ClientID: "12002",
+      Expiry: "28 Days",
+      Actions: "12002",
     },
     {
       AssuredName: "David Wilson",
       PolicyNumber: "P56789",
       ExpiryDate: "2024-08-03",
-      DaysCount: "40 Days",
-      ClientID: "12233",
+      Expiry: "40 Days",
+      Actions: "12233",
     },
     {
       AssuredName: "Grace Anderson",
       PolicyNumber: "P87654",
       ExpiryDate: "2024-07-20",
-      DaysCount: "12 Days",
-      ClientID: "127272",
+      Expiry: "12 Days",
+      Actions: "127272",
     },
   ];
 
@@ -133,7 +196,7 @@ const ExpiringPolicyCard = () => {
         <div>
           <div className="assuredname__text">{rowData.AssuredName}</div>
           <div className="assuredname__sub___text">
-            Client ID :{rowData.ClientID}{" "}
+            Client ID :{rowData.Actions}{" "}
           </div>
         </div>
       </div>
@@ -161,28 +224,28 @@ const ExpiringPolicyCard = () => {
     );
   };
 
-  const renderDaysCount = (rowData) => {
+  const renderExpiry = (rowData) => {
     return (
       <div className="days__count__container">
-        <div className="days__count__text">{rowData.DaysCount}</div>
+        <div className="days__count__text">{rowData.Expiry}</div>
       </div>
     );
   };
 
-  const renderAction = () => {
-    return (
-      <div className="action__container">
-        <div
-          className="action__Svg"
-          onClick={() => {
-            handlesubmit();
-          }}
-        >
-          <SvgArrow />
-        </div>
-      </div>
-    );
-  };
+  // const renderAction = () => {
+  //   return (
+  //     <div className="action__container">
+  //       <div
+  //         className="action__Svg"
+  //         onClick={() => {
+  //           handlesubmit();
+  //         }}
+  //       >
+  //         <SvgDots/>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   const template2 = {
     layout:
@@ -218,7 +281,7 @@ const ExpiringPolicyCard = () => {
   };
 
   const handlesubmit = () => {
-    navigate("/agent/policydetailedviewonly");
+    // navigate("/agent/policydetailedviewonly");
   };
 
   return (
@@ -255,8 +318,8 @@ const ExpiringPolicyCard = () => {
         </div>
         <div className="table__container">
           <DataTable
-          value={TableData}
-            //  value={search ? openitemSearchListData : openitemtListData}
+          // value={TableData}
+          value={search ? expiringSearchList : expiringtabledata}
             tableStyle={{ minWidth: "50rem" }}
             paginator
             rows={5}
@@ -282,12 +345,12 @@ const ExpiringPolicyCard = () => {
               headerStyle={headerStyle}
             ></Column>
             <Column
-              body={renderDaysCount}
-              header="Days Count"
+              body={renderExpiry}
+              header="Expiry"
               headerStyle={headerStyle}
             ></Column>
             <Column
-              body={renderAction}
+              body={renderViewEditButton}
               header="Actions"
               headerStyle={headerStyle}
             ></Column>

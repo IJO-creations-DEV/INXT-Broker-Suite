@@ -44,11 +44,11 @@ function AddExchange() {
     useState(null);
 
   const currencyCode = [
-    { label: "INR", value: "NY" },
+    { label: "PHP", value: "NY" },
     { label: "USD", value: "RM" },
   ];
   const ToCurrencyCode = [
-    { label: "INR", value: "NY" },
+    { label: "PHP", value: "NY" },
     { label: "USD", value: "RM" },
   ];
 

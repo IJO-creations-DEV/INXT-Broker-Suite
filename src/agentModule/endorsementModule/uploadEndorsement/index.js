@@ -118,7 +118,7 @@ const UploadEndorsement = () => {
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
-                label="Endorsement Number"
+                label="Endorsement Number*"
                 value={formik.values.endrosementNumber}
                 onChange={formik.handleChange('endrosementNumber')}
               />
@@ -234,7 +234,7 @@ const UploadEndorsement = () => {
           </div>
 
           <div className="upload__endorsement__card__sub__title mt-2 mb-2">
-            Document
+            Document*
           </div>
 
           <div className="upload__card__container mt-2">

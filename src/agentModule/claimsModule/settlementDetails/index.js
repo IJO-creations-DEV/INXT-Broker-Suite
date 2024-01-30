@@ -86,7 +86,7 @@ const SettlementDetails = () => {
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
               <DropdownField
-                label="Settlement type"
+                label="Settlement type*"
                 value={formik.values.SettlementType}
                 onChange={(e) =>
                   formik.setFieldValue("SettlementType", e.value)
@@ -98,7 +98,7 @@ const SettlementDetails = () => {
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
-                label="Settlement Amount"
+                label="Settlement Amount*"
                 value={formik.values.SettlementAmount}
                 onChange={formik.handleChange("SettlementAmount")}
               />
@@ -108,7 +108,7 @@ const SettlementDetails = () => {
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
               <DatepickerField
-                label="Issue Date"
+                label="Issue Date*"
                 value={formik.values.IssueDate}
                 onChange={(e) => {
                   formik.setFieldValue("IssueDate", e.target.value);
@@ -118,7 +118,7 @@ const SettlementDetails = () => {
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <DatepickerField
-                label="Settle date"
+                label="Settle date*"
                 value={formik.values.SettleDate}
                 onChange={(e) => {
                   formik.setFieldValue("SettleDate", e.target.value);

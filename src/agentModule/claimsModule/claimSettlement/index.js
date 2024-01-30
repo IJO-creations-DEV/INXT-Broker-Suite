@@ -9,6 +9,7 @@ import SvgBlueArrow from "../../../assets/agentIcon/SvgBlueArrow";
 import "./index.scss";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+import {Button} from "primereact/button";
 
 const ClaimSettlement = () => {
   const { claimSettleViewData, loading } = useSelector(
@@ -154,6 +155,12 @@ const ClaimSettlement = () => {
               </div>
             </div>
           </div>
+        
+        </div>
+        <div className="listing__button mt-3">
+          <Button> 
+            Go to listing
+          </Button>
         </div>
       </Card>
     </div>

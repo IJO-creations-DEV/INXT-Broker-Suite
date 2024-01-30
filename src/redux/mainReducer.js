@@ -58,6 +58,9 @@ import agentQuoteMainReducers from "../agentModule/quoteModule/quoteListing/quot
 import endorsementTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewEndorsementTable/store/getEndorsementTabelDataReducers"
 import policyTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewPolicyTable/store/getPolicyTabelDataReducers"
 import renewalTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewRenewaleTable/store/getRenewalTabelDataReducers"
+import agentExpiringMainReducers from "../agentModule/openItems/expiringPolicy/expiringPolicyCard/store/expiringReducer"
+import agentQuotependingMainReducers from "../agentModule/openItems/quotePending/quotePendingCard/store/quotePendingReducer"
+import agentRenewalrequestMainReducers from "../agentModule/openItems/renewalRequest/renewalRequestCard/store/renewalRequestReducer"
 
 const reducers = {
   journalVoucherMainReducers,
@@ -112,6 +115,9 @@ const reducers = {
   endorsementTabelMainReducers,
   policyTabelMainReducers,
   renewalTabelMainReducers,
+  agentExpiringMainReducers,
+  agentQuotependingMainReducers,
+  agentRenewalrequestMainReducers
   // openitemTabelMainReducers
 
 };

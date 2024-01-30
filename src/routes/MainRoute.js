@@ -193,6 +193,8 @@ import Payments from "../agentModule/paymentsModule";
 import OpenItems from "../agentModule/openItems/openItems";
 import UpcomingEvents from "../agentModule/openItems/upcomingEvents";
 import ExpiringPolicy from "../agentModule/openItems/expiringPolicy";
+import RenewalRequest from "../agentModule/openItems/renewalRequest"
+import QuotePending from "../agentModule/openItems/quotePending"
 import AgenSideBar from "../components/AgentSideBar";
 import EditCommissionPopup from "../module/GeneralMasters/Commission/EditCommission/EditCommissionPopup";
 import ClaimRejected from "../agentModule/claimsModule/claimRejected";
@@ -1008,6 +1010,7 @@ const Maincomponent = () => {
               />
               <Route
                 path="/agent/createquote/accessories"
+                element={<Accessories/>}
               />
               <Route
                 path="/agent/createquote/ordersummary"
@@ -1169,6 +1172,8 @@ const Maincomponent = () => {
                 path="/agent/openitems/expiringpolicy"
                 element={<ExpiringPolicy />}
               />
+              <Route path="agent/openitems/quotepending" element={<QuotePending/>}/>
+
 
               {/* //Reports */}
 
@@ -1234,6 +1239,8 @@ const Maincomponent = () => {
                 path="/agent/openitemslistdata"
                 element={<OpenItemsListData />}
               />
+
+              <Route path="/agent/openitems/renewalrequest" element={<RenewalRequest/>}/>
               {/* //Reports */}
               {/* <Route
               path="/reports/operationalreports"

@@ -45,7 +45,7 @@ const AddCurrency = () => {
     ];
 
     const ISOcode = [
-        { name: "INR", code: "INR" },
+        { name: "PHP", code: "PHP" },
         { name: "USD", code: "USD" },
         { name: "AUD", code: "AUD" },
         { name: "AUD", code: "AUD" },

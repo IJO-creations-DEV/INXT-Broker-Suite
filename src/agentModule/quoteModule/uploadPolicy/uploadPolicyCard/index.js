@@ -100,7 +100,7 @@ const UploadPolicyCard = () => {
               )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Policy Number" 
+            <InputTextField label="Policy Number*" 
             value={formik.values.PolicyNumber}
             onChange={formik.handleChange("PolicyNumber")}  />
                 {formik.touched.PolicyNumber && formik.errors.PolicyNumber && (
@@ -113,7 +113,7 @@ const UploadPolicyCard = () => {
 
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Production"
+            <DatepickerField label="Production*"
             value={formik.values.Production}
             // minDate={minDate}
             onChange={(e) => { 
@@ -129,7 +129,7 @@ const UploadPolicyCard = () => {
               )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Inception" 
+            <DatepickerField label="Inception*" 
             value={formik.values.Inception}
             // minDate={minDate}
             onChange={(e) => { 
@@ -147,7 +147,7 @@ const UploadPolicyCard = () => {
 
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Issued Date" 
+            <DatepickerField label="Issued Date*" 
             value={formik.values.IssuedDate}
             // minDate={minDate}
             onChange={(e) => { 
@@ -161,7 +161,7 @@ const UploadPolicyCard = () => {
               )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Expiry" 
+            <DatepickerField label="Expiry*" 
             value={formik.values.Expiry}
             // minDate={minDate}
             onChange={(e) => { 
@@ -177,7 +177,7 @@ const UploadPolicyCard = () => {
         </div>
 
         <div className="upload__policy__card__sub__title mt-2">
-          Upload Policy
+          Upload Policy*
         </div>
 
         <div className="upload__card__container mt-2">

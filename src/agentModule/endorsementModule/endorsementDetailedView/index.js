@@ -68,21 +68,24 @@ const EndorsementDetailedView = () => {
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Policy Number"
-                value={endrosmentData.policyNumber}
+                // value={endrosmentData.policyNumber}
+                value={"0101"}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Endorsement Number"
-                value={endrosmentData.endrosementNumber}
+                // value={endrosmentData.endrosementNumber}
+                value={"1002"}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Production"
-                value={endrosmentData.production}
+                // value={endrosmentData.production}
+                value={"02/01/2023"}
                 disabled={true}
               />
               {/* <InputTextField
@@ -94,21 +97,24 @@ const EndorsementDetailedView = () => {
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Inception"
-                value={endrosmentData.inception}
+                // value={endrosmentData.inception}
+                value={"02/01/2024"}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Issued Date"
-                value={endrosmentData.issuedDate}
+                // value={endrosmentData.issuedDate}
+                value={"12/06/2023"}
                 disabled={true}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Expiry"
-                value={endrosmentData.expiry}
+                // value={endrosmentData.expiry}
+                value={"10/12/2025"}
                 disabled={true}
               />
             </div>

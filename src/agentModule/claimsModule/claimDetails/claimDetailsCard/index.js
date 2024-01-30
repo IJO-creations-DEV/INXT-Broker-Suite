@@ -31,11 +31,11 @@ const ClaimDetailsCard = () => {
     console.log(claimDetailsViewData.policyNumber, "endrosementViewData");
 
     const formInitialValue = {
-        InsuranceCompanyN: "Pioneer Insurance and Surety Corp (PISC)",
-        name: "Yuva",
-        contactNumber: "7893546789",
-        plateNumber: "1",
-        unit: "1",
+        InsuranceCompanyN: "",
+        name: "",
+        contactNumber: "",
+        plateNumber: "",
+        unit: "",
         shop: "",
 
     };
@@ -161,7 +161,7 @@ const ClaimDetailsCard = () => {
                 <div className="grid mt-3">
                     <div className="col-12 md:col-6 lg:col-6">
                         <InputTextField
-                            label="Driver’s name"
+                            label="Driver’s name*"
                             value={checked ? claimDetailsViewData.PolicyHolderName : ''}
                         />
                     </div>

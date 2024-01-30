@@ -59,7 +59,7 @@ function BranchAdding() {
     { name: "INS002", code: "IN2" },
   ];
   const item4 = [
-    { name: "INR", code: "IR" },
+    { name: "PHP", code: "IR" },
     { name: "USD", code: "US" },
   ];
   const item5 = [

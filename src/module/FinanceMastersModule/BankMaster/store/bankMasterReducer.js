@@ -30,7 +30,7 @@ const initialState = {
       city: "channai",
       state:"Tamil Nadu",
       status: true,
-      Country: "india",
+      Country: "Philippines",
       mobile: "9791669887",
       Fax: "",
       email: "justin@gmail.com"
@@ -48,7 +48,7 @@ const initialState = {
       City: "channai",
       state:"Tamil Nadu",
       status: true,
-      Country: "india",
+      Country: "Philippines",
       mobile: "9791669887",
       Fax: "",
       email: "justin@gmail.com"

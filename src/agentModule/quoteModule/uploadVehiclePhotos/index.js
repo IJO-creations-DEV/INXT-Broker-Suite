@@ -48,25 +48,7 @@ const UploadVehiclePhotos = () => {
     fileFourth: null,
     fileFifth: null,
   };
-  const customValidation = (values) => {
-    const errors = {};
-    if (!values.fileOne) {
-      errors.fileOne = "This field is required";
-    }
-    if (!values.fileTwo) {
-      errors.fileTwo = "This field is required";
-    }
-    if (!values.fileThree) {
-      errors.fileThree = "Please select a file";
-    }
-    if (!values.fileFourth) {
-      errors.fileFourth = "This field is required";
-    }
-    if (!values.fileFifth) {
-      errors.fileFifth = "This field is required";
-    }
-    return errors;
-  };
+ 
   const dispatch = useDispatch()
   const handleSubmit = (values) => {
     // if (!values.file) {
@@ -78,7 +60,7 @@ const UploadVehiclePhotos = () => {
   }
   const formik = useFormik({
     initialValues: formInitialValue,
-    validate: customValidation,
+    
     onSubmit: handleSubmit,
   });
   return (

@@ -182,7 +182,7 @@ const AddEmployee = ({ action }) => {
     const addressLine1 = "Enter";
     const city = "Chennai";
     const state = "Tamil nadu";
-    const country = "India";
+    const country = "Philippines";
     const modifiedBy = "John";
     const modifiedOn = "12/12/2023";
 

@@ -87,7 +87,43 @@ function AddBranch({ action }) {
     },
   ];
 
+<<<<<<< Updated upstream
   
+=======
+  // const City = [
+  //   {
+  //     label: action === "add" ? "PHP" : organizationBranchView.City,
+  //     value: action === "add" ? "NY" : organizationBranchView.City,
+  //   },
+  // ];
+  // const State = [
+  //   {
+  //     label: action === "add" ? "PHP" : organizationBranchView.State,
+  //     value: action === "add" ? "NY" : organizationBranchView.State,
+  //   },
+  // ];
+  // const Country = [
+  //   {
+  //     label: action === "add" ? "PHP" : organizationBranchView.Country,
+  //     value: action === "add" ? "NY" : organizationBranchView.Country,
+  //   },
+  // ];
+  // const City = [
+  //   {
+  //     label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : organizationBranchView.CompanyName,
+  //     value: action === "add" ? "ARIANS INSURANCE BROKERS INC" : organizationBranchView.CompanyName,
+  //   },
+  //   {
+  //     label: action === "add" ? "ARIANS gh BROKERS INC" : organizationBranchView.CompanyName,
+  //     value: action === "add" ? "ARIANS gh BROKERS INC" : organizationBranchView.CompanyName,
+  //   },
+  //   // Add more options as needed
+  // ];
+
+  // const City=countriesData.city.map((val)=>({
+  //   label:val
+  // }))
+>>>>>>> Stashed changes
 
 
   const City = countriesData.city.map(city => ({

@@ -83,7 +83,7 @@ const Accessories = () => {
           <div class="grid mt-2">
             <div class="col-6">
               <InputTextField
-                label="Aircon"
+                label="Aircon*"
                 value={formik.values.Aircon}
                 onChange={formik.handleChange("Aircon")}
               />
@@ -95,7 +95,7 @@ const Accessories = () => {
             </div>
             <div class="col-6">
               <InputTextField
-                label="Stereo"
+                label="Stereo*"
                 value={formik.values.Stereo}
                 onChange={formik.handleChange("Stereo")}
               />
@@ -110,7 +110,7 @@ const Accessories = () => {
           <div className="grid mt-2">
             <div class="col-6">
               <InputTextField
-                label="Mag wheels"
+                label="Mag wheels*"
                 value={formik.values.Magwheels}
                 onChange={formik.handleChange("Magwheels")}
               />
@@ -137,7 +137,7 @@ const Accessories = () => {
           <div class="grid mt-2">
             <div class="col-6">
               <InputTextField
-                label="Deductible"
+                label="Deductible*"
                 value={formik.values.Deductible}
                 onChange={formik.handleChange("Deductible")}
               />
@@ -149,7 +149,7 @@ const Accessories = () => {
             </div>
             <div class="col-6">
               <InputTextField
-                label="Towing"
+                label="Towing*"
                 value={formik.values.Towing}
                 onChange={formik.handleChange("Towing")}
               />
@@ -163,7 +163,7 @@ const Accessories = () => {
           <div class="grid mt-2">
             <div class="col-6">
               <InputTextField
-                label="Repair Limit"
+                label="Repair Limit*"
                 value={formik.values.RepairLimit}
                 onChange={formik.handleChange("RepairLimit")}
               />
@@ -193,17 +193,14 @@ const Accessories = () => {
                 />
               </div>
             </div>
-            <div className="next__text__container">
+            {/* <div className="next__text__container">
               <Button
-                // onClick={() => {
-                //   formik.handleSubmit();
-
-                // }}
+               
                 onClick={formik.handleSubmit}
                 label="Next"
                 className="next__btn"
               />
-            </div>
+            </div> */}
           </div>
         </Card>
       </form>

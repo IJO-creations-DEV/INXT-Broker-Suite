@@ -50,6 +50,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-01-26",
       Quotes: "01",
       LeadID: "123456",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -59,6 +60,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-02-10",
       Quotes: "02",
       LeadID: "126",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -68,6 +70,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-03-15",
       Quotes: "02",
       LeadID: "1456",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -77,6 +80,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-04-20",
       Quotes: "03",
       LeadID: "1236",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -86,6 +90,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-05-25",
       Quotes: "04",
       LeadID: "1456",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -104,6 +109,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-07-05",
       Quotes: "06",
       LeadID: "123411",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -113,6 +119,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-08-10",
       Quotes: "01",
       LeadID: "1234000",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -122,6 +129,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-09-15",
       Quotes: "02",
       LeadID: "1234555",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -131,6 +139,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-10-20",
       Quotes: "03",
       LeadID: "1234226",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
     {
@@ -140,6 +149,7 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
       Date: "2024-11-25",
       Quotes: "04",
       LeadID: "1234000",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgTravlesTable />,
     },
   ];
@@ -212,6 +222,10 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
 
   const renderCategory = (rowData) => {
     return <div className="category__text">{rowData.Category}</div>;
+  };
+
+  const renderdes = (rowData) => {
+    return <div className="category__text">{rowData.ProductDescription}</div>;
   };
 
   const renderDate = (rowData) => {
@@ -329,6 +343,12 @@ const ClientListingCompanyCategory = ({paymentSearchList}) => {
             header={renderUncheckedHeader("Quotes")}
             headerStyle={headerStyle}
           ></Column>
+           <Column
+            body={renderdes}
+            header={renderUncheckedHeader("Product Description")}
+            headerStyle={headerStyle}
+          ></Column>
+
           <Column
             body={renderViewEditButton}
             header={renderUncheckedHeader("Actions")}

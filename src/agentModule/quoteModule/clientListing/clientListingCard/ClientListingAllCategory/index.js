@@ -239,6 +239,10 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
     return <div className="category__text">{rowData.Category}</div>;
   };
 
+  const renderDes = (rowData) => {
+    return <div className="category__text">{rowData.ProductDescription}</div>;
+  };
+
   const renderDate = (rowData) => {
     return <div className="date__text">{rowData.Date}</div>;
   };
@@ -368,6 +372,11 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
           <Column
             body={renderQuotes}
             header={renderUncheckedHeader("Quotes")}
+            headerStyle={headerStyle}
+          ></Column>
+          <Column
+            body={renderDes}
+            header={renderUncheckedHeader("Product Description")}
             headerStyle={headerStyle}
           ></Column>
           <Column

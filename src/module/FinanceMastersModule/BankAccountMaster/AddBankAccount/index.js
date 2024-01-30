@@ -36,7 +36,7 @@ function AddBankAccount() {
   ];
 
   const code = [
-    { name: "INR", code: "NY" },
+    { name: "PHP", code: "NY" },
     // { name: "Rome", code: "RM" },
   ];
 

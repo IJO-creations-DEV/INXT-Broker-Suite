@@ -32,7 +32,7 @@ const AddTaxation = () => {
     setSelectedOption(e.value);
   };
   const ToCurrencyCode = [
-    { label: "INR", value: "NY" },
+    { label: "PHP", value: "NY" },
     { label: "USD", value: "RM" },
   ];
   const minDate = new Date();

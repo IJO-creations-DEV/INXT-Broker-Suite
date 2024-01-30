@@ -13,7 +13,7 @@ const initialState = {
             PolicyHolderName:"ayesha",
             HouseNo: "24",
             Barangay:"ss",
-            CountryName: "india",
+            CountryName: "Philippines",
             Province: "karnataka",
             CityName: "davangere",
             ZipCode: "577004"

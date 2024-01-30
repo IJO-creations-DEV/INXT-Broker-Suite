@@ -60,7 +60,7 @@ function EditExchange() {
     { name: "Trans001234", code: "RM" },
   ];
   const SelectInstrumentCurrency = [
-    { name: "INR", code: "NY" },
+    { name: "PHP", code: "NY" },
     { name: "CSE", code: "RM" },
   ];
 

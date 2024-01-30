@@ -19,6 +19,13 @@ const OpenItemsListData = () => {
 
     if (data === "Pending Payments") {
       navigate("/agent/payments");
+    } else if (data === "Quote Pending") {
+      navigate("/agent/openitems/quotepending");
+      
+     } else if (data === "Renewal Request") {
+        navigate("/agent/openitems/renewalrequest");
+        
+      
     } else {
       navigate("/agent/openitems/expiringpolicy");
     }

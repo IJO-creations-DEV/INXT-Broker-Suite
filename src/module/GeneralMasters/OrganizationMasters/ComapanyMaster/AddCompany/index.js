@@ -49,7 +49,7 @@ function AddCompany({ action }) {
   const organizationBranchView = {};
   const currencyCode = [
     {
-      label: action === "add" ? "INR" : companyView?.CompanyName,
+      label: action === "add" ? "PHP" : companyView?.CompanyName,
       value: action === "add" ? "NY" : companyView?.CompanyName,
     },
   ];

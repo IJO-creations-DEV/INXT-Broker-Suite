@@ -9,7 +9,7 @@ const initialState = {
         id: "1",
         StateCode: "PHR11DVO",
         StateName: "DAVAO ORIENTAL",
-        Country: "India",
+        Country: "Philippines",
         Modifiedby: "User1",
         ModifiedOn: "2024-01-11",
       },

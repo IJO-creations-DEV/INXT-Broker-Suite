@@ -52,6 +52,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-01-26",
       Quotes: "01",
       LeadID: "123456",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -61,6 +62,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-02-10",
       Quotes: "02",
       LeadID: "126",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -70,6 +72,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-03-15",
       Quotes: "02",
       LeadID: "1456",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -79,6 +82,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-04-20",
       Quotes: "03",
       LeadID: "1236",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -88,6 +92,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-05-25",
       Quotes: "04",
       LeadID: "1456",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -97,6 +102,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-06-30",
       Quotes: "05",
       LeadID: "123116",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -106,6 +112,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-07-05",
       Quotes: "06",
       LeadID: "123411",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -115,6 +122,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-08-10",
       Quotes: "01",
       LeadID: "1234000",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -124,6 +132,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-09-15",
       Quotes: "02",
       LeadID: "1234555",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -133,6 +142,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-10-20",
       Quotes: "03",
       LeadID: "1234226",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -142,6 +152,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-11-25",
       Quotes: "04",
       LeadID: "1234000",
+      ProductDescription:"Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
   ];
@@ -216,6 +227,9 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
     return <div className="category__text">{rowData.Category}</div>;
   };
 
+  const renderDes = (rowData) => {
+    return <div className="category__text">{rowData.ProductDescription}</div>;
+  };
   const renderDate = (rowData) => {
     return <div className="date__text">{rowData.Date}</div>;
   };
@@ -328,6 +342,11 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
           <Column
             body={renderQuotes}
             header={renderUncheckedHeader("Quotes")}
+            headerStyle={headerStyle}
+          ></Column>
+          <Column
+             body={renderDes}
+            header={renderUncheckedHeader("Product Description")}
             headerStyle={headerStyle}
           ></Column>
           <Column

@@ -141,7 +141,7 @@ const EditMainAccount = () => {
     { name: "Option 3", value: "Comp00125" },
   ];
   const currencyCodeDatas = [
-    { name: "EUR - Euro", value: "INR" },
+    { name: "EUR - Euro", value: "PHP" },
     { name: "ISK - Iceland Krona", value: "ISK" },
     { name: "AUD - Australian Dollar", value: "AUS" },
   ];

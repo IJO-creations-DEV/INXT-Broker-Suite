@@ -148,9 +148,13 @@ const LeadListingAllTable = () => {
     if (menuItem == "claim") {
       navigate("/agent/claimrequest/claimdetails");
     }
+    if (menuItem == "renewal"){
+      navigate("/agent/createquote/policydetails")
+    }
     if (menuItem == "endrosement") {
       setDisplayDialog(true);
     }
+  
   };
 
   const TableData = [
@@ -338,7 +342,9 @@ const LeadListingAllTable = () => {
       </div>
     );
   };
-
+const renderDes =(rowData)=>{
+  return <div className="category__text">{rowData.ProductDescription}</div>;
+}
   const renderPolicyNumber = (rowData) => {
     return (
       <div className="name__box__container">
@@ -454,6 +460,11 @@ const LeadListingAllTable = () => {
           <Column
             body={renderExpiryDate}
             header="ExpiryDate"
+            headerStyle={headerStyle}
+          ></Column>
+          <Column
+            body={renderDes}
+            header="Product Description"
             headerStyle={headerStyle}
           ></Column>
           <Column

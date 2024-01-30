@@ -17,7 +17,7 @@ function BranchDetailsView() {
   const [selected3, setSelected3] = useState({name:'John doe',code: "JD"});
   const [selected4, setSelected4] = useState({name:'Madurai',code: "MD"});
   const [selected5, setSelected5] = useState({name:'Tamil Nadu',code: "TN"});
-  const [selected6, setSelected6] = useState({name:'India',code: "IN"});
+  const [selected6, setSelected6] = useState({name:'Philippines',code: "IN"});
   const [visiblePopup, setVisiblePopup] = useState(false);
   const showPopup = () => {
     setVisiblePopup(true);
@@ -32,7 +32,7 @@ function BranchDetailsView() {
     { name: "John doe", code: "JD" },
     { name: "Madurai", code: "MD" },
     { name: "Tamil Nadu", code: "TN" },
-    { name: "India", code: "IN" },
+    { name: "Philippines", code: "IN" },
   ];
   const home = { label: "Master" };
 

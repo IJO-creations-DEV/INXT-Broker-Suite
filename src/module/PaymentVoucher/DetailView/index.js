@@ -245,7 +245,7 @@ function Detailview() {
             <InputField
               classNames="field__container"
               label="Select Instrument Currency"
-              value="INR"
+              value="PHP"
               disabled={true}
             />
           </div>

@@ -103,7 +103,7 @@ const initialState = {
       ,
       {
       "id": 10,
-      "Currencycode": "INR",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-10",
       "CurrencyFormat": "RUPEES",
       "SmallestUnit": "PAISE",

@@ -59,11 +59,11 @@ const AdjusterSubmission = () => {
     province: "",
     city: "",
     zipCode: "",
-    name: "Yuva",
-    contactNumber: "9856473809",
-    plateNumber: "2",
-    unit: "1",
-    shop: "Vehicle",
+    name: "",
+    contactNumber: "",
+    plateNumber: "",
+    unit: "",
+    shop: "",
     insuranceCompanyName: "Paramount Life & General lnsurance Corporation",
     file: null,
   };
@@ -153,7 +153,7 @@ const AdjusterSubmission = () => {
         <div class="grid mt-2">
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <InputTextField
-              label="Adjuster Name"
+              label="Adjuster Name*"
               value={formik.values.adjusterName}
               onChange={formik.handleChange("adjusterName")}
             />
@@ -165,7 +165,7 @@ const AdjusterSubmission = () => {
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <InputTextField
-              label="Claim Number"
+              label="Claim Number*"
               value={formik.values.claimNumber}
               onChange={formik.handleChange("claimNumber")}
             />
@@ -177,7 +177,7 @@ const AdjusterSubmission = () => {
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <DatepickerField
-              label="Date of Reported"
+              label="Date of Reported*"
               // value={
               //   formik.values.dateOfReported
               //     ?
@@ -206,7 +206,7 @@ const AdjusterSubmission = () => {
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <DatepickerField
-              label="Date of Loss"
+              label="Date of Loss*"
               // value={
               //   formik.values.dateOfLoss
               //     ? new Date(formik.values.dateOfLoss)
@@ -234,7 +234,7 @@ const AdjusterSubmission = () => {
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <InputTextField
-              label="Place of Accident"
+              label="Place of Accident*"
               value={formik.values.placeOfAccident}
               onChange={formik.handleChange("placeOfAccident")}
             />
@@ -247,7 +247,7 @@ const AdjusterSubmission = () => {
           </div>
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <InputTextField
-              label="Driver’s name"
+              label="Driver’s name*"
               value={formik.values.driversName}
               onChange={formik.handleChange("driversName")}
             />
@@ -260,7 +260,7 @@ const AdjusterSubmission = () => {
 
           <div class="col-6 md:col-6 lg:col-6 xl:col-6 mt-2 ">
             <InputTextField
-              label="House No / Unit No / Street "
+              label="House No / Unit No / Street*"
               value={formik.values.houseNumber}
               onChange={formik.handleChange("houseNumber")}
             />

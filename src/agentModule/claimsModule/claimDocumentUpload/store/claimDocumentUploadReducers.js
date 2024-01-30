@@ -15,7 +15,7 @@ const initialState = {
         driversName: "Jhon",
         houseNumber: "23",
         barangay: "Channai",
-        country: "India",
+        country: "Philippines",
         province: "Tamil Nadu",
         city: "Channai",
         zipCode: "66753",

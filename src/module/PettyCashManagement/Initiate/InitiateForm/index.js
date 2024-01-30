@@ -180,7 +180,7 @@ const InitiateForm = () => {
   const handlecurrency = (value) => {
     let currency = "";
     switch (value.CurrencyType) {
-      case "INR":
+      case "PHP":
         currency = "Indian Currency";
         break;
       case "US":

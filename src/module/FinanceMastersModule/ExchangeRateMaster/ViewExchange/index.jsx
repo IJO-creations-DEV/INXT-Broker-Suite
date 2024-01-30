@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 const initialValues = {
   EffectiveFrom: new Date(),
   EffectiveTo: new Date(),
-  CurrencyCode: "INR",
+  CurrencyCode: "PHP",
   ToCurrencyCode: "USD",
   ExchangeRate: "",
   CurrencyDescription: "",
@@ -55,7 +55,7 @@ function ViewExchange() {
       label: ExchangeDetailView.CurrencyCode,
       value: ExchangeDetailView.CurrencyCode,
     },
-    // { name: "INR", code: "NY" },
+    // { name: "PHP", code: "NY" },
     // { name: "USD", code: "RM" },
   ];
   const ToCurrencyCode = [

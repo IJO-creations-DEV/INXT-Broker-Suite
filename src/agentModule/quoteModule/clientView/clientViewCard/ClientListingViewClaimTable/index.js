@@ -257,6 +257,9 @@ const LeadListingAllTable = () => {
   const renderClaimID = (rowData) => {
     return <div className="category__text">{rowData.ClaimID}</div>;
   };
+  const renderDes = (rowData) => {
+    return <div className="category__text">{rowData.ProductDescription}</div>;
+  };
 
   const renderDate = (rowData) => {
     return <div className="date__text">{rowData.Date}</div>;
@@ -412,6 +415,11 @@ const LeadListingAllTable = () => {
           <Column
             body={renderDate}
             header={renderUncheckedHeader("Date")}
+            headerStyle={headerStyle}
+          ></Column>
+          <Column
+            body={renderDes}
+            header={renderUncheckedHeader("Product Description")}
             headerStyle={headerStyle}
           ></Column>
           <Column

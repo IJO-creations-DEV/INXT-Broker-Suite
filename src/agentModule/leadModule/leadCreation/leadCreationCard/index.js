@@ -243,8 +243,8 @@ const LeadCreationCard = () => {
             )}
           </div>
           <div class="col-12 md:col-6 lg:col-6">
-            {/* <InputTextField label="Date of Birth" /> */}
-            {/* <DatepickerField
+            {/* <InputTextField label="Date of Birth" />  */}
+             <DatepickerField
               label="Date of Birth"
               value={formik.values.DateofBirth}
               onChange={(date) => {
@@ -252,9 +252,9 @@ const LeadCreationCard = () => {
                 return formik.setFieldValue("DateofBirth", date.target.value);
               }}
 
-            /> */}
+            />
 
-<DatepickerField
+{/* <DatepickerField
     label="Date of Birth"
     value={formik.values.DateofBirth}
     maxDate={new Date(2005, 11, 31)}
@@ -274,10 +274,10 @@ const LeadCreationCard = () => {
             console.log("Please select a valid date of birth.");
             return;
         }
-
+ 
         formik.setFieldValue("DateofBirth", selectedDate);
     }}
-/>
+/> */}
 
             {formik.touched.DateofBirth && formik.errors.DateofBirth && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">

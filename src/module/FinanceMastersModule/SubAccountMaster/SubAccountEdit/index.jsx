@@ -26,7 +26,7 @@ const SubAdd = () => {
     { name: "Main0128" },
   ]);
   const [selectedOption1, setSelectedOption1] = useState([
-    { name: "INR" },
+    { name: "PHP" },
     { name: "EUR" },
     { name: "AUD" },
   ]);
@@ -60,7 +60,7 @@ const SubAdd = () => {
   ];
   const item1 = [
     {
-      name: "INR-Indian Currency",
+      name: "PHP-Indian Currency",
       name: "EUR-Euro",
       name: "HKD-Hong Kong Dollar",
     },

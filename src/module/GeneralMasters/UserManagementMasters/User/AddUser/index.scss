@@ -4,7 +4,7 @@
       font-size: 30px;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
-      margin-left: 10px;
+      // margin-left: 10px;
     }
   
     .p-tabview .p-tabview-panels {
@@ -22,7 +22,7 @@
       color: #111927;
       font-size: 16px;
       font-weight: 500;
-      margin: 10px 0;
+      margin: 4px 0 10px 0px;
     }
     .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
       color: #b1b1b1;
@@ -31,7 +31,7 @@
     .add__account__sub__container {
       box-shadow: rgba(241, 244, 247, 0.3) 0px 1px 2px 0px,
         rgba(169, 174, 179, 0.15) 0px 2px 6px 2px;
-      border-radius: 10px;
+      border-radius: 20px;
   
       .dropdown__add__sub {
         width: 100%;
@@ -87,7 +87,7 @@
       align-items: flex-end;
       .save__add__btn {
         height: 40px;
-        width: 130px;
+        // width: 130px;
         background-color: #6366f1;
         border-radius: 30px;
         font-size: 20px;
@@ -190,6 +190,17 @@
   
     .modal-body {
       color: #fff;
-    }
+    } .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+      background: #ffffff;
+      border-color: #6366f1;
+      color: #6366f1;
+     font-size:16px ;
+     font-weight: 500;
+  }
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    border:none;
+    font-size:16px ;
+    font-weight: 400;
+  }
   }
   

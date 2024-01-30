@@ -39,13 +39,12 @@ const AddUser = ({ action }) => {
   const items = [
     { label: "User Management" },
     {
-      label: `${
-        action === "add"
-          ? "Add User"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add User"
+        : action === "edit"
           ? "Edit User"
           : "View User"
-      }`,
+        }`,
     },
   ];
   const home = { label: "Master" };
@@ -147,27 +146,29 @@ const AddUser = ({ action }) => {
   });
   return (
     <div className="grid add__user__container">
-      
+
       <div
         style={{
           justifyContent: "center",
           alignItems: "center",
-          display: "flex",gap:10
+          display: "flex", gap: 10, padding: "8px 0px"
         }}
       >
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
+
+        <div className="add__sub__title">
+          {action === "add"
+            ? "Add User"
+            : action === "edit"
+              ? "Edit User"
+              : "View User"}
+        </div>
       </div>
-      <div className="add__sub__title">
-        {action === "add"
-          ? "Add User"
-          : action === "edit"
-          ? "Edit User"
-          : "View User"}
-      </div>
-      <div className="col-12 mb-2">
-        <div className="mt-3">
+
+      <div className="col-12 mb-4">
+        <div >
           <BreadCrumb
             home={home}
             className="breadCrums__view__add__screen"
@@ -220,7 +221,7 @@ const AddUser = ({ action }) => {
           <div class="col-3 md:col-3 lg-col-3">
             <label className="label_text">Phone Number</label>
             <div className="p-inputgroup flex-1 mt-2" >
-              <span className="p-inputgroup-addon" style={{borderTopLeftRadius:"10px",borderBottomLeftRadius:"10px"}}>
+              <span className="p-inputgroup-addon" style={{ borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px" }}>
                 <div>+91</div>
                 <i className={<SvgDropdown />}></i>
               </span>
@@ -229,7 +230,7 @@ const AddUser = ({ action }) => {
                 placeholder="Enter"
                 value={formik.values.phoneNumber}
                 onChange={formik.handleChange("phoneNumber")}
-                style={{borderTopRightRadius:"10px",borderBottomRightRadius:"10px"}}
+                style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}
               />
             </div>
             {formik.touched.phoneNumber && formik.errors.phoneNumber && (

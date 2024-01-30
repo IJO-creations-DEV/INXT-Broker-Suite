@@ -14,6 +14,8 @@ import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useDispatch, useSelector } from "react-redux";
 import { getRequestSearchMiddleware } from "../store/pettyCashRequestMiddleware";
+import SvgIconeye from "../../../../assets/icons/SvgIconeye";
+import SvgEdit from "../../../../assets/icons/SvgEdits";
 
 const RequestTable = () => {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const RequestTable = () => {
   const [search, setSearch] = useState("")
   const [globalFilter, setGlobalFilter] = useState("ReceiptNo")
 
-  const { RequestList, loading ,RequestSearch} = useSelector(({ pettyCashRequestReducer }) => {
+  const { RequestList, loading, RequestSearch } = useSelector(({ pettyCashRequestReducer }) => {
     return {
       loading: pettyCashRequestReducer?.loading,
       RequestList: pettyCashRequestReducer?.RequestList,
@@ -39,6 +41,17 @@ const RequestTable = () => {
   ]
 
   const isEmpty = RequestList.length === 0;
+
+  const handleViewer = (columnData) => {
+    // dispatch(getAccountDetailsView(columnData));
+    // navigate("/master/finance/bank/accountdataview/viewaccountdetail");
+  };
+  const handleEdit = (columnData) => {
+    // console.log(columnData, "columnData");
+    // dispatch(getPatchAccountDetailsView(columnData));
+    // navigate("/master/finance/bank/accountdataview/editaccountdetail");
+  };
+
 
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -58,39 +71,39 @@ const RequestTable = () => {
 
       return (
         <div className="paginatoroverall__container">
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdowninner_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+          <React.Fragment>
+            <span
+              className="mx-1"
+              style={{ color: "var(--text-color)", userSelect: "none" }}
+            >
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdowninner_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          </React.Fragment>
         </div>
       );
     },
   };
 
-  const renderViewButton = (rowData) => {
-    return (
-      <div className="center-content">
-        <Button
-          icon={<SvgEyeIcon />}
-          className="eye__btn"
-          onClick={() => handleView(rowData)}
-        />
-      </div>
-    );
-  };
+  // const renderViewButton = (rowData) => {
+  //   return (
+  //     <div className="center-content">
+  //       <Button
+  //         icon={<SvgEyeIcon />}
+  //         className="eye__btn"
+  //         onClick={() => handleView(rowData)}
+  //       />
+  //     </div>
+  //   );
+  // };
 
   const menu = useRef(null);
- 
+
 
 
   const handleView = (rowData) => {
@@ -103,10 +116,21 @@ const RequestTable = () => {
     fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     padding: 6,
-    paddingLeft:"0.5rem",
+    paddingLeft: "0.5rem",
     color: "#000",
     border: "none",
   };
+  const headeractionStyle = {
+    fontSize: 16,
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 500,
+    padding: 6,
+    paddingLeft: "0.5rem",
+    color: "#000",
+    border: "none",
+    display: 'flex',
+    justifyContent: 'center'
+  }
 
   useEffect(() => {
 
@@ -138,23 +162,23 @@ const RequestTable = () => {
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-          <Dropdown    value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
-                placeholder="Search by"  
-                className="sorbyfilter_container"
-                dropdownIcon={<SvgDropdownicon/>}
-                />
+            <Dropdown value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
+              placeholder="Search by"
+              className="sorbyfilter_container"
+              dropdownIcon={<SvgDropdownicon />}
+            />
 
-            </div>
+          </div>
           <div className="sub__title">Petty Request history</div>
         </div>
         <div className="card">
           <DataTable
-            value={search ? RequestSearch :RequestList}
+            value={search ? RequestSearch : RequestList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
             }}
-            scrollable={true} 
+            scrollable={true}
             scrollHeight="40vh"
             paginator
             rows={5}
@@ -164,20 +188,14 @@ const RequestTable = () => {
             paginatorTemplate={template2}
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
-            <Column
+            {/* <Column
               field="PettycashCode"
               header="Petty cash Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
               
-            ></Column>
-            <Column
-              field="RequestNumber"
-              header="Request Number"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-              sortable
-            ></Column>
+            ></Column> */}
+
             <Column
               field="RequesterName"
               header="Requester Name"
@@ -187,17 +205,24 @@ const RequestTable = () => {
             ></Column>
             <Column
               field="Branchcode"
-              header="Branch code"
+              header="Requester Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
+
             ></Column>
             <Column
               field="Departmentcode"
-              header="Department code"
+              header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
+
+            ></Column>
+            <Column
+              field="RequestNumber"
+              header="Date"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+              sortable
             ></Column>
             <Column
               field="TotalAmount"
@@ -207,11 +232,15 @@ const RequestTable = () => {
               sortable
             ></Column>
             <Column
-              field="Date"
-              header="Date"
-              headerStyle={headerStyle}
-              className="fieldvalue_container_date"
-              sortable
+              body={(columnData) => (
+                <div className="action_icons">
+                  <SvgIconeye onClick={() => handleViewer(columnData)} />
+                  <SvgEdit onClick={() => handleEdit(columnData)} />
+                </div>
+              )}
+              header="Action"
+              headerStyle={headeractionStyle}
+              className="fieldvalue_container"
             ></Column>
           </DataTable>
         </div>

@@ -15,6 +15,13 @@ import { TriStateCheckbox } from "primereact/tristatecheckbox";
 import { PettyCashCode, Name, Branchcode, Departcode } from "../../mock";
 import { useDispatch, useSelector } from "react-redux";
 import { postAddRequestMiddleware } from "../store/pettyCashRequestMiddleware";
+import { Calendar } from "primereact/calendar";
+import SvgAdd from "../../../../assets/icons/SvgAdd";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import SvgDeleteIcon from "../../../../assets/icons/SvgDeleteIcon";
+import { Dialog } from "primereact/dialog";
+
 
 const initialValue = {
   PettyCashCode: "",
@@ -25,12 +32,16 @@ const initialValue = {
   Branchdescription: "",
   DepartmentCode: "",
   Departmentdescription: "",
+  TransactionCode:"",
+  TransactionNumber:"",
+  RequestDate:""
 };
-const RequestForm = () => {
+const RequestForm = ({action}) => {
   const [value, setValue] = useState(null);
   const toastRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log("first",action)
 
   const { RequestList, loading } = useSelector(
     ({ pettyCashRequestReducer }) => {
@@ -56,24 +67,33 @@ const RequestForm = () => {
   const validate = (values) => {
     let errors = {};
 
-    if (!values.PettyCashCode) {
-      errors.PettyCashCode = "Petty Cash Code is required";
+    if (!values.TransactionCode) {
+      errors.TransactionCode = "Petty Cash Code is required";
     }
 
-    if (!values.RequesterName) {
-      errors.RequesterName = "Requester Name is required";
-    }
+    // if (!values.TransactionNumber) {
+    //   errors.TransactionNumber = "TransactionNumber is required";
+    // }
 
-    if (!values.BranchCode) {
-      errors.BranchCode = "Branch Code is required";
-    }
+    // if (!values.BranchCode) {
+    //   errors.BranchCode = "Branch Code is required";
+    // }
 
-    if (!values.DepartmentCode) {
-      errors.DepartmentCode = "Department Code is required";
-    }
+    // if (!values.DepartmentCode) {
+    //   errors.DepartmentCode = "Department Code is required";
+    // }
     return errors;
   };
-
+  const headerStyle = {
+    // width: "10rem",
+    fontSize: 16,
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border: "none",
+    textAlign: "center",
+  };
 
   const items = [
     { label: "Petty Cash", command: () => navigate("/accounts/pettycash/pettycashrequest") },
@@ -83,10 +103,14 @@ const RequestForm = () => {
     },
   ];
   const Initiate = { label: "Accounts" };
-
+  const [visible, setVisible] = useState(false);
   const handleClick = () => {
     navigate("/accounts/pettycash/pettycashrequest");
   };
+
+  const handleAddClick =()=>{
+    setVisible(true)
+  }
 
   const formik = useFormik({
     initialValues: initialValue,
@@ -118,6 +142,7 @@ const RequestForm = () => {
         description = "Unknown";
         break;
     }
+    
     switch (value.pettycashcode) {
       case "PC001":
         Requestnumber = "29292";
@@ -209,65 +234,84 @@ const RequestForm = () => {
       <form onSubmit={formik.handleSubmit}>
         <Card className="mt-4">
           <div className="grid mt-1">
+          <div class="col-12 md:col-6 lg:col-3">
+                        <label className="labelfield_container">Date</label>
+                        <Calendar
+
+                            showIcon
+                            // placeholder="Select"
+
+                            className="calendar_container"
+                            value={formik.values.Date}
+                            // minDate={minDate}
+                            onChange={(e) => {
+                                formik.setFieldValue("Date", e.target.value);
+                            }}
+                            dateFormat="yy-mm-dd"
+
+                        />
+                    </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
+            <DropDowns
                 className="input__filed"
-                label="Petty Cash Code"
+                label="Transaction Code"
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.PettyCashCode}
+                value={formik.values.TransactionCode}
                 options={PettyCashCode}
                 name="PettyCashCode"
                 onChange={(e) =>{ 
-                  formik.setFieldValue("PettyCashCode",e.value).then(()=>{
+                  formik.setFieldValue("TransactionCode",e.value).then(()=>{
                     handlePettyCashDescribtion(e.value)
                   })
                   }
                 }
                 optionLabel="pettycashcode"
                 error={
-                  formik.touched.PettyCashCode && formik.errors.PettyCashCode
-                }
-              />
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Petty Cash description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.PettyCashdescription}
-                onChange={formik.handleChange("PettyCashdescription")}
-                error={
-                  formik.touched.PettyCashdescription &&
-                  formik.errors.PettyCashdescription
+                  formik.touched.TransactionCode && formik.errors.TransactionCode
                 }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <InputField
                 classNames="input__filed"
-                label="Request number"
+                label="Transaction Number"
                 // placeholder="Enter"
                 disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.Requestnumber}
-                onChange={formik.handleChange("Requestnumber")}
+                value={formik.values.TransactionNumber}
+                onChange={formik.handleChange("TransactionNumber")}
                 error={
-                  formik.touched.Requestnumber && formik.errors.Requestnumber
+                  formik.touched.TransactionNumber && formik.errors.TransactionNumber
                 }
               />
             </div>
           </div>
           <div className="grid mt-1">
+
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+          <label className="labelfield_container">Request Date</label>
+                        <Calendar
+
+                            showIcon
+                            // placeholder="Select"
+
+                            className="calendar_container"
+                            value={formik.values.RequestDate}
+                            // minDate={minDate}
+                            onChange={(e) => {
+                                formik.setFieldValue("RequestDate", e.target.value);
+                            }}
+                            dateFormat="yy-mm-dd"
+
+                        />
+            </div>
+
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
@@ -289,98 +333,91 @@ const RequestForm = () => {
                 }
               />
             </div>
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Branch Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.BranchCode}
-                options={Branchcode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("BranchCode", e.value).then(()=>{
-                    handleBranch(e.value.Branchcode);
-                  })
-                  
-                }}
-                optionLabel="Branchcode"
-                error={formik.touched.BranchCode && formik.errors.BranchCode}
-              />
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Branch description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Branchdescription}
-                onChange={formik.handleChange("Branchdescription")}
-                error={
-                  formik.touched.Branchdescription &&
-                  formik.errors.Branchdescription
-                }
-              />
-            </div>
+           
           </div>
-          <div className="grid mt-1">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Department Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.DepartmentCode}
-                options={Departcode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("DepartmentCode", e.value).then(()=>{
-                    handleDepart(e.value.Departcode);
-                  })
-                 
-                }}
-                optionLabel="Departcode"
-                error={
-                  formik.touched.DepartmentCode && formik.errors.DepartmentCode
-                }
-              />
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Department description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Departmentdescription}
-                onChange={formik.handleChange("Departmentdescription")}
-                error={
-                  formik.touched.Departmentdescription &&
-                  formik.errors.Departmentdescription
-                }
-              />
-            </div>
-            <div className="col-12 md:col-3 lg-col-3 check__box__container">
-              <TriStateCheckbox
-                value={value}
-                onChange={(e) => setValue(e.value)}
-              />
-              <div className="check__box__text">Cash in advance</div>
-            </div>
-          </div>
+          
         </Card>
       </form>
+
+      <Card className="mt-6">
+        <div className="sub__container grid ">
+          <div className="sub__container__title col-12 md:col-6 lg:col-6">
+            <div className="sub__request__title">Request List</div>
+          </div>
+          <div className="col-12 md:col-6 lg:col-6">
+            <div className="btn__container">
+              <Button
+                label="Add"
+                icon={<SvgAdd color={"#fff"} />}
+                className="add__btn"
+                onClick={() => {
+                  handleAddClick();
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="table__container">
+          <DataTable
+            // value={AddRequestTable}
+            tableStyle={{ minWidth: "50rem" }}
+            // emptyMessage={isEmpty ? emptyTableIcon : null}
+            scrollable={true}
+            scrollHeight="40vh"
+          >
+            <Column
+              field="Narration"
+              header="Narration"
+              headerStyle={headerStyle}
+              sortable
+            ></Column>
+            <Column
+              field="Amount"
+              header="Amount"
+              headerStyle={headerStyle}
+              sortable
+            ></Column>
+            <Column
+              field="Action"
+              header="Action"
+              headerStyle={{ ...headerStyle, display:"flex",justifyContent: 'flex-end' }}
+              body={(rowData) => (
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  icon={<SvgDeleteIcon />}
+                  className="delete__btn"
+                  // onClick={() => handleDelete(rowData.id)}
+                />
+              </div>
+              )}
+            ></Column>
+          </DataTable>
+        </div>
+      </Card>
+<div className="grid mt-4">
+<div className="col-12 md:col-3 lg-col-3 ">
+  <InputField
+                classNames="input__filed"
+                label="Total Amount"
+                // placeholder="Enter"
+                // disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                // value={formik.values.TransactionNumber}
+                // onChange={formik.handleChange("TransactionNumber")}
+                // error={
+                //   formik.touched.TransactionNumber && formik.errors.TransactionNumber
+                // }
+              />
+  </div>
+</div>
+
+
+
+
+
+
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">
           <div className="btn__container">
@@ -396,6 +433,73 @@ const RequestForm = () => {
           </div>
         </div>
       </div>
+
+
+      <Dialog
+        header="Add Request Item"
+        visible={visible}
+        style={{ width: "50vw" }}
+        onHide={() => setVisible(false)}
+        headerStyle={{
+          color: "#343434",
+          fontFamily: 'Inter, sans-serif',
+          fontSize: 16,
+          fontWeight: 500,
+          // lineHeight: "150%",
+        }}
+        className="dailog__container"
+      >
+        <form onSubmit={formik.handleSubmit}>
+          <div className="grid">
+            <div className="col-12 md:col-8 lg:col-8">
+              <InputField
+                // classNames="input__filed"
+                classNames="fielduniqueone__container"
+                label="Narration"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.Narration}
+                onChange={formik.handleChange("Narration")}
+                error={
+                  formik.touched.Narration &&
+                  formik.errors.Narration
+                }
+              />
+            </div>
+            <div className="col-12 md:col-4 lg:col-4">
+              <InputField
+                classNames="fielduniqueone__container"
+                label="Amount"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value={formik.values.Amount}
+                onChange={formik.handleChange("Amount")}
+                error={
+                  formik.touched.Amount &&
+                  formik.errors.Amount
+                }
+              />
+            </div>
+          </div>
+        </form>
+        <div className="grid">
+          <div className="col-12 md:col-12 lg:col-12 bt__container">
+            <Button
+              label="Save"
+              className="add__btn"
+              // onClick={() => {
+              //   formik.handleSubmit();
+              // }}
+            />
+          </div>
+        </div>
+      </Dialog>
+
+
     </div>
   );
 };

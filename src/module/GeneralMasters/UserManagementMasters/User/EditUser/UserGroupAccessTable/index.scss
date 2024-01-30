@@ -8,6 +8,14 @@
       }
       .p-tabview .p-tabview-nav li .p-tabview-nav-link {
         border: 0px solid #fff !important;
+      }.table__selector {
+        text-align: center;
+        flex: 1 0;
+        .pagedropdown_container {
+          border: none;
+          margin: 0 !important;
+          background-color: #FAFAFA;
+        }
       }
       .p-tabview .p-tabview-panels {
         background: #ffffff;

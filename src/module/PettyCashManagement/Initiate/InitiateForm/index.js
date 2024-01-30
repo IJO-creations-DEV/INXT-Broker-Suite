@@ -18,12 +18,14 @@ import {
   CurrencyType,
   Transcode,
   Branchcode,
-  Departcode,
+  Departcode, TransactionCode
 } from "../../mock";
 import {
   postInitiateMiddleware,
 } from "../store/pettyCashInitiateMiddleware";
 import { useDispatch, useSelector } from "react-redux";
+import { Calendar } from "primereact/calendar";
+import LabelWrapper from "../../../../components/LabelWrapper";
 
 const initialValue = {
   PettyCashCode: "",
@@ -40,8 +42,15 @@ const initialValue = {
   DepartmentCode: "",
   Departmentdescription: "",
   AvailableCash: "",
-  TransactionLimit: "",
+  MaxLimit: "",
   MinimumCashbox: "",
+  TransactionDate: new Date(),
+  TransactionCode: "",
+  TransactionNumber: "",
+  mainaccountcode: "",
+  BankCode: "",
+  MainAccountCode: "",
+  BankAccountCode:""
 };
 
 const InitiateForm = () => {
@@ -55,29 +64,29 @@ const InitiateForm = () => {
       errors.PettyCashCode = "Petty Cash Code is required";
     }
 
-    if (!values.BankAccountNumber) {
-      errors.BankAccountNumber = "Bank Account Number is required";
+    if (!values.BankCode) {
+      errors.BankCode = "Bank Code is required";
     }
 
-    if (!values.SubAccountCode) {
-      errors.SubAccountCode = "Sub Account Code is required";
+    if (!values.BankAccountCode) {
+      errors.BankAccountCode = "Bank Account Code is required";
     }
 
-    if (!values.Currency) {
-      errors.Currency = "Currency is required";
+    if (!values.MainAccountCode) {
+      errors.MainAccountCode = "Currency is required";
     }
 
-    if (!values.TransactionCode) {
-      errors.TransactionCode = "Transaction Code is required";
-    }
+    // if (!values.TransactionCode) {
+    //   errors.TransactionCode = "Transaction Code is required";
+    // }
 
-    if (!values.BranchCode) {
-      errors.BranchCode = "Branch Code is required";
-    }
+    // if (!values.BranchCode) {
+    //   errors.BranchCode = "Branch Code is required";
+    // }
 
-    if (!values.DepartmentCode) {
-      errors.DepartmentCode = "Department Code is required";
-    }
+    // if (!values.DepartmentCode) {
+    //   errors.DepartmentCode = "Department Code is required";
+    // }
     return errors;
   };
 
@@ -95,6 +104,7 @@ const InitiateForm = () => {
       ...value,
       id: InitiateList?.length + 1,
     };
+    console.log("first",valueWithId)
     dispatch(postInitiateMiddleware(valueWithId));
     toastRef.current.showToast();
     setTimeout(() => {
@@ -127,7 +137,7 @@ const InitiateForm = () => {
   });
 
   const handlePettyCashDescribtion = (value) => {
-    console.log("first",value.pettycashcode)
+    console.log("first", value.pettycashcode)
     let description = "";
     let pettycashsize = "";
     switch (value.pettycashcode) {
@@ -308,7 +318,7 @@ const InitiateForm = () => {
         break;
     }
     formik.setFieldValue("AvailableCash", Availablecash);
-    formik.setFieldValue("TransactionLimit", translimit);
+    formik.setFieldValue("MaxLimit", translimit);
     formik.setFieldValue("MinimumCashbox", maxlimit);
   };
   return (
@@ -336,342 +346,402 @@ const InitiateForm = () => {
         </div>
       </div>
 
-      <form onSubmit={formik.handleSubmit}>
-        <Card className="mt-4">
-          <div className="grid mt-1">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Petty Cash Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.PettyCashCode}
-                options={PettyCashCode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("PettyCashCode", e.value).then(()=>{
-                    handlePettyCashDescribtion(e.value);
-                  })
-                 
-                }}
-                optionLabel="pettycashcode"
-                error={
-                  formik.touched.PettyCashCode && formik.errors.PettyCashCode
-                }
-              />
-              {/* {formik.touched.PettyCashCode &&
+
+      <Card className="mt-4">
+
+
+        <div class="grid" style={{ flexDirection: "row-reverse" }}>
+          {/* <div class="col-12 md:col-6 lg:col-3">
+        <div class="text-center p-3 border-round-sm bg-primary font-bold">col-12 md:col-6 lg:col-3</div>
+    </div> */}
+          <div class="col-12 md:col-6 lg:col-3">
+            <InputField
+              disabled={true}
+              classNames="field__container"
+              label="Transaction Number"
+              // placeholder={"Enter"}
+              // value={formik.values.TransactionDescription}
+              value={
+                formik.values.TransactionNumber
+
+              }
+              // value={formik.values.Transactioncode}
+
+              onChange={formik.handleChange("TransactionNumber")}
+            />
+          </div>
+          <div class="col-12 md:col-6 lg:col-3">
+            <DropDowns
+              className="dropdown__container"
+              label="Transaction Code"
+              // value={departmentcode}
+              // onChange={(e) => setDepartmentCode(e.value)}
+              value={formik.values.TransactionCode}
+              onChange={(e) =>
+                formik.setFieldValue("TransactionCode", e.value)
+              }
+              options={TransactionCode}
+              optionLabel="Branchcode"
+              placeholder={"Select"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+
+          </div>
+          <div className="calender__container col-12 md:col-3 lg-col-3 ">
+            <LabelWrapper className="calenderlable__container">
+              Transaction Date
+            </LabelWrapper>
+            <Calendar
+              showIcon
+              placeholder="Select"
+              className="calendar_container"
+              value={formik.values.TransactionDate}
+
+              onChange={(e) => {
+                formik.setFieldValue("TransactionDate", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+              error={formik.errors.TransactionDate}
+
+            />
+          </div>
+        </div>
+
+
+        <div className="grid mt-1">
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="Petty Cash Code"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.PettyCashCode}
+              options={PettyCashCode}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("PettyCashCode", e.value).then(() => {
+                  handlePettyCashDescribtion(e.value);
+                })
+              }}
+              optionLabel="pettycashcode"
+              error={
+                formik.touched.PettyCashCode && formik.errors.PettyCashCode
+              }
+            />
+            {/* {formik.touched.PettyCashCode &&
               formik.errors.PettyCashCode && (
                 <div style={{ fontSize: 8, color: "red",marginTop:4 }}>
                   {formik.errors.PettyCashCode}
                 </div>
               )} */}
 
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Petty Cash Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.PettyCashdescription}
-                onChange={formik.handleChange("PettyCashdescription")}
-              // error={
-              //   formik.touched.PettyCashdescription &&
-              //   formik.errors.PettyCashdescription
-              // }
-              />
-            </div>
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Petty Cash Size"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.PettyCashSize}
-                onChange={formik.handleChange("PettyCashSize")}
-                error={
-                  formik.touched.PettyCashSize && formik.errors.PettyCashSize
-                }
-              />
-            </div>
           </div>
-          <div className="grid mt-1">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Bank Account Number"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.BankAccountNumber}
-                options={BankAccountCode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("BankAccountNumber", e.value).then(()=>{
-                    handleAccountcode(e.value.BankAccountCode);
-                  })
-                 
-                }}
-                optionLabel="BankAccountCode"
-                error={
-                  formik.touched.BankAccountNumber &&
-                  formik.errors.BankAccountNumber
-                }
-              />
-            </div>
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Sub Account Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.SubAccountCode}
-                options={SubAccount}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("SubAccountCode", e.value);
-                }}
-                optionLabel="SubAccount"
-                error={
-                  formik.touched.SubAccountCode && formik.errors.SubAccountCode
-                }
-              />
-            </div>
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Currency"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.Currency}
-                options={CurrencyType}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("Currency", e.value).then(()=>{
-                    handlecurrency(e.value);
-                  })
-                 
-                }}
-                optionLabel="CurrencyType"
-                error={formik.touched.Currency && formik.errors.Currency}
-              />
-            </div>
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Currency Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Currencydescription}
-                onChange={formik.handleChange("Currencydescription")}
-                error={
-                  formik.touched.Currencydescription &&
-                  formik.errors.Currencydescription
-                }
-              />
-            </div>
+          <div className="col-12 md:col-6 lg-col-6 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Petty Cash Description"
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.PettyCashdescription}
+              onChange={formik.handleChange("PettyCashdescription")}
+            // error={
+            //   formik.touched.PettyCashdescription &&
+            //   formik.errors.PettyCashdescription
+            // }
+            />
           </div>
-          <div className="grid mt-1">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Transaction Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.TransactionCode}
-                options={Transcode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("TransactionCode", e.value).then(()=>{
-                    handleTrans(e.value);
-                  })
-                  
-                }}
-                optionLabel="Transcode"
-                error={
-                  formik.touched.TransactionCode &&
-                  formik.errors.TransactionCode
-                }
-              />
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Transaction Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Transactiondescription}
-                onChange={formik.handleChange("Transactiondescription")}
-                error={
-                  formik.touched.Transactiondescription &&
-                  formik.errors.Transactiondescription
-                }
-              />
-            </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Petty Cash Size"
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.PettyCashSize}
+              onChange={formik.handleChange("PettyCashSize")}
+              error={
+                formik.touched.PettyCashSize && formik.errors.PettyCashSize
+              }
+            />
           </div>
-          <div className="grid mt-1">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Branch Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.BranchCode}
-                options={Branchcode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("BranchCode", e.value).then(()=>{
-                    handleBranch(e.value.Branchcode);
-                  })
-                 
-                }}
-                optionLabel="Branchcode"
-                error={formik.touched.BranchCode && formik.errors.BranchCode}
-              />
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Branch Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Branchdescription}
-                onChange={formik.handleChange("Branchdescription")}
-                error={
-                  formik.touched.Branchdescription &&
-                  formik.errors.Branchdescription
-                }
-              />
-            </div>
+        </div>
+        <div className="grid mt-1">
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="Bank Code"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.BankCode}
+              options={BankAccountCode}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("BankCode", e.value).then(() => {
+                  handleAccountcode(e.value.BankCode);
+                })
+
+              }}
+              optionLabel="BankAccountCode"
+              error={
+                formik.touched.BankCode &&
+                formik.errors.BankCode
+              }
+            />
           </div>
-          <div className="grid mt-1">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Department Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.DepartmentCode}
-                options={Departcode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("DepartmentCode", e.value).then(()=>{
-                    handleDepart(e.value.Departcode);
-                  })
-                  
-                }}
-                optionLabel="Departcode"
-                error={
-                  formik.touched.DepartmentCode && formik.errors.DepartmentCode
-                }
-              />
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Department Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Departmentdescription}
-                onChange={formik.handleChange("Departmentdescription")}
-                error={
-                  formik.touched.Departmentdescription &&
-                  formik.errors.Departmentdescription
-                }
-              />
-            </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="Bank Account Code"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.BankAccountCode}
+              options={SubAccount}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("BankAccountCode", e.value);
+              }}
+              optionLabel="SubAccount"
+              error={
+                formik.touched.BankAccountCode && formik.errors.BankAccountCode
+              }
+            />
           </div>
-          <div className="grid mt-1">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Available Cash"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.AvailableCash}
-                onChange={formik.handleChange("AvailableCash")}
-                error={
-                  formik.touched.AvailableCash && formik.errors.AvailableCash
-                }
-              />
-            </div>
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Transaction Limit"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.TransactionLimit}
-                onChange={formik.handleChange("TransactionLimit")}
-                error={
-                  formik.touched.TransactionLimit &&
-                  formik.errors.TransactionLimit
-                }
-              />
-            </div>
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Minimum Cash box"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.MinimumCashbox}
-                onChange={formik.handleChange("MinimumCashbox")}
-                error={
-                  formik.touched.MinimumCashbox && formik.errors.MinimumCashbox
-                }
-              />
-            </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="Main Account Code"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.MainAccountCode}
+              options={CurrencyType}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("MainAccountCode", e.value).then(() => {
+                  handlecurrency(e.value);
+                })
+
+              }}
+              optionLabel="CurrencyType"
+              error={formik.touched.MainAccountCode && formik.errors.MainAccountCode}
+            />
           </div>
-        </Card>
-      </form>
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="Sub Account Code"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.SubAccountCode}
+              options={SubAccount}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("SubAccountCode", e.value);
+              }}
+              optionLabel="SubAccount"
+              error={
+                formik.touched.SubAccountCode && formik.errors.SubAccountCode
+              }
+            />
+          </div>
+        </div>
+        <div className="grid mt-1">
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="Currency"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.Currency}
+              options={CurrencyType}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("Currency", e.value).then(() => {
+                  handlecurrency(e.value);
+                })
+
+              }}
+              optionLabel="CurrencyType"
+              error={formik.touched.Currency && formik.errors.Currency}
+            />
+          </div>
+          <div className="col-12 md:col-6 lg-col-6 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Currency Description"
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.Currencydescription}
+              onChange={formik.handleChange("Currencydescription")}
+              error={
+                formik.touched.Currencydescription &&
+                formik.errors.Currencydescription
+              }
+            />
+          </div>
+        </div>
+        <div className="grid mt-1">
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="Branch Code"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.BranchCode}
+              options={Branchcode}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("BranchCode", e.value).then(() => {
+                  handleBranch(e.value.Branchcode);
+                })
+
+              }}
+              optionLabel="Branchcode"
+              error={formik.touched.BranchCode && formik.errors.BranchCode}
+            />
+          </div>
+          <div className="col-12 md:col-6 lg-col-6 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Branch Description"
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.Branchdescription}
+              onChange={formik.handleChange("Branchdescription")}
+              error={
+                formik.touched.Branchdescription &&
+                formik.errors.Branchdescription
+              }
+            />
+          </div>
+        </div>
+        <div className="grid mt-1">
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <DropDowns
+              className="input__filed"
+              label="Department Code"
+              placeholder="Select"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.DepartmentCode}
+              options={Departcode}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("DepartmentCode", e.value).then(() => {
+                  handleDepart(e.value.Departcode);
+                })
+
+              }}
+              optionLabel="Departcode"
+              error={
+                formik.touched.DepartmentCode && formik.errors.DepartmentCode
+              }
+            />
+          </div>
+          <div className="col-12 md:col-6 lg-col-6 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Department Description"
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.Departmentdescription}
+              onChange={formik.handleChange("Departmentdescription")}
+              error={
+                formik.touched.Departmentdescription &&
+                formik.errors.Departmentdescription
+              }
+            />
+          </div>
+        </div>
+        <div className="grid mt-1">
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Available Cash"
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.AvailableCash}
+              onChange={formik.handleChange("AvailableCash")}
+              error={
+                formik.touched.AvailableCash && formik.errors.AvailableCash
+              }
+            />
+          </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Max Limit"
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.MaxLimit}
+              onChange={formik.handleChange("MaxLimit")}
+              error={
+                formik.touched.MaxLimit &&
+                formik.errors.MaxLimit
+              }
+            />
+          </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view">
+            <InputField
+              classNames="input__filed"
+              label="Minimum Cash box"
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.MinimumCashbox}
+              onChange={formik.handleChange("MinimumCashbox")}
+              error={
+                formik.touched.MinimumCashbox && formik.errors.MinimumCashbox
+              }
+            />
+          </div>
+        </div>
+      </Card>
+
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">
           <div className="btn__container">

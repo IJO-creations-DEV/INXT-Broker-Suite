@@ -4,7 +4,6 @@ import "./index.scss";
 
 const CustomToast = forwardRef((props, ref) => {
   const { message, messageType } = props;
-  console.log(messageType, "find statusUpdate");
   const formatMessage = (Message) => {
     const parts = Message?.split(/\s+/);
 

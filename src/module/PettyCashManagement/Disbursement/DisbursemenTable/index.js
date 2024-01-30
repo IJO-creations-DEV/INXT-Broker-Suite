@@ -13,32 +13,32 @@ import "./index.scss";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
-import { getDisbursmentSearchMiddleware, getViewDisbursmentMiddleware } from "../store/pettyCashDisbursementMiddleware";
-
+import {
+  getDisbursmentSearchMiddleware,
+  getViewDisbursmentMiddleware,
+} from "../store/pettyCashDisbursementMiddleware";
 
 const DisbursementTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("")
-  const [globalFilter, setGlobalFilter] = useState("PettycashCode")
-  
+  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("PettycashCode");
 
-  const { DisbursmentList, loading,DisbursmentSearch } = useSelector(({ pettyCashDisbursementReducers }) => {
-    return {
-      loading: pettyCashDisbursementReducers?.loading,
-      DisbursmentList: pettyCashDisbursementReducers?.DisbursmentList,
-      DisbursmentSearch: pettyCashDisbursementReducers?.DisbursmentSearch
-    };
-  });
+  const { DisbursmentList, loading, DisbursmentSearch } = useSelector(
+    ({ pettyCashDisbursementReducers }) => {
+      return {
+        loading: pettyCashDisbursementReducers?.loading,
+        DisbursmentList: pettyCashDisbursementReducers?.DisbursmentList,
+        DisbursmentSearch: pettyCashDisbursementReducers?.DisbursmentSearch,
+      };
+    }
+  );
 
   const searchs = [
-    { name: 'Pettycash Code', code: 'PettycashCode' },
-    { name: 'Transaction code', code: 'Transactioncode' },
-    { name: 'Transaction Number', code: 'TransactionNumber' },
-    { name: 'Branch code', code: 'Branchcode' },
-    { name: 'Department code', code: 'Departmentcode' },
-    { name: 'Date', code: 'Date' },
-  ]
+    { name: "Pettycash Code", code: "PettycashCode" },
+    { name: "Transaction code", code: "Transactioncode" },
+    { name: "Transaction Number", code: "TransactionNumber" },
+  ];
 
   const isEmpty = DisbursmentList.length === 0;
 
@@ -60,20 +60,20 @@ const DisbursementTable = () => {
 
       return (
         <div className="paginator__container">
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdownunique_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+          <React.Fragment>
+            <span
+              className="mx-1"
+              style={{ color: "var(--text-color)", userSelect: "none" }}
+            >
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdownunique_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          </React.Fragment>
         </div>
       );
     },
@@ -99,7 +99,7 @@ const DisbursementTable = () => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -109,29 +109,29 @@ const DisbursementTable = () => {
   const menu = useRef(null);
   const menuitems = [
     {
-      label: 'Name',
+      label: "Name",
     },
     {
-      label: 'Date',
+      label: "Date",
     },
     {
-      label: 'Voucher Number',
+      label: "Voucher Number",
     },
   ];
 
   useEffect(() => {
-
-    console.log(globalFilter, "as")
+    console.log(globalFilter, "as");
     if (globalFilter?.length > 0) {
       if (search?.length > 0) {
-        dispatch(getDisbursmentSearchMiddleware({
-          field: globalFilter,
-          value: search
-        }))
-
+        dispatch(
+          getDisbursmentSearchMiddleware({
+            field: globalFilter,
+            value: search,
+          })
+        );
       }
     }
-  }, [search])
+  }, [search]);
 
   return (
     <div className="disbursement__table">
@@ -141,7 +141,7 @@ const DisbursementTable = () => {
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
-                placeholder="Search customers"
+                placeholder="Search by Petty cash Code"
                 className="searchinput_left"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -149,22 +149,26 @@ const DisbursementTable = () => {
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-          <Dropdown  value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
-                placeholder="Search by"  
-                className="sorbyfilter_container"
-                dropdownIcon={<SvgDropdownicon/>}
-                />
-           </div>
+            <Dropdown
+              value={search}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={searchs}
+              optionLabel="name"
+              optionValue="code"
+              placeholder="Search by"
+              className="sorbyfilter_container"
+              dropdownIcon={<SvgDropdownicon />}
+            />
+          </div>
           <div className="sub__title">Disbursement history</div>
         </div>
         <div className="card">
           <DataTable
             value={search ? DisbursmentSearch : DisbursmentList}
             tableStyle={{
-              
               color: "#1C2536",
             }}
-            scrollable={true} 
+            scrollable={true}
             scrollHeight="40vh"
             paginator
             rows={5}
@@ -179,14 +183,12 @@ const DisbursementTable = () => {
               header="Petty cash Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
             ></Column>
             <Column
               field="Transactioncode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
             ></Column>
             <Column
               field="TransactionNumber"
@@ -194,20 +196,6 @@ const DisbursementTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
-            ></Column>
-            <Column
-              field="Branchcode"
-              header="Branch code"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-              
-            ></Column>
-            <Column
-              field="Departmentcode"
-              header="Department code"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
-              
             ></Column>
             <Column
               field="Date"

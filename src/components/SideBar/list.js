@@ -239,7 +239,7 @@ export const menuList = [
           {
             id: 2,
             name: "Request",
-            path: "accounts/pettycash/request",
+            path: "/accounts/pettycash/pettycashrequest",
           },
           {
             id: 3,

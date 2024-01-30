@@ -4,9 +4,9 @@ import SvgTable from "../../../../../assets/icons/SvgTable";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
-const ReplenishtDetailViewTable = ({AddReplenishTable}) => {
+const ReplenishtDetailViewTable = ({ AddReplenishTable }) => {
   const isEmpty = AddReplenishTable.length === 0;
-console.log(AddReplenishTable,"AddReplenishTable")
+  console.log(AddReplenishTable, "AddReplenishTable");
   const emptyTableIcon = (
     <div className="empty-table-icon">
       <SvgTable />
@@ -16,7 +16,7 @@ console.log(AddReplenishTable,"AddReplenishTable")
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -37,29 +37,24 @@ console.log(AddReplenishTable,"AddReplenishTable")
             headerStyle={headerStyle}
           ></Column>
           <Column
-            field="RequestNumber"
-            header="Request Number"
+            field="DocNumber"
+            header="Disbursement Doc Number"
             headerStyle={headerStyle}
           ></Column>
           <Column
-            field="MainAccount"
-            header="Main Account"
-            headerStyle={headerStyle}
-          ></Column>
-          <Column
-            field="SubAccount"
-            header="Sub Account"
+            field="Narration"
+            header="Narration"
             headerStyle={headerStyle}
           ></Column>
           <Column field="Date" header="Date" headerStyle={headerStyle}></Column>
           <Column
-            field="Amount"
-            header="Amount"
+            field="Remarks"
+            header="Remarks"
             headerStyle={headerStyle}
           ></Column>
           <Column
-            field="Remarks"
-            header="Remarks"
+            field="Amount"
+            header="Amount"
             headerStyle={headerStyle}
           ></Column>
         </DataTable>

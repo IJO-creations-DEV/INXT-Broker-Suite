@@ -11,6 +11,8 @@ import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import { Button } from "primereact/button";
 import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
+import LabelWrapper from "../../../../components/LabelWrapper";
+import { Calendar } from "primereact/calendar";
 import {
   PettyCashCode,
   BankAccountCode,
@@ -18,6 +20,7 @@ import {
   Transcode,
   Branchcode,
   Departcode,
+  TransactionCode,
 } from "../../mock";
 import { useDispatch, useSelector } from "react-redux";
 import { postAddReplenishMiddleware } from "../store/pettyCashReplenishMiddleware";
@@ -30,11 +33,11 @@ const initialValue = {
   SubAccountCode: "",
   SubAccountDescription: "",
   TransactionCode: "",
-  Transactiondescription: "",
   BranchCode: "",
   Branchdescription: "",
-  DepartmentCode: "",
   Departmentdescription: "",
+  DisbursementFromdate: new Date(),
+  DisbursementTodate: new Date(),
 };
 
 const AddReplenish = () => {
@@ -51,7 +54,10 @@ const AddReplenish = () => {
     }
   );
   const items = [
-    { label: "Petty Cash", command: () => navigate(  "/accounts/pettycash/replenish") },
+    {
+      label: "Petty Cash",
+      command: () => navigate("/accounts/pettycash/replenish"),
+    },
     {
       label: "Add Replenish",
       to: "/accounts/pettycash/addreplenish",
@@ -92,12 +98,6 @@ const AddReplenish = () => {
     }
     if (!values.TransactionCode) {
       errors.TransactionCode = "Transaction Code is required";
-    }
-    if (!values.BranchCode) {
-      errors.BranchCode = "Branch Code is required";
-    }
-    if (!values.DepartmentCode) {
-      errors.DepartmentCode = "Currency is required";
     }
 
     return errors;
@@ -264,12 +264,62 @@ const AddReplenish = () => {
         </div>
       </div>
       <form onSubmit={formik.handleSubmit}>
-        <Card className="mt-6" >
+        <Card className="mt-6">
+          <div className="grid ">
+            <div className="col-12 md:col-3 lg-col-3 xl:col-3 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Date"
+                //   placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value="24/01/2024"
+              />
+            </div>
+            <div className="col-12 md:col-3 lg-col-3 xl:col-3 input__view">
+              <DropDowns
+                className="input__filed"
+                label="Transaction Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                value={formik.values.TransactionCode}
+                options={Transcode}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("TransactionCode", e.value).then(() => {
+                    handleTrans(e.value.Transcode);
+                  });
+                }}
+                optionLabel="Transcode"
+                error={
+                  formik.touched.TransactionCode &&
+                  formik.errors.TransactionCode
+                }
+              />
+            </div>
+            <div className="col-12 md:col-3 lg-col-3 xl:col-3 input__view">
+              <InputField
+                classNames="input__filed"
+                label="Transaction Number"
+                //   placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                value=""
+              />
+            </div>
+          </div>
           <div className="grid ">
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
-                label="Petty cash Code"
+                label="Petty cash Code*"
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
@@ -279,15 +329,13 @@ const AddReplenish = () => {
                 options={PettyCashCode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("PettycashCode", e.value).then(()=>{
+                  formik.setFieldValue("PettycashCode", e.value).then(() => {
                     handlePettyCashDescribtion(e.value);
-                  })
-                  
+                  });
                 }}
                 optionLabel="pettycashcode"
                 error={
-                  formik.touched.PettycashCode &&
-                  formik.errors.PettycashCode
+                  formik.touched.PettycashCode && formik.errors.PettycashCode
                 }
               />
             </div>
@@ -313,7 +361,7 @@ const AddReplenish = () => {
             <div className="col-12 md:col-3 lg-col-3 input__view">
               <DropDowns
                 className="input__filed"
-                label="Bank Code"
+                label="Bank Code*"
                 placeholder="Select"
                 textColor={"#111927"}
                 textSize={"16"}
@@ -323,10 +371,9 @@ const AddReplenish = () => {
                 options={BankAccountCode}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("BankCode", e.value).then(()=>{
+                  formik.setFieldValue("BankCode", e.value).then(() => {
                     handleBankcode(e.value.BankAccountCode);
-                  })
-                 
+                  });
                 }}
                 optionLabel="BankAccountCode"
                 error={formik.touched.BankCode && formik.errors.BankCode}
@@ -364,10 +411,9 @@ const AddReplenish = () => {
                 options={SubAccount}
                 onChange={(e) => {
                   console.log(e.value);
-                  formik.setFieldValue("SubAccountCode", e.value).then(()=>{
+                  formik.setFieldValue("SubAccountCode", e.value).then(() => {
                     handleSubAccount(e.value.SubAccount);
-                  })
-                 
+                  });
                 }}
                 optionLabel="SubAccount"
                 error={
@@ -394,130 +440,34 @@ const AddReplenish = () => {
             </div>
           </div>
           <div className="grid ">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Transaction Code"
+            <div className="calender__container col-12 md:col-3 lg:col-3 ">
+              <LabelWrapper className="calenderlable__container">
+                Disbursement From date
+              </LabelWrapper>
+              <Calendar
+                showIcon
                 placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.TransactionCode}
-                options={Transcode}
+                className="calendar_container"
+                value={formik.values.DisbursementFromdate}
                 onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("TransactionCode", e.value).then(()=>{
-                    handleTrans(e.value.Transcode);
-                  })
-                
+                  formik.setFieldValue("DisbursementFromdate", e.target.value);
                 }}
-                optionLabel="Transcode"
-                error={
-                  formik.touched.TransactionCode &&
-                  formik.errors.TransactionCode
-                }
+                dateFormat="yy-mm-dd"
               />
             </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Transaction Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Transactiondescription}
-                onChange={formik.handleChange("Transactiondescription")}
-                error={
-                  formik.touched.Transactiondescription &&
-                  formik.errors.Transactiondescription
-                }
-              />
-            </div>
-          </div>
-          <div className="grid ">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Branch Code"
+            <div className="calender__container col-12 md:col-3 lg:col-3 ">
+              <LabelWrapper className="calenderlable__container">
+                Disbursement To date
+              </LabelWrapper>
+              <Calendar
+                showIcon
                 placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.BranchCode}
-                options={Branchcode}
+                className="calendar_container"
+                value={formik.values.DisbursementTodate}
                 onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("BranchCode", e.value).then(()=>{
-                    handleBranch(e.value.Branchcode);
-                  })
-                  
+                  formik.setFieldValue("DisbursementTodate", e.target.value);
                 }}
-                optionLabel="Branchcode"
-                error={formik.touched.BranchCode && formik.errors.BranchCode}
-              />
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Branch Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Branchdescription}
-                onChange={formik.handleChange("Branchdescription")}
-                error={
-                  formik.touched.Branchdescription &&
-                  formik.errors.Branchdescription
-                }
-              />
-            </div>
-          </div>
-          <div className="grid ">
-            <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
-                label="Department Code"
-                placeholder="Select"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.DepartmentCode}
-                options={Departcode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("DepartmentCode", e.value).then(()=>{
-                    handleDepart(e.value.Departcode);
-                  })
-                 
-                }}
-                optionLabel="Departcode"
-                error={
-                  formik.touched.DepartmentCode && formik.errors.DepartmentCode
-                }
-              />
-            </div>
-            <div className="col-12 md:col-6 lg-col-6 input__view">
-              <InputField
-                classNames="input__filed"
-                label="Department Description"
-                // placeholder="Enter"
-                disabled={true}
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Departmentdescription}
-                onChange={formik.handleChange("Departmentdescription")}
-                error={
-                  formik.touched.Departmentdescription &&
-                  formik.errors.Departmentdescription
-                }
+                dateFormat="yy-mm-dd"
               />
             </div>
           </div>

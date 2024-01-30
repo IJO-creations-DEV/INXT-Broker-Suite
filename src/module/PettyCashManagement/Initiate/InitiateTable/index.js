@@ -12,30 +12,35 @@ import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
-import { getInitiateDetailsMiddleware, getInitiateListSearchMiddleware } from "../store/pettyCashInitiateMiddleware";
+import {
+  getInitiateDetailsMiddleware,
+  getInitiateListSearchMiddleware,
+} from "../store/pettyCashInitiateMiddleware";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
 const InitiateTable = () => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [search, setSearch] = useState("")
-  const [globalFilter, setGlobalFilter] = useState("Pettycashcode")
+  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("Pettycashcode");
 
-  const { InitiateList, loading, InitiateListSearch } = useSelector(({ pettyCashInitiateReducer }) => {
-    return {
-      loading: pettyCashInitiateReducer?.loading,
-      InitiateList: pettyCashInitiateReducer?.InitiateList,
-      InitiateListSearch: pettyCashInitiateReducer?.InitiateListSearch
-    };
-  });
+  const { InitiateList, loading, InitiateListSearch } = useSelector(
+    ({ pettyCashInitiateReducer }) => {
+      return {
+        loading: pettyCashInitiateReducer?.loading,
+        InitiateList: pettyCashInitiateReducer?.InitiateList,
+        InitiateListSearch: pettyCashInitiateReducer?.InitiateListSearch,
+      };
+    }
+  );
 
   const searchs = [
-    { name: 'Petty Cash code', code: 'Pettycashcode' },
-    { name: 'Transaction Number', code: 'TransactionNumber' },
-    { name: 'Branch Code', code: 'Branchcode' },
-    { name: 'Department Code', code: 'Departmentcode' }]
-
+    { name: "Petty Cash code", code: "Pettycashcode" },
+    { name: "Transaction Number", code: "TransactionNumber" },
+    { name: "Branch Code", code: "Branchcode" },
+    { name: "Department Code", code: "Departmentcode" },
+  ];
 
   const isEmpty = InitiateList.length === 0;
 
@@ -80,7 +85,6 @@ const InitiateTable = () => {
   };
 
   const renderViewButton = (rowData) => {
-
     return (
       <div className="center-content">
         <Button
@@ -94,12 +98,12 @@ const InitiateTable = () => {
 
   const handleView = (rowData) => {
     dispatch(getInitiateDetailsMiddleware(rowData));
-    navigate("/accounts/pettycash/PettyCashCodeDetails")
+    navigate("/accounts/pettycash/PettyCashCodeDetails");
   };
   const headerStyle = {
     // width: "12rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     paddingLeft: 6,
@@ -107,40 +111,40 @@ const InitiateTable = () => {
     border: "none",
   };
   const ViewheaderStyle = {
-    justifyContent: 'center',
+    justifyContent: "center",
     // textalign: center,
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
     border: " none",
-    display: "flex"
+    display: "flex",
   };
   useEffect(() => {
-
-    console.log(globalFilter, "as")
+    console.log(globalFilter, "as");
     if (globalFilter?.length > 0) {
       if (search?.length > 0) {
-        dispatch(getInitiateListSearchMiddleware({
-          field: globalFilter,
-          value: search
-        }))
-
+        dispatch(
+          getInitiateListSearchMiddleware({
+            field: globalFilter,
+            value: search,
+          })
+        );
       }
     }
-  }, [search])
+  }, [search]);
 
   const menu = useRef(null);
   const menuitems = [
     {
-      label: 'Name',
+      label: "Name",
     },
     {
-      label: 'Date',
+      label: "Date",
     },
     {
-      label: 'Voucher Number',
+      label: "Voucher Number",
     },
   ];
   return (
@@ -151,7 +155,7 @@ const InitiateTable = () => {
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
-                placeholder="Search customers"
+                placeholder="Search by Petty cash Code"
                 className="searchinput_left"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -160,7 +164,12 @@ const InitiateTable = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-2">
             {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" /> */}
-            <Dropdown value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
+            <Dropdown
+              value={search}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={searchs}
+              optionLabel="name"
+              optionValue="code"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}
@@ -177,7 +186,6 @@ const InitiateTable = () => {
           <DataTable
             value={search ? InitiateListSearch : InitiateList}
             tableStyle={{
-
               color: "#1C2536",
             }}
             scrollable={true}
@@ -195,7 +203,6 @@ const InitiateTable = () => {
               header="Petty cash code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="Pettycashsize"
@@ -216,21 +223,18 @@ const InitiateTable = () => {
               header="Transaction Limit"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="Branchcode"
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="Departmentcode"
               header="Department code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="Date"

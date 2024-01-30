@@ -13,33 +13,36 @@ import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useDispatch, useSelector } from "react-redux";
-import { getReplenishSearchMiddleware, getViewReplenishMiddleware } from "../store/pettyCashReplenishMiddleware";
+import {
+  getReplenishSearchMiddleware,
+  getViewReplenishMiddleware,
+} from "../store/pettyCashReplenishMiddleware";
 
 const PettyCashReplenishTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [search, setSearch] = useState("")
-  const [globalFilter, setGlobalFilter] = useState("Pettycashcode")
+  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("Pettycashcode");
 
   const { ReplenishList, loading, ReplenishSearch } = useSelector(
     ({ pettyCashReplenishReducer }) => {
       return {
         loading: pettyCashReplenishReducer?.loading,
         ReplenishList: pettyCashReplenishReducer?.ReplenishList,
-        ReplenishSearch: pettyCashReplenishReducer?.ReplenishSearch
+        ReplenishSearch: pettyCashReplenishReducer?.ReplenishSearch,
       };
     }
   );
 
   const searchs = [
-    { name: 'Pettycash Code', code: 'Pettycashcode' },
-    { name: 'Branch code', code: 'Branchcode' },
-    { name: 'Transaction code', code: 'Transactioncode' },
-    { name: 'Bank Code', code: 'BankCode' },
-    { name: 'Sub Account', code: 'SubAccount' },
-    { name: 'Transaction Number', code: 'TransactionNumber' },
-    { name: 'Date', code: 'Date' },
-  ]
+    { name: "Pettycash Code", code: "Pettycashcode" },
+    { name: "Branch code", code: "Branchcode" },
+    { name: "Transaction code", code: "Transactioncode" },
+    { name: "Bank Code", code: "BankCode" },
+    { name: "Sub Account", code: "SubAccount" },
+    { name: "Transaction Number", code: "TransactionNumber" },
+    { name: "Date", code: "Date" },
+  ];
 
   const isEmpty = ReplenishList.length === 0;
 
@@ -100,7 +103,7 @@ const PettyCashReplenishTable = () => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     paddingLeft: 0,
@@ -109,46 +112,47 @@ const PettyCashReplenishTable = () => {
   };
   const [selectedCity, setSelectedCity] = useState(null);
   const cities = [
-    { name: 'Name', code: 'NY' },
-    { name: 'Edit', code: 'RM' },
-    { name: 'Voucher Number', code: 'LDN' },
+    { name: "Name", code: "NY" },
+    { name: "Edit", code: "RM" },
+    { name: "Voucher Number", code: "LDN" },
   ];
   const headeraction = {
-    justifyContent: 'center',
+    justifyContent: "center",
     // textalign: center,
     fontSize: 16,
-    fontfamily: 'Inter, sans-serif',
+    fontfamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
     border: " none",
-    display: "flex"
-  }
+    display: "flex",
+  };
   const menu = useRef(null);
   const menuitems = [
     {
-      label: 'Name',
+      label: "Name",
     },
     {
-      label: 'Date',
+      label: "Date",
     },
     {
-      label: 'Voucher Number',
+      label: "Voucher Number",
     },
   ];
 
   useEffect(() => {
-    console.log(globalFilter, "as")
+    console.log(globalFilter, "as");
     if (globalFilter?.length > 0) {
       if (search?.length > 0) {
-        dispatch(getReplenishSearchMiddleware({
-          field: globalFilter,
-          value: search
-        }))
-
+        dispatch(
+          getReplenishSearchMiddleware({
+            field: globalFilter,
+            value: search,
+          })
+        );
       }
     }
-  }, [search])
+  }, [search]);
 
   return (
     <div className="petty__cash__replenish__table">
@@ -158,7 +162,7 @@ const PettyCashReplenishTable = () => {
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
-                placeholder="Search customers"
+                placeholder="Search by Petty cash Code"
                 className="searchinput_left"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -168,18 +172,22 @@ const PettyCashReplenishTable = () => {
           <div class="col-12 md:col-6 lg:col-2">
             {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" /> */}
 
-            <Dropdown value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
+            <Dropdown
+              value={search}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={searchs}
+              optionLabel="name"
+              optionValue="code"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}
             />
-
           </div>
           <div className="sub__title">Replenish history</div>
         </div>
         <div className="card">
           <DataTable
-            value={search ? ReplenishSearch :ReplenishList}
+            value={search ? ReplenishSearch : ReplenishList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
@@ -199,35 +207,25 @@ const PettyCashReplenishTable = () => {
               header="Petty cash code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
-            <Column
-              field="Branchcode"
-              header="Branch code"
-              headerStyle={headerStyle}
-              className="fieldvalue_container"
 
-            ></Column>
             <Column
               field="Transactioncode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="BankCode"
               header="Bank Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="SubAccount"
               header="Sub Account"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="TransactionNumber"
@@ -248,7 +246,7 @@ const PettyCashReplenishTable = () => {
               header="View"
               body={renderViewButton}
               headerStyle={headeraction}
-              style={{ textAlign: 'center' }}
+              style={{ textAlign: "center" }}
               className="fieldvalue_container_date"
             ></Column>
           </DataTable>

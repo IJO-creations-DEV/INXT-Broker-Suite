@@ -20,7 +20,7 @@ const PettyCashRequest = () => {
   const Initiate = { label: "Accounts" };
 
   const handleClick = () => {
-    navigate("/accounts/pettycash/addrequest");
+    navigate(`/accounts/pettycash/addrequest/add/${123}`);
   };
 
   return (

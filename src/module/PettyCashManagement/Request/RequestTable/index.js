@@ -20,38 +20,39 @@ import SvgEdit from "../../../../assets/icons/SvgEdits";
 const RequestTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [search, setSearch] = useState("")
-  const [globalFilter, setGlobalFilter] = useState("ReceiptNo")
+  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("ReceiptNo");
 
-  const { RequestList, loading, RequestSearch } = useSelector(({ pettyCashRequestReducer }) => {
-    return {
-      loading: pettyCashRequestReducer?.loading,
-      RequestList: pettyCashRequestReducer?.RequestList,
-      RequestSearch: pettyCashRequestReducer?.RequestSearch
-    };
-  });
+  const { RequestList, loading, RequestSearch } = useSelector(
+    ({ pettyCashRequestReducer }) => {
+      return {
+        loading: pettyCashRequestReducer?.loading,
+        RequestList: pettyCashRequestReducer?.RequestList,
+        RequestSearch: pettyCashRequestReducer?.RequestSearch,
+      };
+    }
+  );
   const searchs = [
-    { name: 'Receipt No', code: 'ReceiptNo' },
-    { name: 'Request Number', code: 'RequestNumber' },
-    { name: 'Requester Name', code: 'RequesterName' },
-    { name: 'Branch Code', code: 'Branchcode' },
-    { name: 'Department code', code: 'Departmentcode' },
-    { name: 'Total Amount', code: 'TotalAmount' },
-    { name: 'Date', code: 'Date' },
-  ]
+    { name: "Receipt No", code: "ReceiptNo" },
+    { name: "Request Number", code: "RequestNumber" },
+    { name: "Requester Name", code: "RequesterName" },
+    { name: "Branch Code", code: "Branchcode" },
+    { name: "Department code", code: "Departmentcode" },
+    { name: "Total Amount", code: "TotalAmount" },
+    { name: "Date", code: "Date" },
+  ];
 
   const isEmpty = RequestList.length === 0;
 
   const handleViewer = (columnData) => {
     // dispatch(getAccountDetailsView(columnData));
-    // navigate("/master/finance/bank/accountdataview/viewaccountdetail");
+    navigate(`/accounts/pettycash/addrequest/view/${123}`);
   };
   const handleEdit = (columnData) => {
     // console.log(columnData, "columnData");
     // dispatch(getPatchAccountDetailsView(columnData));
-    // navigate("/master/finance/bank/accountdataview/editaccountdetail");
+    navigate(`/accounts/pettycash/addrequest/edit/${123}`);
   };
-
 
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -104,8 +105,6 @@ const RequestTable = () => {
 
   const menu = useRef(null);
 
-
-
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
     navigate("/accounts/pettycash/PettyCashCodeDetails");
@@ -113,7 +112,7 @@ const RequestTable = () => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     paddingLeft: "0.5rem",
@@ -122,29 +121,29 @@ const RequestTable = () => {
   };
   const headeractionStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     paddingLeft: "0.5rem",
     color: "#000",
     border: "none",
-    display: 'flex',
-    justifyContent: 'center'
-  }
+    display: "flex",
+    justifyContent: "center",
+  };
 
   useEffect(() => {
-
-    console.log(globalFilter, "as")
+    console.log(globalFilter, "as");
     if (globalFilter?.length > 0) {
       if (search?.length > 0) {
-        dispatch(getRequestSearchMiddleware({
-          field: globalFilter,
-          value: search
-        }))
-
+        dispatch(
+          getRequestSearchMiddleware({
+            field: globalFilter,
+            value: search,
+          })
+        );
       }
     }
-  }, [search])
+  }, [search]);
 
   return (
     <div className="Request__table">
@@ -154,7 +153,7 @@ const RequestTable = () => {
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
-                placeholder="Search customers"
+                placeholder="Search by Petty cash Code"
                 className="searchinput_left"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -162,14 +161,18 @@ const RequestTable = () => {
             </span>
           </div>
           <div class="col-12 md:col-6 lg:col-2">
-            <Dropdown value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
+            <Dropdown
+              value={search}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={searchs}
+              optionLabel="name"
+              optionValue="code"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}
             />
-
           </div>
-          <div className="sub__title">Petty Request history</div>
+          <div className="sub__title">Request history</div>
         </div>
         <div className="card">
           <DataTable
@@ -208,14 +211,12 @@ const RequestTable = () => {
               header="Requester Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="Departmentcode"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-
             ></Column>
             <Column
               field="RequestNumber"

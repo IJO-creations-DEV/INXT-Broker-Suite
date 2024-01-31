@@ -10,13 +10,13 @@ const initialState = {
       BranchCode: "101",
       BranchName: "Nandanum",
       CompanyName: "Branch 1",
-      EmailID: "testZealeye@gmail.com",
+      EmailID: "contactus@broker.com",
       Description: "test purpose",
-      AddressLine1: "1202, 12lh Floot, MDI Building",
-      AddressLine2: "Makati 108 Paseo de Roxas, Legazpi Village, Makati",
-      AddressLine3: " Ayala North Exchange Towe|I, 6796 Ayala Avenue corner Salcedo Street",
-      City: "Channai",
-      State: "TamilNadu",
+      AddressLine1: "",
+      AddressLine2: "",
+      AddressLine3: " ",
+      City: "SANTA TERESITA",
+      State: "QUEZON CITY",
       Country: "Philippines",
       PhoneNumber: "8296571254",
       Fax: "99",
@@ -26,13 +26,13 @@ const initialState = {
       BranchCode: "102",
       BranchName: "Nandanum",
       CompanyName: "Branch 2",
-      EmailID: "testIrota@gmail.com",
+      EmailID: "contactus@broker.com",
       Description: "test purpose",
-      AddressLine1: "1202, 12lh Floot, MDI Building",
-      AddressLine2: "Makati 108 Paseo de Roxas, Legazpi Village, Makati",
-      AddressLine3: " Ayala North Exchange Towe|I, 6796 Ayala Avenue corner Salcedo Street",
-      City: "Channai",
-      State: "TamilNadu",
+      AddressLine1: "",
+      AddressLine2: "",
+      AddressLine3: " ",
+      City: "SANTA TERESITA",
+      State: "QUEZON CITY",
       Country: "Philippines",
       PhoneNumber: "8296571254",
       Fax: "99",
@@ -79,8 +79,8 @@ const initialState = {
     }
   ],
   depatmentView: {},
-  getBranchPatch:{},
-  getDepartmentPatch:{}
+  getBranchPatch: {},
+  getDepartmentPatch: {}
 };
 let nextId = 3
 let nextId2 = 3
@@ -237,7 +237,7 @@ const organizationBranchReducers = createSlice({
         const updatedIndex = state.branchTableList.findIndex(
           (item) => item.id === action.payload.id
         );
-        console.log(updatedIndex,"updatedIndex");
+        console.log(updatedIndex, "updatedIndex");
         if (updatedIndex !== -1) {
           const updatedCurrencyList = [...state.branchTableList];
           updatedCurrencyList[updatedIndex] = action.payload;
@@ -308,7 +308,7 @@ const organizationBranchReducers = createSlice({
         const updatedIndex = state.departmentList.findIndex(
           (item) => item.id === action.payload.id
         );
-        console.log(updatedIndex,"updatedIndex");
+        console.log(updatedIndex, "updatedIndex");
         if (updatedIndex !== -1) {
           const updatedCurrencyList = [...state.departmentList];
           updatedCurrencyList[updatedIndex] = action.payload;

@@ -7,94 +7,14 @@ const initialState = {
   countryTableList: [
     {
       id: 1,
-      "CountryName": "UREGION XI - DAVAO REGION",
-      "ISOCode": "PHR11",
-      "PhoneCode": "+1",
-      "Modifiedby": "Admin1",
+      "CountryName": "Philippines",
+      "ISOCode": "PHL",
+      "PhoneCode": "+63",
+      "Modifiedby": "John",
       "ModifiedOn": "2024-01-12",
       Description: "Description"
     },
-    {
-      id: 2,
-      "CountryName": "REGION VI - WESTERN VISAYAS",
-      "ISOCode": "PHR06",
-      "PhoneCode": "+1",
-      "Modifiedby": "Admin2",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    },
-    {
-      id: 3,
-      "CountryName": "NATIONAL CAPITAL REGION",
-      "ISOCode": "PHNCR",
-      "PhoneCode": "+44",
-      "Modifiedby": "Admin3",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    },
-    {
-      id: 4,
-      "CountryName": "REGION V - BICOL REGION",
-      "ISOCode": "PHR01",
-      "PhoneCode": "+49",
-      "Modifiedby": "Admin4",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    },
-    {
-      id: 5,
-      "CountryName": "NATIONAL CAPITAL REGION",
-      "ISOCode": "PHR06",
-      "PhoneCode": "+61",
-      "Modifiedby": "Admin5",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    },
-    {
-      id: 6,
-      "CountryName": "REGION VI - WESTERN VISAYAS",
-      "ISOCode": "PHR09",
-      "PhoneCode": "+91",
-      "Modifiedby": "Admin6",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    },
-    {
-      id: 7,
-      "CountryName": "BraREGION IX - ZAMBOANGA PENINSULAzil",
-      "ISOCode": "PHR01",
-      "PhoneCode": "+55",
-      "Modifiedby": "Admin7",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    },
-    {
-      id: 8,
-      "CountryName": "REGION XI - DAVAO REGION",
-      "ISOCode": "PHR01",
-      "PhoneCode": "+81",
-      "Modifiedby": "Admin8",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    },
-    {
-      id: 9,
-      "CountryName": "REGION VI - WESTERN VISAYAS",
-      "ISOCode": "PHR4A",
-      "PhoneCode": "+27",
-      "Modifiedby": "Admin9",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    },
-    {
-      id: 10,
-      "CountryName": "NATIONAL CAPITAL REGION",
-      "ISOCode": "PHARM",
-      "PhoneCode": "+52",
-      "Modifiedby": "Admin10",
-      "ModifiedOn": "2024-01-12",
-      Description: "Description"
-    }
+   
   ]
   ,
   countryDetailList: {},

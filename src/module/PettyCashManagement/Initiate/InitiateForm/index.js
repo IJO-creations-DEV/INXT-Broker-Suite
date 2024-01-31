@@ -28,15 +28,18 @@ import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../../components/LabelWrapper";
 
 const initialValue = {
+  TransactionDate: new Date(),
+  TransactionCode: "",
+  TransactionNumber: "",
   PettyCashCode: "",
   PettyCashdescription: "",
   PettyCashSize: "",
-  BankAccountNumber: "",
+  BankCode: "",
+  BankAccountCode: "",
+  MainAccountCode: "",
   SubAccountCode: "",
   Currency: "",
   Currencydescription: "",
-  TransactionCode: "",
-  Transactiondescription: "",
   BranchCode: "",
   Branchdescription: "",
   DepartmentCode: "",
@@ -44,13 +47,7 @@ const initialValue = {
   AvailableCash: "",
   MaxLimit: "",
   MinimumCashbox: "",
-  TransactionDate: new Date(),
-  TransactionCode: "",
-  TransactionNumber: "",
-  mainaccountcode: "",
-  BankCode: "",
-  MainAccountCode: "",
-  BankAccountCode:""
+
 };
 
 const InitiateForm = () => {
@@ -104,7 +101,7 @@ const InitiateForm = () => {
       ...value,
       id: InitiateList?.length + 1,
     };
-    console.log("first",valueWithId)
+    console.log("first", valueWithId)
     dispatch(postInitiateMiddleware(valueWithId));
     toastRef.current.showToast();
     setTimeout(() => {
@@ -263,24 +260,25 @@ const InitiateForm = () => {
     formik.setFieldValue("Departmentdescription", Depart);
   };
   const handleAccountcode = (value) => {
-    let Availablecash = "";
+    console.log("first3", value)
+    let AvailableCash = "";
     let translimit = "";
     let maxlimit = "";
     switch (value) {
       case "Bk001":
-        Availablecash = "10,000";
+        AvailableCash = "10,000";
         break;
       case "Bk002":
-        Availablecash = "20,000";
+        AvailableCash = "20,000";
         break;
       case "Bk003":
-        Availablecash = "30,000";
+        AvailableCash = "30,000";
         break;
       // case "1818810131":
       //   Availablecash = "40,000";
       //   break;
       default:
-        Availablecash = "Unknown";
+        AvailableCash = "Unknown";
         break;
     }
     switch (value) {
@@ -317,7 +315,7 @@ const InitiateForm = () => {
         translimit = "Unknown";
         break;
     }
-    formik.setFieldValue("AvailableCash", Availablecash);
+    formik.setFieldValue("AvailableCash", AvailableCash);
     formik.setFieldValue("MaxLimit", translimit);
     formik.setFieldValue("MinimumCashbox", maxlimit);
   };
@@ -381,7 +379,7 @@ const InitiateForm = () => {
                 formik.setFieldValue("TransactionCode", e.value)
               }
               options={TransactionCode}
-              optionLabel="Branchcode"
+              optionLabel="TransactionCode"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
@@ -486,9 +484,9 @@ const InitiateForm = () => {
               value={formik.values.BankCode}
               options={BankAccountCode}
               onChange={(e) => {
-                console.log(e.value);
+                console.log(e.value, "first4");
                 formik.setFieldValue("BankCode", e.value).then(() => {
-                  handleAccountcode(e.value.BankCode);
+                  handleAccountcode(e.value.BankAccountCode);
                 })
 
               }}
@@ -536,7 +534,6 @@ const InitiateForm = () => {
                 formik.setFieldValue("MainAccountCode", e.value).then(() => {
                   handlecurrency(e.value);
                 })
-
               }}
               optionLabel="CurrencyType"
               error={formik.touched.MainAccountCode && formik.errors.MainAccountCode}

@@ -32,6 +32,7 @@ const RequestTable = () => {
       };
     }
   );
+  console.log("first9", RequestList)
   const searchs = [
     { name: "Receipt No", code: "ReceiptNo" },
     { name: "Request Number", code: "RequestNumber" },
@@ -207,19 +208,19 @@ const RequestTable = () => {
               sortable
             ></Column>
             <Column
-              field="Branchcode"
+              field="RequestDate"
               header="Requester Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="Departmentcode"
+              field="TransactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="RequestNumber"
+              field="Date"
               header="Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"

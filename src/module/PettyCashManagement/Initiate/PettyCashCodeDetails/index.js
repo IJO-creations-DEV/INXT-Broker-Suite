@@ -161,68 +161,61 @@ const PettyCashCodeDetails = () => {
               classNames="field__container"
               label="Transaction Number"
               // placeholder={"Enter"}
-              // value={formik.values.TransactionDescription}
-              value={
-                formik.values.TransactionNumber
+              value={InitiateDetails?.TransactionNumber}
 
-              }
-              // value={formik.values.Transactioncode}
-
-              onChange={formik.handleChange("TransactionNumber")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
-            <DropDowns
-              className="dropdown__container"
+
+            <InputField
+              disabled={true}
+              classNames="field__container"
               label="Transaction Code"
-              // value={departmentcode}
-              // onChange={(e) => setDepartmentCode(e.value)}
-              // value={formik.values.TransactionCode}
-              // onChange={(e) =>
-              //   formik.setFieldValue("TransactionCode", e.value)
-              //  }
-              // options={TransactionCode}
-              // optionLabel="Branchcode"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // placeholder={"Enter"}
+              value={"Trans001"}
+
             />
 
           </div>
           <div className="calender__container col-12 md:col-3 lg-col-3 ">
-            <LabelWrapper className="calenderlable__container">
+            {/* <LabelWrapper className="calenderlable__container">
               Transaction Date
-            </LabelWrapper>
-            <Calendar
+            </LabelWrapper> */}
+            {/* <Calendar
               showIcon
               placeholder="Select"
               className="calendar_container"
-              value={formik.values.TransactionDate}
+              value={InitiateDetails?.TransactionDate}
 
-              onChange={(e) => {
-                formik.setFieldValue("TransactionDate", e.target.value);
-              }}
+              // onChange={(e) => {
+              //   formik.setFieldValue("TransactionDate", e.target.value);
+              // }}
               dateFormat="yy-mm-dd"
-
-
+            /> */}
+            <InputField
+              classNames="input__filed"
+              label="Transaction Date"
+              // placeholder="Enter"
+              disabled={true}
+              value={InitiateDetails?.TransactionDate}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
             />
           </div>
         </div>
 
         <div className="grid mt-1">
           <div className="col-12 md:col-3 lg-col-3 input__view">
-            <DropDowns
-              className="input__filed"
+            <InputField
+              classNames="input__filed"
               label="Petty Cash Code"
-              dropdownIcon={<SvgDropdown color={"#000"} />}
-              placeholder="Select"
+              // placeholder="Enter"
               disabled={true}
+              value={InitiateDetails?.Pettycashcode}
               textColor={"#111927"}
               textSize={"16"}
-              textWeight={400}
-              optionValue="value"
-              optionLabel="label"
-              value={InitiateDetails.Pettycashcode}
-              options={pettycashcodeOptions}
+              textWeight={500}
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -252,7 +245,7 @@ const PettyCashCodeDetails = () => {
         </div>
         <div className="grid mt-1">
           <div className="col-12 md:col-3 lg-col-3 input__view">
-          <InputField
+            <InputField
               classNames="input__filed"
               label="Bank Code"
               // placeholder="Enter"
@@ -260,11 +253,11 @@ const PettyCashCodeDetails = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value="United states Currency"
+              value="Bank012"
             />
           </div>
           <div className="col-12 md:col-3 lg-col-3 input__view">
-          <InputField
+            <InputField
               classNames="input__filed"
               label="Bank Account Code"
               // placeholder="Enter"
@@ -272,11 +265,11 @@ const PettyCashCodeDetails = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value="United states Currency"
+              value="27348856"
             />
           </div>
           <div className="col-12 md:col-3 lg-col-3 input__view">
-          <InputField
+            <InputField
               classNames="input__filed"
               label="Main Account Code"
               // placeholder="Enter"
@@ -284,11 +277,11 @@ const PettyCashCodeDetails = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value="United states Currency"
+              value="main231"
             />
           </div>
           <div className="col-12 md:col-3 lg-col-3 input__view">
-          <InputField
+            <InputField
               classNames="input__filed"
               label="Sub Account Code"
               // placeholder="Enter"
@@ -296,13 +289,13 @@ const PettyCashCodeDetails = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value="United states Currency"
+              value="Sub4345"
             />
           </div>
         </div>
         <div className="grid mt-1">
           <div className="col-12 md:col-3 lg-col-3 input__view">
-          <DropDowns
+            <DropDowns
               className="input__filed"
               label="Currency"
               placeholder="Select"
@@ -318,7 +311,7 @@ const PettyCashCodeDetails = () => {
             />
           </div>
           <div className="col-12 md:col-6 lg-col-6 input__view">
-          <InputField
+            <InputField
               classNames="input__filed"
               label="Currency description"
               // placeholder="Enter"
@@ -373,7 +366,7 @@ const PettyCashCodeDetails = () => {
               dropdownIcon={<SvgDropdown color={"#000"} />}
               optionValue="value"
               optionLabel="label"
-              value={InitiateDetails.Departmentcode}
+              value={InitiateDetails?.Departmentcode}
               options={departcodeOptions}
             />
           </div>

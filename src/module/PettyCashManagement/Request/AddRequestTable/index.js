@@ -50,19 +50,26 @@ const AddRequestTable = () => {
     }
   }, [toastMessage]);
 
-  const handleSubmit = (actionName) => {
+  const handleapprove = (actionName) => {
+    console.log("first6", totalAmount)
     dispatch(postAddRequestMiddleware(totalAmount));
-    // if (actionName === "save") {
-    //   setToastMessage("Successfully saved");
-    // } else if (actionName === "approve") {
-    //   setToastMessage("Transaction Number 1234 is created");
-    // }
-    toastRef.current.showToast();
-    {
+    if (actionName === "save") {
+      toastRef.current.showToast("save");
+      // setToastMessage("Successfully saved");
+    } else if (actionName === "approve") {
+      toastRef.current.showToast("approve");
+      // dispatch(postAddRequestMiddleware(valueWithId));
+      // setToastMessage("Transaction Number 1234 is created");
       setTimeout(() => {
         navigate("/accounts/pettycash/request");
       }, 2000);
     }
+    // toastRef.current.showToast();
+    // {
+    //   setTimeout(() => {
+    //     navigate("/accounts/pettycash/request");
+    //   }, 2000);
+    // }
   };
 
   const emptyTableIcon = (
@@ -126,6 +133,8 @@ const AddRequestTable = () => {
     dispatch(postEditRequestMiddleware(valueWithId));
     setVisible(false);
     setshow(true);
+    formik.setFieldValue("Narration",);
+    formik.setFieldValue("Amount",);
   };
 
   const formik = useFormik({
@@ -141,11 +150,12 @@ const AddRequestTable = () => {
     0
   );
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => { };
 
   return (
     <div className="add__request__table">
-      <CustomToast ref={toastRef} message="Successfully saved" />
+
+      <CustomToast ref={toastRef} message={"save" ? "Successfully saved" : "Transaction Number 1234 is created"} />
 
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
@@ -248,14 +258,14 @@ const AddRequestTable = () => {
               label="Save"
               className="add__btn"
               onClick={() => {
-                handleSubmit("save");
+                handleapprove("save");
               }}
             />
             <Button
               label="Approve"
               className="add__btn"
               onClick={() => {
-                handleSubmit("approve");
+                handleapprove("approve");
               }}
             />
           </div>
@@ -276,37 +286,37 @@ const AddRequestTable = () => {
         }}
         className="dailog__container"
       >
-        <form onSubmit={formik.handleSubmit}>
-          <div className="grid">
-            <div className="col-12 md:col-8 lg:col-8">
-              <InputField
-                // classNames="input__filed"
-                classNames="fielduniqueone__container"
-                label="Narration"
-                placeholder="Enter"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Narration}
-                onChange={formik.handleChange("Narration")}
-                error={formik.touched.Narration && formik.errors.Narration}
-              />
-            </div>
-            <div className="col-12 md:col-4 lg:col-4">
-              <InputField
-                classNames="fielduniqueone__container"
-                label="Amount"
-                placeholder="Enter"
-                textColor={"#111927"}
-                textSize={"16"}
-                textWeight={500}
-                value={formik.values.Amount}
-                onChange={formik.handleChange("Amount")}
-                error={formik.touched.Amount && formik.errors.Amount}
-              />
-            </div>
+
+        <div className="grid">
+          <div className="col-12 md:col-8 lg:col-8">
+            <InputField
+              // classNames="input__filed"
+              classNames="fielduniqueone__container"
+              label="Narration"
+              placeholder="Enter"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.Narration}
+              onChange={formik.handleChange("Narration")}
+            // error={formik.touched.Narration && formik.errors.Narration}
+            />
           </div>
-        </form>
+          <div className="col-12 md:col-4 lg:col-4">
+            <InputField
+              classNames="fielduniqueone__container"
+              label="Amount"
+              placeholder="Enter"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+              value={formik.values.Amount}
+              onChange={formik.handleChange("Amount")}
+            // error={formik.touched.Amount && formik.errors.Amount}
+            />
+          </div>
+        </div>
+
         <div className="grid">
           <div className="col-12 md:col-12 lg:col-12 bt__container">
             <Button

@@ -24,17 +24,11 @@ import { Dialog } from "primereact/dialog";
 import { Checkbox } from "primereact/checkbox";
 
 const initialValue = {
-  PettyCashCode: "",
-  PettyCashdescription: "",
-  Requestnumber: "",
-  RequesterName: "",
-  BranchCode: "",
-  Branchdescription: "",
-  DepartmentCode: "",
-  Departmentdescription: "",
+  Date: new Date(),
   TransactionCode: "",
   TransactionNumber: "",
-  RequestDate: "",
+  RequestDate: new Date(),
+  RequesterName: "",
 };
 const RequestForm = ({ action }) => {
   console.log(action, "component working fine");
@@ -59,6 +53,7 @@ const RequestForm = ({ action }) => {
       ...value,
       id: RequestList?.length + 1,
     };
+    console.log("first7", valueWithId)
     dispatch(postAddRequestMiddleware(valueWithId));
     // toastRef.current.showToast();
     // setTimeout(() => {
@@ -73,9 +68,9 @@ const RequestForm = ({ action }) => {
       errors.TransactionCode = "Petty Cash Code is required";
     }
 
-    // if (!values.TransactionNumber) {
-    //   errors.TransactionNumber = "TransactionNumber is required";
-    // }
+    if (!values.RequesterName) {
+      errors.RequesterName = "TransactionNumber is required";
+    }
 
     // if (!values.BranchCode) {
     //   errors.BranchCode = "Branch Code is required";
@@ -226,8 +221,8 @@ const RequestForm = ({ action }) => {
             {action === "view"
               ? "Petty Cash Request View"
               : action === "edit"
-              ? "Edit Petty Cash Request"
-              : "Add Request"}
+                ? "Edit Petty Cash Request"
+                : "Add Request"}
           </div>
           <div className="mt-3">
             <BreadCrumb
@@ -408,7 +403,7 @@ const RequestForm = ({ action }) => {
                       <Button
                         icon={<SvgDeleteIcon />}
                         className="delete__btn"
-                        // onClick={() => handleDelete(rowData.id)}
+                      // onClick={() => handleDelete(rowData.id)}
                       />
                     </div>
                   )}
@@ -426,11 +421,11 @@ const RequestForm = ({ action }) => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                // value={formik.values.TransactionNumber}
-                // onChange={formik.handleChange("TransactionNumber")}
-                // error={
-                //   formik.touched.TransactionNumber && formik.errors.TransactionNumber
-                // }
+              // value={formik.values.TransactionNumber}
+              // onChange={formik.handleChange("TransactionNumber")}
+              // error={
+              //   formik.touched.TransactionNumber && formik.errors.TransactionNumber
+              // }
               />
             </div>
           </div>
@@ -502,9 +497,9 @@ const RequestForm = ({ action }) => {
             <Button
               label="Save"
               className="add__btn"
-              // onClick={() => {
-              //   formik.handleSubmit();
-              // }}
+            // onClick={() => {
+            //   formik.handleSubmit();
+            // }}
             />
           </div>
         </div>

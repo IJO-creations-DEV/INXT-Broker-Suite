@@ -50,13 +50,27 @@ export const postInitiateMiddleware = createAsyncThunk(
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
     const TableData = {
       id: payload?.id,
-      Pettycashcode: payload?.PettyCashCode?.pettycashcode,
-      Pettycashsize: payload?.PettyCashSize,
+      TransactionDate:formattedDate,
+      TransactionCode: "",
       TransactionNumber: payload?.TransactionCode?.Transcode,
-      TransactionLimit: payload?.TransactionLimit,
-      Branchcode: payload?.BranchCode?.Branchcode,
-      Departmentcode: payload?.DepartmentCode?.Departcode,
-      Date: formattedDate,
+      Pettycashcode: payload?.PettyCashCode?.pettycashcode,
+      PettyCashdescription: "",
+      Pettycashsize: payload?.PettyCashSize,
+      BankCode: "",
+  BankAccountCode:"",
+  MainAccountCode: "",
+  SubAccountCode: "",
+  Currency: "",
+  Currencydescription: "",
+  Branchcode: payload?.BranchCode?.Branchcode,
+  Branchdescription: "",
+  Departmentcode: payload?.DepartmentCode?.Departcode,
+  Departmentdescription: "",
+  AvailableCash: "",
+  MaxLimit: "",
+  MinimumCashbox: "",
+    
+      // Date: formattedDate,
     };
 
     try {
@@ -74,6 +88,7 @@ export const getInitiateDetailsMiddleware = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      console.log("first1",payload)
       return payload;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);

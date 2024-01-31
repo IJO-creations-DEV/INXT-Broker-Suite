@@ -17,7 +17,7 @@ const initialState = {
       TransactionLimit: "10,000.00",
       Branchcode: "Branch00123",
       Departmentcode: "Depart00123",
-      Date: "21/12/2023",
+      TransactionDate: "21/12/2023",
     },
     {
       id: 2,
@@ -27,7 +27,7 @@ const initialState = {
       TransactionLimit: "15,000.00",
       Branchcode: "Branch00456",
       Departmentcode: "Depart00456",
-      Date: "15/09/2023",
+      TransactionDate: "15/09/2023",
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ const initialState = {
       TransactionLimit: "8,000.00",
       Branchcode: "Branch00789",
       Departmentcode: "Depart00789",
-      Date: "02/05/2023",
+      TransactionDate: "02/05/2023",
     },
     {
       id: 4,
@@ -47,7 +47,7 @@ const initialState = {
       TransactionLimit: "12,000.00",
       Branchcode: "Branch00987",
       Departmentcode: "Depart00987",
-      Date: "19/11/2023",
+      TransactionDate: "19/11/2023",
     },
     {
       id: 5,
@@ -57,7 +57,7 @@ const initialState = {
       TransactionLimit: "9,000.00",
       Branchcode: "Branch00654",
       Departmentcode: "Depart00654",
-      Date: "28/07/2023",
+      TransactionDate: "28/07/2023",
     },
     {
       id: 6,
@@ -67,7 +67,7 @@ const initialState = {
       TransactionLimit: "11,000.00",
       Branchcode: "Branch00234",
       Departmentcode: "Depart00234",
-      Date: "14/04/2023",
+      TransactionDate: "14/04/2023",
     },
     {
       id: 7,
@@ -77,7 +77,7 @@ const initialState = {
       TransactionLimit: "7,000.00",
       Branchcode: "Branch00321",
       Departmentcode: "Depart00321",
-      Date: "30/10/2023",
+      TransactionDate: "30/10/2023",
     },
     {
       id: 8,
@@ -87,7 +87,7 @@ const initialState = {
       TransactionLimit: "13,000.00",
       Branchcode: "Branch00543",
       Departmentcode: "Depart00543",
-      Date: "08/02/2023",
+      TransactionDate: "08/02/2023",
     },
     {
       id: 9,
@@ -97,7 +97,7 @@ const initialState = {
       TransactionLimit: "8,500.00",
       Branchcode: "Branch00765",
       Departmentcode: "Depart00765",
-      Date: "25/06/2023",
+      TransactionDate: "25/06/2023",
     },
     {
       id: 10,
@@ -107,7 +107,7 @@ const initialState = {
       TransactionLimit: "9,500.00",
       Branchcode: "Branch00890",
       Departmentcode: "Depart00890",
-      Date: "12/01/2023",
+      TransactionDate: "12/01/2023",
     },
   ],
   Initiate: {},
@@ -125,7 +125,7 @@ const PettyCashInitiateReducer = createSlice({
     builder.addCase(getInitiateListMiddleware.fulfilled, (state, action) => {
       state.loading = false;
       state.InitiateList = action.payload;
-    //   state.InitiateList = [...state.InitiateList, action.payload];
+      //   state.InitiateList = [...state.InitiateList, action.payload];
     });
     builder.addCase(getInitiateListMiddleware.rejected, (state, action) => {
       state.loading = false;
@@ -162,9 +162,9 @@ const PettyCashInitiateReducer = createSlice({
     });
     builder.addCase(postInitiateMiddleware.fulfilled, (state, action) => {
       state.loading = false;
-    //   state.Initiate = action.payload;
-    console.log(state.InitiateList, action.payload,"lusi")
-    state.InitiateList = [...state.InitiateList, action.payload];
+      //   state.Initiate = action.payload;
+      console.log(state.InitiateList, action.payload, "lusi")
+      state.InitiateList = [...state.InitiateList, action.payload];
     });
     builder.addCase(postInitiateMiddleware.rejected, (state, action) => {
       state.loading = false;

@@ -237,7 +237,7 @@ const InitiateTable = () => {
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="Date"
+              field="TransactionDate"
               header="Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"

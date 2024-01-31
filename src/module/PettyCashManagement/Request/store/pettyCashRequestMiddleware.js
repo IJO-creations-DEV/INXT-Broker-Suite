@@ -44,21 +44,25 @@ export const getRequestSearchMiddleware = createAsyncThunk(
 export const postAddRequestMiddleware = createAsyncThunk(
   POST_ADD_REQUEST_VOUCHER,
   async (payload, { rejectWithValue }) => {
-    const currentDate = new Date(); 
+    const currentDate = new Date();
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+    const formattedtransDate = `${payload.RequestDate.getDate()}/${payload.RequestDate.getMonth() + 1}/${payload.RequestDate.getFullYear()}`;
     const randomTotalAmount = Math.floor(Math.random() * 50000) + 10000;
-
+    console.log("first4", payload)
     const TableData = {
       id: payload?.id,
-      PettycashCode: payload.PettyCashCode.pettycashcode,
+      // PettycashCode: payload.PettyCashCode.pettycashcode,
       RequestNumber: payload.Requestnumber,
       RequesterName: payload.RequesterName.Name,
-      Branchcode: payload.BranchCode.Branchcode,
-      Departmentcode: payload.DepartmentCode.Departcode,
+      // Branchcode: payload.BranchCode.Branchcode,
+      // Departmentcode: payload.DepartmentCode.Departcode,
       TotalAmount: randomTotalAmount.toString(),
-      Date:formattedDate,
-    }
+      Date: formattedDate,
+      RequestDate: formattedtransDate,
+      TransactionNumber: payload.TransactionNumber
+    };
     try {
+      console.log("first8", TableData)
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return TableData;
     } catch (error) {
@@ -82,7 +86,7 @@ export const getAddRequestTableMiddleware = createAsyncThunk(
 export const postEditRequestMiddleware = createAsyncThunk(
   POST_EDIT_REQUEST_VOUCHER,
   async (payload, { rejectWithValue }) => {
-    console.log(payload,"Edit")
+    console.log(payload, "Edit")
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;

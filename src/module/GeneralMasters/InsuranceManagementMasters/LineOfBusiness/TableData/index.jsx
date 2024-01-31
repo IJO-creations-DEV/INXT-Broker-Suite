@@ -118,7 +118,7 @@ const TableData = ({ navigate }) => {
           </span>
         </div>
         <div className="p-0 col-12">
-          <div className="table__title">Insurance Company List</div>
+          <div className="table__title">Line of Business List</div>
         </div>
       </div>
       <DataTable

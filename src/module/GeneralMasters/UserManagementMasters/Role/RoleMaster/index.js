@@ -185,7 +185,7 @@ const RoleMaster = () => {
           </div>
           <div className="col-12 ">
             <div className="main__tabel__title__hierarchy pl-2">
-              Country List
+            Role List
             </div>
           </div>
           <div

@@ -33,6 +33,7 @@ import countryReducers from "../module/GeneralMasters/LocationMasters/CountryMas
 import cityReducers from "../module/GeneralMasters/LocationMasters/CityMaster/store/cityReducers";
 import employeeReducers from "../module/GeneralMasters/EmployeeManagementMasters/Employee/store/employeeReducers";
 import userReducers from "../module/GeneralMasters/UserManagementMasters/User/store/userReducers";
+import roleMainReducers from "../module/GeneralMasters/UserManagementMasters/Role/store/roleReducers";
 import insuranceLineOfBusinessReducers from "../module/GeneralMasters/InsuranceManagementMasters/LineOfBusiness/store/insuranceLineOfBusinessReducers";
 import insuranceProductReducers from "../module/GeneralMasters/InsuranceManagementMasters/ProductMaster/store/insuranceProductReducers";
 import insurancePolicyTypeReducers from "../module/GeneralMasters/InsuranceManagementMasters/PolicyTypeMaster/store/insurancePolicyTypeReducers";
@@ -94,6 +95,7 @@ const reducers = {
   cityReducers,
   employeeReducers,
   userReducers,
+  roleMainReducers,
   insuranceLineOfBusinessReducers,
   insuranceProductReducers,
   insurancePolicyTypeReducers,

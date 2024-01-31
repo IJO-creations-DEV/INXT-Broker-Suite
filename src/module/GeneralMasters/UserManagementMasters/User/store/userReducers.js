@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getMainBranchAccessMiddleWare, getSearchUserMiddleware, getUserEditDataMiddleWare, getUserListByIdMiddleware, getUserMiddleware, getUserViewDataMiddleWare, patchUserEditMiddleware, postAddUserMiddleware } from "./userMiddleware";
+import { getAdditionalRoleTabelMiddleWare, getAdditionalRoleViewMiddleWare, getMainBranchAccessMiddleWare, getSearchUserMiddleware, getUserEditDataMiddleWare, getUserListByIdMiddleware, getUserMiddleware, getUserViewDataMiddleWare, getViewMainBranchUser, patchUserEditMiddleware, postAddUserMiddleware, postAdditionalRoleViewMiddleWare, postViewMainBranchUser } from "./userMiddleware";
 // import SvgIconeye from "../../../assets/icons/SvgIconeye";
 const initialState = {
   loading: false,
@@ -53,10 +53,25 @@ const initialState = {
       TransactionNofrom: "TransactionNofrom",
       departmentCode: "departmentCode",
       departmentName: "departmentName",
-      action:""
+      action: ""
     }
-  ]
+  ],
+  mainUserViewData: {},
+  postUserViewData: {},
+  mainAdditionalTableList: [
+    {
+      id: 1,
+      RoleCode: "RoleCode",
+      RoleName: "RoleName",
+      ActiveHours: "ActiveHours",
+      Action: "Action"
+    }
+  ],
+  postAdditionalViewData: {},
+  mainAdditionalViewData: {}
 };
+let nextId2 = 2
+let nextId3 = 2
 const usersReducer = createSlice({
   name: "user",
   initialState,
@@ -207,6 +222,85 @@ const usersReducer = createSlice({
       state.loading = false;
 
       state.mainBranchAccessTableList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    builder.addCase(getViewMainBranchUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getViewMainBranchUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.mainUserViewData = action.payload;
+    });
+    builder.addCase(getViewMainBranchUser.rejected, (state, action) => {
+      state.loading = false;
+
+      state.mainUserViewData = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    builder.addCase(postViewMainBranchUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      postViewMainBranchUser.fulfilled, (state, action) => {
+        state.loading = false;
+        const newItem2 = { ...action.payload, id: nextId2++ };
+        state.mainBranchAccessTableList = [...state.mainBranchAccessTableList, newItem2];
+        console.log(state.mainBranchAccessTableList, "mainBranchAccessTableList")
+      }
+    );
+    builder.addCase(postViewMainBranchUser.rejected, (state, action) => {
+      state.loading = false;
+
+      state.postUserViewData = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+
+
+    builder.addCase(getAdditionalRoleTabelMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getAdditionalRoleTabelMiddleWare.fulfilled, (state, action) => {
+      state.loading = false;
+      state.mainAdditionalTableList = action.payload;
+    });
+    builder.addCase(getAdditionalRoleTabelMiddleWare.rejected, (state, action) => {
+      state.loading = false;
+
+      state.mainAdditionalTableList = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    builder.addCase(getAdditionalRoleViewMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getAdditionalRoleViewMiddleWare.fulfilled, (state, action) => {
+      state.loading = false;
+      state.mainAdditionalViewData = action.payload;
+    });
+    builder.addCase(getAdditionalRoleViewMiddleWare.rejected, (state, action) => {
+      state.loading = false;
+
+      state.mainAdditionalViewData = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    builder.addCase(postAdditionalRoleViewMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      postAdditionalRoleViewMiddleWare.fulfilled, (state, action) => {
+        state.loading = false;
+        const newItem2 = { ...action.payload, id: nextId3++ };
+        state.mainAdditionalTableList = [...state.mainAdditionalTableList, newItem2];
+        console.log(state.mainAdditionalTableList, "mainAdditionalTableList")
+      }
+    );
+    builder.addCase(postAdditionalRoleViewMiddleWare.rejected, (state, action) => {
+      state.loading = false;
+      state.postAdditionalViewData = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 

@@ -12,42 +12,48 @@ import { useNavigate, useParams } from "react-router-dom";
 import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 import { Card } from "primereact/card";
+import { useDispatch, useSelector } from "react-redux";
+import { patchRoleEditMiddleware, postAddRoleMiddleware } from "../store/roleMiddleware";
 
 const AddRole = ({ action }) => {
+  const { loading, roleViewData, roleEditData } = useSelector(({ roleMainReducers }) => {
+    return {
+      loading: roleMainReducers?.loading,
+      roleViewData: roleMainReducers?.roleViewData,
+      roleEditData: roleMainReducers?.roleEditData,
+    };
+  });
   const { id } = useParams();
   console.log(id, action, "--find id");
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState("");
 
-  useEffect(() => {
-    if (action === "edit" || action === "view") {
-      setFormikValues();
-    }
-  }, [action]);
+
   const items = [
     { label: "User Management" },
     {
-      label: `${
-        action === "add"
-          ? "Add Role"
-          : action === "edit"
+      label: `${action === "add"
+        ? "Add Role"
+        : action === "edit"
           ? "Edit Role"
           : "View Role"
-      }`,
+        }`,
     },
   ];
-  const item = [
-    { name: "Accounts" },
-    { name: "Accounts 1" },
-    { name: "Accounts 2" },
-  ];
-  const item1 = [
-    { name: "Receipts" },
-    { name: "Payment voucher" },
-    { name: "Pety cash" },
-  ];
-  const item2 = [{ name: "Read" }, { name: "Read 1" }, { name: "Read 2" }];
+
+  const item = [{
+    label: action === "add" ? "Accounts" : roleViewData?.menuAccess,
+    value: action === "add" ? "Accounts" : roleViewData?.menuAccess
+  }]
+  const item1 = [{
+    label: action === "add" ? "Receipts" : roleViewData?.subMenuAccess,
+    value: action === "add" ? "Accounts" : roleViewData?.subMenuAccess
+  }]
+  const item2 = [{
+    label: action === "add" ? "Read" : roleViewData?.permissions,
+    value: action === "add" ? "Accounts" : roleViewData?.permissions
+  }]
   const home = { label: "Master" };
 
   const initialValue = {
@@ -57,6 +63,8 @@ const AddRole = ({ action }) => {
     menuAccess: "",
     subMenuAccess: "",
     permissions: "",
+    modifiedBy: "",
+    modifiedOn: "",
   };
   const validate = (values) => {
     const errors = {};
@@ -80,38 +88,43 @@ const AddRole = ({ action }) => {
 
     return errors;
   };
+  const dispatch = useDispatch()
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
 
   const handleSubmit = () => {
-    toastRef.current.showToast();
+    if (action === "add") {
+      dispatch(postAddRoleMiddleware(formik.values))
+      toastRef.current.showToast();
 
-    setTimeout(() => {
-      setVisiblePopup(false);
-    }, 3000);
+      setTimeout(() => {
+        navigate("/master/generals/usermanagement/role")
+        setVisiblePopup(false);
+      }, 3000);
+    }
+    if (action === "edit") {
+      dispatch(patchRoleEditMiddleware(formik.values))
+      toastRef.current.showToast();
+
+      setTimeout(() => {
+        navigate("/master/generals/usermanagement/role")
+        setVisiblePopup(false);
+      }, 3000);
+    }
+
   };
 
   const setFormikValues = () => {
-    const designationCode = "Des00123";
-    const designationName = "HR";
-    const designationDescription = "Designation description";
-    const departmentCode = "1";
-    const level = "2";
-    const reportingto = "John";
-    const modifiedBy = "Johnson";
-    const modifiedOn = "RC1234";
-    const reportingtoLevel = "2";
-
     const updatedValues = {
-      designationCode: `${designationCode}`,
-      designationName: `${designationName}`,
-      designationDescription: `${designationDescription}`,
-      departmentCode: `${departmentCode}`,
-      level: `${level}`,
-      reportingto: `${reportingto}`,
-      reportingtoLevel: `${reportingtoLevel}`,
-      modifiedBy: `${modifiedBy}`,
-      modifiedOn: `${modifiedOn}`,
+      id: roleEditData?.id,
+      roleCode: roleEditData?.roleCode,
+      roleName: roleEditData?.roleName,
+      roleDescription: roleEditData?.roleDescription,
+      menuAccess: roleEditData?.menuAccess,
+      subMenuAccess: roleEditData?.subMenuAccess,
+      permissions: roleEditData?.permissions,
+      modifiedBy: roleEditData?.modifiedBy,
+      modifiedOn: roleEditData?.modifiedOn,
     };
     formik.setValues({ ...formik.values, ...updatedValues });
   };
@@ -121,9 +134,14 @@ const AddRole = ({ action }) => {
     validate,
     onSubmit: handleSubmit,
   });
+  useEffect(() => {
+
+    setFormikValues();
+
+  }, [roleEditData]);
   return (
     <div className="grid add__role__container">
-     
+
       <div
         style={{
           justifyContent: "center",
@@ -135,14 +153,14 @@ const AddRole = ({ action }) => {
           <SvgBack />
         </span>
         <div className="add__sub__title">
-        {action === "add"
-          ? "Add Role"
-          : action === "edit"
-          ? "Edit Role"
-          : "View Role"}
+          {action === "add"
+            ? "Add Role"
+            : action === "edit"
+              ? "Edit Role"
+              : "View Role"}
+        </div>
       </div>
-      </div>
-      
+
       <div className="col-12 mb-4">
         <div >
           <BreadCrumb
@@ -159,7 +177,7 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-3">
               <InputField
                 disabled={action === "view" ? true : false}
-                value={formik.values.roleCode}
+                value={action === "view" ? roleViewData.roleCode : formik.values.roleCode}
                 onChange={formik.handleChange("roleCode")}
                 // error={formik.errors.roleCode}
                 label="Role Code"
@@ -171,7 +189,7 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-3">
               <InputField
                 disabled={action === "view" ? true : false}
-                value={formik.values.roleName}
+                value={action === "view" ? roleViewData.roleName : formik.values.roleName}
                 onChange={formik.handleChange("roleName")}
                 // error={formik.errors.roleName}
                 label="Role Name"
@@ -184,7 +202,7 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-6">
               <InputField
                 disabled={action === "view" ? true : false}
-                value={formik.values.roleDescription}
+                value={action === "view" ? roleViewData.roleDescription : formik.values.roleDescription}
                 onChange={formik.handleChange("roleDescription")}
                 // error={formik.errors.roleDescription}
                 label="Role Description"
@@ -196,7 +214,7 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-3">
               <DropDowns
                 disabled={action === "view" ? true : false}
-                value={formik.values.menuAccess}
+                value={action === "view" ? roleViewData.menuAccess : formik.values.menuAccess}
                 onChange={formik.handleChange("menuAccess")}
                 // error={formik.errors.menuAccess}
                 className="dropdown__add__sub"
@@ -204,13 +222,14 @@ const AddRole = ({ action }) => {
                 classNames="label__sub__add"
                 placeholder={"Select"}
                 options={item}
+                optionLabel="label"
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
             </div>
             <div className="col-12 md:col-3 lg:col-3">
               <DropDowns
                 disabled={action === "view" ? true : false}
-                value={formik.values.subMenuAccess}
+                value={action === "view" ? roleViewData.subMenuAccess : formik.values.subMenuAccess}
                 onChange={formik.handleChange("subMenuAccess")}
                 // error={formik.errors.subMenuAccess}
                 className="dropdown__add__sub"
@@ -218,13 +237,14 @@ const AddRole = ({ action }) => {
                 classNames="label__sub__add"
                 placeholder={"Select"}
                 options={item1}
+                optionLabel="label"
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
             </div>
             <div className="col-12 md:col-3 lg:col-3">
               <DropDowns
                 disabled={action === "view" ? true : false}
-                value={formik.values.permissions}
+                value={action === "view" ? roleViewData.permissions : formik.values.permissions}
                 onChange={formik.handleChange("permissions")}
                 // error={formik.errors.permissions}
                 className="dropdown__add__sub"
@@ -232,6 +252,7 @@ const AddRole = ({ action }) => {
                 classNames="label__sub__add"
                 placeholder={"Select"}
                 options={item2}
+                optionLabel="label"
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
             </div>
@@ -241,9 +262,9 @@ const AddRole = ({ action }) => {
               <div className="col-12 md:col-3 lg:col-3">
                 <InputField
                   disabled={action === "view" ? true : false}
-                  // value={formik.values.roleCode}
-                  // onChange={formik.handleChange("roleCode")}
-                  // error={formik.errors.roleCode}
+                  value={action === "view" ? roleViewData.modifiedBy : formik.values.modifiedBy}
+                  onChange={formik.handleChange("modifiedBy")}
+                  error={formik.errors.modifiedBy}
                   label="Modified By"
                   classNames="dropdown__add__sub"
                   className="label__sub__add"
@@ -253,9 +274,9 @@ const AddRole = ({ action }) => {
               <div className="col-12 md:col-3 lg:col-3">
                 <InputField
                   disabled={action === "view" ? true : false}
-                  // value={formik.values.roleName}
-                  // onChange={formik.handleChange("roleName")}
-                  // error={formik.errors.roleName}
+                  value={action === "view" ? roleViewData.modifiedOn : formik.values.modifiedOn}
+                  onChange={formik.handleChange("modifiedOn")}
+                  error={formik.errors.modifiedOn}
                   label="Modified On"
                   classNames="dropdown__add__sub"
                   className="label__sub__add"

@@ -263,6 +263,8 @@ export const GET_ROLE_BY_ID = "role/GET_ROLE_BY_ID";
 export const POST_ADD_ROLE = "role/POST_ADD_ROLE";
 export const PATCH_ROLE_EDIT = "role/PATCH_ROLE_EDIT";
 export const GET_SERACH_ROLE = "role/GET_SERACH_ROLE";
+export const GET_VIEW_ROLE="role/GET_VIEW_ROLE";
+export const GET_PATCH_ROLE="role/GET_PATCH_ROLE"
 
 export const GET_USER_DETAILS = "user/GET_USER_DETAILS";
 export const GET_USER_BY_ID = "user/GET_USER_BY_ID";
@@ -273,6 +275,11 @@ export const GET_ADD_BRANCH_USER = "user/GET_SERACH_ROLE";
 export const GET_USER_DATA_VIEW="user/GET_USER_DATA_VIEW";
 export const GET_USER_DATA_EDIT="user/GET_USER_DATA_EDIT";
 export const GET_MAIN_BRANCH_ACCESS_VIEW="user/GET_MAIN_BRANCH_ACCESS_VIEW"
+export const GET_MAIN_BRANCH_VIEW="user/GET_MAIN_BRANCH_VIEW"
+export const POST_MAIN_BRANCH_VIEW="user/POST_MAIN_BRANCH_VIEW"
+export const GET_ADDITIONAL_ROLE_TABEL="user/GET_ADDITIONAL_ROLE_TABEL"
+export const GET_ADDITIONAL_ROLE_VIEW="user/GET_ADDITIONAL_ROLE_VIEW"
+export const POST_ADDITIONAL_ROLE="user/POST_ADDITIONAL_ROLE"
 
 export const GET_BRANCH_DETAILS = "branch/GET_BRANCH_DETAILS";
 export const GET_BRANCH_BY_ID = "branch/GET_BRANCH_BY_ID";

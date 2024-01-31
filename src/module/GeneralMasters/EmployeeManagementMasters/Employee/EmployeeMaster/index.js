@@ -180,7 +180,7 @@ const EmployeeMaster = () => {
           </div>
           <div className="col-12 ">
             <div className="main__tabel__title__hierarchy p-2">
-              Country List
+            Employee List
             </div>
           </div>
           <div

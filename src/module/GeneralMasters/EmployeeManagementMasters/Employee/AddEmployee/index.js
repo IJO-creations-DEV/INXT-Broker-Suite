@@ -26,7 +26,7 @@ const AddEmployee = ({ action }) => {
 
     }
   );
-  console.log(employeeEditData, "employeeEditData");
+  console.log(employeeEditData.city, "employeeEditData");
   const { id } = useParams();
   console.log(id, "find id");
   const navigate = useNavigate();
@@ -53,11 +53,20 @@ const AddEmployee = ({ action }) => {
   ];
   const home = { label: "Master" };
 
-  const item = [{ label: "Em0012" }, { label: "Em0046" }, { label: "Em0056" }];
+
+  const item = [
+    {
+      label: action === "add" ? "Em0012" : employeeViewData?.employeeType,
+      label: action === "add" ? "Em0012" : employeeViewData?.employeeType
+    },
+
+  ];
   const item1 = [
-    { label: "Level 1 Agent" },
-    { label: "Level 2 Agent" },
-    { label: "Level 3 Agent" },
+    {
+      label: action === "add" ? "Level 1 Agent" : employeeViewData?.designation,
+      label: action === "add" ? "Level 1 Agent" : employeeViewData?.designation
+    },
+
   ];
   const item2 = [
     { label: "John Doe" },
@@ -191,9 +200,9 @@ const AddEmployee = ({ action }) => {
   const [countryDataOption, setCountryDataOption] = useState([]);
 
   const setFormikValues = () => {
-    const cityData = employeeEditData?.City;
-    const stateData = employeeEditData?.State;
-    const countryData = employeeEditData?.Country;
+    const cityData = employeeEditData?.city;
+    const stateData = employeeEditData?.state;
+    const countryData = employeeEditData?.country;
 
     const updatedValues = {
       employeeCode: employeeEditData?.employeeCode,
@@ -208,6 +217,8 @@ const AddEmployee = ({ action }) => {
       idProofType: employeeEditData?.idProofType,
       idNumber: employeeEditData?.idNumber,
       addressLine1: employeeEditData?.addressLine1,
+      addressLine2: employeeEditData?.addressLine2,
+      addressLine3: employeeEditData?.addressLine3,
       City: cityData,
       State: stateData,
       Country: countryData,

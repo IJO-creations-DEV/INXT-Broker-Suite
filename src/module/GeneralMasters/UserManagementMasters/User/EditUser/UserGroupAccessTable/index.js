@@ -11,29 +11,45 @@ import { Dialog } from "primereact/dialog";
 import InputField from "../../../../../../components/InputField";
 import DropDowns from "../../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
+import SvgEyeIcon from "../../../../../../assets/icons/SvgEyeIcon";
+import { useDispatch, useSelector } from "react-redux";
+import { getAdditionalRoleViewMiddleWare, postAdditionalRoleViewMiddleWare } from "../../store/userMiddleware";
+import { useFormik } from "formik";
 
 const UserGroupAccess = () => {
+  const { loading, mainAdditionalTableList, searchList, mainAdditionalViewData } = useSelector(({ userReducers }) => {
+    return {
+      loading: userReducers?.loading,
+      mainAdditionalTableList: userReducers?.mainAdditionalTableList,
+      searchList: userReducers?.userSearchList,
+      mainAdditionalViewData: userReducers?.mainAdditionalViewData
+    };
+  });
+  console.log(mainAdditionalViewData, "mainAdditionalViewData");
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
+  const [showView, setShowView] = useState(false)
 
-  const item =[
-{name:"3456"}
-  ]
+  const item = [{
+    label: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123",
+    value: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123"
+  }]
   const handleClick = () => {
     setShow(!show);
   };
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
 
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable/>
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
-  
+
 
   const template2 = {
     layout:
@@ -63,10 +79,43 @@ const UserGroupAccess = () => {
       );
     },
   };
+  const ViewheaderStyle = {
+    fontSize: 16,
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    padding: "1rem",
+    color: "#000",
+    border: "none",
+    display: "flex",
+    justifyContent: "center",
+  };
+
+
+
+  const renderViewButton = (rowData) => {
+    console.log(rowData, "rowDatarowData");
+    return (
+      <div className="center-content">
+        <Button
+          icon={<SvgEyeIcon />}
+          className="eye__btn"
+          onClick={() => handleView(rowData)}
+        />
+        {/* <Button
+          icon={<SvgEditIcon />}
+          className="eye__btn"
+          onClick={() => handlEdit(rowData)}
+        /> */}
+      </div>
+    );
+  };
+
 
 
 
   const handleView = (rowData) => {
+    dispatch(getAdditionalRoleViewMiddleWare(rowData))
+    setShowView(true)
     console.log("View clicked:", rowData);
     // navigate("/accounts/pettycash/PettyCashCodeDetails")
   };
@@ -79,9 +128,45 @@ const UserGroupAccess = () => {
     border: "none",
   };
 
-  const handleSave = () => {
+  const handleSubmit = () => {
     setShow(false);
+    dispatch(postAdditionalRoleViewMiddleWare(formik.values))
+
   };
+
+  const customValidation = (values) => {
+    const errors = {};
+
+    if (!values.RoleCode) {
+      errors.RoleCode = "This field Code is required";
+    }
+    if (!values.RoleName) {
+      errors.RoleName = "This field is required";
+    }
+    if (!values.ActiveHours) {
+      errors.ActiveHours = "This field is required";
+    }
+
+    return errors;
+  };
+
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
+
+  const formik = useFormik({
+    initialValues: {
+      RoleCode: "",
+      RoleName: "",
+      ActiveHours: "",
+    },
+    validate: customValidation,
+    // onSubmit: (values) => {
+    //   // Handle form submission
+    //    handleSubmit(values);
+
+    // },
+    onSubmit: handleSubmit
+  });
   return (
     <div className="transactioncode__master__table_UserGroupAccess">
       {/* <Card className="mt-1"> */}
@@ -97,7 +182,7 @@ const UserGroupAccess = () => {
           />
         </div>
         <DataTable
-          value={products}
+          value={mainAdditionalTableList}
           tableStyle={{
             minWidth: "50rem",
             color: "#1C2536",
@@ -123,19 +208,20 @@ const UserGroupAccess = () => {
             header="Role name"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            //   sortable
+          //   sortable
           ></Column>
           <Column
             field="ActiveHours"
             header="Active Hours"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            //   sortable
+          //   sortable
           ></Column>
           <Column
-            field="Action"
+            field="action"
+            body={renderViewButton}
             header="Action"
-            headerStyle={headerStyle}
+            headerStyle={ViewheaderStyle}
             className="fieldvalue_container"
           ></Column>
         </DataTable>
@@ -149,40 +235,45 @@ const UserGroupAccess = () => {
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">
             <DropDowns
+              value={formik.values.RoleCode}
+              onChange={formik.handleChange("RoleCode")}
+              error={formik.errors.RoleCode}
               className="inputdialog__fieled"
               label="Role Code"
-              placeholder="Select"
-              textColor={"#111927"}
-              textSize={"16"}
-              textWeight={500}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
+              classNames="label__sub__add"
+              placeholder={"Select"}
               options={item}
-             
+              optionLabel="label"
+              optionValue={"label"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
           <div className=" col-12 md:col-6 lg-col-6 ">
             <InputField
               classNames="input__filed"
+              value={formik.values.RoleName}
+              onChange={formik.handleChange("RoleName")}
+              error={formik.errors.RoleName}
               label="Role Name"
               placeholder="Enter"
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-            
+
             />
           </div>
-        </div>
-        <div className="grid mt-1">
-      
           <div className=" col-12 md:col-6 lg-col-6 ">
             <InputField
               classNames="input__filed"
+              value={formik.values.ActiveHours}
+              onChange={formik.handleChange("ActiveHours")}
+              error={formik.errors.ActiveHours}
               label="Active Hours"
               placeholder="Enter"
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-            
+
             />
           </div>
         </div>
@@ -190,14 +281,61 @@ const UserGroupAccess = () => {
           <Button
             label="Save"
             className="add__btn"
-            onClick={() => {
-              handleSave();
-            }}
+            onClick={formik.handleSubmit}
           />
         </div>
       </Dialog>
+      <Dialog
+        header="Add User Group Access"
+        visible={showView}
+        style={{ width: "50vw" }}
+        onHide={() => setShowView(false)}
+      >
+        <div className="grid mt-1">
+          <div className=" col-12 md:col-6 lg-col-6 ">
+            <DropDowns
+              value={mainAdditionalViewData.RoleCode}
+              onChange={formik.handleChange("RoleCode")}
+              className="inputdialog__fieled"
+              label="Role Code"
+              classNames="label__sub__add"
+              placeholder={"Select"}
+              options={item}
+              optionLabel="label"
+              optionValue={"label"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+          </div>
+          <div className=" col-12 md:col-6 lg-col-6 ">
+            <InputField
+              classNames="input__filed"
+              value={mainAdditionalViewData.RoleName}
+              onChange={formik.handleChange("RoleName")}
+              label="Role Name"
+              placeholder="Enter"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+
+            />
+          </div>
+          <div className=" col-12 md:col-6 lg-col-6 ">
+            <InputField
+              classNames="input__filed"
+              value={mainAdditionalViewData.ActiveHours}
+              onChange={formik.handleChange("ActiveHours")}
+              label="Active Hours"
+              placeholder="Enter"
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+
+            />
+          </div>
+        </div>
+      </Dialog>
       {/* </Card> */}
-    </div>
+    </div >
   );
 };
 

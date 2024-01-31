@@ -14,28 +14,43 @@ import InputField from "../../../../../../components/InputField";
 import { useFormik } from "formik";
 import DropDowns from "../../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import SvgEyeIcon from "../../../../../../assets/icons/SvgEyeIcon";
+import { getViewMainBranchUser, postViewMainBranchUser } from "../../store/userMiddleware";
 
 const TransactionCodeSetupTable = ({ action }) => {
 
-  const { loading, mainBranchAccessTableList, searchList } = useSelector(({ userReducers }) => {
+  const { loading, mainBranchAccessTableList, searchList, mainUserViewData } = useSelector(({ userReducers }) => {
     return {
       loading: userReducers?.loading,
       mainBranchAccessTableList: userReducers?.mainBranchAccessTableList,
       searchList: userReducers?.userSearchList,
+      mainUserViewData: userReducers?.mainUserViewData
     };
   });
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
+  const [showView, setShowView] = useState(false);
 
+ 
   const item = [
-    { name: '123' }
-  ]
+    {
+      label: show ? "ARIANS INSURANCE BROKERS INC" : showView && mainUserViewData.branchCode,
+      value: show ? "NY" : showView && mainUserViewData.branchCode,
+    },
+  ];
+  const item1 = [
+    {
+      label: show ? "ARIANS INSURANCE BROKERS INC" : showView && mainUserViewData.departmentCode,
+      value: show ? "NY" : showView && mainUserViewData.departmentCode,
+    },
+  ];
   const initialValues = {
-    AccountingPeriodStart: new Date(),
-    AccountingPeriodEnd: new Date(),
-    TransactionNumberFrom: "",
-    TransactionNumberTo: "",
+    branchCode: "",
+    branchName: "",
+    TransactionNofrom: "",
+    departmentCode: "",
+    departmentName: "",
   }
 
   const handleClick = () => {
@@ -83,13 +98,11 @@ const TransactionCodeSetupTable = ({ action }) => {
 
 
   const handleSubmit = () => {
+    dispatch(postViewMainBranchUser(formik.values))
     setShow(false)
   }
 
-  const handleView = (rowData) => {
-    console.log("View clicked:", rowData);
-    // navigate("/accounts/pettycash/PettyCashCodeDetails")
-  };
+
   const headerStyle = {
     fontSize: 16,
     fontFamily: 'Inter, sans-serif',
@@ -101,11 +114,11 @@ const TransactionCodeSetupTable = ({ action }) => {
   const customValidation = (values) => {
     const errors = {};
 
-    if (!values.TransactionNumberFrom) {
-      errors.TransactionNumberFrom = "This field Code is required";
+    if (!values.branchCode) {
+      errors.branchCode = "This field Code is required";
     }
-    if (!values.TransactionNumberTo) {
-      errors.TransactionNumberTo = "This field is required";
+    if (!values.departmentCode) {
+      errors.departmentCode = "This field is required";
     }
 
     return errors;
@@ -124,6 +137,65 @@ const TransactionCodeSetupTable = ({ action }) => {
     // },
     onSubmit: handleSubmit
   });
+
+  // const handleView = (rowData) => {
+  //   console.log("View clicked:", rowData);
+  //   // navigate("/accounts/pettycash/PettyCashCodeDetails")
+  // };
+  const dispatch = useDispatch()
+  const handleView = (rowData) => {
+    dispatch(getViewMainBranchUser(rowData))
+    console.log(rowData, "rowData");
+    setShowView(true)
+    // dispatch(getUserViewDataMiddleWare(rowData))
+    // navigate("/accounts/pettycash/PettyCashCodeDetails")
+  };
+
+  // const handlEdit = (rowData) => {
+  //   console.log(rowData, "gg");
+  //   dispatch(getUserEditDataMiddleWare(rowData))
+  //   navigate(`/master/generals/usermanagement/user/edit/${rowData?.id}`);
+  // };
+  const items = [
+    { label: "User Management" },
+    {
+      label: "User",
+      url: "/master/generals/usermanagement/user",
+    },
+  ];
+
+
+
+  const ViewheaderStyle = {
+    fontSize: 16,
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    padding: "1rem",
+    color: "#000",
+    border: "none",
+    display: "flex",
+    justifyContent: "center",
+  };
+
+
+
+  const renderViewButton = (rowData) => {
+    console.log(rowData, "rowDatarowData");
+    return (
+      <div className="center-content">
+        <Button
+          icon={<SvgEyeIcon />}
+          className="eye__btn"
+          onClick={() => handleView(rowData)}
+        />
+        {/* <Button
+          icon={<SvgEditIcon />}
+          className="eye__btn"
+          onClick={() => handlEdit(rowData)}
+        /> */}
+      </div>
+    );
+  };
 
 
   return (
@@ -193,8 +265,9 @@ const TransactionCodeSetupTable = ({ action }) => {
           ></Column>
           <Column
             field="action"
+            body={renderViewButton}
             header="Action"
-            headerStyle={headerStyle}
+            headerStyle={ViewheaderStyle}
             className="fieldvalue_container"
           ></Column>
         </DataTable>
@@ -214,14 +287,16 @@ const TransactionCodeSetupTable = ({ action }) => {
           <div className="col-12 md:col-6 lg-col-6 ">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.employeeType}
-              onChange={formik.handleChange("employeeType")}
-              error={formik.errors.employeeType}
+              value={formik.values.branchCode}
+              onChange={formik.handleChange("branchCode")}
+              error={formik.errors.branchCode}
               className="dropdown__add__sub"
               label="Branch"
               classNames="label__sub__add"
               placeholder={"Select"}
               options={item}
+              optionLabel="label"
+              optionValue={"label"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
 
@@ -229,14 +304,16 @@ const TransactionCodeSetupTable = ({ action }) => {
           <div className="col-12 md:col-6 lg-col-6 ">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={formik.values.employeeType}
-              onChange={formik.handleChange("employeeType")}
-              error={formik.errors.employeeType}
+              value={formik.values.departmentCode}
+              onChange={formik.handleChange("departmentCode")}
+              error={formik.errors.departmentCode}
               className="dropdown__add__sub"
               label="Department code"
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={item}
+              options={item1}
+              optionLabel="label"
+              optionValue={"label"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
           </div>
@@ -251,6 +328,54 @@ const TransactionCodeSetupTable = ({ action }) => {
             onClick={() => { formik.handleSubmit(); }}
           />
         </div>
+      </Dialog>
+      <Dialog
+        header="Add Branch & Department"
+        visible={showView}
+        style={{ width: "50vw" }}
+        onHide={() => setShowView(false)}
+        className="dialogue_style"
+      >
+        <div className="grid mt-1">
+
+
+        </div>
+        <div className="grid mt-1">
+          <div className="col-12 md:col-6 lg-col-6 ">
+            <DropDowns
+              disabled={action === "view" ? true : false}
+              value={mainUserViewData.branchCode}
+              onChange={formik.handleChange("branchCode")}
+              error={formik.errors.branchCode}
+              className="dropdown__add__sub"
+              label="Branch"
+              classNames="label__sub__add"
+              placeholder={"Select"}
+              options={item}
+              optionLabel="label"
+              optionValue={"label"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+
+          </div>
+          <div className="col-12 md:col-6 lg-col-6 ">
+            <DropDowns
+              disabled={action === "view" ? true : false}
+              value={mainUserViewData.departmentCode}
+              onChange={formik.handleChange("departmentCode")}
+              error={formik.errors.departmentCode}
+              className="dropdown__add__sub"
+              label="Department code"
+              classNames="label__sub__add"
+              placeholder={"Select"}
+              options={item1}
+              optionLabel="label"
+              optionValue={"label"}
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+            />
+          </div>
+        </div>
+
       </Dialog>
       {/* </Card> */}
     </div>

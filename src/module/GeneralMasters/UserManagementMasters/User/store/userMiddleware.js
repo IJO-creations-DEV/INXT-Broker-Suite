@@ -7,7 +7,12 @@ import {
   GET_ADD_BRANCH_USER,
   GET_USER_DATA_VIEW,
   GET_USER_DATA_EDIT,
-  GET_MAIN_BRANCH_ACCESS_VIEW
+  GET_MAIN_BRANCH_ACCESS_VIEW,
+  GET_MAIN_BRANCH_VIEW,
+  POST_MAIN_BRANCH_VIEW,
+  GET_ADDITIONAL_ROLE_TABEL,
+  GET_ADDITIONAL_ROLE_VIEW,
+  POST_ADDITIONAL_ROLE
 } from "../../../../../redux/actionTypes";
 // import { getRequest } from "../../../utility/commonServices";
 // import { APIROUTES } from "../../../routes/apiRoutes";
@@ -168,6 +173,83 @@ export const getMainBranchAccessMiddleWare = createAsyncThunk(
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getViewMainBranchUser = createAsyncThunk(
+  GET_MAIN_BRANCH_VIEW,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const postViewMainBranchUser = createAsyncThunk(
+  POST_MAIN_BRANCH_VIEW,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
+    const data = {
+      branchCode: payload?.branchCode,
+      branchName: "branchName",
+      TransactionNofrom: "TransactionNofrom",
+      departmentCode: payload?.departmentCode,
+      departmentName: "departmentName",
+    }
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+
+
+export const getAdditionalRoleTabelMiddleWare = createAsyncThunk(
+  GET_ADDITIONAL_ROLE_TABEL,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getAdditionalRoleViewMiddleWare = createAsyncThunk(
+  GET_ADDITIONAL_ROLE_VIEW,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const postAdditionalRoleViewMiddleWare = createAsyncThunk(
+  POST_ADDITIONAL_ROLE,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
+    const data = {
+      id: payload?.id,
+      RoleCode: payload?.RoleCode,
+      RoleName: payload?.RoleName,
+      ActiveHours: payload?.ActiveHours,
+    }
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

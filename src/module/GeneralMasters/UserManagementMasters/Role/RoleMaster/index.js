@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../../../assets/icons/SvgAdd";
 import "./index.scss";
@@ -15,22 +15,43 @@ import SvgEyeIcon from "../../../../../assets/icons/SvgEyeIcon";
 import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
+import { useDispatch, useSelector } from "react-redux";
+import { getPatchRoleEditMiddleware, getSearchRoleMiddleware, getViewRoleEditMiddleware } from "../store/roleMiddleware";
 
 const RoleMaster = () => {
+  const { loading, roleTableList, roleSearchList } = useSelector(({ roleMainReducers }) => {
+    return {
+      loading: roleMainReducers?.loading,
+      roleTableList: roleMainReducers?.roleTableList,
+      roleSearchList: roleMainReducers?.roleSearchList,
+    };
+  });
+  const [search, setSearch] = useState("")
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const handleNavigate = () => {
     navigate("/master/generals/usermanagement/role/add/1");
   };
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
-  const handleView = () => {
+  const handleView = (rowData) => {
+    dispatch(getViewRoleEditMiddleware(rowData))
     navigate("/master/generals/usermanagement/role/view/2");
   };
 
-  const handlEdit = () => {
+  const handlEdit = (rowData) => {
+    dispatch(getPatchRoleEditMiddleware(rowData))
     navigate("/master/generals/usermanagement/role/edit/3");
   };
+
+
+
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getSearchRoleMiddleware(search));
+    }
+  }, [search]);
   const items = [
     { label: "User Management" },
     {
@@ -73,12 +94,12 @@ const RoleMaster = () => {
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
-          onClick={() => handleView()}
+          onClick={() => handleView(rowData)}
         />
         <Button
           icon={<SvgEditIcon />}
           className="eye__btn"
-          onClick={() => handlEdit()}
+          onClick={() => handlEdit(rowData)}
         />
       </div>
     );
@@ -123,7 +144,7 @@ const RoleMaster = () => {
   };
   return (
     <div className="grid overall__role__master__container">
-    
+
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Role Master</div>
         <div className="mt-3">
@@ -156,6 +177,8 @@ const RoleMaster = () => {
                   style={{ width: "100%" }}
                   classNames="input__sub__account__hierarchy"
                   placeholder="Search By Role Name"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -171,7 +194,7 @@ const RoleMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={Productdata}
+                value={search ? roleSearchList : roleTableList}
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"
@@ -220,7 +243,7 @@ const RoleMaster = () => {
                   field="action"
                   body={renderViewButton}
                   header="Action"
-                  headerStyle={ViewheaderStyle }
+                  headerStyle={ViewheaderStyle}
                   className="fieldvalue_container_centered"
                 ></Column>
               </DataTable>

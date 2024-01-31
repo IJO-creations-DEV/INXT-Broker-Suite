@@ -356,7 +356,7 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
           
           <Column
             body={renderName}
-            header={rendercheckedHeader("Name")}
+            header={rendercheckedHeader("Assured Name")}
             headerStyle={headerStyle}
           ></Column>
           <Column
@@ -371,7 +371,7 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
           ></Column>
           <Column
             body={renderQuotes}
-            header={renderUncheckedHeader("Quotes")}
+            header={renderUncheckedHeader("Insurance")}
             headerStyle={headerStyle}
           ></Column>
           <Column

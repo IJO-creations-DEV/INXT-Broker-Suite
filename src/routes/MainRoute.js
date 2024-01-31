@@ -1034,10 +1034,10 @@ const Maincomponent = () => {
               element={<CustomerInfo action="view" />}
             />
 
-            <Route
+            {/* <Route
               path="/agent/convertpolicy/customerinfo/edit"
               element={<CustomerInfo action="edit" />}
-            />
+            /> */}
 
             <Route
               path="/agent/convertpolicy/uploadvehiclephotos"

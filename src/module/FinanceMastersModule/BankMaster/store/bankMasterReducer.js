@@ -24,17 +24,17 @@ const initialState = {
       bankName: "BANCO DE ORO RUFINO-SOTTO PESO CURRENT ACCOUNT",
       bankBranch: "East Sarahburgh",
       ifscCode: "mb78901",
-      AddressLine1: "hydrabad",
-      AddressLine2: "channai",
-      AddressLine3: "banglore",
-      city: "channai",
-      state:"Tamil Nadu",
+      AddressLine1: "",
+      AddressLine2: "",
+      AddressLine3: "",
+      city: "",
+      state: "",
       status: true,
       Country: "Philippines",
-      mobile: "9791669887",
+      mobile: "+63",
       Fax: "",
-      email: "justin@gmail.com"
-    
+      email: "contactus@broker.com"
+
     },
     {
       id: 2,
@@ -42,16 +42,16 @@ const initialState = {
       bankName: "BANCO DE ORO SALCEDO PHP SA",
       bankBranch: "East Sarahburgh",
       ifscCode: "mb78901",
-      AddressLine1: "hydrabad",
-      AddressLine2: "channai",
-      AddressLine3: "banglore",
-      City: "channai",
-      state:"Tamil Nadu",
+      AddressLine1: "",
+      AddressLine2: "",
+      AddressLine3: "",
+      City: "",
+      state: "",
       status: true,
       Country: "Philippines",
-      mobile: "9791669887",
+      mobile: "+63",
       Fax: "",
-      email: "justin@gmail.com"
+      email: "contactus@broker.com"
 
     },
     // {
@@ -243,9 +243,9 @@ const initialState = {
     // }
   ]
   ,
-  AccountDetailsList:[
+  AccountDetailsList: [
     {
-      id:1,
+      id: 1,
       AccountNumber: "124",
       AccountName: "ayesha",
       AccountType: "Credit",
@@ -254,7 +254,7 @@ const initialState = {
       TransactionLimit: "0",
     },
     {
-      id:2,
+      id: 2,
       AccountNumber: "124",
       AccountName: "ayesha",
       AccountType: "Credit",
@@ -267,14 +267,14 @@ const initialState = {
   BankAccountList: [
 
   ],
-  accountDetailsView:{},
+  accountDetailsView: {},
   BankSearchList: [],
   BankStatus: {},
   AddBank: {},
   PostAddBank: {},
   BankDetailEdit: {},
   BankDetailView: {},
-  AccountPatchDetailView:{}
+  AccountPatchDetailView: {}
 };
 let nextId = 3;
 let nextId1 = 3;
@@ -430,7 +430,7 @@ const bankMasterReducer = createSlice({
         state.loading = false;
         console.log(state.BankList, "state.BankList");
         const updatedIndex = state.BankList.findIndex(
-          (item) => item.id === action.payload.id 
+          (item) => item.id === action.payload.id
         );
         if (updatedIndex !== -1) {
           const updatedBankList = [...state.BankList];

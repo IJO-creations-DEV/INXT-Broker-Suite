@@ -143,11 +143,11 @@ const TableData = ({ navigate }) => {
           header="Cover Name"
           className="fieldvalue_container"
         ></Column>
-        <Column
+        {/* <Column
           field="policyType"
           header="Policy Type"
           className="fieldvalue_container"
-        ></Column>
+        ></Column> */}
         <Column
           field="modifiedby"
           header="Modified by"

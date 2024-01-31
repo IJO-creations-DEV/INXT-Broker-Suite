@@ -6,10 +6,10 @@ const initialState = {
   designationDetailList: [
     {
       id: 1,
-      designationCode: "Des0123",
-      designationName: "ss",
+      designationCode: "DS001",
+      designationName: "Sales Agent ",
       designationDescription: "designationDescription",
-      departmentCode: "Depart0123",
+      departmentCode: "Motor",
       reportingtoLevel:"reportingtoLevel",
       level:"level",
       ModifiedBy: "Johnson",
@@ -19,10 +19,10 @@ const initialState = {
     },
     {
       id: 2,
-      designationCode: "Des0123",
-      designationName: "HR",
+      designationCode: "DS002",
+      designationName: "Accounts Executive",
       designationDescription: "designationDescription",
-      departmentCode: "Depart0123",
+      departmentCode: "Finance",
       reportingtoLevel:"reportingtoLevel",
       level:"level",
       ModifiedBy: "Johnson",
@@ -32,10 +32,10 @@ const initialState = {
     },
     {
       id: 3,
-      designationCode: "Des0123",
-      designationName: "ss",
+      designationCode: "DS003",
+      designationName: "Cashier ",
       designationDescription: "designationDescription",
-      departmentCode: "Depart0123",
+      departmentCode: "Finance",
       reportingtoLevel:"reportingtoLevel",
       level:"level",
       ModifiedBy: "Johnson",
@@ -43,6 +43,7 @@ const initialState = {
       status: "",
       action: ""
     },
+   
   ],
   designationSearchList: [],
   getEditData: {},

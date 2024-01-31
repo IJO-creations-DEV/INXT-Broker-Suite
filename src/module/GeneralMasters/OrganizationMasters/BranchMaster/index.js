@@ -207,7 +207,7 @@ const Index = () => {
             </span>
           </div>
         </div>
-        <div className="headlist_lable">Company List</div>
+        <div className="headlist_lable">Branch List</div>
         <div>
           <DataTable
             value={

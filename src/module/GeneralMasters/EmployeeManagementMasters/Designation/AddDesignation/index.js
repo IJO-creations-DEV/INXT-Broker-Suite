@@ -51,9 +51,9 @@ const AddDesignation = ({ action }) => {
     },
   ];
   const home = { label: "Master" };
-  const item = [{ label: "1", value: "1" }];
-  const item1 = [{ label: "1", value: "1" }];
-  const item2 = [{ label: "1", value: "1" }];
+  const item = [{ label:action==="add"? "1":getViewData?.departmentCode, value:action==="add"? "1":getViewData?.departmentCode }];
+  const item1 = [{ label:action==="add"? "1":getViewData?.level, value:action==="add"? "1":getViewData?.level }];
+  const item2 = [{label:action==="add"? "1":getViewData?.reportingtoLevel, value:action==="add"? "1": getViewData?.reportingtoLevel}];
 
   const initialValue = {
     designationCode: action === "view" ? getViewData?.designationCode : "",
@@ -272,7 +272,7 @@ const AddDesignation = ({ action }) => {
                 classNames="label__sub__add"
                 placeholder={"Select"}
                 // options={item1}
-                options={action === "add" ? item1 : action === "edit" ? levelDataOption : item}
+                options={action === "add" ? item1 : action === "edit" ? levelDataOption : item1}
 
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 optionValue={"label"}
@@ -295,7 +295,7 @@ const AddDesignation = ({ action }) => {
                 label="Reporting to Level"
                 classNames="label__sub__add"
                 placeholder={"Select"}
-                options={action === "add" ? item2 : action === "edit" ? reportingToLevelData : item}
+                options={action === "add" ? item2 : action === "edit" ? reportingToLevelData : item2}
 
                 optionValue={"label"}
                 optionLabel="label"

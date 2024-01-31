@@ -7,8 +7,8 @@ const initialState = {
   roleTableList: [
     {
       id: 1,
-      roleCode: "RC1234",
-      roleName: "RoleName",
+      roleCode: "AGMR001",
+      roleName: "Agent-Motor",
       roleDescription: "roleDescription",
       menuAccess: "menuAccess",
       subMenuAccess: "subMenuAccess",
@@ -20,8 +20,8 @@ const initialState = {
     },
     {
       id: 2,
-      roleCode: "RC1234",
-      roleName: "Johnsons",
+      roleCode: "AGFR002",
+      roleName: "Agent-Motor",
       roleDescription: "roleDescription",
       menuAccess: "menuAccess",
       subMenuAccess: "subMenuAccess",
@@ -31,6 +31,19 @@ const initialState = {
       status: "",
       action: ""
     },
+    {
+      id:3,
+      roleCode:"FINCSR",
+      roleName: "Finance-Cashier",
+      roleDescription: "roleDescription",
+      menuAccess: "menuAccess",
+      subMenuAccess: "subMenuAccess",
+      permissions: "permissions",
+      modifiedBy: "Johnson",
+      modifiedOn: "2/1/24",
+      status: "",
+      action: ""
+    }
   ],
   roleSearchList: [],
   roleViewData: {},

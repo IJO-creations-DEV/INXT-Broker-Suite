@@ -7,9 +7,9 @@ const initialState = {
   hierarchTableList: [
     {
       id: 1,
-      rankCode: "RC1234",
-      rankName: "RankName",
-      levelNumber: "50",
+      rankCode: "RK001 ",
+      rankName: "Rank 1 ",
+      levelNumber: "L4",
       description: "description",
       modifiedBy: "Johnson",
       modifiedOn: "12/12/23",
@@ -18,9 +18,29 @@ const initialState = {
     },
     {
       id: 2,
-      rankCode: "RC1237",
-      rankName: "RankName",
-      levelNumber: "60",
+      rankCode: "RK002 ",
+      rankName: "Rank 2 ",
+      levelNumber: "L3",
+      modifiedBy: "Johnson",
+      modifiedOn: "2/1/24",
+      status: "",
+      action: ""
+    }, 
+    {
+      id: 3,
+      rankCode: "RK003 ",
+      rankName: "Rank 3 ",
+      levelNumber: "L2",
+      modifiedBy: "Johnson",
+      modifiedOn: "2/1/24",
+      status: "",
+      action: ""
+    }, 
+    {
+      id: 4,
+      rankCode: "RK004",
+      rankName: "Rank 4 ",
+      levelNumber: "L2",
       modifiedBy: "Johnson",
       modifiedOn: "2/1/24",
       status: "",

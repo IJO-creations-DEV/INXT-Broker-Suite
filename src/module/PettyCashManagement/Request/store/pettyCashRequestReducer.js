@@ -4,7 +4,7 @@ import {
   getRequestSearchMiddleware,
   postAddRequestMiddleware,
   getAddRequestTableMiddleware,
-  postEditRequestMiddleware,
+  postEditRequestMiddleware,geteditrequestMiddleware 
 } from "./pettyCashRequestMiddleware";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
@@ -114,8 +114,16 @@ const initialState = {
   ],
   RequestSearch: [],
   AddRequest: {},
-  AddRequestTable: [],
+  AddRequestTable: [
+    {
+      id: 1,
+      Narration: "PCC0123",
+      Amount: "10000",
+     
+    },
+  ],
   EditRequest: {},
+  editrequestDetails:[]
 };
 const PettyCashRequestReducer = createSlice({
   name: "pettycashrequest",
@@ -199,6 +207,22 @@ const PettyCashRequestReducer = createSlice({
       state.loading = false;
 
       state.EditRequest = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+     //geteditrequestMiddleware 
+
+     builder.addCase(geteditrequestMiddleware .pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(geteditrequestMiddleware .fulfilled, (state, action) => {
+      state.loading = false;
+      state.editrequestDetails = action.payload;
+    });
+    builder.addCase(geteditrequestMiddleware .rejected, (state, action) => {
+      state.loading = false;
+
+      state.InitiateDetails = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
   },

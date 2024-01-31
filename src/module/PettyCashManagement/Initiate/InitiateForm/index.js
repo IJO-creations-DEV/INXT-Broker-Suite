@@ -369,19 +369,20 @@ const InitiateForm = () => {
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
-            <DropDowns
-              className="dropdown__container"
+            <InputField
+              classNames="input__filed"
               label="Transaction Code"
-              // value={departmentcode}
-              // onChange={(e) => setDepartmentCode(e.value)}
-              value={formik.values.TransactionCode}
-              onChange={(e) =>
-                formik.setFieldValue("TransactionCode", e.value)
-              }
-              options={TransactionCode}
-              optionLabel="TransactionCode"
-              placeholder={"Select"}
-              dropdownIcon={<SvgDropdown color={"#000"} />}
+              // placeholder="Enter"
+              disabled={true}
+              textColor={"#111927"}
+              textSize={"16"}
+              textWeight={500}
+            // value={formik.values.PettyCashdescription}
+            // onChange={formik.handleChange("PettyCashdescription")}
+            // error={
+            //   formik.touched.PettyCashdescription &&
+            //   formik.errors.PettyCashdescription
+            // }
             />
 
           </div>
@@ -532,7 +533,7 @@ const InitiateForm = () => {
               onChange={(e) => {
                 console.log(e.value);
                 formik.setFieldValue("MainAccountCode", e.value).then(() => {
-                  handlecurrency(e.value);
+                  // handlecurrency(e.value);
                 })
               }}
               optionLabel="CurrencyType"

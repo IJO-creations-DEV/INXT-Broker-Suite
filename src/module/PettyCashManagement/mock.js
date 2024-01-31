@@ -74,11 +74,11 @@ export const Departcode = [
   { Departcode: "SLS" },
 ];
 export const Name = [
-  { Name: "Leo" },
-  { Name: "Yuva" },
-  { Name: "Sindhu" },
-  { Name: "Ayisha" },
-  { Name: "Pandi" },
+  {label:"Leo", Name: "Leo" },
+  { label:"Yuva",Name: "Yuva" },
+  { label:"Sindhu",Name: "Sindhu" },
+  { label:"Ayisha",Name: "Ayisha" },
+  { label:"Pandi",Name: "Pandi" },
 ];
 export const Maincode = [
   { Maincode: "MAC001" },

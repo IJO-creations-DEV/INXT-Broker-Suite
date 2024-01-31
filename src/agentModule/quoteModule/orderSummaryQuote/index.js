@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import { Card } from "primereact/card";
 import SvgCountPlusIcon from "../../../assets/icons/SvgCountPlusIcon";
@@ -63,6 +63,14 @@ const OrderSummary = () => {
     formik.setFieldValue("Discount", count);
     console.log(count, formik.values.GrossPremium, "count");
   };
+
+useEffect(()=>{
+ 
+  if (!formik.values.AuthorizedSignature) {
+    formik.setFieldValue("AuthorizedSignature",AuthorizedSignatureOptions[0].value)
+  }
+})
+
   return (
     <div className="order__summary__container">
       <CustomToast ref={toastRef} message="Quote Created Successfully" />
@@ -199,7 +207,7 @@ const OrderSummary = () => {
                 />
               </div>
             </div>
-            {/* <div class="grid m-0">
+             <div class="grid m-0">
               <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
                 <CalculaitionTextInputs
                   label="NCD (10%)"
@@ -208,7 +216,8 @@ const OrderSummary = () => {
                   error={formik.touched.NCD && formik.errors.NCD}
                 />
               </div>
-            </div> */}
+            </div>
+            
             <div class="grid m-0">
               <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
                 <CalculaitionTextInputs

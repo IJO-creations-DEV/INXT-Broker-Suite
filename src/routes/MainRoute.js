@@ -159,6 +159,7 @@ import CoverageDeatails from "../agentModule/quoteModule/coverageDetails";
 import PolicyDetails from "../agentModule/quoteModule/policyDetails";
 import Accessories from "../agentModule/quoteModule/accessories";
 import OrderSummary from "../agentModule/quoteModule/orderSummary";
+import OrderSummaryQuote from "../agentModule/quoteModule/orderSummaryQuote";
 import QuoteDetailView from "../agentModule/quoteModule/quoteDetailView";
 import QuoteListing from "../agentModule/quoteModule/quoteListing";
 import CustomerInfo from "../agentModule/quoteModule/customerInfo";
@@ -1005,6 +1006,10 @@ const Maincomponent = () => {
             <Route
               path="/agent/createquote/ordersummary"
               element={<OrderSummary />}
+            />
+            <Route
+              path="/agent/createquote/ordersummaryquote"
+              element={<OrderSummaryQuote />}
             />
             <Route
               path="/agent/quotedetailview"

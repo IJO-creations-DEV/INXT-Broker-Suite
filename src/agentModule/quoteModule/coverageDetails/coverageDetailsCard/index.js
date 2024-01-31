@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Card } from "primereact/card";
 import InputTextField from "../../../component/inputText";
 import CalculaitionTextInputs from "../../../component/calculaitionTextInputs";
@@ -14,12 +14,13 @@ import {
   PropertyDamageOptions,
 } from "./mock";
 import { postcoverageDetailsMiddleware } from "../store/coverageDetailsMiddleware";
+import { APPATotalCoverageOptions } from "../../../endorsementModule/personalDetails/mock";
 
 const initialValue = {
-  LossandDamagecoverage: "",
-  LossandDamagecoverageRate: "",
+  LossandDamagecoverage: "1,00,000.00",
+  LossandDamagecoverageRate: "0.8%",
   LossandDamagecoveragepremium: "0.00",
-  ActsofNatureRate: "",
+  ActsofNatureRate: "0.5%",
   ActsofNaturepremium: "0.00",
   BodilyInjury: "",
   BodilyInjuryCoveragePremium: "0.00",
@@ -45,18 +46,18 @@ const CoverageDetailsCard = () => {
     setFormikValues();
     setshow(false)
   };
-  const customValidation = (values) => {
-    const errors = {}
-    if (!values.LossandDamagecoverage) {
-      errors.LossandDamagecoverage = "This field is required";
-    }
-    if (!values.LossandDamagecoverageRate) {
-      errors.LossandDamagecoverageRate = "This field is required";
-    }
+  // const customValidation = (values) => {
+  //   const errors = {}
+  //   if (!values.LossandDamagecoverage) {
+  //     errors.LossandDamagecoverage = "This field is required";
+  //   }
+  //   if (!values.LossandDamagecoverageRate) {
+  //     errors.LossandDamagecoverageRate = "This field is required";
+  //   }
   
   
-    return errors
-  }
+  //   return errors
+  // }
 
   const setFormikValues = () => {
     const updatedValues = {
@@ -76,13 +77,29 @@ const CoverageDetailsCard = () => {
 
   const formik = useFormik({
     initialValues: initialValue,
-    validate:customValidation,
+    // validate:customValidation,
     onSubmit: (values) => {
       handleclick(values);
       // hadlecalculation();
     },
   });
-
+  useEffect(() => {
+    
+    if (!formik.values.BodilyInjury) {
+      formik.setFieldValue("BodilyInjury", BodilyInjuryOptions[0].value);
+    }
+    if (!formik.values.PropertyDamage) {
+      formik.setFieldValue("PropertyDamage", PropertyDamageOptions[0].value);
+    }
+    if (!formik.values.AutopassengerpersonalAccident) {
+      formik.setFieldValue("AutopassengerpersonalAccident", AutopassengerpersonalAccidentOptions[0].value);
+    }
+    if (!formik.values.APPATotalCoverage) {
+      formik.setFieldValue("APPATotalCoverage", APPATotalCoverageOptions[0].value);
+    }
+  
+    
+  }, []);
   return (
     <div className="coverage__details__card__container mt-4">
         <Card>

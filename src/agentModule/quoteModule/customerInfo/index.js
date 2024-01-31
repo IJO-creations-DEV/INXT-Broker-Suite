@@ -15,10 +15,11 @@ import {
   patchinformationMiddleWare,
 } from "./store/infoMiddleWare";
 import { useDispatch, useSelector } from "react-redux";
+import { MortgageOptions } from "../../endorsementModule/personalDetails/mock";
 
 const initialValues = {
-  MotorNumber: "",
-  ChassisNumber: "",
+  MotorNumber: "8546791234",
+  ChassisNumber: "8529637412",
   Mortgage: "",
   CertNumber: "",
   PlateNumber: "",
@@ -51,10 +52,10 @@ const CustomerInfo = ({ action }) => {
   //   }
   // }
   const handleSubmit = (values) => {
-    if (!values.file) {
-      alert("please select file")
-      return;
-    }
+    // if (!values.file) {
+    //   alert("please select file")
+    //   return;
+    // }
     if (action === "edit" && postcustomerinfodata) {
       const valueWithId = {
         ...values,
@@ -118,47 +119,47 @@ const CustomerInfo = ({ action }) => {
     //  { label: "duty", value: "AR" },
   ];
 
-  const customValidation = (values) => {
-    const errors = {};
+  // const customValidation = (values) => {
+  //   const errors = {};
 
-    if (!values.MotorNumber) {
-      errors.MotorNumber = "This field Code is required";
-    }
-    if (!values.ChassisNumber) {
-      errors.ChassisNumber = "This field is required";
-    }
-    if (!values.TruckType) {
-      errors.TruckType = "This field is required";
-    }
-    if (!values.Mortgage) {
-      errors.Mortgage = "This field is required";
-    }
-    if (!values.CertNumber) {
-      errors.CertNumber = "This field is required";
-    }
-    if (!values.PlateNumber) {
-      errors.PlateNumber = "This field is required";
-    }
-    if (!values.MVFileNumber) {
-      errors.MVFileNumber = "This field is required";
-    }
-    if (!values.AuthenCode) {
-      errors.AuthenCode = "This field is required";
-    }
-    if (!values.Aluminium) {
-      errors.Aluminium = "This field is required";
-    }
-    if (!values.AirBag) {
-      errors.AirBag = "This field is required";
-    }
-    if (!values.TNVS) {
-      errors.TNVS = "This field is required";
-    }
-    if (!values.file) {
-      errors.file = "This field is required";
-    }
-    return errors;
-  };
+  //   if (!values.MotorNumber) {
+  //     errors.MotorNumber = "This field Code is required";
+  //   }
+  //   if (!values.ChassisNumber) {
+  //     errors.ChassisNumber = "This field is required";
+  //   }
+  //   if (!values.TruckType) {
+  //     errors.TruckType = "This field is required";
+  //   }
+  //   if (!values.Mortgage) {
+  //     errors.Mortgage = "This field is required";
+  //   }
+  //   if (!values.CertNumber) {
+  //     errors.CertNumber = "This field is required";
+  //   }
+  //   if (!values.PlateNumber) {
+  //     errors.PlateNumber = "This field is required";
+  //   }
+  //   if (!values.MVFileNumber) {
+  //     errors.MVFileNumber = "This field is required";
+  //   }
+  //   if (!values.AuthenCode) {
+  //     errors.AuthenCode = "This field is required";
+  //   }
+  //   if (!values.Aluminium) {
+  //     errors.Aluminium = "This field is required";
+  //   }
+  //   if (!values.AirBag) {
+  //     errors.AirBag = "This field is required";
+  //   }
+  //   if (!values.TNVS) {
+  //     errors.TNVS = "This field is required";
+  //   }
+  //   if (!values.file) {
+  //     errors.file = "This field is required";
+  //   }
+  //   return errors;
+  // };
 
   //   useEffect(() => {
   //     console.log(action,'find sction call')
@@ -173,6 +174,11 @@ const CustomerInfo = ({ action }) => {
     }
   }, [action, postcustomerinfodata]);
 
+  useEffect (()=>{
+    if (!formik.values.Mortgage){
+      setFormikValues("Mortgage",MortgageOptions[0].value)
+    }
+  })
   const setFormikValues = (data) => {
     console.log(data, "find data");
     // const IsoCode = getExchangeEdit?.ISOcode;
@@ -196,7 +202,7 @@ const CustomerInfo = ({ action }) => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validate: customValidation,
+    // validate: customValidation,
     onSubmit: handleSubmit,
   });
 
@@ -220,10 +226,10 @@ const CustomerInfo = ({ action }) => {
         </div>
         <div class="grid m-0">
           <div class="col-12 mt-2">
-            <InputTextField label="Insured Name*" value="Carson Darrin" />
+            <InputTextField label="Insured Name" value="Carson Darrin" />
           </div>
           <div class="col-12 mt-2">
-            <div className="upload__label">ID Card*</div>
+            <div className="upload__label">ID Card</div>
             {!imageURL ? (
               <div className="upload__card__container mt-2">
                 <div className="file_icon_selector">
@@ -269,7 +275,7 @@ const CustomerInfo = ({ action }) => {
             )}
           </div>
           <div class="col-12 mt-2">
-            <InputTextField label="ID Card Number*" />
+            <InputTextField label="ID Card Number" />
             {/* {formik.touched.MotorNumber && formik.errors.MotorNumber && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                 {formik.errors.MotorNumber}
@@ -282,7 +288,7 @@ const CustomerInfo = ({ action }) => {
         </div>
         <div class="grid m-0">
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Motor Number*"
+            <InputTextField label="Motor Number"
               value={formik.values.MotorNumber}
               onChange={formik.handleChange("MotorNumber")}
             />
@@ -293,7 +299,7 @@ const CustomerInfo = ({ action }) => {
             )}
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField label="Chassis Number*"
+            <InputTextField label="Chassis Number"
               value={formik.values.ChassisNumber}
               onChange={formik.handleChange("ChassisNumber*")} />
             {formik.touched.ChassisNumber && formik.errors.ChassisNumber && (
@@ -358,20 +364,8 @@ const CustomerInfo = ({ action }) => {
               </div>
             )}
           </div>
-          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField
-              label="MV File Number"
-              value={formik.values.MVFileNumber}
-              onChange={formik.handleChange("MVFileNumber")}
-            />
-          </div>
-          <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-            <InputTextField
-              label="Authen Code"
-              value={formik.values.AuthenCode}
-              onChange={formik.handleChange("AuthenCode")}
-            />
-          </div>
+         
+         
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField
               label="Truck Type"

@@ -11,13 +11,13 @@ import InputTextField from "../../component/inputText";
 import { postaccessoriesMiddleware } from "./store/accessoriesMiddleware";
 
 const initialValue = {
-  Aircon: "",
-  Stereo: "",
-  Magwheels: "",
-  Others: "",
-  Deductible: "",
-  Towing: "",
-  RepairLimit: "",
+  Aircon: "350.00",
+  Stereo: "220.00",
+  Magwheels: "150.00",
+  Others: "170.00",
+  Deductible: "550.00",
+  Towing: "110.00",
+  RepairLimit: "850.00",
 };
 
 const Accessories = () => {
@@ -26,43 +26,43 @@ const Accessories = () => {
 
   const handleclick = (values) => {
     dispatch(postaccessoriesMiddleware(values));
-    navigate("/agent/createquote/ordersummary");
+    navigate("/agent/createquote/ordersummaryquote");
   };
   const handleBackNavigation = () => {
     customHistory.back();
   };
-  const customValidation = (values) => {
-    // const errors = {}
+  // const customValidation = (values) => {
+    
 
-    const errors = {};
-    if (!values.Aircon) {
-      errors.Aircon = "This field is required";
-    }
-    if (!values.Stereo) {
-      errors.Stereo = "This field is required";
-    }
-    if (!values.Magwheels) {
-      errors.Magwheels = "This field is required";
-    }
-    if (!values.Others) {
-      errors.Others = "This field is required";
-    }
-    if (!values.Deductible) {
-      errors.Deductible = "This field is required";
-    }
-    if (!values.Towing) {
-      errors.Towing = "This field is required";
-    }
-    if (!values.RepairLimit) {
-      errors.RepairLimit = "This field is required";
-    }
+  //   const errors = {};
+  //   if (!values.Aircon) {
+  //     errors.Aircon = "This field is required";
+  //   }
+  //   if (!values.Stereo) {
+  //     errors.Stereo = "This field is required";
+  //   }
+  //   if (!values.Magwheels) {
+  //     errors.Magwheels = "This field is required";
+  //   }
+  //   if (!values.Others) {
+  //     errors.Others = "This field is required";
+  //   }
+  //   if (!values.Deductible) {
+  //     errors.Deductible = "This field is required";
+  //   }
+  //   if (!values.Towing) {
+  //     errors.Towing = "This field is required";
+  //   }
+  //   if (!values.RepairLimit) {
+  //     errors.RepairLimit = "This field is required";
+  //   }
 
-    return errors;
-  };
+  //   return errors;
+  // };
 
   const formik = useFormik({
     initialValues: initialValue,
-    validate: customValidation,
+    // validate: customValidation,
     onSubmit: (values) => {
       handleclick(values);
       // hadlecalculation();
@@ -83,10 +83,11 @@ const Accessories = () => {
           <div class="grid mt-2">
             <div class="col-6">
               <InputTextField
-                label="Aircon*"
+                label="Aircon"
                 value={formik.values.Aircon}
                 onChange={formik.handleChange("Aircon")}
               />
+              
               {formik.touched.Aircon && formik.errors.Aircon && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.Aircon}
@@ -95,7 +96,7 @@ const Accessories = () => {
             </div>
             <div class="col-6">
               <InputTextField
-                label="Stereo*"
+                label="Stereo"
                 value={formik.values.Stereo}
                 onChange={formik.handleChange("Stereo")}
               />
@@ -110,7 +111,7 @@ const Accessories = () => {
           <div className="grid mt-2">
             <div class="col-6">
               <InputTextField
-                label="Mag wheels*"
+                label="Mag wheels"
                 value={formik.values.Magwheels}
                 onChange={formik.handleChange("Magwheels")}
               />
@@ -137,7 +138,7 @@ const Accessories = () => {
           <div class="grid mt-2">
             <div class="col-6">
               <InputTextField
-                label="Deductible*"
+                label="Deductible"
                 value={formik.values.Deductible}
                 onChange={formik.handleChange("Deductible")}
               />
@@ -149,7 +150,7 @@ const Accessories = () => {
             </div>
             <div class="col-6">
               <InputTextField
-                label="Towing*"
+                label="Towing"
                 value={formik.values.Towing}
                 onChange={formik.handleChange("Towing")}
               />
@@ -163,7 +164,7 @@ const Accessories = () => {
           <div class="grid mt-2">
             <div class="col-6">
               <InputTextField
-                label="Repair Limit*"
+                label="Repair Limit"
                 value={formik.values.RepairLimit}
                 onChange={formik.handleChange("RepairLimit")}
               />

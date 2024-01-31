@@ -39,32 +39,32 @@ const UploadPolicyCard = () => {
   };
   // const minDate = new Date();
   // minDate.setDate(minDate.getDate() + 1);
-  const customValidation = (values) => {
-    const errors = {}
-    if (!values.PolicyNumber) {
-      errors.PolicyNumber = "This field is required";
-    }
-    if (!values.InsuranceCompany) {
-      errors.InsuranceCompany = "This field is required";
-    }
-    if (!values.Production) {
-      errors.Production = "This field is required";
-    }
-    if (!values.Inception) {
-      errors.Inception = "This field is required";
-    }
-    if (!values.IssuedDate) {
-      errors.IssuedDate = "This field is required";
-    }
-    if (!values.Expiry) {
-      errors.Expiry = "This field is required";
-    }
-    if (!values.file) {
-      errors.file = "This field is required";
-    }
+  // const customValidation = (values) => {
+  //   const errors = {}
+  //   if (!values.PolicyNumber) {
+  //     errors.PolicyNumber = "This field is required";
+  //   }
+  //   if (!values.InsuranceCompany) {
+  //     errors.InsuranceCompany = "This field is required";
+  //   }
+  //   if (!values.Production) {
+  //     errors.Production = "This field is required";
+  //   }
+  //   if (!values.Inception) {
+  //     errors.Inception = "This field is required";
+  //   }
+  //   if (!values.IssuedDate) {
+  //     errors.IssuedDate = "This field is required";
+  //   }
+  //   if (!values.Expiry) {
+  //     errors.Expiry = "This field is required";
+  //   }
+  //   if (!values.file) {
+  //     errors.file = "This field is required";
+  //   }
   
-    return errors
-  }
+  //   return errors
+  // }
   const handleUppendImg = (name, src) => {
     setimageURL(src.objectURL);
     console.log(name, src.objectURL, "find handleUppendImg");
@@ -76,7 +76,7 @@ const UploadPolicyCard = () => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validate: customValidation,
+    // validate: customValidation,
     onSubmit: handleSubmit,
   });
 

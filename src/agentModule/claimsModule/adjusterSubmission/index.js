@@ -112,9 +112,9 @@ const AdjusterSubmission = () => {
     if (!values.zipCode) {
       errors.zipCode = "This field is required";
     }
-    if (!values.file) {
-      errors.file = "Please select a file";
-    }
+    // if (!values.file) {
+    //   errors.file = "Please select a file";
+    // }
     return errors;
   };
   const dispatch = useDispatch();
@@ -125,10 +125,7 @@ const AdjusterSubmission = () => {
   //   navigate(`/agent/endorsementdetailedview/${123}`);
   // }, 2000);
   const handleSubmit = (values) => {
-    if (!values.file) {
-      alert("please select file");
-      return;
-    }
+   
     dispatch(postAdjusterSubmission(formik.values));
     Navigate("/agent/claimrequest/settlementapproval");
   };

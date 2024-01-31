@@ -38,36 +38,35 @@ const SendMail = () => {
 
   const formInitialValue = {
     mailSubject: "Claim Request for Policy Number",
-    write: "Hello,I hope this email finds you well.i am writing regarding a claim request for a client [Ritchad] with policy number 001",
+    write: `Hello,
+    I hope this email finds you well.
+    I am writing regarding a claim request for a client [Ritchad] with policy number 001`,
     file: null,
   };
-  const customValidation = (values) => {
-    const errors = {};
+  // const customValidation = (values) => {
+  //   const errors = {};
 
-    if (!values.mailSubject) {
-      errors.mailSubject = "This field is required";
-    }
-    if (!values.write) {
-      errors.write = "This field is required";
-    }
+  //   if (!values.mailSubject) {
+  //     errors.mailSubject = "This field is required";
+  //   }
+  //   if (!values.write) {
+  //     errors.write = "This field is required";
+  //   }
 
-    if (!values.file) {
-      errors.file = "Please select a file";
-    }
-    return errors;
-  };
+  //   if (!values.file) {
+  //     errors.file = "Please select a file";
+  //   }
+  //   return errors;
+  // };
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    if (!values.file) {
-      alert("please select file");
-      return;
-    }
+   
     dispatch(postSendData(formik.values));
     navigate("/agent/claimrequest/requestapproval/122344");
   };
   const formik = useFormik({
     initialValues: formInitialValue,
-    validate: customValidation,
+    // validate: customValidation,
     onSubmit: handleSubmit,
   });
   // const handleSubmit = () => {

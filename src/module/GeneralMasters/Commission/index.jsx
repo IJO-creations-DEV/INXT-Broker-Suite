@@ -132,7 +132,7 @@ const Commission = () => {
           </form>
           <div className="col-12 ">
             <div className="main__tabel__title__Journal__Voture p-2">
-            Commission List
+              Commissions List
             </div>
           </div>
           <div

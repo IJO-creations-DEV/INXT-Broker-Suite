@@ -36,13 +36,13 @@ export const getExpiringSearchDataMiddleWare = createAsyncThunk(
       const outputData = data.filter(item => {
        
           if (field === 'Name') {
-            return item.name.toLowerCase().includes(lowercasedValue);
+            return item.Name.toLowerCase().includes(lowercasedValue);
           } else if (field === 'PolicyNo') {
-            return item.policyNo.toLowerCase().includes(lowercasedValue);
+            return item.PolicyNo.toLowerCase().includes(lowercasedValue);
           }
           return (
-            (item.name.toLowerCase().includes(lowercasedValue) ||
-              item.policyNo.toLowerCase().includes(lowercasedValue)
+            (item.Name.toLowerCase().includes(lowercasedValue) ||
+              item.PolicyNo.toLowerCase().includes(lowercasedValue)
               )
           );
         

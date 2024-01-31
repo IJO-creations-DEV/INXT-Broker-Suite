@@ -11,10 +11,10 @@ import { useFormik } from "formik";
 
 const initialValues = {
   PolicyNumber: "",
-  Production: "12/12/2023",
-  Inception: "12/12/2023",
-  IssueDate: "12/12/2023",
-  Expiry: "12/12/2023",
+  Production: "12/12/2024",
+  Inception: "12/12/2024",
+  IssueDate: "12/12/2024",
+  Expiry: "12/12/2025",
 };
 
 const handleSubmit = () => {

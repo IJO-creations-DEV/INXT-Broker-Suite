@@ -17,6 +17,7 @@ import { Menu } from "primereact/menu";
 import { useSelector,useDispatch } from "react-redux";
 import ClientListing from "../../../quoteModule/clientListing";
 import { getExpiringSearchDataMiddleWare } from "../expiringPolicyCard/store/expiringMiddleware"
+import { collectFromHash } from "@fullcalendar/core/internal";
 
 const ExpiringPolicyCard = () => {
   const [search,setSearch]=useState("")
@@ -28,6 +29,7 @@ const ExpiringPolicyCard = () => {
 
   const { expiringtabledata, expiringSearchList, loading } = useSelector(
     ({ agentExpiringMainReducers }) => {
+      console.log(agentExpiringMainReducers,"find mainred")
       return {
         loading: agentExpiringMainReducers?.loading,
         expiringtabledata: agentExpiringMainReducers?.expiringtabledata,

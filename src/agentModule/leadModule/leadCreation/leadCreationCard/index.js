@@ -215,7 +215,7 @@ const LeadCreationCard = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-6">
             <InputTextField
-              label="Last Name"
+              label="Last Name*"
               value={formik.values.LastName}
               onChange={formik.handleChange("LastName")}
 
@@ -245,7 +245,7 @@ const LeadCreationCard = () => {
           <div class="col-12 md:col-6 lg:col-6">
             {/* <InputTextField label="Date of Birth" />  */}
              <DatepickerField
-              label="Date of Birth"
+              label="Date of Birth*"
               value={formik.values.DateofBirth}
               onChange={(date) => {
                 console.log(date, "date")
@@ -318,7 +318,7 @@ const LeadCreationCard = () => {
         <div class="grid mt-2">
           <div class="col-12 md:col-6 lg:col-6">
             <InputTextField
-              label="Email ID"
+              label="Email ID*"
               value={formik.values.EmailID}
               onChange={formik.handleChange("EmailID")}
 
@@ -331,7 +331,7 @@ const LeadCreationCard = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-6">
             <InputTextField
-              label="Contact Number"
+              label="Contact Number*"
               value={formik.values.ContactNumber}
               onChange={formik.handleChange("ContactNumber")}
 
@@ -346,7 +346,7 @@ const LeadCreationCard = () => {
         <div class="grid mt-2">
           <div class="col-12 md:col-6 lg:col-6">
             <InputTextField
-              label="House No / Unit No / Street "
+              label="House No / Unit No / Street*"
               value={formik.values.HouseNo}
               onChange={formik.handleChange("HouseNo")}
 
@@ -359,7 +359,7 @@ const LeadCreationCard = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-6">
             <InputTextField
-              label="Barangay / Subd"
+              label="Barangay / Subd*"
               value={formik.values.Barangay}
               onChange={formik.handleChange("Barangay")}
 
@@ -376,7 +376,7 @@ const LeadCreationCard = () => {
           <div class="col-12 md:col-6 lg:col-6">
             {/* <InputTextField label="First Name*"/> */}
             <DropdownField
-              label="Country"
+              label="Country*"
               value={formik.values.Country}
               options={Country}
               onChange={(e) => {
@@ -394,7 +394,7 @@ const LeadCreationCard = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-6">
             <DropdownField
-              label="Province"
+              label="Province*"
               value={formik.values.Province}
               options={State}
               onChange={(e) => {
@@ -415,7 +415,7 @@ const LeadCreationCard = () => {
         <div class="grid mt-2">
           <div class="col-12 md:col-6 lg:col-6">
             <DropdownField
-              label="City"
+              label="City*"
               value={formik.values.City}
               options={City}
               onChange={(e) => {
@@ -433,7 +433,7 @@ const LeadCreationCard = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-6">
             <InputTextField
-              label="ZIP Code"
+              label="ZIP Code*"
               value={formik.values.ZIPCode}
               onChange={formik.handleChange("ZIPCode")}
 

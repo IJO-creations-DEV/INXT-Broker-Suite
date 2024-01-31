@@ -1,5 +1,5 @@
 import { Card } from "primereact/card";
-import React from "react";
+import React, { useEffect } from "react";
 import DropdownField from "../../../component/DropdwonField";
 import InputTextField from "../../../component/inputText";
 import { Button } from "primereact/button";
@@ -27,7 +27,7 @@ const initialValue = {
   VehicleModel: "",
   ModelVariant: "",
   VehicleColor: "",
-  SeatingCapacity: "",
+  SeatingCapacity: "2",
 };
 
 const PolicyDetailsCard = () => {
@@ -38,47 +38,73 @@ const PolicyDetailsCard = () => {
     dispatch(postPolicyDetailsMiddleware(values));
     navigate("/agent/createquote/coveragedetails");
   };
-  const customValidation = (values) => {
-    const errors = {}
-    if (!values.InsuranceCompanyName) {
-      errors.InsuranceCompanyName = "This field is required";
-    }
-    if (!values.InsurancePolicyType) {
-      errors.InsurancePolicyType = "This field is required";
-    }
-    if (!values.AccountCode) {
-      errors.AccountCode = "This field is required";
-    }
-    if (!values.VehicleBrand) {
-      errors.VehicleBrand = "This field is required";
-    }
-    if (!values.ModelYear) {
-      errors.ModelYear = "This field is required";
-    }
-    if (!values.VehicleModel) {
-      errors.VehicleModel = "This field is required";
-    }
-    if (!values.ModelVariant) {
-      errors.ModelVariant = "This field is required";
-    }
-    if (!values.VehicleColor) {
-      errors.VehicleColor = "This field is required";
-    }
+  // const customValidation = (values) => {
+  //   const errors = {}
+  //   if (!values.InsuranceCompanyName) {
+  //     errors.InsuranceCompanyName = "This field is required";
+  //   }
+  //   if (!values.InsurancePolicyType) {
+  //     errors.InsurancePolicyType = "This field is required";
+  //   }
 
-    if (!values.SeatingCapacity) {
-      errors.SeatingCapacity = "This field is required";
-    }
-  
-    return errors
-  }
+  //   if (!values.VehicleBrand) {
+  //     errors.VehicleBrand = "This field is required";
+  //   }
+  //   if (!values.ModelYear) {
+  //     errors.ModelYear = "This field is required";
+  //   }
+  //   if (!values.VehicleModel) {
+  //     errors.VehicleModel = "This field is required";
+  //   }
+  //   if (!values.ModelVariant) {
+  //     errors.ModelVariant = "This field is required";
+  //   }
+  //   if (!values.VehicleColor) {
+  //     errors.VehicleColor = "This field is required";
+  //   }
+
+  //   if (!values.SeatingCapacity) {
+  //     errors.SeatingCapacity = "This field is required";
+  //   }
+
+  //   return errors
+  // }
 
   const formik = useFormik({
     initialValues: initialValue,
-    validate: customValidation,
+    // validate: customValidation,
     onSubmit: (values) => {
       handleclick(values);
     },
   });
+  useEffect(() => {
+    
+    if (!formik.values.InsuranceCompanyName) {
+      formik.setFieldValue("InsuranceCompanyName", InsuranceCompanyOptions[0].value);
+    }
+    if (!formik.values.InsurancePolicyType) {
+      formik.setFieldValue("InsurancePolicyType", InsurancePolicyTypes[0].value);
+    }
+    if (!formik.values.AccountCode) {
+      formik.setFieldValue("AccountCode", AccountCodes[0].value);
+    }
+    if (!formik.values.VehicleBrand) {
+      formik.setFieldValue("VehicleBrand", VehicleBrands[0].value);
+    }
+    if (!formik.values.ModelYear) {
+      formik.setFieldValue("ModelYear", ModelYears[0].value);
+    }
+    if (!formik.values.VehicleModel) {
+      formik.setFieldValue("VehicleModel", VehicleModels[0].value);
+    }
+    if (!formik.values.ModelVariant) {
+      formik.setFieldValue("ModelVariant", ModelVariants[0].value);
+    }
+    if (!formik.values.VehicleColor) {
+      formik.setFieldValue("VehicleColor", VehicleColors[0].value);
+    }
+    
+  }, []);
   return (
     <div className="policy__details__card__container mt-4">
       <form onSubmit={formik.handleSubmit}>
@@ -93,7 +119,7 @@ const PolicyDetailsCard = () => {
           <div className="grid mt-2">
             <div className="col-12 md:col-12 lg:col-12">
               <DropdownField
-                label="Insurance Company Name*"
+                label="Insurance Company Name"
                 value={formik.values.InsuranceCompanyName}
                 options={InsuranceCompanyOptions}
                 onChange={(e) => {
@@ -101,9 +127,8 @@ const PolicyDetailsCard = () => {
                   formik.setFieldValue("InsuranceCompanyName", e.value);
                 }}
                 optionLabel="label"
-              
               />
-                {formik.touched.InsuranceCompanyName && formik.errors.InsuranceCompanyName && (
+              {formik.touched.InsuranceCompanyName && formik.errors.InsuranceCompanyName && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.InsuranceCompanyName}
                 </div>
@@ -122,9 +147,9 @@ const PolicyDetailsCard = () => {
                   formik.setFieldValue("InsurancePolicyType", e.value);
                 }}
                 optionLabel="label"
-              
+
               />
-                {formik.touched.InsurancePolicyType && formik.errors.InsurancePolicyType && (
+              {formik.touched.InsurancePolicyType && formik.errors.InsurancePolicyType && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.InsurancePolicyType}
                 </div>
@@ -140,8 +165,8 @@ const PolicyDetailsCard = () => {
                   formik.setFieldValue("AccountCode", e.value);
                 }}
                 optionLabel="label"
-                />
-                {formik.touched.AccountCode && formik.errors.AccountCode && (
+              />
+              {formik.touched.AccountCode && formik.errors.AccountCode && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.AccountCode}
                 </div>
@@ -164,9 +189,9 @@ const PolicyDetailsCard = () => {
                   formik.setFieldValue("VehicleBrand", e.value);
                 }}
                 optionLabel="label"
-               
+
               />
-                {formik.touched.VehicleBrand && formik.errors.VehicleBrand && (
+              {formik.touched.VehicleBrand && formik.errors.VehicleBrand && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.VehicleBrand}
                 </div>
@@ -182,8 +207,8 @@ const PolicyDetailsCard = () => {
                   formik.setFieldValue("ModelYear", e.value);
                 }}
                 optionLabel="label"
-                  />
-                {formik.touched.ModelYear && formik.errors.ModelYear && (
+              />
+              {formik.touched.ModelYear && formik.errors.ModelYear && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.ModelYear}
                 </div>
@@ -202,9 +227,9 @@ const PolicyDetailsCard = () => {
                   formik.setFieldValue("VehicleModel", e.value);
                 }}
                 optionLabel="label"
-               
+
               />
-                {formik.touched.VehicleModel && formik.errors.VehicleModel && (
+              {formik.touched.VehicleModel && formik.errors.VehicleModel && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.VehicleModel}
                 </div>
@@ -220,9 +245,9 @@ const PolicyDetailsCard = () => {
                   formik.setFieldValue("ModelVariant", e.value);
                 }}
                 optionLabel="label"
-              
+
               />
-                {formik.touched.ModelVariant && formik.errors.ModelVariant && (
+              {formik.touched.ModelVariant && formik.errors.ModelVariant && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.ModelVariant}
                 </div>
@@ -241,9 +266,9 @@ const PolicyDetailsCard = () => {
                   formik.setFieldValue("VehicleColor", e.value);
                 }}
                 optionLabel="label"
-                
+
               />
-                {formik.touched.VehicleColor && formik.errors.VehicleColor && (
+              {formik.touched.VehicleColor && formik.errors.VehicleColor && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.VehicleColor}
                 </div>
@@ -254,9 +279,9 @@ const PolicyDetailsCard = () => {
                 label="Seating Capacity"
                 value={formik.values.SeatingCapacity}
                 onChange={formik.handleChange("SeatingCapacity")}
-                
+
               />
-                {formik.touched.SeatingCapacity && formik.errors.SeatingCapacity && (
+              {formik.touched.SeatingCapacity && formik.errors.SeatingCapacity && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.SeatingCapacity}
                 </div>

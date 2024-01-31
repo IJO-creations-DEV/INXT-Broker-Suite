@@ -67,62 +67,92 @@ const QuoteDetailView = () => {
           <div className="quote_details">
             <label className="insurance_text">Insurance Company</label>
             <label className="alpha_text">
-              {PolicyDetails.InsuranceCompanyName}
+              {/* {PolicyDetails.InsuranceCompanyName} */}
+              Alpha Insurance Company
             </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Insurance Policy Type</label>
             <label className="alpha_text">
-              {PolicyDetails.InsurancePolicyType}
+              {/* {PolicyDetails.InsurancePolicyType} */}
+              CV
             </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Account Code</label>
-            <label className="alpha_text">{PolicyDetails.AccountCode}</label>
+            <label className="alpha_text">
+              {/* {PolicyDetails.AccountCode} */}
+              Acc012345
+
+            </label>
           </div>
         </div>
         <div className="sub_title">
           <label className="policy_text">Assured Details</label>
           <div className="quote_details">
             <label className="insurance_text">Name</label>
-            <label className="alpha_text">{createleaddata.FirstName}</label>
+            <label className="alpha_text">
+              {/* {createleaddata.FirstName} */}
+              Carson
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Email ID</label>
-            <label className="alpha_text">{createleaddata.EmailID}</label>
+            <label className="alpha_text">
+              {/* {createleaddata.EmailID} */}
+              contact@broker.com
+              </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Contact Number</label>
-            <label className="alpha_text">{createleaddata.ContactNumber}</label>
+            <label className="alpha_text">9874563210
+            {/* {createleaddata.ContactNumber} */}
+            </label>
           </div>
         </div>
         <div className="sub_title">
           <label className="policy_text">Insurance Vehicle Details</label>
           <div className="quote_details">
             <label className="insurance_text">Vehicle Brand</label>
-            <label className="alpha_text">{PolicyDetails.VehicleBrand}</label>
+            <label className="alpha_text">
+              {/* {PolicyDetails.VehicleBrand} */}
+              Honda
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Model Year</label>
-            <label className="alpha_text">{PolicyDetails.ModelYear}</label>
+            <label className="alpha_text">
+              {/* {PolicyDetails.ModelYear} */}
+              2024
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Vehicle Model</label>
-            <label className="alpha_text">{PolicyDetails.VehicleModel}</label>
+            <label className="alpha_text">
+              {/* {PolicyDetails.VehicleModel} */}
+              Vario CVT 150
+              </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Model Variant</label>
-            <label className="alpha_text">{PolicyDetails.ModelVariant}</label>
+            <label className="alpha_text">
+              {/* {PolicyDetails.ModelVariant} */}
+              CVT 150
+              </label>
           </div>
 
           <div className="quote_details">
             <label className="insurance_text">Vehicle Color</label>
-            <label className="alpha_text">{PolicyDetails.VehicleColor}</label>
+            <label className="alpha_text">
+              {/* {PolicyDetails.VehicleColor} */}
+              Back
+              </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Seating Capacity</label>
             <label className="alpha_text">
-              {PolicyDetails.SeatingCapacity}
+              {/* {PolicyDetails.SeatingCapacity} */}
+              2
             </label>
           </div>
         </div>
@@ -131,7 +161,8 @@ const QuoteDetailView = () => {
           <div className="quote_details">
             <label className="insurance_text">Total Sum Insured</label>
             <label className="alpha_text">
-              {CoverageDetails.TotalSumInsured}
+            5,00,000.00
+              {/* {CoverageDetails.TotalSumInsured} */}
             </label>
           </div>
         </div>
@@ -139,33 +170,53 @@ const QuoteDetailView = () => {
           <label className="policy_text">Payment Details</label>
           <div className="quote_details">
             <label className="insurance_text">NET Premium</label>
-            <label className="alpha_text">{OrderSummary.NETpremium}</label>
+            <label className="alpha_text">
+              5000.00
+              {/* {OrderSummary.NETpremium} */}
+            
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">DST</label>
             <label className="alpha_text">
-              {OrderSummary.DocumentaryStampTax}
+              {/* {OrderSummary.DocumentaryStampTax} */}
+              400.00
             </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">VAT</label>
-            <label className="alpha_text">{OrderSummary.ValueAddedTax}</label>
+            <label className="alpha_text">
+              {/* {OrderSummary.ValueAddedTax} */}
+              500.00
+              </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">LGT</label>
-            <label className="alpha_text">{OrderSummary.LocalGovtTax}</label>
+            <label className="alpha_text">
+              {/* {OrderSummary.LocalGovtTax} */}
+              550.00
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Others</label>
-            <label className="alpha_text">{OrderSummary.Others}</label>
+            <label className="alpha_text">
+              {/* {OrderSummary.Others} */}
+              550
+              </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Discount</label>
-            <label className="alpha_text">{OrderSummary.Discount}</label>
+            <label className="alpha_text">
+              {/* {OrderSummary.Discount} */}
+              -500.00
+              </label>
           </div>
           <div className="quote_details">
             <label className="gross_text">Gross premium</label>
-            <label className="gross_count">{OrderSummary.GrossPremium}</label>
+            <label className="gross_count">
+              {/* {OrderSummary.GrossPremium} */}
+              6500.00
+              </label>
           </div>
         </div>
       </Card>

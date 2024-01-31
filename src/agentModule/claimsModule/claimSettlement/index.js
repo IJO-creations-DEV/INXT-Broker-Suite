@@ -26,6 +26,9 @@ const ClaimSettlement = () => {
     navigate(`/agent/clientview/${123}`);
   };
 
+  const handleList =()=>{
+    navigate("/agent/clientview/1233")
+  }
   const handleAcknowledgmentsubmit = ()=>{
     const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FClaims%20Acknowledgement%20letter%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
     const link = document.createElement("a");
@@ -158,7 +161,7 @@ const ClaimSettlement = () => {
         
         </div>
         <div className="listing__button mt-3">
-          <Button> 
+          <Button onClick={handleList}> 
             Go to listing
           </Button>
         </div>

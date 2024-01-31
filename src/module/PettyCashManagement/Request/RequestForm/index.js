@@ -64,9 +64,9 @@ const RequestForm = ({ action }) => {
   const validate = (values) => {
     let errors = {};
 
-    if (!values.TransactionCode) {
-      errors.TransactionCode = "Petty Cash Code is required";
-    }
+    // if (!values.TransactionCode) {
+    //   errors.TransactionCode = "Petty Cash Code is required";
+    // }
 
     if (!values.RequesterName) {
       errors.RequesterName = "TransactionNumber is required";
@@ -120,92 +120,92 @@ const RequestForm = ({ action }) => {
     },
   });
 
-  const handlePettyCashDescribtion = (value) => {
-    formik.setFieldValue("PettyCashCode", value);
+  // const handlePettyCashDescribtion = (value) => {
+  //   formik.setFieldValue("PettyCashCode", value);
 
-    let description = "";
-    let Requestnumber = "";
-    switch (value.pettycashcode) {
-      case "PC001":
-        description = "PC-1";
-        break;
-      case "PC002":
-        description = "PC-2";
-        break;
-      case "PC003":
-        description = "PC-3";
-        break;
-      // case "PC0131":
-      //   description = "PC-4";
-      //   break;
-      default:
-        description = "Unknown";
-        break;
-    }
+  //   let description = "";
+  //   let Requestnumber = "";
+  //   switch (value.pettycashcode) {
+  //     case "PC001":
+  //       description = "PC-1";
+  //       break;
+  //     case "PC002":
+  //       description = "PC-2";
+  //       break;
+  //     case "PC003":
+  //       description = "PC-3";
+  //       break;
+  //     // case "PC0131":
+  //     //   description = "PC-4";
+  //     //   break;
+  //     default:
+  //       description = "Unknown";
+  //       break;
+  //   }
 
-    switch (value.pettycashcode) {
-      case "PC001":
-        Requestnumber = "29292";
-        break;
-      case "PC002":
-        Requestnumber = "20202";
-        break;
-      case "PC003":
-        Requestnumber = "29292";
-        break;
-      // case "PC0131":
-      //   Requestnumber = "19292";
-      //   break;
-      default:
-        Requestnumber = "Unknown";
-        break;
-    }
-    formik.setFieldValue("Requestnumber", Requestnumber);
-    formik.setFieldValue("PettyCashdescription", description);
-  };
+  //   switch (value.pettycashcode) {
+  //     case "PC001":
+  //       Requestnumber = "29292";
+  //       break;
+  //     case "PC002":
+  //       Requestnumber = "20202";
+  //       break;
+  //     case "PC003":
+  //       Requestnumber = "29292";
+  //       break;
+  //     // case "PC0131":
+  //     //   Requestnumber = "19292";
+  //     //   break;
+  //     default:
+  //       Requestnumber = "Unknown";
+  //       break;
+  //   }
+  //   formik.setFieldValue("Requestnumber", Requestnumber);
+  //   formik.setFieldValue("PettyCashdescription", description);
+  // };
 
-  const handleBranch = (value) => {
-    let Branch = "";
-    switch (value) {
-      case "PHP001":
-        Branch = "Branch-1";
-        break;
-      case "PHP002":
-        Branch = "Branch-2";
-        break;
-      case "PHP003":
-        Branch = "Branch-3";
-        break;
-      // case "Branch00123":
-      //   Branch = "Branch-4";
-      //   break;
-      default:
-        Branch = "Unknown";
-        break;
-    }
-    formik.setFieldValue("Branchdescription", Branch);
-  };
-  const handleDepart = (value) => {
-    let Depart = "";
-    switch (value) {
-      case "FIN":
-        Depart = "Depart-1";
-        break;
-      case "MKT":
-        Depart = "Depart-2";
-        break;
-      case "IT":
-        Depart = "Depart-3";
-        break;
-      case "SLS":
-        Depart = "Depart-4";
-        break;
-      default:
-        Depart = "Unknown";
-        break;
-    }
-    formik.setFieldValue("Departmentdescription", Depart);
-  };
+  // const handleBranch = (value) => {
+  //   let Branch = "";
+  //   switch (value) {
+  //     case "PHP001":
+  //       Branch = "Branch-1";
+  //       break;
+  //     case "PHP002":
+  //       Branch = "Branch-2";
+  //       break;
+  //     case "PHP003":
+  //       Branch = "Branch-3";
+  //       break;
+  //     // case "Branch00123":
+  //     //   Branch = "Branch-4";
+  //     //   break;
+  //     default:
+  //       Branch = "Unknown";
+  //       break;
+  //   }
+  //   formik.setFieldValue("Branchdescription", Branch);
+  // };
+  // const handleDepart = (value) => {
+  //   let Depart = "";
+  //   switch (value) {
+  //     case "FIN":
+  //       Depart = "Depart-1";
+  //       break;
+  //     case "MKT":
+  //       Depart = "Depart-2";
+  //       break;
+  //     case "IT":
+  //       Depart = "Depart-3";
+  //       break;
+  //     case "SLS":
+  //       Depart = "Depart-4";
+  //       break;
+  //     default:
+  //       Depart = "Unknown";
+  //       break;
+  //   }
+  //   formik.setFieldValue("Departmentdescription", Depart);
+  // };
 
   return (
     <div className="request__form">
@@ -254,27 +254,20 @@ const RequestForm = ({ action }) => {
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">
-              <DropDowns
-                className="input__filed"
+              <InputField
+                classNames="input__filed"
                 label="Transaction Code"
-                placeholder="Select"
+                // placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.TransactionCode}
-                options={PettyCashCode}
-                name="PettyCashCode"
-                onChange={(e) => {
-                  formik.setFieldValue("TransactionCode", e.value).then(() => {
-                    handlePettyCashDescribtion(e.value);
-                  });
-                }}
-                optionLabel="pettycashcode"
-                error={
-                  formik.touched.TransactionCode &&
-                  formik.errors.TransactionCode
-                }
+              // value={formik.values.TransactionNumber}
+              // onChange={formik.handleChange("TransactionNumber")}
+              // error={
+              //   formik.touched.TransactionNumber &&
+              //   formik.errors.TransactionNumber
+              // }
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 input__view">

@@ -221,6 +221,7 @@ import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { TOKEN } from "../utility/constant";
+import EditRequestForm from "../module/PettyCashManagement/Request/EditRequest";
 
 const Maincomponent = () => {
   return (
@@ -347,17 +348,25 @@ const Maincomponent = () => {
               element={<PettyCashRequest />}
             />
             <Route
+              path="accounts/pettycash/editrequestform/edit/:id"
+              element={<EditRequestForm action="edit"/>}
+            />
+            <Route
+              path="accounts/pettycash/editrequestform/view/:id"
+              element={<EditRequestForm action="view"/>}
+            />
+            <Route
               path="accounts/pettycash/addrequest/add/:id"
               element={<RequestForm action="add" />}
             />
-            <Route
+            {/* <Route
               path="/accounts/pettycash/addrequest/view/:id"
               element={<RequestForm action="view" />}
-            />
-            <Route
+            /> */}
+            {/* <Route
               path="/accounts/pettycash/addrequest/edit/:id"
               element={<RequestForm action="edit" />}
-            />
+            /> */}
             <Route
               path="accounts/pettycash/addrequesttable"
               element={<AddRequestTable />}

@@ -13,7 +13,7 @@ import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useDispatch, useSelector } from "react-redux";
-import { getRequestSearchMiddleware } from "../store/pettyCashRequestMiddleware";
+import { getRequestSearchMiddleware , geteditrequestMiddleware} from "../store/pettyCashRequestMiddleware";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import SvgEdit from "../../../../assets/icons/SvgEdits";
 
@@ -47,12 +47,13 @@ const RequestTable = () => {
 
   const handleViewer = (columnData) => {
     // dispatch(getAccountDetailsView(columnData));
-    navigate(`/accounts/pettycash/addrequest/view/${123}`);
+    navigate(`/accounts/pettycash/editrequestform/view/${123}`);
   };
-  const handleEdit = (columnData) => {
+  const handleEdit = (rowData) => {
     // console.log(columnData, "columnData");
     // dispatch(getPatchAccountDetailsView(columnData));
-    navigate(`/accounts/pettycash/addrequest/edit/${123}`);
+    dispatch(geteditrequestMiddleware(rowData));
+    navigate(`/accounts/pettycash/editrequestform/edit/${123}`);
   };
 
   const emptyTableIcon = (

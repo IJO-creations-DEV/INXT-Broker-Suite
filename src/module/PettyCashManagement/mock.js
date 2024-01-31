@@ -11,7 +11,10 @@ export const TransactionCode = [
   { TransactionCode: "Trans0126" },
 ];
 
-export const Criteria = [{ Criteria: "Request" }];
+export const Criteria = [
+  { label: "Request", value: "Request" },
+  { label: "Direct", value: "Direct" }
+];
 export const VATMainAccount = [
   { VATMainAccount: "MACC001" },
   { VATMainAccount: "MACC002" },

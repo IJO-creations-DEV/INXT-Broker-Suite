@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./index.scss";
 import { useFormik } from "formik";
 import { BreadCrumb } from "primereact/breadcrumb";
@@ -29,6 +29,7 @@ import SvgTable from "../../../../assets/icons/SvgTable";
 const initialValue = {
   PettyCashCode: "",
   Date: "24/01/2024",
+  TransactionCode: "",
   TransactionNumber: "",
   Criteria: "",
   VATMainAccount: "",
@@ -44,11 +45,12 @@ const AddDisbursement = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   // const toastRef = useRef(null);
 
-  const { AddDisbursment, loading } = useSelector(
+  const { AddDisbursment, loading, AddDisbursmentRequestTable } = useSelector(
     ({ pettyCashDisbursementReducers }) => {
       return {
         loading: pettyCashDisbursementReducers?.loading,
         AddDisbursment: pettyCashDisbursementReducers?.AddDisbursment,
+        AddDisbursmentRequestTable: pettyCashDisbursementReducers?.AddDisbursmentRequestTable
       };
     }
   );
@@ -68,6 +70,7 @@ const AddDisbursement = () => {
   const handleBack = () => {
     navigate("/accounts/pettycash/disbursement");
   };
+  const toastRef = useRef(null);
   const handleSubmit = (value) => {
     const valueWithId = {
       ...value,
@@ -78,9 +81,9 @@ const AddDisbursement = () => {
     // {
     //   setTimeout(() => {
     navigate("/accounts/pettycash/adddisbursementtable");
-    //   }, 3000);
+    //   }, 2000);
     // }
-  };
+  }
 
   const validate = (values) => {
     const errors = {};
@@ -91,9 +94,12 @@ const AddDisbursement = () => {
     if (!values.Date) {
       errors.Date = "This field is required";
     }
-    if (!values.TransactionNumber) {
-      errors.TransactionNumber = "This field is required";
-    }
+    // if (!values.TransactionCode) {
+    //   errors.TransactionCode = "This field is required";
+    // }
+    // if (!values.TransactionNumber) {
+    //   errors.TransactionNumber = "This field is required";
+    // }
     if (!values.Criteria) {
       errors.Criteria = "This field is required";
     }
@@ -248,10 +254,27 @@ const AddDisbursement = () => {
             <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view">
               <InputField
                 classNames="input__filed"
+                label="Transaction Code"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                disabled={true}
+                value={formik.values.TransactionCode}
+                onChange={formik.handleChange("TransactionCode")}
+                error={
+                  formik.touched.TransactionCode &&
+                  formik.errors.TransactionCode
+                }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view">
+              <InputField
+                classNames="input__filed"
                 label="Transaction Number"
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
+                disabled={true}
                 value={formik.values.TransactionNumber}
                 onChange={formik.handleChange("TransactionNumber")}
                 error={
@@ -291,7 +314,7 @@ const AddDisbursement = () => {
                 value={formik.values.Criteria}
                 options={Criteria}
                 onChange={(e) => formik.setFieldValue("Criteria", e.value)}
-                optionLabel="Criteria"
+                optionLabel="label"
                 error={formik.touched.Criteria && formik.errors.Criteria}
               />
             </div>
@@ -387,53 +410,56 @@ const AddDisbursement = () => {
           </div>
         </Card>
       </div>
-      <Card className="mt-4">
-        <div className="sub__container grid ">
-          <div className="sub__container__title col-12">
-            <div className="table__top__btn__container">
-              <div className="sub__request__title">Request List</div>
+      {formik.values.Criteria === "Request" ?
+        <Card className="mt-4">
+          <div className="sub__container grid ">
+            <div className="sub__container__title col-12">
+              <div className="table__top__btn__container">
+                <div className="sub__request__title">Request List</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="table__container">
-          <DataTable
-            // value={AddDisbursmentTable}
-            // tableStyle={{ minWidth: "50rem" }}
-            emptyMessage={emptyTableIcon}
-            selection={selectedRows}
-            onSelectionChange={(e) => setSelectedRows(e.value)}
-            selectionMode="checkbox"
-            scrollable={true}
-            scrollHeight="40vh"
-            paginator
-            rows={5}
-            rowsPerPageOptions={[5, 10, 25, 50]}
-            // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-            currentPageReportTemplate="{first} - {last} of {totalRecords}"
-            paginatorTemplate={template2}
-          >
-            <Column
-              headerStyle={headaction}
-              selectionMode="multiple"
-              selectedItem
-              style={{ textAlign: "center" }}
+          <div className="table__container">
+            <DataTable
+              value={AddDisbursmentRequestTable}
+              // tableStyle={{ minWidth: "50rem" }}
+              emptyMessage={emptyTableIcon}
+              selection={selectedRows}
+              onSelectionChange={(e) => setSelectedRows(e.value)}
+              selectionMode="checkbox"
+              scrollable={true}
+              scrollHeight="40vh"
+              paginator
+              rows={5}
+              rowsPerPageOptions={[5, 10, 25, 50]}
+              // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+              currentPageReportTemplate="{first} - {last} of {totalRecords}"
+              paginatorTemplate={template2}
+            >
+              <Column
+                headerStyle={headaction}
+                selectionMode="multiple"
+                selectedItem
+                style={{ textAlign: "center" }}
               // headerStyle={{ width: "4rem" }}
-            ></Column>
-            <Column
-              field="TransactionCode"
-              header="Transaction Code"
-              headerStyle={headerStyle}
-              sortable
-            ></Column>
-            <Column
-              field="DocumentNumber"
-              header="Document Number"
-              headerStyle={headerStyle}
-              sortable
-            ></Column>
-          </DataTable>
-        </div>
-      </Card>
+              ></Column>
+              <Column
+                field="TransactionCode"
+                header="Transaction Code"
+                headerStyle={headerStyle}
+                sortable
+              ></Column>
+              <Column
+                field="DocumentNumber"
+                header="Document Number"
+                headerStyle={headerStyle}
+                sortable
+              ></Column>
+            </DataTable>
+          </div>
+        </Card>
+        : ""
+      }
 
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">
@@ -444,6 +470,7 @@ const AddDisbursement = () => {
               onClick={() => {
                 formik.handleSubmit();
               }}
+              disabled={selectedRows.length === 0 && formik.values.Criteria === "Request"}
             />
           </div>
         </div>

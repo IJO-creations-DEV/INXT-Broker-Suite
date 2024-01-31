@@ -6,6 +6,10 @@ import {
   getAddDisbursmentTableMiddleware,
   postEditDisbursmentMiddleware,
   getViewDisbursmentMiddleware,
+  getAddDisbursmentRequestListTableMiddleware,
+  getPatchDisbursementData,
+  postPatchDisbursementData,
+  postDisbursementData,
 } from "./pettyCashDisbursementMiddleware";
 const initialState = {
   loading: false,
@@ -110,6 +114,14 @@ const initialState = {
       PettycashCode: "PCC0123",
       RequestNumber: "10000",
       RequesterName: "Shanmu",
+      SubAc: "SubAc",
+      ExpenseCode: "ExpenseCode",
+      Purpose: "Purpose",
+      Remarks: "Remarks",
+      Amount: "1000",
+      VAT: "200",
+      WHT: "100",
+      NetAmount: "200",
       Branchcode: "Branch00123",
       Departmentcode: "Depart00123",
       TotalAmount: "100",
@@ -120,6 +132,36 @@ const initialState = {
       PettycashCode: "PCC0456",
       RequestNumber: "20000",
       RequesterName: "Mani",
+      SubAc: "SubAc",
+      ExpenseCode: "ExpenseCode",
+      Purpose: "Purpose",
+      Remarks: "Remarks",
+      Amount: "1000",
+      VAT: "100",
+      WHT: "200",
+      NetAmount: "200",
+      Branchcode: "Branch00456",
+      Departmentcode: "Depart00456",
+      TotalAmount: "100",
+      Date: "15/11/2023",
+    },
+  ],
+  AddDisbursmentRequestTable: [
+    {
+      id: 1,
+      TransactionCode: "PCC0123",
+      DocumentNumber: "10000",
+      RequesterName: "Shanmu",
+      Branchcode: "Branch00123",
+      Departmentcode: "Depart00123",
+      TotalAmount: "100",
+      Date: "21/12/2023",
+    },
+    {
+      id: 2,
+      TransactionCode: "PCC0456",
+      DocumentNumber: "20000",
+      RequesterName: "Mani",
       Branchcode: "Branch00456",
       Departmentcode: "Depart00456",
       TotalAmount: "100",
@@ -128,7 +170,11 @@ const initialState = {
   ],
   EditDisbursment: {},
   ViewDisbursment: {},
+  getPatchDisbursment: {},
+  postPatchDisbursment: {},
+  postData: {}
 };
+let nextIdd = 2
 const PettyCashDisbursementReducer = createSlice({
   name: "pettycashdisbursement",
   initialState,
@@ -209,6 +255,26 @@ const PettyCashDisbursementReducer = createSlice({
       }
     );
 
+    builder.addCase(getAddDisbursmentRequestListTableMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getAddDisbursmentRequestListTableMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.AddDisbursmentRequestTable = action.payload;
+      }
+    );
+    builder.addCase(
+      getAddDisbursmentRequestListTableMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.AddDisbursmentRequestTable = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
     //EditDisbursment
 
     builder.addCase(postEditDisbursmentMiddleware.pending, (state) => {
@@ -252,6 +318,65 @@ const PettyCashDisbursementReducer = createSlice({
       state.loading = false;
 
       state.ViewDisbursment = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+
+    builder.addCase(getPatchDisbursementData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getPatchDisbursementData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.getPatchDisbursment = action.payload;
+    });
+    builder.addCase(getPatchDisbursementData.rejected, (state, action) => {
+      state.loading = false;
+
+      state.getPatchDisbursment = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+    builder.addCase(postPatchDisbursementData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      postPatchDisbursementData.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        const updatedIndex = state.AddDisbursmentTable.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.AddDisbursmentTable];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.AddDisbursmentTable = updatedCurrencyList;
+        } else {
+          state.AddDisbursmentTable = [...state.AddDisbursmentTable, action.payload];
+        }
+      }
+    );
+    builder.addCase(postPatchDisbursementData.rejected, (state, action) => {
+      state.loading = false;
+
+      state.postPatchDisbursment = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+
+    builder.addCase(postDisbursementData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      postDisbursementData.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        const newItem = { ...action.payload, id: nextIdd++ };
+        state.AddDisbursmentTable = [...state.AddDisbursmentTable, newItem];
+      }
+    );
+    builder.addCase(postDisbursementData.rejected, (state, action) => {
+      state.loading = false;
+
+      state.postData = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
   },

@@ -6,6 +6,10 @@ import {
   GET_ADD_DISBURSMENT_TABLE_VOUCHER,
   POST_EDIT_DISBURSMENT_VOUCHER,
   GET_VIEW_DISBURSMENT_VOUCHER,
+  GET_ADD_DISBURSMENT_REQUEST_TABLE_VOUCHER,
+  GET_DISBURSMENT_REQUEST_PATCH_DATA,
+  POST_DISBURSMENT_REQUEST_PATCH_DATA,
+  POST_DISBURSMENT_REQUEST,
 } from "../../../../redux/actionTypes";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
@@ -54,9 +58,8 @@ export const postAddDisbursmentMiddleware = createAsyncThunk(
     console.log(payload, "postdisbursment");
 
     const currentDate = new Date();
-    const formattedDate = `${currentDate.getDate()}/${
-      currentDate.getMonth() + 1
-    }/${currentDate.getFullYear()}`;
+    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1
+      }/${currentDate.getFullYear()}`;
     const randomTotalAmount = Math.floor(Math.random() * 50000) + 10000;
 
     const TableData = {
@@ -80,6 +83,19 @@ export const postAddDisbursmentMiddleware = createAsyncThunk(
 
 export const getAddDisbursmentTableMiddleware = createAsyncThunk(
   GET_ADD_DISBURSMENT_TABLE_VOUCHER,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+
+export const getAddDisbursmentRequestListTableMiddleware = createAsyncThunk(
+  GET_ADD_DISBURSMENT_REQUEST_TABLE_VOUCHER,
   async (payload, { rejectWithValue }) => {
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
@@ -128,6 +144,81 @@ export const getViewDisbursmentMiddleware = createAsyncThunk(
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+
+export const getPatchDisbursementData = createAsyncThunk(
+  GET_DISBURSMENT_REQUEST_PATCH_DATA,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const postDisbursementData = createAsyncThunk(
+  POST_DISBURSMENT_REQUEST,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
+    const data = {
+      id: payload?.id,
+      PettycashCode: payload?.PettycashCode,
+      RequestNumber: payload?.RequestNumber,
+      RequesterName: payload?.RequesterName,
+      SubAc: payload?.SubAc,
+      ExpenseCode: payload?.ExpenseCode,
+      Purpose: payload?.Purpose,
+      Remarks: payload?.Remarks,
+      Amount: payload?.Amount,
+      VAT: payload?.VAT,
+      WHT: payload?.WHT,
+      NetAmount: payload?.NetAmount,
+      Branchcode: payload?.Branchcode,
+      Departmentcode: payload?.Departmentcode,
+      TotalAmount: payload?.TotalAmount,
+      Date: payload?.Date,
+    }
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const postPatchDisbursementData = createAsyncThunk(
+  POST_DISBURSMENT_REQUEST_PATCH_DATA,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
+    const data = {
+      id: payload?.id,
+      PettycashCode: payload?.PettycashCode,
+      RequestNumber: payload?.RequestNumber,
+      RequesterName: payload?.RequesterName,
+      SubAc: payload?.SubAc,
+      ExpenseCode: payload?.ExpenseCode,
+      Purpose: payload?.Purpose,
+      Remarks: payload?.Remarks,
+      Amount: payload?.Amount,
+      VAT: payload?.VAT,
+      WHT: payload?.WHT,
+      NetAmount: payload?.NetAmount,
+      Branchcode: payload?.Branchcode,
+      Departmentcode: payload?.Departmentcode,
+      TotalAmount: payload?.TotalAmount,
+      Date: payload?.Date,
+    }
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

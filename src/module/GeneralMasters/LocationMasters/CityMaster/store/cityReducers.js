@@ -9,7 +9,7 @@ const initialState = {
       id: 1,
       "Citycode": "DVOMAT933",
       "CityName": "MATI",
-      "State": "NY",
+      "State": "DAVAO ORIENTAL",
       "Modifiedby": "Admin1",
       "ModifiedOn": "2024-01-12"
     },
@@ -17,7 +17,7 @@ const initialState = {
       id: 2,
       "Citycode": "NEODON434",
       "CityName": "DON SALVADOR BENEDICTO",
-      "State": "CA",
+      "State": "NEGROS OCCIDENTAL",
       "Modifiedby": "Admin2",
       "ModifiedOn": "2024-01-12"
     },
@@ -25,7 +25,7 @@ const initialState = {
       id: 3,
       "Citycode": "QZNSAN984",
       "CityName": "SANTA TERESITA",
-      "State": "ENG",
+      "State": "QUEZON CITY",
       "Modifiedby": "Admin3",
       "ModifiedOn": "2024-01-12"
     },
@@ -33,7 +33,7 @@ const initialState = {
       id: 4,
       "Citycode": "QZNSAN985",
       "CityName": "SANTOL",
-      "State": "BE",
+      "State": "QUEZON CITY",
       "Modifiedby": "Admin4",
       "ModifiedOn": "2024-01-12"
     },
@@ -41,7 +41,7 @@ const initialState = {
       id: 5,
       "Citycode": "QZNSTO986",
       "CityName": "STO. CRISTO",
-      "State": "NSW",
+      "State": "QUEZON CITY",
       "Modifiedby": "Admin5",
       "ModifiedOn": "2024-01-12"
     },
@@ -49,7 +49,7 @@ const initialState = {
       id: 6,
       "Citycode": "QZNSTO987",
       "CityName": "STO. NIÑO",
-      "State": "MH",
+      "State": "QUEZON CITY",
       "Modifiedby": "Admin6",
       "ModifiedOn": "2024-01-12"
     },
@@ -57,7 +57,7 @@ const initialState = {
       id: 7,
       "Citycode": "QZNSAU988",
       "CityName": "SAUYO",
-      "State": "RJ",
+      "State": "QUEZON CITY",
       "Modifiedby": "Admin7",
       "ModifiedOn": "2024-01-12"
     },
@@ -65,7 +65,7 @@ const initialState = {
       id: 8,
       "Citycode": "QZNSAU989",
       "CityName": "SIENNA",
-      "State": "13",
+      "State": "QUEZON CITY",
       "Modifiedby": "Admin8",
       "ModifiedOn": "2024-01-12"
     },
@@ -73,7 +73,7 @@ const initialState = {
       id: 9,
       "Citycode": "QZNSIK990",
       "CityName": "SIKATUNA VILLAGE",
-      "State": "WC",
+      "State": "QUEZON CITY",
       "Modifiedby": "Admin9",
       "ModifiedOn": "2024-01-12"
     },
@@ -81,7 +81,7 @@ const initialState = {
       id: 10,
       "Citycode": "QZNSIK991",
       "CityName": "SILANGAN",
-      "State": "CMX",
+      "State": "QUEZON CITY",
       "Modifiedby": "Admin10",
       "ModifiedOn": "2024-01-12"
     }

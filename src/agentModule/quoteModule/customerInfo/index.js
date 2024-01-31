@@ -178,7 +178,7 @@ const CustomerInfo = ({ action }) => {
     if (!formik.values.Mortgage){
       setFormikValues("Mortgage",MortgageOptions[0].value)
     }
-  })
+  },[MortgageOptions])
   const setFormikValues = (data) => {
     console.log(data, "find data");
     // const IsoCode = getExchangeEdit?.ISOcode;

@@ -101,12 +101,12 @@ const QuoteDetailView = () => {
             <label className="alpha_text">
               {/* {createleaddata.EmailID} */}
               contact@broker.com
-              </label>
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Contact Number</label>
             <label className="alpha_text">9874563210
-            {/* {createleaddata.ContactNumber} */}
+              {/* {createleaddata.ContactNumber} */}
             </label>
           </div>
         </div>
@@ -131,14 +131,14 @@ const QuoteDetailView = () => {
             <label className="alpha_text">
               {/* {PolicyDetails.VehicleModel} */}
               Vario CVT 150
-              </label>
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Model Variant</label>
             <label className="alpha_text">
               {/* {PolicyDetails.ModelVariant} */}
               CVT 150
-              </label>
+            </label>
           </div>
 
           <div className="quote_details">
@@ -146,7 +146,7 @@ const QuoteDetailView = () => {
             <label className="alpha_text">
               {/* {PolicyDetails.VehicleColor} */}
               Back
-              </label>
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Seating Capacity</label>
@@ -161,7 +161,7 @@ const QuoteDetailView = () => {
           <div className="quote_details">
             <label className="insurance_text">Total Sum Insured</label>
             <label className="alpha_text">
-            5,00,000.00
+              5,00,000.00
               {/* {CoverageDetails.TotalSumInsured} */}
             </label>
           </div>
@@ -173,7 +173,7 @@ const QuoteDetailView = () => {
             <label className="alpha_text">
               5000.00
               {/* {OrderSummary.NETpremium} */}
-            
+
             </label>
           </div>
           <div className="quote_details">
@@ -188,7 +188,7 @@ const QuoteDetailView = () => {
             <label className="alpha_text">
               {/* {OrderSummary.ValueAddedTax} */}
               500.00
-              </label>
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">LGT</label>
@@ -202,21 +202,21 @@ const QuoteDetailView = () => {
             <label className="alpha_text">
               {/* {OrderSummary.Others} */}
               550
-              </label>
+            </label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Discount</label>
             <label className="alpha_text">
               {/* {OrderSummary.Discount} */}
               -500.00
-              </label>
+            </label>
           </div>
           <div className="quote_details">
             <label className="gross_text">Gross premium</label>
             <label className="gross_count">
               {/* {OrderSummary.GrossPremium} */}
               6500.00
-              </label>
+            </label>
           </div>
         </div>
       </Card>
@@ -229,9 +229,8 @@ const QuoteDetailView = () => {
           onClick={() => setModalVisible(true)}
         />
         <Button
-          onClick={() => {
-            handleclick();
-          }}
+          onClick={
+            handleclick}
           label=" Proceed to policy"
           classNames="policy_button"
         >

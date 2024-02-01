@@ -10,6 +10,7 @@ import {
   GET_DISBURSMENT_REQUEST_PATCH_DATA,
   POST_DISBURSMENT_REQUEST_PATCH_DATA,
   POST_DISBURSMENT_REQUEST,
+  GET_DISBURSMENT_VIEW_DATA,
 } from "../../../../redux/actionTypes";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
@@ -26,28 +27,69 @@ export const getDisbursmentListMiddleware = createAsyncThunk(
   }
 );
 
+// export const getDisbursmentSearchMiddleware = createAsyncThunk(
+//   GET_DISBURSMENT_VOUCHER_SEARCH,
+//   async ({ field, value }, { rejectWithValue, getState }) => {
+//     const { pettyCashDisbursementReducers } = getState();
+//     const { DisbursmentList } = pettyCashDisbursementReducers;
+//     function filterReceiptsByField(receipts, field, value) {
+//       const lowercasedValue = value.toLowerCase();
+//       return receipts.filter((receipt) =>
+//         receipt[field].toLowerCase().startsWith(lowercasedValue)
+//       );
+//     }
+//     try {
+//       const filteredReceipts = filterReceiptsByField(
+//         DisbursmentList,
+//         field,
+//         value
+//       );
+
+//       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+//       return filteredReceipts;
+//     } catch (error) {
+//       return rejectWithValue(error?.response.data.error.message);
+//     }
+//   }
+// );
+
 export const getDisbursmentSearchMiddleware = createAsyncThunk(
   GET_DISBURSMENT_VOUCHER_SEARCH,
   async ({ field, value }, { rejectWithValue, getState }) => {
+    console.log(field, value, "kkkk");
     const { pettyCashDisbursementReducers } = getState();
     const { DisbursmentList } = pettyCashDisbursementReducers;
-    function filterReceiptsByField(receipts, field, value) {
+    function filterPaymentsByField(data, field, value) {
       const lowercasedValue = value.toLowerCase();
-      return receipts.filter((receipt) =>
-        receipt[field].toLowerCase().startsWith(lowercasedValue)
-      );
+      const outputData = data.filter(item => {
+        if (field === "Pettycash Code") {
+
+          return item?.PettyCashCode.toLowerCase().includes(lowercasedValue);
+        }
+        if (field === "Transaction code") {
+          return item.TransactionCode.toLowerCase().includes(lowercasedValue);
+        }
+          if (field === "Transaction Number") {
+          return item.TransactionCode.toLowerCase().includes(lowercasedValue);
+        }
+        return (
+          (item?.PettyCashCode.toLowerCase().includes(lowercasedValue)
+            ||
+            item.TransactionCode.toLowerCase().includes(lowercasedValue)||
+            item.TransactionNumber.toLowerCase().includes(lowercasedValue)
+            )
+        );
+
+
+      });
+      return outputData
     }
     try {
-      const filteredReceipts = filterReceiptsByField(
-        DisbursmentList,
-        field,
-        value
-      );
-
-      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return filteredReceipts;
+      const filteredPayments = filterPaymentsByField(DisbursmentList, field, value);
+      console.log(filteredPayments, "filteredPayments");
+      return filteredPayments;
     } catch (error) {
-      return rejectWithValue(error?.response.data.error.message);
+      return rejectWithValue(error?.response?.data?.error?.message);
     }
   }
 );
@@ -55,24 +97,29 @@ export const getDisbursmentSearchMiddleware = createAsyncThunk(
 export const postAddDisbursmentMiddleware = createAsyncThunk(
   POST_ADD_DISBURSMENT_VOUCHER,
   async (payload, { rejectWithValue }) => {
-    console.log(payload, "postdisbursment");
+
 
     const currentDate = new Date();
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1
       }/${currentDate.getFullYear()}`;
     const randomTotalAmount = Math.floor(Math.random() * 50000) + 10000;
-
+    console.log(formattedDate, "postdisbursment");
     const TableData = {
       id: payload?.id,
-      PettycashCode: payload.PettyCashCode.pettycashcode,
-      Transactioncode: payload.TransactionCode.Transcode,
-      TransactionNumber: randomTotalAmount.toString(),
-      Branchcode: payload.BranchCode.Branchcode,
-      Departmentcode: payload.DepartmentCode.Departcode,
+      PettyCashCode: payload?.PettyCashCode,
       Date: formattedDate,
+      TransactionCode: randomTotalAmount.toString(),
+      TransactionNumber: randomTotalAmount.toString(),
+      Criteria: payload?.Criteria,
+      VATMainAccount: payload?.VATMainAccount,
+      VATSubAccount: payload?.VATSubAccount,
+      WHTMainAccount: payload?.WHTMainAccount,
+      WHTSubAccount: payload?.WHTSubAccount,
+      Remarks: payload?.Remarks,
     };
 
     try {
+      console.log(TableData, "TableData");
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return TableData;
     } catch (error) {
@@ -219,6 +266,18 @@ export const postPatchDisbursementData = createAsyncThunk(
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return data;
+    } catch (error) {
+      return rejectWithValue(error?.response.data.error.message);
+    }
+  }
+);
+
+export const getDisbursmentViewMiddleware = createAsyncThunk(
+  GET_DISBURSMENT_VIEW_DATA,
+  async (payload, { rejectWithValue }) => {
+    try {
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      return payload;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

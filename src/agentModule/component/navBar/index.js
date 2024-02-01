@@ -101,6 +101,61 @@ const AgentNavBar = () => {
               >
                 <SvgClose />
               </div>
+              <div className="col-8 md:col-8 lg:col-8">
+                <div
+                  style={{
+                    color: "#111927",
+                    fontFamily: "Poppins",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                  }}
+                >
+                  John
+                </div>
+                <div
+                  style={{
+                    color: "#6C737F",
+                    fontFamily: "Poppins",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                  }}
+                  className="mt-1"
+                >
+                  Policy Number: 5677
+                </div>
+                <div
+                  style={{
+                    color: "#6366F1",
+                    fontFamily: "Poppins",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                  }}
+                  className="mt-1"
+                >
+                  Payment completed
+                </div>
+                <div
+                  style={{
+                    color: "#6C737F",
+                    fontFamily: "Poppins",
+                    fontWeight: 500,
+                    fontSize: "12px",
+                  }}
+                  className="mt-2"
+                >
+                  Jan 20, 1:00 PM
+                </div>
+              </div>
+              <div
+                className="col-4 md:col-4 lg:col-4"
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  padding: "15px",
+                }}
+              >
+                <SvgClose />
+              </div>
             </div>
           ),
         },
@@ -228,7 +283,7 @@ const AgentNavBar = () => {
         ref={menuProfile}
         id="popup_menu_right"
         popupAlignment="right"
-        //   style={menuStyle}
+      //   style={menuStyle}
       />
       <Button
         className="p-0"

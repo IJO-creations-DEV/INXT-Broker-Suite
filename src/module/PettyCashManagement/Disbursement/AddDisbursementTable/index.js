@@ -167,22 +167,36 @@ const AddDisbursementTable = () => {
   };
 
   const handleSubmit = (value) => {
+    // alert("hii")
     console.log(value, "valuevalue");
-    // if (formAction === "Edit") {
-    dispatch(postPatchDisbursementData(value));
-    setVisible(false);
-    setshow(true);
-    // }
+    if (formAction === "Edit") {
+      dispatch(postPatchDisbursementData(value));
+      setVisible(false);
+      setshow(true);
+    }
     if (formAction === "Add") {
       dispatch(postDisbursementData(formik.values))
       setVisible(false);
       setshow(true);
+      formik.setFieldValue("Amount",);
+      formik.setFieldValue("PettycashCode",);
+      formik.setFieldValue("RequestNumber",);
+      formik.setFieldValue("SubAc",);
+      formik.setFieldValue("ExpenseCode",);
+      formik.setFieldValue("Purpose",);
+      formik.setFieldValue("Remarks",);
+      formik.setFieldValue("VAT",);
+      formik.setFieldValue("WHT",);
+      formik.setFieldValue("NetAmount",);
+      formik.setFieldValue("Branchcode",);
+      formik.setFieldValue("Departmentcode",);
+      formik.setFieldValue("TotalAmount",);
+      formik.setFieldValue("Date",);
     }
   };
 
   const formik = useFormik({
     initialValues: initialValue,
-    // validate,
     onSubmit: handleSubmit
   });
 
@@ -229,9 +243,20 @@ const AddDisbursementTable = () => {
     }
     formik.setFieldValue("MainAccountDescription", description);
   };
-  const item = [{ label: "123", value: "123" }]
-  const item1 = [{ label: "123", value: "123" }]
-  const item2 = [{ label: "123", value: "123" }]
+
+
+  const item = [
+    { label: "PC001", value: "PC001" },
+    { label: "PC002", value: "PC002" },
+  ]
+  const item1 = [
+    { label: "123", value: "123" },
+    { label: "995", value: "145" }
+  ]
+  const item2 = [
+    { label: "123", value: "123" },
+    { label: "954", value: "111" }
+  ]
   const [RequestNumberOptionData, setRequestNumberOptionData] = useState([]);
   const [SubAcOptionData, setSubAcOptionData] = useState([]);
   const [ExpenseCodeOptionData, setExpenseCodeOptionData] = useState([]);
@@ -500,7 +525,7 @@ const AddDisbursementTable = () => {
                 textSize={"16"}
                 textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.RequestNumber}
+                value={formAction === "Add" ? formik.values.RequestNumber : formAction === "Edit" && formik.values.RequestNumber}
                 options={formAction === "Edit" ? RequestNumberOptionData : item
                 }
                 onChange={(e) => {
@@ -521,7 +546,7 @@ const AddDisbursementTable = () => {
                 textSize={"16"}
                 textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.ExpenseCode}
+                value={formAction === "Add" ? formik.values.ExpenseCode : formAction === "Edit" && formik.values.ExpenseCode}
                 options={
                   formAction === "Edit" ? ExpenseCodeOptionData : item1}
                 onChange={(e) => {
@@ -542,7 +567,7 @@ const AddDisbursementTable = () => {
                 textSize={"16"}
                 textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.SubAc}
+                value={formAction === "Add" ? formik.values.SubAc : formAction === "Edit" && formik.values.SubAc}
                 options={formAction === "Edit" ? SubAcOptionData : item2}
                 onChange={(e) => {
                   formik.setFieldValue("SubAc", e.value);
@@ -561,7 +586,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.Purpose}
+                value={formAction === "Add" ? formik.values.Purpose : formAction === "Edit" && formik.values.Purpose}
                 onChange={formik.handleChange("Purpose")}
               // value={formik.values.RequestNumber}
               />
@@ -574,7 +599,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.Remarks}
+                value={formAction === "Add" ? formik.values.Remarks : formAction === "Edit" && formik.values.Remarks}
                 onChange={formik.handleChange("Remarks")}
               />
             </div>
@@ -586,7 +611,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.VAT}
+                value={formAction === "Add" ? formik.values.VAT : formAction === "Edit" && formik.values.VAT}
                 onChange={formik.handleChange("VAT")}
               />
             </div>
@@ -598,7 +623,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.WHT}
+                value={formAction === "Add" ? formik.values.WHT : formAction === "Edit" && formik.values.WHT}
                 onChange={formik.handleChange("WHT")}
               />
             </div>
@@ -610,7 +635,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.Amount}
+                value={formAction === "Add" ? formik.values.Amount : formAction === "Edit" && formik.values.Amount}
                 onChange={formik.handleChange("Amount")}
               />
             </div>
@@ -623,7 +648,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formik.values.NetAmount}
+                value={formAction === "Add" ? formik.values.NetAmount : formAction === "Edit" && formik.values.NetAmount}
                 onChange={formik.handleChange("NetAmount")}
               />
             </div>

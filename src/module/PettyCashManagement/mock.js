@@ -1,39 +1,34 @@
 export const PettyCashCode = [
-  { pettycashcode: "PC001" },
-  { pettycashcode: "PC002" },
-  { pettycashcode: "PC003" },
-  { pettycashcode: "PC004" },
+  { label: "PC001", value: "PC001" },
+  { label: "PC002", value: "PC002" },
 ];
 export const TransactionCode = [
-  { TransactionCode: "Trans0123" },
-  { TransactionCode: "Trans0124" },
-  { TransactionCode: "Trans0125" },
-  { TransactionCode: "Trans0126" },
+  { label: "Trans0123", value: "Trans0123" },
+  { label: "Trans0124", value: "Trans0123" },
 ];
-
 export const Criteria = [
   { label: "Request", value: "Request" },
   { label: "Direct", value: "Direct" }
 ];
 export const VATMainAccount = [
-  { VATMainAccount: "MACC001" },
-  { VATMainAccount: "MACC002" },
-  { VATMainAccount: "MACC003" },
+  { label: "MACC001", value: "MACC001" },
+  { label: "MACC002", value: "MACC002" },
+  { label: "MACC003", value: "MACC003" },
 ];
 export const VATSubAccount = [
-  { VATSubAccount: "MSACC001" },
-  { VATSubAccount: "MSACC002" },
-  { VATSubAccount: "MSACC003" },
+  { label: "MSACC001", value: "MSACC001" },
+  { label: "MSACC002", value: "MSACC002" },
+  { label: "MSACC003", value: "MSACC003" },
 ];
 export const WHTMainAccount = [
-  { WHTMainAccount: "MACC001" },
-  { WHTMainAccount: "MACC002" },
-  { WHTMainAccount: "MACC003" },
+  { label: "MACC001", value: "MACC001" },
+  { label: "MACC002", value: "MACC002" },
+  { label: "MACC003", value: "MACC003" },
 ];
 export const WHTSubAccount = [
-  { WHTSubAccount: "MSACC001" },
-  { WHTSubAccount: "MSACC002" },
-  { WHTSubAccount: "MSACC003" },
+  { label: "MSACC001", value: "MSACC001" },
+  { label: "MSACC002", value: "MSACC002" },
+  { label: "MSACC003", value: "MSACC003" },
 ];
 
 
@@ -74,11 +69,11 @@ export const Departcode = [
   { Departcode: "SLS" },
 ];
 export const Name = [
-  {label:"Leo", Name: "Leo" },
-  { label:"Yuva",Name: "Yuva" },
-  { label:"Sindhu",Name: "Sindhu" },
-  { label:"Ayisha",Name: "Ayisha" },
-  { label:"Pandi",Name: "Pandi" },
+  { label: "Leo", Name: "Leo" },
+  { label: "Yuva", Name: "Yuva" },
+  { label: "Sindhu", Name: "Sindhu" },
+  { label: "Ayisha", Name: "Ayisha" },
+  { label: "Pandi", Name: "Pandi" },
 ];
 export const Maincode = [
   { Maincode: "MAC001" },

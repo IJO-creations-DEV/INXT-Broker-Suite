@@ -15,15 +15,21 @@ import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getDisbursmentSearchMiddleware,
+  getDisbursmentViewMiddleware,
   getViewDisbursmentMiddleware,
 } from "../store/pettyCashDisbursementMiddleware";
 
 const DisbursementTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [globalFilter, setGlobalFilter] = useState("Pettycash Code");
   const [search, setSearch] = useState("");
-  const [globalFilter, setGlobalFilter] = useState("PettycashCode");
-
+  const [selectedCity, setSelectedCity] = useState(null);
+  const cities = [
+    { name: "Pettycash Code", code: "PettycashCode" },
+    { name: "Transaction code", code: "Transactioncode" },
+    { name: "Transaction Number", code: "TransactionNumber" },
+  ];
   const { DisbursmentList, loading, DisbursmentSearch } = useSelector(
     ({ pettyCashDisbursementReducers }) => {
       return {
@@ -33,12 +39,22 @@ const DisbursementTable = () => {
       };
     }
   );
+  useEffect(() => {
+    console.log(globalFilter, "as");
+    if (globalFilter?.length > 0) {
+      if (search?.length > 0) {
+        dispatch(
+          getDisbursmentSearchMiddleware({
+            field: globalFilter,
+            value: search,
+          })
+        );
+      }
+    }
+  }, [search]);
+ 
 
-  const searchs = [
-    { name: "Pettycash Code", code: "PettycashCode" },
-    { name: "Transaction code", code: "Transactioncode" },
-    { name: "Transaction Number", code: "TransactionNumber" },
-  ];
+ 
 
   const isEmpty = DisbursmentList.length === 0;
 
@@ -92,7 +108,8 @@ const DisbursementTable = () => {
   };
 
   const handleView = (rowData) => {
-    dispatch(getDisbursmentSearchMiddleware(rowData));
+    dispatch(getDisbursmentViewMiddleware(rowData))
+    // dispatch(getDisbursmentSearchMiddleware(rowData));
     console.log("View clicked:", rowData);
     navigate("/accounts/pettycash/disbursementdetailview");
   };
@@ -119,19 +136,7 @@ const DisbursementTable = () => {
     },
   ];
 
-  useEffect(() => {
-    console.log(globalFilter, "as");
-    if (globalFilter?.length > 0) {
-      if (search?.length > 0) {
-        dispatch(
-          getDisbursmentSearchMiddleware({
-            field: globalFilter,
-            value: search,
-          })
-        );
-      }
-    }
-  }, [search]);
+ 
 
   return (
     <div className="disbursement__table">
@@ -150,9 +155,9 @@ const DisbursementTable = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-2">
             <Dropdown
-              value={search}
+              value={globalFilter}
               onChange={(e) => setGlobalFilter(e.value)}
-              options={searchs}
+              options={cities}
               optionLabel="name"
               optionValue="code"
               placeholder="Search by"
@@ -179,13 +184,13 @@ const DisbursementTable = () => {
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
             <Column
-              field="PettycashCode"
+              field="PettyCashCode"
               header="Petty cash Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="Transactioncode"
+              field="TransactionCode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"

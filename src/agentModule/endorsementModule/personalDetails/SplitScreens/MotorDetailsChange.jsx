@@ -111,9 +111,6 @@ const MotorDetailsChange = ({
     },
   });
 
-  useEffect =(()=>{
-    
-  })
   return (
     <div>
       <div className="customer__info__subtitle mt-2 mb-2">

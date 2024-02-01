@@ -38,7 +38,7 @@ export const postAddCityMiddleware = createAsyncThunk(
     const tableData = {
       "Citycode": payload?.CityCode,
       "CityName": payload?.CityName,
-      "State": payload?.State?.name,
+      "State": payload?.State,
       "Modifiedby": payload?.ModifiedBy,
       "ModifiedOn": payload?.ModifiedOn
     }

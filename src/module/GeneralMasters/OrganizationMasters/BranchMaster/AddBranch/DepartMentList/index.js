@@ -109,9 +109,10 @@ const DepartMentList = () => {
     setVisible(false)
    }
    if(value){
-    alert("hiii")
+    
     dispatch(postPatchDepatmentEdit(value))
     setVisible(false)
+    setVisibleEdit(false)
    }
    else{
     alert("hii")
@@ -205,7 +206,8 @@ const DepartMentList = () => {
         
 
       </div>
-      <Dialog header="Add Department" visible={visible} style={{ width: '40vw' }} onHide={() => setVisible(false)}>
+      <Dialog header="Add Department" visible={visible} style={{ width: '40vw' }} onHide={() => setVisible(false)}
+      className='dialog__addstyle'>
         <div class='grid'>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>

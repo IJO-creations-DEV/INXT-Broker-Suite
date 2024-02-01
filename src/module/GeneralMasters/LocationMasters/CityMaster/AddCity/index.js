@@ -85,6 +85,7 @@ function AddCity({ action }) {
       ModifiedOn: CityListById?.ModifiedOn || "",
     };
     if (action === "view") {
+      console.log(statedatas, "statedata");
       if (statedatas) {
         formik.setValues({ ...formik.values, ...updatedValues });
         formik.setFieldValue("statedatas", statedatas);
@@ -144,7 +145,7 @@ function AddCity({ action }) {
     console.log("Handle Edit Submission", values);
     setTimeout(() => {
       Navigate("/master/generals/location/city");
-    }, 3000);
+    },100);
   };
 
   const handleSubmit = (values) => {
@@ -294,6 +295,7 @@ function AddCity({ action }) {
                 onChange={(e) => formik.setFieldValue("State", e.value)}
                 options={action === "add" ? State : action === "edit" ? stateOptionData : State}
                 optionLabel="label"
+                optionValue="label"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 disabled={

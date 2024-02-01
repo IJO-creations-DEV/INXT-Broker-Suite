@@ -165,7 +165,7 @@ function AddBranch({ action }) {
         Navigate("/master/generals/organization/branchmaster");
       }, 3000);
     } else {
-      alert("ji");
+      // alert("ji");
     }
   };
   const customValidation = (values) => {

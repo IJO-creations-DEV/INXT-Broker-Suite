@@ -34,7 +34,7 @@ const CenterCard = ({ commission }) => {
   ];
 
   return (
-    <div className="center__card__container grid  m-1">
+    <div className="center__card__container grid pt-2">
       <div className="col-12 md:col-8 lg:col-8">
         <Card>
           <div className="grid  m-0">

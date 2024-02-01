@@ -18,7 +18,7 @@ const TopCard = ({ detail }) => {
     navigate("/agent/clientlisting");
   };
   return (
-    <div className="top__card__container grid  m-0">
+    <div className="top__card__container grid">
       <div className="col-12 md:col-4 lg:col-4">
         <Card>
           <div className="grid m-0">

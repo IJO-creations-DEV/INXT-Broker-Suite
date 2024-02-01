@@ -13,14 +13,15 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { postUploadPolicyMiddleWare } from "../store/uploadPolicyMiddleWare";
 const initialValues = {
-  PolicyNumber:"001",
-  InsuranceCompany:"Pioneer Insurance and Surety Corp (PISC)",
+  PolicyNumber: "001",
+  InsuranceCompany: "Pioneer Insurance and Surety Corp (PISC)",
   Production: new Date(),
   Inception: new Date(),
   IssuedDate: new Date(),
-  Expiry:new Date(),
-  file:null
+  Expiry: new Date("2025-01-01"),
+  file: null,
 };
+
 
 
 const UploadPolicyCard = () => {
@@ -31,8 +32,8 @@ const UploadPolicyCard = () => {
 
   const handleSubmit = (value) => {
     toastRef.current.showToast();
-    console.log("122",value)
-     dispatch(postUploadPolicyMiddleWare(value));
+    console.log("122", value)
+    dispatch(postUploadPolicyMiddleWare(value));
     setTimeout(() => {
       navigate("/agent/policydetailedview");
     }, 2000);
@@ -62,7 +63,7 @@ const UploadPolicyCard = () => {
   //   if (!values.file) {
   //     errors.file = "This field is required";
   //   }
-  
+
   //   return errors
   // }
   const handleUppendImg = (name, src) => {
@@ -79,7 +80,13 @@ const UploadPolicyCard = () => {
     // validate: customValidation,
     onSubmit: handleSubmit,
   });
-
+  const handleIssuedDateChange = (e) => {
+    const issuedDate = e.target.value;
+    const expiryDate = new Date(issuedDate);
+    expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+    formik.setFieldValue("IssuedDate", issuedDate);
+    formik.setFieldValue("Expiry", expiryDate);
+  };
 
   return (
     <div className="upload__policy__card__container mt-4">
@@ -90,89 +97,91 @@ const UploadPolicyCard = () => {
         </div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Insurance Company" 
-            value={formik.values.InsuranceCompany}
-            onChange={formik.handleChange("InsuranceCompany")}  />
-                {formik.touched.InsuranceCompany && formik.errors.InsuranceCompany && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.InsuranceCompany}
-                </div>
-              )}
+            <InputTextField label="Insurance Company"
+              value={formik.values.InsuranceCompany}
+              onChange={formik.handleChange("InsuranceCompany")} />
+            {formik.touched.InsuranceCompany && formik.errors.InsuranceCompany && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.InsuranceCompany}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Policy Number*" 
-            value={formik.values.PolicyNumber}
-            onChange={formik.handleChange("PolicyNumber")}  />
-                {formik.touched.PolicyNumber && formik.errors.PolicyNumber && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.PolicyNumber}
-                </div>
-              )}
+            <InputTextField label="Policy Number*"
+              value={formik.values.PolicyNumber}
+              onChange={formik.handleChange("PolicyNumber")} />
+            {formik.touched.PolicyNumber && formik.errors.PolicyNumber && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.PolicyNumber}
+              </div>
+            )}
           </div>
         </div>
 
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
             <DatepickerField label="Production*"
-            value={formik.values.Production}
-            // minDate={minDate}
-            onChange={(e) => { 
-              formik.setFieldValue("Production", e.target.value);
-            }}
-            dateFormat="yy-mm-dd"
+              value={formik.values.Production}
+              // minDate={minDate}
+              onChange={(e) => {
+                formik.setFieldValue("Production", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
             // error={formik.errors.Production}
-              />
-                {formik.touched.Production && formik.errors.Production && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.Production}
-                </div>
-              )}
+            />
+            {formik.touched.Production && formik.errors.Production && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.Production}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Inception*" 
-            value={formik.values.Inception}
-            // minDate={minDate}
-            onChange={(e) => { 
-              formik.setFieldValue("Inception", e.target.value);
-            }}
-            dateFormat="yy-mm-dd"
-              />
-                {formik.touched.Inception && formik.errors.Inception && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.Inception}
-                </div>
-              )}
+            <DatepickerField label="Inception*"
+              value={formik.values.Inception}
+              // minDate={minDate}
+
+              onChange={(e) => {
+                handleIssuedDateChange()
+                formik.setFieldValue("Inception", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+            />
+            {formik.touched.Inception && formik.errors.Inception && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.Inception}
+              </div>
+            )}
           </div>
         </div>
 
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Issued Date*" 
-            value={formik.values.IssuedDate}
-            // minDate={minDate}
-            onChange={(e) => { 
-              formik.setFieldValue("IssuedDate", e.target.value);
-            }}
-            dateFormat="yy-mm-dd"  />
-                {formik.touched.IssuedDate && formik.errors.IssuedDate && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.IssuedDate}
-                </div>
-              )}
+            <DatepickerField
+              label="Issued Date*"
+              value={formik.values.IssuedDate}
+              onChange={handleIssuedDateChange}
+              dateFormat="yy-mm-dd"
+            />
+            {formik.touched.IssuedDate && formik.errors.IssuedDate && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.IssuedDate}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <DatepickerField label="Expiry*" 
-            value={formik.values.Expiry}
-            // minDate={minDate}
-            onChange={(e) => { 
-              formik.setFieldValue("Expiry", e.target.value);
-            }}
-            dateFormat="yy-mm-dd"   />
-                {formik.touched.Expiry && formik.errors.Expiry && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.Expiry}
-                </div>
-              )}
+            <DatepickerField
+              label="Expiry*"
+              value={formik.values.Expiry}
+              onChange={(e) => {
+                formik.setFieldValue("Expiry", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+            />
+            {formik.touched.Expiry && formik.errors.Expiry && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.Expiry}
+              </div>
+            )}
           </div>
         </div>
 
@@ -194,8 +203,8 @@ const UploadPolicyCard = () => {
                 formik.setFieldValue("file", e.files[0]);
                 handleUppendImg(e.options.props.name, e.files[0], "the data");
               }}
-              />
-               
+            />
+
             <div className="icon_click_option">
               <SvgUpload />
             </div>
@@ -204,10 +213,10 @@ const UploadPolicyCard = () => {
           </div>
         </div>
         {formik.touched.file && formik.errors.file && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.file}
-                </div>
-              )}
+          <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+            {formik.errors.file}
+          </div>
+        )}
         {imageURL === undefined ? null : (
           <div className="mt-4">
             <SvgUploadClose />

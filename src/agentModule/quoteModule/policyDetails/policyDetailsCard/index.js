@@ -20,8 +20,8 @@ import { postPolicyDetailsMiddleware } from "../store/policyDetailsMiddleware";
 
 
 
-const PolicyDetailsCard = ({action}) => {
-  console.log(action ,"action");
+const PolicyDetailsCard = ({ action }) => {
+  console.log(action, "action");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const initialValue = {
@@ -33,14 +33,15 @@ const PolicyDetailsCard = ({action}) => {
     VehicleModel: "",
     ModelVariant: "",
     VehicleColor: "",
-    SeatingCapacity:"",
+    SeatingCapacity: "",
   };
   const handleclick = (values) => {
-    console.log(action,"action")
+    console.log(action, "action")
     dispatch(postPolicyDetailsMiddleware(values));
-    {action === "quotedetails"?
-    navigate(`/agent/createquote/coveragedetails/coveragedetail/:${123}`):navigate(`/agent/createquote/coveragedetails/coveragecreate/:${123}`)
-  }
+    {
+      action === "quotedetails" ?
+      navigate(`/agent/createquote/coveragedetails/coveragedetail/:${123}`) : navigate(`/agent/createquote/coveragedetails/coveragecreate/:${123}`)
+    }
   };
   // const customValidation = (values) => {
   //   const errors = {}
@@ -81,9 +82,9 @@ const PolicyDetailsCard = ({action}) => {
       handleclick(values);
     },
   });
- 
+
   useEffect(() => {
-    
+
     if (action === "quotedetails") {
       formik.setFieldValue("InsuranceCompanyName", InsuranceCompanyOptions[0].value);
     }
@@ -108,7 +109,7 @@ const PolicyDetailsCard = ({action}) => {
     if (action === "quotedetails") {
       formik.setFieldValue("VehicleColor", VehicleColors[0].value);
     }
-    
+
   }, []);
   return (
     <div className="policy__details__card__container mt-4">
@@ -283,7 +284,7 @@ const PolicyDetailsCard = ({action}) => {
               <InputTextField
                 label="Seating Capacity"
                 // value={formik.values.SeatingCapacity}
-                value={action === "createquote" ? formik.values.SeatingCapacity :"24"}
+                value={action === "createquote" ? formik.values.SeatingCapacity : "24"}
                 onChange={formik.handleChange("SeatingCapacity")}
 
               />

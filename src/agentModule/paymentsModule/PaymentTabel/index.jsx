@@ -7,12 +7,14 @@ import ReviewingListTabelData from './ReviewingListTabelData'
 import { useSelector } from 'react-redux'
 
 const PyamentTabelCard = () => {
-    const { paymenttabledata, paymentSearchList, loading,agentPaymentMainReducers } = useSelector(
+    const { paymenttabledata, paymentSearchList, loading,agentPaymentMainReducers,paymentPendingtabledata,paymentRewiwingtabledata } = useSelector(
         ({ agentPaymentMainReducers }) => {
             return {
                 loading: agentPaymentMainReducers?.loading,
                 paymenttabledata: agentPaymentMainReducers?.paymenttabledata,
                 paymentSearchList: agentPaymentMainReducers?.paymentSearchList,
+                paymentPendingtabledata:agentPaymentMainReducers?.paymentPendingtabledata,
+                paymentRewiwingtabledata:agentPaymentMainReducers?.paymentRewiwingtabledata,
                 paymentPaidSearchList:agentPaymentMainReducers?.paymentPaidSearchList
             };
         }
@@ -25,10 +27,10 @@ const PyamentTabelCard = () => {
                         <PaidListTabelData paymenttabledata={paymenttabledata} agentPaymentMainReducers={agentPaymentMainReducers} />
                     </TabPanel>
                     <TabPanel header="Pending">
-                        <PendingListTabelData paymenttabledata={paymenttabledata} paymentSearchList={paymentSearchList} />
+                        <PendingListTabelData paymentPendingtabledata={paymentPendingtabledata} paymentSearchList={paymentSearchList} />
                     </TabPanel>
                     <TabPanel header="Reviewing">
-                        <ReviewingListTabelData paymenttabledata={paymenttabledata} paymentSearchList={paymentSearchList} />
+                        <ReviewingListTabelData paymentRewiwingtabledata={paymentRewiwingtabledata} paymentSearchList={paymentSearchList} />
                     </TabPanel>
                 </TabView>
             </Card>

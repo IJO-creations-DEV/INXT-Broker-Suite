@@ -1,11 +1,38 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { POST_PAYMENT_DATA, GET_PAYMENTTABLE_DATA, GET_PAYMENT_SEARCH, GET_PAYMENT_PAID_SEARCH, GET_PAYMENT_PENDING_SEARCH } from "../../../redux/actionTypes";
+import { POST_PAYMENT_DATA, GET_PAYMENTTABLE_DATA, GET_PAYMENT_SEARCH, GET_PAYMENT_PAID_SEARCH, GET_PAYMENT_PENDING_SEARCH, GET_PAYMENTTABLE_PENDING_DATA, GET_PAYMENTTABLE_REWING_DATA } from "../../../redux/actionTypes";
 
 
 
 
 export const getpaymenttableMiddleware = createAsyncThunk(
   GET_PAYMENTTABLE_DATA,
+  async (payload, { rejectWithValue }) => {
+
+    try {
+      // Simulate an API call if needed
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      // return filteredData[0];
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.error?.message);
+    }
+  }
+);
+export const getpaymentPendingtableMiddleware = createAsyncThunk(
+  GET_PAYMENTTABLE_PENDING_DATA,
+  async (payload, { rejectWithValue }) => {
+
+    try {
+      // Simulate an API call if needed
+      // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+      // return filteredData[0];
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.error?.message);
+    }
+  }
+);
+
+export const getpaymentRewivingtableMiddleware = createAsyncThunk(
+  GET_PAYMENTTABLE_REWING_DATA,
   async (payload, { rejectWithValue }) => {
 
     try {
@@ -89,7 +116,7 @@ export const getPaymentPaidSearchDataMiddleWare = createAsyncThunk(
     console.log(field, value, "pppp");
     const { pettyCashDisbursementReducers } = getState();
     const { paymenttabledata } = pettyCashDisbursementReducers;
-    console.log(paymenttabledata,"paymenttabledata");
+    console.log(paymenttabledata, "paymenttabledata");
     function filterPaymentsByField(data, field, value) {
       const lowercasedValue = value.toLowerCase();
       const outputData = data.filter(item => {

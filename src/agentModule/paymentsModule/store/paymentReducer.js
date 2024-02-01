@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPaymentPaidSearchDataMiddleWare, getPaymentPendingSearchDataMiddleWare, getPaymentSearchDataMiddleWare, getpaymenttableMiddleware, postpaymentdataMiddleWare } from "./paymentMiddleware";
+import { getPaymentPaidSearchDataMiddleWare, getPaymentPendingSearchDataMiddleWare, getPaymentSearchDataMiddleWare, getpaymentPendingtableMiddleware, getpaymentRewivingtableMiddleware, getpaymenttableMiddleware, postpaymentdataMiddleWare } from "./paymentMiddleware";
 
 const initialState = {
   loading: false,
@@ -51,6 +51,99 @@ const initialState = {
     },
 
   ],
+  paymentPendingtabledata: [
+    {
+      id: 1,
+      type: "Policy",
+      name: "CarsonDarrin",
+      clintid: "123",
+      policyNo: "999",
+      grosspremium: "355",
+      policyIssued: "13/12/12",
+      policyExpird: "13/12/12",
+      status: "PENDING"
+    },
+    {
+      id: 2,
+      type: "Renewal Policy",
+      name: "Carson Darrin",
+      clintid: "456",
+      policyNo: "98456",
+      grosspremium: "655",
+      policyIssued: "13/12/12",
+      policyExpird: "13/12/12",
+      status: "PENDING"
+    },
+    {
+      id: 3,
+      type: "Renewal Policy",
+      name: "Carson Darrin",
+      clintid: "566",
+      policyNo: "123456",
+      grosspremium: "655",
+      policyIssued: "13/12/12",
+      policyExpird: "13/12/12",
+      status: "PENDING"
+    },
+    {
+      id: 4,
+      type: "Renewal Policy",
+      name: "Carson Darrin",
+      clintid: "786",
+      policyNo: "67856",
+      grosspremium: "655",
+      policyIssued: "13/12/12",
+      policyExpird: "13/12/12",
+      status: "PENDING"
+    },
+
+  ],
+  paymentRewiwingtabledata:[
+    {
+      id: 1,
+      type: "Policy",
+      name: "CarsonDarrin",
+      clintid: "123",
+      policyNo: "999",
+      grosspremium: "355",
+      policyIssued: "13/12/12",
+      policyExpird: "13/12/12",
+      status: "REVIEWING"
+    },
+    {
+      id: 2,
+      type: "Renewal Policy",
+      name: "Carson Darrin",
+      clintid: "456",
+      policyNo: "98456",
+      grosspremium: "655",
+      policyIssued: "13/12/12",
+      policyExpird: "13/12/12",
+      status: "REVIEWING"
+    },
+    {
+      id: 3,
+      type: "Renewal Policy",
+      name: "Carson Darrin",
+      clintid: "566",
+      policyNo: "123456",
+      grosspremium: "655",
+      policyIssued: "13/12/12",
+      policyExpird: "13/12/12",
+      status: "REVIEWING"
+    },
+    {
+      id: 4,
+      type: "Renewal Policy",
+      name: "Carson Darrin",
+      clintid: "786",
+      policyNo: "67856",
+      grosspremium: "655",
+      policyIssued: "13/12/12",
+      policyExpird: "13/12/12",
+      status: "REVIEWING"
+    },
+  ],
   paymentSearchList: [],
   postpaymentdata: {},
   paymentPendingSearchList: [],
@@ -82,6 +175,43 @@ const paymentReducer = createSlice({
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
+
+    builder.addCase(getpaymentPendingtableMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getpaymentPendingtableMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.paymentPendingtabledata = action.payload
+      }
+    );
+    builder.addCase(
+      getpaymentPendingtableMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    builder.addCase(getpaymentRewivingtableMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getpaymentRewivingtableMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.paymentRewiwingtabledata = action.payload
+      }
+    );
+    builder.addCase(
+      getpaymentRewivingtableMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
 
 
 

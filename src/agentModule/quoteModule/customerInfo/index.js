@@ -32,10 +32,25 @@ const initialValues = {
 };
 
 const CustomerInfo = ({ action }) => {
+  console.log(action, "find action in customer info");
   const [imageURL, setimageURL] = useState("");
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  const initialValues = {
+    MotorNumber: action ==="view"?"8546791234":"",
+    ChassisNumber:  action ==="view"?"8529637412":"",
+    Mortgage: "",
+    CertNumber: action ==="view"? "2583694671":"",
+    PlateNumber:  action ==="view"?"4568231975":"",
+    MVFileNumber:  action ==="view"?"1456239857":"",
+    AuthenCode: action ==="view"? "3219758642":"",
+    Aluminium: "",
+    AirBag: "",
+    TNVS: "",
+    TruckType: "",
+  };
+  
   // const handleSubmit= (value) => {
 
   //   if (action === "edit") {
@@ -175,7 +190,7 @@ const CustomerInfo = ({ action }) => {
     }
   }, [action, postcustomerinfodata]);
 
- 
+
   const setFormikValues = (data) => {
     console.log(data, "find data");
     // const IsoCode = getExchangeEdit?.ISOcode;
@@ -204,20 +219,25 @@ const CustomerInfo = ({ action }) => {
   });
 
   useEffect(() => {
-    if (!formik.values.Mortgage) {
-      formik.setFieldValue("Mortgage", MortgageOptions[0].value);
+    if (action === "edit") {
+
     }
-    if (!formik.values.Aluminium) {
-      formik.setFieldValue("Aluminium", Aluminium[0].value);
-    }
-    if (!formik.values.AirBag) {
-      formik.setFieldValue("AirBag", AirBag[0].value);
-    }
-    if (!formik.values.TNVS) {
-      formik.setFieldValue("TNVS", TNVSdata[0].value);
-    }
-    if (!formik.values.TruckType) {
-      formik.setFieldValue("TruckType", TruckTypes[0].value);
+    if (action === "view") {
+      if (!formik.values.Mortgage) {
+        formik.setFieldValue("Mortgage", MortgageOptions[0].value);
+      }
+      if (!formik.values.Aluminium) {
+        formik.setFieldValue("Aluminium", Aluminium[0].value);
+      }
+      if (!formik.values.AirBag) {
+        formik.setFieldValue("AirBag", AirBag[0].value);
+      }
+      if (!formik.values.TNVS) {
+        formik.setFieldValue("TNVS", TNVSdata[0].value);
+      }
+      if (!formik.values.TruckType) {
+        formik.setFieldValue("TruckType", TruckTypes[0].value);
+      }
     }
 
   }, []);
@@ -260,14 +280,14 @@ const CustomerInfo = ({ action }) => {
                       formik.setFieldValue("file", e.files[0]);
                       handleUppendImg(e.options.props.name, e.files[0], "the data");
                     }}
-                    // uploadHandler={(e) => {
-                    //   formik.setFieldValue("file", e.files[0]);
-                    //   handleUppendImg(
-                    //     e.options.props.name,
-                    //     e.files[0],
-                    //     "the data"
-                    //   );
-                    // }}
+                  // uploadHandler={(e) => {
+                  //   formik.setFieldValue("file", e.files[0]);
+                  //   handleUppendImg(
+                  //     e.options.props.name,
+                  //     e.files[0],
+                  //     "the data"
+                  //   );
+                  // }}
                   />
                   <div className="icon_click_option">
                     <SvgImageUpload />
@@ -283,7 +303,7 @@ const CustomerInfo = ({ action }) => {
                 <img src={imageURL} alt="Image" className="image__view" />
               </div>
             )}
-              {formik.touched.file && formik.errors.file && (
+            {formik.touched.file && formik.errors.file && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                 {formik.errors.file}
               </div>
@@ -379,8 +399,8 @@ const CustomerInfo = ({ action }) => {
               </div>
             )}
           </div>
-         
-         
+
+
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField
               label="Truck Type"

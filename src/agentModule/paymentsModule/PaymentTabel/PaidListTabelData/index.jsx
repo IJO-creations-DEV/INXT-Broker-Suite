@@ -17,8 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPaymentPaidSearchDataMiddleWare, getPaymentSearchDataMiddleWare } from "../../store/paymentMiddleware";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
-const PaidListTabelData = ({ paymenttabledata,agentPaymentMainReducers }) => {
-  console.log(paymenttabledata,"paymenttabledata");
+const PaidListTabelData = ({ paymenttabledata, agentPaymentMainReducers }) => {
+  console.log(paymenttabledata, "paymenttabledata");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("PolicyNumber");

@@ -986,51 +986,52 @@ const Maincomponent = () => {
           />
           <Route
             path="/agent/createquote/policydetails/quotedetails/:id"
-            element={<PolicyDetails action="quotedetails"/>}
+            element={<PolicyDetails action="quotedetails" />}
           />
           <Route
             path="/agent/createquote/coveragedetails/coveragecreate/:id"
-            element={<CoverageDeatails action="coveragecreate"/>}
+            element={<CoverageDeatails action="coveragecreate" />}
           />
-           <Route
+          <Route
             path="/agent/createquote/coveragedetails/coveragedetail/:id"
-            element={<CoverageDeatails action="coveragedetail"/>}
+            element={<CoverageDeatails action="coveragedetail" />}
           />
           <Route
             path="/agent/createquote/accessories/accessoriescreate/:id"
-            element={<Accessories action="accessoriescreate"/>}
+            element={<Accessories action="accessoriescreate" />}
           />
-           <Route
+          <Route
             path="/agent/createquote/accessories/accessorirsdetails/:id"
-            element={<Accessories action="accessorirsdetails"/>}
+            element={<Accessories action="accessorirsdetails" />}
           />
           <Route
             path="/agent/createquote/ordersummary"
-            element={<OrderSummary />}
+            element={<OrderSummary action="edit"/> }
           />
           <Route
             path="/agent/createquote/ordersummaryquote"
-            element={<OrderSummaryQuote/>}
+            element={<OrderSummaryQuote action="view"/>}
           />
-          <Route
+          {/* <Route
             path="/agent/createquote/ordersummaryquote"
             element={<OrderSummaryQuote />}
-          />
-          <Route path="/agent/quotedetailview" element={<QuoteDetailView />} />
+          /> */}
+          <Route path="/agent/quotedetailview" element={<QuoteDetailView action="view" />} />
+          <Route path="/agent/quotedetailedit" element={<QuoteDetailView action="edit" />} />
           <Route path="/agent/quotelisting" element={<QuoteListing />} />
           <Route
             path="/agent/quotecomparisonview"
             element={<QuoteComparisonView />}
           />
           <Route
-            path="/agent/convertpolicy/customerinfo"
+            path="/agent/convertpolicy/customerinfo/view/:id"
             element={<CustomerInfo action="view" />}
           />
 
-          {/* <Route
-              path="/agent/convertpolicy/customerinfo/edit"
-              element={<CustomerInfo action="edit" />}
-            /> */}
+          <Route
+            path="/agent/convertpolicy/customerinfo/edit/:id"
+            element={<CustomerInfo action="edit" />}
+          />
 
           <Route
             path="/agent/convertpolicy/uploadvehiclephotos"

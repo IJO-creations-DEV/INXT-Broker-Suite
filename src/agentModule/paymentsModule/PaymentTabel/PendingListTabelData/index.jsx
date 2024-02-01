@@ -26,7 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPaymentPendingSearchDataMiddleWare, getPaymentSearchDataMiddleWare } from "../../store/paymentMiddleware";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
-const PendingListTabelData = ({ paymentSearchList }) => {
+const PendingListTabelData = ({paymentPendingtabledata, paymentSearchList }) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
@@ -297,7 +297,7 @@ const PendingListTabelData = ({ paymentSearchList }) => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search ? paymentSearchList : paymenttabledata}
+          value={search ? paymentSearchList : paymentPendingtabledata}
           paginator
           rows={5}
           selectionMode={selectionMode}

@@ -15,7 +15,7 @@ import { Menu } from "primereact/menu";
 import { useDispatch, useSelector } from "react-redux";
 import { getPolicyTabelSearchList } from "./store/getPolicyTabelDataMiddleWare"
 
-const LeadListingAllTable = () => {
+const LeadListingAllTable = ({action}) => {
   const { policyListData, loading, policySearchListData } = useSelector(
     ({ policyTabelMainReducers }) => {
       return {
@@ -101,7 +101,7 @@ const LeadListingAllTable = () => {
     },
     {
       label: "Renewal",
-      url: "/agent/policydetailedview",
+      url: `/agent/createquote/policydetails/quotedetails/:${123}`,
     },
 
     {
@@ -149,7 +149,7 @@ const LeadListingAllTable = () => {
       navigate("/agent/claimrequest/claimdetails");
     }
     if (menuItem == "renewal"){
-      navigate("/agent/createquote/policydetails")
+      navigate("/agent/createquote/policydetails/quotedetails/:${123}")
     }
     if (menuItem == "endrosement") {
       setDisplayDialog(true);

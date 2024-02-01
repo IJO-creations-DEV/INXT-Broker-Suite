@@ -21,10 +21,10 @@ const initialValues = {
   MotorNumber: "8546791234",
   ChassisNumber: "8529637412",
   Mortgage: "",
-  CertNumber: "",
-  PlateNumber: "",
-  MVFileNumber: "",
-  AuthenCode: "",
+  CertNumber: "2583694671",
+  PlateNumber: "4568231975",
+  MVFileNumber: "1456239857",
+  AuthenCode: "3219758642",
   Aluminium: "",
   AirBag: "",
   TNVS: "",
@@ -169,16 +169,13 @@ const CustomerInfo = ({ action }) => {
   //     }
   //   },[action]);
   useEffect(() => {
+
     if (action === "edit" && postcustomerinfodata) {
       setFormikValues(postcustomerinfodata);
     }
   }, [action, postcustomerinfodata]);
 
-  useEffect (()=>{
-    if (!formik.values.Mortgage){
-      setFormikValues("Mortgage",MortgageOptions[0].value)
-    }
-  },[MortgageOptions])
+ 
   const setFormikValues = (data) => {
     console.log(data, "find data");
     // const IsoCode = getExchangeEdit?.ISOcode;
@@ -206,6 +203,24 @@ const CustomerInfo = ({ action }) => {
     onSubmit: handleSubmit,
   });
 
+  useEffect(() => {
+    if (!formik.values.Mortgage) {
+      formik.setFieldValue("Mortgage", MortgageOptions[0].value);
+    }
+    if (!formik.values.Aluminium) {
+      formik.setFieldValue("Aluminium", Aluminium[0].value);
+    }
+    if (!formik.values.AirBag) {
+      formik.setFieldValue("AirBag", AirBag[0].value);
+    }
+    if (!formik.values.TNVS) {
+      formik.setFieldValue("TNVS", TNVSdata[0].value);
+    }
+    if (!formik.values.TruckType) {
+      formik.setFieldValue("TruckType", TruckTypes[0].value);
+    }
+
+  }, []);
   return (
     <div className="customer__info__container">
       <div className="customer__info__main__title">Leads</div>
@@ -310,7 +325,7 @@ const CustomerInfo = ({ action }) => {
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <DropdownField label="Mortgage"
-              options={Mortgagedata}
+              options={MortgageOptions}
               optionLabel="label"
               value={formik.values.Mortgage}
               onChange={(e) =>

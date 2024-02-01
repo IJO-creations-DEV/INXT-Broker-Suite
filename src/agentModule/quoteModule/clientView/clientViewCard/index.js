@@ -8,7 +8,7 @@ import ClientListingViewEndorsementTable from './ClientListingViewEndorsementTab
 import SvgBackArrow from '../../../../assets/icons/SvgBackArrow';
 import "../../clientView/index.scss";
 
-const ClientListingCard = () => {
+const ClientListingCard = ({action}) => {
     return (
         <div className="client__listing__card__container mt-4">
             <Card style={{borderRadius:"20px"}}>
@@ -18,7 +18,7 @@ const ClientListingCard = () => {
                 </div>
                 <TabView>
                     <TabPanel header="Policy" className='policy__header'>
-                        <ClientListingViewPolicyTable />
+                        <ClientListingViewPolicyTable action={action}/>
                     </TabPanel>
                     <TabPanel header="Claim" className='policy__header'>
                         <ClientListingViewClaimTable />

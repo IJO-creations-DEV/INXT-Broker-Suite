@@ -981,20 +981,36 @@ const Maincomponent = () => {
           <Route path="/agent/leadedit" element={<LeadEdit />} />
           {/* // Quote Creation, Policy conversion & Client listing */}
           <Route
-            path="/agent/createquote/policydetails"
-            element={<PolicyDetails />}
+            path="/agent/createquote/policydetails/createquote/:id"
+            element={<PolicyDetails action="createquote" />}
           />
           <Route
-            path="/agent/createquote/coveragedetails"
-            element={<CoverageDeatails />}
+            path="/agent/createquote/policydetails/quotedetails/:id"
+            element={<PolicyDetails action="quotedetails"/>}
           />
           <Route
-            path="/agent/createquote/accessories"
-            element={<Accessories />}
+            path="/agent/createquote/coveragedetails/coveragecreate/:id"
+            element={<CoverageDeatails action="coveragecreate"/>}
+          />
+           <Route
+            path="/agent/createquote/coveragedetails/coveragedetail/:id"
+            element={<CoverageDeatails action="coveragedetail"/>}
+          />
+          <Route
+            path="/agent/createquote/accessories/accessoriescreate/:id"
+            element={<Accessories action="accessoriescreate"/>}
+          />
+           <Route
+            path="/agent/createquote/accessories/accessorirsdetails/:id"
+            element={<Accessories action="accessorirsdetails"/>}
           />
           <Route
             path="/agent/createquote/ordersummary"
             element={<OrderSummary />}
+          />
+          <Route
+            path="/agent/createquote/ordersummaryquote"
+            element={<OrderSummaryQuote/>}
           />
           <Route
             path="/agent/createquote/ordersummaryquote"

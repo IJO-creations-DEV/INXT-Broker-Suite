@@ -18,25 +18,29 @@ import {
 } from "../mock";
 import { postPolicyDetailsMiddleware } from "../store/policyDetailsMiddleware";
 
-const initialValue = {
-  InsuranceCompanyName: "",
-  InsurancePolicyType: "",
-  AccountCode: "",
-  VehicleBrand: "",
-  ModelYear: "",
-  VehicleModel: "",
-  ModelVariant: "",
-  VehicleColor: "",
-  SeatingCapacity: "2",
-};
 
-const PolicyDetailsCard = () => {
+
+const PolicyDetailsCard = ({action}) => {
+  console.log(action ,"action");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const initialValue = {
+    InsuranceCompanyName: "",
+    InsurancePolicyType: "",
+    AccountCode: "",
+    VehicleBrand: "",
+    ModelYear: "",
+    VehicleModel: "",
+    ModelVariant: "",
+    VehicleColor: "",
+    SeatingCapacity:"",
+  };
   const handleclick = (values) => {
+    console.log(action,"action")
     dispatch(postPolicyDetailsMiddleware(values));
-    navigate("/agent/createquote/coveragedetails");
+    {action === "quotedetails"?
+    navigate(`/agent/createquote/coveragedetails/coveragedetail/:${123}`):navigate(`/agent/createquote/coveragedetails/coveragecreate/:${123}`)
+  }
   };
   // const customValidation = (values) => {
   //   const errors = {}
@@ -77,30 +81,31 @@ const PolicyDetailsCard = () => {
       handleclick(values);
     },
   });
+ 
   useEffect(() => {
     
-    if (!formik.values.InsuranceCompanyName) {
+    if (action === "quotedetails") {
       formik.setFieldValue("InsuranceCompanyName", InsuranceCompanyOptions[0].value);
     }
-    if (!formik.values.InsurancePolicyType) {
+    if (action === "quotedetails") {
       formik.setFieldValue("InsurancePolicyType", InsurancePolicyTypes[0].value);
     }
-    if (!formik.values.AccountCode) {
+    if (action === "quotedetails") {
       formik.setFieldValue("AccountCode", AccountCodes[0].value);
     }
-    if (!formik.values.VehicleBrand) {
+    if (action === "quotedetails") {
       formik.setFieldValue("VehicleBrand", VehicleBrands[0].value);
     }
-    if (!formik.values.ModelYear) {
+    if (action === "quotedetails") {
       formik.setFieldValue("ModelYear", ModelYears[0].value);
     }
-    if (!formik.values.VehicleModel) {
+    if (action === "quotedetails") {
       formik.setFieldValue("VehicleModel", VehicleModels[0].value);
     }
-    if (!formik.values.ModelVariant) {
+    if (action === "quotedetails") {
       formik.setFieldValue("ModelVariant", ModelVariants[0].value);
     }
-    if (!formik.values.VehicleColor) {
+    if (action === "quotedetails") {
       formik.setFieldValue("VehicleColor", VehicleColors[0].value);
     }
     
@@ -277,7 +282,8 @@ const PolicyDetailsCard = () => {
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
                 label="Seating Capacity"
-                value={formik.values.SeatingCapacity}
+                // value={formik.values.SeatingCapacity}
+                value={action === "createquote" ? formik.values.SeatingCapacity :"24"}
                 onChange={formik.handleChange("SeatingCapacity")}
 
               />

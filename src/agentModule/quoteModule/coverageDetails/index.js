@@ -2,8 +2,9 @@ import React from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow"
 import CoverageDetailsCard from "./coverageDetailsCard";
+import { act } from "react-dom/test-utils";
 
-const CoverageDeatails = () => {
+const CoverageDeatails = ({action}) => {
   return (
 
     <div className="coverage__container">
@@ -12,7 +13,7 @@ const CoverageDeatails = () => {
         <SvgLeftArrow />
         <div className="coverage__container__back__btn__title">Lead ID: 12345678</div>
       </div>
-      <CoverageDetailsCard/>
+      <CoverageDetailsCard action={action}/>
 
     </div>
   );

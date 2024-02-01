@@ -111,6 +111,9 @@ const MotorDetailsChange = ({
     },
   });
 
+  useEffect =(()=>{
+    
+  })
   return (
     <div>
       <div className="customer__info__subtitle mt-2 mb-2">
@@ -156,7 +159,8 @@ const MotorDetailsChange = ({
           <DropdownField
             label="Mortgage"
             value={formik.values.Mortgage}
-            options={MortgageOptions || mortgage}
+            // options={MortgageOptions || mortgage}
+            options={MortgageOptions}
             onChange={(e) => {
               console.log(e.value);
               formik.setFieldValue("Mortgage", e.value);

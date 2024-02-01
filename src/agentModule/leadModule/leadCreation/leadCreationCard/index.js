@@ -32,7 +32,7 @@ const initialValue = {
   gender: "Male"
 };
 
-const LeadCreationCard = () => {
+const LeadCreationCard = ({action}) => {
   // const [ingredient, setIngredient] = useState("");
   const [show, setShow] = useState(false);
   const toastRef = useRef(null);
@@ -40,10 +40,11 @@ const LeadCreationCard = () => {
   const dispatch = useDispatch();
 
   const handleclick = (values) => {
+    console.log(values,"values");
     dispatch(postCreateleadMiddleware(values));
     toastRef.current.showToast();
     setTimeout(() => {
-      navigate("/agent/createquote/policydetails");
+      navigate(`/agent/createquote/policydetails/createquote/${12}`);
     }, 2000);
   };
   const customValidation = (values) => {

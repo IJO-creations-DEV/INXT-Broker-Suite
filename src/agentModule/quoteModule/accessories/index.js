@@ -11,22 +11,25 @@ import InputTextField from "../../component/inputText";
 import { postaccessoriesMiddleware } from "./store/accessoriesMiddleware";
 
 const initialValue = {
-  Aircon: "350.00",
-  Stereo: "220.00",
-  Magwheels: "150.00",
-  Others: "170.00",
-  Deductible: "550.00",
-  Towing: "110.00",
-  RepairLimit: "850.00",
+  Aircon: "",
+  Stereo: "",
+  Magwheels: "",
+  Others: "",
+  Deductible: "",
+  Towing: "",
+  RepairLimit: "",
 };
 
-const Accessories = () => {
+const Accessories = ({action}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleclick = (values) => {
     dispatch(postaccessoriesMiddleware(values));
-    navigate("/agent/createquote/ordersummaryquote");
+    console.log(action,"action2")
+    {action === "accessoriescreate" ?
+    navigate("/agent/createquote/ordersummary"): navigate("/agent/createquote/ordersummaryquote")
+  }
   };
   const handleBackNavigation = () => {
     customHistory.back();
@@ -84,7 +87,8 @@ const Accessories = () => {
             <div class="col-6">
               <InputTextField
                 label="Aircon"
-                value={formik.values.Aircon}
+                // value={formik.values.Aircon}
+                value={action === "accessoriescreate" ? formik.values.Aircon:"350.00"}
                 onChange={formik.handleChange("Aircon")}
               />
               
@@ -97,7 +101,8 @@ const Accessories = () => {
             <div class="col-6">
               <InputTextField
                 label="Stereo"
-                value={formik.values.Stereo}
+                // value={formik.values.Stereo}
+                value={action === "accessoriescreate" ? formik.values.Stereo:"220.00"}
                 onChange={formik.handleChange("Stereo")}
               />
               {formik.touched.Stereo && formik.errors.Stereo && (
@@ -112,7 +117,8 @@ const Accessories = () => {
             <div class="col-6">
               <InputTextField
                 label="Mag wheels"
-                value={formik.values.Magwheels}
+                // value={formik.values.Magwheels}
+                value={action === "accessoriescreate" ? formik.values.Magwheels:"150.00"}
                 onChange={formik.handleChange("Magwheels")}
               />
               {formik.touched.Magwheels && formik.errors.Magwheels && (
@@ -124,7 +130,8 @@ const Accessories = () => {
             <div class="col-6">
               <InputTextField
                 label="Others"
-                value={formik.values.Others}
+                // value={formik.values.Others}
+                value={action === "accessoriescreate" ? formik.values.Others:"170.00"}
                 onChange={formik.handleChange("Others")}
               />
               {formik.touched.Others && formik.errors.Others && (
@@ -139,7 +146,8 @@ const Accessories = () => {
             <div class="col-6">
               <InputTextField
                 label="Deductible"
-                value={formik.values.Deductible}
+                // value={formik.values.Deductible}
+                value={action === "accessoriescreate" ? formik.values.Deductible:"550.00"}
                 onChange={formik.handleChange("Deductible")}
               />
               {formik.touched.Deductible && formik.errors.Deductible && (
@@ -151,7 +159,8 @@ const Accessories = () => {
             <div class="col-6">
               <InputTextField
                 label="Towing"
-                value={formik.values.Towing}
+                // value={formik.values.Towing}
+                value={action === "accessoriescreate" ? formik.values.Towing:"110.00"}
                 onChange={formik.handleChange("Towing")}
               />
               {formik.touched.Towing && formik.errors.Towing && (
@@ -165,7 +174,9 @@ const Accessories = () => {
             <div class="col-6">
               <InputTextField
                 label="Repair Limit"
-                value={formik.values.RepairLimit}
+                // value={formik.values.RepairLimit}
+                value={action === "accessoriescreate" ? formik.values.RepairLimit:"850.00"}
+                
                 onChange={formik.handleChange("RepairLimit")}
               />
               {formik.touched.RepairLimit && formik.errors.RepairLimit && (

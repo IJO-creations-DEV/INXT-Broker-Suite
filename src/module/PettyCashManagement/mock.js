@@ -1,6 +1,10 @@
 export const PettyCashCode = [
-  { label: "PC001", value: "PC001" },
-  { label: "PC002", value: "PC002" },
+  { PettyCashCodes: "PC001" },
+  { PettyCashCodes: "PC002" },
+];
+export const PettyCashCodessingle = [
+  {label: "PC001",value:"PC001" },
+  { label: "PC002" ,value:"PC002"},
 ];
 export const TransactionCode = [
   { label: "Trans0123", value: "Trans0123" },

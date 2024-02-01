@@ -22,6 +22,7 @@ import { Column } from "primereact/column";
 import SvgDeleteIcon from "../../../../assets/icons/SvgDeleteIcon";
 import { Dialog } from "primereact/dialog";
 import { Checkbox } from "primereact/checkbox";
+import AddDialog from "./AddDialog";
 
 
 
@@ -44,6 +45,8 @@ const EditRequestForm = ({ action }) => {
     console.log("first", action);
     const [checked, setChecked] = useState(false);
     const [codedata, setcodeData] = useState([])
+   
+   
     const { editrequestDetails,AddRequestTable, loading } = useSelector(
         ({ pettyCashRequestReducer }) => {
             return {
@@ -53,20 +56,26 @@ const EditRequestForm = ({ action }) => {
             };
         }
     );
-
-    console.log("first10", codedata)
+    useEffect(function() {
+       
+        return function() {
+          // Clean-up logic if needed
+        };
+      }, []);
+    
+    console.log("first10", AddRequestTable)
 
     const handleSubmit = (value) => {
-        const valueWithId = {
-            ...value,
-            id: editrequestDetails?.length + 1,
-        };
-        console.log("first7", valueWithId)
-        dispatch(postupdateRequestMiddleware(valueWithId));
-        // toastRef.current.showToast();
-        // setTimeout(() => {
-        // navigate("/accounts/pettycash/addrequesttable");
-        // }, 3000);
+        // const valueWithId = {
+        //     ...value,
+        //     id: editrequestDetails?.length + 1,
+        // };
+        // console.log("first7", valueWithId)
+        // dispatch(postupdateRequestMiddleware(valueWithId));
+        toastRef.current.showToast();
+        setTimeout(() => {
+        navigate("/accounts/pettycash/pettycashrequest");
+        }, 2000);
     };
 
     const validate = (values) => {
@@ -150,6 +159,12 @@ const EditRequestForm = ({ action }) => {
             handleSubmit(values);
         },
     });
+
+
+    const totalAmount = AddRequestTable.reduce(
+        (total, item) => total + parseInt(item.Amount),
+        0
+      );
 
     const handlePettyCashDescribtion = (value) => {
         formik.setFieldValue("PettyCashCode", value);
@@ -246,6 +261,7 @@ const EditRequestForm = ({ action }) => {
 
     return (
         <div className="requestedit___form">
+            <CustomToast ref={toastRef} message="Update Successfully" />
             <div className="grid  m-0">
                 <div className="col-12 md:col-6 lg:col-6">
                     <div
@@ -316,10 +332,7 @@ const EditRequestForm = ({ action }) => {
                                 textWeight={500}
                                 value={formik.values.TransactionNumber}
                                 onChange={formik.handleChange("TransactionNumber")}
-                                error={
-                                    formik.touched.TransactionNumber &&
-                                    formik.errors.TransactionNumber
-                                }
+                                
                                 disabled={action === "view"? true : false}
                             />
                         </div>
@@ -356,7 +369,7 @@ const EditRequestForm = ({ action }) => {
                                 onChange={(e) => {
                                     console.log(e.value);
                                     formik.setFieldValue("RequesterName", e.value);
-                                }}
+                                }}optionValue={"label"}
                                 optionLabel="label"
                                 error={
                                     formik.touched.RequesterName && formik.errors.RequesterName
@@ -453,7 +466,7 @@ const EditRequestForm = ({ action }) => {
                             textColor={"#111927"}
                             textSize={"16"}
                             textWeight={500}
-                        value={formik.values.TotalAmount}
+                        value={totalAmount}
                         disabled={action === "view"? true : false}
                         // onChange={formik.handleChange("TransactionNumber")}
                         // error={
@@ -468,75 +481,19 @@ const EditRequestForm = ({ action }) => {
             <div className="grid  mt-4">
                 <div className="col-12 md:col-12 lg:col-12">
                     <div className="btn__container">
-                        <Button
-                            label="Next"
+                       {action === "view" ? null:<Button
+                            label="Update"
                             className="add__btn"
                             onClick={() => {
                                 formik.handleSubmit();
                             }}
                             disabled={!formik.isValid}
-                        />
+                        /> } 
                     </div>
                 </div>
             </div>
-
-            <Dialog
-                header="Add Request Item"
-                visible={visible}
-                style={{ width: "50vw" }}
-                onHide={() => setVisible(false)}
-                headerStyle={{
-                    color: "#343434",
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: 16,
-                    fontWeight: 500,
-                    // lineHeight: "150%",
-                }}
-                className="dailog__container"
-            >
-                
-                    <div className="grid">
-                        <div className="col-12 md:col-8 lg:col-8">
-                            <InputField
-                                // classNames="input__filed"
-                                classNames="fielduniqueone__container"
-                                label="Narration"
-                                placeholder="Enter"
-                                textColor={"#111927"}
-                                textSize={"16"}
-                                textWeight={500}
-                                value={formik.values.Narration}
-                                onChange={formik.handleChange("Narration")}
-                                error={formik.touched.Narration && formik.errors.Narration}
-                            />
-                        </div>
-                        <div className="col-12 md:col-4 lg:col-4">
-                            <InputField
-                                classNames="fielduniqueone__container"
-                                label="Amount"
-                                placeholder="Enter"
-                                textColor={"#111927"}
-                                textSize={"16"}
-                                textWeight={500}
-                                value={formik.values.Amount}
-                                onChange={formik.handleChange("Amount")}
-                                error={formik.touched.Amount && formik.errors.Amount}
-                            />
-                        </div>
-                    </div>
-              
-                <div className="grid">
-                    <div className="col-12 md:col-12 lg:col-12 bt__container">
-                        <Button
-                            label="Save"
-                            className="add__btn"
-                        onClick={() => {
-                          formik.handleSubmit();
-                        }}
-                        />
-                    </div>
-                </div>
-            </Dialog>
+<AddDialog   visible={visible} setVisible={setVisible}/>
+           
         </div>
     );
 };

@@ -31,6 +31,7 @@ const AddRequestTable = () => {
   const [show, setshow] = useState(false);
   const dispatch = useDispatch();
   const toastRef = useRef(null);
+  const toastRefApprove = useRef(null);
   const navigate = useNavigate();
   const [toastMessage, setToastMessage] = useState("");
 
@@ -54,10 +55,10 @@ const AddRequestTable = () => {
     console.log("first6", totalAmount)
     dispatch(postAddRequestMiddleware(totalAmount));
     if (actionName === "save") {
-      toastRef.current.showToast("save");
+      toastRef.current.showToast();
       // setToastMessage("Successfully saved");
     } else if (actionName === "approve") {
-      toastRef.current.showToast("approve");
+      toastRefApprove.current.showToast();
       // dispatch(postAddRequestMiddleware(valueWithId));
       // setToastMessage("Transaction Number 1234 is created");
       setTimeout(() => {
@@ -155,7 +156,8 @@ const AddRequestTable = () => {
   return (
     <div className="add__request__table">
 
-      <CustomToast ref={toastRef} message={"save" ? "Successfully saved" : "Transaction Number 1234 is created"} />
+      <CustomToast ref={toastRef} message={"Successfully saved"} />
+      <CustomToast ref={toastRefApprove} message={"Transaction Number 1234 is created"} />
 
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
@@ -200,7 +202,8 @@ const AddRequestTable = () => {
           <DataTable
             value={AddRequestTable}
             tableStyle={{ minWidth: "50rem" }}
-            emptyMessage={isEmpty ? emptyTableIcon : null}
+            emptyMessage={isEmpty ? emptyTableIcon : null} scrollable={true}
+            scrollHeight="40vh"
           >
             <Column
               field="Narration"

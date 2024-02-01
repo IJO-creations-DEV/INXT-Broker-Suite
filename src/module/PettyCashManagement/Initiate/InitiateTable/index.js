@@ -35,6 +35,7 @@ const InitiateTable = () => {
     }
   );
 
+  console.log("first11", InitiateList)
   const searchs = [
     { name: "Petty Cash code", code: "Pettycashcode" },
     { name: "Transaction Number", code: "TransactionNumber" },
@@ -219,8 +220,8 @@ const InitiateTable = () => {
               sortable
             ></Column>
             <Column
-              field="TransactionLimit"
-              header="Transaction Limit"
+              field="MaxLimit"
+              header="Max Limit"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>

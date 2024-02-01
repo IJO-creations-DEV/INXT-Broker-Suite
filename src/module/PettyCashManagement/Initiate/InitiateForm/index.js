@@ -31,7 +31,7 @@ const initialValue = {
   TransactionDate: new Date(),
   TransactionCode: "",
   TransactionNumber: "",
-  PettyCashCode: "",
+  PettyCashCodes: "",
   PettyCashdescription: "",
   PettyCashSize: "",
   BankCode: "",
@@ -47,7 +47,6 @@ const initialValue = {
   AvailableCash: "",
   MaxLimit: "",
   MinimumCashbox: "",
-
 };
 
 const InitiateForm = () => {
@@ -57,8 +56,8 @@ const InitiateForm = () => {
   const validate = (values) => {
     const errors = {};
 
-    if (!values.PettyCashCode) {
-      errors.PettyCashCode = "Petty Cash Code is required";
+    if (!values.PettyCashCodes) {
+      errors.PettyCashCodes = "Petty Cash Code is required";
     }
 
     if (!values.BankCode) {
@@ -134,10 +133,10 @@ const InitiateForm = () => {
   });
 
   const handlePettyCashDescribtion = (value) => {
-    console.log("first", value.pettycashcode)
+    console.log("first", value)
     let description = "";
     let pettycashsize = "";
-    switch (value.pettycashcode) {
+    switch (value) {
       case "PC001":
         description = "PC-1";
         break;
@@ -154,7 +153,7 @@ const InitiateForm = () => {
         description = "Unknown";
         break;
     }
-    switch (value.pettycashcode) {
+    switch (value) {
       case "PC001":
         pettycashsize = "1000";
         break;
@@ -417,17 +416,17 @@ const InitiateForm = () => {
               textSize={"16"}
               textWeight={500}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              value={formik.values.PettyCashCode}
+              value={formik.values.PettyCashCodes}
               options={PettyCashCode}
               onChange={(e) => {
-                console.log(e.value);
-                formik.setFieldValue("PettyCashCode", e.value).then(() => {
-                  handlePettyCashDescribtion(e.value);
+                console.log(e.value, "qwerty");
+                formik.setFieldValue("PettyCashCodes", e.value).then(() => {
+                  handlePettyCashDescribtion(e.value.PettyCashCodes);
                 })
               }}
-              optionLabel="pettycashcode"
+              optionLabel="PettyCashCodes"
               error={
-                formik.touched.PettyCashCode && formik.errors.PettyCashCode
+                formik.touched.PettyCashCodes && formik.errors.PettyCashCodes
               }
             />
             {/* {formik.touched.PettyCashCode &&

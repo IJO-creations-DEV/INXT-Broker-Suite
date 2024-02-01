@@ -52,12 +52,12 @@ export const postAddReplenishMiddleware = createAsyncThunk(
     }/${currentDate.getFullYear()}`;
     const TableData = {
       id: payload?.id,
-      Pettycashcode:payload?.PettycashCode?.pettycashcode,
+      Pettycashcode:payload?.PettycashCode?.PettyCashCodes,
       Branchcode: payload?.BranchCode?.Branchcode,
-      Transactioncode: payload?.TransactionCode?.Transcode,
+      Transactioncode: "p-1233",
       BankCode: payload.BankCode?.BankAccountCode,
       SubAccount: payload?.SubAccountCode?.SubAccount,
-      TransactionNumber: payload?.TransactionCode?.Transcode,
+      TransactionNumber: "Trans002",
       Date: formattedDate,
     };
     try {

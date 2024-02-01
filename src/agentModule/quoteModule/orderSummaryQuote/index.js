@@ -16,15 +16,15 @@ import { postOrderSummaryMiddleware } from "./store/orderSummaryMiddleware";
 import { useDispatch } from "react-redux";
 
 const initialValue = {
-  NETpremium: "1,100.00",
-  ValueAddedTax: "1,500.00",
-  Others: "1,300.00",
+  NETpremium: "",
+  ValueAddedTax: "",
+  Others: "",
   AuthorizedSignature: "",
-  DocumentaryStampTax: "1,000.00",
-  LocalGovtTax: "1,100.00",
-  Discount: "000.00",
-  NCD: "600",
-  GrossPremium: "6000",
+  DocumentaryStampTax: "",
+  LocalGovtTax: "",
+  Discount: "",
+  NCD: "",
+  GrossPremium: "",
 };
 
 const OrderSummary = () => {

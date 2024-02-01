@@ -3,7 +3,7 @@ import "./index.scss"
 import SvgLeftArrow from '../../../assets/agentIcon/SvgLeftArrow'
 import PolicyDetailsCard from './policyDetailsCard'
 
-const PolicyDetails = () => {
+const PolicyDetails = ({action}) => {
   return (
     <div className='policy__container'>
       <div className='policy__container__title'>
@@ -13,7 +13,7 @@ const PolicyDetails = () => {
       <SvgLeftArrow />
       <div className='policy__container__back__btn__title'>Carson Darrin/Client ID: 12345678</div>
       </div>
-      <PolicyDetailsCard/>
+      <PolicyDetailsCard action={action}/>
     </div>
   )
 }

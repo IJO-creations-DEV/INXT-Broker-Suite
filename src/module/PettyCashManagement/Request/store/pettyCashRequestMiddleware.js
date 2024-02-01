@@ -59,7 +59,8 @@ export const postAddRequestMiddleware = createAsyncThunk(
       TotalAmount: randomTotalAmount.toString(),
       Date: formattedDate,
       RequestDate: formattedtransDate,
-      TransactionNumber: payload.TransactionNumber
+      TransactionNumber: "Trans001",
+      
     };
     try {
       console.log("first8", TableData)
@@ -83,8 +84,8 @@ export const postupdateRequestMiddleware = createAsyncThunk(
     console.log("firt4", payload)
     const TableData = {
       id: payload?.id,
-      Narration:"",
-      Amount:""
+      Narration:payload?.Narration,
+      Amount:payload?.Amount
     };
     try {
       console.log("first8", TableData)
@@ -113,9 +114,13 @@ export const postEditRequestMiddleware = createAsyncThunk(
   POST_EDIT_REQUEST_VOUCHER,
   async (payload, { rejectWithValue }) => {
     console.log(payload, "Edit")
+    const datatable = {
+      Narration:payload?.Narration,
+      Amount:payload?.Amount
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return datatable;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

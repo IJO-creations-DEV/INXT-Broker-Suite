@@ -93,12 +93,7 @@ const AddReplenish = () => {
       errors.BankCode = "Bank Code is required";
     }
 
-    if (!values.SubAccountCode) {
-      errors.SubAccountCode = "Sub Account Code is required";
-    }
-    if (!values.TransactionCode) {
-      errors.TransactionCode = "Transaction Code is required";
-    }
+   
 
     return errors;
   };
@@ -113,7 +108,7 @@ const AddReplenish = () => {
 
   const handlePettyCashDescribtion = (value) => {
     let description = "";
-    switch (value.pettycashcode) {
+    switch (value) {
       case "PC001":
         description = "PC-1";
         break;
@@ -279,27 +274,15 @@ const AddReplenish = () => {
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 xl:col-3 input__view">
-              <DropDowns
-                className="input__filed"
+            <InputField
+                classNames="input__filed"
                 label="Transaction Code"
-                placeholder="Select"
+                //   placeholder="Enter"
+                disabled={true}
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formik.values.TransactionCode}
-                options={Transcode}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("TransactionCode", e.value).then(() => {
-                    handleTrans(e.value.Transcode);
-                  });
-                }}
-                optionLabel="Transcode"
-                error={
-                  formik.touched.TransactionCode &&
-                  formik.errors.TransactionCode
-                }
+                
               />
             </div>
             <div className="col-12 md:col-3 lg-col-3 xl:col-3 input__view">
@@ -328,12 +311,12 @@ const AddReplenish = () => {
                 value={formik.values.PettycashCode}
                 options={PettyCashCode}
                 onChange={(e) => {
-                  console.log(e.value);
+                  console.log(e.value.PettyCashCodes,"QWERT");
                   formik.setFieldValue("PettycashCode", e.value).then(() => {
-                    handlePettyCashDescribtion(e.value);
+                    handlePettyCashDescribtion(e.value.PettyCashCodes);
                   });
                 }}
-                optionLabel="pettycashcode"
+                optionLabel="PettyCashCodes"
                 error={
                   formik.touched.PettycashCode && formik.errors.PettycashCode
                 }

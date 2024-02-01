@@ -527,7 +527,9 @@ const AddDisbursementTable = () => {
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 value={formAction === "Add" ? formik.values.RequestNumber : formAction === "Edit" && formik.values.RequestNumber}
                 options={formAction === "Edit" ? RequestNumberOptionData : item
+                
                 }
+                disabled={formAction === "Edit" ? true :false}
                 onChange={(e) => {
                   formik.setFieldValue("RequestNumber", e.value);
                 }}
@@ -588,6 +590,8 @@ const AddDisbursementTable = () => {
                 textWeight={500}
                 value={formAction === "Add" ? formik.values.Purpose : formAction === "Edit" && formik.values.Purpose}
                 onChange={formik.handleChange("Purpose")}
+                disabled={formAction === "Edit" ? true :false}
+                placeholder="Enter"
               // value={formik.values.RequestNumber}
               />
             </div>
@@ -637,6 +641,8 @@ const AddDisbursementTable = () => {
                 textWeight={500}
                 value={formAction === "Add" ? formik.values.Amount : formAction === "Edit" && formik.values.Amount}
                 onChange={formik.handleChange("Amount")}
+                placeholder="Enter"
+                disabled={formAction === "Edit" ? true :false}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">

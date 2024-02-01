@@ -172,7 +172,7 @@ const PettyCashCodeDetails = () => {
               classNames="field__container"
               label="Transaction Code"
               // placeholder={"Enter"}
-              value={"Trans001"}
+               value={"Trans001"}
 
             />
 

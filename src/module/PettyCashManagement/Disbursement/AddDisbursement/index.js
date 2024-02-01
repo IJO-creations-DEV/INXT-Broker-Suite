@@ -12,7 +12,7 @@ import { Button } from "primereact/button";
 import InputField from "../../../../components/InputField";
 import { Card } from "primereact/card";
 import {
-  PettyCashCode,
+  PettyCashCodessingle,
   Criteria,
   VATMainAccount,
   WHTSubAccount,
@@ -319,7 +319,7 @@ const AddDisbursement = () => {
                 textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
                 value={formik.values.PettyCashCode}
-                options={PettyCashCode}
+                options={PettyCashCodessingle}
                 onChange={(e) => formik.setFieldValue("PettyCashCode", e.value)}
                 optionLabel="label"
                 error={

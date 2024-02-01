@@ -461,18 +461,18 @@ const Index = () => {
           ></Column>
           <Column
             body={renderGrossPremium}
-            header="GrossPremium"
+            header="Gross Premium"
             headerStyle={headerStyle}
           ></Column>
           <Column
             field="IssueDate"
-            header="Issue Date"
+            header="Policy Issued"
             headerStyle={headerStyle}
           ></Column>
 
           <Column
             body={renderExpiryDate}
-            header="Expiry"
+            header="Policy Expired"
             headerStyle={headerStyle}
           ></Column>
            <Column

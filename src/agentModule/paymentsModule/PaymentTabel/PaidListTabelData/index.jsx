@@ -14,10 +14,11 @@ import SvgDownArrow from "../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import "../../PaymentTabel/index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getPaymentSearchDataMiddleWare } from "../../store/paymentMiddleware";
+import { getPaymentPaidSearchDataMiddleWare, getPaymentSearchDataMiddleWare } from "../../store/paymentMiddleware";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
-const PaidListTabelData = ({paymentSearchList}) => {
+const PaidListTabelData = ({ paymenttabledata,agentPaymentMainReducers }) => {
+  console.log(paymenttabledata,"paymenttabledata");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("PolicyNumber");
@@ -35,7 +36,7 @@ const PaidListTabelData = ({paymentSearchList}) => {
   useEffect(() => {
     if (globalFilter && search) {
       dispatch(
-        getPaymentSearchDataMiddleWare({
+        getPaymentPaidSearchDataMiddleWare({
           field: globalFilter,
           value: search,
           // status1: status,
@@ -46,53 +47,53 @@ const PaidListTabelData = ({paymentSearchList}) => {
 
 
 
-const paymenttabledata=[
-  {
-    id: 1,
-    type:"Policy",
-    name:"CarsonDarrin",
-    clintid:"123",
-    policyNo:"999",
-    grosspremium: "355",
-    policyIssued:"13/12/12",
-    policyExpird:"13/12/12",
-    status:"PAID"
-  },
-  {
-    id: 2,
-    type:"Renewal Policy",
-    name:"Carson Darrin",
-    clintid:"456",
-    policyNo:"98456",
-    grosspremium: "655",
-    policyIssued:"13/12/12",
-    policyExpird:"13/12/12",
-    status:"PAID"
-  },
-  {
-    id: 3,
-    type:"Renewal Policy",
-    name:"Carson Darrin",
-    clintid:"566",
-    policyNo:"123456",
-    grosspremium: "655",
-    policyIssued:"13/12/12",
-    policyExpird:"13/12/12",
-    status:"PAID"
-  },
-  {
-    id: 4,
-    type:"Renewal Policy",
-    name:"Carson Darrin",
-    clintid:"786",
-    policyNo:"67856",
-    grosspremium: "655",
-    policyIssued:"13/12/12",
-    policyExpird:"13/12/12",
-    status:"PAID"
-  },
-    
-  ]
+  // const paymenttabledata = [
+  //   {
+  //     id: 1,
+  //     type: "Policy",
+  //     name: "CarsonDarrin",
+  //     clintid: "123",
+  //     policyNo: "999",
+  //     grosspremium: "355",
+  //     policyIssued: "13/12/12",
+  //     policyExpird: "13/12/12",
+  //     status: "PAID"
+  //   },
+  //   {
+  //     id: 2,
+  //     type: "Renewal Policy",
+  //     name: "Carson Darrin",
+  //     clintid: "456",
+  //     policyNo: "98456",
+  //     grosspremium: "655",
+  //     policyIssued: "13/12/12",
+  //     policyExpird: "13/12/12",
+  //     status: "PAID"
+  //   },
+  //   {
+  //     id: 3,
+  //     type: "Renewal Policy",
+  //     name: "Carson Darrin",
+  //     clintid: "566",
+  //     policyNo: "123456",
+  //     grosspremium: "655",
+  //     policyIssued: "13/12/12",
+  //     policyExpird: "13/12/12",
+  //     status: "PAID"
+  //   },
+  //   {
+  //     id: 4,
+  //     type: "Renewal Policy",
+  //     name: "Carson Darrin",
+  //     clintid: "786",
+  //     policyNo: "67856",
+  //     grosspremium: "655",
+  //     policyIssued: "13/12/12",
+  //     policyExpird: "13/12/12",
+  //     status: "PAID"
+  //   },
+
+  // ]
 
   const template2 = {
     layout:
@@ -144,7 +145,7 @@ const paymenttabledata=[
   const renderType = (rowData) => {
     return (
       <div className="name__box__container">
-          <div className="name__text">{rowData.type}</div>
+        <div className="name__text">{rowData.type}</div>
       </div>
     );
   };
@@ -152,19 +153,19 @@ const paymenttabledata=[
   const renderName = (rowData) => {
     return <div className="category__text">{rowData.name}</div>;
   };
-  const renderClientId= (rowData) => {
+  const renderClientId = (rowData) => {
     return <div className="category__text">{rowData.clintid}</div>;
   };
-  const renderPolicyNo= (rowData) => {
+  const renderPolicyNo = (rowData) => {
     return <div className="category__text">{rowData.policyNo}</div>;
   };
-  const renderGrossPremium= (rowData) => {
+  const renderGrossPremium = (rowData) => {
     return <div className="category__text">{rowData.grosspremium}</div>;
   };
-  const renderPolicyIssued= (rowData) => {
+  const renderPolicyIssued = (rowData) => {
     return <div className="category__text">{rowData.policyIssued}</div>;
   };
-  const renderPolicyExpired= (rowData) => {
+  const renderPolicyExpired = (rowData) => {
     return <div className="category__text">{rowData.policyExpird}</div>;
   };
   const renderStatus = (rowData) => {
@@ -220,28 +221,28 @@ const paymenttabledata=[
         <div class="col-12 md:col-9 lg:col-9">
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
-            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)}style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
-            
+            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} style={{ width: "100%", padding: "1rem 2.75rem", borderRadius: "10px" }} />
+
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-        <Dropdown
-                    value={globalFilter}
-                    onChange={(e) => setGlobalFilter(e.value)}
-                    options={cities}
-                    optionLabel="name"
-                    optionValue="code"
-                    placeholder="Search by"
-                    className="sorbyfilter__style"
-                    dropdownIcon={<SvgDropdownicon />}
-                   
-                  />
+          <Dropdown
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.value)}
+            options={cities}
+            optionLabel="name"
+            optionValue="code"
+            placeholder="Search by"
+            className="sorbyfilter__style"
+            dropdownIcon={<SvgDropdownicon />}
+
+          />
         </div>
       </div>
       <div className="lead__table__container">
         <DataTable
-         value={search? paymentSearchList : paymenttabledata}
-          paginator 
+          value={search ? agentPaymentMainReducers : paymenttabledata}
+          paginator
           rows={5}
           selectionMode={selectionMode}
           selection={selectedProducts}
@@ -270,12 +271,12 @@ const paymenttabledata=[
             header={renderUncheckedHeader("Client ID")}
             headerStyle={headerStyle}
           ></Column>
-            <Column
+          <Column
             body={renderPolicyNo}
             header={renderUncheckedHeader("Policy Number")}
             headerStyle={headerStyle}
           ></Column>
-           <Column
+          <Column
             body={renderGrossPremium}
             header={renderUncheckedHeader("Gross premium")}
             headerStyle={headerStyle}
@@ -286,7 +287,7 @@ const paymenttabledata=[
             headerStyle={headerStyle}
             sortField="dateSortField"
           ></Column>
-            <Column
+          <Column
             body={renderPolicyExpired}
             header={renderUncheckedHeader("Policy Expired")}
             headerStyle={headerStyle}

@@ -32,17 +32,17 @@ const ReviewingListTabelData = ({paymentSearchList}) => {
     { name: "ClientId", code: "ClientId" },
   ];
 
-  useEffect(() => {
-    if (globalFilter && search) {
-      dispatch(
-        getPaymentSearchDataMiddleWare({
-          field: globalFilter,
-          value: search,
-          // status1: status,
-        })
-      );
-    }
-  }, [search]);
+  // useEffect(() => {
+  //   if (globalFilter && search) {
+  //     dispatch(
+  //       getPaymentSearchDataMiddleWare({
+  //         field: globalFilter,
+  //         value: search,
+  //         // status1: status,
+  //       })
+  //     );
+  //   }
+  // }, [search]);
 
 const paymenttabledata=[
   {

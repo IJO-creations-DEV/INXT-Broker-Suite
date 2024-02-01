@@ -136,6 +136,9 @@ const InitiateForm = () => {
     console.log("first", value)
     let description = "";
     let pettycashsize = "";
+    let AvailableCash = "";
+    let translimit = "";
+    let maxlimit = "";
     switch (value) {
       case "PC001":
         description = "PC-1";
@@ -170,6 +173,60 @@ const InitiateForm = () => {
         pettycashsize = "Unknown";
         break;
     }
+    switch (value) {
+      case "PC001":
+        AvailableCash = "10,000";
+        break;
+      case "PC002":
+        AvailableCash = "20,000";
+        break;
+      case "PC003":
+        AvailableCash = "30,000";
+        break;
+      // case "1818810131":
+      //   Availablecash = "40,000";
+      //   break;
+      default:
+        AvailableCash = "Unknown";
+        break;
+    }
+    switch (value) {
+      case "PC001":
+        maxlimit = "1000";
+        break;
+      case "PC002":
+        maxlimit = "2000";
+        break;
+      case "PC003":
+        maxlimit = "3000";
+        break;
+      // case "1818810131":
+      //   maxlimit = "4000";
+      //   break;
+      default:
+        maxlimit = "Unknown";
+        break;
+    }
+    switch (value) {
+      case "PC001":
+        translimit = "10,000";
+        break;
+      case "PC002":
+        translimit = "20,000";
+        break;
+      case "PC003":
+        translimit = "30,000";
+        break;
+      // case "1818810131":
+      //   translimit = "40,000";
+      //   break;
+      default:
+        translimit = "Unknown";
+        break;
+    }
+    formik.setFieldValue("AvailableCash", AvailableCash);
+    formik.setFieldValue("MaxLimit", translimit);
+    formik.setFieldValue("MinimumCashbox", maxlimit);
     formik.setFieldValue("PettyCashSize", pettycashsize);
     formik.setFieldValue("PettyCashdescription", description);
   };
@@ -260,63 +317,63 @@ const InitiateForm = () => {
   };
   const handleAccountcode = (value) => {
     console.log("first3", value)
-    let AvailableCash = "";
-    let translimit = "";
-    let maxlimit = "";
-    switch (value) {
-      case "Bk001":
-        AvailableCash = "10,000";
-        break;
-      case "Bk002":
-        AvailableCash = "20,000";
-        break;
-      case "Bk003":
-        AvailableCash = "30,000";
-        break;
-      // case "1818810131":
-      //   Availablecash = "40,000";
-      //   break;
-      default:
-        AvailableCash = "Unknown";
-        break;
-    }
-    switch (value) {
-      case "Bk001":
-        maxlimit = "1000";
-        break;
-      case "Bk002":
-        maxlimit = "2000";
-        break;
-      case "Bk003":
-        maxlimit = "3000";
-        break;
-      // case "1818810131":
-      //   maxlimit = "4000";
-      //   break;
-      default:
-        maxlimit = "Unknown";
-        break;
-    }
-    switch (value) {
-      case "Bk001":
-        translimit = "10,000";
-        break;
-      case "Bk002":
-        translimit = "20,000";
-        break;
-      case "Bk003":
-        translimit = "30,000";
-        break;
-      // case "1818810131":
-      //   translimit = "40,000";
-      //   break;
-      default:
-        translimit = "Unknown";
-        break;
-    }
-    formik.setFieldValue("AvailableCash", AvailableCash);
-    formik.setFieldValue("MaxLimit", translimit);
-    formik.setFieldValue("MinimumCashbox", maxlimit);
+    // let AvailableCash = "";
+    // let translimit = "";
+    // let maxlimit = "";
+    // switch (value) {
+    //   case "Bk001":
+    //     AvailableCash = "10,000";
+    //     break;
+    //   case "Bk002":
+    //     AvailableCash = "20,000";
+    //     break;
+    //   case "Bk003":
+    //     AvailableCash = "30,000";
+    //     break;
+    //   // case "1818810131":
+    //   //   Availablecash = "40,000";
+    //   //   break;
+    //   default:
+    //     AvailableCash = "Unknown";
+    //     break;
+    // }
+    // switch (value) {
+    //   case "Bk001":
+    //     maxlimit = "1000";
+    //     break;
+    //   case "Bk002":
+    //     maxlimit = "2000";
+    //     break;
+    //   case "Bk003":
+    //     maxlimit = "3000";
+    //     break;
+    //   // case "1818810131":
+    //   //   maxlimit = "4000";
+    //   //   break;
+    //   default:
+    //     maxlimit = "Unknown";
+    //     break;
+    // }
+    // switch (value) {
+    //   case "Bk001":
+    //     translimit = "10,000";
+    //     break;
+    //   case "Bk002":
+    //     translimit = "20,000";
+    //     break;
+    //   case "Bk003":
+    //     translimit = "30,000";
+    //     break;
+    //   // case "1818810131":
+    //   //   translimit = "40,000";
+    //   //   break;
+    //   default:
+    //     translimit = "Unknown";
+    //     break;
+    // }
+    // formik.setFieldValue("AvailableCash", AvailableCash);
+    // formik.setFieldValue("MaxLimit", translimit);
+    // formik.setFieldValue("MinimumCashbox", maxlimit);
   };
   return (
     <div className="pettycash__form">

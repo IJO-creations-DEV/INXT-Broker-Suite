@@ -8,6 +8,7 @@
     padding-right: 1.5rem;
     padding-bottom: 10px;
   }
+ 
   .table__selector {
     text-align: center;
     flex: 1 0;
@@ -96,6 +97,12 @@
     font-weight: 400;
     padding: 1rem 0.5rem;
   cursor: pointer;
+}
+}
+.dialog__addstyle{
+  .p-dialog .p-dialog-content:last-of-type {
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
 }
 }
 .submittextlabel_button {

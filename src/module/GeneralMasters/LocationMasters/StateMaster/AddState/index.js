@@ -140,7 +140,7 @@ function AddState({ action }) {
     console.log("Handle Edit Submission", values);
     setTimeout(() => {
       Navigate("/master/generals/location/state");
-    }, 3000);
+    }, 1000);
   };
 
   const handleSubmit = (values) => {
@@ -168,9 +168,9 @@ function AddState({ action }) {
     if (!values.Country) {
       errors.Country = "This field is required";
     }
-    if (!values.Modifiedby) {
-      errors.Modifiedby = "This field is required";
-    }
+    // if (!values.Modifiedby) {
+    //   errors.Modifiedby = "This field is required";
+    // }
 
     if (!values.ModifiedOn) {
       errors.ModifiedOn = "This field is required";

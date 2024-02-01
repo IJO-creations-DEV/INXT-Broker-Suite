@@ -205,8 +205,9 @@ function BranchAdding() {
                 // error={formik.errors.receiptNumber}
                 classNames="field__container"
                 label="Receipt Number"
-                placeholder={"Enter"}
+                // placeholder={"Enter"}
                 type="numeric"
+                disabled={true}
               />
               {formik.touched.receiptNumber && formik.errors.receiptNumber && (
                 <div style={{ fontSize: 12, color: "red" }}>

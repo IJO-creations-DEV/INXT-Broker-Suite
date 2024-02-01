@@ -104,7 +104,7 @@ const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) 
                             label="Level"
                             value={commissionPopupView.level}
                             onChange={(e) => formik.setFieldValue("level", e.value)}
-                            options={codeOptionsMain}
+                            options={codeOptionsMain}disabled={true}
                         />
                         {formik.touched.level && formik.errors.level && (
                             <div
@@ -120,6 +120,7 @@ const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) 
                             classNames="input__field__jv"
                             className="input__label__jv"
                             label="sharingRate"
+                            disabled={true}
                             value={
                                 commissionPopupView.sharingRate
                             }
@@ -147,12 +148,12 @@ const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) 
                         alignItems: "flex-end",
                     }}
                 >
-                    <Button
+                    {/* <Button
                         label="Save"
                         className="jv__btn__reversal"
                         disabled={!formik.isValid}
                         onClick={formik.handleSubmit}
-                    />
+                    /> */}
                 </div>
 
             </div>

@@ -23,16 +23,17 @@ import { useFormik } from "formik";
 const DisbursementDetailview = () => {
   const navigate = useNavigate();
   // const toastRef = useRef(null);
-  const { ViewDisbursment, loading } = useSelector(
+  const { ViewDisbursment, loading, getViewDisbursment } = useSelector(
     ({ pettyCashDisbursementReducers }) => {
       return {
         loading: pettyCashDisbursementReducers?.loading,
         ViewDisbursment: pettyCashDisbursementReducers?.ViewDisbursment,
+        getViewDisbursment: pettyCashDisbursementReducers?.getViewDisbursment
       };
     }
   );
 
-  console.log(ViewDisbursment, "ViewDisbursment");
+  console.log(getViewDisbursment, "getViewDisbursment");
 
   const items = [
     {
@@ -115,7 +116,7 @@ const DisbursementDetailview = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value="24/01/2024"
+              value={getViewDisbursment?.Date}
             />
           </div>
           <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view">
@@ -125,7 +126,7 @@ const DisbursementDetailview = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value=""
+              value={getViewDisbursment?.TransactionNumber}
             />
           </div>
 
@@ -138,9 +139,10 @@ const DisbursementDetailview = () => {
               textSize={"16"}
               textWeight={500}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value="PC00123"
-              options={[]}
-              // optionLabel="pettycashcode"
+              value={getViewDisbursment?.PettyCashCode}
+              options={[{label:getViewDisbursment?.PettyCashCode,value:getViewDisbursment?.PettyCashCode}]}
+                optionLabel="label"
+            // optionLabel="pettycashcode"
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3 input__view">
@@ -152,9 +154,10 @@ const DisbursementDetailview = () => {
               textSize={"16"}
               textWeight={500}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value="PC00123"
-              options={[]}
-              // optionLabel="pettycashcode"
+              value={getViewDisbursment?.Criteria}
+              options={[{label:getViewDisbursment?.Criteria,value:getViewDisbursment?.Criteria}]}
+                optionLabel="label"
+            // optionLabel="pettycashcode"
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3 input__view">
@@ -166,9 +169,10 @@ const DisbursementDetailview = () => {
               textSize={"16"}
               textWeight={500}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value="PC00123"
-              options={[]}
-              // optionLabel="pettycashcode"
+              value={getViewDisbursment?.VATMainAccount}
+              options={[{label:getViewDisbursment?.VATMainAccount,value:getViewDisbursment?.VATMainAccount}]}
+                optionLabel="label"
+            // optionLabel="pettycashcode"
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3 input__view">
@@ -180,9 +184,10 @@ const DisbursementDetailview = () => {
               textSize={"16"}
               textWeight={500}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value="PC00123"
-              options={[]}
-              // optionLabel="pettycashcode"
+              value={getViewDisbursment?.VATSubAccount}
+              options={[{label:getViewDisbursment?.VATSubAccount,value:getViewDisbursment?.VATSubAccount}]}
+                optionLabel="label"
+            // optionLabel="pettycashcode"
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3 input__view">
@@ -194,9 +199,10 @@ const DisbursementDetailview = () => {
               textSize={"16"}
               textWeight={500}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value="PC00123"
-              options={[]}
-              // optionLabel="pettycashcode"
+              value={getViewDisbursment?.WHTMainAccount}
+              options={[{label:getViewDisbursment?.WHTMainAccount,value:getViewDisbursment?.WHTMainAccount}]}
+                optionLabel="label"
+            // optionLabel="pettycashcode"
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3 input__view">
@@ -208,9 +214,10 @@ const DisbursementDetailview = () => {
               textSize={"16"}
               textWeight={500}
               dropdownIcon={<SvgDropdown color={"#000"} />}
-              // value="PC00123"
-              options={[]}
-              // optionLabel="pettycashcode"
+              value={getViewDisbursment?.WHTSubAccount}
+              options={[{label:getViewDisbursment?.WHTSubAccount,value:getViewDisbursment?.WHTSubAccount}]}
+                optionLabel="label"
+            // optionLabel="pettycashcode"
             />
           </div>
           <div className="col-12 md:col-6 lg:col-6 input__view">
@@ -221,7 +228,7 @@ const DisbursementDetailview = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-              value="Remarks are entered here"
+              value={getViewDisbursment?.Remarks}
             />
           </div>
         </div>

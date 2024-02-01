@@ -73,7 +73,7 @@ const PolicyDetailedViewCard = ({ action }) => {
       <Card>
         <div className="policy__details__card__view__container__title">
           Policy details
-          <SvgDot />
+          {/* <SvgDot /> */}
         </div>
         <div className="grid mt-2">
           <div className="col-12">

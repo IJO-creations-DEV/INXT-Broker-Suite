@@ -72,7 +72,7 @@
 //             { label: 20, value: 20 },
 //             { label: 120, value: 120 }
 //           ];
-    
+
 //           return (
 //             <React.Fragment >
 //               <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
@@ -82,7 +82,7 @@
 //             </React.Fragment>
 //           );
 //         },
-    
+
 //       };
 
 //     const renderEditButton = (rowData) => {
@@ -272,19 +272,19 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
         fontFamily: 'Inter, sans-serif',
         fontWeight: 500,
         padding: "1rem",
-        color:'#000',
+        color: '#000',
         border: 'none'
     };
-    const headeraction={
-      fontSize: 16,
-      fontFamily: 'Inter, sans-serif',
-      fontWeight: 500,
-      padding: "1rem",
-      color:'#000',
-      border: 'none',
-      display:'flex',
-      justifyContent:'center',
-      alignItem:'center'
+    const headeraction = {
+        fontSize: 16,
+        fontFamily: 'Inter, sans-serif',
+        fontWeight: 500,
+        padding: "1rem",
+        color: '#000',
+        border: 'none',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItem: 'center'
     }
 
     const template2 = {
@@ -322,7 +322,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
             </div>
         );
     };
-    
+
     const renderToggleButton = () => {
         return (
             <div>
@@ -369,7 +369,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
 
                 <Column
                     field="selectCover"
-                    header="Select Covers"
+                    header="Covers"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
 
@@ -394,7 +394,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     headerStyle={headerStyle}
                     field="status"
                     header="Status"
-                    
+
                     className="fieldvalue_container"
                 ></Column>
                 <Column
@@ -403,7 +403,6 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                         <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
                             <SvgIconeye onClick={() => handleNavigateView(columnData)} />
                             <SvgEditicon onClick={() => handleEditNavigate(columnData)} />
-                            
                         </div>
                     )}
                     header="Action"

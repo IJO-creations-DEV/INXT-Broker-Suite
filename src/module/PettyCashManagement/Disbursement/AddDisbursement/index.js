@@ -25,10 +25,12 @@ import { DataTable } from "primereact/datatable";
 import { Dropdown } from "primereact/dropdown";
 import { Column } from "primereact/column";
 import SvgTable from "../../../../assets/icons/SvgTable";
+import { Calendar } from "primereact/calendar";
+import LabelWrapper from "../../../../components/LabelWrapper";
 
 const initialValue = {
   PettyCashCode: "",
-  Date: "24/01/2024",
+  Date: new Date(),
   TransactionCode: "",
   TransactionNumber: "",
   Criteria: "",
@@ -72,11 +74,11 @@ const AddDisbursement = () => {
   };
   const toastRef = useRef(null);
   const handleSubmit = (value) => {
-    const valueWithId = {
-      ...value,
-      id: AddDisbursment?.length + 1,
-    };
-    dispatch(postAddDisbursmentMiddleware(valueWithId));
+    // const valueWithId = {
+    //   ...value,
+    //   id: AddDisbursment?.length + 1,
+    // };
+    dispatch(postAddDisbursmentMiddleware(formik.values));
     // toastRef.current.showToast();
     // {
     //   setTimeout(() => {
@@ -103,21 +105,21 @@ const AddDisbursement = () => {
     if (!values.Criteria) {
       errors.Criteria = "This field is required";
     }
-    if (!values.VATMainAccount) {
-      errors.VATMainAccount = "This field is required";
-    }
-    if (!values.VATSubAccount) {
-      errors.VATSubAccount = "This field is required";
-    }
-    if (!values.WHTMainAccount) {
-      errors.WHTMainAccount = "This field is required";
-    }
-    if (!values.WHTSubAccount) {
-      errors.WHTSubAccount = "This field is required";
-    }
-    if (!values.Remarks) {
-      errors.Remarks = "This field is required";
-    }
+    // if (!values.VATMainAccount) {
+    //   errors.VATMainAccount = "This field is required";
+    // }
+    // if (!values.VATSubAccount) {
+    //   errors.VATSubAccount = "This field is required";
+    // }
+    // if (!values.WHTMainAccount) {
+    //   errors.WHTMainAccount = "This field is required";
+    // }
+    // if (!values.WHTSubAccount) {
+    //   errors.WHTSubAccount = "This field is required";
+    // }
+    // if (!values.Remarks) {
+    //   errors.Remarks = "This field is required";
+    // }
 
     return errors;
   };
@@ -212,6 +214,8 @@ const AddDisbursement = () => {
       <SvgTable />
     </div>
   );
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate() + 1);
   return (
     <div className="add__disbursement__container">
       {/* <CustomToast ref={toastRef} /> */}
@@ -240,15 +244,36 @@ const AddDisbursement = () => {
         <Card className="mt-3">
           <div className="grid mt-1">
             <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view">
-              <InputField
-                classNames="input__filed"
+              {/* <LabelWrapper className="calenderlable__container">
+                Date
+              </LabelWrapper>
+              <Calendar
+                minDate={minDate}
+                showIcon
+                classNames="calender__container"
                 label="Date"
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
                 value={formik.values.Date}
-                onChange={formik.handleChange("Date")}
+                onChange={(e) => {
+                  formik.setFieldValue("Date", e.target.value);
+                }}
                 error={formik.touched.Date && formik.errors.Date}
+                dateFormat="yy-mm-dd"
+              /> */}
+              <LabelWrapper className="calenderlable__container">
+                Date
+              </LabelWrapper>
+              <Calendar
+                classNames="calender__container"
+                showIcon
+                value={formik.values.Date}
+                minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("Date", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
               />
             </div>
             <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view">
@@ -296,7 +321,7 @@ const AddDisbursement = () => {
                 value={formik.values.PettyCashCode}
                 options={PettyCashCode}
                 onChange={(e) => formik.setFieldValue("PettyCashCode", e.value)}
-                optionLabel="pettycashcode"
+                optionLabel="label"
                 error={
                   formik.touched.PettyCashCode && formik.errors.PettyCashCode
                 }
@@ -332,7 +357,7 @@ const AddDisbursement = () => {
                 onChange={(e) =>
                   formik.setFieldValue("VATMainAccount", e.value)
                 }
-                optionLabel="VATMainAccount"
+                optionLabel="label"
                 error={
                   formik.touched.VATMainAccount && formik.errors.VATMainAccount
                 }
@@ -350,7 +375,7 @@ const AddDisbursement = () => {
                 value={formik.values.VATSubAccount}
                 options={VATSubAccount}
                 onChange={(e) => formik.setFieldValue("VATSubAccount", e.value)}
-                optionLabel="VATSubAccount"
+                optionLabel="label"
                 error={
                   formik.touched.VATSubAccount && formik.errors.VATSubAccount
                 }
@@ -370,7 +395,7 @@ const AddDisbursement = () => {
                 onChange={(e) =>
                   formik.setFieldValue("WHTMainAccount", e.value)
                 }
-                optionLabel="WHTMainAccount"
+                optionLabel="label"
                 error={
                   formik.touched.WHTMainAccount && formik.errors.WHTMainAccount
                 }
@@ -388,7 +413,7 @@ const AddDisbursement = () => {
                 value={formik.values.WHTSubAccount}
                 options={WHTSubAccount}
                 onChange={(e) => formik.setFieldValue("WHTSubAccount", e.value)}
-                optionLabel="WHTSubAccount"
+                optionLabel="label"
                 error={
                   formik.touched.WHTSubAccount && formik.errors.WHTSubAccount
                 }

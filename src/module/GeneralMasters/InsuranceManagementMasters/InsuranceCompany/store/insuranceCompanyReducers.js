@@ -13,7 +13,7 @@ const initialState = {
   InsuranceCompanyList: [
     {
       id: 1,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 0,
       insuranceCompanyCode: "001",
@@ -31,7 +31,7 @@ const initialState = {
     },
     {
       id: 2,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 1,
       insuranceCompanyCode: "002",
@@ -48,7 +48,7 @@ const initialState = {
     },
     {
       id: 3,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 0,
       insuranceCompanyCode: "003",
@@ -65,7 +65,7 @@ const initialState = {
     },
     // {
     //   id: 4,
-    //   modifiedby: "Name",
+    //   modifiedby: "John",
     //   modifiedOn: "12/12/2023",
     //   Status: 1,
     //   insuranceCompanyCode: "004",
@@ -82,7 +82,7 @@ const initialState = {
     // },
     // {
     //   id: 5,
-    //   modifiedby: "Name",
+    //   modifiedby: "John",
     //   modifiedOn: "12/12/2023",
     //   Status: 0,
     //   insuranceCompanyCode: "005",
@@ -99,7 +99,7 @@ const initialState = {
     // },
     // {
     //   id: 6,
-    //   modifiedby: "Name",
+    //   modifiedby: "John",
     //   modifiedOn: "12/12/2023",
     //   Status: 1,
     //   insuranceCompanyCode: "006",
@@ -116,7 +116,7 @@ const initialState = {
     // },
     // {
     //   id: 7,
-    //   modifiedby: "Name",
+    //   modifiedby: "John",
     //   modifiedOn: "12/12/2023",
     //   Status: 0,
     //   insuranceCompanyCode: "007",
@@ -133,7 +133,7 @@ const initialState = {
     // },
     // {
     //   id: 8,
-    //   modifiedby: "Name",
+    //   modifiedby: "John",
     //   modifiedOn: "12/12/2023",
     //   Status: 1,
     //   insuranceCompanyCode: "008",

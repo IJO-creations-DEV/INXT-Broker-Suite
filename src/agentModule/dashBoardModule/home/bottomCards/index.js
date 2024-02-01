@@ -7,7 +7,7 @@ import SvgGrossPremium from "../../../../assets/agentIcon/SvgGrossPremium";
 
 const BottomCard = () => {
   return (
-    <div className="bottom__card__container grid  m-0">
+    <div className="bottom__card__container grid">
       <div className="col-12 md:col-3 lg:col-3">
         <Card>
           <div className="bottom__card__inner__container">

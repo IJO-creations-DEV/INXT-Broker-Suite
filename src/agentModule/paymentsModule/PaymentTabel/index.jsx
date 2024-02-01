@@ -7,27 +7,30 @@ import ReviewingListTabelData from './ReviewingListTabelData'
 import { useSelector } from 'react-redux'
 
 const PyamentTabelCard = () => {
-    const { paymenttabledata, paymentSearchList, loading } = useSelector(
+    const { paymenttabledata, paymentSearchList, loading,agentPaymentMainReducers,paymentPendingtabledata,paymentRewiwingtabledata } = useSelector(
         ({ agentPaymentMainReducers }) => {
-          return {
-            loading: agentPaymentMainReducers?.loading,
-            paymenttabledata: agentPaymentMainReducers?.paymenttabledata,
-            paymentSearchList: agentPaymentMainReducers?.paymentSearchList,
-          };
+            return {
+                loading: agentPaymentMainReducers?.loading,
+                paymenttabledata: agentPaymentMainReducers?.paymenttabledata,
+                paymentSearchList: agentPaymentMainReducers?.paymentSearchList,
+                paymentPendingtabledata:agentPaymentMainReducers?.paymentPendingtabledata,
+                paymentRewiwingtabledata:agentPaymentMainReducers?.paymentRewiwingtabledata,
+                paymentPaidSearchList:agentPaymentMainReducers?.paymentPaidSearchList
+            };
         }
-      );
+    );
     return (
         <div className="lead__listing__card__container mt-4">
             <Card>
                 <TabView>
                     <TabPanel header="Paid">
-                        <PaidListTabelData paymenttabledata={paymenttabledata} paymentSearchList={paymentSearchList}/>
+                        <PaidListTabelData paymenttabledata={paymenttabledata} agentPaymentMainReducers={agentPaymentMainReducers} />
                     </TabPanel>
                     <TabPanel header="Pending">
-                        <PendingListTabelData paymenttabledata={paymenttabledata} paymentSearchList={paymentSearchList}/>
+                        <PendingListTabelData paymentPendingtabledata={paymentPendingtabledata} paymentSearchList={paymentSearchList} />
                     </TabPanel>
                     <TabPanel header="Reviewing">
-                        <ReviewingListTabelData paymenttabledata={paymenttabledata} paymentSearchList={paymentSearchList}/>
+                        <ReviewingListTabelData paymentRewiwingtabledata={paymentRewiwingtabledata} paymentSearchList={paymentSearchList} />
                     </TabPanel>
                 </TabView>
             </Card>

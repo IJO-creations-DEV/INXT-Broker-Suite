@@ -133,16 +133,16 @@ const usersReducer = createSlice({
       patchUserEditMiddleware.fulfilled,
       (state, action) => {
         state.loading = false;
-        console.log(state.userTableList, "state.countryTableList");
-        const updatedIndex = state.userTableList.findIndex(
+        console.log(state.userList, "state.countryTableList");
+        const updatedIndex = state.userList.findIndex(
           (item) => item.id === action.payload.id
         );
         if (updatedIndex !== -1) {
-          const updatedAddDisbursmentTable = [...state.userTableList];
+          const updatedAddDisbursmentTable = [...state.userList];
           updatedAddDisbursmentTable[updatedIndex] = action.payload;
-          state.userTableList = updatedAddDisbursmentTable;
+          state.userList = updatedAddDisbursmentTable;
         } else {
-          state.userTableList = [...state.userTableList, action.payload];
+          state.userList = [...state.userList, action.payload];
         }
       }
     );

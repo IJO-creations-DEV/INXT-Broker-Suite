@@ -107,6 +107,17 @@
   .pagedropdownunique_container {
     width: auto !important
   }
+  .p-button.p-button-icon-only {
+    width: 3rem;
+    padding: 0.75rem 0;
+    color: #6366F1;
+    background: #fff;
+    border-left-style: hidden;
+    border-color: #d1d5db;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+}
 }
 .calender__container {
   border-radius: 30px;

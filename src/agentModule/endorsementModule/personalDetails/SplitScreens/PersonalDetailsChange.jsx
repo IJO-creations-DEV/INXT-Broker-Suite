@@ -68,12 +68,12 @@ const PersonalDetailsChange = ({
   };
 
   useEffect(() => {
-    setFormikValues();
     if (isFormSubmitted) {
       formik.submitForm();
       setIsFormSubmitted(false);
       // formik.resetForm()
     }
+    setFormikValues();
   }, [isFormSubmitted]);
 
   const formik = useFormik({

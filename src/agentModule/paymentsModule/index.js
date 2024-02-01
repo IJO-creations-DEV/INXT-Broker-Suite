@@ -28,10 +28,10 @@ import SvgDownArrow from "../../assets/agentIcon/SvgDownArrow";
 import PyamentTabelCard from "./PaymentTabel";
 
 const Payments = () => {
- 
 
- 
-  
+
+
+
   const [search, setSearch] = useState("");
   const menuRight = useRef(null);
   const navigate = useNavigate();
@@ -140,27 +140,27 @@ const Payments = () => {
     );
   };
   const dispatch = useDispatch();
-  const [globalFilter, setGlobalFilter] = useState("Name");
-  const cities = [
-    { name: "Name", code: "Name" },
-    { name: "ClientID", code: "ClientID" },
-    { name: "Gross Premium", code: "Gross Premium" },
-  ];
-  const [status, setStatus] = useState("PAID");
+  // const [globalFilter, setGlobalFilter] = useState("Name");
+  // const cities = [
+  //   { name: "Name", code: "Name" },
+  //   { name: "ClientID", code: "ClientID" },
+  //   { name: "Gross Premium", code: "Gross Premium" },
+  // ];
+  // const [status, setStatus] = useState("PAID");
 
-  useEffect(() => {
-    if (globalFilter && search) {
-      dispatch(
-        getPaymentSearchDataMiddleWare({
-          field: globalFilter,
-          value: search,
-          status1: status,
-        })
-      );
-    }
-  }, [search]);
+  // useEffect(() => {
+  //   if (globalFilter && search) {
+  //     dispatch(
+  //       getPaymentSearchDataMiddleWare({
+  //         field: globalFilter,
+  //         value: search,
+  //         // status1: status,
+  //       })
+  //     );
+  //   }
+  // }, [search]);
 
-  console.log(status, "status");
+  // console.log(status, "status");
 
   const template2 = {
     layout: "RowsPerPageDropdown CurrentPageReport PrevPageLink  NextPageLink ",
@@ -227,7 +227,7 @@ const Payments = () => {
             </Card>
           </div>
         </div>
-         <PyamentTabelCard/>
+        <PyamentTabelCard />
         {/* <Card className="paymentCard_container">
           <TabView>
             <TabPanel header="Paid">

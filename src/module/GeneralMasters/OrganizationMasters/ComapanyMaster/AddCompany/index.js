@@ -412,7 +412,7 @@ function AddCompany({ action }) {
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <label className="uploadtext_container">Logo</label>
 
-            <span className="p-input-icon-right">
+            <span className="p-input-icon-right" style={{width:"100%"}}>
               <i>
                 {
                   <>

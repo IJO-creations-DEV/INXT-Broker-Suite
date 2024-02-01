@@ -42,7 +42,7 @@ const City = () => {
       };
     }
   );
-
+console.log("first",cityTableList)
   const handleEdit = (rowData) => {
     dispatch(getCityListByIdMiddleware(rowData));
     navigate(`/master/generals/location/city/edit`)

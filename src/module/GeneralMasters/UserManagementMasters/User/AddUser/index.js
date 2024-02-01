@@ -67,14 +67,14 @@ const AddUser = ({ action }) => {
   // const item2 = [action === "add" ? { label: "Em00123", value: "Em00123" } : userViewData?.assignedRole];
   const item = [
     {
-      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData.employeeCode,
-      value: action === "add" ? "NY" : userViewData.employeeCode,
+      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData?.employeeCode,
+      value: action === "add" ? "NY" : userViewData?.employeeCode,
     },
   ];
   const item2 = [
     {
-      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData.assignedRole,
-      value: action === "add" ? "NY" : userViewData.assignedRole,
+      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData?.assignedRole,
+      value: action === "add" ? "NY" : userViewData?.assignedRole,
     },
   ];
   const validate = (values) => {

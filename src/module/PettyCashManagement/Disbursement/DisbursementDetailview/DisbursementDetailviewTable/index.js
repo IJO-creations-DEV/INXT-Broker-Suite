@@ -82,7 +82,7 @@ const DisbursementDetailviewTable = () => {
           paginatorTemplate={template2}
         >
           <Column
-            field="RequesterName"
+            field="RequestNumber"
             header="Requested By"
             headerStyle={headerStyle}
           ></Column>
@@ -92,7 +92,7 @@ const DisbursementDetailviewTable = () => {
             headerStyle={headerStyle}
           ></Column>
           <Column
-            field="SubAccount"
+            field="SubAc"
             header="Sub Ac"
             headerStyle={headerStyle}
           ></Column>
@@ -114,7 +114,7 @@ const DisbursementDetailviewTable = () => {
           <Column field="VAT" header="VAT" headerStyle={headerStyle}></Column>
           <Column field="WHT" header="WHT" headerStyle={headerStyle}></Column>
           <Column
-            field="Net Amount"
+            field="NetAmount"
             header="Net Amount"
             headerStyle={headerStyle}
           ></Column>

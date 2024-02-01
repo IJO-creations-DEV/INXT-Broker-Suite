@@ -95,12 +95,13 @@ const MotorDetailsChange = ({
   };
 
   useEffect(() => {
-    setFormikValues();
     if (isFormSubmitted) {
       formik.submitForm();
       setIsFormSubmitted(false);
       // formik.resetForm()
     }
+    setFormikValues();
+
   }, [isFormSubmitted]);
 
   const formik = useFormik({
@@ -111,9 +112,6 @@ const MotorDetailsChange = ({
     },
   });
 
-  useEffect =(()=>{
-    
-  })
   return (
     <div>
       <div className="customer__info__subtitle mt-2 mb-2">

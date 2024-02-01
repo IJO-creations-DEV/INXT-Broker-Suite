@@ -111,7 +111,7 @@ const Index = () => {
   };
 
   const headerStyle = {
-    // width: '19%',
+    width: '26%',
     // backgroundColor: 'red',
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
@@ -256,6 +256,7 @@ const Index = () => {
               body={(columnData) => <ToggleButton id={columnData.id} />}
               header="Status"
               className="fieldvalue_container"
+              headerStyle={headerStyle}
             />
             <Column
               body={(columnData) => (

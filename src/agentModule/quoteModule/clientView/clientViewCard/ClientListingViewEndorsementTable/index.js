@@ -1,6 +1,6 @@
 import { InputText } from "primereact/inputtext";
 import TableDropdownField from "../../../../component/tableDropDwonField";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
@@ -24,7 +24,7 @@ const LeadListingAllTable = () => {
     }
   );
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("")
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -222,12 +222,15 @@ const LeadListingAllTable = () => {
   const renderEndorsementID = (rowData) => {
     return <div className="category__text">{rowData.EndorsementID}</div>;
   };
-  const renderDes= (rowData) => {
+  const renderDes = (rowData) => {
     return <div className="category__text">{rowData.ProductDescription}</div>;
   };
 
   const renderDate = (rowData) => {
     return <div className="date__text">{rowData.Date}</div>;
+  };
+  const renderExpiryDate = (rowData) => {
+    return <div className="date__text">{rowData.expiryDate}</div>;
   };
 
   const renderStatus = (rowData) => {
@@ -237,8 +240,8 @@ const LeadListingAllTable = () => {
           rowData.Status === "Processing"
             ? "company__status__type__green"
             : rowData.Status === "Completed"
-            ? "company__status__type__blue"
-            : "client__view__type__red"
+              ? "company__status__type__blue"
+              : "client__view__type__red"
         }
       >
         {rowData.Status}
@@ -252,10 +255,10 @@ const LeadListingAllTable = () => {
           rowData.payment === "Pending"
             ? "company__status__type__green"
             : rowData.payment === "Completed"
-            ? "company__status__type__blue"
-            : rowData.payment === "Reviewing"
-            ? "company__status__type__red"
-            : "endorsement__payment__type"
+              ? "company__status__type__blue"
+              : rowData.payment === "Reviewing"
+                ? "company__status__type__red"
+                : "endorsement__payment__type"
         }
       >
         {rowData.payment}
@@ -345,7 +348,7 @@ const LeadListingAllTable = () => {
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-        <Dropdown
+          <Dropdown
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.value)}
             options={cities}
@@ -374,6 +377,7 @@ const LeadListingAllTable = () => {
           scrollable={true}
           scrollHeight="60vh"
         >
+          <Column header="Type" field="Type" headerStyle={headerStyle}></Column>
           <Column
             body={renderPolicyNumber}
             header={rendercheckedHeader("Policy Number")}
@@ -384,10 +388,15 @@ const LeadListingAllTable = () => {
             header={renderUncheckedHeader("EndorsementID")}
             headerStyle={headerStyle}
           ></Column>
-          <Column header="Type" field="Type" headerStyle={headerStyle}></Column>
+
           <Column
             body={renderDate}
-            header={renderUncheckedHeader("Date")}
+            header={renderUncheckedHeader("Policy Issued")}
+            headerStyle={headerStyle}
+          ></Column>
+          <Column
+            body={renderExpiryDate}
+            header={renderUncheckedHeader("Policy Expired")}
             headerStyle={headerStyle}
           ></Column>
           <Column

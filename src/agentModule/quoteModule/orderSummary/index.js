@@ -27,7 +27,7 @@ const initialValue = {
   GrossPremium: "6000",
 };
 
-const OrderSummary = () => {
+const OrderSummary = ({action}) => {
   const [discount, setDiscount] = useState(0);
   const dispatch = useDispatch();
   const toastRef = useRef(null);
@@ -38,7 +38,13 @@ const OrderSummary = () => {
     dispatch(postOrderSummaryMiddleware(values));
     toastRef.current.showToast();
     setTimeout(() => {
-      navigate("/agent/quotedetailview");
+      console.log(action,'find ')
+      if(action==="edit"){
+        navigate("/agent/quotedetailedit");
+      }
+      if(action==="view"){
+        navigate("/agent/quotedetailview");
+      }
     }, 2000);
   };
   const handleBackNavigation = () => {

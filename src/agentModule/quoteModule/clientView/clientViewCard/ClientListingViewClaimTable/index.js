@@ -264,6 +264,9 @@ const LeadListingAllTable = () => {
   const renderDate = (rowData) => {
     return <div className="date__text">{rowData.Date}</div>;
   };
+  const renderExpiryDate = (rowData) => {
+    return <div className="date__text">{rowData.expiryDate}</div>;
+  };
 
   const renderStatus = (rowData) => {
     return (
@@ -402,6 +405,7 @@ const LeadListingAllTable = () => {
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
         >
+           
           <Column
             body={renderPolicyNumber}
             header={rendercheckedHeader("Policy Number")}
@@ -409,12 +413,18 @@ const LeadListingAllTable = () => {
           ></Column>
           <Column
             body={renderClaimID}
-            header={renderUncheckedHeader("ClaimID")}
+            header={renderUncheckedHeader("Gross premium")}
             headerStyle={headerStyle}
           ></Column>
+         
           <Column
             body={renderDate}
-            header={renderUncheckedHeader("Date")}
+            header={renderUncheckedHeader("Policy Issued")}
+            headerStyle={headerStyle}
+          ></Column>
+           <Column
+            body={renderExpiryDate}
+            header={renderUncheckedHeader("Policy Expired")}
             headerStyle={headerStyle}
           ></Column>
           <Column

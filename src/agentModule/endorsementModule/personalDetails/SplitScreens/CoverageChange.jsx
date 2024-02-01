@@ -111,19 +111,20 @@ const CoverageChange = ({
   };
 
   useEffect(() => {
-    setFormikValues();
     if (isFormSubmitted) {
       formik.submitForm();
       setIsFormSubmitted(false);
       // formik.resetForm()
     }
+    setFormikValues();
+
   }, [isFormSubmitted]);
 
   const formik = useFormik({
     initialValues: initialValue,
     // validate,
     onSubmit: (values) => {
-      handleFormSubmit(values);
+      // handleFormSubmit(values);
     },
   });
 

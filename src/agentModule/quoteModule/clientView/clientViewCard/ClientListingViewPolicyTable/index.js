@@ -365,6 +365,9 @@ const renderDes =(rowData)=>{
   const renderExpiryDate = (rowData) => {
     return <div className="date__text">{rowData.ExpiryDate}</div>;
   };
+  const renderDate = (rowData) => {
+    return <div className="date__text">{rowData.Date}</div>;
+  };
 
   const renderPayment = (rowData) => {
     return (
@@ -458,8 +461,13 @@ const renderDes =(rowData)=>{
             headerStyle={headerStyle}
           ></Column>
           <Column
+            body={renderDate}
+            header="Policy Issued"
+            headerStyle={headerStyle}
+          ></Column>
+          <Column
             body={renderExpiryDate}
-            header="ExpiryDate"
+            header="Policy Expired"
             headerStyle={headerStyle}
           ></Column>
           <Column

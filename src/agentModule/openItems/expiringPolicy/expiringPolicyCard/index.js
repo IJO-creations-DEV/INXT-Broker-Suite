@@ -112,6 +112,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "John Doe",
       PolicyNumber: "P12345",
       ExpiryDate: "2024 JAN 15",
+      policyIssued:"2025 JAN 15",
       Expiry: "30 Days",
       Actions: "127332",
     },
@@ -119,6 +120,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Jane Smith",
       PolicyNumber: "P67890",
       ExpiryDate: "2024 JAN 22",
+      policyIssued:"2025 JAN 15",
       Expiry: "Expired",
       Actions: "1272721",
     },
@@ -126,6 +128,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Bob Johnson",
       PolicyNumber: "P54321",
       ExpiryDate: "2024 JAN 10",
+      policyIssued:"2025 JAN 15",
       Expiry: "45 Days",
       Actions: "1270002",
     },
@@ -133,6 +136,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Alice Williams",
       PolicyNumber: "P98765",
       ExpiryDate: "2024 JAN 05",
+      policyIssued:"2025 JAN 15",
       Expiry: "10 Days",
       Actions: "120002",
     },
@@ -140,6 +144,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Mike Davis",
       PolicyNumber: "P23456",
       ExpiryDate: "2024 JAN 18",
+      policyIssued:"2025 JAN 15",
       Expiry: "25 Days",
       Actions: "111172",
     },
@@ -147,6 +152,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Sara Miller",
       PolicyNumber: "P78901",
       ExpiryDate: "2024 JAN 01",
+      policyIssued:"2025 JAN 15",
       Expiry: "20 Days",
       Actions: "12000",
     },
@@ -161,6 +167,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Emily Taylor",
       PolicyNumber: "P12398",
       ExpiryDate: "2024 JAN 28",
+      policyIssued:"2025 JAN 15",
       Expiry: "28 Days",
       Actions: "12002",
     },
@@ -175,6 +182,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Grace Anderson",
       PolicyNumber: "P87654",
       ExpiryDate: "2024-07-20",
+      policyIssued:"2025 JAN 15",
       Expiry: "12 Days",
       Actions: "127272",
     },
@@ -214,6 +222,21 @@ const ExpiringPolicyCard = () => {
         <div>
           <div className="policy__number__text">{rowData.PolicyNumber}</div>
         </div>
+      </div>
+    );
+  };
+  const renderGross = (rowData) => {
+    return (
+      <div className="expiry__data__container">
+        <div className="expiry__data__text">{rowData.gross}</div>
+      </div>
+    );
+  };
+
+  const renderIssuedDate = (rowData) => {
+    return (
+      <div className="expiry__data__container">
+        <div className="expiry__data__text">{rowData.policyIssued}</div>
       </div>
     );
   };
@@ -341,9 +364,19 @@ const ExpiringPolicyCard = () => {
               header="Policy Number"
               headerStyle={headerStyle}
             ></Column>
+             <Column
+              body={renderGross}
+              header="Gross premium"
+              headerStyle={headerStyle}
+            ></Column>
+            <Column
+              body={renderIssuedDate}
+              header="Policy Issued"
+              headerStyle={headerStyle}
+            ></Column>
             <Column
               body={renderExpiryDate}
-              header="Expiry Date"
+              header="Policy Expired"
               headerStyle={headerStyle}
             ></Column>
             <Column

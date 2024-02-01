@@ -11,6 +11,8 @@ import SvgLogOut from "../../../assets/agentIcon/SvgLogout";
 import Cookies from "js-cookie";
 import { TOKEN } from "../../../utility/constant";
 import { useNavigate } from "react-router-dom";
+import { data } from "./data";
+import SvgArrow from "../../../assets/icons/SvgArrow";
 
 const AgentNavBar = () => {
   const menuRight = useRef(null);
@@ -25,6 +27,9 @@ const AgentNavBar = () => {
     }, 500);
     console.log("object");
   };
+  const handleNotificationNavigation = () => {
+    navigate("/agent/notification");
+  };
   const items = [
     {
       label: (
@@ -34,14 +39,16 @@ const AgentNavBar = () => {
             fontWeight: 500,
             fontSize: "24px",
             color: "#111927",
+            
           }}
         >
           Notification
         </div>
       ),
-      items: [
-        {
-          template: (
+      items: data.map((item) => ({
+
+        template: (
+          <div>
             <div
               className="grid m-0"
               style={{ padding: "1rem", borderRadius: "10px" }}
@@ -55,7 +62,7 @@ const AgentNavBar = () => {
                     fontSize: "14px",
                   }}
                 >
-                  Carson Darrin
+                  {item.name}
                 </div>
                 <div
                   style={{
@@ -66,18 +73,18 @@ const AgentNavBar = () => {
                   }}
                   className="mt-1"
                 >
-                  Policy Number: 123456
+                  Policy Number: {item.policyNo}
                 </div>
                 <div
                   style={{
-                    color: "#6366F1",
+                    color: item?.status === "Policy due for Renewal" ? "#C1622A" : "#6366F1",
                     fontFamily: "Poppins",
                     fontWeight: 500,
                     fontSize: "14px",
                   }}
                   className="mt-1"
                 >
-                  Payment completed
+                  {item.status}
                 </div>
                 <div
                   style={{
@@ -86,9 +93,9 @@ const AgentNavBar = () => {
                     fontWeight: 500,
                     fontSize: "12px",
                   }}
-                  className="mt-2"
+                  className="mt-1"
                 >
-                  Jan 06, 11:49 AM
+                  {item?.date}
                 </div>
               </div>
               <div
@@ -101,66 +108,31 @@ const AgentNavBar = () => {
               >
                 <SvgClose />
               </div>
-              <div className="col-8 md:col-8 lg:col-8">
-                <div
-                  style={{
-                    color: "#111927",
-                    fontFamily: "Poppins",
-                    fontWeight: 500,
-                    fontSize: "14px",
-                  }}
-                >
-                  John
-                </div>
-                <div
-                  style={{
-                    color: "#6C737F",
-                    fontFamily: "Poppins",
-                    fontWeight: 500,
-                    fontSize: "14px",
-                  }}
-                  className="mt-1"
-                >
-                  Policy Number: 5677
-                </div>
-                <div
-                  style={{
-                    color: "#6366F1",
-                    fontFamily: "Poppins",
-                    fontWeight: 500,
-                    fontSize: "14px",
-                  }}
-                  className="mt-1"
-                >
-                  Payment completed
-                </div>
-                <div
-                  style={{
-                    color: "#6C737F",
-                    fontFamily: "Poppins",
-                    fontWeight: 500,
-                    fontSize: "12px",
-                  }}
-                  className="mt-2"
-                >
-                  Jan 20, 1:00 PM
-                </div>
-              </div>
-              <div
-                className="col-4 md:col-4 lg:col-4"
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  padding: "15px",
-                }}
-              >
-                <SvgClose />
-              </div>
+
             </div>
-          ),
-        },
-      ],
+          </div>
+        ),
+
+      })),
     },
+    {
+      label: (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            color: "#111927",
+            fontFamily: "Poppins",
+            fontSize: "14px",
+            fontWeight: 400,
+          }}
+          onClick={handleNotificationNavigation}
+        >
+          See More <SvgArrow />
+        </div>
+      ),
+    }
   ];
 
   const Profileitems = [
@@ -255,6 +227,8 @@ const AgentNavBar = () => {
 
   const menuStyle = {
     width: "360px",
+    height:"80vh",
+    overflowY: "scroll",
     left: "calc(100% - 400px)",
   };
 

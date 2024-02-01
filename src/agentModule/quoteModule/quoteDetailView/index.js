@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ShareOption from "./Modal/ShareOption";
 
-const QuoteDetailView = () => {
+const QuoteDetailView = ({action}) => {
+  console.log(action,'find action')
   const navigate = useNavigate();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -46,7 +47,13 @@ const QuoteDetailView = () => {
   );
 
   const handleclick = () => {
-    navigate("/agent/convertpolicy/customerinfo");
+    console.log(action,'find initial logic')
+   if(action =="view"){
+    navigate(`/agent/convertpolicy/customerinfo/view/${12}`);
+   }
+   if(action =="edit"){
+    navigate(`/agent/convertpolicy/customerinfo/edit/${12}`);
+   }
   };
 
   return (

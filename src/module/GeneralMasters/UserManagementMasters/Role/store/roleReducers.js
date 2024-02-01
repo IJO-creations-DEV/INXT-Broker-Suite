@@ -73,12 +73,12 @@ const receiptsReducer = createSlice({
     });
     builder.addCase(getRoleListByIdMiddleware.fulfilled, (state, action) => {
       state.loading = false;
-      state.roleDetailList = action.payload;
+      state.roleTableList = action.payload;
     });
     builder.addCase(getRoleListByIdMiddleware.rejected, (state, action) => {
       state.loading = false;
 
-      state.roleDetailList = {};
+      state.roleTableList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 

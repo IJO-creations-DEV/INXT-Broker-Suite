@@ -70,7 +70,7 @@ const SubAdd = () => {
         </div>
       </div>
 
-      <Card>
+      <Card style={{width:"100%"}}>
         <div className="grid sub__details">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField

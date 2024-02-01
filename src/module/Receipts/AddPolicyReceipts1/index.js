@@ -86,9 +86,9 @@ function BranchAdding() {
     if (!values.receiptDate) {
       errors.receiptDate = "Date is required";
     }
-    if (!values.receiptNumber) {
-      errors.receiptNumber = "Receipt number is required";
-    }
+    // if (!values.receiptNumber) {
+    //   errors.receiptNumber = "Receipt number is required";
+    // }
     if (!values.receiptType) {
       errors.receiptType = "Receipt type is required";
     }

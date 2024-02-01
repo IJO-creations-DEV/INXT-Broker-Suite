@@ -94,7 +94,7 @@ const Reversals = () => {
   });
   const handlePrint = () => {
     toastRef.current.showToast();
-    // formik.resetForm();
+    formik.resetForm();
     setStep(0);
   };
   return (

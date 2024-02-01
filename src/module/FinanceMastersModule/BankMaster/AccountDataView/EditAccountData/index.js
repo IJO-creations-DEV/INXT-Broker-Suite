@@ -163,9 +163,9 @@ function EditAccountDetail() {
   const home = { label: "Master" };
   const handleSubmit = (value) => {
     console.log(value, "columnData");
-    setVisible(true);
+    // setVisible(true);
     dispatch(postPatchAccountDetailEdit(value));
-    navigate("/master/finance/bank/accountdataview");
+     navigate("/master/finance/bank/accountdataview");
   };
 
   const [accType, setAccType] = useState([]);
@@ -365,10 +365,10 @@ function EditAccountDetail() {
             label="Add"
             className="addbutton_container"
             icon={<SvgAdd />}
-            // onClick={() => setVisible(true)}
-            onClick={() => {
-              formik.handleSubmit();
-            }}
+             onClick={() => setVisible(true)}
+            // onClick={() => {
+            //   formik.handleSubmit();
+            // }}
             disabled={!formik.isValid}
           />
         </div>

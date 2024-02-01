@@ -6,8 +6,8 @@ const findNamesByPath = (logs, path, result = [], currentNames = []) => {
         if (Array.isArray(dat?.submenu) === true) {
             findNamesByPath(dat.submenu, path, result, currentNames);
         } else {
-            if (dat.path === path) {
-                // If the path matches, push the accumulated names to the result array
+            if (dat.path.includes(path)) {
+                // If the path includes the given path, push the accumulated names to the result array
                 result.push(...currentNames);
             }
         }
@@ -18,8 +18,4 @@ const findNamesByPath = (logs, path, result = [], currentNames = []) => {
     return result;
 };
 
-export default findNamesByPath
-// const pathToFind = "/master/generals/organization/branchmaster";
-// const resultArray = findNamesByPath(da, pathToFind);
-
-// console.log(resultArray);
+export default findNamesByPath;

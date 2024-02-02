@@ -190,6 +190,9 @@ import PaymentConfirmationEndorsement from "../agentModule/endorsementModule/pay
 import Endorsementpaymentapproval from "../agentModule/endorsementModule/paymentApprovalEndorsement";
 import PaymentErrorEndorsment from "../agentModule/endorsementModule/paymentErrorEndorsement";
 import Payments from "../agentModule/paymentsModule";
+import Claim from "../agentModule/claimModule";
+import Policy from "../agentModule/policyModule";
+import Quotation from "../agentModule/quotationModule"
 import OpenItems from "../agentModule/openItems/openItems";
 import UpcomingEvents from "../agentModule/openItems/upcomingEvents";
 import ExpiringPolicy from "../agentModule/openItems/expiringPolicy";
@@ -221,6 +224,9 @@ import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { TOKEN } from "../utility/constant";
 import EditRequestForm from "../module/PettyCashManagement/Request/EditRequest";
+import ClaimModule from "../agentModule/claimModule";
+import PolicyModule from "../agentModule/policyModule";
+import QuotationModule from "../agentModule/quotationModule"
 
 const Maincomponent = () => {
   return (
@@ -1008,6 +1014,18 @@ const Maincomponent = () => {
             path="/agent/createquote/ordersummary"
             element={<OrderSummary action="edit"/> }
           />
+           <Route
+            path="/agent/claim/claimtable"
+            element={<ClaimModule/> }
+          />
+           <Route
+            path="/agent/policy/policytable"
+            element={<PolicyModule/> }
+          />
+           <Route
+            path="/agent/quotation/quotationtable"
+            element={<QuotationModule/> }
+          />
           <Route
             path="/agent/createquote/ordersummaryquote"
             element={<OrderSummaryQuote action="view"/>}
@@ -1144,6 +1162,9 @@ const Maincomponent = () => {
 
           {/* // Payments */}
           <Route path="/agent/payments" element={<Payments />} />
+          <Route path="/agent/claim" element={<Claim />} />
+          <Route path="/agent/policy" element={<Policy />} />
+          <Route path="/agent/quotation" element={<Quotation />} />
           <Route
             path="/agent/payments/detail/:id"
             element={<PaymentDetails />}

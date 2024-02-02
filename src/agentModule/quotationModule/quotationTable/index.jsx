@@ -1,34 +1,87 @@
 import { InputText } from "primereact/inputtext";
-import TableDropdownField from "../../../../component/tableDropDwonField";
+// import TableDropdownField from "../../../../component/tableDropDwonField";
 import React, { useEffect, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
-import SvgArrow from "../../../../../assets/icons/SvgArrow";
+import SvgArrow from "../../../assets/icons/SvgArrow";
 import { Dropdown } from "primereact/dropdown";
-import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
+import SvgDownArrow from "../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
-import "../../../clientView/index.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { getClaimTabelSearchList } from "./store/getClaimTabelDataMiddleWare";
-import SvgMotorTable from "../../../../../assets/agentIcon/SvgMotorTable";
+import "../../quotationModule/index.scss"
+// import { useDispatch, useSelector } from "react-redux";
+// import { getClaimTabelSearchList } from "./store/getClaimTabelDataMiddleWare";
+import SvgMotorTable from "../../../assets/agentIcon/SvgMotorTable";
+
+
 
 const LeadListingAllTable = () => {
-  const { claimListData, loading, claimSearchListData } = useSelector(
-    ({ claimTabelMainReducers }) => {
-      return {
-        loading: claimTabelMainReducers?.loading,
-        claimListData: claimTabelMainReducers?.claimListData,
-        claimSearchListData: claimTabelMainReducers?.claimSearchListData,
-      };
-    }
-  );
-  console.log(claimListData, "claimListData");
+//   const { claimListData, loading, claimSearchListData } = useSelector(
+//     ({ claimTabelMainReducers }) => {
+//       return {
+//         loading: claimTabelMainReducers?.loading,
+//         claimListData: claimTabelMainReducers?.claimListData,
+//         claimSearchListData: claimTabelMainReducers?.claimSearchListData,
+//       };
+//     }
+//   );
+//   console.log(claimListData, "claimListData");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
+  
   const navigate = useNavigate();
 
-  const TableData = [];
+
+  const TableData = [
+    
+    {
+        id: "1",
+        QuoteId: "QI001",
+        LeadName: "Carson Darrin",
+        PolicyType:"PC",
+        GrossPremium:"4000.00",
+        Date: "01 JAN 2024",
+        Status: "Draft",
+        Actions: <SvgArrow />,
+      },
+      {
+        id: "2",
+        QuoteId: "QI002",
+        LeadName: "Carson Darrin",
+        PolicyType:"CV",
+        GrossPremium:"5000.00",
+        Date: "01 JAN 2024",
+        Status: "Completed",
+        Actions: <SvgArrow />,
+      },
+      {
+        id: "3",
+        QuoteId: "QI003",
+        LeadName: "Carson Darrin",
+        PolicyType:"PC",
+        GrossPremium:"9000.00",
+        Date: "01 JAN 2024",
+        
+       
+        Status: "Completed",
+        Actions: <SvgArrow />,
+      },
+      {
+        id: "4",
+        QuoteId: "QI004",
+        
+        LeadName: "Carson Darrin",
+        PolicyType:"CV",
+        GrossPremium:"5000.00",
+        Date: "01 JAN 2024",
+        expiryDate:"01 JAN 2025",
+        
+        Status: "Draft",
+        Actions: <SvgArrow />,
+      },
+     
+
+];
 
   const template2 = {
     layout:
@@ -90,22 +143,22 @@ const LeadListingAllTable = () => {
   //         );
   //     };
 
-  //     const renderPolicyNumber = (rowData) => {
+  //     const renderclaimNumber = (rowData) => {
   //         return (
   //             <div className="name__box__container">
   //                 <div>{rowData.Svg}</div>
   //                 <div>
-  //                     <div className="name__text">{rowData.PolicyNumber}</div>
+  //                     <div className="name__text">{rowData.claimNumber}</div>
   //                     {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
   //                 </div>
   //             </div>
   //         )
   //     }
 
-  //     const renderClaimID = (rowData) => {
+  //     const renderClientName = (rowData) => {
   //         return (
   //             <div className="category__text">
-  //                 {rowData.ClaimID}
+  //                 {rowData.ClientName}
   //             </div>
   //         )
   //     }
@@ -212,10 +265,10 @@ const LeadListingAllTable = () => {
   //  scrollHeight="60vh"
   //                 >
 
-  //                     <Column body={renderPolicyNumber} header={
-  //                         rendercheckedHeader("PolicyNumber")
+  //                     <Column body={renderclaimNumber} header={
+  //                         rendercheckedHeader("claimNumber")
   //                     } headerStyle={headerStyle}></Column>
-  //                     <Column body={renderClaimID} header={renderUncheckedHeader("ClaimID")} headerStyle={headerStyle}></Column>
+  //                     <Column body={renderClientName} header={renderUncheckedHeader("ClientName")} headerStyle={headerStyle}></Column>
   //                     <Column body={renderDate} header={renderUncheckedHeader("Date")} headerStyle={headerStyle}></Column>
   //                     <Column body={renderStatus} header={renderUncheckedHeader("Status")} headerStyle={headerStyle}></Column>
   //                     <Column body={renderViewEditButton} header={renderUncheckedHeader("Actions")}   headerStyle={{ ...ViewheaderStyle, textAlign: 'center' }}></Column>
@@ -240,35 +293,36 @@ const LeadListingAllTable = () => {
     );
   };
 
-  const renderPolicyNumber = (rowData) => {
+  const renderclaimNumber = (rowData) => {
     return (
       <div className="name__box__container">
         <div>
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.PolicyNumber}</div>
+          <div className="name__text">{rowData.claimNumber}</div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
         </div>
       </div>
     );
   };
 
-  const renderClaimID = (rowData) => {
-    return <div className="category__text">{rowData.ClaimID}</div>;
+  const renderQuoteId = (rowData) => {
+    return <div className="category__text">{rowData.QuoteId}</div>;
   };
-  const renderClaimNumber = (rowData) => {
-    return <div className="category__text">{rowData.claimNumber}</div>;
+  const renderPolicyType = (rowData) => {
+    console.log(rowData,"find rowData")
+    return <div className="category__text">{rowData.PolicyType}</div>;
   };
-  const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+  const renderLeadName = (rowData) => {
+    return <div className="category__text">{rowData.LeadName}</div>;
   };
 
   const renderDate = (rowData) => {
     return <div className="date__text">{rowData.Date}</div>;
   };
-  const renderExpiryDate = (rowData) => {
-    return <div className="date__text">{rowData.expiryDate}</div>;
+  const renderGrossPremium = (rowData) => {
+    return <div className="date__text">{rowData.GrossPremium}</div>;
   };
 
   const renderStatus = (rowData) => {
@@ -278,11 +332,10 @@ const LeadListingAllTable = () => {
       // </div>
       <div
         className={
-          rowData.Status === "Processing"
+          rowData.Status === "Draft"
             ? "company__status__type__green"
-            : rowData.Status === "Completed"
-            ? "company__status__type__blue"
-            : "client__view__type__red"
+            : "company__status__type__blue"
+           
         }
       >
         {rowData.Status}
@@ -290,39 +343,37 @@ const LeadListingAllTable = () => {
     );
   };
   const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
+//   const dispatch = useDispatch();
   // useEffect(() => {
   //   if (search?.length > 0) {
   //     dispatch(getClaimTabelSearchList(search))
   //   }
   // }, [search])
 
-  const [globalFilter, setGlobalFilter] = useState("Claim Number");
+  const [globalFilter, setGlobalFilter] = useState("policy Number");
   const cities = [
-    { name: "Claim Number", code: "Claim Number" },
     { name: "Policy Number", code: "policy Number" },
     { name: "ClientID", code: "ClientID" },
   ];
 
-  useEffect(() => {
-    if (globalFilter && search) {
-      dispatch(
-        getClaimTabelSearchList({
-          field: globalFilter,
-          value: search,
-        })
-      );
-    }
-  }, [search]);
+//   useEffect(() => {
+//     if (globalFilter && search) {
+//       dispatch(
+//         getClaimTabelSearchList({
+//           field: globalFilter,
+//           value: search,
+//         })
+//       );
+//     }
+//   }, [search]);
   const handleView = (rowData) => {
     console.log(rowData, "find rowData");
-    if (rowData?.Status === "Rejected") {
-      navigate("/agent/claimrejected");
-    } else if (rowData?.Status === "Processing") {
-      navigate(`/agent/claimrequest/requestapproval/${123}`);
+    if (rowData?.Status === "Draft") {
+      navigate("/agent/createquote/policydetails/createquote/12");
     } else if (rowData?.Status === "Completed") {
-      navigate(`/agent/claimdetailedview/${123}`);
+      navigate(`/agent/claimrequest/requestapproval/123`);
     }
+   
   };
 
   const ViewheaderStyle = {
@@ -396,7 +447,8 @@ const LeadListingAllTable = () => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search ? claimSearchListData : claimListData}
+        //   value={search ? claimSearchListData : claimListData}
+        value={TableData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -411,36 +463,33 @@ const LeadListingAllTable = () => {
         >
            
           <Column
-            body={renderPolicyNumber}
-            header={rendercheckedHeader("Policy Number")}
+            body={renderQuoteId}
+            header={rendercheckedHeader("Quote Id")}
             headerStyle={headerStyle}
           ></Column>
           <Column
-            body={renderClaimID}
-            header={renderUncheckedHeader("Gross premium")}
+            body={renderLeadName}
+            header={renderUncheckedHeader("Lead Name")}
+            headerStyle={headerStyle}
+          ></Column>
+         
+         
+           <Column
+            body={renderPolicyType}
+            header={renderUncheckedHeader("Policy Type")}
             headerStyle={headerStyle}
           ></Column>
            <Column
-            body={renderClaimNumber}
-            header={renderUncheckedHeader("Claim number")}
+            body={renderGrossPremium}
+            header={renderUncheckedHeader("GrossPremium")}
             headerStyle={headerStyle}
           ></Column>
-          
-          <Column
+           <Column
             body={renderDate}
-            header={renderUncheckedHeader("Policy Issued")}
+            header={renderUncheckedHeader("Date")}
             headerStyle={headerStyle}
           ></Column>
-           <Column
-            body={renderExpiryDate}
-            header={renderUncheckedHeader("Policy Expiry")}
-            headerStyle={headerStyle}
-          ></Column>
-          <Column
-            body={renderDes}
-            header={renderUncheckedHeader("Product Description")}
-            headerStyle={headerStyle}
-          ></Column>
+         
           <Column
             body={renderStatus}
             header={renderUncheckedHeader("Status")}

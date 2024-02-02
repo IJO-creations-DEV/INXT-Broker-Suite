@@ -84,6 +84,26 @@ const PersonalDetailsChange = ({
     },
   });
 
+  // useEffect=(()=>{
+  //  if(formik.values.City){
+  //   formik.setFieldValue("City",CityOptions[0].values)
+  //  }
+  // },[])
+
+
+  useEffect(() => {
+    
+  if (!formik.values.City) {
+    formik.setFieldValue("City",CityOptions[0].value)
+  }
+   
+    if (!formik.values.Province) {
+      formik.setFieldValue("Province", ProvinceOptions[0].value)
+    }
+    if (!formik.values.Country) {
+      formik.setFieldValue("Country", CountryOptions[0].value)
+    }
+  }, []);
   return (
     <div>
       <div className="customer__info__subtitle mt-2 mb-2">
@@ -148,20 +168,20 @@ const PersonalDetailsChange = ({
               console.log(e.value);
               formik.setFieldValue("Country", e.value);
             }}
-            optionLabel="label"
+            // optionLabel="label"
             error={formik.touched.Country && formik.errors.Country}
           />
         </div>
         <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
           <DropdownField
             label="Province"
-            value={formik.values.Province}
-            options={ProvinceOptions || Province}
+            value={formik.values.Province} // Set initial value here
+            options={ProvinceOptions}
             onChange={(e) => {
               console.log(e.value);
               formik.setFieldValue("Province", e.value);
             }}
-            optionLabel="label"
+            // optionLabel="label"
             error={formik.touched.Province && formik.errors.Province}
           />
         </div>
@@ -169,7 +189,7 @@ const PersonalDetailsChange = ({
           <DropdownField
             label="City"
             value={formik.values.City}
-            options={CityOptions || city}
+            options={CityOptions}
             onChange={(e) => {
               console.log(e.value);
               formik.setFieldValue("City", e.value);

@@ -59,12 +59,28 @@ const AddEmployee = ({ action }) => {
       label: action === "add" ? "Em0012" : employeeViewData?.employeeType,
       label: action === "add" ? "Em0012" : employeeViewData?.employeeType
     },
+    {
+      label: action === "add" ? "Em0013" : employeeViewData?.employeeType,
+      label: action === "add" ? "Em0013" : employeeViewData?.employeeType
+    },
+    {
+      label: action === "add" ? "Em0014" : employeeViewData?.employeeType,
+      label: action === "add" ? "Em0014" : employeeViewData?.employeeType
+    },
 
   ];
   const item1 = [
     {
       label: action === "add" ? "Level 1 Agent" : employeeViewData?.designation,
       label: action === "add" ? "Level 1 Agent" : employeeViewData?.designation
+    },
+    {
+      label: action === "add" ? "Level 2 Agent" : employeeViewData?.designation,
+      label: action === "add" ? "Level 2 Agent" : employeeViewData?.designation
+    },
+    {
+      label: action === "add" ? "Level 3 Agent" : employeeViewData?.designation,
+      label: action === "add" ? "Level 3 Agent" : employeeViewData?.designation
     },
 
   ];

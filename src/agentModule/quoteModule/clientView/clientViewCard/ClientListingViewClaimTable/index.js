@@ -294,8 +294,9 @@ const LeadListingAllTable = () => {
   //   }
   // }, [search])
 
-  const [globalFilter, setGlobalFilter] = useState("policy Number");
+  const [globalFilter, setGlobalFilter] = useState("Claim Number");
   const cities = [
+    { name: "Claim Number", code: "Claim Number" },
     { name: "Policy Number", code: "policy Number" },
     { name: "ClientID", code: "ClientID" },
   ];
@@ -424,7 +425,7 @@ const LeadListingAllTable = () => {
           ></Column>
            <Column
             body={renderExpiryDate}
-            header={renderUncheckedHeader("Policy Expired")}
+            header={renderUncheckedHeader("Policy Expiry")}
             headerStyle={headerStyle}
           ></Column>
           <Column

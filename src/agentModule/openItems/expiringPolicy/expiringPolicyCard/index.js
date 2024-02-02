@@ -376,7 +376,7 @@ const ExpiringPolicyCard = () => {
             ></Column>
             <Column
               body={renderExpiryDate}
-              header="Policy Expired"
+              header="Policy Expiry"
               headerStyle={headerStyle}
             ></Column>
             <Column

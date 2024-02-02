@@ -28,8 +28,9 @@ const LeadListingAllTable = () => {
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [globalFilter, setGlobalFilter] = useState("policy Number");
+  const [globalFilter, setGlobalFilter] = useState("EndorsementID");
   const cities = [
+    { name: "EndorsementID", code: "EndorsementID" },
     { name: "Policy Number", code: "policy Number" },
     { name: "EndorsementID", code: "EndorsementID" },
   ];
@@ -396,7 +397,7 @@ const LeadListingAllTable = () => {
           ></Column>
           <Column
             body={renderExpiryDate}
-            header={renderUncheckedHeader("Policy Expired")}
+            header={renderUncheckedHeader("Policy Expiry")}
             headerStyle={headerStyle}
           ></Column>
           <Column

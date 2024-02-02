@@ -32,8 +32,8 @@ const initialState = {
       action: ""
     },
     {
-      id:3,
-      roleCode:"FINCSR",
+      id: 3,
+      roleCode: "FINCSR",
       roleName: "Finance-Cashier",
       roleDescription: "roleDescription",
       menuAccess: "menuAccess",
@@ -45,11 +45,12 @@ const initialState = {
       action: ""
     }
   ],
+  postRoleData: {},
   roleSearchList: [],
   roleViewData: {},
   roleEditData: {},
 };
-let nextId3 = 3
+let nextId3 = 4
 const receiptsReducer = createSlice({
   name: "employee",
   initialState,
@@ -111,7 +112,7 @@ const receiptsReducer = createSlice({
     );
     builder.addCase(postAddRoleMiddleware.rejected, (state, action) => {
       state.loading = false;
-
+      state.postRoleData = {}
       //   state.paymentVocherList = state.paymentVocherList;
       state.error = typeof action.payload === "string" ? action.payload : "";
     });

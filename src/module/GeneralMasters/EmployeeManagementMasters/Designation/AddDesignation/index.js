@@ -51,9 +51,48 @@ const AddDesignation = ({ action }) => {
     },
   ];
   const home = { label: "Master" };
-  const item = [{ label:action==="add"? "1":getViewData?.departmentCode, value:action==="add"? "1":getViewData?.departmentCode }];
-  const item1 = [{ label:action==="add"? "1":getViewData?.level, value:action==="add"? "1":getViewData?.level }];
-  const item2 = [{label:action==="add"? "1":getViewData?.reportingtoLevel, value:action==="add"? "1": getViewData?.reportingtoLevel}];
+  const item = [
+    {
+      label: action === "add" ? "Motor" : getViewData?.departmentCode,
+      value: action === "add" ? "Motor" : getViewData?.departmentCode
+    },
+    {
+      label: action === "add" ? "Fire" : getViewData?.departmentCode,
+      value: action === "add" ? "Fire" : getViewData?.departmentCode
+    },
+    {
+      label: action === "add" ? "Engineering" : getViewData?.departmentCode,
+      value: action === "add" ? "Engineering" : getViewData?.departmentCode
+    }
+  ];
+  const item1 = [
+    {
+      label: action === "add" ? "1" : getViewData?.level,
+      value: action === "add" ? "1" : getViewData?.level
+    },
+    {
+      label: action === "add" ? "2" : getViewData?.level,
+      value: action === "add" ? "2" : getViewData?.level
+    },
+    {
+      label: action === "add" ? "3" : getViewData?.level,
+      value: action === "add" ? "3" : getViewData?.level
+    }
+  ];
+  const item2 = [
+    {
+      label: action === "add" ? "1" : getViewData?.reportingtoLevel,
+      value: action === "add" ? "1" : getViewData?.reportingtoLevel
+    },
+    {
+      label: action === "add" ? "2" : getViewData?.reportingtoLevel,
+      value: action === "add" ? "2" : getViewData?.reportingtoLevel
+    },
+     {
+      label: action === "add" ? "3" : getViewData?.reportingtoLevel,
+      value: action === "add" ? "3" : getViewData?.reportingtoLevel
+    }
+  ];
 
   const initialValue = {
     designationCode: action === "view" ? getViewData?.designationCode : "",

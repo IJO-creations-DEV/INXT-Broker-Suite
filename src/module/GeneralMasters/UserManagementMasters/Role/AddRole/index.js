@@ -45,15 +45,47 @@ const AddRole = ({ action }) => {
   const item = [{
     label: action === "add" ? "Accounts" : roleViewData?.menuAccess,
     value: action === "add" ? "Accounts" : roleViewData?.menuAccess
-  }]
+  },
+  {
+    label: action === "add" ? "Master" : roleViewData?.menuAccess,
+    value: action === "add" ? "Master" : roleViewData?.menuAccess
+  },
+  {
+    label: action === "add" ? "Broker" : roleViewData?.menuAccess,
+    value: action === "add" ? "Broker" : roleViewData?.menuAccess
+  },
+  {
+    label: action === "add" ? "Reports" : roleViewData?.menuAccess,
+    value: action === "add" ? "Reports" : roleViewData?.menuAccess
+  }
+  ]
   const item1 = [{
     label: action === "add" ? "Receipts" : roleViewData?.subMenuAccess,
-    value: action === "add" ? "Accounts" : roleViewData?.subMenuAccess
-  }]
-  const item2 = [{
-    label: action === "add" ? "Read" : roleViewData?.permissions,
-    value: action === "add" ? "Accounts" : roleViewData?.permissions
-  }]
+    value: action === "add" ? "Receipts" : roleViewData?.subMenuAccess
+  },
+  {
+    label: action === "add" ? "Generals" : roleViewData?.subMenuAccess,
+    value: action === "add" ? "Generals" : roleViewData?.subMenuAccess
+  },
+  {
+    label: action === "add" ? "Finance" : roleViewData?.subMenuAccess,
+    value: action === "add" ? "Finance" : roleViewData?.subMenuAccess
+  },
+  {
+    label: action === "add" ? "Petty Cash" : roleViewData?.subMenuAccess,
+    value: action === "add" ? "Petty Cash" : roleViewData?.subMenuAccess
+  },
+  ]
+  const item2 = [
+    {
+      label: action === "add" ? "Read" : roleViewData?.permissions,
+      value: action === "add" ? "Read" : roleViewData?.permissions
+    },
+    {
+      label: action === "add" ? "Write" : roleViewData?.permissions,
+      value: action === "add" ? "Write" : roleViewData?.permissions
+    }
+  ]
   const home = { label: "Master" };
 
   const initialValue = {
@@ -93,6 +125,7 @@ const AddRole = ({ action }) => {
   minDate.setDate(minDate.getDate() + 1);
 
   const handleSubmit = () => {
+    console.log(formik.values, "payload");
     if (action === "add") {
       dispatch(postAddRoleMiddleware(formik.values))
       toastRef.current.showToast();
@@ -105,7 +138,6 @@ const AddRole = ({ action }) => {
     if (action === "edit") {
       dispatch(patchRoleEditMiddleware(formik.values))
       toastRef.current.showToast();
-
       setTimeout(() => {
         navigate("/master/generals/usermanagement/role")
         setVisiblePopup(false);
@@ -113,19 +145,41 @@ const AddRole = ({ action }) => {
     }
 
   };
-
+  const [menuAccessDataOption, setMenuAccessDataOption] = useState([])
+  const [subMenuDataOption, setSubMenuDataOption] = useState([])
+  const [permissionDataOption, setPermissionDataOption] = useState([])
   const setFormikValues = () => {
+    const menuData = roleEditData?.menuAccess;
+    const subMenuData = roleEditData?.subMenuAccess;
+    const permissionData = roleEditData?.permissions
+    console.log(menuData, "menuData");
     const updatedValues = {
       id: roleEditData?.id,
       roleCode: roleEditData?.roleCode,
       roleName: roleEditData?.roleName,
       roleDescription: roleEditData?.roleDescription,
-      menuAccess: roleEditData?.menuAccess,
-      subMenuAccess: roleEditData?.subMenuAccess,
-      permissions: roleEditData?.permissions,
+      menuAccess: menuData,
+      subMenuAccess: subMenuData,
+      permissions: permissionData,
       modifiedBy: roleEditData?.modifiedBy,
       modifiedOn: roleEditData?.modifiedOn,
     };
+    if (menuData) {
+      setMenuAccessDataOption([
+        { label: menuData, value: menuData }
+      ])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if (subMenuData) {
+      setSubMenuDataOption([
+        { label: subMenuData, value: subMenuData }
+      ])
+    }
+    if (permissionData) {
+      setPermissionDataOption([
+        { label: permissionData, value: permissionData }
+      ])
+    }
     formik.setValues({ ...formik.values, ...updatedValues });
   };
 
@@ -135,9 +189,9 @@ const AddRole = ({ action }) => {
     onSubmit: handleSubmit,
   });
   useEffect(() => {
-
-    setFormikValues();
-
+    if (action === "edit" || action === "view") {
+      setFormikValues()
+    }
   }, [roleEditData]);
   return (
     <div className="grid add__role__container">
@@ -177,7 +231,8 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-3">
               <InputField
                 disabled={action === "view" ? true : false}
-                value={action === "view" ? roleViewData.roleCode : formik.values.roleCode}
+                // value={action === "view" ? roleViewData.roleCode : formik.values.roleCode}
+                value={formik.values.roleCode}
                 onChange={formik.handleChange("roleCode")}
                 // error={formik.errors.roleCode}
                 label="Role Code"
@@ -189,7 +244,8 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-3">
               <InputField
                 disabled={action === "view" ? true : false}
-                value={action === "view" ? roleViewData.roleName : formik.values.roleName}
+                value={formik.values.roleName}
+                // value={action === "view" ? roleViewData.roleName : formik.values.roleName}
                 onChange={formik.handleChange("roleName")}
                 // error={formik.errors.roleName}
                 label="Role Name"
@@ -202,7 +258,8 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-6">
               <InputField
                 disabled={action === "view" ? true : false}
-                value={action === "view" ? roleViewData.roleDescription : formik.values.roleDescription}
+                value={formik.values.roleDescription}
+                // value={action === "view" ? roleViewData.roleDescription : formik.values.roleDescription}
                 onChange={formik.handleChange("roleDescription")}
                 // error={formik.errors.roleDescription}
                 label="Role Description"
@@ -221,7 +278,7 @@ const AddRole = ({ action }) => {
                 label="Menu Access"
                 classNames="label__sub__add"
                 placeholder={"Select"}
-                options={item}
+                options={action === "edit" ? menuAccessDataOption : item}
                 optionLabel="label"
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
@@ -236,7 +293,7 @@ const AddRole = ({ action }) => {
                 label="Sub Menu Access"
                 classNames="label__sub__add"
                 placeholder={"Select"}
-                options={item1}
+                options={action === "edit" ? subMenuDataOption : item1}
                 optionLabel="label"
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
@@ -251,7 +308,7 @@ const AddRole = ({ action }) => {
                 label="Permissions"
                 classNames="label__sub__add"
                 placeholder={"Select"}
-                options={item2}
+                options={action === "edit" ? permissionDataOption : item2}
                 optionLabel="label"
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
@@ -288,16 +345,14 @@ const AddRole = ({ action }) => {
         </div>
       </Card>
       <div className="col-12 btn__view__Add mt-4">
-        {action === "add" && (
-          <Button
-            label="Save"
-            className="save__add__btn"
-            onClick={() => {
-              formik.handleSubmit();
-            }}
-            disabled={!formik.isValid}
-          />
-        )}
+{action === "view" ? <div></div> : <Button
+          label={action === "add" ? "Save" : " Update"}
+          className="save__add__btn"
+          onClick={formik.handleSubmit}
+          disabled={!formik.isValid}
+        />}
+        
+        {/* )}
         {action === "edit" && (
           <Button
             className="save__add__btn"
@@ -306,7 +361,7 @@ const AddRole = ({ action }) => {
           >
             Update
           </Button>
-        )}
+        )} */}
       </div>
       <CustomToast ref={toastRef} message="Role R1234 is added" />
     </div>

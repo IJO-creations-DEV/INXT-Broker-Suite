@@ -26,6 +26,7 @@ import {
   getBankSearchList,
   patchBankDetailEdit,
 } from "./store/bankMasterMiddleware";
+import MenuData from "./MenuData";
 
 const BankMaster = () => {
   const menu = useRef(null);
@@ -40,6 +41,7 @@ const BankMaster = () => {
   //   { label: "Add/Edit Account", command: () => navigate("/master/finance/bank/accountdataview") }
   // ]
   const menuitems = [
+
     { label: "Edit", command: (rowData) => handleEdit(rowData) },
     { label: "View", command: (rowData) => handleView(rowData) },
     {
@@ -49,6 +51,7 @@ const BankMaster = () => {
   ];
 
   const handleEdit = (rowData) => {
+    console.log(rowData, "rowData");
     setVisible(true);
     setDialog(rowData);
     // console.log(currentDialog, "current detail")
@@ -60,8 +63,8 @@ const BankMaster = () => {
     formik.setFieldValue("addressLine1", "Sudharshan Building");
     formik.setFieldValue("addressLine2", "2nd floor,chamiers Road");
     formik.setFieldValue("addressLine3", "Nanthanam");
-    formik.setFieldValue("city", "Chennai");
-    formik.setFieldValue("state", "Tamil Nadu");
+    formik.setFieldValue("city", "MATI");
+    formik.setFieldValue("state", "DON SALVADOR BENEDICTO");
     formik.setFieldValue("country", "Philippines");
     formik.setFieldValue("mobile", rowData?.mobile);
     formik.setFieldValue("fax", rowData?.mobile);
@@ -83,8 +86,8 @@ const BankMaster = () => {
     formik.setFieldValue("addressLine1", "Sudharshan Building");
     formik.setFieldValue("addressLine2", "2nd floor,chamiers Road");
     formik.setFieldValue("addressLine3", "Nanthanam");
-    formik.setFieldValue("city", "Chennai");
-    formik.setFieldValue("state", "Tamil Nadu");
+    formik.setFieldValue("city", "MATI");
+    formik.setFieldValue("state", "DON SALVADOR BENEDICTO");
     formik.setFieldValue("country", "Philippines");
     formik.setFieldValue("mobile", rowData?.mobile);
     formik.setFieldValue("fax", rowData?.mobile);
@@ -99,7 +102,7 @@ const BankMaster = () => {
       BankSearchList: bankMasterReducer?.BankSearchList,
     };
   });
-  useEffect(() => {}, [bankList]);
+  useEffect(() => { }, [bankList]);
   // useEffect(() => {
   //   console.log(currentDialog, "ads")
   //   if(Object.keys(currentDialog).length>0){
@@ -383,29 +386,28 @@ const BankMaster = () => {
 
             <Column
               body={(rowData) => (
-                //         <div className="card flex justify-content-center">
+                console.log(rowData, "rowDataaa"),
+                <MenuData menuitems={menuitems} rowData={rowData} />
+                // <div className="card flex justify-content-center">
+                //   <TieredMenu
+                //     model={menuitems.map((item) => ({
+                //       ...item,
+                //       command: () => item.command(rowData),
+                //       // data: rowData
+                //     }))}
 
-                //  <TieredMenu model={menuitems} popup ref={menu}  />
-                //   <SvgMenudots onClick={(e) => menu.current.toggle(e)} />
-
-                //   </div>
-                <div className="card flex justify-content-center">
-                  <TieredMenu
-                    model={menuitems.map((item) => ({
-                      ...item,
-                      command: () => item.command(rowData),
-                    }))}
-                    popup
-                    ref={menu}
-                    breakpoint="767px"
-                  />
-                  <Button
-                    icon={<SvgMenudots />}
-                    onClick={(e) => menu.current.toggle(e)}
-                    className="menubutton_popup"
-                  />
-                </div>
+                //     popup
+                //     ref={menu}
+                //     breakpoint="767px"
+                //   />
+                //   <Button
+                //     icon={<SvgMenudots />}
+                //     onClick={(e) => menu.current.toggle(e)}
+                //     className="menubutton_popup"
+                //   />
+                // </div>
               )}
+
               header="Action"
               headerStyle={headerStyle}
               className="fieldvalue_container"

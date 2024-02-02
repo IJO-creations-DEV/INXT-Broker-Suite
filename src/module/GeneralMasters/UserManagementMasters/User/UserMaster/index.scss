@@ -244,9 +244,15 @@ margin-top: 20px;
     .fieldvalue_container_centered {
         display: flex;
         justify-content: center;
-        align-items: center;
+        // align-items: center;padding: 1rem !important;
       }
       .fieldvalue_container{
+        padding: 1rem  !important;
+      }
+      .center__content__but{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
         padding: 1rem  !important;
       }
 

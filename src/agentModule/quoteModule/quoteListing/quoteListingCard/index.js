@@ -17,12 +17,10 @@ import SvgArrow from "../../../../assets/agentIcon/SvgArrow";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
-import { getQuoteSearchDataMiddleWare } from "../quoteListingCard/store/quoteMiddleware"
+import { getQuoteSearchDataMiddleWare } from "../quoteListingCard/store/quoteMiddleware";
 import ClientListing from "../../clientListing";
 
-
 const QuoteListingCard = () => {
-
   const { quotetabledata, quoteSearchList, loading } = useSelector(
     ({ agentQuoteMainReducers }) => {
       return {
@@ -36,12 +34,11 @@ const QuoteListingCard = () => {
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const [globalFilter, setGlobalFilter] = useState("Company");
   const cities = [
     { name: "Company", code: "Company" },
     { name: "QuoteID", code: "QuoteID" },
-
   ];
 
   useEffect(() => {
@@ -186,18 +183,21 @@ const QuoteListingCard = () => {
     ) : selectedProducts.length === 1 ? (
       <div className="header__btn__container">
         <div className="header__delete__btn">Delete</div>
-        <div className="header__edit__btn">Edit</div>
+        <div className="header__edit__btn" onClick={() => handleEdit("1")}>
+          Edit
+        </div>
       </div>
     ) : (
       <div className="header__btn__container">
         <div className="header__delete__btn">Delete</div>
-        <div
-          className="header__edit__btn"
-          onClick={() => navigate("/agent/quotecomparisonview")}
-        >
-          Compare
-        </div>
-        <div className="header__edit__btn" onClick={() => navigate("/agent/quotecomparisonview")}>Compare</div>
+        {selectedProducts.length === 2 && (
+          <div
+            className="header__edit__btn"
+            onClick={() => navigate("/agent/quotecomparisonview")}
+          >
+            Compare
+          </div>
+        )}
       </div>
     );
   };
@@ -207,9 +207,8 @@ const QuoteListingCard = () => {
   };
 
   const handleclick = () => {
-    navigate("/agent/createquote/policydetails");
+    navigate(`/agent/createquote/policydetails/createquote/${123}`);
   };
-
 
   const ViewheaderStyle = {
     justifyContent: "center",
@@ -313,19 +312,33 @@ const QuoteListingCard = () => {
     );
   };
 
-  const handleEdit = () => { };
-  const handleView = () => { };
+  const handleEdit = (rowData) => {
+    navigate(`/agent/editquote/policydetails/quotedetails/${123}`);
+  };
+  const handleView = (rowData) => {
+    console.log(rowData, "find row data");
+    if (rowData?.Status === "Processing") {
+      navigate(`/agent/convertpolicy/customerinfo/edit/${123}`);
+    } else if (rowData?.Status === "Draft") {
+      navigate("/agent/quotedetailedit");
+    }
+  };
 
-  console.log(quoteSearchList,"find quoteSearchList")
+  console.log(quoteSearchList, "find quoteSearchList");
+  const handleLeadNavigation = () => {
+    navigate("/agent/leadlisting");
+  };
   return (
     <div className="quote__listing__card__container mt-4">
       <Card>
         <div class="grid mt-2">
           <div class="back__btn__container col-12 md:col-6 lg:col-6">
             <div className="quote__listing__card__container__back__btn">
-              <SvgLeftArrow />
-              <div className="quote__listing__card__container__back__btn__title">
-                Carson Darrin
+              <div className="cursor-pointer flex arrow__controller" onClick={handleLeadNavigation}>
+                <SvgLeftArrow />
+                <div className="quote__listing__card__container__back__btn__title">
+                  Carson Darrin
+                </div>
               </div>
             </div>
           </div>
@@ -352,8 +365,6 @@ const QuoteListingCard = () => {
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-
-
             <Dropdown
               value={globalFilter}
               onChange={(e) => setGlobalFilter(e.value)}
@@ -388,7 +399,7 @@ const QuoteListingCard = () => {
               body={(rowData) => (
                 <Checkbox
                   checked={selectedProducts.includes(rowData)}
-                  onChange={() => { }}
+                  onChange={() => {}}
                 />
               )}
               headerStyle={checkboxheaderStyle}

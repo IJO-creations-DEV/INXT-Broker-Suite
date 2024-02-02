@@ -21,11 +21,8 @@ const OpenItemsListData = () => {
       navigate("/agent/payments");
     } else if (data === "Quote Pending") {
       navigate("/agent/openitems/quotepending");
-      
-     } else if (data === "Renewal Request") {
-        navigate("/agent/openitems/renewalrequest");
-        
-      
+    } else if (data === "Renewal Request") {
+      navigate("/agent/openitems/renewalrequest");
     } else {
       navigate("/agent/openitems/expiringpolicy");
     }
@@ -84,12 +81,14 @@ const OpenItemsListData = () => {
                     <div className="item_policy_no">{val.policyNo}</div>
                   </div>
                 </div>
-                <div
-                  onClick={() => handleNavigate(val.status)}
-                  className="bottom__view__card cursor-pointer"
-                >
-                  See More
-                  <SvgArrow />
+                <div className="bottom__view__card ">
+                  <div
+                    onClick={() => handleNavigate(val.status)}
+                    className="cursor-pointer arrow__controller"
+                  >
+                    See More
+                    <SvgArrow />
+                  </div>
                 </div>
               </div>
             </div>
@@ -136,12 +135,14 @@ const OpenItemsListData = () => {
                     <div className="item_policy_no">{val.policyNo}</div>
                   </div>
                 </div>
-                <div
-                  onClick={() => handleNavigate(val.status)}
-                  className="bottom__view__card cursor-pointer"
-                >
-                  See More
-                  <SvgArrow />
+                <div className="bottom__view__card">
+                  <div
+                    onClick={() => handleNavigate(val.status)}
+                    className="cursor-pointer arrow__controller"
+                  >
+                    See More
+                    <SvgArrow />
+                  </div>
                 </div>
               </div>
             </div>

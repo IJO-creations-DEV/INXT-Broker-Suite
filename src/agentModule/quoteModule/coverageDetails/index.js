@@ -4,7 +4,7 @@ import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow"
 import CoverageDetailsCard from "./coverageDetailsCard";
 import { act } from "react-dom/test-utils";
 
-const CoverageDeatails = ({action}) => {
+const CoverageDeatails = ({action,flow}) => {
   return (
 
     <div className="coverage__container">
@@ -13,7 +13,7 @@ const CoverageDeatails = ({action}) => {
         <SvgLeftArrow />
         <div className="coverage__container__back__btn__title">Lead ID: 12345678</div>
       </div>
-      <CoverageDetailsCard action={action}/>
+      <CoverageDetailsCard action={action} flow={flow}/>
 
     </div>
   );

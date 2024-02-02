@@ -221,6 +221,9 @@ const ResponsiveDrawer = () => {
                             subItem.name === "Leads" ||
                             subItem.name === "Clients" ||
                             subItem.name === "Open Items" ||
+                            subItem.name === "Claim" ||
+                            subItem.name === "Policy" ||
+                            subItem.name === "Quotation" ||
                             subItem.name === "Payments" ? (
                               subItem.name === "Home" ? (
                                 <SvgAgentHomeIcon
@@ -247,6 +250,30 @@ const ResponsiveDrawer = () => {
                                   }
                                 />
                               ) : subItem.name === "Open Items" ? (
+                                <SvgAgentItemsIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === " Claim" ? (
+                                <SvgAgentItemsIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Quotation" ? (
+                                <SvgAgentItemsIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Policy" ? (
                                 <SvgAgentItemsIcon
                                   color={
                                     subItem.path === findPath

@@ -1,4 +1,8 @@
 .expiring__policy__container {
+  .feat_searchby_container {
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
   .expiring__policy__container__titles {
     font-size: 24px;
     font-weight: 600;
@@ -33,6 +37,7 @@
     align-items: center;
     gap: 10px;
     padding-bottom: 14px;
+    width: max-content;
     .expiring__policy__container__back__btn__title {
       font-size: 16px;
       font-weight: 400;
@@ -122,7 +127,7 @@
         font-weight: 400;
         font-family: Poppins;
         line-height: 24px;
-        color:#D4635D;
+        color: #d4635d;
       }
     }
     .action__container {

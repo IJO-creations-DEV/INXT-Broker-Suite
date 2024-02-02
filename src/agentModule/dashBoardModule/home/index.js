@@ -138,7 +138,7 @@ const Dashboard = () => {
     navigate("/agent/createlead");
   };
   const handleclientid = () => {
-    navigate(`/agent/createquote/policydetails/quotedetails/${123}`);
+    navigate(`/agent/createquote/policydetails/createquote/${123}`);
   };
 
   return (

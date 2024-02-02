@@ -69,16 +69,20 @@ const UserMaster = () => {
     padding: "1rem",
     color: "#000",
     border: "none",
+   width:"16%"
   };
   const ViewheaderStyle = {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "1rem",
-    color: "#000",
+    color: "#000",textAlign:'center',
     border: "none",
-    display: "flex",
-    justifyContent: "center",
+    textAlign:'center'
+    // marginLeft:"6px"
+    //  display: "flex",
+    //  justifyContent: "center",alignItem:"center",
+    //  width:"6%"
   };
 
   const [first, setFirst] = useState(0);
@@ -91,7 +95,7 @@ const UserMaster = () => {
   const renderViewButton = (rowData) => {
     console.log(rowData, "rowDatarowData");
     return (
-      <div className="center-content">
+      <div className="center__content__but">
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
@@ -253,7 +257,7 @@ const UserMaster = () => {
                   field="status"
                   body={(columnData) => <ToggleButton id={columnData.id} />}
                   header="Status"
-                  headerStyle={{ textAlign: "center", ...headerStyle }}
+                  headerStyle={headerStyle}
                   className="fieldvalue_container"
                 ></Column>
                 <Column
@@ -261,7 +265,8 @@ const UserMaster = () => {
                   body={renderViewButton}
                   header="Action"
                   headerStyle={ViewheaderStyle}
-                  className="fieldvalue_container_centered"
+                  // className="fieldvalue_container"
+                  //  className="fieldvalue_container_centered"
                 ></Column>
               </DataTable>
             </div>

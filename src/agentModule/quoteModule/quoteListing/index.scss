@@ -1,4 +1,8 @@
 .quotelisting__overal__container {
+  .arrow__controller {
+    align-items: center;
+    gap: 10px;
+  }
   .quote__listing__card__table {
     margin-top: 1rem;
   }
@@ -33,7 +37,7 @@
 
   .p-breadcrumb {
     border-radius: 6px;
-    padding:0 0 1rem 0;
+    padding: 0 0 1rem 0;
   }
   .quote__listing__card__container {
     .p-card {

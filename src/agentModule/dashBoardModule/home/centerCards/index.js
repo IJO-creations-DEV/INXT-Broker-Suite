@@ -77,7 +77,7 @@ const CenterCard = ({ commission }) => {
                   {upcommingEventsList.length > 4 && (
                     <div className="center__card__container__btn__container mt-3">
                       <div
-                        className="center__card__container__btn"
+                        className="center__card__container__btn cursor-pointer"
                         onClick={() => handleSeeMore()}
                       >
                         See More <SvgArrow />

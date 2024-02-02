@@ -18,12 +18,12 @@ const initialState = {
       departmentCode: "Depart123",
       idProofType: "Driving License",
       idNumber: "12345678",
-      addressLine1: "addressLine1",
-      addressLine2: "addressLine2",
-      addressLine3: "addressLine3",
-      city: "Chennai",
-      state: "Tamil nadu",
-      country: "India",
+      addressLine1: "",
+      addressLine2: "",
+      addressLine3: "",
+      city: "MATI",
+      state: "DAVAO ORIENTAL",
+      country: "Philippines",
       modifiedBy: "John",
       modifiedOn: "12/12/2023",
 
@@ -41,12 +41,12 @@ const initialState = {
       departmentCode: "Depart123",
       idProofType: "Driving License",
       idNumber: "12345678",
-      addressLine1: "addressLine1",
-      addressLine2: "addressLine2",
-      addressLine3: "addressLine3",
-      city: "Chennai",
-      state: "Tamil nadu",
-      country: "India",
+      addressLine1: "",
+      addressLine2: "",
+      addressLine3: "",
+      city: "DON SALVADOR BENEDICTO",
+      state: "NEGROS OCCIDENTAL",
+      country: "Philippines",
       modifiedBy: "John",
       modifiedOn: "12/12/2023",
 
@@ -64,12 +64,12 @@ const initialState = {
       departmentCode: "Depart123",
       idProofType: "Driving License",
       idNumber: "12345678",
-      addressLine1: "addressLine1",
-      addressLine2: "addressLine2",
-      addressLine3: "addressLine3",
-      city: "Chennai",
-      state: "Tamil nadu",
-      country: "India",
+      addressLine1: "",
+      addressLine2: "",
+      addressLine3: "",
+      city: "SANTA TERESITA",
+      state: "QUEZON CITY",
+      country: "Philippines",
       modifiedBy: "John",
       modifiedOn: "12/12/2023",
 
@@ -81,6 +81,7 @@ const initialState = {
 
   ],
   employeeEditData: {},
+  employeeSeachDetailList:[],
   employeeViewData: {}
 };
 let nextId1 = 4
@@ -121,12 +122,12 @@ const employeeReducer = createSlice({
     });
     builder.addCase(getSearchEmployeeMiddleware.fulfilled, (state, action) => {
       state.loading = false;
-      state.employeeDetailList = action.payload;
+      state.employeeSeachDetailList = action.payload;
     });
     builder.addCase(getSearchEmployeeMiddleware.rejected, (state, action) => {
       state.loading = false;
 
-      state.employeeDetailList = {};
+      state.employeeSeachDetailList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 

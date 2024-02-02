@@ -6,20 +6,20 @@ const initialState = {
     loading: false,
     error: "",
     claimDetailsViewData:
-        {
-            id: 1,
-            InsuranceCompanyName:"bajaj",
-            policyNumber: "PN355",
-            PolicyHolderName:"ayesha",
-            HouseNo: "24",
-            Barangay:"ss",
-            CountryName: "Philippines",
-            Province: "karnataka",
-            CityName: "davangere",
-            ZipCode: "577004"
-           
-        },
-        claimThirdParty:{}
+    {
+        id: 1,
+        InsuranceCompanyName: "bajaj",
+        policyNumber: "PN355",
+        PolicyHolderName: "ayesha",
+        HouseNo: "24",
+        Barangay: "ss",
+        CountryName: "Philippines",
+        Province: "DAVAO ORIENTAL",
+        CityName: "MATI",
+        ZipCode: "577004"
+
+    },
+    claimThirdParty: {}
 
 };
 

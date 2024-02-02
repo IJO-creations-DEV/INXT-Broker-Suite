@@ -13,23 +13,32 @@ import { InputSwitch } from "primereact/inputswitch";
 import { useLocation, useNavigate } from "react-router-dom";
 import ToggleButton from "../../../../components/ToggleButton";
 import { useDispatch, useSelector } from "react-redux";
-import { getMainAccountDetailView, getMainAccountSearchList, getPatchMainAccountDetailEdit } from "../store/mainAccoutMiddleware";
+import {
+  getMainAccountDetailView,
+  getMainAccountSearchList,
+  getPatchMainAccountDetailEdit,
+} from "../store/mainAccoutMiddleware";
 
 const TableData = ({ MainAccountList }) => {
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const location = useLocation();
   const tableView = location.state?.tableView || false;
   console.log(MainAccountList, "MainAccountListMainAccountList");
 
-  const { MainAccountSearchList, loading } = useSelector(({ mainAccoutReducers }) => {
-    return {
-      loading: mainAccoutReducers?.loading,
-      MainAccountSearchList: mainAccoutReducers?.MainAccountSearchList,
+  const { MainAccountSearchList, loading } = useSelector(
+    ({ mainAccoutReducers }) => {
+      return {
+        loading: mainAccoutReducers?.loading,
+        MainAccountSearchList: mainAccoutReducers?.MainAccountSearchList,
+      };
+    }
+  );
 
-    };
-  });
-
+  const headerStyle = {};
+  const headeraction = {
+    marginLeft: "14px",
+  };
   const emptyTableIcon = (
     <div>
       <div className="empty-table-icon">
@@ -66,30 +75,27 @@ const TableData = ({ MainAccountList }) => {
       );
     },
   };
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleview = (rowData) => {
-    console.log(rowData, "rowData")
+    console.log(rowData, "rowData");
     if (rowData) {
-      dispatch(getMainAccountDetailView(rowData))
-      navigate("/master/finance/mainaccount/viewmainaccount")
+      dispatch(getMainAccountDetailView(rowData));
+      navigate("/master/finance/mainaccount/viewmainaccount");
+    } else {
+      alert("error");
     }
-    else {
-      alert("error")
-    }
+  };
 
-  }
- 
   const handleEdit = (rowData) => {
     console.log(rowData, "rowDatarowData");
-   if(rowData){
-    dispatch(getPatchMainAccountDetailEdit(rowData))
-    navigate("/master/finance/mainaccount/editmainaccount");
-   }
-   else{
-    alert("error")
-   }
-  }
+    if (rowData) {
+      dispatch(getPatchMainAccountDetailEdit(rowData));
+      navigate("/master/finance/mainaccount/editmainaccount");
+    } else {
+      alert("error");
+    }
+  };
   const renderActionButton = (rowData) => {
     return (
       <div className="action__button__container">
@@ -131,9 +137,9 @@ const TableData = ({ MainAccountList }) => {
 
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getMainAccountSearchList(search))
+      dispatch(getMainAccountSearchList(search));
     }
-  }, [search])
+  }, [search]);
 
   return (
     <div className="master__main__table__container">
@@ -168,6 +174,7 @@ const TableData = ({ MainAccountList }) => {
           field="mainAccountCode"
           header="Main Account Code"
           className="fieldvalue_container"
+          // headerStyle={headerStyle}
           sortable
         ></Column>
         <Column
@@ -197,15 +204,11 @@ const TableData = ({ MainAccountList }) => {
           body={(columnData) => <ToggleButton id={columnData.id} />}
         ></Column>
         <Column
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            padding: "20px 1rem 17px 0px",
-          }}
+          headerStyle={headeraction}
           field="id"
           body={renderActionButton}
           header="Action"
-        // className="fieldvalue_container"
+          // className="fieldvalue_container"
         ></Column>
       </DataTable>
     </div>

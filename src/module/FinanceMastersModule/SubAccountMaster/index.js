@@ -47,7 +47,7 @@ const SubAccountMaster = () => {
     setSelectedOption1(e.value);
   };
 
-  const handleClick = () => {};
+  const handleClick = () => { };
 
   const { subAccountList, loading, subAccountSearchList } = useSelector(
     ({ subAccountMainReducers }) => {
@@ -219,6 +219,7 @@ const SubAccountMaster = () => {
         toastRef.current.showToast();
         setTimeout(() => {
           setVisiblePopup(false);
+          // formik.resetForm()
         }, 2000);
       })
       .catch((error) => {

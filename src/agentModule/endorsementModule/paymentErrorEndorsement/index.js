@@ -34,7 +34,7 @@ const PaymentErrorEndorsment = () => {
       >
         <SvgLeftArrow />
         <div className="endorsement__waiting__request__upload__back__btn__title">
-          Client ID :{id}
+          Carson Darrin / Client ID : {id}
         </div>
       </div>
       <CustomToast

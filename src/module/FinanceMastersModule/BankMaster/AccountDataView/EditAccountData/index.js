@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import { Dialog } from "primereact/dialog";
 import ToggleButton from "../../../../../components/ToggleButton";
-import { postPatchAccountDetailEdit } from "../../store/bankMasterMiddleware";
+import { getChequeEditDataMiddleWare, postChequeDataMiddleWare, postPatchAccountDetailEdit } from "../../store/bankMasterMiddleware";
 
 const initialValues = {
   AccountNumber: "",
@@ -34,25 +34,26 @@ const initialValues = {
   MainAccount: "",
   MainAccountDescription: "",
   TransactionLimit: "",
+  chequeBookNo: "",
+  chequeLeafBegining: "",
+  chequeLeafEnd: ""
 };
 
-function EditAccountDetail() {
+function EditAccountDetail({ action }) {
+  console.log(action, "action");
   // const [visible, setVisible] = useState(false);
 
-  const { AccountPatchDetailView, loading } = useSelector(
+  const { AccountPatchDetailView, loading, chequeListData, getEditChequeData } = useSelector(
     ({ bankMasterReducer }) => {
       return {
         loading: bankMasterReducer?.loading,
         AccountPatchDetailView: bankMasterReducer?.AccountPatchDetailView,
-        // const [products, setProducts] = useState([]);
-
-        // const handleView=()=>{
-        //   navigate('/accounts/paymentvoucher/detailview')
-        // }
+        chequeListData: bankMasterReducer?.chequeListData,
+        getEditChequeData: bankMasterReducer?.getEditChequeData
       };
     }
   );
-  console.log(AccountPatchDetailView, "columnData");
+  console.log(chequeListData, "chequeListData");
   const navigate = useNavigate();
   const [date, setDate] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState(false);
@@ -165,7 +166,7 @@ function EditAccountDetail() {
     console.log(value, "columnData");
     // setVisible(true);
     dispatch(postPatchAccountDetailEdit(value));
-     navigate("/master/finance/bank/accountdataview");
+    navigate("/master/finance/bank/accountdataview");
   };
 
   const [accType, setAccType] = useState([]);
@@ -205,6 +206,7 @@ function EditAccountDetail() {
 
   const handlesavebutton = () => {
     setVisible(false);
+    dispatch(postChequeDataMiddleWare(formik.values))
   };
   const handleNavigation = () => {
     navigate("/master/finance/bank/accountdataview");
@@ -231,6 +233,12 @@ function EditAccountDetail() {
       </div>
     );
   };
+  const handleEditData = (data) => {
+    alert("hii")
+    // setVisible(true)
+    console.log(data, "dataa");
+    // dispatch(getChequeEditDataMiddleWare(data))
+  }
 
   return (
     <div className="overall__editaccountdetail__container">
@@ -365,7 +373,7 @@ function EditAccountDetail() {
             label="Add"
             className="addbutton_container"
             icon={<SvgAdd />}
-             onClick={() => setVisible(true)}
+            onClick={() => setVisible(true)}
             // onClick={() => {
             //   formik.handleSubmit();
             // }}
@@ -376,7 +384,7 @@ function EditAccountDetail() {
         <div className="tablegap_container">
           <DataTable
             disabled={!formik.isValid}
-            value={Productdata}
+            value={chequeListData}
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}
@@ -390,19 +398,19 @@ function EditAccountDetail() {
             onSelectionChange={(e) => setSelectedProducts(e.value)}
           >
             <Column
-              field="VoucherNumber"
+              field="chequeBookNo"
               header="Cheque Book Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="TransactionNumber"
+              field="chequeLeafBegining"
               header="Cheque Leaf Beginning"
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
             <Column
-              field="CustomerCode"
+              field="chequeLeafEnd"
               header="Cheque Leaf End"
               headerStyle={headerStyle}
               className="fieldvalue_container"
@@ -414,7 +422,10 @@ function EditAccountDetail() {
               className="fieldvalue_container"
             ></Column>
             <Column
-              body={(columnData) => <SvgEdit />}
+              body={(columnData) =>
+                <div onClick={() => { handleEditData(columnData) }}>
+                  <SvgEdit />
+                </div>}
               header="Action"
               headerStyle={headerStyle}
               className="fieldvalue_container"
@@ -461,8 +472,8 @@ function EditAccountDetail() {
                 classNames="field__container"
                 label="Cheque Book Number"
                 placeholder={"Enter"}
-                value={formik.values.AccountNumber}
-                onChange={formik.handleChange("AccountNumber")}
+                value={formik.values.chequeBookNo}
+                onChange={formik.handleChange("chequeBookNo")}
               />
             </div>
           </div>
@@ -472,8 +483,8 @@ function EditAccountDetail() {
                 classNames="field__container"
                 label="Cheque Leaf Beginning"
                 placeholder={"Enter"}
-                value={formik.values.AccountName}
-                onChange={formik.handleChange("AccountName")}
+                value={formik.values.chequeLeafBegining}
+                onChange={formik.handleChange("chequeLeafBegining")}
               />
             </div>
           </div>
@@ -485,8 +496,8 @@ function EditAccountDetail() {
                 classNames="field__container"
                 label="Cheque Leaf End"
                 placeholder={"Enter"}
-                value={formik.values.AccountNumber}
-                onChange={formik.handleChange("AccountNumber")}
+                value={formik.values.chequeLeafEnd}
+                onChange={formik.handleChange("chequeLeafEnd")}
               />
             </div>
           </div>

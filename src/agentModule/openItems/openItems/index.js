@@ -120,6 +120,10 @@ const OpenItems = () => {
   const handleDateSelect = (info) => {
     console.log("Selected dates:", info.start, info.end);
   };
+  const handleHomeNavigation = () => {
+    navigate("/");
+  };
+
   return (
     <div className="open__item__container  mt-3">
       <CustomToast ref={toastRef} message="Event Added Successfully" />
@@ -171,9 +175,12 @@ const OpenItems = () => {
       </div> */}
       <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
-          <div className="left__arrow">
+          <div
+            className="left__arrow cursor-pointer"
+            onClick={handleHomeNavigation}
+          >
             <SvgLeftArrow />
-            <label className="activity__tracker">HOME</label>
+            <div className="activity__tracker">HOME</div>
           </div>
         </div>
         <div class="btn__container__new__event col-12 md:col-6 lg:col-6">

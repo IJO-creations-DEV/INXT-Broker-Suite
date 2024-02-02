@@ -17,20 +17,20 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
+import { Avatar } from "primereact/avatar";
 
-const ClientListingIndividualCategory = ({paymentSearchList}) => {
+const ClientListingIndividualCategory = ({ paymentSearchList }) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
-  const [status,setStatus]=useState("")
-  const [search,setSearch]=useState("")
+  const [status, setStatus] = useState("");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const cities = [
     { name: "Name", code: "Name" },
     { name: "ClientID", code: "ClientID" },
-   
   ];
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-01-26",
       Quotes: "01",
       LeadID: "123456",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -62,7 +62,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-02-10",
       Quotes: "02",
       LeadID: "126",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -72,7 +72,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-03-15",
       Quotes: "02",
       LeadID: "1456",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -82,7 +82,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-04-20",
       Quotes: "03",
       LeadID: "1236",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -92,7 +92,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-05-25",
       Quotes: "04",
       LeadID: "1456",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -102,7 +102,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-06-30",
       Quotes: "05",
       LeadID: "123116",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -112,7 +112,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-07-05",
       Quotes: "06",
       LeadID: "123411",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -122,7 +122,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-08-10",
       Quotes: "01",
       LeadID: "1234000",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -132,7 +132,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-09-15",
       Quotes: "02",
       LeadID: "1234555",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -142,7 +142,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-10-20",
       Quotes: "03",
       LeadID: "1234226",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
     {
@@ -152,7 +152,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       Date: "2024-11-25",
       Quotes: "04",
       LeadID: "1234000",
-      ProductDescription:"Motor Comprensive",
+      ProductDescription: "Motor Comprensive",
       Svg: <SvgMotorTable />,
     },
   ];
@@ -210,14 +210,40 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
       </div>
     );
   };
+  const handleSvg = (type, index) => {
+    const colors = [
+      "#D4635D",
+      "#67D07A",
+      "#D4635D",
+      "#874EFF",
+      "#EDC63B",
+      "#A36EFF",
+      "#5DCB67",
+      "#6366F1",
+      "#D8BFD8",
+      "#FFA07A",
+    ];
 
+    const backgroundColor =
+      colors[parseInt(index) % colors.length] || "#CCCCCC";
+    console.log(parseInt(index) % colors.length, "find");
+
+    return (
+      <Avatar
+        label={type.charAt(0)}
+        size="xlarge"
+        shape="circle"
+        style={{ backgroundColor: backgroundColor, color: "#fff" }}
+      />
+    );
+  };
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div><SvgMotorTable /></div>
+        <div>{handleSvg(rowData.Name, rowData.id)}</div>
         <div>
           <div className="name__text">{rowData.Name}</div>
-          <div className="lead__id__text">Client Id:{rowData.LeadID} </div>
+          <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
         </div>
       </div>
     );
@@ -239,7 +265,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
   };
 
   const handleEditAction = () => {
-    navigate("/agent/leadedit");
+    navigate("/agent/clientedit");
   };
 
   const handleViewAction = () => {
@@ -291,25 +317,34 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)}style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
+            <InputText
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "1rem 2.75rem",
+                borderRadius: "10px",
+              }}
+            />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-        <Dropdown
-                    value={globalFilter}
-                    onChange={(e) => setGlobalFilter(e.value)}
-                    options={cities}
-                    optionLabel="name"
-                    optionValue="code"
-                    placeholder="Search by"
-                    className="sorbyfilter__style"
-                    dropdownIcon={<SvgDropdownicon />}
-                  />
+          <Dropdown
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.value)}
+            options={cities}
+            optionLabel="name"
+            optionValue="code"
+            placeholder="Search by"
+            className="sorbyfilter__style"
+            dropdownIcon={<SvgDropdownicon />}
+          />
         </div>
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search?paymentSearchList:TableData}
+          value={search ? paymentSearchList : TableData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -323,7 +358,6 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
           scrollable={true}
           scrollHeight="60vh"
         >
-          
           <Column
             body={renderName}
             header={rendercheckedHeader("Name")}
@@ -345,7 +379,7 @@ const ClientListingIndividualCategory = ({paymentSearchList}) => {
             headerStyle={headerStyle}
           ></Column>
           <Column
-             body={renderDes}
+            body={renderDes}
             header={renderUncheckedHeader("Product Description")}
             headerStyle={headerStyle}
           ></Column>

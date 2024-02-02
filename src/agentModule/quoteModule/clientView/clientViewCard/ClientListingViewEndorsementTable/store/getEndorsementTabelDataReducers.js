@@ -9,7 +9,7 @@ const initialState = {
         {
           id: "1",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END001",
           Type: "Personal Details",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -21,7 +21,7 @@ const initialState = {
         {
           id: "2",
           PolicyNumber: "Policy0223",
-          EndorsementID: "7000.00",
+          EndorsementID: "END002",
           Type: "Coverage",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -33,7 +33,7 @@ const initialState = {
         {
           id: "3",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END003",
           Type: "Motor Details",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -45,7 +45,7 @@ const initialState = {
         {
           id: "4",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END004",
           Type: "Personal Details",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -57,7 +57,7 @@ const initialState = {
         {
           id: "5",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END005",
           Type: "Coverage",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -69,7 +69,7 @@ const initialState = {
         {
           id: "6",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END006",
           Type: "Personal Details",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -81,7 +81,7 @@ const initialState = {
         {
           id: "7",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END007",
           Type: "Coverage",
           Date: "01 JAN 2024",
           ProductDescription:"Motor Comprensive",
@@ -92,7 +92,7 @@ const initialState = {
         {
           id: "8",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END008",
           Type: "Motor Details",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -104,7 +104,7 @@ const initialState = {
         {
           id: "9",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END009",
           Type: "Personal Details",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -116,7 +116,7 @@ const initialState = {
         {
           id: "10",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END010",
           Type: "Coverage",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",
@@ -128,7 +128,7 @@ const initialState = {
         {
           id: "11",
           PolicyNumber: "Policy0123",
-          EndorsementID: "7000.00",
+          EndorsementID: "END011",
           Type: "Coverage",
           Date: "01 JAN 2024",
           expiryDate:"01 JAN 2025",

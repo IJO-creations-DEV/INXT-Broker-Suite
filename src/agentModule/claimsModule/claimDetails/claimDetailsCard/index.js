@@ -39,7 +39,7 @@ const ClaimDetailsCard = () => {
         shop: "",
 
     };
-   
+
     const dispatch = useDispatch()
     const handleSubmit = () => {
         dispatch(postClaimDetailsData(formik.values))
@@ -47,7 +47,7 @@ const ClaimDetailsCard = () => {
     }
     const formik = useFormik({
         initialValues: formInitialValue,
-       
+
         onSubmit: handleSubmit,
     });
     const handleCheckboxChange = (e) => {

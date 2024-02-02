@@ -41,9 +41,16 @@ export const postAddDepartment = createAsyncThunk(
   POST_ADD_DEPARTMENT,
   async (payload, { rejectWithValue }) => {
     console.log(payload, "payload")
+    const data = {
+      id: payload.id,
+      DepartmentCode: payload?.DepartmentCode,
+      DepartmentName: payload?.DepartmentName,
+      Description: payload?.Description,
+      Status: 'Credit'
+    }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }

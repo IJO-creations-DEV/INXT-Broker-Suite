@@ -257,6 +257,9 @@ const LeadListingAllTable = () => {
   const renderClaimID = (rowData) => {
     return <div className="category__text">{rowData.ClaimID}</div>;
   };
+  const renderClaimNumber = (rowData) => {
+    return <div className="category__text">{rowData.claimNumber}</div>;
+  };
   const renderDes = (rowData) => {
     return <div className="category__text">{rowData.ProductDescription}</div>;
   };
@@ -294,8 +297,9 @@ const LeadListingAllTable = () => {
   //   }
   // }, [search])
 
-  const [globalFilter, setGlobalFilter] = useState("policy Number");
+  const [globalFilter, setGlobalFilter] = useState("Claim Number");
   const cities = [
+    { name: "Claim Number", code: "Claim Number" },
     { name: "Policy Number", code: "policy Number" },
     { name: "ClientID", code: "ClientID" },
   ];
@@ -416,7 +420,12 @@ const LeadListingAllTable = () => {
             header={renderUncheckedHeader("Gross premium")}
             headerStyle={headerStyle}
           ></Column>
-         
+           <Column
+            body={renderClaimNumber}
+            header={renderUncheckedHeader("Claim number")}
+            headerStyle={headerStyle}
+          ></Column>
+          
           <Column
             body={renderDate}
             header={renderUncheckedHeader("Policy Issued")}
@@ -424,7 +433,7 @@ const LeadListingAllTable = () => {
           ></Column>
            <Column
             body={renderExpiryDate}
-            header={renderUncheckedHeader("Policy Expired")}
+            header={renderUncheckedHeader("Policy Expiry")}
             headerStyle={headerStyle}
           ></Column>
           <Column

@@ -121,7 +121,11 @@ const AddHierarchy = ({ action }) => {
     onSubmit: handleSubmit,
   });
   useEffect(() => {
-    setFormikValues();
+    if (action === "view" || action === "edit") {
+      setFormikValues();
+      
+    }
+    
   }, [getPatchData]);
   return (
     <div className="grid add__hierarchy__container">
@@ -159,50 +163,58 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "view" ? getViewData.rankCode : formik.values.rankCode}
+              // value={action === "view" ? getViewData.rankCode : formik.values.rankCode}
+              value = {formik.values.rankCode}
               onChange={formik.handleChange("rankCode")}
-              error={action === "view" ? "" : formik.errors.rankCode}
+              // error={action === "view" ? "" : formik.errors.rankCode}
               label="Rank Code"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
+              error={formik.touched.rankCode && formik.errors.rankCode}
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "view" ? getViewData.rankName : formik.values.rankName}
+              // value={action === "view" ? getViewData.rankName : formik.values.rankName}
+              value={formik.values.rankName}
               onChange={formik.handleChange("rankName")}
-              error={action === "view" ? "" : formik.errors.rankName}
+              // error={action === "view" ? "" : formik.errors.rankName}
               label="Rank Name"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
+              error={formik.touched.rankName && formik.errors.rankName}
             />
           </div>
 
           <div className="col-12 md:col-3 lg:col-6">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "view" ? getViewData.description : formik.values.description}
+              // value={action === "view" ? getViewData.description : formik.values.description}
+              value= {formik.values.description}
               onChange={formik.handleChange("description")}
-              error={action === "view" ? "" : formik.errors.basis}
+              // error={action === "view" ? "" : formik.errors.basis}
               label="Description"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
+               error={formik.touched.description && formik.errors.description}
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "view" ? getViewData.levelNumber : formik.values.levelNumber}
+              // value={action === "view" ? getViewData.levelNumber : formik.values.levelNumber}
+              value = {formik.values.levelNumber}
               onChange={formik.handleChange("levelNumber")}
-              error={action === "view" ? "" : formik.errors.levelNumber}
+              // error={action === "view" ? "" : formik.errors.levelNumber}
               label="Level Number"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
+              error={formik.touched.levelNumber && formik.errors.levelNumber}
             />
           </div>
           {/* <div className="col-12 md:col-3 lg:col-3">

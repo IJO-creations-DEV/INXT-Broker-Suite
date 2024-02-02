@@ -50,7 +50,7 @@ const AddUser = ({ action }) => {
     phoneNumber: "",
     assignedRole: "",
   };
-  const { loading, userList, searchList, userDetailList, userViewData,userEditData } = useSelector(
+  const { loading, userList, searchList, userDetailList, userViewData, userEditData } = useSelector(
     ({ userReducers }) => {
       return {
         loading: userReducers?.loading,
@@ -58,7 +58,7 @@ const AddUser = ({ action }) => {
         searchList: userReducers?.userSearchList,
         userDetailList: userReducers?.userDetailList,
         userViewData: userReducers?.userViewData,
-        userEditData:userReducers?.userEditData
+        userEditData: userReducers?.userEditData
       };
     }
   );
@@ -67,14 +67,25 @@ const AddUser = ({ action }) => {
   // const item2 = [action === "add" ? { label: "Em00123", value: "Em00123" } : userViewData?.assignedRole];
   const item = [
     {
-      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData?.employeeCode,
-      value: action === "add" ? "NY" : userViewData?.employeeCode,
+      label: "100021", value: "100021"
+    },
+    { label: "100031", value: "100031" },
+    {
+      label: "100041", value: "100041"
     },
   ];
   const item2 = [
     {
-      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData?.assignedRole,
-      value: action === "add" ? "NY" : userViewData?.assignedRole,
+      label: action === "add" ? "Level 1 Agent" : userViewData?.assignedRole,
+      value: action === "add" ? "Level 1 Agent" : userViewData?.assignedRole,
+    },
+    {
+      label: action === "add" ? "Level 2 Motor" : userViewData?.assignedRole,
+      value: action === "add" ? "Level 2 Motor" : userViewData?.assignedRole,
+    },
+    {
+      label: action === "add" ? "Level 3 Finance" : userViewData?.assignedRole,
+      value: action === "add" ? "Level 3 Finance" : userViewData?.assignedRole,
     },
   ];
   const validate = (values) => {
@@ -107,17 +118,26 @@ const AddUser = ({ action }) => {
   const handleSubmit = (value) => {
     if (action === "edit") {
       dispatch(patchUserEditMiddleware(value))
+      toastRef.current.showToast();
+
+      setTimeout(() => {
+        setVisiblePopup(false);
+      }, 3000);
+      navigate("/master/generals/usermanagement/user");
     }
     console.log(value, "val");
-    dispatch(
-      postAddUserMiddleware(formik.values)
-    );
-    toastRef.current.showToast();
+    if (action === "add") {
+      dispatch(
+        postAddUserMiddleware(formik.values)
+      );
+      toastRef.current.showToast();
 
-    setTimeout(() => {
-      setVisiblePopup(false);
-    }, 3000);
-    navigate("/master/generals/usermanagement/user");
+      setTimeout(() => {
+        setVisiblePopup(false);
+      }, 3000);
+      navigate("/master/generals/usermanagement/user");
+    }
+
   };
   const [assignedRoleOptionData, setAssignedRoleData] = useState([])
   const [employeeCodeOption, setEmployeeCodeOption] = useState([])
@@ -151,7 +171,9 @@ const AddUser = ({ action }) => {
     onSubmit: handleSubmit,
   });
   useEffect(() => {
-    setFormikValues()
+    if (action === "edit" || action === "view") {
+      setFormikValues()
+    }
   }, [userEditData])
 
   // useEffect(() => {
@@ -200,44 +222,49 @@ const AddUser = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "add" ? formik.values.userName : action === "edit" ? formik.values.userName : userViewData?.userName}
+              // value={action === "add" ? formik.values.userName : action === "edit" ? formik.values.userName : userViewData?.userName}
               onChange={formik.handleChange("userName")}
-              error={action === "add" && formik.errors.userName}
+              value={formik.values.userName}
+              // error={action === "add" && formik.errors.userName}
               label="Username"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
+              error={formik.touched.userName && formik.errors.userName}
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={action === "add" ? formik.values.employeeCode : action === "edit" ? formik.values.employeeCode : userViewData?.employeeCode}
-
+              // value={action === "add" ? formik.values.employeeCode : action === "edit" ? formik.values.employeeCode : userViewData?.employeeCode}
+              value={formik.values.employeeCode}
               onChange={formik.handleChange("employeeCode")}
-              error={action === "add" && formik.errors.employeeCode}
+              // error={action === "add" && formik.errors.employeeCode}
               className="dropdown__add__sub"
               label="Employee code "
               classNames="label__sub__add"
               placeholder={"Select"}
-              options={action === "add" ? item : action === "edit" ? employeeCodeOption : item}
+              // options={action === "add" ? item : action === "edit" ? employeeCodeOption : item}
+              options={action === "add" ? item : employeeCodeOption}
               optionValue={"label"}
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              error={formik.touched.employeeCode && formik.errors.employeeCode}
             />
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "add" ? formik.values.email : action === "edit" ? formik.values.email : userViewData?.email}
-
+              // value={action === "add" ? formik.values.email : action === "edit" ? formik.values.email : userViewData?.email}
+              value={formik.values.email}
               onChange={formik.handleChange("email")}
-              error={action === "add" && formik.errors.email}
+              // error={action === "add" && formik.errors.email}
               label="Email"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
+              error={formik.touched.email && formik.errors.email}
             />
           </div>
           <div class="col-3 md:col-3 lg-col-3">
@@ -250,9 +277,11 @@ const AddUser = ({ action }) => {
               <InputText
                 disabled={action === "view" ? true : false}
                 placeholder="Enter"
-                value={action === "add" ? formik.values.phoneNumber : action === "edit" ? formik.values.phoneNumber : userViewData?.phoneNumber}
+                value={formik.values.phoneNumber}
+                // value={action === "add" ? formik.values.phoneNumber : action === "edit" ? formik.values.phoneNumber : userViewData?.phoneNumber}
                 onChange={formik.handleChange("phoneNumber")}
                 style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}
+                error={formik.touched.phoneNumber && formik.errors.phoneNumber}
               />
             </div>
             {formik.touched.phoneNumber && formik.errors.phoneNumber && (
@@ -262,10 +291,10 @@ const AddUser = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={action === "add" ? formik.values.assignedRole : action === "edit" ? formik.values.assignedRole : userViewData?.assignedRole}
-
+              // value={action === "add" ? formik.values.assignedRole : action === "edit" ? formik.values.assignedRole : userViewData?.assignedRole}
+              value={formik.values.assignedRole}
               onChange={formik.handleChange("assignedRole")}
-              error={action === "add" && formik.errors.assignedRole}
+              // error={action === "add" && formik.errors.assignedRole}
               className="dropdown__add__sub"
               label="Assigned Role"
               classNames="label__sub__add"
@@ -274,6 +303,7 @@ const AddUser = ({ action }) => {
               optionValue={"label"}
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              error={formik.touched.assignedRole && formik.errors.assignedRole}
             />
           </div>
         </div>

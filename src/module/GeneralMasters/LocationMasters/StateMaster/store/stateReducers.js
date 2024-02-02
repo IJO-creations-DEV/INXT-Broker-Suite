@@ -10,7 +10,7 @@ const initialState = {
       StateCode: "PHR11DVO",
       StateName: "DAVAO ORIENTAL",
       Country: "Philippines",
-      Modifiedby: "User1",
+      Modifiedby: "John",
       ModifiedOn: "2024-01-11",
     },
     {
@@ -18,7 +18,7 @@ const initialState = {
       StateCode: "PHR06NEO",
       StateName: "NEGROS OCCIDENTAL",
       Country: "Philippines",
-      Modifiedby: "User2",
+      Modifiedby: "John",
       ModifiedOn: "2024-01-12",
     },
     {
@@ -26,7 +26,7 @@ const initialState = {
       StateCode: "PHNCRQZN",
       StateName: "QUEZON CITY",
       Country: "Philippines",
-      Modifiedby: "User3",
+      Modifiedby: "Smith",
       ModifiedOn: "2024-01-13",
     },
     {
@@ -34,7 +34,7 @@ const initialState = {
       StateCode: "PHNCRQZN",
       StateName: "LA UNION",
       Country: "Philippines",
-      Modifiedby: "User4",
+      Modifiedby: "Smith",
       ModifiedOn: "2024-01-14",
     },
     {
@@ -42,7 +42,7 @@ const initialState = {
       StateCode: "PHR4AQUP",
       StateName: "LEYTE",
       Country: "Philippines",
-      Modifiedby: "User5",
+      Modifiedby: "John",
       ModifiedOn: "2024-01-15",
     },
     {
@@ -50,7 +50,7 @@ const initialState = {
       StateCode: "PHR01PAN",
       StateName: "MAKATI CITY",
       Country: "Philippines",
-      Modifiedby: "User6",
+      Modifiedby: "Smith",
       ModifiedOn: "2024-01-16",
     },
     {
@@ -58,7 +58,7 @@ const initialState = {
       StateCode: "PHNCRMAK",
       StateName: "CAPIZ",
       Country: "Philippines",
-      Modifiedby: "User7",
+      Modifiedby: "Smith",
       ModifiedOn: "2024-01-17",
     },
     {
@@ -66,7 +66,7 @@ const initialState = {
       StateCode: "PHR4AQUP",
       StateName: "CATANDUANES",
       Country: "Philippines",
-      Modifiedby: "User8",
+      Modifiedby: "Smith",
       ModifiedOn: "2024-01-18",
     },
     {
@@ -74,7 +74,7 @@ const initialState = {
       StateCode: "PHCARABR",
       StateName: "ILOCOS SUR",
       Country: "Brazil",
-      Modifiedby: "User9",
+      Modifiedby: "Smith",
       ModifiedOn: "2024-01-19",
     },
     {
@@ -82,7 +82,7 @@ const initialState = {
       StateCode: "PHR06AKL",
       StateName: "PANGASINAN",
       Country: "Philippines",
-      Modifiedby: "User10",
+      Modifiedby: "Smith",
       ModifiedOn: "2024-01-20",
     }
   ],

@@ -212,6 +212,18 @@ export const menuList = [
         name: "Payments",
         path: "/agent/payments",
       },
+      {
+        name: "Claim",
+        path: "/agent/claim",
+      },
+      {
+        name: "Policy",
+        path: "/agent/policy",
+      },
+      {
+        name: "Quotation",
+        path: "/agent/Quotation",
+      },
     ],
   },
   {

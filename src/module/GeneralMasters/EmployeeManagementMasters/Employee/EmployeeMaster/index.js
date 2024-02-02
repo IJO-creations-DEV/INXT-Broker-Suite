@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../../../assets/icons/SvgAdd";
 import "./index.scss";
@@ -16,7 +16,7 @@ import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
 import { useDispatch, useSelector } from "react-redux";
-import { getEmployeEditMiddleWare, getEmployeViewMiddleWare } from "../store/employeeMiddleware";
+import { getEmployeEditMiddleWare, getEmployeViewMiddleWare, getSearchEmployeeMiddleware } from "../store/employeeMiddleware";
 
 const EmployeeMaster = () => {
   const navigate = useNavigate();
@@ -27,16 +27,17 @@ const EmployeeMaster = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
 
-  const { employeeTableList, loading, total, hierarchSeachList } = useSelector(
+  const { employeeTableList, loading, total, employeeSeachDetailList } = useSelector(
     ({ employeeReducers }) => {
       return {
         loading: employeeReducers?.loading,
         employeeTableList: employeeReducers?.employeeTableList,
-        hierarchSeachList: employeeReducers?.hierarchSeachList,
+        employeeSeachDetailList: employeeReducers?.employeeSeachDetailList,
         total: employeeReducers,
       };
     }
   );
+  const [search, setSearch] = useState("")
   const dispatch = useDispatch()
 
   const handleView = (rowData) => {
@@ -84,6 +85,11 @@ const EmployeeMaster = () => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getSearchEmployeeMiddleware(search));
+    }
+  }, [search]);
 
   const renderViewButton = (rowData) => {
     return (
@@ -174,13 +180,15 @@ const EmployeeMaster = () => {
                   style={{ width: "100%" }}
                   classNames="input__sub__account__hierarchy"
                   placeholder="Search By Employee Code"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </div>
           </div>
           <div className="col-12 ">
             <div className="main__tabel__title__hierarchy p-2">
-            Employee List
+              Employee List
             </div>
           </div>
           <div
@@ -189,7 +197,7 @@ const EmployeeMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={employeeTableList}
+                value={search ? employeeSeachDetailList : employeeTableList}
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"

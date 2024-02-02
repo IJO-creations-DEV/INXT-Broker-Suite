@@ -227,7 +227,7 @@ const AgentNavBar = () => {
 
   const menuStyle = {
     width: "360px",
-    height:"80vh",
+    maxHeight:"100vh",
     overflowY: "scroll",
     left: "calc(100% - 400px)",
   };

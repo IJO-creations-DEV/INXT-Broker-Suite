@@ -1,5 +1,5 @@
 import { InputText } from "primereact/inputtext";
-import React, { useState, useRef,useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Checkbox } from "primereact/checkbox";
@@ -14,7 +14,7 @@ import { Dialog } from "primereact/dialog";
 import { Menu } from "primereact/menu";
 import { element } from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { getRenewalTabelSearchList } from "./store/getRenewalTabelDataMiddleWare"
+import { getRenewalTabelSearchList } from "./store/getRenewalTabelDataMiddleWare";
 
 const Index = () => {
   const { renewalListData, loading, renewalSearchListData } = useSelector(
@@ -36,11 +36,8 @@ const Index = () => {
   const [paymentStatus, setPaymentStatus] = useState("");
   const [statusAction, setstatusAction] = useState("");
   const [globalFilter, setGlobalFilter] = useState("policy Number");
-  const [search,setSearch]=useState("")
-  const cities = [
-    { name: "Policy Number", code: "policy Number" },
-    
-  ];
+  const [search, setSearch] = useState("");
+  const cities = [{ name: "Policy Number", code: "policy Number" }];
 
   useEffect(() => {
     if (globalFilter && search) {
@@ -110,7 +107,7 @@ const Index = () => {
           navigate(`/agent/policydetailedview`);
         }
       } else if (paymentStatus === "Completed") {
-        navigate("/agent/policydetailedview");
+        navigate("/agent/policydetailedviewonly");
       } else if (paymentStatus === "Reviewing") {
         navigate("/agent/policy/paymentapproval");
       }
@@ -122,7 +119,7 @@ const Index = () => {
       setDisplayDialog(true);
     }
     if (menuItem == "renewal") {
-      navigate("/agent/createquote/coveragedetails");
+      navigate(`/agent/renewalquote/coveragedetails/coveragedetail/${123}`);
     }
     // Handle the menu item click here
     console.log(`${menuItem} clicked`);
@@ -426,7 +423,7 @@ const Index = () => {
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-        <Dropdown
+          <Dropdown
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.value)}
             options={cities}
@@ -472,15 +469,15 @@ const Index = () => {
 
           <Column
             body={renderExpiryDate}
-            header="Policy Expired"
+            header="Policy Expiry"
             headerStyle={headerStyle}
           ></Column>
-           <Column
+          <Column
             body={renderDes}
             header="Product Description"
             headerStyle={headerStyle}
           ></Column>
-          
+
           <Column
             body={renderStatus}
             header="Status"

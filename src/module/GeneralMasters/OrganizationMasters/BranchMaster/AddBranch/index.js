@@ -44,6 +44,7 @@ const initialValues = {
 };
 
 function AddBranch({ action }) {
+  console.log(action,"actionaction");
   const { organizationBranchView, loading, getBranchPatch } = useSelector(
     ({ organizationBranchMainReducers }) => {
       return {
@@ -306,6 +307,7 @@ function AddBranch({ action }) {
                   : organizationBranchView.BranchCode
               }
               onChange={formik.handleChange("BranchCode")}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.BranchCode && formik.errors.BranchCode && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -327,6 +329,7 @@ function AddBranch({ action }) {
                   : organizationBranchView.BranchName
               }
               onChange={formik.handleChange("BranchName")}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.BranchName && formik.errors.BranchName && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -356,6 +359,7 @@ function AddBranch({ action }) {
               optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.CompanyName && formik.errors.CompanyName && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -377,6 +381,7 @@ function AddBranch({ action }) {
                   : organizationBranchView.EmailID
               }
               onChange={formik.handleChange("EmailID")}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.EmailID && formik.errors.EmailID && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -402,6 +407,7 @@ function AddBranch({ action }) {
                     : organizationBranchView.Description
                 }
                 onChange={formik.handleChange("Description")}
+                disabled={action === "view" ? true : false}
               />
               {formik.touched.Description && formik.errors.Description && (
                 <div style={{ fontSize: 12, color: "red" }}>
@@ -424,6 +430,7 @@ function AddBranch({ action }) {
                     : organizationBranchView.AddressLine1
                 }
                 onChange={formik.handleChange("AddressLine1")}
+                disabled={action === "view" ? true : false}
               />
               {formik.touched.AddressLine1 && formik.errors.AddressLine1 && (
                 <div style={{ fontSize: 12, color: "red" }}>
@@ -446,6 +453,7 @@ function AddBranch({ action }) {
                     : organizationBranchView?.AddressLine2
                 }
                 onChange={formik.handleChange("AddressLine2")}
+                disabled={action === "view" ? true : false}
               />
               {formik.touched.AddressLine2 && formik.errors.AddressLine2 && (
                 <div style={{ fontSize: 12, color: "red" }}>
@@ -471,6 +479,7 @@ function AddBranch({ action }) {
                     : organizationBranchView.AddressLine3
                 }
                 onChange={formik.handleChange("AddressLine3")}
+                disabled={action === "view" ? true : false}
               />
               {formik.touched.AddressLine3 && formik.errors.AddressLine3 && (
                 <div style={{ fontSize: 12, color: "red" }}>
@@ -501,6 +510,7 @@ function AddBranch({ action }) {
               optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.City && formik.errors.City && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -530,6 +540,7 @@ function AddBranch({ action }) {
               optionLabel="label"
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.State && formik.errors.State && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -559,6 +570,7 @@ function AddBranch({ action }) {
               }
               placeholder={"Select"}
               dropdownIcon={<SvgDropdown color={"#000"} />}
+              disabled={action === "view" ? true : false}
             />
             {formik.touched.Country && formik.errors.Country && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -586,6 +598,7 @@ function AddBranch({ action }) {
                     : organizationBranchView.PhoneNumber
                 }
                 onChange={formik.handleChange("PhoneNumber")}
+                disabled={action === "view" ? true : false}
               />
               {formik.touched.PhoneNumber && formik.errors.PhoneNumber && (
                 <div style={{ fontSize: 12, color: "red" }}>
@@ -611,6 +624,7 @@ function AddBranch({ action }) {
                     : organizationBranchView.Fax
                 }
                 onChange={formik.handleChange("Fax")}
+                disabled={action === "view" ? true : false}
               />
               {formik.touched.Fax && formik.errors.Fax && (
                 <div style={{ fontSize: 12, color: "red" }}>
@@ -622,7 +636,7 @@ function AddBranch({ action }) {
         </div>
       </Card>
 
-      {action != "add" && <DepartMentList />}
+      {action != "add" && <DepartMentList action={action} />}
 
       <div className="next_container">
         {action === "add" && (

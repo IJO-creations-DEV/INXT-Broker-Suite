@@ -8,20 +8,20 @@ import DatepickerField from "../../../component/datePicker";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 
-const LeadEditCrad = () => {
+const LeadEditCrad = ({ flow }) => {
   const [ingredient, setIngredient] = useState();
   const navigate = useNavigate();
   const handleclick = () => {
-    navigate("/agent/clientlisting");
+    navigate("/agent/leadlisting");
   };
 
   const handlecancel = () => {
-    navigate("/agent/clientlisting");
+    navigate("/agent/leadlisting");
   };
 
   return (
     <div className="edit__card_overall_container mt-5">
-      <Card title="Edit Client">
+      <Card title={flow === "lead" ? "Edit Lead" : "Edit Client"}>
         <div className="category__container mt-4">
           <div className="category__text">Category :</div>
           <div className="category__id">Individual</div>

@@ -1,6 +1,6 @@
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
-import React, { useState,useRef,useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TableDropdownField from "../../../component/tableDropDwonField";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -12,56 +12,54 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 import SvgDot from "../../../../assets/icons/SvgDot";
 import SvgDots from "../../../../assets/agentIcon/SvgDot";
-import { Button} from "primereact/button";
+import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import { useSelector,useDispatch} from "react-redux";
-import {getQuotependingSearchDataMiddleWare} from "../quotePendingCard/store/quotePendingMiddleware"
+import { useSelector, useDispatch } from "react-redux";
+import { getQuotependingSearchDataMiddleWare } from "../quotePendingCard/store/quotePendingMiddleware";
 
 const QuotePendingCard = () => {
-  const [search,setSearch]=useState("")
-  const [globalFilter,setGlobalFilter]=useState("")
-  const [displayDialog,setDisplayDialog]=useState("")
-  const [disableOption,setdisableOption] =useState("")
-  const dispatch =useDispatch("")
+  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [displayDialog, setDisplayDialog] = useState("");
+  const [disableOption, setdisableOption] = useState("");
+  const dispatch = useDispatch("");
   const menu = useRef(null);
 
-  const { quotependingtabledata, quotependingSearchList, loading } = useSelector(
-    ({ agentQuotependingMainReducers }) => {
-      console.log(agentQuotependingMainReducers,"find quote")
+  const { quotependingtabledata, quotependingSearchList, loading } =
+    useSelector(({ agentQuotependingMainReducers }) => {
+      console.log(agentQuotependingMainReducers, "find quote");
       return {
         loading: agentQuotependingMainReducers?.loading,
-        quotependingtabledata: agentQuotependingMainReducers?.quotependingtabledata,
-        quotependingSearchList: agentQuotependingMainReducers?.quotependingSearchList,
+        quotependingtabledata:
+          agentQuotependingMainReducers?.quotependingtabledata,
+        quotependingSearchList:
+          agentQuotependingMainReducers?.quotependingSearchList,
       };
-    }
-  );
+    });
   // const [globalFilter, setGlobalFilter] = useState("policy Number");
   const policy = [
     { name: "Name", code: "Name" },
     { name: "Policy Number", code: "policy Number" },
-    
   ];
 
   const handleMenuToggle = (event, menuRef, rowData) => {
-   navigate("/agent/convertpolicy/customerinfo");
+    navigate(`/agent/convertpolicy/customerinfo/edit/${123}`);
   };
   const handleMenuClick = (menuItem) => {
-   
     if (menuItem == "renewal") {
       navigate("/agent/createquote/coveragedetails");
     }
-   
   };
 
-  const renderActions =()=>{
+  const renderActions = () => {
     return (
       <div className="action__container">
-      {/* <Menu model={menuItems} popup ref={menu} breakpoint="767px" /> */}
+        {/* <Menu model={menuItems} popup ref={menu} breakpoint="767px" /> */}
         <div
           className="action__Svg"
           onClick={(event) => handleMenuToggle(event, menu)}
         >
-          <SvgArrow/>
+          <SvgArrow />
         </div>
       </div>
       // <div className="btn__container__view__edit">
@@ -74,22 +72,18 @@ const QuotePendingCard = () => {
       // </div>
     );
     // navigate("/agent/createquote/coveragedetails");
-  }
+  };
 
   const renderViewEditButton = (rowData) => {
     const menuItems = [
       {
         label: "Reminder",
-        
       },
 
       {
         label: "Renewal",
         command: () => handleMenuClick("renewal"),
-        
       },
-      
-     
     ];
     //  return (
     //   <div className="action__container">
@@ -129,8 +123,8 @@ const QuotePendingCard = () => {
       LeadId: "012345",
       QuoteId: "012345",
       Category: "Individual",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "127332",
     },
     {
@@ -138,8 +132,8 @@ const QuotePendingCard = () => {
       LeadId: "167890",
       QuoteId: "012345",
       Category: "Company",
-      PolicyType:"Travel",
-      Date:"01 JAN 2024",
+      PolicyType: "Travel",
+      Date: "01 JAN 2024",
       Actions: "1272721",
     },
     {
@@ -147,8 +141,8 @@ const QuotePendingCard = () => {
       LeadId: "254321",
       QuoteId: "2024 JAN 10",
       Category: "Individual",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "1270002",
     },
     {
@@ -156,8 +150,8 @@ const QuotePendingCard = () => {
       LeadId: "398765",
       QuoteId: "2024 JAN 05",
       Category: "Company",
-      PolicyType:"Travel",
-      Date:"01 JAN 2024",
+      PolicyType: "Travel",
+      Date: "01 JAN 2024",
       Actions: "120002",
     },
     {
@@ -165,8 +159,8 @@ const QuotePendingCard = () => {
       LeadId: "423456",
       QuoteId: "2024 JAN 18",
       Category: "Company",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "111172",
     },
     {
@@ -174,8 +168,8 @@ const QuotePendingCard = () => {
       LeadId: "578901",
       QuoteId: "2024 JAN 01",
       Category: "Individual",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "12000",
     },
     {
@@ -183,8 +177,8 @@ const QuotePendingCard = () => {
       LeadId: "9987634",
       QuoteId: "2024 JAN 12",
       Category: "Company",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "1221112",
     },
     {
@@ -192,8 +186,8 @@ const QuotePendingCard = () => {
       LeadId: "012345",
       QuoteId: "2024 JAN 28",
       Category: "Individual",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "12002",
     },
     {
@@ -201,8 +195,8 @@ const QuotePendingCard = () => {
       LeadId: "53628782",
       QuoteId: "2024-08-03",
       Category: "Individual",
-      PolicyType:"Travel",
-      Date:"01 JAN 2024",
+      PolicyType: "Travel",
+      Date: "01 JAN 2024",
       Actions: "12233",
     },
     {
@@ -210,8 +204,8 @@ const QuotePendingCard = () => {
       LeadId: "287654",
       QuoteId: "2024-07-20",
       Category: "Company",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "127272",
     },
   ];
@@ -233,9 +227,7 @@ const QuotePendingCard = () => {
         </div>
         <div>
           <div className="Name__text">{rowData.Name}</div>
-          <div className="Name__sub___text">
-            Client ID :{rowData.Actions}{" "}
-          </div>
+          <div className="Name__sub___text">Client ID :{rowData.Actions} </div>
         </div>
       </div>
     );
@@ -244,7 +236,6 @@ const QuotePendingCard = () => {
   const renderLeadId = (rowData) => {
     return (
       <div className="policy__number__container">
-        
         <div>
           <div className="policy__number__text">{rowData.LeadId}</div>
         </div>
@@ -341,34 +332,34 @@ const QuotePendingCard = () => {
             <span className="p-input-icon-left">
               <i className="pi pi-search" />
               <InputText
-              placeholder="Search"
-              style={{
-                width: "100%",
-                padding: "1rem 2.75rem",
-                borderRadius: "10px",
-              }}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+                placeholder="Search"
+                style={{
+                  width: "100%",
+                  padding: "1rem 2.75rem",
+                  borderRadius: "10px",
+                }}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown
-            value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.value)}
-            options={policy}
-            optionLabel="name"
-            optionValue="code"
-            placeholder="Search by"
-            className="feat_searchby_container"
-            dropdownIcon={<SvgDownArrow />}
-          />
+            <Dropdown
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={policy}
+              optionLabel="name"
+              optionValue="code"
+              placeholder="Search by"
+              className="feat_searchby_container"
+              dropdownIcon={<SvgDownArrow />}
+            />
           </div>
         </div>
         <div className="table__container">
           <DataTable
-          // value={TableData}
-          value={search ? quotependingSearchList : quotependingtabledata}
+            // value={TableData}
+            value={search ? quotependingSearchList : quotependingtabledata}
             tableStyle={{ minWidth: "50rem" }}
             paginator
             rows={5}

@@ -202,7 +202,9 @@ const LeadListingMotorTable = ({ paymentSearchList }) => {
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div><SvgMotorTable /></div>
+        <div>
+          <SvgMotorTable />
+        </div>
         <div>
           <div className="name__text">{rowData.Name}</div>
           <div className="lead__id__text">Lead Id :{rowData.LeadID} </div>
@@ -259,7 +261,9 @@ const LeadListingMotorTable = ({ paymentSearchList }) => {
     ) : selectedProducts.length === 1 ? (
       <div className="header__btn__container">
         <div className="header__delete__btn">Delete</div>
-        <div className="header__edit__btn">Edit</div>
+        <div className="header__edit__btn" onClick={() => handleEdit("1")}>
+          Edit
+        </div>
       </div>
     ) : (
       <div className="header__delete__btn">Delete</div>

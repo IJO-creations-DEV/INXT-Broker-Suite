@@ -1,5 +1,5 @@
 import { InputText } from "primereact/inputtext";
-import React, { useState, useRef,useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Checkbox } from "primereact/checkbox";
@@ -13,9 +13,9 @@ import SvgDot from "../../../../../assets/agentIcon/SvgDot";
 import { Dialog } from "primereact/dialog";
 import { Menu } from "primereact/menu";
 import { useDispatch, useSelector } from "react-redux";
-import { getPolicyTabelSearchList } from "./store/getPolicyTabelDataMiddleWare"
+import { getPolicyTabelSearchList } from "./store/getPolicyTabelDataMiddleWare";
 
-const LeadListingAllTable = ({action}) => {
+const LeadListingAllTable = ({ action }) => {
   const { policyListData, loading, policySearchListData } = useSelector(
     ({ policyTabelMainReducers }) => {
       return {
@@ -27,18 +27,17 @@ const LeadListingAllTable = ({action}) => {
   );
   const menu = useRef(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [displayDialog, setDisplayDialog] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("");
   const [selectionMode, setSelectionMode] = useState("multiple");
-  
+  const [navAction, setNavAction] = useState(null);
+
   const [disableOption, setdisableOption] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("policy Number");
-  const cities = [
-    { name: "Policy Number", code: "policy Number" },
-   
-  ];
+  const cities = [{ name: "Policy Number", code: "policy Number" }];
 
   useEffect(() => {
     if (globalFilter && search) {
@@ -88,7 +87,6 @@ const LeadListingAllTable = ({action}) => {
     console.log(result, "out");
     return result;
   };
-  const navigate = useNavigate();
 
   const item = [
     {
@@ -109,33 +107,10 @@ const LeadListingAllTable = ({action}) => {
       command: () => setDisplayDialog(true),
     },
   ];
-  // const menuItems = [
-  //   {
-  //     label: "View",
-
-  //     command: () => handleMenuClick("view"),
-  //   },
-
-  //   {
-  //     label: "Claim",
-
-  //     command: () => handleMenuClick("claim"),
-  //   },
-  //   {
-  //     label: "Renewal",
-
-  //     command: () => handleMenuClick("renewal"),
-  //   },
-
-  //   {
-  //     label: "Endorsement",
-
-  //     command: () => handleMenuClick("endrosement"),
-  //   },
-  // ];
 
   const handleMenuToggle = (event, menuRef, rowData) => {
     menuRef.current.toggle(event);
+    setNavAction(rowData.Payment);
     setdisableOption(
       rowData.Payment === "Pending" || rowData.Payment === "Reviewing"
     );
@@ -143,18 +118,23 @@ const LeadListingAllTable = ({action}) => {
 
   const handleMenuClick = (menuItem) => {
     if (menuItem == "view") {
-      navigate("/agent/policydetailedview");
+      if (navAction === "Pending") {
+        navigate("/agent/policydetailedview");
+      } else if (navAction === "Reviewing") {
+        navigate("/agent/policy/paymentapproval");
+      } else if (navAction === "Completed") {
+        navigate("/agent/policydetailedviewonly");
+      }
     }
     if (menuItem == "claim") {
       navigate("/agent/claimrequest/claimdetails");
     }
-    if (menuItem == "renewal"){
-      navigate("/agent/createquote/policydetails/quotedetails/:${123}")
+    if (menuItem == "renewal") {
+      navigate(`/agent/renewalquote/coveragedetails/coveragedetail/${123}`);
     }
     if (menuItem == "endrosement") {
       setDisplayDialog(true);
     }
-  
   };
 
   const TableData = [
@@ -328,7 +308,7 @@ const LeadListingAllTable = ({action}) => {
       {
         label: "Reminder",
         command: () => handleMenuClick("reminder"),
-        disabled: disableOption,
+        disabled: true,
       },
     ];
     return (
@@ -342,9 +322,9 @@ const LeadListingAllTable = ({action}) => {
       </div>
     );
   };
-const renderDes =(rowData)=>{
-  return <div className="category__text">{rowData.ProductDescription}</div>;
-}
+  const renderDes = (rowData) => {
+    return <div className="category__text">{rowData.ProductDescription}</div>;
+  };
   const renderPolicyNumber = (rowData) => {
     return (
       <div className="name__box__container">
@@ -422,7 +402,7 @@ const renderDes =(rowData)=>{
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-        <Dropdown
+          <Dropdown
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.value)}
             options={cities}

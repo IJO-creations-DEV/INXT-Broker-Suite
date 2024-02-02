@@ -984,23 +984,35 @@ const Maincomponent = () => {
           {/* // Lead Creation, edit lead & Lead listing */}
           <Route path="/agent/createlead" element={<LeadCreation />} />
           <Route path="/agent/leadlisting" element={<LeadListing />} />
-          <Route path="/agent/leadedit" element={<LeadEdit />} />
+          <Route path="/agent/leadedit" element={<LeadEdit flow="lead"/>} />
+          <Route path="/agent/clientedit" element={<LeadEdit flow="client"/>} />
           {/* // Quote Creation, Policy conversion & Client listing */}
           <Route
             path="/agent/createquote/policydetails/createquote/:id"
-            element={<PolicyDetails action="createquote" />}
+            element={<PolicyDetails action="createquote" flow="lead" />}
           />
+
           <Route
             path="/agent/createquote/policydetails/quotedetails/:id"
-            element={<PolicyDetails action="quotedetails" />}
+            element={<PolicyDetails action="quotedetails" flow="client" />}
+          />
+          <Route
+            path="/agent/editquote/policydetails/quotedetails/:id"
+            element={<PolicyDetails action="quotedetails" flow="lead" />}
           />
           <Route
             path="/agent/createquote/coveragedetails/coveragecreate/:id"
-            element={<CoverageDeatails action="coveragecreate" />}
+            element={<CoverageDeatails action="coveragecreate" flow="normal" />}
           />
           <Route
             path="/agent/createquote/coveragedetails/coveragedetail/:id"
-            element={<CoverageDeatails action="coveragedetail" />}
+            element={<CoverageDeatails action="coveragedetail" flow="normal" />}
+          />
+          <Route
+            path="/agent/renewalquote/coveragedetails/coveragedetail/:id"
+            element={
+              <CoverageDeatails action="coveragedetail" flow="renewal" />
+            }
           />
           <Route
             path="/agent/createquote/accessories/accessoriescreate/:id"
@@ -1012,7 +1024,7 @@ const Maincomponent = () => {
           />
           <Route
             path="/agent/createquote/ordersummary"
-            element={<OrderSummary action="edit"/> }
+            element={<OrderSummary action="edit" />}
           />
            <Route
             path="/agent/claim/claimtable"
@@ -1028,14 +1040,20 @@ const Maincomponent = () => {
           />
           <Route
             path="/agent/createquote/ordersummaryquote"
-            element={<OrderSummaryQuote action="view"/>}
+            element={<OrderSummaryQuote action="view" />}
           />
           {/* <Route
             path="/agent/createquote/ordersummaryquote"
             element={<OrderSummaryQuote />}
           /> */}
-          <Route path="/agent/quotedetailview" element={<QuoteDetailView action="view" />} />
-          <Route path="/agent/quotedetailedit" element={<QuoteDetailView action="edit" />} />
+          <Route
+            path="/agent/quotedetailview"
+            element={<QuoteDetailView action="view" />}
+          />
+          <Route
+            path="/agent/quotedetailedit"
+            element={<QuoteDetailView action="edit" />}
+          />
           <Route path="/agent/quotelisting" element={<QuoteListing />} />
           <Route
             path="/agent/quotecomparisonview"
@@ -1137,7 +1155,11 @@ const Maincomponent = () => {
           <Route path="/agent/viewendorsement" element={<ViewEndorsement />} />
           <Route
             path="/agent/endorsementdetailedview/:id"
-            element={<EndorsementDetailedView />}
+            element={<EndorsementDetailedView action="continue" />}
+          />
+          <Route
+            path="/agent/endorsementdetailedviewonly/:id"
+            element={<EndorsementDetailedView action="completed" />}
           />
           <Route
             path="/agent/endorsement/paymentconfirmation"
@@ -1180,7 +1202,7 @@ const Maincomponent = () => {
             element={<ExpiringPolicy />}
           />
           <Route
-            path="agent/openitems/quotepending"
+            path="/agent/openitems/quotepending"
             element={<QuotePending />}
           />
 

@@ -20,18 +20,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
+const ClientListingAllCategory = ({ TableData, paymentSearchList }) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
-  const [status,setStatus]=useState("")
-  const [search,setSearch]=useState("")
+  const [status, setStatus] = useState("");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cities = [
     { name: "Name", code: "Name" },
     { name: "ClientID", code: "ClientID" },
-   
   ];
 
   useEffect(() => {
@@ -204,29 +203,36 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
   };
   const handleSvg = (type, index) => {
     const colors = [
-      '#D4635D',
-      '#67D07A',
-      '#D4635D',
-      '#874EFF',
-      '#EDC63B',
-      '#A36EFF',
-      '#5DCB67',
-      '#6366F1',
-      '#D8BFD8',
-      '#FFA07A'
+      "#D4635D",
+      "#67D07A",
+      "#D4635D",
+      "#874EFF",
+      "#EDC63B",
+      "#A36EFF",
+      "#5DCB67",
+      "#6366F1",
+      "#D8BFD8",
+      "#FFA07A",
     ];
-    
-  const backgroundColor = colors[parseInt(index) % colors.length] || '#CCCCCC'; 
-  console.log(parseInt(index) % colors.length,'find')
 
-  return <Avatar label={type.charAt(0)} size="xlarge" shape="circle" style={{ backgroundColor:backgroundColor,color:'#fff'}} />;
+    const backgroundColor =
+      colors[parseInt(index) % colors.length] || "#CCCCCC";
+    console.log(parseInt(index) % colors.length, "find");
+
+    return (
+      <Avatar
+        label={type.charAt(0)}
+        size="xlarge"
+        shape="circle"
+        style={{ backgroundColor: backgroundColor, color: "#fff" }}
+      />
+    );
   };
-
 
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{handleSvg(rowData.Name,rowData.id)}</div>
+        <div>{handleSvg(rowData.Name, rowData.id)}</div>
         <div>
           <div className="name__text">{rowData.Name}</div>
           <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
@@ -252,7 +258,7 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
   };
 
   const handleEditAction = () => {
-    navigate("/agent/leadedit");
+    navigate("/agent/clientedit");
   };
 
   const handleViewAction = () => {
@@ -317,28 +323,37 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)}style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
+            <InputText
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "1rem 2.75rem",
+                borderRadius: "10px",
+              }}
+            />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-        <Dropdown
-                    value={globalFilter}
-                    onChange={(e) => setGlobalFilter(e.value)}
-                    options={cities}
-                    optionLabel="name"
-                    optionValue="code"
-                    placeholder="Search by"
-                    className="sorbyfilter__style"
-                    dropdownIcon={<SvgDropdownicon />}
-                    // dropdownIcon={<SvgDownArrow/>}
-                  />
-        {/* // <Dropdown   optionLabel="name" className="feat_searchby_container" */}
-        {/* //         placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/> */}
+          <Dropdown
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.value)}
+            options={cities}
+            optionLabel="name"
+            optionValue="code"
+            placeholder="Search by"
+            className="sorbyfilter__style"
+            dropdownIcon={<SvgDropdownicon />}
+            // dropdownIcon={<SvgDownArrow/>}
+          />
+          {/* // <Dropdown   optionLabel="name" className="feat_searchby_container" */}
+          {/* //         placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/> */}
         </div>
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search?paymentSearchList:TableData}
+          value={search ? paymentSearchList : TableData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -353,7 +368,6 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
           scrollable={true}
           scrollHeight="60vh"
         >
-          
           <Column
             body={renderName}
             header={rendercheckedHeader("Assured Name")}
@@ -385,7 +399,6 @@ const ClientListingAllCategory = ({ TableData,paymentSearchList}) => {
             headerStyle={ViewheadercenterStyle}
           ></Column>
         </DataTable>
-        
       </div>
     </div>
   );

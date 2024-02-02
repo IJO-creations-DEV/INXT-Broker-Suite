@@ -10,21 +10,21 @@ import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import "../../../clientView/index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getEndoresementTabelSearchList } from "./store/getEndorsementTabelDataMiddleWare"
+import { getEndoresementTabelSearchList } from "./store/getEndorsementTabelDataMiddleWare";
 import SvgMotorTable from "../../../../../assets/agentIcon/SvgMotorTable";
 
 const LeadListingAllTable = () => {
-  const { endorsementListData, loading, endorsementSearchListData } = useSelector(
-    ({ endorsementTabelMainReducers }) => {
+  const { endorsementListData, loading, endorsementSearchListData } =
+    useSelector(({ endorsementTabelMainReducers }) => {
       return {
         loading: endorsementTabelMainReducers?.loading,
         endorsementListData: endorsementTabelMainReducers?.endorsementListData,
-        endorsementSearchListData: endorsementTabelMainReducers?.endorsementSearchListData,
+        endorsementSearchListData:
+          endorsementTabelMainReducers?.endorsementSearchListData,
       };
-    }
-  );
+    });
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -241,8 +241,8 @@ const LeadListingAllTable = () => {
           rowData.Status === "Processing"
             ? "company__status__type__green"
             : rowData.Status === "Completed"
-              ? "company__status__type__blue"
-              : "client__view__type__red"
+            ? "company__status__type__blue"
+            : "client__view__type__red"
         }
       >
         {rowData.Status}
@@ -256,10 +256,10 @@ const LeadListingAllTable = () => {
           rowData.payment === "Pending"
             ? "company__status__type__green"
             : rowData.payment === "Completed"
-              ? "company__status__type__blue"
-              : rowData.payment === "Reviewing"
-                ? "company__status__type__red"
-                : "endorsement__payment__type"
+            ? "company__status__type__blue"
+            : rowData.payment === "Reviewing"
+            ? "company__status__type__red"
+            : "endorsement__payment__type"
         }
       >
         {rowData.payment}
@@ -277,7 +277,7 @@ const LeadListingAllTable = () => {
       rowData?.Status === "Completed" &&
       rowData?.payment === "Completed"
     ) {
-      navigate(`/agent/endorsementdetailedview/${123}`);
+      navigate(`/agent/endorsementdetailedviewonly/${123}`);
     } else if (
       rowData?.Status === "Completed" &&
       rowData?.payment === "Reviewing"

@@ -13,7 +13,7 @@ const PolicyRenewalWaiting = () => {
 
   const navigate = useNavigate();
   const handleReject = () => {
-    navigate(`/agent/createquote/coveragedetails`);
+    navigate(`/agent/renewalquote/coveragedetails/coveragedetail/${123}`);
   };
   const handleSubmit = () => {
     navigate(`/agent/uploadpolicy`);

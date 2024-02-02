@@ -8,9 +8,12 @@
   }
 
   .policy__approval__back__btn__container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    .navigation-controller {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: max-content;
+    }
 
     .policy__approval__back__btn__container__title {
       font-size: 16px;

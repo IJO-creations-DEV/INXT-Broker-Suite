@@ -1,6 +1,6 @@
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
-import React, { useState,useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TableDropdownField from "../../../component/tableDropDwonField";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -12,24 +12,25 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 import SvgDot from "../../../../assets/icons/SvgDot";
 import SvgDots from "../../../../assets/agentIcon/SvgDot";
-import { Button} from "primereact/button";
+import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ClientListing from "../../../quoteModule/clientListing";
-import { getExpiringSearchDataMiddleWare } from "../expiringPolicyCard/store/expiringMiddleware"
+import { getExpiringSearchDataMiddleWare } from "../expiringPolicyCard/store/expiringMiddleware";
 import { collectFromHash } from "@fullcalendar/core/internal";
 
 const ExpiringPolicyCard = () => {
-  const [search,setSearch]=useState("")
-  const [globalFilter,setGlobalFilter]=useState("Name")
-  const [displayDialog,setDisplayDialog]=useState("")
-  const [disableOption,setdisableOption] =useState("")
-  const dispatch =useDispatch()
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("Name");
+  const [displayDialog, setDisplayDialog] = useState("");
+  const [disableOption, setdisableOption] = useState("");
+  const dispatch = useDispatch();
   const menu = useRef(null);
 
   const { expiringtabledata, expiringSearchList, loading } = useSelector(
     ({ agentExpiringMainReducers }) => {
-      console.log(agentExpiringMainReducers,"find mainred")
+      console.log(agentExpiringMainReducers, "find mainred");
       return {
         loading: agentExpiringMainReducers?.loading,
         expiringtabledata: agentExpiringMainReducers?.expiringtabledata,
@@ -37,13 +38,12 @@ const ExpiringPolicyCard = () => {
       };
     }
   );
-  console.log(expiringSearchList,"find1")
+  console.log(expiringSearchList, "find1");
 
   // const [globalFilter, setGlobalFilter] = useState("policy Number");
   const policy = [
-   { name: "Name", code: "Name" },
+    { name: "Name", code: "Name" },
     { name: "Policy Number", code: "policy Number" },
-    
   ];
 
   const handleMenuToggle = (event, menuRef, rowData) => {
@@ -53,36 +53,30 @@ const ExpiringPolicyCard = () => {
     );
   };
   const handleMenuClick = (menuItem) => {
-   
     if (menuItem == "renewal") {
-      navigate("/agent/createquote/coveragedetails");
+      navigate(`/agent/renewalquote/coveragedetails/coveragedetail/${123}`);
     }
-   
   };
 
   const renderViewEditButton = (rowData) => {
     const menuItems = [
       {
         label: "Reminder",
-        
       },
 
       {
         label: "Renewal",
         command: () => handleMenuClick("renewal"),
-        
       },
-      
-     
     ];
-     return (
+    return (
       <div className="action__container">
-      <Menu model={menuItems} popup ref={menu} breakpoint="767px" />
+        <Menu model={menuItems} popup ref={menu} breakpoint="767px" />
         <div
           className="action__Svg"
           onClick={(event) => handleMenuToggle(event, menu, rowData)}
         >
-          <SvgDots/>
+          <SvgDots />
         </div>
       </div>
       // <div className="btn__container__view__edit">
@@ -106,13 +100,13 @@ const ExpiringPolicyCard = () => {
       );
     }
   }, [search]);
-  const navigate = useNavigate();
+
   const TableData = [
     {
       AssuredName: "John Doe",
       PolicyNumber: "P12345",
       ExpiryDate: "2024 JAN 15",
-      policyIssued:"2025 JAN 15",
+      policyIssued: "2025 JAN 15",
       Expiry: "30 Days",
       Actions: "127332",
     },
@@ -120,7 +114,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Jane Smith",
       PolicyNumber: "P67890",
       ExpiryDate: "2024 JAN 22",
-      policyIssued:"2025 JAN 15",
+      policyIssued: "2025 JAN 15",
       Expiry: "Expired",
       Actions: "1272721",
     },
@@ -128,7 +122,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Bob Johnson",
       PolicyNumber: "P54321",
       ExpiryDate: "2024 JAN 10",
-      policyIssued:"2025 JAN 15",
+      policyIssued: "2025 JAN 15",
       Expiry: "45 Days",
       Actions: "1270002",
     },
@@ -136,7 +130,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Alice Williams",
       PolicyNumber: "P98765",
       ExpiryDate: "2024 JAN 05",
-      policyIssued:"2025 JAN 15",
+      policyIssued: "2025 JAN 15",
       Expiry: "10 Days",
       Actions: "120002",
     },
@@ -144,7 +138,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Mike Davis",
       PolicyNumber: "P23456",
       ExpiryDate: "2024 JAN 18",
-      policyIssued:"2025 JAN 15",
+      policyIssued: "2025 JAN 15",
       Expiry: "25 Days",
       Actions: "111172",
     },
@@ -152,7 +146,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Sara Miller",
       PolicyNumber: "P78901",
       ExpiryDate: "2024 JAN 01",
-      policyIssued:"2025 JAN 15",
+      policyIssued: "2025 JAN 15",
       Expiry: "20 Days",
       Actions: "12000",
     },
@@ -167,7 +161,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Emily Taylor",
       PolicyNumber: "P12398",
       ExpiryDate: "2024 JAN 28",
-      policyIssued:"2025 JAN 15",
+      policyIssued: "2025 JAN 15",
       Expiry: "28 Days",
       Actions: "12002",
     },
@@ -182,7 +176,7 @@ const ExpiringPolicyCard = () => {
       AssuredName: "Grace Anderson",
       PolicyNumber: "P87654",
       ExpiryDate: "2024-07-20",
-      policyIssued:"2025 JAN 15",
+      policyIssued: "2025 JAN 15",
       Expiry: "12 Days",
       Actions: "127272",
     },
@@ -317,34 +311,34 @@ const ExpiringPolicyCard = () => {
             <span className="p-input-icon-left">
               <i className="pi pi-search" />
               <InputText
-              placeholder="Search"
-              style={{
-                width: "100%",
-                padding: "1rem 2.75rem",
-                borderRadius: "10px",
-              }}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+                placeholder="Search"
+                style={{
+                  width: "100%",
+                  padding: "1rem 2.75rem",
+                  borderRadius: "10px",
+                }}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown
-            value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.value)}
-            options={policy}
-            optionLabel="name"
-            optionValue="code"
-            placeholder="Search by"
-            className="feat_searchby_container"
-            dropdownIcon={<SvgDownArrow />}
-          />
+            <Dropdown
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={policy}
+              optionLabel="name"
+              optionValue="code"
+              placeholder="Search by"
+              className="feat_searchby_container"
+              dropdownIcon={<SvgDownArrow />}
+            />
           </div>
         </div>
         <div className="table__container">
           <DataTable
-          // value={TableData}
-          value={search ? expiringSearchList : expiringtabledata}
+            // value={TableData}
+            value={search ? expiringSearchList : expiringtabledata}
             tableStyle={{ minWidth: "50rem" }}
             paginator
             rows={5}
@@ -364,7 +358,7 @@ const ExpiringPolicyCard = () => {
               header="Policy Number"
               headerStyle={headerStyle}
             ></Column>
-             <Column
+            <Column
               body={renderGross}
               header="Gross premium"
               headerStyle={headerStyle}

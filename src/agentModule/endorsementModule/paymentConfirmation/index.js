@@ -10,12 +10,18 @@ const PaymentConfirmation = () => {
   const handleCancelAction = () => {
     navigate(`/agent/clientview/${123}`);
   };
+  const handleClientViewNavigation = () => {
+    navigate(`/agent/clientview/${123}`);
+  };
   return (
     <div className="overall__endorsement__payment__confirmation">
       <div className="header__title">Clients</div>
-      <div className="left__arrow mt-3">
+      <div
+        className="left__arrow mt-3 cursor-pointer"
+        onClick={handleClientViewNavigation}
+      >
         <SvgLeftArrow />
-        <label className="left__arrow__text">Client ID : 12345678</label>
+        <div className="left__arrow__text">Client ID : 12345678</div>
       </div>
       <Card className="mt-4">
         <div className="table__header">Payment Confirmation</div>

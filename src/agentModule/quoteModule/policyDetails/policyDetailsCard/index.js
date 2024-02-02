@@ -18,9 +18,7 @@ import {
 } from "../mock";
 import { postPolicyDetailsMiddleware } from "../store/policyDetailsMiddleware";
 
-
-
-const PolicyDetailsCard = ({ action }) => {
+const PolicyDetailsCard = ({ action, flow }) => {
   console.log(action, "action");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,11 +34,12 @@ const PolicyDetailsCard = ({ action }) => {
     SeatingCapacity: "",
   };
   const handleclick = (values) => {
-    console.log(action, "action")
+    console.log(action, "action");
     dispatch(postPolicyDetailsMiddleware(values));
     {
-      action === "quotedetails" ?
-      navigate(`/agent/createquote/coveragedetails/coveragedetail/:${123}`) : navigate(`/agent/createquote/coveragedetails/coveragecreate/:${123}`)
+      action === "quotedetails"
+        ? navigate(`/agent/createquote/coveragedetails/coveragedetail/:${123}`)
+        : navigate(`/agent/createquote/coveragedetails/coveragecreate/:${123}`);
     }
   };
   // const customValidation = (values) => {
@@ -84,12 +83,17 @@ const PolicyDetailsCard = ({ action }) => {
   });
 
   useEffect(() => {
-
     if (action === "quotedetails") {
-      formik.setFieldValue("InsuranceCompanyName", InsuranceCompanyOptions[0].value);
+      formik.setFieldValue(
+        "InsuranceCompanyName",
+        InsuranceCompanyOptions[0].value
+      );
     }
     if (action === "quotedetails") {
-      formik.setFieldValue("InsurancePolicyType", InsurancePolicyTypes[0].value);
+      formik.setFieldValue(
+        "InsurancePolicyType",
+        InsurancePolicyTypes[0].value
+      );
     }
     if (action === "quotedetails") {
       formik.setFieldValue("AccountCode", AccountCodes[0].value);
@@ -109,14 +113,13 @@ const PolicyDetailsCard = ({ action }) => {
     if (action === "quotedetails") {
       formik.setFieldValue("VehicleColor", VehicleColors[0].value);
     }
-
   }, []);
   return (
     <div className="policy__details__card__container mt-4">
       <form onSubmit={formik.handleSubmit}>
         <Card>
           <div className="policy__details__card__container__title">
-            Create Quote
+            {action === "quotedetails" ? "Edit Quote" : "Create Quote"}
           </div>
           <div className="policy__details__card__container__sub__title mt-2 mb-2">
             Policy Details
@@ -134,11 +137,12 @@ const PolicyDetailsCard = ({ action }) => {
                 }}
                 optionLabel="label"
               />
-              {formik.touched.InsuranceCompanyName && formik.errors.InsuranceCompanyName && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.InsuranceCompanyName}
-                </div>
-              )}
+              {formik.touched.InsuranceCompanyName &&
+                formik.errors.InsuranceCompanyName && (
+                  <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                    {formik.errors.InsuranceCompanyName}
+                  </div>
+                )}
             </div>
           </div>
 
@@ -153,13 +157,13 @@ const PolicyDetailsCard = ({ action }) => {
                   formik.setFieldValue("InsurancePolicyType", e.value);
                 }}
                 optionLabel="label"
-
               />
-              {formik.touched.InsurancePolicyType && formik.errors.InsurancePolicyType && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.InsurancePolicyType}
-                </div>
-              )}
+              {formik.touched.InsurancePolicyType &&
+                formik.errors.InsurancePolicyType && (
+                  <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                    {formik.errors.InsurancePolicyType}
+                  </div>
+                )}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
               <DropdownField
@@ -195,7 +199,6 @@ const PolicyDetailsCard = ({ action }) => {
                   formik.setFieldValue("VehicleBrand", e.value);
                 }}
                 optionLabel="label"
-
               />
               {formik.touched.VehicleBrand && formik.errors.VehicleBrand && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -233,7 +236,6 @@ const PolicyDetailsCard = ({ action }) => {
                   formik.setFieldValue("VehicleModel", e.value);
                 }}
                 optionLabel="label"
-
               />
               {formik.touched.VehicleModel && formik.errors.VehicleModel && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -251,7 +253,6 @@ const PolicyDetailsCard = ({ action }) => {
                   formik.setFieldValue("ModelVariant", e.value);
                 }}
                 optionLabel="label"
-
               />
               {formik.touched.ModelVariant && formik.errors.ModelVariant && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -272,7 +273,6 @@ const PolicyDetailsCard = ({ action }) => {
                   formik.setFieldValue("VehicleColor", e.value);
                 }}
                 optionLabel="label"
-
               />
               {formik.touched.VehicleColor && formik.errors.VehicleColor && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -284,15 +284,19 @@ const PolicyDetailsCard = ({ action }) => {
               <InputTextField
                 label="Seating Capacity"
                 // value={formik.values.SeatingCapacity}
-                value={action === "createquote" ? formik.values.SeatingCapacity : "24"}
+                value={
+                  action === "createquote"
+                    ? formik.values.SeatingCapacity
+                    : "24"
+                }
                 onChange={formik.handleChange("SeatingCapacity")}
-
               />
-              {formik.touched.SeatingCapacity && formik.errors.SeatingCapacity && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.SeatingCapacity}
-                </div>
-              )}
+              {formik.touched.SeatingCapacity &&
+                formik.errors.SeatingCapacity && (
+                  <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                    {formik.errors.SeatingCapacity}
+                  </div>
+                )}
             </div>
           </div>
           <div className="policy__details__card__btn__container">

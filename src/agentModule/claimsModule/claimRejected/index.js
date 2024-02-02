@@ -24,7 +24,7 @@ const ClaimRejected = () => {
       >
         <SvgLeftArrow />
         <div className="claim__request__upload__back__btn__title">
-          Client ID : 1233333
+          Carson Darrin / Client ID : 1233333
         </div>
       </div>
       <Card className="mt-8 claimrequest__overall__card">

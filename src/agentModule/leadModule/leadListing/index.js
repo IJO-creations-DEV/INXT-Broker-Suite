@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./index.scss";
 import { Button } from "primereact/button";
-import SvgAdd from "../../../assets/agentIcon/SvgAdd"
+import SvgAdd from "../../../assets/agentIcon/SvgAdd";
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../../assets/agentIcon/SvgDots";
 import LeadListingCard from "./leadListingCard";
@@ -11,77 +11,92 @@ import SvgTravel from "../../../assets/agentIcon/SvgTravel";
 import SvgHome from "../../../assets/agentIcon/SvgHome";
 import { useNavigate } from "react-router-dom";
 
-
 const LeadListing = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
 
   const items = [
-    { label: "Leads",command: () => navigate("/agent/leadlisting") },
+    { label: "Leads", command: () => navigate("/agent/leadlisting") },
   ];
   const Initiate = { label: "Home" };
-  
+
   const dropdownOptions = [
     {
-      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }} onClick={()=>{handleClickMotor()}}>
-        <div><SvgMotor /></div>
+      label: (
         <div
-          style={{
-            fontFamily: "Inter var",
-            fontWeight: 400,
-            fontSize: "16px",
-            color: "#111927",
-            width: "100%",
+          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          onClick={() => {
+            handleClickMotor();
           }}
         >
-          Motor
+          <div>
+            <SvgMotor />
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter var",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#111927",
+              width: "100%",
+            }}
+          >
+            Motor
+          </div>
         </div>
-      </div>,
-      value: 'Motor'
+      ),
+      value: "Motor",
     },
     {
-      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }}>
-        <div><SvgTravel /></div>
-        <div
-          style={{
-            fontFamily: "Inter var",
-            fontWeight: 400,
-            fontSize: "16px",
-            color: "#111927",
-            width: "100%",
-          }}
-        >
-          Travel
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div>
+            <SvgTravel />
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter var",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#111927",
+              width: "100%",
+            }}
+          >
+            Travel
+          </div>
         </div>
-      </div>,
-      value: 'Travel'
+      ),
+      value: "Travel",
     },
     {
-      label: <div style={{ display: "flex",alignItems:"center",gap:"10px" }}>
-        <div><SvgHome /></div>
-        <div
-          style={{
-            fontFamily: "Inter var",
-            fontWeight: 400,
-            fontSize: "16px",
-            color: "#111927",
-            width: "100%",
-          }}
-        >
-          Property
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div>
+            <SvgHome />
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter var",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#111927",
+              width: "100%",
+            }}
+          >
+            Property
+          </div>
         </div>
-      </div>, value: 'Property'
+      ),
+      value: "Property",
     },
   ];
 
-
-  const handleClickMotor = () =>{
-    navigate("/agent/createlead")
-  }
+  const handleClickMotor = () => {
+    navigate("/agent/createlead");
+  };
 
   return (
     <div className="leadlisting__overal__container">
-
       <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
           <label className="leadlisting__overal__container__title">Leads</label>
@@ -91,7 +106,7 @@ const LeadListing = () => {
             <Dropdown
               value={selectedOption}
               options={dropdownOptions}
-              onChange={(e) => setSelectedOption(e.value)}
+              // onChange={(e) => setSelectedOption(e.value)}
               placeholder="Create Lead"
               dropdownIcon={<SvgAdd />}
             />
@@ -107,7 +122,8 @@ const LeadListing = () => {
         />
       </div>
       <LeadListingCard />
-    </div>);
+    </div>
+  );
 };
 
 export default LeadListing;

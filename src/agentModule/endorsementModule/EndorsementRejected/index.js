@@ -21,7 +21,7 @@ const EndorsementRejected = () => {
     navigate(`/agent/clientview/${123}`);
   };
   const handleSubmit = () => {
-    navigate("/agent/endorsement/personaldetails");
+    navigate(`/agent/clientview/${123}`);
   };
   return (
     <div className="endorsement__rejected__overall">
@@ -34,7 +34,7 @@ const EndorsementRejected = () => {
       >
         <SvgLeftArrow />
         <div className="endorsement__waiting__request__upload__back__btn__title">
-          Client ID :{id}
+          Carson Darrin / Client ID : {id}
         </div>
       </div>
       <CustomToast ref={toastRef} message="Endorsement Rejected" />

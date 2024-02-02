@@ -21,7 +21,13 @@
   .upload__policy__container__back__btn__container {
     display: flex;
     align-items: center;
-    gap: 10px;
+
+    .arrow__controller {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      width: max-content;
+    }
 
     .upload__policy__container__back__btn__title {
       font-size: 16px;

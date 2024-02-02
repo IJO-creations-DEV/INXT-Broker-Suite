@@ -37,22 +37,27 @@ const PersonalDetails = () => {
     }, 2000);
     console.log(values, "find datas in formik");
   };
-
+  const handleClientViewNavigation = () => {
+    navigate(`/agent/clientview/${123}`);
+  };
   return (
     <div className="endorsement__personal__detail__change__container">
       <CustomToast ref={toastRef} message="Endorsement Created" />
       <div className="customer__info__main__title">Clients</div>
       <div className="customer__info__back__btn mt-3">
-        <div className="customer__info__back__btn__title">
+        <div
+          className="customer__info__back__btn__title cursor-pointer"
+          onClick={handleClientViewNavigation}
+        >
           <span className="cursor-poiter icon__container">
             <SvgLeftArrow />
           </span>
-          Client ID :123456
+          Carson Darrin / Client ID : 123456
         </div>
       </div>
       <Card className="mt-4">
         <div className="customer__info__title">Endorsement Request</div>
-        {state?.types[0] === "1" && (
+        {state?.types.includes("1") && (
           <PersonalDetailsChange
             handleFormSubmit={handleFormSubmit}
             isFormSubmitted={isFormSubmitted}
@@ -60,7 +65,7 @@ const PersonalDetails = () => {
             personalDetails={personalDetails}
           />
         )}
-        {state?.types[1] === "2" && (
+        {state?.types.includes("2") && (
           <MotorDetailsChange
             handleFormSubmit={handleFormSubmit}
             isFormSubmitted={isFormSubmitted}
@@ -68,7 +73,7 @@ const PersonalDetails = () => {
             personalDetails={personalDetails}
           />
         )}
-        {state?.types[2] === "3" && (
+        {state?.types.includes("3") && (
           <CoverageChange
             handleFormSubmit={handleFormSubmit}
             isFormSubmitted={isFormSubmitted}
@@ -76,7 +81,7 @@ const PersonalDetails = () => {
             personalDetails={personalDetails}
           />
         )}
-        {state?.types[3] === "4" && (
+        {state?.types.includes("4") && (
           <PolicyExtend
             handleFormSubmit={handleFormSubmit}
             isFormSubmitted={isFormSubmitted}

@@ -9,7 +9,7 @@ import SvgBlueArrow from "../../../assets/agentIcon/SvgBlueArrow";
 import { useSelector } from "react-redux";
 import DatepickerField from "../../component/datePicker";
 
-const EndorsementDetailedView = () => {
+const EndorsementDetailedView = ({ action }) => {
   const [actionScreen, setActionScreen] = useState(false);
   const { endrosmentData, loading } = useSelector(
     ({ endrosementViewMainReducers }) => {
@@ -31,16 +31,17 @@ const EndorsementDetailedView = () => {
   const handlePayLater = () => {
     navigate(`/agent/clientview/${123}`);
   };
-  
-  const handleEndorsement=()=>{
-    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FEndorsement%20Schedule%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+
+  const handleEndorsement = () => {
+    const pdfUrl =
+      "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FEndorsement%20Schedule%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
     const link = document.createElement("a");
     link.href = pdfUrl;
     link.download = "document.pdf"; // specify the filename
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  };
 
   return (
     <div className="detailed__endorsement__container m-0">
@@ -61,9 +62,12 @@ const EndorsementDetailedView = () => {
           <div className="detailed__endorsement__card__container__title">
             Endorsement
           </div>
-          <div className="detailed__endorsement__card__sub__title mt-2 mb-2">
-            Personal Details Change
-          </div>
+          {action === "completed" && (
+            <div className="detailed__endorsement__card__sub__title mt-2 mb-2">
+              Personal Details Change
+            </div>
+          )}
+
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
               <InputTextField
@@ -126,7 +130,10 @@ const EndorsementDetailedView = () => {
 
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
-              <div onClick={()=>handleEndorsement()} className="endorsement__detail__view__box">
+              <div
+                onClick={() => handleEndorsement()}
+                className="endorsement__detail__view__box"
+              >
                 <div className="endorsement__detail__view__box__title">
                   Endorsement Slip
                 </div>
@@ -139,39 +146,44 @@ const EndorsementDetailedView = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 md:col-6 lg:col-6">
-              <div className="endorsement__detail__view__box">
-                <div className="endorsement__detail__view__box__title">
-                  Endorsement Schedule
-                </div>
-
-                <div className="endorsement__detail__view__box__container cursor-pointer">
-                  <div className="endorsement__detail__view__box__sub__title">
-                    View
+            {action === "completed" && (
+              <div className="col-12 md:col-6 lg:col-6">
+                <div className="endorsement__detail__view__box">
+                  <div className="endorsement__detail__view__box__title">
+                    Endorsement Schedule
                   </div>
-                  <SvgBlueArrow />
+
+                  <div className="endorsement__detail__view__box__container cursor-pointer">
+                    <div className="endorsement__detail__view__box__sub__title">
+                      View
+                    </div>
+                    <SvgBlueArrow />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="grid m-0 mt-3">
             <div className="col-12 md:col-12 lg:col-12 p-0 back__complete__btn__container ">
-              <div className="back__btn__container">
-                <Button className="back__btn" onClick={handlePayLater}>
-                  Pay Later
-                </Button>
-              </div>
-              <div className="complete__btn__container">
-                <Button
-                  className="complete__btn"
-                  onClick={() => {
-                    handleclickNavigation();
-                  }}
-                >
-                  Proceed to payment
-                </Button>
-              </div>
-              {actionScreen && (
+              {action === "continue" ? (
+                <>
+                  <div className="back__btn__container">
+                    <Button className="back__btn" onClick={handlePayLater}>
+                      Pay Later
+                    </Button>
+                  </div>
+                  <div className="complete__btn__container">
+                    <Button
+                      className="complete__btn"
+                      onClick={() => {
+                        handleclickNavigation();
+                      }}
+                    >
+                      Proceed to payment
+                    </Button>
+                  </div>
+                </>
+              ) : (
                 <div className="complete__btn__container">
                   <Button
                     className="complete__btn"

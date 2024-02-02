@@ -14,7 +14,8 @@ import {
   postPatchAccountDetailEdit,
   getChequeListData,
   postChequeDataMiddleWare,
-  getChequeEditDataMiddleWare
+  getChequeEditDataMiddleWare,
+  postChequeEditDataMiddleWare
 } from "./bankMasterMiddleware";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 const initialState = {
@@ -105,12 +106,14 @@ const initialState = {
       chequeLeafEnd: "chequeLeafEnd"
     }
   ],
-  getEditChequeData:{}
+  postCheque:{},
+  getEditChequeData: {},
+  postEditChequeData:{}
 };
 let nextId = 3;
 let nextId1 = 3;
 let nextId2 = 3;
-let nextId4=3
+let nextId4 = 3
 
 const bankMasterReducer = createSlice({
   name: "bankMaster",
@@ -432,7 +435,7 @@ const bankMasterReducer = createSlice({
       postChequeDataMiddleWare.rejected,
       (state, action) => {
         state.loading = false;
-
+state.postCheque={}
         // state.BankStatus = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
@@ -454,6 +457,37 @@ const bankMasterReducer = createSlice({
         state.loading = false;
 
         state.getEditChequeData = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    builder.addCase(postChequeEditDataMiddleWare.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      postChequeEditDataMiddleWare.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        console.log(state.chequeListData, "state.chequeListData");
+        const updatedIndex = state.chequeListData.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedBankList = [...state.chequeListData];
+          updatedBankList[updatedIndex] = action.payload;
+          state.chequeListData = updatedBankList;
+        } else {
+          state.chequeListData = [...state.chequeListData, action.payload];
+        }
+      }
+    );
+
+    builder.addCase(
+      postChequeEditDataMiddleWare.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.postEditChequeData = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );

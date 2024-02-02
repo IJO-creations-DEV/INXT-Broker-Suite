@@ -81,6 +81,7 @@ const initialState = {
 
   ],
   employeeEditData: {},
+  employeeSeachDetailList:[],
   employeeViewData: {}
 };
 let nextId1 = 4
@@ -121,12 +122,12 @@ const employeeReducer = createSlice({
     });
     builder.addCase(getSearchEmployeeMiddleware.fulfilled, (state, action) => {
       state.loading = false;
-      state.employeeDetailList = action.payload;
+      state.employeeSeachDetailList = action.payload;
     });
     builder.addCase(getSearchEmployeeMiddleware.rejected, (state, action) => {
       state.loading = false;
 
-      state.employeeDetailList = {};
+      state.employeeSeachDetailList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 

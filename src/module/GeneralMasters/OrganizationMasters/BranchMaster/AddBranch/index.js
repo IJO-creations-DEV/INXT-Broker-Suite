@@ -44,6 +44,7 @@ const initialValues = {
 };
 
 function AddBranch({ action }) {
+  console.log(action,"actionaction");
   const { organizationBranchView, loading, getBranchPatch } = useSelector(
     ({ organizationBranchMainReducers }) => {
       return {
@@ -622,7 +623,7 @@ function AddBranch({ action }) {
         </div>
       </Card>
 
-      {action != "add" && <DepartMentList />}
+      {action != "add" && <DepartMentList action={action} />}
 
       <div className="next_container">
         {action === "add" && (

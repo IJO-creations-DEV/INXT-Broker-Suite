@@ -16,13 +16,14 @@ import { getDepatmentEditData, getDepatmentView, postAddDepartment, postPatchDep
 import SvgIconeye from '../../../../../../assets/icons/SvgIconeye';
 import SvgEditicons from '../../../../../../assets/icons/SvgEditicons';
 
-const DepartMentList = () => {
-  const { departmentList, loading, depatmentView,getDepartmentPatch } = useSelector(({ organizationBranchMainReducers }) => {
+const DepartMentList = ({ action }) => {
+  console.log(action, "action");
+  const { departmentList, loading, depatmentView, getDepartmentPatch } = useSelector(({ organizationBranchMainReducers }) => {
     return {
       loading: organizationBranchMainReducers?.loading,
       departmentList: organizationBranchMainReducers?.departmentList,
       depatmentView: organizationBranchMainReducers?.depatmentView,
-      getDepartmentPatch:organizationBranchMainReducers?.getDepartmentPatch
+      getDepartmentPatch: organizationBranchMainReducers?.getDepartmentPatch
     };
   });
   console.log(departmentList, "departmentList");
@@ -55,15 +56,15 @@ const DepartMentList = () => {
       return (
         <div className="table__selector">
           {/* <React.Fragment> */}
-            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
+          <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+            Row count :{" "}
+          </span>
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
           {/* </React.Fragment> */}
         </div>
       );
@@ -86,16 +87,16 @@ const DepartMentList = () => {
     color: "#000",
     border: "none",
   };
-  const headeraction={
+  const headeraction = {
     fontSize: 16,
     fontFamily: 'Inter, sans-serif',
     fontWeight: 500,
     // padding: 6,
     color: "#000",
     border: "none",
-   display:"flex",
-   justifyContent:"center",
-   alignItem:'center'
+    display: "flex",
+    justifyContent: "center",
+    alignItem: 'center'
   }
   const dispatch = useDispatch()
   const initialValues = {
@@ -104,19 +105,22 @@ const DepartMentList = () => {
     Description: ""
   }
   const handleSubmit = (value) => {
-   if(formik.values){
-    dispatch(postAddDepartment(formik.values))
-    setVisible(false)
-   }
-   if(value){
-    
-    dispatch(postPatchDepatmentEdit(value))
-    setVisible(false)
-    setVisibleEdit(false)
-   }
-   else{
-    alert("hii")
-   }
+    if (value) {
+      dispatch(postPatchDepatmentEdit(value))
+      setVisible(false)
+      setVisibleEdit(false)
+    }
+    else {
+      dispatch(postAddDepartment(formik.values))
+      setVisible(false)
+    }
+
+
+
+
+
+
+
   }
   const customValidation = (values) => {
     const errors = {}
@@ -138,7 +142,7 @@ const DepartMentList = () => {
     onSubmit: handleSubmit,
   });
 
-  const [epartmentCodeDataOption,setDepartmentCodeDataOption]=useState([])
+  const [epartmentCodeDataOption, setDepartmentCodeDataOption] = useState([])
 
   const setFormikValues = () => {
     const DepartmentCodeData = getDepartmentPatch?.DepartmentCode;
@@ -146,10 +150,10 @@ const DepartMentList = () => {
       id: getDepartmentPatch.id,
       DepartmentCode: DepartmentCodeData,
       DepartmentName: getDepartmentPatch?.DepartmentName,
-      Description:getDepartmentPatch?.Description,
-      Status:getDepartmentPatch?.Status
+      Description: getDepartmentPatch?.Description,
+      Status: getDepartmentPatch?.Status
     };
-    console.log(updatedValues.id,"updatedValues");
+    console.log(updatedValues.id, "updatedValues");
     // if(DepartmentCodeData){
     //   setDepartmentCodeDataOption([{label:DepartmentCodeData,value:DepartmentCodeData}])
     // }
@@ -170,14 +174,14 @@ const DepartMentList = () => {
         <div className='subhead_list'>
           <label className='head_lable'>Department List</label>
 
-          <Button label="Add" icon={<SvgAdd />} onClick={() => setVisible(true)} />
+          {action === "view" ? "" : <Button label="Add" icon={<SvgAdd />} onClick={() => setVisible(true)} />}
 
         </div>
 
         <DataTable value={departmentList} tableStyle={{ minWidth: '50rem', marginTop: '1rem' }}
           paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
           // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-           currentPageReportTemplate="{first} - {last} of {totalRecords}"
+          currentPageReportTemplate="{first} - {last} of {totalRecords}"
           paginatorTemplate={template2} scrollable={true}
           scrollHeight="40vh"
           emptyMessage={isEmpty ? emptyTableIcon : null}
@@ -191,7 +195,9 @@ const DepartMentList = () => {
             body={(columnData) => (
               <div className="action_icons">
                 <SvgIconeye onClick={() => handleView(columnData)} />
-                <SvgEditicons onClick={() => handleEdit(columnData)} />
+                <span>
+                  {action === "view" ? "" : <SvgEditicons onClick={() => handleEdit(columnData)} />}
+                </span>
               </div>
             )}
             header="Action"
@@ -203,11 +209,11 @@ const DepartMentList = () => {
         </DataTable>
 
 
-        
+
 
       </div>
       <Dialog header="Add Department" visible={visible} style={{ width: '40vw' }} onHide={() => setVisible(false)}
-      className='dialog__addstyle'>
+        className='dialog__addstyle'>
         <div class='grid'>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
@@ -311,7 +317,7 @@ const DepartMentList = () => {
       </Dialog>
 
       <Dialog header="Edit Details" visible={visibleedit} style={{ width: '40vw' }} onHide={() => setVisibleEdit(false)}>
-      <div class='grid'>
+        <div class='grid'>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
               <InputField
@@ -350,13 +356,13 @@ const DepartMentList = () => {
         </div>
         <div className="nexttextlable_container">
 
-            <Button
-              className="submittextlabel_button p-2"
-              label="Update"
-              onClick={formik.handleSubmit}
+          <Button
+            className="submittextlabel_button p-2"
+            label="Update"
+            onClick={formik.handleSubmit}
 
-            />
-          </div>
+          />
+        </div>
       </Dialog>
     </div>
   )

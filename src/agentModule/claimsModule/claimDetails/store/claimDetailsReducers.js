@@ -14,8 +14,13 @@ const initialState = {
             HouseNo: "24",
             Barangay:"ss",
             CountryName: "Philippines",
+<<<<<<< Updated upstream
             Province: "DAVAO ORIENTAL",
             CityName: "MATI",
+=======
+            Province: "Davao oriental",
+            CityName: "Mati",
+>>>>>>> Stashed changes
             ZipCode: "577004"
            
         },

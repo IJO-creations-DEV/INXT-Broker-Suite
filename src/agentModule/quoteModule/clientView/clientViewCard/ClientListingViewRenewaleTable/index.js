@@ -472,7 +472,7 @@ const Index = () => {
 
           <Column
             body={renderExpiryDate}
-            header="Policy Expired"
+            header="Policy Expiry"
             headerStyle={headerStyle}
           ></Column>
            <Column

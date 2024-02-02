@@ -340,7 +340,7 @@ const ReviewingListTabelData = () => {
           ></Column>
           <Column
             body={renderPolicyExpired}
-            header={renderUncheckedHeader("Policy Expired")}
+            header={renderUncheckedHeader("Policy Expiry")}
             headerStyle={headerStyle}
             sortField="dateSortField"
           ></Column>

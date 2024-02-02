@@ -50,13 +50,17 @@ export const getClaimTabelSearchList = createAsyncThunk(
         function filterClaimListByField(claimListData, field, value) {
             const lowercasedValue = value.toLowerCase();
             const outputData = claimListData.filter(item => {
+                if (field === "Claim Number") {
+                    return item.claimNumber.toLowerCase().includes(lowercasedValue);
+                }
                 if (field === 'policy Number') {
                     return item.PolicyNumber.toLowerCase().includes(lowercasedValue);
                 } else if (field === 'ClientID') {
                     return item.ClaimID.toLowerCase().includes(lowercasedValue);
                 }
                 return (
-                    (item.PolicyNumber.toLowerCase().includes(lowercasedValue) ||
+                    (item.claimNumber.toLowerCase().includes(lowercasedValue) ||
+                        item.PolicyNumber.toLowerCase().includes(lowercasedValue) ||
                         item.ClaimID.toLowerCase().includes(lowercasedValue))
                 );
             });

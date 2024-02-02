@@ -22,25 +22,7 @@ export const getEndorsementTabelData = createAsyncThunk(
     }
 );
 
-// export const getClaimTabelSearchList = createAsyncThunk(
-//     GET_CLAIM_DATA_SEARCH_LIST,
-//     async (payload, { rejectWithValue, getState }) => {
-//         const textSearch = payload;
-//         console.log(textSearch, "textSearch")
-//         const { claimTabelMainReducers } = getState();
 
-//         const { claimListData } = claimTabelMainReducers;
-//         console.log(claimListData, "1234")
-//         try {
-//             const searchResults = claimListData.filter(item => {
-//                 return item.ClaimID.toLowerCase().includes(textSearch.toLowerCase());
-//             });
-//             console.log(searchResults, "searchResults")
-//             return searchResults;
-//         } catch (error) {
-//             return rejectWithValue(error?.response.data.error.message);
-//         }
-//     },)
 export const getEndoresementTabelSearchList = createAsyncThunk(
     GET_ENDORSEMENT_DATA_SEARCH_LIST,
     async ({ field, value }, { rejectWithValue, getState }) => {
@@ -50,13 +32,17 @@ export const getEndoresementTabelSearchList = createAsyncThunk(
         function filterEndorsementListByField(endorsementListData, field, value) {
             const lowercasedValue = value.toLowerCase();
             const outputData = endorsementListData.filter(item => {
+                if (field === "EndorsementID") {
+                    return item.EndorsementID.toLowerCase().includes(lowercasedValue);
+                }
                 if (field === 'policy Number') {
                     return item.PolicyNumber.toLowerCase().includes(lowercasedValue);
                 } else if (field === 'EndorsementID') {
                     return item.EndorsementID.toLowerCase().includes(lowercasedValue);
                 }
                 return (
-                    (item.PolicyNumber.toLowerCase().includes(lowercasedValue) ||
+                    (item.EndorsementID.toLowerCase().includes(lowercasedValue) ||
+                        item.PolicyNumber.toLowerCase().includes(lowercasedValue) ||
                         item.EndorsementID.toLowerCase().includes(lowercasedValue))
                 );
             });

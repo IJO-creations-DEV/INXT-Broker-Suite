@@ -50,7 +50,7 @@ const AddUser = ({ action }) => {
     phoneNumber: "",
     assignedRole: "",
   };
-  const { loading, userList, searchList, userDetailList, userViewData,userEditData } = useSelector(
+  const { loading, userList, searchList, userDetailList, userViewData, userEditData } = useSelector(
     ({ userReducers }) => {
       return {
         loading: userReducers?.loading,
@@ -58,7 +58,7 @@ const AddUser = ({ action }) => {
         searchList: userReducers?.userSearchList,
         userDetailList: userReducers?.userDetailList,
         userViewData: userReducers?.userViewData,
-        userEditData:userReducers?.userEditData
+        userEditData: userReducers?.userEditData
       };
     }
   );
@@ -73,8 +73,16 @@ const AddUser = ({ action }) => {
   ];
   const item2 = [
     {
-      label: action === "add" ? "ARIANS INSURANCE BROKERS INC" : userViewData?.assignedRole,
-      value: action === "add" ? "NY" : userViewData?.assignedRole,
+      label: action === "add" ? "Level 1 Agent" : userViewData?.assignedRole,
+      value: action === "add" ? "Level 1 Agent" : userViewData?.assignedRole,
+    },
+    {
+      label: action === "add" ? "Level 2 Motor" : userViewData?.assignedRole,
+      value: action === "add" ? "Level 2 Motor" : userViewData?.assignedRole,
+    },
+    {
+      label: action === "add" ? "Level 3 Finance" : userViewData?.assignedRole,
+      value: action === "add" ? "Level 3 Finance" : userViewData?.assignedRole,
     },
   ];
   const validate = (values) => {

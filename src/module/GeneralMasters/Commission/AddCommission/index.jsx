@@ -97,10 +97,18 @@ const AddCommission = () => {
 
     return errors;
   };
-  const codeOptions = [
-    { label: "Option 1", value: "Trans00123" },
-    { label: "Option 2", value: "Trans00124" },
+  const productOption = [
+    { label: "Option 1", value: "product 1" },
+    { label: "Option 2", value: "product 1" },
   ];
+  const selectCover = [
+    { label: "Option 1", value: "Insurance" },
+    { label: "Option 2", value: "SelectCover 1" },
+  ]; const selectAgent = [
+    { label: "Option 1", value: "Agent" },
+    { label: "Option 2", value: "SelectAgent 1" },
+  ];
+
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
     dispatch(postAddCommission(formik.values));
@@ -311,7 +319,7 @@ const AddCommission = () => {
               dropdownIcon={<SvgDropdown color={"#000"} />}
               value={formik.values.product}
               onChange={(e) => formik.setFieldValue("product", e.target.value)}
-              options={codeOptions}
+              options={productOption}
               optionLabel="value"
               placeholder={"Select"}
             />
@@ -344,7 +352,7 @@ const AddCommission = () => {
               onChange={(e) =>
                 formik.setFieldValue("selectCover", e.target.value)
               }
-              options={codeOptions}
+              options={selectCover}
               optionLabel="value"
               placeholder={"Select"}
             />
@@ -470,7 +478,7 @@ const AddCommission = () => {
               onChange={(e) =>
                 formik.setFieldValue("selectAgent", e.target.value)
               }
-              options={codeOptions}
+              options={selectAgent}
               optionLabel="value"
               placeholder={"Select"}
             />
@@ -532,7 +540,7 @@ const AddCommission = () => {
               field="commissionCode"
               header="Commission Code"
               headerStyle={headerStyle}
-              // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
+            // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
             ></Column>
             <Column
               field="sharingRate"

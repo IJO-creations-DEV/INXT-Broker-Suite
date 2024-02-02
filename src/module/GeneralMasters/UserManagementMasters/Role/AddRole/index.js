@@ -45,15 +45,47 @@ const AddRole = ({ action }) => {
   const item = [{
     label: action === "add" ? "Accounts" : roleViewData?.menuAccess,
     value: action === "add" ? "Accounts" : roleViewData?.menuAccess
-  }]
+  },
+  {
+    label: action === "add" ? "Master" : roleViewData?.menuAccess,
+    value: action === "add" ? "Master" : roleViewData?.menuAccess
+  },
+  {
+    label: action === "add" ? "Broker" : roleViewData?.menuAccess,
+    value: action === "add" ? "Broker" : roleViewData?.menuAccess
+  },
+  {
+    label: action === "add" ? "Reports" : roleViewData?.menuAccess,
+    value: action === "add" ? "Reports" : roleViewData?.menuAccess
+  }
+  ]
   const item1 = [{
     label: action === "add" ? "Receipts" : roleViewData?.subMenuAccess,
-    value: action === "add" ? "Accounts" : roleViewData?.subMenuAccess
-  }]
-  const item2 = [{
-    label: action === "add" ? "Read" : roleViewData?.permissions,
-    value: action === "add" ? "Accounts" : roleViewData?.permissions
-  }]
+    value: action === "add" ? "Receipts" : roleViewData?.subMenuAccess
+  },
+  {
+    label: action === "add" ? "Generals" : roleViewData?.subMenuAccess,
+    value: action === "add" ? "Generals" : roleViewData?.subMenuAccess
+  },
+  {
+    label: action === "add" ? "Finance" : roleViewData?.subMenuAccess,
+    value: action === "add" ? "Finance" : roleViewData?.subMenuAccess
+  },
+  {
+    label: action === "add" ? "Petty Cash" : roleViewData?.subMenuAccess,
+    value: action === "add" ? "Petty Cash" : roleViewData?.subMenuAccess
+  },
+  ]
+  const item2 = [
+    {
+      label: action === "add" ? "Read" : roleViewData?.permissions,
+      value: action === "add" ? "Read" : roleViewData?.permissions
+    },
+    {
+      label: action === "add" ? "Write" : roleViewData?.permissions,
+      value: action === "add" ? "Write" : roleViewData?.permissions
+    }
+  ]
   const home = { label: "Master" };
 
   const initialValue = {

@@ -12,8 +12,8 @@ const initialState = {
       clintid: "123",
       policyNo: "999",
       grosspremium: "355",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "PAID"
     },
     {
@@ -23,8 +23,8 @@ const initialState = {
       clintid: "456",
       policyNo: "98456",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "PAID"
     },
     {
@@ -34,8 +34,8 @@ const initialState = {
       clintid: "566",
       policyNo: "123456",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "PAID"
     },
     {
@@ -45,8 +45,8 @@ const initialState = {
       clintid: "786",
       policyNo: "67856",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "PAID"
     },
 
@@ -59,8 +59,8 @@ const initialState = {
       clintid: "123",
       policyNo: "999",
       grosspremium: "355",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "PENDING"
     },
     {
@@ -70,8 +70,8 @@ const initialState = {
       clintid: "456",
       policyNo: "98456",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "PENDING"
     },
     {
@@ -81,8 +81,8 @@ const initialState = {
       clintid: "566",
       policyNo: "123456",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "PENDING"
     },
     {
@@ -92,8 +92,8 @@ const initialState = {
       clintid: "786",
       policyNo: "67856",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "PENDING"
     },
 
@@ -106,8 +106,8 @@ const initialState = {
       clintid: "123",
       policyNo: "999",
       grosspremium: "355",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "REVIEWING"
     },
     {
@@ -117,8 +117,8 @@ const initialState = {
       clintid: "456",
       policyNo: "98456",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2024",
       status: "REVIEWING"
     },
     {
@@ -128,8 +128,8 @@ const initialState = {
       clintid: "566",
       policyNo: "123456",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "REVIEWING"
     },
     {
@@ -139,8 +139,8 @@ const initialState = {
       clintid: "786",
       policyNo: "67856",
       grosspremium: "655",
-      policyIssued: "13/12/12",
-      policyExpird: "13/12/12",
+      policyIssued: "13/12/2024",
+      policyExpird: "13/12/2025",
       status: "REVIEWING"
     },
   ],

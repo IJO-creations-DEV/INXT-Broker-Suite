@@ -17,8 +17,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPaymentPaidSearchDataMiddleWare, getPaymentSearchDataMiddleWare } from "../../store/paymentMiddleware";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 
-const PaidListTabelData = ({ paymenttabledata, agentPaymentMainReducers }) => {
-  console.log(paymenttabledata, "paymenttabledata");
+const PaidListTabelData = () => {
+  const { paymenttabledata, paymentSearchList, loading, paymentPaidSearchList, paymentPendingtabledata, paymentRewiwingtabledata } = useSelector(
+    ({ agentPaymentMainReducers }) => {
+      return {
+        loading: agentPaymentMainReducers?.loading,
+        paymenttabledata: agentPaymentMainReducers?.paymenttabledata,
+        paymentPaidSearchList: agentPaymentMainReducers?.paymentPaidSearchList
+      };
+    }
+  );
+  console.log(paymentPaidSearchList, "paymentPaidSearchList  ");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("PolicyNumber");
@@ -241,7 +250,7 @@ const PaidListTabelData = ({ paymenttabledata, agentPaymentMainReducers }) => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search ? agentPaymentMainReducers : paymenttabledata}
+          value={search ? paymentPaidSearchList : paymenttabledata}
           paginator
           rows={5}
           selectionMode={selectionMode}

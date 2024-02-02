@@ -60,8 +60,8 @@ const BankMaster = () => {
     formik.setFieldValue("addressLine1", "Sudharshan Building");
     formik.setFieldValue("addressLine2", "2nd floor,chamiers Road");
     formik.setFieldValue("addressLine3", "Nanthanam");
-    formik.setFieldValue("city", "Chennai");
-    formik.setFieldValue("state", "Tamil Nadu");
+    formik.setFieldValue("city", "MATI");
+    formik.setFieldValue("state", "DON SALVADOR BENEDICTO");
     formik.setFieldValue("country", "Philippines");
     formik.setFieldValue("mobile", rowData?.mobile);
     formik.setFieldValue("fax", rowData?.mobile);
@@ -83,8 +83,8 @@ const BankMaster = () => {
     formik.setFieldValue("addressLine1", "Sudharshan Building");
     formik.setFieldValue("addressLine2", "2nd floor,chamiers Road");
     formik.setFieldValue("addressLine3", "Nanthanam");
-    formik.setFieldValue("city", "Chennai");
-    formik.setFieldValue("state", "Tamil Nadu");
+    formik.setFieldValue("city", "MATI");
+    formik.setFieldValue("state", "DON SALVADOR BENEDICTO");
     formik.setFieldValue("country", "Philippines");
     formik.setFieldValue("mobile", rowData?.mobile);
     formik.setFieldValue("fax", rowData?.mobile);

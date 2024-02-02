@@ -24,13 +24,13 @@ const PyamentTabelCard = () => {
             <Card>
                 <TabView>
                     <TabPanel header="Paid">
-                        <PaidListTabelData paymenttabledata={paymenttabledata} agentPaymentMainReducers={agentPaymentMainReducers} />
+                        <PaidListTabelData/>
                     </TabPanel>
                     <TabPanel header="Pending">
-                        <PendingListTabelData paymentPendingtabledata={paymentPendingtabledata} paymentSearchList={paymentSearchList} />
+                        <PendingListTabelData />
                     </TabPanel>
                     <TabPanel header="Reviewing">
-                        <ReviewingListTabelData paymentRewiwingtabledata={paymentRewiwingtabledata} paymentSearchList={paymentSearchList} />
+                        <ReviewingListTabelData />
                     </TabPanel>
                 </TabView>
             </Card>

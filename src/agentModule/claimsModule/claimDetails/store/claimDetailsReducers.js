@@ -14,8 +14,8 @@ const initialState = {
             HouseNo: "24",
             Barangay:"ss",
             CountryName: "Philippines",
-            Province: "karnataka",
-            CityName: "davangere",
+            Province: "DAVAO ORIENTAL",
+            CityName: "MATI",
             ZipCode: "577004"
            
         },

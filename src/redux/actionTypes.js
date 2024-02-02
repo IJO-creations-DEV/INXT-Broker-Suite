@@ -168,7 +168,11 @@ export const PATCH_BANK_DETAIL_EDIT = "bank/PATCH_BANK_DETAIL_EDIT";
 export const POST_ADD_ACCOUNT_DETAILS="bank/POST_ADD_ACCOUNT_DETAILS";
 export const GET_ADD_VIEW="bank/GET_ADD_VIEW"
 export const GET_Account_PATCH_VIEW="bank/GET_Account_PATCH_VIEW";
-export const GET_PATCH_VIEW="bank/GET_PATCH_VIEW"
+export const GET_PATCH_VIEW="bank/GET_PATCH_VIEW";
+export const GET_CHEQUE_LIST="bank/GET_CHEQUE_LIST";
+export const POST_CHEQUE_DATA="bank/POST_CHEQUE_DATA";
+export const GET_CHEQUE_EDIT_DATA="bank/GET_CHEQUE_EDIT_DATA"
+export const POST_CHEQUE_EDIT_DATA="bank/POST_CHEQUE_EDIT_DATA"
 
 export const GET_ACCOUNT_CATEGORY_LIST =
   "accountCategory/GET_ACCOUNT_CATEGORY_LIST";

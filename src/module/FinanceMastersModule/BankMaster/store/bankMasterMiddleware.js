@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT, POST_ADD_BANK, POST_ADD_ACCOUNT_DETAILS, GET_ADD_VIEW, GET_Account_PATCH_VIEW, GET_PATCH_VIEW } from "../../../../redux/actionTypes";
+import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT, POST_ADD_BANK, POST_ADD_ACCOUNT_DETAILS, GET_ADD_VIEW, GET_Account_PATCH_VIEW, GET_PATCH_VIEW, GET_CHEQUE_LIST, POST_CHEQUE_DATA, GET_CHEQUE_EDIT_DATA, POST_CHEQUE_EDIT_DATA } from "../../../../redux/actionTypes";
 import SvgEye from "../../../../assets/icons/SvgEye";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 
@@ -21,7 +21,7 @@ export const getBankList = createAsyncThunk(
 
 export const getBankSearchList = createAsyncThunk(
     GET_BANK_SEARCH_LIST,
-    async (payload, { rejectWithValue,getState }) => {
+    async (payload, { rejectWithValue, getState }) => {
         const textSearch = payload;
         console.log(textSearch, "textSearch")
         const { bankMasterReducer } = getState();
@@ -110,14 +110,14 @@ export const postAddAccountDetails = createAsyncThunk(
 export const postAddBank = createAsyncThunk(
     POST_ADD_BANK,
     async (payload, { rejectWithValue }) => {
-        console.log(payload,"postAddBank");
+        console.log(payload, "postAddBank");
         const tabledata = {
             id: payload.id,
             bankCode: payload.BankCode,
             // code: <SvgArrow />,
             bankName: payload?.BankName,
             bankBranch: payload?.BankBranch,
-            ifscCode:payload?.IFSCCode,
+            ifscCode: payload?.IFSCCode,
             email: payload?.EmailID,
             status: true,
             mobile: payload?.PhoneNumber
@@ -161,7 +161,7 @@ export const getPatchAccountDetailsView = createAsyncThunk(
 export const patchBankDetailEdit = createAsyncThunk(
     PATCH_BANK_DETAIL_EDIT,
     async (payload, { rejectWithValue, getState }) => {
-        console.log(payload,"patchBankDetailEdit");
+        console.log(payload, "patchBankDetailEdit");
         // const { bankMasterReducer } = getState();
 
 
@@ -233,3 +233,67 @@ export const postPatchAccountDetailEdit = createAsyncThunk(
         }
     },
 );
+
+export const getChequeListData = createAsyncThunk(
+    GET_CHEQUE_LIST,
+    async (payload, { rejectWithValue }) => {
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+
+export const postChequeDataMiddleWare = createAsyncThunk(
+    POST_CHEQUE_DATA,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "pppppp");
+        const data = {
+            id: payload?.id,
+            chequeBookNo: payload?.chequeBookNo,
+            chequeLeafBegining: payload?.chequeLeafBegining,
+            chequeLeafEnd: payload?.chequeLeafEnd,
+        }
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+
+export const getChequeEditDataMiddleWare = createAsyncThunk(
+    GET_CHEQUE_EDIT_DATA,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "pppppp");
+       
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return payload;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+export const postChequeEditDataMiddleWare = createAsyncThunk(
+    POST_CHEQUE_EDIT_DATA,
+    async (payload, { rejectWithValue }) => {
+        console.log(payload, "pppppp");
+        const data = {
+            id: payload?.id,
+            chequeBookNo: payload?.chequeBookNo,
+            chequeLeafBegining: payload?.chequeLeafBegining,
+            chequeLeafEnd: payload?.chequeLeafEnd,
+        }
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
+

@@ -858,7 +858,7 @@ const Maincomponent = () => {
           />
           <Route
             path="master/finance/bank/accountdataview/editaccountdetail"
-            element={<EditAccountDetail />}
+            element={<EditAccountDetail action="Edit" />}
           />
 
           {/* exchangeRate */}

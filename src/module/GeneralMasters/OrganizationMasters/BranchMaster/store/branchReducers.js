@@ -56,31 +56,32 @@ const initialState = {
       Status: "Credit",
       Description: "test purpose",
     },
-    {
-      id: "3",
-      DepartmentCode: "003",
-      DepartmentName: "Accident and Health",
-      Status: "Credit",
-      Description: "test purpose",
-    },
-    {
-      id: "4",
-      DepartmentCode: "004",
-      DepartmentName: "NLR Operations",
-      Status: "Credit",
-      Description: "test purpose",
-    },
-    {
-      id: "5",
-      DepartmentCode: "005",
-      DepartmentName: "Finance",
-      Status: "Credit",
-      Description: "test purpose",
-    }
+    // {
+    //   id: "3",
+    //   DepartmentCode: "003",
+    //   DepartmentName: "Accident and Health",
+    //   Status: "Credit",
+    //   Description: "test purpose",
+    // },
+    // {
+    //   id: "4",
+    //   DepartmentCode: "004",
+    //   DepartmentName: "NLR Operations",
+    //   Status: "Credit",
+    //   Description: "test purpose",
+    // },
+    // {
+    //   id: "5",
+    //   DepartmentCode: "005",
+    //   DepartmentName: "Finance",
+    //   Status: "Credit",
+    //   Description: "test purpose",
+    // }
   ],
   depatmentView: {},
   getBranchPatch: {},
-  getDepartmentPatch: {}
+  getDepartmentPatch: {},
+  postAddDepartmentData: {}
 };
 let nextId = 3
 let nextId2 = 3
@@ -203,6 +204,7 @@ const organizationBranchReducers = createSlice({
     );
     builder.addCase(postAddDepartment.rejected, (state, action) => {
       state.loading = false;
+      state.postAddDepartmentData = {}
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 

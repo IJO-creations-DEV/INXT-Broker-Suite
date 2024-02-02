@@ -236,7 +236,8 @@ const ViewCommission = () => {
         </div>
         <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
           <DropDowns
-            disabled={step === 0 ? false : true}
+            // disabled={step === 0 ? false : true}
+            disabled={true}
             className={
               step === 0
                 ? "input__field__reversal"
@@ -266,7 +267,8 @@ const ViewCommission = () => {
         </div>
         <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
           <DropDowns
-            disabled={step === 0 ? false : true}
+            // disabled={step === 0 ? false : true}
+            disabled={true}
             className={
               step === 0
                 ? "input__field__reversal"
@@ -324,6 +326,7 @@ const ViewCommission = () => {
                 onChange={(e) => setDate(e.value)}
                 showIcon
                 className="calender_field_claim"
+                disabled={true}
                 // placeholder={translate("claimstatus")["Choose Date"]}
               />
               <div className="calender_icon_claim">
@@ -346,6 +349,7 @@ const ViewCommission = () => {
                 onChange={(e) => setDate(e.value)}
                 showIcon
                 className="calender_field_claim"
+                disabled={true}
                 // placeholder={translate("claimstatus")["Choose Date"]}
               />
               <div className="calender_icon_claim">
@@ -356,7 +360,8 @@ const ViewCommission = () => {
         </div>
         <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
           <DropDowns
-            disabled={step === 0 ? false : true}
+            // disabled={step === 0 ? false : true}
+            disabled={true}
             className={
               step === 0
                 ? "input__field__reversal"
@@ -391,6 +396,7 @@ const ViewCommission = () => {
             value={selectSwitch}
             onChange={(e) => setselectSwitch(e.value)}
             options={selectSwitchoptions}
+            disabled={true}
           />
         </div>
       </div>

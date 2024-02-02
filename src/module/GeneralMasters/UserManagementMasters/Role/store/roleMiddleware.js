@@ -34,7 +34,9 @@ export const getRoleListByIdMiddleware = createAsyncThunk(
 export const postAddRoleMiddleware = createAsyncThunk(
   POST_ADD_ROLE,
   async (payload, { rejectWithValue }) => {
+    console.log(payload?.id, "payload");
     const data = {
+      id: payload?.id,
       roleCode: payload?.roleCode,
       roleName: payload?.roleName,
       roleDescription: payload?.roleDescription,
@@ -45,7 +47,7 @@ export const postAddRoleMiddleware = createAsyncThunk(
       modifiedOn: "RC1234",
     }
     try {
-    
+
       return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
@@ -55,17 +57,17 @@ export const postAddRoleMiddleware = createAsyncThunk(
 export const patchRoleEditMiddleware = createAsyncThunk(
   PATCH_ROLE_EDIT,
   async (payload, { rejectWithValue }) => {
-    console.log(payload,"payload");
-    const data={
-      id:payload?.id,
-      roleCode :payload?.roleCode,
-      roleName :payload?.roleName,
-      roleDescription :payload?.roleDescription,
-      menuAccess :payload?.menuAccess,
-      subMenuAccess :payload?.subMenuAccess,
-      permissions :payload?.permissions,
-      modifiedBy :payload?.modifiedBy,
-      modifiedOn :payload?.modifiedOn,
+    console.log(payload, "payload");
+    const data = {
+      id: payload?.id,
+      roleCode: payload?.roleCode,
+      roleName: payload?.roleName,
+      roleDescription: payload?.roleDescription,
+      menuAccess: payload?.menuAccess,
+      subMenuAccess: payload?.subMenuAccess,
+      permissions: payload?.permissions,
+      modifiedBy: payload?.modifiedBy,
+      modifiedOn: payload?.modifiedOn,
     }
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);

@@ -82,19 +82,43 @@ export const getSubAccountEdit = createAsyncThunk(
 
 export const patchSubAccountEdit = createAsyncThunk(
     PATCH_SUB__ACCOUNT_EDIT,
-    async (payload, { rejectWithValue }) => {
-        console.log(payload, "payload")
-        const TableData = {
-            id: payload?.id,
-            subAccountCode: payload?.subAccountCode,
-            description: payload?.description,
-            subAccountName: payload?.subAccountName,
-            mainAccount: payload?.mainAccount,
-            currencyCode: payload?.currencyCode,
-        }
+    async (payload, { rejectWithValue, getState }) => {
+
+        const { subAccountMainReducers } = getState();
+        const { subAccountList } = subAccountMainReducers;
+
+        console.log(subAccountList, payload, "payload123")
+
+        const updatedData = subAccountList?.map((item) => {
+            if (parseInt(item.id) === parseInt(payload?.id)) {
+                console.log("www", item.id)
+                return {
+                    id: payload?.id,
+                    subAccountCode: payload?.subAccountCode,
+                    description: payload?.description,
+                    subAccountName: payload?.subAccountName,
+                    mainAccount: payload?.mainAccount,
+                    currencyCode: payload?.currencyCode,
+
+                };
+            }
+            return item;
+        });
+
+
+
+        // const TableData = {
+        // id: payload?.id,
+        // subAccountCode: payload?.subAccountCode,
+        // description: payload?.description,
+        // subAccountName: payload?.subAccountName,
+        // mainAccount: payload?.mainAccount,
+        // currencyCode: payload?.currencyCode,
+        // }
         try {
+            console.log("qq", updatedData)
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return TableData;
+            return updatedData;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

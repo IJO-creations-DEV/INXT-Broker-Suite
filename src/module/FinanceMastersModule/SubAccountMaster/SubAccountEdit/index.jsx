@@ -77,6 +77,7 @@ const SubAdd = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = (value) => {
+    console.log("first", value);
     dispatch(patchSubAccountEdit(value));
     navigate("/master/finance/subaccount");
     // toastRef.current.showToast();

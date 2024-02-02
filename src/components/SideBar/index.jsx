@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import SvgFinalLogo from "../../assets/icons/SvgFinalLogo";
+import SvgLogo from "../../assets/icons/SvgLogo";
 import SvgDot from "../../assets/icons/SvgDot";
 import { menuList } from "./list";
 import "../SideBar/index.scss";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import SvgAccountIcon from "../../assets/icons/SvgAccountIcon";
 import SvgMassterIcon from "../../assets/icons/SvgMassterIcon";
 import SvgReportsIcon from "../../assets/icons/SvgReportsIcon";
+import SvgFinalLogo from "../../assets/icons/SvgFinalLogo";
 import SvgAgentClientIcon from "../../assets/agentIcon/SvgAgentClientIcon";
 import SvgAgentPaymentIcon from "../../assets/agentIcon/SvgAgentPaymentIcon";
 import SvgAgentHomeIcon from "../../assets/agentIcon/SvgAgentHomeIcon";
@@ -44,15 +45,18 @@ const ResponsiveDrawer = () => {
     <Sidebar
       visible={visible}
       style={{
-        backgroundColor: "#1C2536",
+        backgroundColor: "#1C2536 !important",
         display: visible ? "block" : "none",
         height: "100vh",
         overflowY: "auto",
         scrollbarWidth: "none",
         msOverflowStyle: "none",
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
       }}
       rootStyles={{
-        backgroundColor: "#1C2536",
+        backgroundColor: "#1C2536 !important",
       }}
       onHide={() => setVisible(false)}
     >
@@ -64,82 +68,257 @@ const ResponsiveDrawer = () => {
             marginLeft: "28px",
           }}
         >
+          {/* <SvgLogo color={"#fff"} /> */}
           <SvgFinalLogo />
         </div>
-        <Menu style={{ backgroundColor: "#1C2536", border: "none" }}>
+        <Menu style={{ backgroundColor: "#1C2536 !important", border: "none" }}>
           {menuList.map((data, index) => (
-            <SubMenu
-              key={index}
-              style={{
-                color: "#fff",
-                width: "100%",
-                paddingLeft: "8px",
-                backgroundColor:
-                  data.name === openSubMenu ||
-                  data.submenu.some((subItem) => subItem.path === findPath)
-                    ? "#36435c"
-                    : "#1C2536",
-              }}
-              label={data.name}
-              icon={
-                data.name === "Accounts" ? (
-                  <SvgAccountIcon
-                    color={data.name === openSubMenu ? "#6366F1" : "#fff"}
-                  />
-                ) : data.name === "Petty Cash" ? (
-                  <SvgAccountIcon
-                    color={data.name === openSubMenu ? "#6366F1" : "#fff"}
-                  />
-                ) : data.name === "Master" ? (
-                  <SvgMassterIcon
-                    color={data.name === openSubMenu ? "#6366F1" : "#fff"}
-                  />
-                ) : data.name === "Reports" || data.name === "Broker" ? (
-                  <SvgReportsIcon
-                    color={data.name === openSubMenu ? "#6366F1" : "#fff"}
-                  />
-                ) : null
-              }
-              onClick={() => handleClick(data.name)}
-            >
-              {data.submenu.map((subItem, subIndex) => (
-                <MenuItem
-                  key={subIndex}
-                  component={<Link to={subItem.path} />}
-                  onClick={() => handleNavigation(subItem.path)}
-                >
-                  <div className="menu__list">
-                    {/* Removed unnecessary nested ternary operators */}
-                    {(() => {
-                      switch (subItem.name) {
-                        case "Home":
-                          return <SvgAgentHomeIcon color={subItem.path === findPath ? "#6366F1" : "#9DA4AE"} />;
-                        case "Leads":
-                        case "Policy":
-                          return <SvgAgentLeadIcon color={subItem.path === findPath ? "#6366F1" : "#9DA4AE"} />;
-                        case "Clients":
-                        case "Quotation":
-                          return <SvgAgentClientIcon color={subItem.path === findPath ? "#6366F1" : "#9DA4AE"} />;
-                        case "Open Items":
-                        case "Claim":
-                          return <SvgAgentItemsIcon color={subItem.path === findPath ? "#6366F1" : "#9DA4AE"} />;
-                        default:
-                          return <SvgAgentPaymentIcon color={subItem.path === findPath ? "#6366F1" : "#9DA4AE"} />;
-                      }
-                    })()}
-                    {/* End of removed nested ternary operators */}
-                    <span
-                      style={{
-                        color: subItem.path === findPath ? "#fff" : "#9DA4AE",
-                      }}
-                      className="menu__text"
-                    >
-                      {subItem.name}
-                    </span>
-                  </div>
-                </MenuItem>
-              ))}
-            </SubMenu>
+            <React.Fragment key={data.name}>
+              <SubMenu
+                style={{
+                  color: "#fff",
+                  width: "100%",
+                  paddingLeft: "8px",
+                  backgroundColor:
+                    data.name === openSubMenu ||
+                    data.submenu.some((subItem) => subItem.path === findPath)
+                      ? "#36435c"
+                      : "#1C2536",
+                }}
+                color="#fff"
+                label={data.name}
+                icon={
+                  data.name === "Accounts" ? (
+                    <SvgAccountIcon
+                      color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
+                    />
+                  ) : data.name === "Petty Cash" ? (
+                    <SvgAccountIcon
+                      color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
+                    />
+                  ) : data.name === "Master" ? (
+                    <SvgMassterIcon
+                      color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
+                    />
+                  ) : data.name === "Reports" ? (
+                    <SvgReportsIcon
+                      color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
+                    />
+                  ) : data.name === "Broker" ? (
+                    <SvgReportsIcon
+                      color={data.name === openSubMenu ? "#6366F1" : "#Fff"}
+                    />
+                  ) : undefined
+                }
+                onClick={() => handleClick(data.name)}
+              >
+                {data.submenu.map((subItem, subIndex) => {
+                  return (
+                    <React.Fragment key={subIndex}>
+                      {subItem.submenu ? (
+                        <SubMenu
+                          label={subItem.name}
+                          style={{ marginLeft: -8 }}
+                        >
+                          {subItem.submenu.map((nestedItem, nestedIndex) => (
+                            <React.Fragment key={nestedIndex}>
+                              {nestedItem.submenu ? (
+                                <SubMenu
+                                  label={nestedItem.name}
+                                  style={
+                                    {
+                                      /* Style for nested submenu */
+                                    }
+                                  }
+                                >
+                                  {nestedItem.submenu.map(
+                                    (subsubmenuItem, subsubmenuIndex) => (
+                                      <MenuItem
+                                        key={subsubmenuIndex}
+                                        component={
+                                          <Link to={subsubmenuItem.path} />
+                                        }
+                                        onClick={() =>
+                                          handleNavigation(subsubmenuItem.path)
+                                        }
+                                      >
+                                        <div className="menu__list">
+                                          <SvgDot
+                                            color={
+                                              subsubmenuItem.path === findPath
+                                                ? "#6366F1"
+                                                : "#1C2536"
+                                            }
+                                          />
+                                          <span
+                                            style={{
+                                              color:
+                                                subsubmenuItem.path === findPath
+                                                  ? "#fff"
+                                                  : "#9DA4AE",
+                                            }}
+                                            className="menu__text"
+                                          >
+                                            {subsubmenuItem.name}
+                                          </span>
+                                        </div>
+                                      </MenuItem>
+                                    )
+                                  )}
+                                </SubMenu>
+                              ) : (
+                                <MenuItem
+                                  key={nestedIndex}
+                                  component={<Link to={nestedItem.path} />}
+                                  onClick={() =>
+                                    handleNavigation(nestedItem.path)
+                                  }
+                                >
+                                  <div className="menu__list">
+                                    <SvgDot
+                                      color={
+                                        nestedItem.path === findPath
+                                          ? "#6366F1"
+                                          : "#1C2536"
+                                      }
+                                    />
+                                    <span
+                                      style={{
+                                        color:
+                                          nestedItem.path === findPath
+                                            ? "#fff"
+                                            : "#9DA4AE",
+                                      }}
+                                      className="menu__text"
+                                    >
+                                      {nestedItem.name}
+                                    </span>
+                                  </div>
+                                </MenuItem>
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </SubMenu>
+                      ) : (
+                        <MenuItem
+                          key={subIndex}
+                          component={<Link to={subItem.path} />}
+                          onClick={() => handleNavigation(subItem.path)}
+                        >
+                          <div
+                            className="menu__list"
+                            style={
+                              data.name === "Broker"
+                                ? {
+                                    display: "flex",
+                                    gap: "10px",
+                                    alignItems: "center",
+                                  }
+                                : {}
+                            }
+                          >
+                            {subItem.name === "Home" ||
+                            subItem.name === "Leads" ||
+                            subItem.name === "Clients" ||
+                            subItem.name === "Open Items" ||
+                            subItem.name === "Claim" ||
+                            subItem.name === "Policy" ||
+                            subItem.name === "Quotation" ||
+                            subItem.name === "Payments" ? (
+                              subItem.name === "Home" ? (
+                                <SvgAgentHomeIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Leads" ? (
+                                <SvgAgentLeadIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Clients" ? (
+                                <SvgAgentClientIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Open Items" ? (
+                                <SvgAgentItemsIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === " Claim" ? (
+                                <SvgAgentItemsIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Quotation" ? (
+                                <SvgAgentItemsIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : subItem.name === "Policy" ? (
+                                <SvgAgentItemsIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              ) : (
+                                <SvgAgentPaymentIcon
+                                  color={
+                                    subItem.path === findPath
+                                      ? "#6366F1"
+                                      : "#9DA4AE"
+                                  }
+                                />
+                              )
+                            ) : (
+                              <SvgDot
+                                color={
+                                  subItem.path === findPath
+                                    ? "#6366F1"
+                                    : "#1C2536"
+                                }
+                              />
+                            )}
+
+                            <span
+                              style={{
+                                color:
+                                  subItem.path === findPath
+                                    ? "#fff"
+                                    : "#9DA4AE",
+                              }}
+                              className="menu__text"
+                            >
+                              {subItem.name}
+                            </span>
+                          </div>
+                        </MenuItem>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </SubMenu>
+            </React.Fragment>
           ))}
         </Menu>
       </div>

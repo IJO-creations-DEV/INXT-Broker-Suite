@@ -17,8 +17,8 @@ const initialState = {
             mainAccount: "m123",
             currencyCode: "cd123",
             status: true,
-          },
-          {
+        },
+        {
             id: 2,
             subAccountCode: "1101001002",
             description: "REVALUED COST",
@@ -26,7 +26,7 @@ const initialState = {
             mainAccount: "m456",
             currencyCode: "cd456",
             status: false,
-          },
+        },
         //   {
         //     id: 3,
         //     subAccountCode: "sub789",
@@ -176,18 +176,22 @@ const subAccaountReducers = createSlice({
         builder.addCase(
             patchSubAccountEdit.fulfilled,
             (state, action) => {
+                console.log("qwertty", action.payload)
                 state.loading = false;
-                const updatedIndex = state.subAccountList.findIndex(
-                    (item) => item.id === action.payload.id
-                );
-                if (updatedIndex !== -1) {
-                    const updatedCurrencyList = [...state.subAccountList];
-                    updatedCurrencyList[updatedIndex] = action.payload;
-                    state.subAccountList = updatedCurrencyList;
-                    console.log(state.subAccountList, "state.subAccountList")
-                } else {
-                    state.subAccountList = [...state.subAccountList, action.payload];
-                }
+                // const updatedCurrencyList = [...state.subAccountList];
+                // updatedCurrencyList[updatedIndex] = action.payload;
+                state.subAccountList = action.payload;
+                // const updatedIndex = state.subAccountList.findIndex(
+                //     (item) => item.id === action.payload.id
+                // );
+                // if (updatedIndex !== -1) {
+                //     const updatedCurrencyList = [...state.subAccountList];
+                //     updatedCurrencyList[updatedIndex] = action.payload;
+                //     state.subAccountList = updatedCurrencyList;
+                //     console.log(state.subAccountList, "state.subAccountList")
+                // } else {
+                //     state.subAccountList = [...state.subAccountList, action.payload];
+                // }
             }
         );
 

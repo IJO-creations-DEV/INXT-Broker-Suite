@@ -322,6 +322,7 @@ const EditCommission = () => {
                   : "input__label__reversal__inactive"
               }
               label="Description"
+              
               placeholder="Enter"
               value={formik.values.desc}
               onChange={(e) => formik.setFieldValue("desc", e.target.value)}

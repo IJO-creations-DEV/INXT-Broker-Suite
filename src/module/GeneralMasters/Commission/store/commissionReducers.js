@@ -7,7 +7,7 @@ const initialState = {
     addCommission: {},
     commissionSearchList: [],
     commissionView: {},
-    popupEditData:{},
+    popupEditData: {},
     CommissionEdit: {},
     getCommissionEdit: {},
     commissionList: [
@@ -16,7 +16,7 @@ const initialState = {
             commissionCode: "COMM001 ",
             desc: "decriptionCommission0123",
             maxRate: "123",
-            selectCover:"CTPL",
+            selectCover: "CTPL",
             selectAgent: "822",
             product: "Motor ",
             // selectCovers: "Cus01123",
@@ -31,7 +31,7 @@ const initialState = {
             commissionCode: "COMM002",
             desc: "decriptionCommission0123",
             maxRate: "123",
-            selectCover:"Comprehensive",
+            selectCover: "Comprehensive",
             selectAgent: "822",
             product: "Motor ",
             // selectCovers: "Cus01123",
@@ -46,7 +46,7 @@ const initialState = {
             commissionCode: "COMM003",
             desc: "decriptionCommission0123",
             maxRate: "123",
-            selectCover:"Excess BIPD ",
+            selectCover: "Excess BIPD ",
             selectAgent: "822",
             product: "Motor ",
             // selectCovers: "Cus01123",
@@ -61,7 +61,7 @@ const initialState = {
             commissionCode: "COMM004",
             desc: "decriptionCommission0123",
             maxRate: "123",
-            selectCover:"OD and Theft",
+            selectCover: "OD and Theft",
             selectAgent: "822",
             product: "Motor ",
             // selectCovers: "Cus01123",
@@ -71,8 +71,8 @@ const initialState = {
             // Amount: "500.00",
             action: <SvgIconeye />,
         },
-        
-       
+
+
 
 
     ],
@@ -90,8 +90,8 @@ const initialState = {
             sharingRate: "S123",
         }
     ],
-    commissionPopupView:{}
-    
+    commissionPopupView: {}
+
 
 
 
@@ -216,34 +216,35 @@ const commissionReducers = createSlice({
 
         builder.addCase(patchCommissionEdit.pending, (state) => {
             state.loading = true;
-          });
-          builder.addCase(
+        });
+        builder.addCase(
             patchCommissionEdit.fulfilled,
             (state, action) => {
-              state.loading = false;
-              const updatedIndex = state.commissionList.findIndex(
-                (item) => item.id === action.payload.id
-              );
-              if (updatedIndex !== -1) {
-                const updatedCurrencyList = [...state.commissionList];
-                updatedCurrencyList[updatedIndex] = action.payload;
-                state.commissionList = updatedCurrencyList;
-              } else {
-                state.commissionList = [...state.commissionList, action.payload];
-              }
+                state.loading = false;
+                const updatedIndex = state.commissionList.findIndex(
+                    (item) => item.id === action.payload.id
+                );
+                if (updatedIndex !== -1) {
+                    const updatedCurrencyList = [...state.commissionList];
+                    updatedCurrencyList[updatedIndex] = action.payload;
+                    state.commissionList = updatedCurrencyList;
+
+                } else {
+                    state.commissionList = [...state.commissionList, action.payload];
+                }
             }
-          );
-          builder.addCase(
+        );
+        builder.addCase(
             patchCommissionEdit.rejected,
             (state, action) => {
-              state.loading = false;
-      
-              state.CommissionEdit = {};
-              state.error = typeof action.payload === "string" ? action.payload : "";
-            }
-          );
+                state.loading = false;
 
-       
+                state.CommissionEdit = {};
+                state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+        );
+
+
 
 
         //getCommissionView
@@ -269,7 +270,7 @@ const commissionReducers = createSlice({
         );
 
 
-        
+
         builder.addCase(getEditCommissionPopup.pending, (state) => {
             state.loading = true;
         });
@@ -291,27 +292,27 @@ const commissionReducers = createSlice({
         );
 
 
-         
+
         builder.addCase(addLevelPatchEditPopup.pending, (state) => {
             state.loading = true;
         });
         builder.addCase(
             addLevelPatchEditPopup.fulfilled,
             (state, action) => {
-              state.loading = false;
-              const updatedIndex = state.addLevelCommissionSharing.findIndex(
-                (item) => item.id === action.payload.id
-              );
-              console.log(updatedIndex,"updatedIndex");
-              if (updatedIndex !== -1) {
-                const updatedCurrencyList = [...state.addLevelCommissionSharing];
-                updatedCurrencyList[updatedIndex] = action.payload;
-                state.addLevelCommissionSharing = updatedCurrencyList;
-              } else {
-                state.pettyCashList = [...state.addLevelCommissionSharing, action.payload];
-              }
+                state.loading = false;
+                const updatedIndex = state.addLevelCommissionSharing.findIndex(
+                    (item) => item.id === action.payload.id
+                );
+                console.log(updatedIndex, "updatedIndex");
+                if (updatedIndex !== -1) {
+                    const updatedCurrencyList = [...state.addLevelCommissionSharing];
+                    updatedCurrencyList[updatedIndex] = action.payload;
+                    state.addLevelCommissionSharing = updatedCurrencyList;
+                } else {
+                    state.pettyCashList = [...state.addLevelCommissionSharing, action.payload];
+                }
             }
-          );
+        );
         builder.addCase(
             addLevelPatchEditPopup.rejected,
             (state, action) => {

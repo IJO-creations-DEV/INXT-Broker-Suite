@@ -223,6 +223,7 @@ const UserGroupAccess = () => {
             header="Action"
             headerStyle={ViewheaderStyle}
             className="fieldvalue_container"
+            style={{ display: 'flex', justifyContent: 'center' }}
           ></Column>
         </DataTable>
       </div>
@@ -237,7 +238,7 @@ const UserGroupAccess = () => {
             <DropDowns
               value={formik.values.RoleCode}
               onChange={formik.handleChange("RoleCode")}
-              error={formik.errors.RoleCode}
+              error={formik.touched.RoleCode && formik.errors.RoleCode}
               className="inputdialog__fieled"
               label="Role Code"
               classNames="label__sub__add"
@@ -253,7 +254,7 @@ const UserGroupAccess = () => {
               classNames="input__filed"
               value={formik.values.RoleName}
               onChange={formik.handleChange("RoleName")}
-              error={formik.errors.RoleName}
+              error={formik.touched.RoleName && formik.errors.RoleName}
               label="Role Name"
               placeholder="Enter"
               textColor={"#111927"}
@@ -267,7 +268,7 @@ const UserGroupAccess = () => {
               classNames="input__filed"
               value={formik.values.ActiveHours}
               onChange={formik.handleChange("ActiveHours")}
-              error={formik.errors.ActiveHours}
+              error={formik.touched.ActiveHours && formik.errors.ActiveHours}
               label="Active Hours"
               placeholder="Enter"
               textColor={"#111927"}
@@ -286,7 +287,7 @@ const UserGroupAccess = () => {
         </div>
       </Dialog>
       <Dialog
-        header="Add User Group Access"
+        header=" User Group Access"
         visible={showView}
         style={{ width: "50vw" }}
         onHide={() => setShowView(false)}

@@ -134,12 +134,8 @@ const ViewMainAccount = () => {
               placeholder="Enter"
               label="Main Account Code"
               value={MainAccountDetailView.mainAccountCode}
+              disabled={true}
             />
-            {formik.touched.mainaccountode && formik.errors.mainaccountode && (
-              <div style={{ fontSize: 12, color: "red" }}>
-                {formik.errors.mainaccountode}
-              </div>
-            )}
           </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6 ">
             <InputField
@@ -151,6 +147,7 @@ const ViewMainAccount = () => {
               onChange={(e) =>
                 formik.setFieldValue("mainAccountName", e.target.value)
               }
+              disabled={true}
             />
             {formik.touched.mainAccountName &&
               formik.errors.mainAccountName && (
@@ -171,6 +168,7 @@ const ViewMainAccount = () => {
               onChange={(e) =>
                 formik.setFieldValue("description", e.target.value)
               }
+              disabled={true}
             />
             {formik.touched.description && formik.errors.description && (
               <div style={{ fontSize: 12, color: "red" }}>
@@ -189,6 +187,7 @@ const ViewMainAccount = () => {
               value={MainAccountDetailView.accountType}
               onChange={(e) => formik.setFieldValue("accountType", e.value)}
               options={codeaccountType}
+              disabled={true}
             />
             {formik.touched.accountType && formik.errors.accountType && (
               <div
@@ -211,6 +210,7 @@ const ViewMainAccount = () => {
               value={selectSwitch}
               onChange={(e) => setselectSwitch(e.value)}
               options={selectSwitchoptions}
+              disabled={true}
             />
           </div>
           <div className="col-12 md:col-4 lg:col-3 xl:col-3">
@@ -244,6 +244,7 @@ const ViewMainAccount = () => {
               value={entrySwitch}
               onChange={(e) => setentrySwitch(e.value)}
               options={selectSwitchoptions}
+              disabled={true}
             />
           </div>
         </div>
@@ -263,6 +264,7 @@ const ViewMainAccount = () => {
               // }
               value={MainAccountDetailView.accountCategoryCode}
               options={categoryOptionsCode}
+              disabled={true}
             />
             {formik.touched.accountCategoryCode &&
               formik.errors.accountCategoryCode && (
@@ -281,6 +283,7 @@ const ViewMainAccount = () => {
               className="input__label__corrections"
               label="description"
               value={MainAccountDetailView.description}
+
               // value={
               //   MainAccountDetailView.accountCategoryCode
               //     ? `descrption ${MainAccountDetailView.description}`

@@ -32,7 +32,7 @@ const TransactionCodeSetupTable = ({ action }) => {
   const [show, setShow] = useState(false);
   const [showView, setShowView] = useState(false);
 
- 
+
   const item = [
     {
       label: show ? "ARIANS INSURANCE BROKERS INC" : showView && mainUserViewData.branchCode,
@@ -100,6 +100,7 @@ const TransactionCodeSetupTable = ({ action }) => {
   const handleSubmit = () => {
     dispatch(postViewMainBranchUser(formik.values))
     setShow(false)
+    formik.resetForm()
   }
 
 
@@ -182,7 +183,7 @@ const TransactionCodeSetupTable = ({ action }) => {
   const renderViewButton = (rowData) => {
     console.log(rowData, "rowDatarowData");
     return (
-      <div className="center-content">
+      <div >
         <Button
           icon={<SvgEyeIcon />}
           className="eye__btn"
@@ -268,7 +269,8 @@ const TransactionCodeSetupTable = ({ action }) => {
             body={renderViewButton}
             header="Action"
             headerStyle={ViewheaderStyle}
-            className="fieldvalue_container"
+            className="fieldvalue_container_action"
+            style={{ display: 'flex', justifyContent: 'center' }}
           ></Column>
         </DataTable>
       </div>
@@ -289,7 +291,7 @@ const TransactionCodeSetupTable = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={formik.values.branchCode}
               onChange={formik.handleChange("branchCode")}
-              error={formik.errors.branchCode}
+              error={formik.touched.branchCode && formik.errors.branchCode}
               className="dropdown__add__sub"
               label="Branch"
               classNames="label__sub__add"
@@ -306,7 +308,7 @@ const TransactionCodeSetupTable = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={formik.values.departmentCode}
               onChange={formik.handleChange("departmentCode")}
-              error={formik.errors.departmentCode}
+              error={formik.touched.departmentCode &&formik.errors.departmentCode}
               className="dropdown__add__sub"
               label="Department code"
               classNames="label__sub__add"
@@ -330,7 +332,7 @@ const TransactionCodeSetupTable = ({ action }) => {
         </div>
       </Dialog>
       <Dialog
-        header="Add Branch & Department"
+        header="View Branch & Department"
         visible={showView}
         style={{ width: "50vw" }}
         onHide={() => setShowView(false)}
@@ -346,7 +348,7 @@ const TransactionCodeSetupTable = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={mainUserViewData.branchCode}
               onChange={formik.handleChange("branchCode")}
-              error={formik.errors.branchCode}
+              // error={formik.errors.branchCode}
               className="dropdown__add__sub"
               label="Branch"
               classNames="label__sub__add"
@@ -363,7 +365,7 @@ const TransactionCodeSetupTable = ({ action }) => {
               disabled={action === "view" ? true : false}
               value={mainUserViewData.departmentCode}
               onChange={formik.handleChange("departmentCode")}
-              error={formik.errors.departmentCode}
+              // error={formik.errors.departmentCode}
               className="dropdown__add__sub"
               label="Department code"
               classNames="label__sub__add"

@@ -132,8 +132,8 @@ function ViewAccountDetail() {
   };
   const Type = [
     {
-      name: accountDetailsView.AccountType,
-      code: accountDetailsView.AccountType,
+      label: accountDetailsView?.AccountType,
+      value: accountDetailsView?.AccountType,
     },
   ];
 
@@ -245,7 +245,7 @@ function ViewAccountDetail() {
                 //   formik.setFieldValue("AccountType", e.value)
                 // }
                 options={Type}
-                optionLabel="name"
+                optionLabel="label"
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />
@@ -315,11 +315,7 @@ function ViewAccountDetail() {
       <Card>
         <div className="cardheader_flex">
           <label className="headlist_lable">Cheque Book Details</label>
-          {/* <Button type="button" label="Add" className="addbutton_container"  icon= {<SvgAdd/> }
-// onClick={() => setVisible(true)} 
-onClick={()=>{formik.handleSubmit();}}
-disabled={!formik.isValid}
-/> */}
+        
         </div>
 
         <div className="tablegap_container">
@@ -362,12 +358,12 @@ disabled={!formik.isValid}
               headerStyle={headerStyle}
               className="fieldvalue_container"
             ></Column>
-            <Column
+            {/* <Column
               body={(columnData) => <SvgEdit />}
               header="Action"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-            ></Column>
+            ></Column> */}
 
             {/* <Column field="Amount" header="Total Amount" style={{ width: '24rem' }} headerStyle={headerStyle} className='fieldvalue_container'></Column> */}
             {/* <Column field="action" header="Action" headerStyle={headerStyle} className='fieldvalue_container'

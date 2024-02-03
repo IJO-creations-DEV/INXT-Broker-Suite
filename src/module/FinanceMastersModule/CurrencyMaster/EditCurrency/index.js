@@ -52,9 +52,9 @@ const EditCurrency = () => {
       SmallestUnit: CurrencyDetailEdit?.SmallestUnit,
       UnitDescription: CurrencyDetailEdit?.UnitDescription,
       CurrencyName: CurrencyDetailEdit?.CurrencyName,
-      Description: "Description",
+      Description: CurrencyDetailEdit?.Description,
       CurrencyFormat: CurrencyDetailEdit?.CurrencyFormat,
-      NumberofDecimals: "1000",
+      NumberofDecimals: CurrencyDetailEdit?.NumberofDecimals,
       id: CurrencyDetailEdit.id 
     };
 

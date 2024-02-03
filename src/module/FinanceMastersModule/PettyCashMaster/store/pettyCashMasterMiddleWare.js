@@ -48,7 +48,7 @@ export const postAddPettyCash = createAsyncThunk(
 
 export const getPettyCashSearchList = createAsyncThunk(
     GET_PETTY_CASH_SEARCH_LIST,
-    async (payload, { rejectWithValue,getState }) => {
+    async (payload, { rejectWithValue, getState }) => {
         const textSearch = payload;
         console.log(textSearch, "textSearch")
         const { pettyCashMainReducers } = getState();
@@ -66,7 +66,7 @@ export const getPettyCashSearchList = createAsyncThunk(
         }
     },)
 
-    
+
 export const getPettyCashView = createAsyncThunk(
     GET_PETTY_CASH_VIEW,
 

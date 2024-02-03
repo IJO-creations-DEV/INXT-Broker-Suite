@@ -25,9 +25,17 @@ export const postSubAccount = createAsyncThunk(
     POST_SUB__ACCOUNT,
     async (payload, { rejectWithValue }) => {
         console.log(payload, "payload")
+        const data = {
+            id: payload?.id,
+            subAccountCode: payload?.subAccountCode,
+            description: payload?.description,
+            subAccountName: payload?.subAccountName,
+            mainAccount: payload?.mainAccount,
+            currencyCode: payload?.currencyCode,
+        }
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-            return payload;
+            return data;
         } catch (error) {
             return rejectWithValue(error?.response.data.error.message);
         }

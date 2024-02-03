@@ -109,16 +109,16 @@ function AddBankMaster() {
   // const toastRef = useRef(null);
   const handleSubmit = (values) => {
 
-
+    const valueWithId = {
+      ...values,
+      id: BankList?.length + 1,
+    };
     console.log(values, "find values");
-    dispatch(postAddBankMiddleware(formik.values))
+    dispatch(postAddBankMiddleware(valueWithId))
 
     // Handle form submission
     console.log(values, "value");
-    // const valueWithId = {
-    //   ...values,
-    //   id: BankList?.length + 1,
-    // };
+  
     // dispatch(postAddBank(formik.values));
 
 

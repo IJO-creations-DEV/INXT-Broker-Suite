@@ -19,7 +19,9 @@ const initialState = {
       "CurrencyFormat": "RUPES",
       "SmallestUnit": "RUPES",
       "UnitDescription": "UNI-01",
-      "CurrencyName": "Rupes"
+      "CurrencyName": "Rupes",
+      Description:"Description",
+      NumberofDecimals:9
     },
     {
       "id": 2,
@@ -28,7 +30,9 @@ const initialState = {
       "CurrencyFormat": "DOLLARS",
       "SmallestUnit": "CENTS",
       "UnitDescription": "CENT-02",
-      "CurrencyName": "United States Dollar"
+      "CurrencyName": "United States Dollar",
+      Description:"Description",
+      NumberofDecimals:0
       }
       ,
       {
@@ -38,7 +42,9 @@ const initialState = {
       "CurrencyFormat": "EUROS",
       "SmallestUnit": "CENTIMES",
       "UnitDescription": "CENT-03",
-      "CurrencyName": "Euro"
+      "CurrencyName": "Euro",
+      Description:"Description",
+      NumberofDecimals:1
       }
       ,
       {
@@ -48,7 +54,10 @@ const initialState = {
       "CurrencyFormat": "POUNDS",
       "SmallestUnit": "PENCE",
       "UnitDescription": "PENNY",
-      "CurrencyName": "British Pound Sterling"
+      "CurrencyName": "British Pound Sterling",
+      Description:"Description",
+      NumberofDecimals:5
+
       }
       ,
       {
@@ -58,7 +67,9 @@ const initialState = {
       "CurrencyFormat": "YEN",
       "SmallestUnit": "SEN",
       "UnitDescription": "YEN-01",
-      "CurrencyName": "Japanese Yen"
+      "CurrencyName": "Japanese Yen",
+      Description:"Description",
+      NumberofDecimals:8
       }
       ,
       {
@@ -68,7 +79,9 @@ const initialState = {
       "CurrencyFormat": "AUSTRALIAN DOLLARS",
       "SmallestUnit": "CENTS",
       "UnitDescription": "AUSSIE CENTS",
-      "CurrencyName": "Australian Dollar"
+      "CurrencyName": "Australian Dollar",
+      Description:"Description",
+      NumberofDecimals:3
       }
       ,
       {
@@ -78,7 +91,9 @@ const initialState = {
       "CurrencyFormat": "CANADIAN DOLLARS",
       "SmallestUnit": "CENTS",
       "UnitDescription": "CANADIAN CENTS",
-      "CurrencyName": "Canadian Dollar"
+      "CurrencyName": "Canadian Dollar",
+      Description:"Description",
+      NumberofDecimals:4
       }
       ,
       {
@@ -88,7 +103,9 @@ const initialState = {
       "CurrencyFormat": "SWISS FRANCS",
       "SmallestUnit": "RAPPEN",
       "UnitDescription": "RAP",
-      "CurrencyName": "Swiss Franc"
+      "CurrencyName": "Swiss Franc",
+      Description:"Description",
+      NumberofDecimals:6
       }
       ,
       {
@@ -98,7 +115,9 @@ const initialState = {
       "CurrencyFormat": "YUAN",
       "SmallestUnit": "FEN",
       "UnitDescription": "YUAN-01",
-      "CurrencyName": "Chinese Yuan"
+      "CurrencyName": "Chinese Yuan",
+      Description:"Description",
+      NumberofDecimals:7
       }
       ,
       {
@@ -108,7 +127,9 @@ const initialState = {
       "CurrencyFormat": "RUPEES",
       "SmallestUnit": "PAISE",
       "UnitDescription": "PAISA",
-      "CurrencyName": "Indian Rupee"
+      "CurrencyName": "Indian Rupee",
+      Description:"Description",
+      NumberofDecimals:2
       }
   ],
   CurrencySearchList:[],
@@ -199,7 +220,6 @@ const currencyMasterReducer = createSlice({
       postAddCurrency.fulfilled,
       (state, action) => {
         state.loading = false;
-        // state.AddCurrency = action.payload;
         state.CurrencyList = [...state.CurrencyList, action.payload];
       }
     );

@@ -23,7 +23,7 @@ const TransactionCodeDetails = () => {
         // addJournalVoucher: journalVoucherReducers?.addJournalVoucher
       };
     });
-  console.log(TrascationcodeDetailsView, "TrascationcodeDetailsView");
+  console.log(TrascationcodeDetailsView, "hddgdg");
   const toastRef = useRef(null);
   const navigate = useNavigate();
   const items = [
@@ -77,7 +77,7 @@ const TransactionCodeDetails = () => {
     "TrascationcodeDetailsView?.TransactionCode"
   );
 
-  const validate = () => {};
+  const validate = () => { };
 
   const handleSubmit = () => {
     navigate("/master/finance/transactioncode");
@@ -269,28 +269,28 @@ const TransactionCodeDetails = () => {
                 //   handleAccountcode(e.value.);
                 // }}
                 optionLabel="label"
-                // error={
-                //   formik.touched.BankAccountNumber &&
-                //   formik.errors.BankAccountNumber
-                // }
+              // error={
+              //   formik.touched.BankAccountNumber &&
+              //   formik.errors.BankAccountNumber
+              // }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
               <InputField
                 classNames="input__filed"
-                label="Description"
+                label="Sub Account Description"
                 placeholder="Enter"
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                value={TrascationcodeDetailsView.TransactionName}
+                value={TrascationcodeDetailsView.SubAccountDescription}
 
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+              // onChange={formik.handleChange("TransactionName")}
+              // error={
+              //   formik.touched.TransactionName &&
+              //   formik.errors.TransactionName
+              // }
               />
             </div>
           </div>
@@ -308,16 +308,16 @@ const TransactionCodeDetails = () => {
                 value={TrascationcodeDetailsView.BranchCode}
                 options={BranchCodeOptions}
                 optionLabel="label"
-                // onChange={(e) => {
-                //   console.log(e.value);
-                //   formik.setFieldValue("Description", e.value);
-                //   handleAccountcode(e.value.);
-                // }}
-                // optionLabel="Description"
-                // error={
-                //   formik.touched.BankAccountNumber &&
-                //   formik.errors.BankAccountNumber
-                // }
+              // onChange={(e) => {
+              //   console.log(e.value);
+              //   formik.setFieldValue("Description", e.value);
+              //   handleAccountcode(e.value.);
+              // }}
+              // optionLabel="Description"
+              // error={
+              //   formik.touched.BankAccountNumber &&
+              //   formik.errors.BankAccountNumber
+              // }
               />
             </div>
             <div className="col-12 md:col-6 lg-col-6 input__view">
@@ -329,12 +329,12 @@ const TransactionCodeDetails = () => {
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                value={TrascationcodeDetailsView.TransactionName}
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+                value={TrascationcodeDetailsView.BranchDescription}
+              // onChange={formik.handleChange("TransactionName")}
+              // error={
+              //   formik.touched.TransactionName &&
+              //   formik.errors.TransactionName
+              // }
               />
             </div>
           </div>
@@ -363,12 +363,12 @@ const TransactionCodeDetails = () => {
                 textSize={"16"}
                 textWeight={500}
                 disabled={true}
-                value={TrascationcodeDetailsView.TransactionName}
-                // onChange={formik.handleChange("TransactionName")}
-                // error={
-                //   formik.touched.TransactionName &&
-                //   formik.errors.TransactionName
-                // }
+                value={TrascationcodeDetailsView.DepartmentDescription}
+              // onChange={formik.handleChange("TransactionName")}
+              // error={
+              //   formik.touched.TransactionName &&
+              //   formik.errors.TransactionName
+              // }
               />
             </div>
           </div>

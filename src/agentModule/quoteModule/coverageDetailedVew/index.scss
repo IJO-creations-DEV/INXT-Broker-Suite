@@ -12,13 +12,12 @@
     font-weight: 600;
     padding: 1.5rem;
   }
-  .insured_vehicle_text{
+  .insured_vehicle_text {
     color: #111927;
-font-family: Poppins;
-font-style: normal;
-font-weight: 500;
-padding: 0 1.5rem;
-
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    padding: 0 1.5rem;
   }
   .lead__quote__id {
     display: flex;
@@ -43,25 +42,25 @@ padding: 0 1.5rem;
   .sub__title {
     margin: 16px 0;
   }
- .image__text{
+  .image__text {
     height: 162px;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
     // padding: 0 1.5rem;
   }
-  .image__texts{
+  .image__texts {
     height: 162px;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
     // padding: 0 1.5rem;
   }
-.image__size{
+  .image__size {
     flex: 1 1;
     border-radius: inherit;
     padding: 6.4px 16px;
-}
+  }
   .policy__text {
     color: #111927;
     font-family: Poppins;
@@ -73,35 +72,35 @@ padding: 0 1.5rem;
     height: 45px;
     padding: 0 1.5rem;
   }
-  .vehicle__left__text{
+  .vehicle__left__text {
     color: #111927;
-font-family: Poppins;
-font-size: 16px;
-font-weight: 400;
-padding: 0 1.5rem;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0 1.5rem;
   }
-  .id__card__text{
-    color: #6C737F;
-font-family: Poppins;
-font-size: 16px;
-font-weight: 400;
+  .id__card__text {
+    color: #6c737f;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
   }
-  .id__card__id{
+  .id__card__id {
     color: #111927;
-font-family: Poppins;
-font-size: 16px;
-font-weight: 400;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
   }
-  .id__card__number{
-   display: flex;
+  .id__card__number {
+    display: flex;
     justify-content: space-between;
   }
 
-  .id__card__text{
+  .id__card__text {
     color: #111927;
-font-family: Poppins;
-font-size: 14px;
-font-weight: 500;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
     padding: 0 1.5rem;
   }
   .insurance__details {
@@ -155,7 +154,7 @@ font-weight: 500;
     align-items: flex-end;
     justify-content: flex-end;
     display: flex;
-    gap: 2%;
+    gap: 24px;
     margin: 24px 0px;
   }
 
@@ -179,10 +178,12 @@ font-weight: 500;
     position: relative;
     padding: 8px 16px;
     border-radius: 6px;
+    gap: 10px;
   }
   .left__arrow {
     display: flex;
     gap: 10px;
+    width: max-content;
   }
   .left__arrow__text {
     color: #111927;

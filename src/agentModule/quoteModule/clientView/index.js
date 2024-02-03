@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./index.scss";
 import { Button } from "primereact/button";
-import SvgAdd from "../../../assets/agentIcon/SvgAdd"
+import SvgAdd from "../../../assets/agentIcon/SvgAdd";
 import { BreadCrumb } from "primereact/breadcrumb";
 import SvgDot from "../../../assets/agentIcon/SvgDots";
 import ClientViewCard from "./clientViewCard";
@@ -11,27 +11,24 @@ import SvgTravel from "../../../assets/agentIcon/SvgTravel";
 import SvgHome from "../../../assets/agentIcon/SvgHome";
 import { useNavigate } from "react-router-dom";
 
-const LeadListing = ({action}) => {
+const LeadListing = ({ action }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
 
   const items = [
-    
     { label: "Clients", url: "/agent/clientlisting" },
-    { label: "Client ID: 12345678", url: "/agent/clientlisting" },
+    { label: "Client ID : 12345678" },
   ];
   const Initiate = { label: "Home" };
-  
-
 
   return (
     <div className="client__listing__card__container">
-
       <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
-          <label className="leadlisting__overal__container__title">Clients</label>
+          <label className="leadlisting__overal__container__title">
+            Clients
+          </label>
         </div>
-   
       </div>
       <div>
         <BreadCrumb
@@ -41,8 +38,9 @@ const LeadListing = ({action}) => {
           separatorIcon={<SvgDot color={"#000"} />}
         />
       </div>
-      <ClientViewCard action={action}/>
-    </div>);
+      <ClientViewCard action={action} />
+    </div>
+  );
 };
 
 export default LeadListing;

@@ -10,35 +10,35 @@ import SvgModalClose from "../../../assets/icons/SvgNodalClose";
 import { useDispatch } from "react-redux";
 import { patchCorrectionJVEdit } from "../store/correctionJVMiddleWare";
 const ModalData = ({ visible, setVisible, handleUpdate, setEditID,correctionJVList }) => {
-  const codeOptions = [
-    { label: "Option 1", value: "00123" },
-    { label: "Option 2", value: "00124" },
-  ];
-  const codeOptionsMain = [
-    { label: "Option 1", value: "Main00123" },
-    { label: "Option 2", value: "Main00124" },
-  ];
-  const codeOptionsSub = [
-    { label: "Option 1", value: "Sub00123" },
-    { label: "Option 2", value: "Sub00124" },
-  ];
-  const codeOptionsDept = [
-    { label: "Option 1", value: "Dep00123" },
-    { label: "Option 2", value: "Dep00124" },
-  ];
-  const codeOptionsBranch = [
-    { label: "Option 1", value: "Branch00123" },
-    { label: "Option 2", value: "Branch00124" },
-  ];
+  // const codeOptions = [
+  //   { label: "Option 1", value: "00123" },
+  //   { label: "Option 2", value: "00124" },
+  // ];
+  // const codeOptionsMain = [
+  //   { label: "Option 1", value: "Main00123" },
+  //   { label: "Option 2", value: "Main00124" },
+  // ];
+  // const codeOptionsSub = [
+  //   { label: "Option 1", value: "Sub00123" },
+  //   { label: "Option 2", value: "Sub00124" },
+  // ];
+  // const codeOptionsDept = [
+  //   { label: "Option 1", value: "Dep00123" },
+  //   { label: "Option 2", value: "Dep00124" },
+  // ];
+  // const codeOptionsBranch = [
+  //   { label: "Option 1", value: "Branch00123" },
+  //   { label: "Option 2", value: "Branch00124" },
+  // ];
 
-  const codeOptionsType = [
-    { label: "Option 1", value: "Credit" },
-    { label: "Option 2", value: "Debit" },
-  ];
-  const codeCurrencyType = [
-    { label: "Option 1", value: "PHP" },
-    { label: "Option 2", value: "EURO" },
-  ];
+  // const codeOptionsType = [
+  //   { label: "Option 1", value: "Credit" },
+  //   { label: "Option 2", value: "Debit" },
+  // ];
+  // const codeCurrencyType = [
+  //   { label: "Option 1", value: "PHP" },
+  //   { label: "Option 2", value: "EURO" },
+  // ];
 
   const customValidation = (values) => {
     const errors = {};

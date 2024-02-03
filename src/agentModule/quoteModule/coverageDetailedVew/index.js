@@ -27,15 +27,20 @@ const LeadPreview = () => {
       };
     }
   );
+  const handleLeadNavigation = () => {
+    navigate("/agent/leadlisting");
+  };
 
-  console.log("211", postcustomerinfodata);
   return (
     <div className="overall__lead__view__container">
       <div className="header__title">Leads</div>
       <div className="lead__quote__id mt-3">
-        <div className="left__arrow">
+        <div
+          onClick={handleLeadNavigation}
+          className="left__arrow cursor-pointer"
+        >
           <SvgLeftArrow />
-          <label className="left__arrow__text">Lead ID : 12345678</label>
+          <div className="left__arrow__text">Lead ID : 12345678</div>
         </div>
         <div className="quote__id__text">Quote ID : 12345678</div>
       </div>

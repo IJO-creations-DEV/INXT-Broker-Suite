@@ -181,6 +181,11 @@ const SubAccountMaster = () => {
   );
   const isEmpty = Productdata.length === 0;
 
+  // const emptyTableIcon = (
+  //   <div className="empty-table-icon">
+  //     <SvgTable />
+  //   </div>
+  // );
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -193,28 +198,31 @@ const SubAccountMaster = () => {
       ];
 
       return (
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdown_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+        <div className="table__selector">
+          <React.Fragment>
+            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdown_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          </React.Fragment>
+        </div>
       );
     },
   };
 
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
+    const valueWithId = {
+      ...values,
+      id: subAccountList?.length + 1,
+    };
     console.log(values, "values");
-    dispatch(postSubAccount(formik.values))
+    dispatch(postSubAccount(valueWithId))
       .then(() => {
         toastRef.current.showToast();
         setTimeout(() => {
@@ -331,18 +339,27 @@ const SubAccountMaster = () => {
           >
             <div className="card">
               <DataTable
+                // value={search ? subAccountSearchList : subAccountList}
+                // style={{ overflowY: "auto", maxWidth: "100%" }}
+                // responsive={true}
+                // className="table__view__taxation"
+                // paginator
+                // paginatorLeft
+                // rows={5}
+                // rowsPerPageOptions={[5, 10, 25, 50]}
+                // currentPageReportTemplate="{first} - {last} of {totalRecords}"
+                // paginatorTemplate={template2}
+                // onPage={onPageChange}
+                // onPageChange={onPageChange}
                 value={search ? subAccountSearchList : subAccountList}
-                style={{ overflowY: "auto", maxWidth: "100%" }}
-                responsive={true}
-                className="table__view__taxation"
                 paginator
-                paginatorLeft
                 rows={5}
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
+                className="reversal__table__main"
+                scrollable={true}
+                scrollHeight="40vh"
                 emptyMessage={isEmpty ? emptyTableIcon : null}
               >
                 <Column

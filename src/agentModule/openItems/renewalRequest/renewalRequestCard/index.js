@@ -1,6 +1,6 @@
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
-import React, { useState,useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TableDropdownField from "../../../component/tableDropDwonField";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -12,58 +12,55 @@ import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 import SvgDot from "../../../../assets/icons/SvgDot";
 import SvgDots from "../../../../assets/agentIcon/SvgDot";
-import { Button} from "primereact/button";
+import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import { useSelector,useDispatch} from "react-redux";
-import {getrenewalrequestSearchDataMiddleWare} from "../renewalRequestCard/store/renewalRequestMiddleware"
+import { useSelector, useDispatch } from "react-redux";
+import { getrenewalrequestSearchDataMiddleWare } from "../renewalRequestCard/store/renewalRequestMiddleware";
 
-const RenewalRequestCard= () => {
-  const [search,setSearch]=useState("")
-  const [globalFilter,setGlobalFilter]=useState("Name")
-  const [displayDialog,setDisplayDialog]=useState("")
-  const [disableOption,setdisableOption] =useState("")
-  const dispatch =useDispatch()
+const RenewalRequestCard = () => {
+  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("Name");
+  const [displayDialog, setDisplayDialog] = useState("");
+  const [disableOption, setdisableOption] = useState("");
+  const dispatch = useDispatch();
   const menu = useRef(null);
 
-  const { renewalrequesttabledata, renewalrequestSearchList, loading } = useSelector(
-    ({ agentRenewalrequestMainReducers }) => {
-      console.log(agentRenewalrequestMainReducers,"find main")
+  const { renewalrequesttabledata, renewalrequestSearchList, loading } =
+    useSelector(({ agentRenewalrequestMainReducers }) => {
+      console.log(agentRenewalrequestMainReducers, "find main");
       return {
         loading: agentRenewalrequestMainReducers?.loading,
-        renewalrequesttabledata: agentRenewalrequestMainReducers?.renewalrequesttabledata,
-        renewalrequestSearchList: agentRenewalrequestMainReducers?.renewalrequestSearchList,
+        renewalrequesttabledata:
+          agentRenewalrequestMainReducers?.renewalrequesttabledata,
+        renewalrequestSearchList:
+          agentRenewalrequestMainReducers?.renewalrequestSearchList,
       };
-    }
-  );
-  
+    });
 
   // const [globalFilter, setGlobalFilter] = useState("policy Number");
   const policy = [
     { name: "Name", code: "Name" },
     { name: "Policy Number", code: "policy Number" },
-    
   ];
 
   const handleMenuToggle = (event, menuRef, rowData) => {
-   navigate("/agent/renewal/waiting/id");
+    navigate("/agent/renewal/waiting/id");
   };
   const handleMenuClick = (menuItem) => {
-   
     if (menuItem == "renewal") {
       navigate("/agent/createquote/coveragedetails");
     }
-   
   };
 
-  const renderActions =()=>{
+  const renderActions = () => {
     return (
       <div className="action__container">
-      {/* <Menu model={menuItems} popup ref={menu} breakpoint="767px" /> */}
+        {/* <Menu model={menuItems} popup ref={menu} breakpoint="767px" /> */}
         <div
           className="action__Svg"
           onClick={(event) => handleMenuToggle(event, menu)}
         >
-          <SvgArrow/>
+          <SvgArrow />
         </div>
       </div>
       // <div className="btn__container__view__edit">
@@ -76,22 +73,18 @@ const RenewalRequestCard= () => {
       // </div>
     );
     // navigate("/agent/createquote/coveragedetails");
-  }
+  };
 
   const renderViewEditButton = (rowData) => {
     const menuItems = [
       {
         label: "Reminder",
-        
       },
 
       {
         label: "Renewal",
         command: () => handleMenuClick("renewal"),
-        
       },
-      
-     
     ];
     //  return (
     //   <div className="action__container">
@@ -130,43 +123,43 @@ const RenewalRequestCard= () => {
       Name: "John Doe",
       ClientId: "012345",
       PolicyNumber: "012345",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "127332",
     },
     {
       Name: "Jane Smith",
       ClientId: "167890",
       PolicyNumber: "012345",
-      PolicyType:"Travel",
-      Date:"01 JAN 2024",
+      PolicyType: "Travel",
+      Date: "01 JAN 2024",
       Actions: "1272721",
     },
     {
       Name: "Bob Johnson",
       ClientId: "254321",
       PolicyNumber: "2024 JAN 10",
-      
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "1270002",
     },
     {
       Name: "Alice Williams",
       ClientId: "398765",
       PolicyNumber: "2024 JAN 05",
-      
-      PolicyType:"Travel",
-      Date:"01 JAN 2024",
+
+      PolicyType: "Travel",
+      Date: "01 JAN 2024",
       Actions: "120002",
     },
     {
       Name: "Mike Davis",
       ClientId: "423456",
       PolicyNumber: "2024 JAN 18",
-      
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "111172",
     },
     {
@@ -174,17 +167,17 @@ const RenewalRequestCard= () => {
       ClientId: "578901",
       PolicyNumber: "2024 JAN 01",
       Category: "Individual",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "12000",
     },
     {
       Name: "Chris Brown",
       ClientId: "9987634",
       PolicyNumber: "2024 JAN 12",
-     
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "1221112",
     },
     {
@@ -192,8 +185,8 @@ const RenewalRequestCard= () => {
       ClientId: "012345",
       PolicyNumber: "2024 JAN 28",
       Category: "Individual",
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "12002",
     },
     {
@@ -201,17 +194,17 @@ const RenewalRequestCard= () => {
       ClientId: "53628782",
       PolicyNumber: "2024-08-03",
       Category: "Individual",
-      PolicyType:"Travel",
-      Date:"01 JAN 2024",
+      PolicyType: "Travel",
+      Date: "01 JAN 2024",
       Actions: "12233",
     },
     {
       Name: "Grace Anderson",
       ClientId: "287654",
       PolicyNumber: "2024-07-20",
-      
-      PolicyType:"Motor",
-      Date:"01 JAN 2024",
+
+      PolicyType: "Motor",
+      Date: "01 JAN 2024",
       Actions: "127272",
     },
   ];
@@ -233,9 +226,7 @@ const RenewalRequestCard= () => {
         </div>
         <div>
           <div className="Name__text">{rowData.Name}</div>
-          <div className="Name__sub___text">
-            Client ID :{rowData.Actions}{" "}
-          </div>
+          <div className="Name__sub___text">Client ID :{rowData.Actions} </div>
         </div>
       </div>
     );
@@ -244,7 +235,6 @@ const RenewalRequestCard= () => {
   const renderClientId = (rowData) => {
     return (
       <div className="policy__number__container">
-        
         <div>
           <div className="policy__number__text">{rowData.ClientId}</div>
         </div>
@@ -341,34 +331,34 @@ const RenewalRequestCard= () => {
             <span className="p-input-icon-left">
               <i className="pi pi-search" />
               <InputText
-              placeholder="Search"
-              style={{
-                width: "100%",
-                padding: "1rem 2.75rem",
-                borderRadius: "10px",
-              }}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+                placeholder="Search"
+                style={{
+                  width: "100%",
+                  padding: "1rem 2.75rem",
+                  borderRadius: "10px",
+                }}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </span>
           </div>
           <div class="col-12 md:col-3 lg:col-3">
-          <Dropdown
-            value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.value)}
-            options={policy}
-            optionLabel="name"
-            optionValue="code"
-            placeholder="Search by"
-            className="feat_searchby_container"
-            dropdownIcon={<SvgDownArrow />}
-          />
+            <Dropdown
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={policy}
+              optionLabel="name"
+              optionValue="code"
+              placeholder="Search by"
+              className="feat_searchby_container"
+              dropdownIcon={<SvgDownArrow />}
+            />
           </div>
         </div>
         <div className="table__container">
           <DataTable
-          // value={TableData}
-          value={search ? renewalrequestSearchList : renewalrequesttabledata}
+            // value={TableData}
+            value={search ? renewalrequestSearchList : renewalrequesttabledata}
             tableStyle={{ minWidth: "50rem" }}
             paginator
             rows={5}
@@ -393,7 +383,7 @@ const RenewalRequestCard= () => {
               header="Policy No"
               headerStyle={headerStyle}
             ></Column>
-           
+
             <Column
               body={renderPolicyType}
               header="Policy Type"

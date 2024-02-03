@@ -37,6 +37,7 @@ const AddJournalVocture = () => {
   const [visibleSuccess, setVisibleSuccess] = useState(false);
 
   const toastRef = useRef(null);
+  const printRef = useRef(null);
 
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -183,6 +184,7 @@ const AddJournalVocture = () => {
   // }, 0);
 
   const handlePrint = () => {
+    printRef.current.showToast();
     setVisibleSuccess(true);
     handleSubmit();
     navigate("/accounts/journalvoucher");
@@ -190,14 +192,19 @@ const AddJournalVocture = () => {
 
   return (
     <div className="grid add__JV__container">
-      {buttonshow === 0 ? (
+      {/* {buttonshow === 0 ? (
         <CustomToast
           ref={toastRef}
           message="Transaction Number 1234 is created"
         />
       ) : (
         <CustomToast ref={toastRef} message="Successfully Printed" />
-      )}
+      )} */}
+      <CustomToast
+        ref={toastRef}
+        message="Transaction Number 1234 is created"
+      />
+      <CustomToast ref={printRef} message="Successfully Printed" />
       <div className="col-12"></div>
       <div className="col-12 mb-2">
         <div className="add__sub__title__JV" onClick={handleGoback}>

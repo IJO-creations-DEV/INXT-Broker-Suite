@@ -409,7 +409,6 @@ const LeadListingAllTable = () => {
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
         >
-           
           <Column
             body={renderPolicyNumber}
             header={rendercheckedHeader("Policy Number")}
@@ -420,18 +419,18 @@ const LeadListingAllTable = () => {
             header={renderUncheckedHeader("Gross premium")}
             headerStyle={headerStyle}
           ></Column>
-           <Column
+          <Column
             body={renderClaimNumber}
-            header={renderUncheckedHeader("Claim number")}
+            header={renderUncheckedHeader("Claim Number")}
             headerStyle={headerStyle}
           ></Column>
-          
+
           <Column
             body={renderDate}
             header={renderUncheckedHeader("Policy Issued")}
             headerStyle={headerStyle}
           ></Column>
-           <Column
+          <Column
             body={renderExpiryDate}
             header={renderUncheckedHeader("Policy Expiry")}
             headerStyle={headerStyle}

@@ -234,11 +234,11 @@ const InitiateForm = () => {
     let currency = "";
     switch (value.CurrencyType) {
       case "PHP":
-        currency = "Indian Currency";
+        currency = "Philippines Currency";
         break;
-      case "US":
-        currency = "United states Currency";
-        break;
+      // case "US":
+      //   currency = "United states Currency";
+      //   break;
       case "USD":
         currency = "United States Currency";
         break;

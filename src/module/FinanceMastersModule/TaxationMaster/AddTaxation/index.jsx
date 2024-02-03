@@ -20,7 +20,16 @@ const AddTaxation = () => {
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const dispatch = useDispatch();
-  const addTaxationList = useSelector((state) => state.addTaxationList);
+  // const addTaxationList = useSelector((state) => state.addTaxationList);
+  const { taxationList, loading, taxationSearchList } = useSelector(
+    ({ taxationMainReducers }) => {
+      return {
+        loading: taxationMainReducers?.loading,
+        taxationList: taxationMainReducers?.taxationList,
+        taxationSearchList: taxationMainReducers?.taxationSearchList,
+      };
+    }
+  );
   const items = [
     { label: "Taxation", url: "/master/finance/taxation" },
     { label: "Add Taxation", url: "/master/finance/taxation/addtaxation" },
@@ -74,13 +83,13 @@ const AddTaxation = () => {
     // setErrors(formErrors);
     // console.log(formErrors, "iiiii");
 
-    // const valueWithId = {
-    //   ...values,
-    //   id: addTaxationList?.length + 1,
-    // };
-    // console.log(valueWithId, 'find valueWithId')
+    const valueWithId = {
+      ...values,
+      id: taxationList?.length + 1,
+    };
+    console.log(valueWithId, 'find valueWithId')
 
-    dispatch(postAddTaxationMiddileware(formik.values));
+    dispatch(postAddTaxationMiddileware(valueWithId));
     navigate("/master/finance/taxation");
   };
 

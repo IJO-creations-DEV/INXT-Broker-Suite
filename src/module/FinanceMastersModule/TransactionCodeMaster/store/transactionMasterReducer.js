@@ -153,11 +153,16 @@ const transactionCodeMasterReducer = createSlice({
     builder.addCase(postAddTransaction.pending, (state) => {
       state.loading = true;
     });
+    // builder.addCase(postAddTransaction.fulfilled, (state, action) => {
+    //   state.loading = false;
+    //   const newItem2 = { ...action.payload, id: nextId++ };
+    //   state.TransactioncodeList = [...state.TransactioncodeList, newItem2];
+    //   console.log(state.TransactioncodeList, "g")
+    // });
     builder.addCase(postAddTransaction.fulfilled, (state, action) => {
+      console.log(action.payload, 'find action.payload')
       state.loading = false;
-      const newItem2 = { ...action.payload, id: nextId++ };
-      state.TransactioncodeList = [...state.TransactioncodeList, newItem2];
-      console.log(state.TransactioncodeList, "g")
+      state.TransactioncodeList = [...state.TransactioncodeList, action.payload];
     });
     builder.addCase(postAddTransaction.rejected, (state, action) => {
       state.loading = false;

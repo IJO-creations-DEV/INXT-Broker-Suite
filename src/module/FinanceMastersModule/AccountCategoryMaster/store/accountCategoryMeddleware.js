@@ -64,6 +64,7 @@ export const getAddAccountCategoryMiddleWare = createAsyncThunk(
       id: payload?.id,
       accountCategoryCode: payload?.categoryCode,
       accountCategoryName: payload?.categoryName,
+      description:payload?.description,
       status: 0,
       action: payload?.id,
     };

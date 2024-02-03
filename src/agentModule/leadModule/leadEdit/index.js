@@ -9,7 +9,11 @@ const LeadEdit = ({ flow }) => {
   console.log(flow, "find flow");
   const navigate = useNavigate();
   const handleClientNavigation = () => {
-    navigate("/agent/clientlisting");
+    if (flow == "lead") {
+      navigate("/agent/leadlisting");
+    } else if (flow === "client") {
+      navigate("/agent/clientlisting");
+    }
   };
   return (
     <div className="overall_leadedit_container">

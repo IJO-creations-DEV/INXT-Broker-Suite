@@ -30,11 +30,12 @@ const initialValues = {
   CityName: "",
   Description: "",
   State: "",
-  ModifiedBy: "",
+  Modifiedby: "",
   ModifiedOn: "",
 };
 
 function AddCity({ action }) {
+  console.log(action, "action");
   const toastRef = useRef(null);
   const dispatch = useDispatch();
   const [statedata, setstatedata] = useState([]);
@@ -51,7 +52,7 @@ function AddCity({ action }) {
     }
   );
 
-  console.log(CityListById, statedata, "CityListById");
+  console.log(cityTableList?.Modifiedby, statedata, "CityListById");
   const home = { label: "Master" };
   const items = [
     { label: "Location", url: "/master/finance/exchangerate" },
@@ -79,9 +80,9 @@ function AddCity({ action }) {
       id: CityListById?.id,
       CityCode: CityListById?.Citycode || "",
       CityName: CityListById?.CityName || "",
-      Description: "Description",
+      Description: CityListById?.Description || "",
       State: statedatas || "",
-      ModifiedBy: CityListById?.Modifiedby || "",
+      Modifiedby: CityListById?.Modifiedby || "",
       ModifiedOn: CityListById?.ModifiedOn || "",
     };
     if (action === "view") {
@@ -116,6 +117,7 @@ function AddCity({ action }) {
   }, [CityListById]);
 
   const handleSubmitAdd = (values) => {
+
     const valueWithId = {
       ...values,
       id: cityTableList?.length + 1,
@@ -137,7 +139,7 @@ function AddCity({ action }) {
       CityName: values?.CityName || "",
       Description: "Description",
       State: values.State || "",
-      Modifiedby: values?.ModifiedBy || "",
+      Modifiedby: values?.Modifiedby || "",
       ModifiedOn: values?.ModifiedOn || "",
     };
 
@@ -145,10 +147,12 @@ function AddCity({ action }) {
     console.log("Handle Edit Submission", values);
     setTimeout(() => {
       Navigate("/master/generals/location/city");
-    },100);
+    }, 100);
   };
 
   const handleSubmit = (values) => {
+    console.log(values,"values");
+
     if (action === "add") {
       handleSubmitAdd(values);
     } else if (action === "edit") {
@@ -171,8 +175,8 @@ function AddCity({ action }) {
     if (!values.State) {
       errors.State = "This field is required";
     }
-    if (!values.ModifiedBy) {
-      errors.ModifiedBy = "This field is required";
+    if (!values.Modifiedby) {
+      errors.Modifiedby = "This field is required";
     }
 
     if (!values.ModifiedOn) {
@@ -185,12 +189,12 @@ function AddCity({ action }) {
   const formik = useFormik({
     initialValues: initialValues,
     validate: customValidation,
-    // onSubmit: (values) => {
-    //   // Handle form submission
-    //    handleSubmit(values);
+    onSubmit: (values) => {
+      // Handle form submission
+       handleSubmit(values);
 
-    // },
-    onSubmit: handleSubmit,
+    },
+    // onSubmit: handleSubmit,
   });
 
   return (
@@ -309,6 +313,7 @@ function AddCity({ action }) {
               )}
             </div>
           </div>
+
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <div>
               <InputField
@@ -316,15 +321,15 @@ function AddCity({ action }) {
                 label="Modified By"
                 placeholder={"Enter"}
                 //   value={formik.values.CurrencyDescription}
-                value={formik.values.ModifiedBy}
-                onChange={formik.handleChange("ModifiedBy")}
+                value={formik.values.Modifiedby}
+                onChange={formik.handleChange("Modifiedby")}
                 disabled={
                   action === "add" ? false : action === "edit" ? false : true
                 }
               />
-              {formik.touched.ModifiedBy && formik.errors.ModifiedBy && (
+              {formik.touched.Modifiedby && formik.errors.Modifiedby && (
                 <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.ModifiedBy}
+                  {formik.errors.Modifiedby}
                 </div>
               )}
             </div>
@@ -358,9 +363,10 @@ function AddCity({ action }) {
             className="submit_button p-0"
             label="Save"
             disabled={!formik.isValid}
-            onClick={() => {
-              formik.handleSubmit();
-            }}
+            onClick={formik.handleSubmit}
+          // onClick={() => {
+          //   formik.handleSubmit();
+          // }}
           />
         )}
       </div>
@@ -370,9 +376,7 @@ function AddCity({ action }) {
             className="submit_button p-0"
             label="update"
             disabled={!formik.isValid}
-            onClick={() => {
-              formik.handleSubmit();
-            }}
+            onClick={formik.handleSubmit}
           />
         )}
       </div>

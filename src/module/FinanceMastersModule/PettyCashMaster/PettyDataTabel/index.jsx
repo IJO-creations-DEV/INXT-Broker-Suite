@@ -27,6 +27,7 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
     const [first, setFirst] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
+
     const onPageChange = (event) => {
         setFirst(event.first);
         setRowsPerPage(event.rows);
@@ -52,28 +53,35 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
         color: "#000",
         border: "none",
     };
-
     const template2 = {
-        layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+        layout:
+            "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
         RowsPerPageDropdown: (options) => {
             const dropdownOptions = [
                 { label: 5, value: 5 },
                 { label: 10, value: 10 },
                 { label: 20, value: 20 },
-                { label: 120, value: 120 }
+                { label: 120, value: 120 },
             ];
 
             return (
-                <React.Fragment >
-                    <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-                        Row count :{' '}
-                    </span>
-                    <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
-                </React.Fragment>
+                <div className="table__selector">
+                    <React.Fragment>
+                        <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+                            Row count :{" "}
+                        </span>
+                        <Dropdown
+                            value={options.value}
+                            className="pagedropdown_container"
+                            options={dropdownOptions}
+                            onChange={options.onChange}
+                        />
+                    </React.Fragment>
+                </div>
             );
         },
-
     };
+
     const dispatch = useDispatch()
     const handleView = (columnData) => {
         console.log(columnData.id, "columnData")
@@ -82,7 +90,7 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
 
     }
     const handleEdit = (columnData) => {
-        console.log(columnData,"columnData");
+        console.log(columnData, "columnData");
         dispatch(getPatchPettyCashEdit(columnData))
         // alert(columnData.id, "hiii")
         navigate(`/master/finance/pettycash/editpettycash/${columnData.id}`)
@@ -92,18 +100,28 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
         <div className="petty__cash__table__container">
             <DataTable
                 value={pettyCashList}
-                style={{ overflowY: 'auto', maxWidth: '100%' }}
-                responsive={true}
-                className='table__view__Journal__Voture'
                 paginator
-                paginatorLeft
                 rows={5}
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
-                emptyMessage={isEmpty ? emptyTableIcon : null}
+                className="reversal__table__main"
+                emptyMessage={emptyTableIcon}
+                scrollable={true}
+                scrollHeight="40vh"
+            // value={pettyCashList}
+            // style={{ overflowY: 'auto', maxWidth: '100%' }}
+            // responsive={true}
+            // className='table__view__Journal__Voture'
+            // paginator
+            // paginatorLeft
+            // rows={5}
+            // rowsPerPageOptions={[5, 10, 25, 50]}
+            // currentPageReportTemplate="{first} - {last} of {totalRecords}"
+            // paginatorTemplate={template2}
+            // onPage={onPageChange}
+            // onPageChange={onPageChange}
+            // emptyMessage={isEmpty ? emptyTableIcon : null}
 
             >
                 <Column
@@ -153,17 +171,17 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
                     field="action"
                     body={(columnData) => (
                         <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
-                           
+
                             <SvgIconeye onClick={() => handleView(columnData)} />
                             <SvgEditicon onClick={() => handleEdit(columnData)} />
                         </div>
                     )}
                     header="View"
                     className="fieldvalue_container"
-headerStyle={
-    {display:'flex',justifyContent:'center',alignItems:'center'}
-}
-style={{textAlign:'center'}}
+                    headerStyle={
+                        { display: 'flex', justifyContent: 'center', alignItems: 'center' }
+                    }
+                    style={{ textAlign: 'center' }}
                 ></Column>
             </DataTable>
         </div>

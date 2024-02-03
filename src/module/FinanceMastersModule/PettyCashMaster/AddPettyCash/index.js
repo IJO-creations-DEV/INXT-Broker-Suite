@@ -12,13 +12,22 @@ import { useFormik } from "formik";
 import ArrowLeftIcon from "../../../../assets/icons/ArrowLeftIcon";
 import CustomToast from "../../../../components/Toast";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   pettyCashMaster,
   postAddPettyCash,
 } from "../store/pettyCashMasterMiddleWare";
 
 const AddPettyCash = () => {
+  const { pettyCashList, loading } = useSelector(
+    ({ pettyCashMainReducers }) => {
+      return {
+        loading: pettyCashMainReducers?.loading,
+        pettyCashList: pettyCashMainReducers?.pettyCashList,
+      };
+    }
+  );
+  console.log(pettyCashList, "pettyCashList");
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
@@ -66,7 +75,11 @@ const AddPettyCash = () => {
   };
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    dispatch(postAddPettyCash(formik.values))
+    const valueWithId = {
+      ...values,
+      id: pettyCashList?.length + 1,
+    };
+    dispatch(postAddPettyCash(valueWithId))
       .then(() => {
         toastRef.current.showToast();
         setTimeout(() => {

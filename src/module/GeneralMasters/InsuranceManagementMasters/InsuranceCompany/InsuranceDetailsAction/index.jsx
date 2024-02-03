@@ -39,7 +39,7 @@ const InsuranceDetailsAction = ({ action }) => {
       getInsurancePatchData: insuranceCompanyReducers?.getInsurancePatchData,
     };
   });
-  console.log(getInsurancePatchData, "find getInsurancePatchData");
+  console.log(getInsuranceView, "find getInsuranceView");
   const { id } = useParams();
   console.log(id, "find route id");
   const toastRef = useRef(null);
@@ -113,19 +113,7 @@ const InsuranceDetailsAction = ({ action }) => {
     if (!values.insuranceCompanyDescription) {
       errors.insuranceCompanyDescription = "This field is required";
     }
-
-    if (!values.addressLine1) {
-      errors.addressLine1 = "This field is required";
-    }
-    if (!values.addressLine2) {
-      errors.addressLine2 = "This field is required";
-    }
-    if (!values.addressLine3) {
-      errors.addressLine3 = "This field is required";
-    }
-    if (!values.addressLine3) {
-      errors.addressLine3 = "This field is required";
-    }
+   
     if (!values.city) {
       errors.city = "This field is required";
     }
@@ -135,11 +123,16 @@ const InsuranceDetailsAction = ({ action }) => {
     if (!values.country) {
       errors.country = "This field is required";
     }
+    
     if (!values.email) {
-      errors.email = "This field is required";
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      errors.email = "Invalid email address";
     }
     if (!values.phoneNumber) {
-      errors.phoneNumber = "This field is required";
+      errors.phoneNumber = "Phone Number is required";
+    } else if (!/^\d{10}$/.test(values.phoneNumber)) {
+      errors.phoneNumber = "Invalid phone number (10 digits)";
     }
 
     return errors;

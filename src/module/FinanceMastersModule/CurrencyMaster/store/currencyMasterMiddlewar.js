@@ -57,13 +57,15 @@ export const postAddCurrency = createAsyncThunk(
         console.log(payload,"payload")
 
         const Tabledata = {
-            "id": payload,
+            "id": payload?.id,
             "Currencycode": payload?.CurrencyCode,
             "ISOcode": payload?.ISOcode.name,
             "CurrencyFormat": payload?.CurrencyFormat,
             "SmallestUnit": payload?.SmallestUnit,
             "UnitDescription": payload?.UnitDescription,
-            "CurrencyName": payload?.CurrencyName
+            "CurrencyName": payload?.CurrencyName,
+            Description:payload?.Description,
+            NumberofDecimals:payload?.NumberofDecimals
         }
         try {
             // const { data } = await postRequest(APIROUTES.DASHBOARD.GET_DETAILS);
@@ -98,7 +100,9 @@ export const patchCurrencyDetailEdit = createAsyncThunk(
             "CurrencyFormat": payload?.CurrencyFormat,
             "SmallestUnit": payload?.SmallestUnit,
             "UnitDescription": payload?.UnitDescription,
-            "CurrencyName": payload?.CurrencyName
+            "CurrencyName": payload?.CurrencyName,
+            Description:payload?.Description,
+            NumberofDecimals:payload?.NumberofDecimals
         }
         try {
             // const { data } = await patchRequest(APIROUTES.DASHBOARD.GET_DETAILS);

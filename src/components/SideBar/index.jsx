@@ -14,6 +14,8 @@ import SvgAgentPaymentIcon from "../../assets/agentIcon/SvgAgentPaymentIcon";
 import SvgAgentHomeIcon from "../../assets/agentIcon/SvgAgentHomeIcon";
 import SvgAgentLeadIcon from "../../assets/agentIcon/SvgAgentLeadIcon";
 import SvgAgentItemsIcon from "../../assets/agentIcon/SvgAgentItemsIcon";
+import SvgQuotationIcon from "../../assets/agentIcon/SvgQuotationIcon";
+import SvgPolicyIcon from "../../assets/agentIcon/SvgPolicyIcon";
 
 const ResponsiveDrawer = () => {
   const [findPath, setPath] = useState(null);
@@ -257,7 +259,7 @@ const ResponsiveDrawer = () => {
                                       : "#9DA4AE"
                                   }
                                 />
-                              ) : subItem.name === " Claim" ? (
+                              ) : subItem.name === "Claim" ? (
                                 <SvgAgentItemsIcon
                                   color={
                                     subItem.path === findPath
@@ -266,7 +268,7 @@ const ResponsiveDrawer = () => {
                                   }
                                 />
                               ) : subItem.name === "Quotation" ? (
-                                <SvgAgentItemsIcon
+                                <SvgQuotationIcon
                                   color={
                                     subItem.path === findPath
                                       ? "#6366F1"
@@ -274,7 +276,7 @@ const ResponsiveDrawer = () => {
                                   }
                                 />
                               ) : subItem.name === "Policy" ? (
-                                <SvgAgentItemsIcon
+                                <SvgPolicyIcon
                                   color={
                                     subItem.path === findPath
                                       ? "#6366F1"

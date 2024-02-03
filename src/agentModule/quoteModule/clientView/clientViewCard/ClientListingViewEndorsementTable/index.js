@@ -30,9 +30,8 @@ const LeadListingAllTable = () => {
   const dispatch = useDispatch();
   const [globalFilter, setGlobalFilter] = useState("EndorsementID");
   const cities = [
-    { name: "EndorsementID", code: "EndorsementID" },
     { name: "Policy Number", code: "policy Number" },
-    { name: "EndorsementID", code: "EndorsementID" },
+    { name: "Endorsement Number", code: "EndorsementID" },
   ];
 
   useEffect(() => {
@@ -386,7 +385,7 @@ const LeadListingAllTable = () => {
           ></Column>
           <Column
             body={renderEndorsementID}
-            header={renderUncheckedHeader("EndorsementID")}
+            header={renderUncheckedHeader("Endorsement Number")}
             headerStyle={headerStyle}
           ></Column>
 

@@ -27,7 +27,7 @@ const initialValue = {
   GrossPremium: "6000",
 };
 
-const OrderSummary = ({action}) => {
+const OrderSummary = ({ action }) => {
   const [discount, setDiscount] = useState(0);
   const dispatch = useDispatch();
   const toastRef = useRef(null);
@@ -38,11 +38,11 @@ const OrderSummary = ({action}) => {
     dispatch(postOrderSummaryMiddleware(values));
     toastRef.current.showToast();
     setTimeout(() => {
-      console.log(action,'find ')
-      if(action==="edit"){
+      console.log(action, "find ");
+      if (action === "edit") {
         navigate("/agent/quotedetailedit");
       }
-      if(action==="view"){
+      if (action === "view") {
         navigate("/agent/quotedetailview");
       }
     }, 2000);
@@ -69,14 +69,20 @@ const OrderSummary = ({action}) => {
     formik.setFieldValue("Discount", count);
     console.log(count, formik.values.GrossPremium, "count");
   };
+  const handleLeadNavigation = () => {
+    navigate("/agent/leadlisting");
+  };
   return (
     <div className="order__summary__container">
       <CustomToast ref={toastRef} message="Quote Created Successfully" />
       <div className="order__summary__main__title">Leads</div>
-      <div className="order__summary__back__btn mt-3">
+      <div
+        onClick={handleLeadNavigation}
+        className="order__summary__back__btn mt-3 cursor-pointer"
+      >
         <SvgLeftArrow />
         <div className="order__summary__back__btn__title">
-          Lead ID: 12345678
+          Lead ID : 12345678
         </div>
       </div>
       {/* <form> */}

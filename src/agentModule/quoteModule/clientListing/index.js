@@ -83,7 +83,7 @@ const ClientListing = () => {
 
       <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
-          <label className="leadlisting__overal__container__title">Client</label>
+          <label className="leadlisting__overal__container__title">Clients</label>
         </div>
         {/* <div class="col-12 md:col-6 lg:col-6">
           <div className="btn_lable_save_container">

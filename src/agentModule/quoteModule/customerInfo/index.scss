@@ -105,7 +105,11 @@
       color: #111927;
       display: flex;
       align-items: center;
-      gap: 10px;
+      .arrow__outer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
     }
     .customer__info__quote__title {
       color: #111927;

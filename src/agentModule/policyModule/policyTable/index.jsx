@@ -505,11 +505,16 @@ const renderClientId =(rowData)=>{
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
           scrollable={true}
-          scrollHeight="60vh"
+          scrollHeight="50vh"
         >
+          <Column
+            body={renderPolicyNumber}
+            header="Policy Number"
+            headerStyle={headerStyle}
+          ></Column>
               <Column
             body={renderClientId}
-            header="CLient Id"
+            header="Client Id"
             headerStyle={headerStyle}
           ></Column>
             <Column
@@ -518,11 +523,7 @@ const renderClientId =(rowData)=>{
             headerStyle={headerStyle}
           ></Column>
             
-          <Column
-            body={renderPolicyNumber}
-            header="Policy Number"
-            headerStyle={headerStyle}
-          ></Column>
+          
           <Column
             body={renderGrossPremium}
             header="GrossPremium"
@@ -535,7 +536,7 @@ const renderClientId =(rowData)=>{
           ></Column>
           <Column
             body={renderPolicyExpiry}
-            header="Policy Expired"
+            header="Policy Expiry"
             headerStyle={headerStyle}
           ></Column>
           <Column

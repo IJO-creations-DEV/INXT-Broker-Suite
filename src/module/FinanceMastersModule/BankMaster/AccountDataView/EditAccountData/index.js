@@ -26,6 +26,7 @@ import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import { Dialog } from "primereact/dialog";
 import ToggleButton from "../../../../../components/ToggleButton";
 import { getChequeEditDataMiddleWare, postChequeDataMiddleWare, postPatchAccountDetailEdit } from "../../store/bankMasterMiddleware";
+import CheckEditData from "./CheckEditData";
 
 const initialValues = {
   AccountNumber: "",
@@ -34,9 +35,7 @@ const initialValues = {
   MainAccount: "",
   MainAccountDescription: "",
   TransactionLimit: "",
-  chequeBookNo: "",
-  chequeLeafBegining: "",
-  chequeLeafEnd: ""
+
 };
 
 function EditAccountDetail({ action }) {
@@ -58,6 +57,7 @@ function EditAccountDetail({ action }) {
   const [date, setDate] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [visibleEdit, setVisibleEdit] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -208,6 +208,9 @@ function EditAccountDetail({ action }) {
     setVisible(false);
     dispatch(postChequeDataMiddleWare(formik.values))
   };
+  const handleEditbutton = () => {
+    setVisibleEdit(false)
+  }
   const handleNavigation = () => {
     navigate("/master/finance/bank/accountdataview");
   };
@@ -234,10 +237,10 @@ function EditAccountDetail({ action }) {
     );
   };
   const handleEditData = (data) => {
-    alert("hii")
-    // setVisible(true)
+
+    setVisibleEdit(true)
     console.log(data, "dataa");
-    // dispatch(getChequeEditDataMiddleWare(data))
+    dispatch(getChequeEditDataMiddleWare(data))
   }
 
   return (
@@ -458,64 +461,8 @@ function EditAccountDetail({ action }) {
           disabled={!formik.isValid}
         />
       </div>
+      <CheckEditData action={action} getEditChequeData={getEditChequeData} visible={visible} setVisible={setVisible} visibleEdit={visibleEdit} setVisibleEdit={setVisibleEdit} />
 
-      <Dialog
-        header="Add Cheque book"
-        visible={visible}
-        style={{ width: "50vw" }}
-        onHide={() => setVisible(false)}
-      >
-        <div class="grid">
-          <div class="sm-col-12 col-12 md:col-6 lg-col-6">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Cheque Book Number"
-                placeholder={"Enter"}
-                value={formik.values.chequeBookNo}
-                onChange={formik.handleChange("chequeBookNo")}
-              />
-            </div>
-          </div>
-          <div class="sm-col-12 col-12 md:col-6 lg-col-6">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Cheque Leaf Beginning"
-                placeholder={"Enter"}
-                value={formik.values.chequeLeafBegining}
-                onChange={formik.handleChange("chequeLeafBegining")}
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid">
-          <div class="sm-col-12 col-12 md:col-6 lg-col-6">
-            <div>
-              <InputField
-                classNames="field__container"
-                label="Cheque Leaf End"
-                placeholder={"Enter"}
-                value={formik.values.chequeLeafEnd}
-                onChange={formik.handleChange("chequeLeafEnd")}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Button
-            label="Save"
-            className="savebutton_container"
-            onClick={handlesavebutton}
-          />
-        </div>
-      </Dialog>
     </div>
   );
 }

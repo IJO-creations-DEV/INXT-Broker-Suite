@@ -21,8 +21,8 @@ const initialState = {
             effectiveFrom: '1/24/2023',
             effectiveTo: '1/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "2",
             taxCode: "Tax0456",
             taxName: "Sales Tax",
@@ -33,8 +33,8 @@ const initialState = {
             effectiveFrom: '2/24/2023',
             effectiveTo: '2/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "3",
             taxCode: "Tax0789",
             taxName: "Property Tax",
@@ -45,8 +45,8 @@ const initialState = {
             effectiveFrom: '3/24/2023',
             effectiveTo: '3/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "4",
             taxCode: "Tax1012",
             taxName: "Excise Tax",
@@ -57,8 +57,8 @@ const initialState = {
             effectiveFrom: '4/24/2023',
             effectiveTo: '4/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "5",
             taxCode: "Tax1315",
             taxName: "Value Added Tax",
@@ -69,8 +69,8 @@ const initialState = {
             effectiveFrom: '5/24/2023',
             effectiveTo: '5/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "6",
             taxCode: "Tax1618",
             taxName: "Customs Duty",
@@ -81,8 +81,8 @@ const initialState = {
             effectiveFrom: '6/24/2023',
             effectiveTo: '6/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "7",
             taxCode: "Tax1921",
             taxName: "Service Tax",
@@ -93,8 +93,8 @@ const initialState = {
             effectiveFrom: '7/24/2023',
             effectiveTo: '7/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "8",
             taxCode: "Tax2224",
             taxName: "Estate Tax",
@@ -105,8 +105,8 @@ const initialState = {
             effectiveFrom: '8/24/2023',
             effectiveTo: '8/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "9",
             taxCode: "Tax2527",
             taxName: "Environmental Tax",
@@ -117,8 +117,8 @@ const initialState = {
             effectiveFrom: '9/24/2023',
             effectiveTo: '9/23/2023',
             action: <SvgIconeye />
-          },
-          {
+        },
+        {
             id: "10",
             taxCode: "Tax2830",
             taxName: "Luxury Tax",
@@ -129,7 +129,7 @@ const initialState = {
             effectiveFrom: '10/24/2023',
             effectiveTo: '10/23/2023',
             action: <SvgIconeye />
-          }
+        }
 
 
     ],
@@ -161,11 +161,16 @@ const taxationReducers = createSlice({
         builder.addCase(postAddTaxationMiddileware.pending, (state) => {
             state.loading = true;
         });
+        // builder.addCase(postAddTaxationMiddileware.fulfilled, (state, action) => {
+        //     state.loading = false;
+        //     const newItem2 = { ...action.payload, id: nextId++ };
+        //     state.taxationList = [...state.taxationList, newItem2];
+        //     console.log(state.taxationList, "taxationListtaxationList")
+        // });
         builder.addCase(postAddTaxationMiddileware.fulfilled, (state, action) => {
+            console.log(action.payload, 'find action.payload')
             state.loading = false;
-            const newItem2 = { ...action.payload, id: nextId++ };
-            state.taxationList = [...state.taxationList, newItem2];
-            console.log(state.taxationList, "taxationListtaxationList")
+            state.taxationList = [...state.taxationList, action.payload];
         });
 
         builder.addCase(

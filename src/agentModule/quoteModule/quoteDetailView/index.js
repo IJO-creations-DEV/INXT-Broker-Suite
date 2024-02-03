@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ShareOption from "./Modal/ShareOption";
 
-const QuoteDetailView = ({action}) => {
-  console.log(action,'find action')
+const QuoteDetailView = ({ action }) => {
+  console.log(action, "find action");
   const navigate = useNavigate();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -47,21 +47,26 @@ const QuoteDetailView = ({action}) => {
   );
 
   const handleclick = () => {
-    console.log(action,'find initial logic')
-   if(action =="view"){
-    navigate(`/agent/convertpolicy/customerinfo/view/${12}`);
-   }
-   if(action =="edit"){
-    navigate(`/agent/convertpolicy/customerinfo/edit/${12}`);
-   }
+    console.log(action, "find initial logic");
+    if (action == "view") {
+      navigate(`/agent/convertpolicy/customerinfo/view/${12}`);
+    }
+    if (action == "edit") {
+      navigate(`/agent/convertpolicy/customerinfo/edit/${12}`);
+    }
   };
-
+  const handleLeadNavigation = () => {
+    navigate("/agent/leadlisting");
+  };
   return (
     <div className="overall__quotedetails__view__container">
       <div className="header_title">Leads</div>
-      <div className="left_arrow mt-3">
+      <div
+        onClick={handleLeadNavigation}
+        className="left_arrow mt-3 cursor-pointer"
+      >
         <SvgLeftArrow />
-        <label className="left_arrow_text">Lead ID : 12345678</label>
+        <div className="left_arrow_text">Lead ID : 12345678</div>
       </div>
       <Card className="mt-4">
         <div className="table_header">Quote details</div>
@@ -90,7 +95,6 @@ const QuoteDetailView = ({action}) => {
             <label className="alpha_text">
               {/* {PolicyDetails.AccountCode} */}
               Acc012345
-
             </label>
           </div>
         </div>
@@ -112,7 +116,8 @@ const QuoteDetailView = ({action}) => {
           </div>
           <div className="quote_details">
             <label className="insurance_text">Contact Number</label>
-            <label className="alpha_text">9874563210
+            <label className="alpha_text">
+              9874563210
               {/* {createleaddata.ContactNumber} */}
             </label>
           </div>
@@ -158,8 +163,7 @@ const QuoteDetailView = ({action}) => {
           <div className="quote_details">
             <label className="insurance_text">Seating Capacity</label>
             <label className="alpha_text">
-              {/* {PolicyDetails.SeatingCapacity} */}
-              2
+              {/* {PolicyDetails.SeatingCapacity} */}2
             </label>
           </div>
         </div>
@@ -180,7 +184,6 @@ const QuoteDetailView = ({action}) => {
             <label className="alpha_text">
               5000.00
               {/* {OrderSummary.NETpremium} */}
-
             </label>
           </div>
           <div className="quote_details">
@@ -236,8 +239,7 @@ const QuoteDetailView = ({action}) => {
           onClick={() => setModalVisible(true)}
         />
         <Button
-          onClick={
-            handleclick}
+          onClick={handleclick}
           label=" Proceed to policy"
           classNames="policy_button"
         >

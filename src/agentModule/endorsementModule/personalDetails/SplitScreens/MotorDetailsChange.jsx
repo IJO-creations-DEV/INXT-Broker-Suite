@@ -108,7 +108,7 @@ const MotorDetailsChange = ({
     initialValues: initialValue,
     // validate,
     onSubmit: (values) => {
-      // handleFormSubmit(values);
+      handleFormSubmit(values);
     },
   });
 

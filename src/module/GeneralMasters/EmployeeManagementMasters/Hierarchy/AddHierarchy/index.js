@@ -107,7 +107,7 @@ const AddHierarchy = ({ action }) => {
       id: getPatchData?.id,
       rankCode: getPatchData?.rankCode,
       rankName: getPatchData?.rankName,
-      description: "description",
+      description: getPatchData?.description,
       levelNumber: getPatchData?.levelNumber,
       modifiedBy: getPatchData?.modifiedBy,
       modifiedOn: moment().format("DD/MM/YYYY"),

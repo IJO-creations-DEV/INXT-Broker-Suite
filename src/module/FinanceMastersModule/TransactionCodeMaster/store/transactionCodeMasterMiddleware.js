@@ -62,11 +62,21 @@ export const postAddTransaction = createAsyncThunk(
         console.log(payload, "payload");
 
         let bodyTableData = {
+
+            id: payload?.id,
             TransactionCode: payload?.TransactionCode,
             TransactionName: payload?.TransactionName,
             TransactionBasis: payload?.TransactionBasis,
-            TransactionDescription: payload?.TransactionDescription,
+            Description: payload?.Description,
             MainAccountCode: payload?.MainAccountCode,
+            MainAccountDescription: "MainAccountCode",
+            SubAccountCode: payload?.SubAccountCode,
+            SubAccountDescription: "SubAccountCode",
+            BranchCode: payload?.BranchCode,
+            BranchDescription:"BranchCode",
+            Department: payload?.Department,
+            DepartmentDescription: "DepartmentDescription",
+            DepartmentCode: payload?.DepartmentCode,
 
         };
         try {
@@ -126,7 +136,7 @@ export const postAddTransactionCodeSetup = createAsyncThunk(
             }),
             TransactionNumberFrom: payload?.TransactionNumberFrom,
             TransactionNumberTo: payload?.TransactionNumberTo,
-            lastUsed:"0"
+            lastUsed: "0"
 
         };
         try {
@@ -196,7 +206,7 @@ export const patchTrascationcodeDetailsEdit = createAsyncThunk(
             id: payload?.id,
             bankBranch: payload?.bankBranch,
             TransactionCode: payload?.TransactionCode,
-            TransactionCode: payload?.TransactionCode,
+            // TransactionCode: payload?.TransactionCode,
             TransactionName: payload?.TransactionName,
             TransactionBasis: payload?.TransactionBasis,
             BranchCode: payload?.BranchCode,
@@ -241,7 +251,7 @@ export const patchUserRoleAccess = createAsyncThunk(
     POST_PATCH_USER_ACCESS,
     async (payload, { rejectWithValue }) => {
         console.log(payload, "payload")
-        const data={
+        const data = {
             id: payload?.id,
             UserRole: payload?.UserRole,
             MinimumTransaction: payload?.MinimumTransaction,

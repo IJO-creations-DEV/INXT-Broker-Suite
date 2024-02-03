@@ -15,7 +15,8 @@ import {
   getChequeListData,
   postChequeDataMiddleWare,
   getChequeEditDataMiddleWare,
-  postChequeEditDataMiddleWare
+  postChequeEditDataMiddleWare,
+  getSeachAddAccountDetails
 } from "./bankMasterMiddleware";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 const initialState = {
@@ -69,6 +70,7 @@ const initialState = {
       MainAccount: "Main123",
       MainAccountDescription: "MainAccountDescription",
       TransactionLimit: "0",
+      MaxTransactionLimit: "0"
     },
     {
       id: 2,
@@ -78,8 +80,10 @@ const initialState = {
       MainAccount: "Main123",
       MainAccountDescription: "MainAccountDescription",
       TransactionLimit: "0",
+      MaxTransactionLimit: "0"
     }
   ],
+  searchAccountDetails: [],
 
   BankAccountList: [
 
@@ -106,9 +110,9 @@ const initialState = {
       chequeLeafEnd: "chequeLeafEnd"
     }
   ],
-  postCheque:{},
+  postCheque: {},
   getEditChequeData: {},
-  postEditChequeData:{}
+  postEditChequeData: {}
 };
 let nextId = 3;
 let nextId1 = 3;
@@ -193,14 +197,19 @@ const bankMasterReducer = createSlice({
     builder.addCase(postAddBankMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      postAddBankMiddleware.fulfilled, (state, action) => {
-        state.loading = false;
-        const newItem2 = { ...action.payload, id: nextId++ };
-        state.BankList = [...state.BankList, newItem2];
-        console.log(state.BankList, "BankList")
-      }
-    );
+    // builder.addCase(
+    //   postAddBankMiddleware.fulfilled, (state, action) => {
+    //     state.loading = false;
+    //     const newItem2 = { ...action.payload, id: nextId++ };
+    //     state.BankList = [...state.BankList, newItem2];
+    //     console.log(state.BankList, "BankList")
+    //   }
+    // );
+    builder.addCase(postAddBankMiddleware.fulfilled, (state, action) => {
+      console.log(action.payload, 'find action.payload')
+      state.loading = false;
+      state.BankList = [...state.BankList, action.payload];
+    });
     builder.addCase(
       postAddBankMiddleware.rejected,
       (state, action) => {
@@ -215,20 +224,38 @@ const bankMasterReducer = createSlice({
     builder.addCase(postAddAccountDetails.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      postAddAccountDetails.fulfilled, (state, action) => {
-        state.loading = false;
-        const newItem2 = { ...action.payload, id: nextId1++ };
-        state.AccountDetailsList = [...state.AccountDetailsList, newItem2];
-        console.log(state.AccountDetailsList, "BankList")
-      }
-    );
+    builder.addCase(postAddAccountDetails.fulfilled, (state, action) => {
+      console.log(action.payload, 'find action.payload')
+      state.loading = false;
+      state.AccountDetailsList = [...state.AccountDetailsList, action.payload];
+    });
+
     builder.addCase(
       postAddAccountDetails.rejected,
       (state, action) => {
         state.loading = false;
 
         // state.BankStatus = {};
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+    builder.addCase(getSeachAddAccountDetails.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getSeachAddAccountDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.searchAccountDetails = action.payload
+      }
+    );
+
+    builder.addCase(
+      getSeachAddAccountDetails.rejected,
+      (state, action) => {
+        state.loading = false;
+
+        state.searchAccountDetails = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }
     );
@@ -269,6 +296,7 @@ const bankMasterReducer = createSlice({
         console.log(state.BankList, "BankList")
       }
     );
+    
     builder.addCase(
       postAddBank.rejected,
       (state, action) => {
@@ -435,7 +463,7 @@ const bankMasterReducer = createSlice({
       postChequeDataMiddleWare.rejected,
       (state, action) => {
         state.loading = false;
-state.postCheque={}
+        state.postCheque = {}
         // state.BankStatus = {};
         state.error = typeof action.payload === "string" ? action.payload : "";
       }

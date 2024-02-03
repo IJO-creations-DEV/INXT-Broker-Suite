@@ -334,7 +334,10 @@ const QuoteListingCard = () => {
         <div class="grid mt-2">
           <div class="back__btn__container col-12 md:col-6 lg:col-6">
             <div className="quote__listing__card__container__back__btn">
-              <div className="cursor-pointer flex arrow__controller" onClick={handleLeadNavigation}>
+              <div
+                className="cursor-pointer flex arrow__controller"
+                onClick={handleLeadNavigation}
+              >
                 <SvgLeftArrow />
                 <div className="quote__listing__card__container__back__btn__title">
                   Carson Darrin

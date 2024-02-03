@@ -17,8 +17,13 @@ import { useFormik } from "formik";
 import CustomToast from "../../../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import { getPaymentDetails } from "../store/receiptsMiddleware";
+import { useLocation } from "react-router-dom";
+
 
 function PolicyReceipts() {
+  const location = useLocation();
+  const totalFC = location.state.totalFC;
+  console.log("totalFC", totalFC)
   const toastRef = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState(false);
   const [products, setProducts] = useState("Approve");
@@ -36,7 +41,7 @@ function PolicyReceipts() {
   );
   // console.log(paymentDetails[0].bankAccount, "paymentDetails")
   const initialValue = {
-    totalPayment: "",
+    totalPayment: totalFC,
     bankcode: "",
     bankName: "",
     bankAccount: "",
@@ -68,8 +73,7 @@ function PolicyReceipts() {
     // const formErrors = validate(formik.values);
     // setErrors(formErrors);
     // console.log(formErrors, "iiiii");
-    // toastRef.current.showToast();
-    dispatch(getPaymentDetails(formik.values));
+    
     // navigate('')
     setProducts("Print");
     if (products == "Print") {
@@ -81,6 +85,9 @@ function PolicyReceipts() {
       setTimeout(() => {
         navigate("/accounts/receipts");
       }, 2000);
+    }else{
+      toastRef.current.showToast();
+      dispatch(getPaymentDetails(formik.values));
     }
   };
   // const handleSubmit2 = () => {
@@ -107,35 +114,7 @@ function PolicyReceipts() {
   ];
 
   const home = { label: "Accounts " };
-  const template2 = {
-    layout:
-      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
-    RowsPerPageDropdown: (options) => {
-      const dropdownOptions = [
-        { label: 5, value: 5 },
-        { label: 10, value: 10 },
-        { label: 20, value: 20 },
-        { label: 120, value: 120 },
-      ];
 
-      return (
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdown_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
-      );
-    },
-  };
   // const dataa= [
   //   { label:paymentDetails[0].bankcode, value:paymentDetails[0].bankcode},
 
@@ -160,6 +139,22 @@ function PolicyReceipts() {
     { label: "Credit Card", value: "Credit Card" },
     { label: "Debit Card", value: "Debit Card" },
   ];
+
+  // const setFormikValues = (totalFC) => {
+
+  //   const updatedValues = {
+  //     totalPayment: totalFC,
+
+  //   };
+
+
+  //   formik.setValues({ ...formik.values, ...updatedValues });
+  // };
+  // console.log("first", formik.values.totalPayment)
+  // useEffect(() => {
+  //   setFormikValues()
+  // }, [])
+
 
   const headerStyle = {
     fontSize: 16,
@@ -196,9 +191,9 @@ function PolicyReceipts() {
           <div class="col-4 md:col-4 lg-col-4">
             <div>
               <InputField
-                value={formik?.values?.totalPayment}
+                value={formik.values.totalPayment}
                 onChange={formik.handleChange("totalPayment")}
-                error={formik.errors.totalPayment}
+                // error={formik.errors.totalPayment}
                 classNames="field__policy "
                 label="Total Payment"
               />
@@ -234,7 +229,7 @@ function PolicyReceipts() {
               <InputField
                 value={
                   formik.values.bankcode
-                    ? `bankcode ${formik.values.bankcode}`
+                    ? `${formik.values.bankcode}`
                     : ""
                 }
                 // onChange={formik.handleChange("bankName")}
@@ -297,7 +292,7 @@ function PolicyReceipts() {
                 error={formik.errors.bankAccountName}
                 classNames="field__policy"
                 label="Bank Account Name"
-                // value={"Business Account"}
+              // value={"Business Account"}
               />
             </div>
           </div>
@@ -334,7 +329,7 @@ function PolicyReceipts() {
                 error={formik.errors.cardNumber}
                 classNames="field__policy "
                 label="Card Number"
-                // value={"1234 5678 9874 5632"}
+              // value={"1234 5678 9874 5632"}
               />
             </div>
           </div>

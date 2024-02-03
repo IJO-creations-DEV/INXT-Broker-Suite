@@ -18,7 +18,7 @@ import { useFormik } from "formik";
 import { Toast } from "primereact/toast";
 import CustomToast from "../../../../components/Toast";
 import { postExchangeStatus } from "../store/exchangeMasterMiddleware";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialValues = {
   EffectiveFrom: new Date(),
@@ -31,6 +31,15 @@ const initialValues = {
 };
 
 function AddExchange() {
+  const { ExchangeList, loading } = useSelector(
+    ({ exchangeMasterReducer }) => {
+      return {
+        loading: exchangeMasterReducer?.loading,
+        ExchangeList: exchangeMasterReducer?.ExchangeList,
+
+      };
+    }
+  );
   const toastRef = useRef(null);
   const [date, setDate] = useState(null);
   const Navigate = useNavigate();
@@ -44,12 +53,12 @@ function AddExchange() {
     useState(null);
 
   const currencyCode = [
-    { label: "PHP", value: "NY" },
-    { label: "USD", value: "RM" },
+    { label: "PHP", value: "PHP" },
+    { label: "USD", value: "USD" },
   ];
   const ToCurrencyCode = [
-    { label: "PHP", value: "NY" },
-    { label: "USD", value: "RM" },
+    { label: "PHP", value: "PHP" },
+    { label: "USD", value: "USD" },
   ];
 
   const home = { label: "Master" };
@@ -72,9 +81,13 @@ function AddExchange() {
   // const toastRef = useRef(null);
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
+    const valueWithId = {
+      ...values,
+      id: ExchangeList?.length + 1,
+    };
     // Handle form submission
     console.log(values, "find values");
-    dispatch(postExchangeStatus(formik.values));
+    dispatch(postExchangeStatus(valueWithId));
     toastRef.current.showToast();
     // {
     setTimeout(() => {

@@ -159,7 +159,8 @@ function PolicyReceipts() {
   });
 
   const handleClick = () => {
-    navigate("/accounts/receipts/paymentdetails");
+    console.log("totalFCfirst",totalFC)
+    navigate("/accounts/receipts/paymentdetails",{ state: { totalFC } });
   };
   const template2 = {
     layout:

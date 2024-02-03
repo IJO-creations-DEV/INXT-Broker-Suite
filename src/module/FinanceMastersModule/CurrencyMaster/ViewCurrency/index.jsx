@@ -112,7 +112,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
-                            value={"Description"}
+                            value={CurrencyDetailView?.Description}
                         />
                     </div>
                     </div>
@@ -134,7 +134,7 @@ const ViewCurrency = () => {
                             className='label__sub__add'
                             placeholder="Enter"
                             disabled={true}
-                            value={"1000"}
+                            value={CurrencyDetailView?.NumberofDecimals}
                         />
                     </div>
                 </div>

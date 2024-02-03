@@ -130,6 +130,7 @@ const correctioneversalJVReducers = createSlice({
         );
         builder.addCase(
             patchCorrectionJVEdit.fulfilled,
+            
             (state, action) => {
                 state.loading = false;
                 const updatedIndex = state.correctionJVList.findIndex(

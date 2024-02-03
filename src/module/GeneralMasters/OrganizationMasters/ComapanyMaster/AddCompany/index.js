@@ -191,25 +191,21 @@ function AddCompany({ action }) {
     if (!values.LicenseNumber) {
       errors.LicenseNumber = "This field is required";
     }
+  
     if (!values.EmailID) {
-      errors.EmailID = "This field is required";
+      errors.EmailID = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.EmailID)) {
+      errors.EmailID = "Invalid email address";
     }
+
+   
     if (!values.Websitelink) {
       errors.Websitelink = "This field is required";
     }
     if (!values.Description) {
       errors.Description = "This field is required";
     }
-    if (!values.AddressLine1) {
-      errors.AddressLine1 = "This field is required";
-    }
-    if (!values.AddressLine2) {
-      errors.AddressLine2 = "This field is required";
-    }
-
-    if (!values.AddressLine3) {
-      errors.AddressLine3 = "This field is required";
-    }
+    
     if (!values.PinCode) {
       errors.PinCode = "This field is required";
     }
@@ -222,8 +218,11 @@ function AddCompany({ action }) {
     if (!values.Country) {
       errors.Country = "This field is required";
     }
+   
     if (!values.PhoneNumber) {
-      errors.PhoneNumber = "This field is required";
+      errors.PhoneNumber = "Phone Number is required";
+    } else if (!/^\d{10}$/.test(values.PhoneNumber)) {
+      errors.PhoneNumber = "Invalid phone number (10 digits)";
     }
     if (!values.Fax) {
       errors.Fax = "This field is required";

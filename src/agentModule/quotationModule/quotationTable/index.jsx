@@ -8,80 +8,73 @@ import SvgArrow from "../../../assets/icons/SvgArrow";
 import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
-import "../../quotationModule/index.scss"
+import "../../quotationModule/index.scss";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getClaimTabelSearchList } from "./store/getClaimTabelDataMiddleWare";
 import SvgMotorTable from "../../../assets/agentIcon/SvgMotorTable";
 
-
-
 const LeadListingAllTable = () => {
-//   const { claimListData, loading, claimSearchListData } = useSelector(
-//     ({ claimTabelMainReducers }) => {
-//       return {
-//         loading: claimTabelMainReducers?.loading,
-//         claimListData: claimTabelMainReducers?.claimListData,
-//         claimSearchListData: claimTabelMainReducers?.claimSearchListData,
-//       };
-//     }
-//   );
-//   console.log(claimListData, "claimListData");
+  //   const { claimListData, loading, claimSearchListData } = useSelector(
+  //     ({ claimTabelMainReducers }) => {
+  //       return {
+  //         loading: claimTabelMainReducers?.loading,
+  //         claimListData: claimTabelMainReducers?.claimListData,
+  //         claimSearchListData: claimTabelMainReducers?.claimSearchListData,
+  //       };
+  //     }
+  //   );
+  //   console.log(claimListData, "claimListData");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
-  
+
   const navigate = useNavigate();
 
-
   const TableData = [
-    
     {
-        id: "1",
-        QuoteId: "QI001",
-        LeadName: "Carson Darrin",
-        PolicyType:"PC",
-        GrossPremium:"4000.00",
-        Date: "01 JAN 2024",
-        Status: "Draft",
-        Actions: <SvgArrow />,
-      },
-      {
-        id: "2",
-        QuoteId: "QI002",
-        LeadName: "Carson Darrin",
-        PolicyType:"CV",
-        GrossPremium:"5000.00",
-        Date: "01 JAN 2024",
-        Status: "Completed",
-        Actions: <SvgArrow />,
-      },
-      {
-        id: "3",
-        QuoteId: "QI003",
-        LeadName: "Carson Darrin",
-        PolicyType:"PC",
-        GrossPremium:"9000.00",
-        Date: "01 JAN 2024",
-        
-       
-        Status: "Completed",
-        Actions: <SvgArrow />,
-      },
-      {
-        id: "4",
-        QuoteId: "QI004",
-        
-        LeadName: "Carson Darrin",
-        PolicyType:"CV",
-        GrossPremium:"5000.00",
-        Date: "01 JAN 2024",
-        expiryDate:"01 JAN 2025",
-        
-        Status: "Draft",
-        Actions: <SvgArrow />,
-      },
-     
+      id: "1",
+      QuoteId: "QI001",
+      LeadName: "Carson Darrin",
+      PolicyType: "PC",
+      GrossPremium: "4000.00",
+      Date: "01 JAN 2024",
+      Status: "Draft",
+      Actions: <SvgArrow />,
+    },
+    {
+      id: "2",
+      QuoteId: "QI002",
+      LeadName: "Carson Darrin",
+      PolicyType: "CV",
+      GrossPremium: "5000.00",
+      Date: "01 JAN 2024",
+      Status: "Completed",
+      Actions: <SvgArrow />,
+    },
+    {
+      id: "3",
+      QuoteId: "QI003",
+      LeadName: "Carson Darrin",
+      PolicyType: "PC",
+      GrossPremium: "9000.00",
+      Date: "01 JAN 2024",
 
-];
+      Status: "Completed",
+      Actions: <SvgArrow />,
+    },
+    {
+      id: "4",
+      QuoteId: "QI004",
+
+      LeadName: "Carson Darrin",
+      PolicyType: "CV",
+      GrossPremium: "5000.00",
+      Date: "01 JAN 2024",
+      expiryDate: "01 JAN 2025",
+
+      Status: "Draft",
+      Actions: <SvgArrow />,
+    },
+  ];
 
   const template2 = {
     layout:
@@ -311,7 +304,7 @@ const LeadListingAllTable = () => {
     return <div className="category__text">{rowData.QuoteId}</div>;
   };
   const renderPolicyType = (rowData) => {
-    console.log(rowData,"find rowData")
+    console.log(rowData, "find rowData");
     return <div className="category__text">{rowData.PolicyType}</div>;
   };
   const renderLeadName = (rowData) => {
@@ -335,7 +328,6 @@ const LeadListingAllTable = () => {
           rowData.Status === "Draft"
             ? "company__status__type__green"
             : "company__status__type__blue"
-           
         }
       >
         {rowData.Status}
@@ -343,7 +335,7 @@ const LeadListingAllTable = () => {
     );
   };
   const [search, setSearch] = useState("");
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
   // useEffect(() => {
   //   if (search?.length > 0) {
   //     dispatch(getClaimTabelSearchList(search))
@@ -356,24 +348,23 @@ const LeadListingAllTable = () => {
     { name: "ClientID", code: "ClientID" },
   ];
 
-//   useEffect(() => {
-//     if (globalFilter && search) {
-//       dispatch(
-//         getClaimTabelSearchList({
-//           field: globalFilter,
-//           value: search,
-//         })
-//       );
-//     }
-//   }, [search]);
+  //   useEffect(() => {
+  //     if (globalFilter && search) {
+  //       dispatch(
+  //         getClaimTabelSearchList({
+  //           field: globalFilter,
+  //           value: search,
+  //         })
+  //       );
+  //     }
+  //   }, [search]);
   const handleView = (rowData) => {
     console.log(rowData, "find rowData");
     if (rowData?.Status === "Draft") {
       navigate("/agent/createquote/policydetails/createquote/12");
     } else if (rowData?.Status === "Completed") {
-      navigate(`/agent/claimrequest/requestapproval/123`);
+      navigate(`/agent/quotedetailview`);
     }
-   
   };
 
   const ViewheaderStyle = {
@@ -447,8 +438,8 @@ const LeadListingAllTable = () => {
       </div>
       <div className="lead__table__container">
         <DataTable
-        //   value={search ? claimSearchListData : claimListData}
-        value={TableData}
+          //   value={search ? claimSearchListData : claimListData}
+          value={TableData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -461,7 +452,6 @@ const LeadListingAllTable = () => {
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
         >
-           
           <Column
             body={renderQuoteId}
             header={rendercheckedHeader("Quote Id")}
@@ -472,24 +462,23 @@ const LeadListingAllTable = () => {
             header={renderUncheckedHeader("Lead Name")}
             headerStyle={headerStyle}
           ></Column>
-         
-         
-           <Column
+
+          <Column
             body={renderPolicyType}
             header={renderUncheckedHeader("Policy Type")}
             headerStyle={headerStyle}
           ></Column>
-           <Column
+          <Column
             body={renderGrossPremium}
             header={renderUncheckedHeader("GrossPremium")}
             headerStyle={headerStyle}
           ></Column>
-           <Column
+          <Column
             body={renderDate}
             header={renderUncheckedHeader("Date")}
             headerStyle={headerStyle}
           ></Column>
-         
+
           <Column
             body={renderStatus}
             header={renderUncheckedHeader("Status")}

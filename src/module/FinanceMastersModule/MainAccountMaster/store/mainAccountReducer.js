@@ -11,7 +11,7 @@ import {
 const initialState = {
   loading: false,
   error: "",
-  MainAccountDetailView:{},
+  MainAccountDetailView: {},
   MainAccountList: [
     {
       id: "1",
@@ -76,7 +76,7 @@ const initialState = {
   ]
 
 }
-let nextId=3
+let nextId = 3
 const mainAccountMasterReducer = createSlice({
   name: "mainAccountMaster",
   initialState,
@@ -133,14 +133,19 @@ const mainAccountMasterReducer = createSlice({
     builder.addCase(postMainAccountStatus.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      postMainAccountStatus.fulfilled, (state, action) => {
-          state.loading = false;
-          const newItem = { ...action.payload, id: nextId++ };
-          state.MainAccountList = [...state.MainAccountList, newItem];
-          console.log(state.MainAccountList, "newItem")
-      }
-  );
+    //   builder.addCase(
+    //     postMainAccountStatus.fulfilled, (state, action) => {
+    //         state.loading = false;
+    //         const newItem = { ...action.payload, id: nextId++ };
+    //         state.MainAccountList = [...state.MainAccountList, newItem];
+    //         console.log(state.MainAccountList, "newItem")
+    //     }
+    // );
+    builder.addCase(postMainAccountStatus.fulfilled, (state, action) => {
+      console.log(action.payload, 'find action.payload')
+      state.loading = false;
+      state.MainAccountList = [...state.MainAccountList, action.payload];
+    });
     builder.addCase(
       postMainAccountStatus.rejected,
       (state, action) => {
@@ -231,7 +236,7 @@ const mainAccountMasterReducer = createSlice({
     builder.addCase(getMainAccountDetailView.pending, (state) => {
       state.loading = true;
     });
-    
+
     builder.addCase(
       getMainAccountDetailView.fulfilled,
       (state, action) => {
@@ -240,7 +245,7 @@ const mainAccountMasterReducer = createSlice({
         console.log(state.MainAccountDetailView, "state.MainAccountDetailView");
       }
     );
-    
+
     builder.addCase(
       getMainAccountDetailView.rejected,
       (state, action) => {

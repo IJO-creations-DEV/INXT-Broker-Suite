@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getRequest } from "../../../../utility/commonServices";
 import { APIROUTES } from "../../../../routes/apiRoutes";
-import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT, POST_ADD_BANK, POST_ADD_ACCOUNT_DETAILS, GET_ADD_VIEW, GET_Account_PATCH_VIEW, GET_PATCH_VIEW, GET_CHEQUE_LIST, POST_CHEQUE_DATA, GET_CHEQUE_EDIT_DATA, POST_CHEQUE_EDIT_DATA } from "../../../../redux/actionTypes";
+import { GET_BANK_LIST, GET_BANK_SEARCH_LIST, POST_BANK_STATUS, GET_BANK_DETAIL_VIEW, GET_ADD_BANK, PATCH_BANK_DETAIL_EDIT, POST_ADD_BANK, POST_ADD_ACCOUNT_DETAILS, GET_ADD_VIEW, GET_Account_PATCH_VIEW, GET_PATCH_VIEW, GET_CHEQUE_LIST, POST_CHEQUE_DATA, GET_CHEQUE_EDIT_DATA, POST_CHEQUE_EDIT_DATA, GET_ACCOUNT_DETAILS_SEARCH_LIST } from "../../../../redux/actionTypes";
 import SvgEye from "../../../../assets/icons/SvgEye";
 import SvgArrow from "../../../../assets/icons/SvgArrow";
 
@@ -96,6 +96,7 @@ export const postAddAccountDetails = createAsyncThunk(
             MainAccount: payload?.MainAccount,
             MainAccountDescription: payload?.MainAccountDescription,
             TransactionLimit: payload?.TransactionLimit,
+            MaxTransactionLimit:"0"
         }
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
@@ -224,6 +225,7 @@ export const postPatchAccountDetailEdit = createAsyncThunk(
             MainAccount: payload?.MainAccount,
             MainAccountDescription: payload?.MainAccountDescription,
             TransactionLimit: payload?.TransactionLimit,
+            MaxTransactionLimit:"0"
         }
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
@@ -234,6 +236,27 @@ export const postPatchAccountDetailEdit = createAsyncThunk(
     },
 );
 
+
+export const getSeachAddAccountDetails = createAsyncThunk(
+    GET_ACCOUNT_DETAILS_SEARCH_LIST,
+    async (payload, { rejectWithValue, getState }) => {
+        const textSearch = payload;
+        console.log(textSearch, "textSearch")
+        const { bankMasterReducer } = getState();
+
+        const { AccountDetailsList } = bankMasterReducer;
+        console.log(AccountDetailsList, "1234")
+        try {
+            const searchResults = AccountDetailsList.filter(item => {
+                return item.AccountNumber.toLowerCase().includes(textSearch.toLowerCase());
+            });
+            console.log(searchResults, "searchResults")
+            return searchResults;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    },
+);
 export const getChequeListData = createAsyncThunk(
     GET_CHEQUE_LIST,
     async (payload, { rejectWithValue }) => {

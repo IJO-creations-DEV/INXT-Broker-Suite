@@ -144,7 +144,7 @@ const AddUser = ({ action }) => {
   const setFormikValues = () => {
     console.log(userEditData, "user details");
     const assignedRoleData = userEditData?.assignedRole
-    const employeeCodeData = userEditData?.employeeCode
+    const employeeCodeData = userEditData?.employeeCode 
     const updatedValues = {
       id: userEditData?.id,
       userName: userEditData?.userName,

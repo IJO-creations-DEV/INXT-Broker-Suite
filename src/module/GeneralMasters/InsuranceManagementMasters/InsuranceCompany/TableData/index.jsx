@@ -103,6 +103,7 @@ const TableData = ({ navigate }) => {
   };
 
   const handleView = (rowData) => {
+    console.log(rowData,"find");
     dispatch(getInsuranceViewMiddleWare(rowData))
     navigate(
       `/master/generals/insurancemanagement/insurancecompany/view/${rowData?.id}`

@@ -31,9 +31,14 @@ const UserGroupAccess = () => {
   const [showView, setShowView] = useState(false)
 
   const item = [{
-    label: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123",
-    value: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123"
-  }]
+    label:"RC0010",value:"RC0134",
+    label:"RC0012",value:"RC0012",
+
+    // label: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123",
+    // value: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123"
+  }
+
+]
   const handleClick = () => {
     setShow(!show);
   };
@@ -56,7 +61,7 @@ const UserGroupAccess = () => {
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
-        { label: 5, value: 5 },
+        { label: "5", value: "5" },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
         { label: 120, value: 120 },

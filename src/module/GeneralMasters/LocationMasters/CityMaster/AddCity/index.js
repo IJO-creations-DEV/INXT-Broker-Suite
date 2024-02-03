@@ -79,7 +79,7 @@ function AddCity({ action }) {
       id: CityListById?.id,
       CityCode: CityListById?.Citycode || "",
       CityName: CityListById?.CityName || "",
-      Description: "Description",
+      Description: CityListById?.Description || "",
       State: statedatas || "",
       ModifiedBy: CityListById?.Modifiedby || "",
       ModifiedOn: CityListById?.ModifiedOn || "",

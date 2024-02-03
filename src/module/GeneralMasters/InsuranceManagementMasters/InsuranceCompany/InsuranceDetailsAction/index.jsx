@@ -39,7 +39,7 @@ const InsuranceDetailsAction = ({ action }) => {
       getInsurancePatchData: insuranceCompanyReducers?.getInsurancePatchData,
     };
   });
-  console.log(getInsurancePatchData, "find getInsurancePatchData");
+  console.log(getInsuranceView, "find getInsuranceView");
   const { id } = useParams();
   console.log(id, "find route id");
   const toastRef = useRef(null);
@@ -113,19 +113,7 @@ const InsuranceDetailsAction = ({ action }) => {
     if (!values.insuranceCompanyDescription) {
       errors.insuranceCompanyDescription = "This field is required";
     }
-
-    if (!values.addressLine1) {
-      errors.addressLine1 = "This field is required";
-    }
-    if (!values.addressLine2) {
-      errors.addressLine2 = "This field is required";
-    }
-    if (!values.addressLine3) {
-      errors.addressLine3 = "This field is required";
-    }
-    if (!values.addressLine3) {
-      errors.addressLine3 = "This field is required";
-    }
+   
     if (!values.city) {
       errors.city = "This field is required";
     }

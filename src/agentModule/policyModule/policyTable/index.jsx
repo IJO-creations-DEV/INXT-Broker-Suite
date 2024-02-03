@@ -514,7 +514,7 @@ const renderClientId =(rowData)=>{
           ></Column>
             <Column
             body={renderClientName}
-            header="CLient Name"
+            header="Client Name"
             headerStyle={headerStyle}
           ></Column>
             

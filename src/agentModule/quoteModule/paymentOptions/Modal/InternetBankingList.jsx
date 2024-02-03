@@ -28,7 +28,7 @@ const InternetBankingList = ({ modalVisible, setModalVisible }) => {
   return (
     <Dialog
       visible={modalVisible}
-      header="Share"
+      header="Internet Banking"
       style={{ width: "40vw" }}
       className="banking__list__dialog__container"
       onHide={() => setModalVisible(false)}

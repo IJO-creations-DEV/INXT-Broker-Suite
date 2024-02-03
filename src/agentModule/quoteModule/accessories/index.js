@@ -72,12 +72,15 @@ const Accessories = ({action}) => {
     },
   });
 
+  const handleLeadNavigation = () => {
+    navigate("/agent/leadlisting");
+  };
   return (
     <div className="overall__create__quote__accessories">
       <div className="header__title">Leads</div>
-      <div className="left__arrow mt-3">
+      <div onClick={handleLeadNavigation} className="left__arrow mt-3 cursor-pointer">
         <SvgLeftArrow />
-        <label className="left__arrow__text">Lead ID : 12345678</label>
+        <div className="left__arrow__text">Lead ID : 12345678</div>
       </div>
       <form>
         <Card className="mt-4">

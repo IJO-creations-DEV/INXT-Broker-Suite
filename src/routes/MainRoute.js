@@ -192,7 +192,7 @@ import PaymentErrorEndorsment from "../agentModule/endorsementModule/paymentErro
 import Payments from "../agentModule/paymentsModule";
 import Claim from "../agentModule/claimModule";
 import Policy from "../agentModule/policyModule";
-import Quotation from "../agentModule/quotationModule"
+import Quotation from "../agentModule/quotationModule";
 import OpenItems from "../agentModule/openItems/openItems";
 import UpcomingEvents from "../agentModule/openItems/upcomingEvents";
 import ExpiringPolicy from "../agentModule/openItems/expiringPolicy";
@@ -226,7 +226,7 @@ import { TOKEN } from "../utility/constant";
 import EditRequestForm from "../module/PettyCashManagement/Request/EditRequest";
 import ClaimModule from "../agentModule/claimModule";
 import PolicyModule from "../agentModule/policyModule";
-import QuotationModule from "../agentModule/quotationModule"
+import QuotationModule from "../agentModule/quotationModule";
 
 const Maincomponent = () => {
   return (
@@ -858,7 +858,7 @@ const Maincomponent = () => {
           />
           <Route
             path="master/finance/bank/accountdataview/editaccountdetail"
-            element={<EditAccountDetail action="Edit"  />}
+            element={<EditAccountDetail action="Edit" />}
           />
 
           {/* exchangeRate */}
@@ -984,8 +984,11 @@ const Maincomponent = () => {
           {/* // Lead Creation, edit lead & Lead listing */}
           <Route path="/agent/createlead" element={<LeadCreation />} />
           <Route path="/agent/leadlisting" element={<LeadListing />} />
-          <Route path="/agent/leadedit" element={<LeadEdit flow="lead"/>} />
-          <Route path="/agent/clientedit" element={<LeadEdit flow="client"/>} />
+          <Route path="/agent/leadedit" element={<LeadEdit flow="lead" />} />
+          <Route
+            path="/agent/clientedit"
+            element={<LeadEdit flow="client" />}
+          />
           {/* // Quote Creation, Policy conversion & Client listing */}
           <Route
             path="/agent/createquote/policydetails/createquote/:id"
@@ -1026,17 +1029,11 @@ const Maincomponent = () => {
             path="/agent/createquote/ordersummary"
             element={<OrderSummary action="edit" />}
           />
-           <Route
-            path="/agent/claim/claimtable"
-            element={<ClaimModule/> }
-          />
-           <Route
-            path="/agent/policy/policytable"
-            element={<PolicyModule/> }
-          />
-           <Route
+          <Route path="/agent/claim/claimtable" element={<ClaimModule />} />
+          <Route path="/agent/policy/policytable" element={<PolicyModule />} />
+          <Route
             path="/agent/quotation/quotationtable"
-            element={<QuotationModule/> }
+            element={<QuotationModule />}
           />
           <Route
             path="/agent/createquote/ordersummaryquote"
@@ -1110,7 +1107,11 @@ const Maincomponent = () => {
           <Route path="/agent/claimrequest/sendmail" element={<SendMail />} />
           <Route
             path="/agent/claimrequest/requestapproval/:id"
-            element={<RequestApproval />}
+            element={<RequestApproval flow="normal" />}
+          />
+          <Route
+            path="/agent/quotationmrequest/requestapproval/:id"
+            element={<RequestApproval flow="quotation" />}
           />
           <Route
             path="/agent/claimrequest/adjustersubmission"

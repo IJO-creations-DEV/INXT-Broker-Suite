@@ -83,26 +83,22 @@ const PaymentOptions = () => {
             className="left__arrow cursor-pointer"
           >
             <SvgLeftArrow />
-            <label className="left__arrow__text">Client ID : 12345678</label>
+            <div className="left__arrow__text">
+              Carson Darrin / Client ID : 12345678
+            </div>
           </div>
         </div>
         <Card className="mt-4">
           <div className="table__header">Payment Options</div>
           <div className="grid mt-2">
             <div className="col-6">
-              <div
-                className="atm__text cursor-pointer"
-                onClick={handleNavigation}
-              >
+              <div className="atm__text cursor-pointer">
                 <SvgDigital />
                 <div className="input__text__style">Digi Bank</div>
               </div>
             </div>
             <div className="col-6">
-              <div
-                className="atm__text cursor-pointer"
-                onClick={handleNavigation}
-              >
+              <div className="atm__text cursor-pointer">
                 <SvgStore />
                 <div className="input__text__style">Convenience Store</div>
               </div>
@@ -126,10 +122,7 @@ const PaymentOptions = () => {
               </div>
             </div>
             <div className="col-6">
-              <div
-                className="atm__text cursor-pointer"
-                onClick={handleNavigation}
-              >
+              <div className="atm__text cursor-pointer">
                 <SvgInxTlinkicon />
                 <div className="input__text__style">INXT payment</div>
               </div>

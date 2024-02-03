@@ -35,7 +35,7 @@ const Reversals = () => {
       };
     }
   );
-  console.log(correctionJVList, "correctionJVList");
+  console.log(correctionJVList, "find original correctionJVList");
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(false);
   const [creditTotal, setCreditTotal] = useState(2600);

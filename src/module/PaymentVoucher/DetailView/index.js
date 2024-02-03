@@ -133,7 +133,7 @@ function Detailview() {
     if (actionToast != null) {
       toastRef.current.showToast();
       {
-        setTimeout(() => {}, 3000);
+        setTimeout(() => { }, 3000);
       }
     }
   }, [actionToast]);
@@ -278,6 +278,7 @@ function Detailview() {
           onSelectionChange={(e) => setSelectedProducts(e.value)}
           selectionMode="checkbox"
           rowClassName={(rowData) => getStatusClassName(rowData.status)}
+          
         >
           {chequebooklist?.length > 0 && (
             <Column

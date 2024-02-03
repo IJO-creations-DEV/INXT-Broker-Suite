@@ -4,7 +4,7 @@ import {
   getRequestSearchMiddleware,
   postAddRequestMiddleware,
   getAddRequestTableMiddleware,
-  postEditRequestMiddleware,geteditrequestMiddleware ,postupdateRequestMiddleware
+  postEditRequestMiddleware, geteditrequestMiddleware, patchupdateRequestMiddleware
 } from "./pettyCashRequestMiddleware";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 const initialState = {
@@ -119,11 +119,11 @@ const initialState = {
       id: 1,
       Narration: "PCC0123",
       Amount: "10000",
-     
+
     },
   ],
   EditRequest: {},
-  editrequestDetails:[]
+  editrequestDetails: []
 };
 const PettyCashRequestReducer = createSlice({
   name: "pettycashrequest",
@@ -210,19 +210,36 @@ const PettyCashRequestReducer = createSlice({
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
-     //geteditrequestMiddleware 
+    //geteditrequestMiddleware 
 
-     builder.addCase(geteditrequestMiddleware .pending, (state) => {
+    builder.addCase(geteditrequestMiddleware.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(geteditrequestMiddleware .fulfilled, (state, action) => {
+    builder.addCase(geteditrequestMiddleware.fulfilled, (state, action) => {
       state.loading = false;
       state.editrequestDetails = action.payload;
     });
-    builder.addCase(geteditrequestMiddleware .rejected, (state, action) => {
+    builder.addCase(geteditrequestMiddleware.rejected, (state, action) => {
       state.loading = false;
 
       state.InitiateDetails = {};
+      state.error = typeof action.payload === "string" ? action.payload : "";
+    });
+
+    //patchdatarquest 
+    builder.addCase(patchupdateRequestMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(patchupdateRequestMiddleware.fulfilled, (state, action) => {
+      console.log("first99", state, action)
+      state.loading = false;
+      state.RequestList = action.payload;
+
+    });
+    builder.addCase(patchupdateRequestMiddleware.rejected, (state, action) => {
+      state.loading = false;
+
+      state.RequestList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
   },

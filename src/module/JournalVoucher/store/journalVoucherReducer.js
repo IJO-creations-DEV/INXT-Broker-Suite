@@ -20,8 +20,8 @@ const initialState = {
       localAmount: '600',
       entryType: "Credit",
       departmentCode: "departmentCode",
-      departmentDescription: "departmentDescription"
-
+      departmentDescription: "departmentDescription",
+      Remarks: "qwerty"
     },
     {
       id: 2,
@@ -29,11 +29,12 @@ const initialState = {
       subAccount: "sub0123",
       branchCode: "branch88",
       currencyCode: "cu77",
-      foreignAmount: "800",
+      foreignAmount: "500",
       localAmount: '600',
       entryType: "Debit",
       departmentCode: "departmentCode",
-      departmentDescription: "departmentDescription"
+      departmentDescription: "departmentDescription",
+      Remarks: "qwerty"
     }
   ],
 
@@ -87,7 +88,7 @@ const journalVoucherReducer = createSlice({
       state.loading = false;
       const newItem2 = { ...action.payload, id: nextId2++, transactionNumber: transactionNumber++ };
       state.journalVoucherList = [...state.journalVoucherList, newItem2];
-      console.log(state.journalVoucherList ,"state.journalVoucherList ");
+      console.log(state.journalVoucherList, "state.journalVoucherList ");
     });
     builder.addCase(postTCJournalVoucher.rejected, (state, action) => {
       state.loading = false;

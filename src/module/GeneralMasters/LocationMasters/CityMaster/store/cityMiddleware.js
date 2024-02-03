@@ -39,7 +39,7 @@ export const postAddCityMiddleware = createAsyncThunk(
       "Citycode": payload?.CityCode,
       "CityName": payload?.CityName,
       "State": payload?.State,
-      "Modifiedby": payload?.ModifiedBy,
+      "Modifiedby": payload?.Modifiedby,
       "ModifiedOn": payload?.ModifiedOn
     }
     try {

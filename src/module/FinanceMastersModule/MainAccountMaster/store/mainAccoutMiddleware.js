@@ -21,7 +21,7 @@ export const getMainAccountList = createAsyncThunk(
 
 export const getMainAccountSearchList = createAsyncThunk(
     GET_MAIN_ACCOUNT_SEARCH_LIST,
-    async (payload, { rejectWithValue,getState }) => {
+    async (payload, { rejectWithValue, getState }) => {
         const textSearch = payload;
         console.log(textSearch, "textSearch")
         const { mainAccoutReducers } = getState();
@@ -44,7 +44,7 @@ export const postMainAccountStatus = createAsyncThunk(
     POST_MAIN_ACCOUNT_STATUS,
     async (payload, { rejectWithValue }) => {
         const data = {
-          
+
             id: payload?.id,
             mainAccountCode: payload?.mainAccountCode,
             mainAccountName: payload?.mainAccountName,
@@ -52,11 +52,11 @@ export const postMainAccountStatus = createAsyncThunk(
             accountCategoryCode: payload?.accountCategoryCode,
             accountType: payload?.accountType,
             companyCode: payload?.companyCode,
-            openEntry:payload?.openEntry,
+            openEntry: payload?.openEntry,
             currencyCode: payload?.currencyCode,
             openEntryType: payload?.openEntryType
         }
-        console.log(data,"datadata");
+        console.log(data, "datadata");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return data;
@@ -102,7 +102,7 @@ export const patchMainAccountDetailEdit = createAsyncThunk(
             accountCategoryCode: payload?.accountCategoryCode,
             accountType: payload?.accountType,
             companyCode: payload?.companyCode,
-            openEntry:payload?.openEntry,
+            openEntry: payload?.openEntry,
             currencyCode: payload?.currencyCode,
             openEntryType: payload?.openEntryType
         }
@@ -120,7 +120,7 @@ export const patchMainAccountDetailEdit = createAsyncThunk(
 export const getMainAccountDetailView = createAsyncThunk(
     GET_MAIN_ACCOUNT_VIEW,
     async (payload, { rejectWithValue }) => {
-        console.log(payload,"payloadpayload");
+        console.log(payload, "payloadpayload");
         try {
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return payload;

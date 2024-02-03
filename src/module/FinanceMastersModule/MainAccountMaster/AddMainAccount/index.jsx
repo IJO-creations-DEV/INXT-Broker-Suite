@@ -16,9 +16,17 @@ import CustomToast from "../../../../components/Toast";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 import { postMainAccountStatus } from "../store/mainAccoutMiddleware";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddMainAccount = () => {
+  const {  loading,MainAccountList } = useSelector(
+    ({ mainAccoutReducers }) => {
+      return {
+        loading: mainAccoutReducers?.loading,
+        MainAccountList:mainAccoutReducers?.MainAccountList,
+      };
+    }
+  );
   const toastRef = useRef(null);
   const navigation = useNavigate();
   const items = [
@@ -115,7 +123,13 @@ const AddMainAccount = () => {
   const handleSubmit = (values) => {
     const openEntry = selectSwitch === "No" ? "Yes" : "No";
     const updatedValues = { ...values, openEntry };
-    dispatch(postMainAccountStatus(updatedValues));
+    const valueWithId = {
+      ...values,
+      openEntry,
+      id: MainAccountList?.length + 1,
+      
+    };
+    dispatch(postMainAccountStatus(valueWithId));
     toastRef.current.showToast();
     setTimeout(() => {
       navigation("/master/finance/mainaccount");

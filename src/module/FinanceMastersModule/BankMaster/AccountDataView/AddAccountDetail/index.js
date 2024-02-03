@@ -36,6 +36,7 @@ const initialValues = {
   MainAccount: "",
   MainAccountDescription: "",
   TransactionLimit: "",
+  MaxTransactionLimit:""
 };
 
 function AddAccountDetail() {
@@ -47,13 +48,13 @@ function AddAccountDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { BankList, loading } = useSelector(({ bankMasterReducer }) => {
+  const { AccountDetailsList, loading } = useSelector(({ bankMasterReducer }) => {
     return {
       loading: bankMasterReducer?.loading,
-      BankList: bankMasterReducer?.BankList,
+      AccountDetailsList: bankMasterReducer?.AccountDetailsList,
     };
   });
-  console.log(BankList, "BankList");
+  console.log(AccountDetailsList, "AccountDetailsList");
 
   const customValidation = (values) => {
     const errors = {};
@@ -168,11 +169,11 @@ function AddAccountDetail() {
 
   const handlesave = (value) => {
     // console.log(value, "value");
-    // const valueWithId = {
-    //   ...value,
-    //   // id: BankList?.length + 1,
-    // };
-    dispatch(postAddAccountDetails(formik.values));
+    const valueWithId = {
+      ...value,
+      id: AccountDetailsList?.length + 1,
+    };
+    dispatch(postAddAccountDetails(valueWithId));
 
     navigate("/master/finance/bank/accountdataview");
   };

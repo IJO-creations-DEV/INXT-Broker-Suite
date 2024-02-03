@@ -214,11 +214,11 @@
         color: #6366F1;
 
     }
-    .pagedropdown_container{
-        margin-right: 30%;
-        border-style: hidden;
-        background-color: #FAFAFA;
-    }
+    // .pagedropdown_container{
+    //     margin-right: 30%;
+    //     border-style: hidden;
+    //     background-color: #FAFAFA;
+    // }
     .header_search_container__taxation{
         display: flex;
         justify-content: space-between;
@@ -242,6 +242,42 @@
         font-weight: 400;
         font-family: Inter var;
         padding: 1rem 6px !important;
+      }
+      .p-paginator-first,
+      .p-paginator .p-paginator-prev,
+      .p-paginator .p-paginator-next,
+      .p-paginator .p-paginator-last {
+          background-color: transparent;
+          border: 0 none;
+          color: #1c2536;
+          min-width: 0.5rem;
+          height: 3rem;
+          margin: 0.143rem;
+          transition: box-shadow 0.2s;
+          border-radius: 50%;
+      }
+
+      .p-paginator-bottom {
+          border-width: 0;
+          justify-content: flex-end;
+
+          span {
+              color: #1c2536 !important;
+              font-family: 'Inter', sans-serif;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+          }
+
+          .table__selector {
+              padding-right: 30%;
+
+              .pagedropdown_container {
+                  border: none;
+                  margin: 0 !important;
+              }
+          }
       }
 
 }

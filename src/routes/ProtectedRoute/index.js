@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import NavBar from "../../components/NavBar";
+
 import Cookies from "js-cookie";
 
 // import Header from "../../components/Header";
@@ -9,6 +10,7 @@ import "./index.scss";
 import { TOKEN } from "../../utility/constant";
 import ResponsiveDrawer from "../../components/SideBar";
 import AgentNavBar from "../../agentModule/component/navBar";
+import NewSideBar from "../../components/SideBar/NewSideBar";
 
 const index = () => {
   const Auth = () => {
@@ -19,7 +21,8 @@ const index = () => {
   };
   return (
     <div className="protected__layout__container">
-      <ResponsiveDrawer />
+      {/* <ResponsiveDrawer /> */}
+      <NewSideBar />
 
       <div className="protected__layout__content__space">
         <div className="protected__layout__Footer__container">

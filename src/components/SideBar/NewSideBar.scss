@@ -1,0 +1,50 @@
+// styles.scss
+
+$avatar-size: 50px; // Adjust the size as needed
+
+.list {
+    padding: 0;
+    margin-bottom: 20px;
+
+    .stack {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: $avatar-size;
+            height: $avatar-size;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    li {
+        div {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            img {
+                margin-right: 10px; // Adjust spacing as needed
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            margin-left: 20px; // Adjust indentation as needed
+        }
+    }
+}
+
+.sidebar-item {
+    display: flex;
+}
+
+.sidebar-item.active {
+    /* Your styles for active sidebar items */
+    background-color: #4CAF50;
+    /* Change this to your desired active background color */
+    color: #fff;
+    /* Change this to your desired active text color */
+}

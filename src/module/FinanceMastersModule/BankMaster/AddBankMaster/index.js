@@ -118,7 +118,7 @@ function AddBankMaster() {
 
     // Handle form submission
     console.log(values, "value");
-  
+
     // dispatch(postAddBank(formik.values));
 
 
@@ -174,8 +174,16 @@ function AddBankMaster() {
     if (!values.Country) {
       errors.Country = "This field is required";
     }
+    if (!values.email) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      errors.email = "Invalid email address";
+    }
+
     if (!values.mobile) {
-      errors.mobile = "This field is required";
+      errors.mobile = "Phone Number is required";
+    } else if (!/^\d{10}$/.test(values.mobile)) {
+      errors.mobile = "Invalid phone number (10 digits)";
     }
     if (!values.Fax) {
       errors.Fax = "This field is required";

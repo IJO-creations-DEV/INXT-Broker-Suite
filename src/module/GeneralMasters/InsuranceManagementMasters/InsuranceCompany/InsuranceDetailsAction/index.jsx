@@ -123,11 +123,16 @@ const InsuranceDetailsAction = ({ action }) => {
     if (!values.country) {
       errors.country = "This field is required";
     }
+    
     if (!values.email) {
-      errors.email = "This field is required";
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      errors.email = "Invalid email address";
     }
     if (!values.phoneNumber) {
-      errors.phoneNumber = "This field is required";
+      errors.phoneNumber = "Phone Number is required";
+    } else if (!/^\d{10}$/.test(values.phoneNumber)) {
+      errors.phoneNumber = "Invalid phone number (10 digits)";
     }
 
     return errors;

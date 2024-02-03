@@ -99,11 +99,16 @@ const AddUser = ({ action }) => {
       errors.employeeCode = "Employee code is required";
     }
 
+
     if (!values.email) {
       errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      errors.email = "Invalid email address";
     }
     if (!values.phoneNumber) {
-      errors.phoneNumber = "Phone number required";
+      errors.phoneNumber = "Phone Number is required";
+    } else if (!/^\d{10}$/.test(values.phoneNumber)) {
+      errors.phoneNumber = "Invalid phone number (10 digits)";
     }
     if (!values.assignedRole) {
       errors.assignedRole = "Assigned role is required";
@@ -144,7 +149,7 @@ const AddUser = ({ action }) => {
   const setFormikValues = () => {
     console.log(userEditData, "user details");
     const assignedRoleData = userEditData?.assignedRole
-    const employeeCodeData = userEditData?.employeeCode 
+    const employeeCodeData = userEditData?.employeeCode
     const updatedValues = {
       id: userEditData?.id,
       userName: userEditData?.userName,

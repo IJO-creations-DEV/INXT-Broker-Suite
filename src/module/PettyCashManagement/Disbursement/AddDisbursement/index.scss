@@ -12,30 +12,31 @@
     color: #000;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
   .p-calendar {
     position: relative;
     display: inline-flex;
     max-width: 100%;
     height: 46px;
-}
+    width: 100%;
+  }
 
   .p-calendar-w-btn-right .p-datepicker-trigger {
-    border-top-right-radius: 10px ;
+    border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-left: none !important;
     background-color: #fff !important;
-    color: #6366F1 !important;
+    color: #6366f1 !important;
     border-color: #d1d5de !important;
-}
+  }
 
   .pettycash__title {
     color: #111927;
     font-size: 30px;
     font-style: normal;
     font-weight: 600;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -51,7 +52,7 @@
     height: 45px;
     width: 120px;
     margin: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 
   .btn__container {
@@ -62,7 +63,7 @@
 
   .sub__request__title {
     color: #111927;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -88,7 +89,8 @@
     background: #ffffff;
     padding: 0.75rem 0.75rem;
     border: 1px solid #d1d5db;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
     appearance: none;
     border-radius: 6px;
     margin-top: 0.5rem !important;
@@ -98,26 +100,27 @@
   .p-dropdown {
     background: #ffffff;
     border: 1px solid #d1d5db;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
     border-radius: 6px;
     margin-top: 0.5rem !important;
     width: 100% !important;
   }
 
   .pagedropdownunique_container {
-    width: auto !important
+    width: auto !important;
   }
   .p-button.p-button-icon-only {
     width: 3rem;
     padding: 0.75rem 0;
-    color: #6366F1;
+    color: #6366f1;
     background: #fff;
     border-left-style: hidden;
     border-color: #d1d5db;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     cursor: pointer;
-}
+  }
 }
 .calender__container {
   border-radius: 30px;
@@ -128,8 +131,7 @@
 .calenderlable__container {
   color: #000;
   margin-bottom: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 500;
-
 }

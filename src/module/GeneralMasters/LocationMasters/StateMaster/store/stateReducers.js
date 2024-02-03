@@ -12,6 +12,7 @@ const initialState = {
       Country: "Philippines",
       Modifiedby: "John",
       ModifiedOn: "2024-01-11",
+      Description:"Test Purpose",
     },
     {
       id: "2",
@@ -20,6 +21,7 @@ const initialState = {
       Country: "Philippines",
       Modifiedby: "John",
       ModifiedOn: "2024-01-12",
+      Description:"Test Purpose",
     },
     {
       id: "3",
@@ -28,6 +30,7 @@ const initialState = {
       Country: "Philippines",
       Modifiedby: "Smith",
       ModifiedOn: "2024-01-13",
+      Description:"Test Purpose",
     },
     {
       id: "4",
@@ -36,6 +39,7 @@ const initialState = {
       Country: "Philippines",
       Modifiedby: "Smith",
       ModifiedOn: "2024-01-14",
+      Description:"Test Purpose",
     },
     {
       id: "5",
@@ -52,6 +56,7 @@ const initialState = {
       Country: "Philippines",
       Modifiedby: "Smith",
       ModifiedOn: "2024-01-16",
+      Description:"Test Purpose",
     },
     {
       id: "7",
@@ -68,6 +73,7 @@ const initialState = {
       Country: "Philippines",
       Modifiedby: "Smith",
       ModifiedOn: "2024-01-18",
+      Description:"Test Purpose",
     },
     {
       id: "9",
@@ -84,6 +90,7 @@ const initialState = {
       Country: "Philippines",
       Modifiedby: "Smith",
       ModifiedOn: "2024-01-20",
+      Description:"Test Purpose",
     }
   ],
   getStateListById: [],

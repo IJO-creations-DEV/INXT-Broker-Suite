@@ -200,16 +200,7 @@ function AddCompany({ action }) {
     if (!values.Description) {
       errors.Description = "This field is required";
     }
-    if (!values.AddressLine1) {
-      errors.AddressLine1 = "This field is required";
-    }
-    if (!values.AddressLine2) {
-      errors.AddressLine2 = "This field is required";
-    }
-
-    if (!values.AddressLine3) {
-      errors.AddressLine3 = "This field is required";
-    }
+    
     if (!values.PinCode) {
       errors.PinCode = "This field is required";
     }

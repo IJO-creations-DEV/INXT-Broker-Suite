@@ -116,14 +116,18 @@ export const postAddReceiptsMiddleware = createAsyncThunk(
       const randomIndex = Math.floor(Math.random() * transactions.length);
       return { name: transactions[randomIndex] };
     };
-
+    const generateRandomTransactionnum = () => {
+      const transactions = ['02Rep012303', '03Rep012302', '02Rep0103'];
+      const randomIndex = Math.floor(Math.random() * transactions.length);
+      return { name: transactions[randomIndex] };
+    };
 
     const generateRandomAmount = () => {
       return (Math.random() * 1000).toFixed(2);
     };
     let bodyTableData = {
       id: payload.id,
-      receiptNumber: payload?.receiptNumber,
+      receiptNumber: generateRandomTransactionnum().name,
       transactionCode: payload?.transactionCode.code,
       customerCode: payload?.customerCode.code,
       date: payload?.receiptDate.toLocaleDateString("en-US", {

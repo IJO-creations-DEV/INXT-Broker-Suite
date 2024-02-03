@@ -19,7 +19,7 @@ import SvgPolicyIcon from "../../assets/agentIcon/SvgPolicyIcon";
 
 const ResponsiveDrawer = () => {
   const [findPath, setPath] = useState(null);
-  const [openSubMenu, setOpenSubMenu] = useState("");
+  const [openSubMenu, setOpenSubMenu] = useState("  ");
   const [visible, setVisible] = useState(true);
 
   const handleNavigation = (navigationPath) => {

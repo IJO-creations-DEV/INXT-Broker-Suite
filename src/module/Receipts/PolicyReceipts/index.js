@@ -91,18 +91,17 @@ const PolicyReceipts = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: "10px 0",
+    padding: "1rem",
     color: "#000",
     border: "none",
     textalign: "center",
   };
   const headerStyle1 = {
     width: "10%",
-
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: "10px 0",
+    padding: "1rem",
     color: "#000",
     border: "none",
     textalign: "center",
@@ -139,7 +138,7 @@ const PolicyReceipts = () => {
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
-  const [globalFilter, setGlobalFilter] = useState("name");
+  const [globalFilter, setGlobalFilter] = useState();
   const dispatch = useDispatch();
   const [searches, setSearch] = useState("");
 

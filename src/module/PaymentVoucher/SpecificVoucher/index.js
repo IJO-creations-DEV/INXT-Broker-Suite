@@ -159,7 +159,18 @@ function SpecificVoucher() {
     // padding: 4,
     color: "#000",
     border: "none",
-    paddingLeft: 0,
+    padding: "1rem",
+    margin: 20,
+  };
+  const headeractionStyle = {
+    width: "9rem",
+    // backgroundColor: 'red',
+    fontSize: 16,
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+     padding: "1rem",
+    color: "#000",
+    border: "none",
     margin: 20,
   };
 
@@ -202,7 +213,7 @@ function SpecificVoucher() {
         >
           <Column
             selectionMode="multiple"
-            headerStyle={{ width: "4rem" }}
+            headerStyle={{ width: "4rem",border: "0px solid #e5e7eb" }}
             style={{ textAlign: "center" }}
           ></Column>
           <Column
@@ -268,7 +279,7 @@ function SpecificVoucher() {
           <Column
             body={renderViewButton}
             header="Action"
-            headerStyle={headerStyle}
+            headerStyle={headeractionStyle}
             style={{ textAlign: "center" }}
             className="fieldvalue_container"
           ></Column>

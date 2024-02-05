@@ -59,7 +59,7 @@ export const postAddRequestMiddleware = createAsyncThunk(
       TotalAmount: randomTotalAmount.toString(),
       Date: formattedDate,
       RequestDate: formattedtransDate,
-      TransactionNumber: "Trans001",
+      TransactionNumber: "203456",
 
     };
     try {

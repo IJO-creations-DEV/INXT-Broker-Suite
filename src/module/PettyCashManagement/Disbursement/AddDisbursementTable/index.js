@@ -66,8 +66,6 @@ const AddDisbursementTable = () => {
 
   const isEmpty = AddDisbursmentTable.length === 0;
 
-
-
   const [amountData, setAmountData] = useState()
   const [totalNetAmount, setTotalNetAmount] = useState(0);
   useEffect(() => {
@@ -84,7 +82,6 @@ const AddDisbursementTable = () => {
     toastRef.current.showToast();
     {
       setTimeout(() => {
-
         navigate("/accounts/pettycash/disbursement");
       }, 2000);
     }

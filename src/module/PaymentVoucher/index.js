@@ -104,7 +104,7 @@ const Index = () => {
   const navigate = useNavigate();
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
-  const [globalFilter, setGlobalFilter] = useState("VoucherNumber");
+  const [globalFilter, setGlobalFilter] = useState();
   const [search, setSearch] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
   const cities = [

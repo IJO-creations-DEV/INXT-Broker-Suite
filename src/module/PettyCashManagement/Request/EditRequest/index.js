@@ -58,6 +58,7 @@ const EditRequestForm = ({ action }) => {
             };
         }
     );
+
     useEffect(function () {
 
         return function () {
@@ -65,7 +66,7 @@ const EditRequestForm = ({ action }) => {
         };
     }, []);
 
-    console.log("first10", AddRequestTable)
+    console.log("first10", editrequestDetails)
 
     const handleSubmit = (value) => {
         const valueWithId = {
@@ -127,6 +128,7 @@ const EditRequestForm = ({ action }) => {
         navigate("/accounts/pettycash/pettycashrequest");
     };
 
+    console.log("editrequestDetails",editrequestDetails)
 
     const setFormikValues = () => {
         const RequesterName = editrequestDetails?.RequesterName;

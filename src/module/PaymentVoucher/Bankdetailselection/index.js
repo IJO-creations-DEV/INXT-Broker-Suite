@@ -227,7 +227,7 @@ function Bankdetailselection() {
             <Column
               selectionMode="single"
               selectedItem
-              headerStyle={{ width: "4rem" }}
+              headerStyle={{ width: "4rem" ,border:"0px solid #000"}}
               style={{ textAlign: "center" }}
             ></Column>
           )}

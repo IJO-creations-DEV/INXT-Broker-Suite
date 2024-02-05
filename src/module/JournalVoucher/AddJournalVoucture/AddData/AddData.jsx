@@ -110,6 +110,7 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
     console.log(journalVoucherPostTabelData, "journalVoucherPostTabelData")
 
     const handleSubmit = (values) => {
+        console.log("first11",formik.values)
         dispatch(postAddJournalVoucher(formik.values));
     };
 
@@ -144,9 +145,10 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
         validate: customValidation,
         onSubmit: (values) => {
             // Handle form submission
+            console.log(values,"qwerty")
             handleSubmit(values);
             formik.resetForm();
-            handleUpdate(values);
+             handleUpdate(values);
             setVisible(false);
         },
     });

@@ -73,6 +73,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
 
   const handleEdit = (rowData) => {
     setEditID(rowData?.id);
+    console.log("first10",rowData?.id)
     setVisibleEdit(true);
   };
 
@@ -80,7 +81,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: "6px 6px 6px 2px",
+    padding: "1rem",
     color: "#000",
     border: "none",
   };
@@ -89,8 +90,8 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
     justifyContent: "center",
     fontsize: 16,
     fontfamily: "Inter, sans-serif",
-    fontWeight: 500,
-    padding: 10,
+    fontWeight: 400,
+    padding: "1rem",
     color: "#000",
     border: " none",
     display: "flex",
@@ -162,6 +163,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
       ...values,
       id: EditID,
     };
+    console.log(valueWithId, "find values in formik");
     dispatch(patchJVMiddleware(valueWithId));
     setVisibleEdit(false);
   };
@@ -179,7 +181,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
   const [deptt, setDeptData] = useState([]);
 
   const setFormikValues = () => {
-    console.log("find action");
+   
     const targetInvoice = journalVoucherPostTabelData.find(
       (item) => item.id === EditID
     );

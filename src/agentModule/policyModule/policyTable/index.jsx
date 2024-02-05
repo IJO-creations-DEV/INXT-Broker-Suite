@@ -142,6 +142,7 @@ const LeadListingAllTable = ({action}) => {
   };
 
   const handleMenuClick = (menuItem) => {
+    console.log(menuItem,"find menuItem")
     if (menuItem == "view") {
       navigate("/agent/policydetailedview");
     }

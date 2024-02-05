@@ -1027,7 +1027,11 @@ const Maincomponent = () => {
           />
           <Route
             path="/agent/createquote/ordersummary"
-            element={<OrderSummary action="edit" />}
+            element={<OrderSummary action="post" />}
+          />
+          <Route
+            path="/agent/createquote/ordersummaryquote"
+            element={<OrderSummaryQuote action="view" />}
           />
           <Route path="/agent/claim/claimtable" element={<ClaimModule />} />
           <Route path="/agent/policy/policytable" element={<PolicyModule />} />
@@ -1035,10 +1039,7 @@ const Maincomponent = () => {
             path="/agent/quotation/quotationtable"
             element={<QuotationModule />}
           />
-          <Route
-            path="/agent/createquote/ordersummaryquote"
-            element={<OrderSummaryQuote action="view" />}
-          />
+
           {/* <Route
             path="/agent/createquote/ordersummaryquote"
             element={<OrderSummaryQuote />}
@@ -1058,7 +1059,7 @@ const Maincomponent = () => {
           />
           <Route
             path="/agent/convertpolicy/customerinfo/view/:id"
-            element={<CustomerInfo action="view" />}
+            element={<CustomerInfo action="post" />}
           />
 
           <Route

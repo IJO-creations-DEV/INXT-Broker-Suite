@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ClientListing from "../../../quoteModule/clientListing";
 import { getExpiringSearchDataMiddleWare } from "../expiringPolicyCard/store/expiringMiddleware";
 import { collectFromHash } from "@fullcalendar/core/internal";
+import { Avatar } from "primereact/avatar";
 
 const ExpiringPolicyCard = () => {
   const navigate = useNavigate();
@@ -207,6 +208,48 @@ const ExpiringPolicyCard = () => {
     );
   };
 
+  const handleSvg = (type, index) => {
+    const colors = [
+      "#D4635D",
+      "#67D07A",
+      "#D4635D",
+      "#874EFF",
+      "#EDC63B",
+      "#A36EFF",
+      "#5DCB67",
+      "#6366F1",
+      "#D8BFD8",
+      "#FFA07A",
+    ];
+
+    const backgroundColor =
+      colors[parseInt(index) % colors.length] || "#CCCCCC";
+    console.log(parseInt(index) % colors.length, "find");
+
+    return (
+      <Avatar
+        label={type.charAt(0)}
+        size="xlarge"
+        shape="circle"
+        style={{ backgroundColor: backgroundColor, color: "#fff" }}
+      />
+    );
+  };
+
+  const renderName = (rowData) => {
+    return (
+      <div className="name__box__container">
+        <div>{handleSvg(rowData.AssuredName, rowData.id)}</div>
+        <div>
+          <div className="name__text">{rowData.AssuredName}</div>
+          <div className="assuredname__sub___text">
+            Client ID :{rowData.Actions}{" "}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderPolicyNumber = (rowData) => {
     return (
       <div className="policy__number__container">
@@ -349,7 +392,7 @@ const ExpiringPolicyCard = () => {
             scrollHeight="60vh"
           >
             <Column
-              body={renderAssuredName}
+              body={renderName}
               header="Assured Name"
               headerStyle={headerStyle}
             ></Column>
@@ -358,19 +401,19 @@ const ExpiringPolicyCard = () => {
               header="Policy Number"
               headerStyle={headerStyle}
             ></Column>
-            <Column
+            {/* <Column
               body={renderGross}
               header="Gross premium"
               headerStyle={headerStyle}
-            ></Column>
-            <Column
+            ></Column> */}
+            {/* <Column
               body={renderIssuedDate}
               header="Policy Issued"
               headerStyle={headerStyle}
-            ></Column>
+            ></Column> */}
             <Column
               body={renderExpiryDate}
-              header="Policy Expiry"
+              header="Expiry Date"
               headerStyle={headerStyle}
             ></Column>
             <Column

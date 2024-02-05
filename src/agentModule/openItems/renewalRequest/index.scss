@@ -73,23 +73,21 @@
       display: inline-block;
       width: 100%;
     }
-    .assured__container {
+    .name__box__container {
       display: flex;
-      gap: 15px;
+      gap: 10px;
       align-items: center;
-      .assuredname__text {
-        font-size: 16px;
-        font-weight: 400;
-        font-family: Poppins;
-        line-height: 24px;
-        color: #111927;
+      .p-avatar.p-avatar-xl {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 24px !important;
       }
-      .assuredname__sub___text {
-        font-size: 14px;
-        font-weight: 400;
-        font-family: Poppins;
-        line-height: 21px;
-        color: #6c737f;
+      .name__text {
+        color: #000;
+        font-family: Poppins !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        line-height: 24px !important;
       }
     }
     .policy__number__container {
@@ -106,7 +104,6 @@
     }
     .expiry__data__container {
       display: flex;
-      margin-left: 10%;
       .expiry__data__text {
         font-size: 16px;
         font-weight: 400;
@@ -123,7 +120,7 @@
         font-weight: 400;
         font-family: Poppins;
         line-height: 24px;
-        color:#111927;
+        color: #111927;
       }
     }
     .action__container {

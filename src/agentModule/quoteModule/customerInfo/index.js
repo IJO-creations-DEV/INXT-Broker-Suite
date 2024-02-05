@@ -17,20 +17,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { MortgageOptions } from "../../endorsementModule/personalDetails/mock";
 
-const initialValues = {
-  MotorNumber: "8546791234",
-  ChassisNumber: "8529637412",
-  Mortgage: "",
-  CertNumber: "2583694671",
-  PlateNumber: "4568231975",
-  MVFileNumber: "1456239857",
-  AuthenCode: "3219758642",
-  Aluminium: "",
-  AirBag: "",
-  TNVS: "",
-  TruckType: "",
-};
-
 const CustomerInfo = ({ action }) => {
   console.log(action, "find action in customer info");
   const [imageURL, setimageURL] = useState("");
@@ -38,13 +24,13 @@ const CustomerInfo = ({ action }) => {
 
   const dispatch = useDispatch();
   const initialValues = {
-    MotorNumber: action === "view" ? "8546791234" : "",
-    ChassisNumber: action === "view" ? "8529637412" : "",
+    MotorNumber: action === "edit" ? "8546791234" : "",
+    ChassisNumber: action === "edit" ? "8529637412" : "",
     Mortgage: "",
-    CertNumber: action === "view" ? "2583694671" : "",
-    PlateNumber: action === "view" ? "4568231975" : "",
-    MVFileNumber: action === "view" ? "1456239857" : "",
-    AuthenCode: action === "view" ? "3219758642" : "",
+    CertNumber: action === "edit" ? "2583694671" : "",
+    PlateNumber: action === "edit" ? "4568231975" : "",
+    MVFileNumber: action === "edit" ? "1456239857" : "",
+    AuthenCode: action === "edit" ? "3219758642" : "",
     Aluminium: "",
     AirBag: "",
     TNVS: "",
@@ -67,15 +53,12 @@ const CustomerInfo = ({ action }) => {
   //   }
   // }
   const handleSubmit = (values) => {
+    console.log(values, "find full datas");
     // if (!values.file) {
     //   alert("please select file")
     //   return;
     // }
-    if (action === "edit" && postcustomerinfodata) {
-      const valueWithId = {
-        ...values,
-        id: postcustomerinfodata.id,
-      };
+    if (action === "edit") {
       dispatch(patchinformationMiddleWare(values));
       navigate("/agent/convertpolicy/uploadvehiclephotos");
     } else {
@@ -217,9 +200,9 @@ const CustomerInfo = ({ action }) => {
   });
 
   useEffect(() => {
+    // if (action === "edit") {
+    // }
     if (action === "edit") {
-    }
-    if (action === "view") {
       if (!formik.values.Mortgage) {
         formik.setFieldValue("Mortgage", MortgageOptions[0].value);
       }
@@ -245,7 +228,10 @@ const CustomerInfo = ({ action }) => {
       <div className="customer__info__main__title">Leads</div>
       <div className="customer__info__back__btn mt-3">
         <div className="customer__info__back__btn__title">
-          <div onClick={handleLeadNavigation} className="cursor-pointer arrow__outer">
+          <div
+            onClick={handleLeadNavigation}
+            className="cursor-pointer arrow__outer"
+          >
             <span className="icon__container">
               <SvgLeftArrow />
             </span>
@@ -342,7 +328,7 @@ const CustomerInfo = ({ action }) => {
             <InputTextField
               label="Chassis Number"
               value={formik.values.ChassisNumber}
-              onChange={formik.handleChange("ChassisNumber*")}
+              onChange={formik.handleChange("ChassisNumber")}
             />
             {formik.touched.ChassisNumber && formik.errors.ChassisNumber && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">

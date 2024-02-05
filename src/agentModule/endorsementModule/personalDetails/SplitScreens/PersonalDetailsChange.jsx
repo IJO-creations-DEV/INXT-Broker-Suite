@@ -30,7 +30,6 @@ const PersonalDetailsChange = ({
   const [country, setcountry] = useState([]);
   const [city, setcity] = useState([]);
   const [Province, setProvince] = useState([]);
-  console.log(personalDetails, "find data personalDetails");
 
   const setFormikValues = () => {
     const Countryvalue = personalDetails?.Country;
@@ -80,7 +79,7 @@ const PersonalDetailsChange = ({
     initialValues: initialValue,
     // validate,
     onSubmit: (values) => {
-      handleFormSubmit(values);
+      handleFormSubmit(values, 1);
     },
   });
 
@@ -90,18 +89,16 @@ const PersonalDetailsChange = ({
   //  }
   // },[])
 
-
   useEffect(() => {
-    
-  if (!formik.values.City) {
-    formik.setFieldValue("City",CityOptions[0].value)
-  }
-   
+    if (!formik.values.City) {
+      formik.setFieldValue("City", CityOptions[0].value);
+    }
+
     if (!formik.values.Province) {
-      formik.setFieldValue("Province", ProvinceOptions[0].value)
+      formik.setFieldValue("Province", ProvinceOptions[0].value);
     }
     if (!formik.values.Country) {
-      formik.setFieldValue("Country", CountryOptions[0].value)
+      formik.setFieldValue("Country", CountryOptions[0].value);
     }
   }, []);
   return (

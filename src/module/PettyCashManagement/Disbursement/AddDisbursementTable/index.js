@@ -43,6 +43,7 @@ const initialValue = {
 
 const AddDisbursementTable = () => {
   const [visible, setVisible] = useState(false);
+  const [addvisible, setaddVisible] = useState(false);
   const [moduleData, setModuleData] = useState();
   const [selectedRows, setSelectedRows] = useState([]);
   const [totalAmounts, setTotalAmounts] = useState(0);
@@ -108,6 +109,12 @@ const AddDisbursementTable = () => {
   ];
   const Initiate = { label: "Accounts" };
 
+  const handlehide = () => {
+    setVisible(false)
+    console.log("first8", formAction)
+    // // {formAction === "add" &&  }
+    // formik.resetForm()
+  }
 
 
   const handleBack = () => {
@@ -150,7 +157,9 @@ const AddDisbursementTable = () => {
   };
   const handleView = () => {
     setformAction("Add");
-    setVisible(true);
+    setaddVisible(true);
+    formik.resetForm()
+
   };
   const validate = (values) => {
     const errors = {};
@@ -173,10 +182,11 @@ const AddDisbursementTable = () => {
       dispatch(postPatchDisbursementData(value));
       setVisible(false);
       setshow(true);
+      formik.resetForm()
     }
     if (formAction === "Add") {
       dispatch(postDisbursementData(formik.values))
-      setVisible(false);
+      setaddVisible(false);
       setshow(true);
       formik.setFieldValue("Amount",);
       formik.setFieldValue("PettycashCode",);
@@ -300,7 +310,12 @@ const AddDisbursementTable = () => {
   };
 
   useEffect(() => {
-    SetFormikValue();
+    console.log("first9",formAction)
+if(formAction === "Edit" ){
+  SetFormikValue();
+}
+    
+
   }, [getPatchDisbursment]);
 
   console.log(AddDisbursmentTable, "RequestList");
@@ -500,11 +515,13 @@ const AddDisbursementTable = () => {
           </div>
         </div>
       </div>
+
       <Dialog
         header={`${formAction} Disbursement`}
         visible={visible}
         style={{ width: "40vw" }}
-        onHide={() => setVisible(false)}
+        // onHide={() => setVisible(false)}
+        onHide={() => handlehide()}
         headerStyle={{
           color: "#343434",
           fontFamily: "Inter, sans-serif",
@@ -525,11 +542,196 @@ const AddDisbursementTable = () => {
                 textSize={"16"}
                 textWeight={500}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
-                value={formAction === "Add" ? formik.values.RequestNumber : formAction === "Edit" && formik.values.RequestNumber}
+                // value={formAction === "Add" ? formik.values.RequestNumber : formAction === "Edit" && formik.values.RequestNumber}
                 options={formAction === "Edit" ? RequestNumberOptionData : item
-                
+
                 }
-                disabled={formAction === "Edit" ? true :false}
+                value={formik.values.RequestNumber}
+                disabled={formAction === "Edit" ? true : false}
+                onChange={(e) => {
+                  formik.setFieldValue("RequestNumber", e.value);
+                }}
+                optionLabel="label"
+                error={
+                  formik.touched.RequestNumber && formik.errors.RequestNumber
+                }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6 xl:col-6">
+              <DropDowns
+                className="input__filed"
+                label="Expense Code"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formAction === "Add" ? formik.values.ExpenseCode : formAction === "Edit" && formik.values.ExpenseCode}
+                options={
+                  formAction === "Edit" ? ExpenseCodeOptionData : item1}
+                  value={formik.values.ExpenseCode}
+                onChange={(e) => {
+                  formik.setFieldValue("ExpenseCode", e.value);
+                }}
+                optionLabel="label"
+                error={
+                  formik.touched.ExpenseCode && formik.errors.ExpenseCode
+                }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6 xl:col-6">
+              <DropDowns
+                className="input__filed"
+                label="Sub Account"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formAction === "Add" ? formik.values.SubAc : formAction === "Edit" && formik.values.SubAc}
+                options={formAction === "Edit" ? SubAcOptionData : item2}
+                value={formik.values.SubAc}
+                onChange={(e) => {
+                  formik.setFieldValue("SubAc", e.value);
+                }}
+                optionLabel="label"
+                error={
+                  formik.touched.SubAc && formik.errors.SubAc
+                }
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6 xl:col-6">
+              <InputField
+                classNames="input__filed"
+                label="Purpose"
+                // disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                // value={formAction === "Add" ? formik.values.Purpose : formAction === "Edit" && formik.values.Purpose}
+                onChange={formik.handleChange("Purpose")}
+                disabled={formAction === "Edit" ? true : false}
+                placeholder="Enter"
+              value={formik.values.Purpose}
+              />
+            </div>
+            <div className="col-12 ">
+              <InputField
+                classNames="input__filed"
+                label="Remarks"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                // value={formAction === "Add" ? formik.values.Remarks : formAction === "Edit" && formik.values.Remarks}
+                onChange={formik.handleChange("Remarks")}
+                value={formik.values.Remarks}
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6">
+              <InputField
+                classNames="input__filed"
+                label="VAT"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                // value={formAction === "Add" ? formik.values.VAT : formAction === "Edit" && formik.values.VAT}
+                onChange={formik.handleChange("VAT")}
+                value={formik.values.VAT}
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6">
+              <InputField
+                classNames="input__filed"
+                label="WHT"
+                placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                // value={formAction === "Add" ? formik.values.WHT : formAction === "Edit" && formik.values.WHT}
+                onChange={formik.handleChange("WHT")}
+                value={formik.values.WHT}
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6">
+              <InputField
+                classNames="input__filed"
+                label="Amount"
+                // placeholder="Enter"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                // value={formAction === "Add" ? "" : formAction === "Edit" && formik.values.Amount}
+                value={formik.values.Amount}
+                onChange={formik.handleChange("Amount")}
+                placeholder="Enter"
+                disabled={formAction === "Edit" ? true : false}
+              />
+            </div>
+            <div className="col-12 md:col-6 lg:col-6">
+              <InputField
+                classNames="input__filed"
+                label="Net Amount"
+                // placeholder="Enter"
+                disabled={true}
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                // value={formAction === "Add" ? "" : formAction === "Edit" && formik.values.NetAmount}
+                onChange={formik.handleChange("NetAmount")}
+                value={formik.values.NetAmount}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="grid">
+          <div className="col-12 md:col-12 lg:col-12 bt__container">
+            <Button
+              label={formAction === "Edit" ? "Update" : "Add"}
+              className="add__btn"
+              onClick={formik.handleSubmit}
+            />
+          </div>
+        </div>
+      </Dialog>
+
+
+
+      {/* add */}
+
+      <Dialog
+        header={`${formAction} Disbursement`}
+        visible={addvisible}
+        style={{ width: "40vw" }}
+        onHide={() => setaddVisible(false)}
+
+        headerStyle={{
+          color: "#343434",
+          fontFamily: "Inter, sans-serif",
+          fontSize: "24px",
+          fontWeight: "600",
+          lineHeight: "150%",
+        }}
+        className="dailog__container"
+      >
+        <div>
+          <div className="grid">
+            <div className="col-12 md:col-6 lg:col-6 xl:col-6">
+              <DropDowns
+                className="input__filed"
+                label="Requested By"
+                placeholder="Select"
+                textColor={"#111927"}
+                textSize={"16"}
+                textWeight={500}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+                // value={formAction === "Add" ? formik.values.RequestNumber : formAction === "Edit" && formik.values.RequestNumber}
+                options={formAction === "Edit" ? RequestNumberOptionData : item
+
+                }
+                value={formik.values.RequestNumber}
+                disabled={formAction === "Edit" ? true : false}
                 onChange={(e) => {
                   formik.setFieldValue("RequestNumber", e.value);
                 }}
@@ -588,9 +790,9 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formAction === "Add" ? formik.values.Purpose : formAction === "Edit" && formik.values.Purpose}
+                // value={formAction === "Add" ? formik.values.Purpose : formAction === "Edit" && formik.values.Purpose}
                 onChange={formik.handleChange("Purpose")}
-                disabled={formAction === "Edit" ? true :false}
+                disabled={formAction === "Edit" ? true : false}
                 placeholder="Enter"
               // value={formik.values.RequestNumber}
               />
@@ -603,7 +805,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formAction === "Add" ? formik.values.Remarks : formAction === "Edit" && formik.values.Remarks}
+                // value={formAction === "Add" ? formik.values.Remarks : formAction === "Edit" && formik.values.Remarks}
                 onChange={formik.handleChange("Remarks")}
               />
             </div>
@@ -639,10 +841,11 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formAction === "Add" ? formik.values.Amount : formAction === "Edit" && formik.values.Amount}
+                // value={formAction === "Add" ? "" : formAction === "Edit" && formik.values.Amount}
+                value={formik.values.Amount}
                 onChange={formik.handleChange("Amount")}
                 placeholder="Enter"
-                disabled={formAction === "Edit" ? true :false}
+                disabled={formAction === "Edit" ? true : false}
               />
             </div>
             <div className="col-12 md:col-6 lg:col-6">
@@ -654,7 +857,7 @@ const AddDisbursementTable = () => {
                 textColor={"#111927"}
                 textSize={"16"}
                 textWeight={500}
-                value={formAction === "Add" ? formik.values.NetAmount : formAction === "Edit" && formik.values.NetAmount}
+                value={formAction === "Add" ? "" : formAction === "Edit" && formik.values.NetAmount}
                 onChange={formik.handleChange("NetAmount")}
               />
             </div>
@@ -670,6 +873,7 @@ const AddDisbursementTable = () => {
           </div>
         </div>
       </Dialog>
+
     </div>
   );
 };

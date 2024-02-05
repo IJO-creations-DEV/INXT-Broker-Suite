@@ -92,7 +92,7 @@ export const postTCJournalVoucher = createAsyncThunk(
 export const patchJVMiddleware = createAsyncThunk(
     PATCH_JOURNAL_VOUCHER_EDIT,
     async (payload, { rejectWithValue, getState }) => {
-        console.log(payload, "payloadpayload")
+        console.log(payload?.localAmount, "payloadpayload")
         const { journalVoucherMainReducers } = getState();
         const { journalVoucherPostTabelData } = journalVoucherMainReducers;
         try {
@@ -103,7 +103,7 @@ export const patchJVMiddleware = createAsyncThunk(
                         mainAccount: payload?.mainAccount,
                         subAccount: payload?.subAccount,
                         branchCode: payload?.branchCode,
-                        localAmount: payload?.localAmount,
+                        localAmount: "200",
                         currencyCode: payload?.currencyCode,
                         foreignAmount: payload?.foreignAmount,
                         entryType: payload?.entryType,
@@ -165,7 +165,8 @@ export const journalVoucherPostTabel = createAsyncThunk(
 export const postAddJournalVoucher = createAsyncThunk(
     POST_ADD_JOURNAL_VOUCHER,
     async (payload, { rejectWithValue, getState }) => {
-        // console.log(payload, "payload");
+
+        console.log(payload, "first12");
 
         let bodyTableData = {
             mainAccount: payload?.mainAccount,
@@ -175,11 +176,12 @@ export const postAddJournalVoucher = createAsyncThunk(
             foreignAmount: payload?.foreignAmount,
             entryType: payload?.entryType,
             Remarks: "qwerty",
-            localAmount: '200'
+            localAmount: '200',
+            departmentCode: payload?.departmentCode,
 
         };
         try {
-            // console.log(bodyTableData, "find middleware");
+            console.log(bodyTableData, "find middleware");
 
             return bodyTableData;
         } catch (error) {

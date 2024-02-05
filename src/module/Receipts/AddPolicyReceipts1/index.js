@@ -20,6 +20,7 @@ function BranchAdding() {
   const [errors, setErrors] = useState("");
   const addReceiptsList = useSelector((state) => state.addReceiptsList);
   const { receiptDetailList, loading, total, receiptsTableList } = useSelector(
+
     ({ receiptsTableReducers }) => {
       return {
         loading: receiptsTableReducers?.loading,
@@ -53,19 +54,19 @@ function BranchAdding() {
     { name: "SLS", code: "SL" },
   ];
   const item3 = [
-    { name: "CL001", code: "C1" },
-    { name: "CL002", code: "C2" },
-    { name: "INS001", code: "IN1" },
-    { name: "INS002", code: "IN2" },
+    { name: "CL001", code: "CL001" },
+    { name: "CL002", code: "CL002" },
+    { name: "INS001", code: "INS001" },
+    { name: "INS002", code: "INS002" },
   ];
   const item4 = [
     { name: "PHP", code: "IR" },
     { name: "USD", code: "US" },
   ];
   const item5 = [
-    { name: "PRM", code: "PR" },
-    { name: "COMM", code: "CM" },
-    { name: "REMT", code: "RT" },
+    { name: "PRM", code: "PRM" },
+    { name: "COMM", code: "COMM" },
+    { name: "REMT", code: "REMT" },
   ];
 
   const initialValue = {
@@ -145,6 +146,7 @@ function BranchAdding() {
       // name: dataa.name,
       // amount: dataa.amount
     };
+    console.log("first99",valueWithId)
 
     dispatch(postAddReceiptsMiddleware(valueWithId));
 

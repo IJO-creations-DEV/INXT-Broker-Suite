@@ -271,14 +271,14 @@ const InsuranceDetailsAction = ({ action }) => {
               placeholder="Enter"
               label="Insurance Company Code"
               // value={formik.values.insuranceCompanyCode}
-              // value={
-              //   action == "add"
-              //     ? formik.values.insuranceCompanyCode
-              //     : action == "edit"
-              //       ? formik.values.insuranceCompanyCode
-              //       : getInsuranceView.insuranceCompanyCode
-              // }
-              value={formik.values.insuranceCompanyCode}
+              value={
+                action == "add"
+                  ? formik.values.insuranceCompanyCode
+                  : action == "edit"
+                    ? formik.values.insuranceCompanyCode
+                    : getInsuranceView.insuranceCompanyCode
+              }
+              // value={formik.values.insuranceCompanyCode}
               onChange={(e) =>
                 formik.setFieldValue("insuranceCompanyCode", e.target.value)
               }
@@ -297,14 +297,14 @@ const InsuranceDetailsAction = ({ action }) => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Insurance Company Name"
-              // value={
-              //   action == "add"
-              //     ? formik.values.insuranceCompanyName
-              //     : action == "edit"
-              //     ? formik.values.insuranceCompanyName
-              //     : getInsuranceView.insuranceCompanyName
-              // }
-              value={formik.values.insuranceCompanyName}
+              value={
+                action == "add"
+                  ? formik.values.insuranceCompanyName
+                  : action == "edit"
+                  ? formik.values.insuranceCompanyName
+                  : getInsuranceView.insuranceCompanyName
+              }
+              
               onChange={(e) =>
                 formik.setFieldValue("insuranceCompanyName", e.target.value)
               }
@@ -323,14 +323,14 @@ const InsuranceDetailsAction = ({ action }) => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Insurance Company Description"
-              // value={
-              //   action == "add"
-              //     ? formik.values.insuranceCompanyDescription
-              //     : action == "edit"
-              //     ? formik.values.insuranceCompanyDescription
-              //     : getInsuranceView.insuranceCompanyDescription
-              // }
-              value={formik.values.insuranceCompanyDescription}
+              value={
+                action == "add"
+                  ? formik.values.insuranceCompanyDescription
+                  : action == "edit"
+                  ? formik.values.insuranceCompanyDescription
+                  : getInsuranceView.insuranceCompanyDescription
+              }
+             
               onChange={(e) =>
                 formik.setFieldValue(
                   "insuranceCompanyDescription",
@@ -352,14 +352,14 @@ const InsuranceDetailsAction = ({ action }) => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Address Line 1"
-              // value={
-              //   action == "add"
-              //     ? formik.values.addressLine1
-              //     : action == "edit"
-              //     ? formik.values.addressLine1
-              //     : getInsuranceView.addressLine1
-              // }
-              value={formik.values.addressLine1}
+              value={
+                action == "add"
+                  ? formik.values.addressLine1
+                  : action == "edit"
+                  ? formik.values.addressLine1
+                  : getInsuranceView.addressLine1
+              }
+              
               onChange={(e) =>
                 formik.setFieldValue("addressLine1", e.target.value)
               }
@@ -377,14 +377,14 @@ const InsuranceDetailsAction = ({ action }) => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Address Line 2"
-              // value={
-              //   action == "add"
-              //     ? formik.values.addressLine2
-              //     : action == "edit"
-              //     ? formik.values.addressLine2
-              //     : getInsuranceView.addressLine2
-              // }
-              value={formik.values.addressLine2}
+              value={
+                action == "add"
+                  ? formik.values.addressLine2
+                  : action == "edit"
+                  ? formik.values.addressLine2
+                  : getInsuranceView.addressLine2
+              }
+             
               onChange={(e) =>
                 formik.setFieldValue("addressLine2", e.target.value)
               }
@@ -402,14 +402,14 @@ const InsuranceDetailsAction = ({ action }) => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Address Line 3"
-              // value={
-              //   action == "add"
-              //     ? formik.values.addressLine3
-              //     : action == "edit"
-              //     ? formik.values.addressLine3
-              //     : getInsuranceView.addressLine3
-              // }
-              value={formik.values.addressLine3}
+              value={
+                action == "add"
+                  ? formik.values.addressLine3
+                  : action == "edit"
+                  ? formik.values.addressLine3
+                  : getInsuranceView.addressLine3
+              }
+              
               onChange={(e) =>
                 formik.setFieldValue("addressLine3", e.target.value)
               }
@@ -429,14 +429,14 @@ const InsuranceDetailsAction = ({ action }) => {
               classNames="select__label__corrections"
               optionLabel="label"
               label="City"
-              // value={
-              //   action == "add"
-              //     ? formik.values.city
-              //     : action == "edit"
-              //     ? formik.values.city
-              //     : getInsuranceView.city
-              // }
-              value={formik.values.city}
+              value={
+                action == "add"
+                  ? formik.values.city
+                  : action == "edit"
+                  ? formik.values.city
+                  : getInsuranceView.city
+              }
+             
               onChange={(e) => formik.setFieldValue("city", e.value)}
               options={
                 action == "add"
@@ -465,14 +465,14 @@ const InsuranceDetailsAction = ({ action }) => {
               classNames="select__label__corrections"
               optionLabel="label"
               label="State"
-              // value={
-              //   action == "add"
-              //     ? formik.values.state
-              //     : action == "edit"
-              //     ? formik.values.state
-              //     : getInsuranceView.state
-              // }
-              value={formik.values.state}
+              value={
+                action == "add"
+                  ? formik.values.state
+                  : action == "edit"
+                  ? formik.values.state
+                  : getInsuranceView.state
+              }
+             
               onChange={(e) => formik.setFieldValue("state", e.value)}
               // options={State}
               options={
@@ -501,14 +501,14 @@ const InsuranceDetailsAction = ({ action }) => {
               classNames="select__label__corrections"
               optionLabel="label"
               label="Country"
-              // value={
-              //   action == "add"
-              //     ? formik.values.country
-              //     : action == "edit"
-              //     ? formik.values.country
-              //     : getInsuranceView.country
-              // }
-              value={formik.values.country}
+              value={
+                action == "add"
+                  ? formik.values.country
+                  : action == "edit"
+                  ? formik.values.country
+                  : getInsuranceView.country
+              }
+              
               onChange={(e) => formik.setFieldValue("country", e.value)}
               // options={Country}
               options={
@@ -535,14 +535,14 @@ const InsuranceDetailsAction = ({ action }) => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Phone Number"
-              // value={
-              //   action == "add"
-              //     ? formik.values.phoneNumber
-              //     : action == "edit"
-              //     ? formik.values.phoneNumber
-              //     : getInsuranceView.phoneNumber
-              // }
-              value={formik.values.phoneNumber}
+              value={
+                action == "add"
+                  ? formik.values.phoneNumber
+                  : action == "edit"
+                  ? formik.values.phoneNumber
+                  : getInsuranceView.phoneNumber
+              }
+              
               onChange={(e) =>
                 formik.setFieldValue("phoneNumber", e.target.value)
               }
@@ -560,14 +560,14 @@ const InsuranceDetailsAction = ({ action }) => {
               className="input__label__corrections"
               placeholder="Enter"
               label="Email"
-              // value={
-              //   action == "add"
-              //     ? formik.values.email
-              //     : action == "edit"
-              //     ? formik.values.email
-              //     : getInsuranceView.email
-              // }
-              value={formik.values.email}
+              value={
+                action == "add"
+                  ? formik.values.email
+                  : action == "edit"
+                  ? formik.values.email
+                  : getInsuranceView.email
+              }
+             
               onChange={(e) => formik.setFieldValue("email", e.target.value)}
             />
             {formik.touched.email && formik.errors.email && (
@@ -582,14 +582,14 @@ const InsuranceDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               label="Modified By"
-              // value={
-              //   action == "add"
-              //     ? formik.values.modifiedBy
-              //     : action == "edit"
-              //     ? formik.values.modifiedBy
-              //     : getInsuranceView.modifiedBy
-              // }
-              value={formik.values.modifiedBy}
+              value={
+                action == "add"
+                  ? formik.values.modifiedBy
+                  : action == "edit"
+                  ? formik.values.modifiedBy
+                  : getInsuranceView.modifiedBy
+              }
+             
               onChange={(e) =>
                 formik.setFieldValue("modifiedBy", e.target.value)
               }
@@ -601,14 +601,14 @@ const InsuranceDetailsAction = ({ action }) => {
               classNames="input__field__corrections"
               className="input__label__corrections"
               label="Modified On"
-              // value={
-              //   action == "add"
-              //     ? formik.values.modifiedOn
-              //     : action == "edit"
-              //     ? formik.values.modifiedOn
-              //     : getInsuranceView.modifiedOn
-              // }
-              value={formik.values.modifiedOn}
+              value={
+                action == "add"
+                  ? formik.values.modifiedOn
+                  : action == "edit"
+                  ? formik.values.modifiedOn
+                  : getInsuranceView.modifiedOn
+              }
+            
               onChange={(e) =>
                 formik.setFieldValue("modifiedOn", e.target.value)
               }

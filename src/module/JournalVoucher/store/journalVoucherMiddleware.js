@@ -175,7 +175,7 @@ export const postAddJournalVoucher = createAsyncThunk(
             currencyCode: payload?.currencyCode,
             foreignAmount: payload?.foreignAmount,
             entryType: payload?.entryType,
-            Remarks: "qwerty",
+            Remarks: payload?.remarks,
             localAmount: '200',
             departmentCode: payload?.departmentCode,
 

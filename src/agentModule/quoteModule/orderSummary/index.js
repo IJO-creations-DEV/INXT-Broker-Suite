@@ -39,8 +39,9 @@ const OrderSummary = ({ action }) => {
     toastRef.current.showToast();
     setTimeout(() => {
       console.log(action, "find ");
-      if (action === "edit") {
-        navigate("/agent/quotedetailedit");
+      if (action === "post") {
+        // navigate("/agent/quotedetailedit");
+        navigate("/agent/quotedetailview");
       }
       if (action === "view") {
         navigate("/agent/quotedetailview");
@@ -51,11 +52,6 @@ const OrderSummary = ({ action }) => {
     customHistory.back();
   };
 
-  const handleDiscountChange = (amount) => {
-    const newDiscount = Math.max(0, Math.min(discount + amount, 30));
-    setDiscount(newDiscount);
-  };
-
   const formik = useFormik({
     initialValues: initialValue,
     // validate,
@@ -64,11 +60,17 @@ const OrderSummary = ({ action }) => {
     },
   });
 
-  const handlecalculation = () => {
-    const count = (formik.values.GrossPremium * discount) / 100;
-    formik.setFieldValue("Discount", count);
-    console.log(count, formik.values.GrossPremium, "count");
+  const handleDiscountChange = (amount) => {
+    const newDiscount = Math.max(0, Math.min(discount + amount, 30));
+    setDiscount(newDiscount);
+    handlecalculation(newDiscount);
   };
+
+  const handlecalculation = (discountCount) => {
+    const count = (formik.values.GrossPremium * discountCount) / 100;
+    formik.setFieldValue("Discount", count);
+  };
+
   const handleLeadNavigation = () => {
     navigate("/agent/leadlisting");
   };
@@ -123,20 +125,14 @@ const OrderSummary = ({ action }) => {
               <div className="discount__dynamic__card__bottom">
                 <div
                   className="cursor-pointer"
-                  onClick={() => {
-                    handleDiscountChange(-1);
-                    handlecalculation();
-                  }}
+                  onClick={() => handleDiscountChange(-1)}
                 >
                   <SvgCountMinusIcon />
                 </div>
                 <div className="discount__reflection__text">{`${discount}%`}</div>
                 <div
                   className="cursor-pointer"
-                  onClick={() => {
-                    handleDiscountChange(1);
-                    handlecalculation();
-                  }}
+                  onClick={() => handleDiscountChange(1)}
                 >
                   <SvgCountPlusIcon />
                 </div>

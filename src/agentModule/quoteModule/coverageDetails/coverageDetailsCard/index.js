@@ -6,7 +6,7 @@ import DropdownField from "../../../component/DropdwonField";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 import customHistory from "../../../../routes/customHistory";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import {
   AutopassengerpersonalAccidentOptions,
@@ -16,26 +16,43 @@ import {
 import { postcoverageDetailsMiddleware } from "../store/coverageDetailsMiddleware";
 import { APPATotalCoverageOptions } from "../../../endorsementModule/personalDetails/mock";
 
-const initialValue = {
-  LossandDamagecoverage: "",
-  LossandDamagecoverageRate: "",
-  LossandDamagecoveragepremium: "",
-  ActsofNatureRate: "",
-  ActsofNaturepremium: "",
-  BodilyInjury: "",
-  BodilyInjuryCoveragePremium: "",
-  PropertyDamage: "",
-  PropertyDamageCoveragePremium: "",
-  AutopassengerpersonalAccident: "",
-  APPATotalCoverage: "",
-  APPACoveragePremium: "",
-  TotalSumInsured: "",
-};
-
 const CoverageDetailsCard = ({ action, flow }) => {
   const [show, setshow] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { CoverageDetails, loading } = useSelector(
+    ({ agentCoverageDetailsReducers }) => {
+      return {
+        loading: agentCoverageDetailsReducers?.loading,
+        CoverageDetails: agentCoverageDetailsReducers?.CoverageDetails,
+      };
+    }
+  );
+
+  console.log(CoverageDetails, "find CoverageDetails");
+  useEffect(() => {
+    if (action === "coveragedetail") {
+      setFormikValuesPatch();
+    }
+    if (action === "coveragedetail") {
+      formik.setFieldValue("BodilyInjury", BodilyInjuryOptions[0].value);
+    }
+    if (action === "coveragedetail") {
+      formik.setFieldValue("PropertyDamage", PropertyDamageOptions[0].value);
+    }
+    if (action === "coveragedetail") {
+      formik.setFieldValue(
+        "AutopassengerpersonalAccident",
+        AutopassengerpersonalAccidentOptions[0].value
+      );
+    }
+    if (action === "coveragedetail") {
+      formik.setFieldValue(
+        "APPATotalCoverage",
+        APPATotalCoverageOptions[0].value
+      );
+    }
+  }, []);
 
   const handleclick = (values) => {
     console.log(action, "action1");
@@ -62,6 +79,42 @@ const CoverageDetailsCard = ({ action, flow }) => {
 
   //   return errors
   // }
+  const initialValue = {
+    LossandDamagecoverage: "",
+    LossandDamagecoverageRate: "",
+    LossandDamagecoveragepremium: "",
+    ActsofNatureRate: "",
+    ActsofNaturepremium: "",
+    BodilyInjury: "",
+    BodilyInjuryCoveragePremium: "",
+    PropertyDamage: "",
+    PropertyDamageCoveragePremium: "",
+    AutopassengerpersonalAccident: "",
+    APPATotalCoverage: "",
+    APPACoveragePremium: "",
+    TotalSumInsured: "",
+  };
+  const setFormikValuesPatch = () => {
+    const updatedValues = {
+      LossandDamagecoverage: CoverageDetails?.LossandDamagecoverage,
+      LossandDamagecoverageRate: CoverageDetails?.LossandDamagecoverageRate,
+      ActsofNatureRate: CoverageDetails?.ActsofNatureRate,
+      BodilyInjury: CoverageDetails?.BodilyInjury,
+      PropertyDamage: CoverageDetails?.PropertyDamage,
+      AutopassengerpersonalAccident:
+        CoverageDetails?.AutopassengerpersonalAccident,
+      APPATotalCoverage: CoverageDetails?.APPATotalCoverage,
+      LossandDamagecoveragepremium:
+        CoverageDetails?.LossandDamagecoveragepremium,
+      ActsofNaturepremium: CoverageDetails?.ActsofNaturepremium,
+      BodilyInjuryCoveragePremium: CoverageDetails?.BodilyInjuryCoveragePremium,
+      PropertyDamageCoveragePremium:
+        CoverageDetails?.PropertyDamageCoveragePremium,
+      APPACoveragePremium: CoverageDetails?.APPACoveragePremium,
+      TotalSumInsured: CoverageDetails?.TotalSumInsured,
+    };
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
 
   const setFormikValues = () => {
     const updatedValues = {
@@ -87,26 +140,7 @@ const CoverageDetailsCard = ({ action, flow }) => {
       // hadlecalculation();
     },
   });
-  useEffect(() => {
-    if (action === "coveragedetail") {
-      formik.setFieldValue("BodilyInjury", BodilyInjuryOptions[0].value);
-    }
-    if (action === "coveragedetail") {
-      formik.setFieldValue("PropertyDamage", PropertyDamageOptions[0].value);
-    }
-    if (action === "coveragedetail") {
-      formik.setFieldValue(
-        "AutopassengerpersonalAccident",
-        AutopassengerpersonalAccidentOptions[0].value
-      );
-    }
-    if (action === "coveragedetail") {
-      formik.setFieldValue(
-        "APPATotalCoverage",
-        APPATotalCoverageOptions[0].value
-      );
-    }
-  }, []);
+
   return (
     <div className="coverage__details__card__container mt-4">
       <Card>
@@ -120,12 +154,12 @@ const CoverageDetailsCard = ({ action, flow }) => {
           <div className="col-12 md:col-12 lg:col-12">
             <InputTextField
               label="Loss and Damage coverage"
-              // value={formik.values.LossandDamagecoverage}
-              value={
-                action == "coveragecreate"
-                  ? formik.values.LossandDamagecoverage
-                  : "1,00,000.00"
-              }
+              value={formik.values.LossandDamagecoverage}
+              // value={
+              //   action == "coveragecreate"
+              //     ? formik.values.LossandDamagecoverage
+              //     : "1,00,000.00"
+              // }
               onChange={formik.handleChange("LossandDamagecoverage")}
             />
             {formik.touched.LossandDamagecoverage &&
@@ -178,12 +212,13 @@ const CoverageDetailsCard = ({ action, flow }) => {
           <div className="col-12 md:col-6 lg:col-6">
             <InputTextField
               label="Acts of Nature Rate"
-              // value={formik.values.ActsofNatureRate}
-              value={
-                action == "coveragecreate"
-                  ? formik.values.ActsofNatureRate
-                  : "0.5%"
-              }
+              // // value={formik.values.ActsofNatureRate}
+              // value={
+              //   action == "coveragecreate"
+              //     ? formik.values.ActsofNatureRate
+              //     : "0.5%"
+              // }
+              value={formik.values.ActsofNatureRate}
               onChange={formik.handleChange("ActsofNatureRate")}
             />
             {formik.touched.ActsofNatureRate &&
@@ -197,11 +232,12 @@ const CoverageDetailsCard = ({ action, flow }) => {
             <CalculaitionTextInputs
               label="Acts of Nature premium"
               // value={formik.values.ActsofNaturepremium}
-              value={
-                action == "coveragecreate"
-                  ? formik.values.ActsofNaturepremium
-                  : "0.00"
-              }
+              // value={
+              //   action == "coveragecreate"
+              //     ? formik.values.ActsofNaturepremium
+              //     : "0.00"
+              // }
+              value={formik.values.ActsofNaturepremium}
               onChange={formik.handleChange("ActsofNaturepremium")}
             />
             {formik.touched.ActsofNaturepremium &&
@@ -271,11 +307,12 @@ const CoverageDetailsCard = ({ action, flow }) => {
             <CalculaitionTextInputs
               label="Property Damage Coverage Premium"
               // value={formik.values.PropertyDamageCoveragePremium}
-              value={
-                action == "coveragecreate"
-                  ? formik.values.PropertyDamageCoveragePremium
-                  : "0.0%"
-              }
+              // value={
+              //   action == "coveragecreate"
+              //     ? formik.values.PropertyDamageCoveragePremium
+              //     : "0.0%"
+              // }
+              value={formik.values.PropertyDamageCoveragePremium}
               onChange={formik.handleChange("PropertyDamageCoveragePremium")}
             />
             {formik.touched.PropertyDamageCoveragePremium &&
@@ -313,11 +350,12 @@ const CoverageDetailsCard = ({ action, flow }) => {
               label="APPA Total Coverage"
               // value={formik.values.APPATotalCoverage}
               onChange={formik.handleChange("APPATotalCoverage")}
-              value={
-                action == "coveragecreate"
-                  ? formik.values.APPATotalCoverage
-                  : "0.0%"
-              }
+              // value={
+              //   action == "coveragecreate"
+              //     ? formik.values.APPATotalCoverage
+              //     : "0.0%"
+              // }
+              value={formik.values.APPATotalCoverage}
             />
             {formik.touched.APPATotalCoverage &&
               formik.errors.APPATotalCoverage && (
@@ -330,11 +368,12 @@ const CoverageDetailsCard = ({ action, flow }) => {
             <CalculaitionTextInputs
               label="APPA Coverage Premium"
               // value={formik.values.APPACoveragePremium}
-              value={
-                action == "coveragecreate"
-                  ? formik.values.APPACoveragePremium
-                  : "0.0%"
-              }
+              // value={
+              //   action == "coveragecreate"
+              //     ? formik.values.APPACoveragePremium
+              //     : "0.0%"
+              // }
+              value={formik.values.APPACoveragePremium}
               onChange={formik.handleChange("APPACoveragePremium")}
             />
             {formik.touched.APPACoveragePremium &&
@@ -349,12 +388,12 @@ const CoverageDetailsCard = ({ action, flow }) => {
           <div className="col-12 md:col-12 lg:col-12">
             <CalculaitionTextInputs
               label="Total Sum Insured"
-              // value={formik.values.TotalSumInsured}
-              value={
-                action == "coveragecreate"
-                  ? formik.values.TotalSumInsured
-                  : "0.00"
-              }
+              value={formik.values.TotalSumInsured}
+              // value={
+              //   action == "coveragecreate"
+              //     ? formik.values.TotalSumInsured
+              //     : "0.00"
+              // }
               onChange={formik.handleChange("TotalSumInsured")}
             />
             {formik.touched.TotalSumInsured &&

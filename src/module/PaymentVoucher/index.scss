@@ -116,7 +116,9 @@ gap:10px
     text-align: center;
     font-family: 'Inter', sans-serif;
 font-size: 16px;
-
+display: flex;
+    justify-content: center;
+    align-items: center;
 font-weight: 500;
 }
 .sorbyfilter_container{

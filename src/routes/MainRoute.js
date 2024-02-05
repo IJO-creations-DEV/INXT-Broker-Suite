@@ -982,13 +982,17 @@ const Maincomponent = () => {
           <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
           <Route path="/agent/editprofile" element={<AgentEditProfile />} />
           {/* // Lead Creation, edit lead & Lead listing */}
-          <Route path="/agent/createlead" element={<LeadCreation />} />
+          <Route path="/agent/createlead" element={<LeadCreation flow="create" action="post"/>} />
           <Route path="/agent/leadlisting" element={<LeadListing />} />
-          <Route path="/agent/leadedit" element={<LeadEdit flow="lead" />} />
+          <Route path="/agent/leadedit" element={<LeadCreation flow="lead" action="edit" />} />
           <Route
             path="/agent/clientedit"
-            element={<LeadEdit flow="client" />}
+            element={<LeadCreation flow="client" action="edit"/>}
           />
+          {/* <Route
+            path="/agent/leadcreate"
+            element={<LeadEdit flow="create" action="create"/>}
+          /> */}
           {/* // Quote Creation, Policy conversion & Client listing */}
           <Route
             path="/agent/createquote/policydetails/createquote/:id"
@@ -1027,7 +1031,11 @@ const Maincomponent = () => {
           />
           <Route
             path="/agent/createquote/ordersummary"
-            element={<OrderSummary action="edit" />}
+            element={<OrderSummary action="post" />}
+          />
+          <Route
+            path="/agent/createquote/ordersummaryquote"
+            element={<OrderSummaryQuote action="view" />}
           />
           <Route path="/agent/claim/claimtable" element={<ClaimModule />} />
           <Route path="/agent/policy/policytable" element={<PolicyModule />} />
@@ -1035,10 +1043,7 @@ const Maincomponent = () => {
             path="/agent/quotation/quotationtable"
             element={<QuotationModule />}
           />
-          <Route
-            path="/agent/createquote/ordersummaryquote"
-            element={<OrderSummaryQuote action="view" />}
-          />
+
           {/* <Route
             path="/agent/createquote/ordersummaryquote"
             element={<OrderSummaryQuote />}
@@ -1058,7 +1063,7 @@ const Maincomponent = () => {
           />
           <Route
             path="/agent/convertpolicy/customerinfo/view/:id"
-            element={<CustomerInfo action="view" />}
+            element={<CustomerInfo action="post" />}
           />
 
           <Route

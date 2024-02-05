@@ -15,11 +15,15 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
+import { getClientEditMiddleWare, getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import { Avatar } from "primereact/avatar";
 
-const ClientListingCompanyCategory = ({ paymentSearchList }) => {
+const ClientListingCompanyCategory = ({data, clientListTable, paymentSearchList }) => {
+  console.log(clientListTable?.company);
+  const companyData = clientListTable?.filter(item => item.category === "Company");
+  const searchMiddleWareData=paymentSearchList?.filter(val=>val?.category==="Company");
+
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
@@ -36,123 +40,13 @@ const ClientListingCompanyCategory = ({ paymentSearchList }) => {
         getPaymentSearchDataMiddleWare({
           field: globalFilter,
           value: search,
-          // status1: status,
+          status: data,
         })
       );
     }
   }, [search]);
 
-  const TableData = [
-    {
-      id: "1",
-      Name: "Sophie Clark",
-      Category: "Company",
-      Date: "2024-01-26",
-      Quotes: "01",
-      LeadID: "123456",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "2",
-      Name: "John Smith",
-      Category: "Company",
-      Date: "2024-02-10",
-      Quotes: "02",
-      LeadID: "126",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "3",
-      Name: "Emma Davis",
-      Category: "Company",
-      Date: "2024-03-15",
-      Quotes: "02",
-      LeadID: "1456",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "4",
-      Name: "Michael Johnson",
-      Category: "Company",
-      Date: "2024-04-20",
-      Quotes: "03",
-      LeadID: "1236",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "5",
-      Name: "Olivia Turner",
-      Category: "Company",
-      Date: "2024-05-25",
-      Quotes: "04",
-      LeadID: "1456",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "6",
-      Name: "David Rodriguez",
-      Category: "Company",
-      Date: "2024-06-30",
-      Quotes: "05",
-      LeadID: "123116",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "7",
-      Name: "Ava Williams",
-      Category: "Company",
-      Date: "2024-07-05",
-      Quotes: "06",
-      LeadID: "123411",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "8",
-      Name: "Daniel Brown",
-      Category: "Company",
-      Date: "2024-08-10",
-      Quotes: "01",
-      LeadID: "1234000",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "9",
-      Name: "Sophia Carter",
-      Category: "Company",
-      Date: "2024-09-15",
-      Quotes: "02",
-      LeadID: "1234555",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "10",
-      Name: "Ryan Walker",
-      Category: "Company",
-      Date: "2024-10-20",
-      Quotes: "03",
-      LeadID: "1234226",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-    {
-      id: "11",
-      Name: "Ella Adams",
-      Category: "Company",
-      Date: "2024-11-25",
-      Quotes: "04",
-      LeadID: "1234000",
-      ProductDescription: "Motor Comprensive",
-      Svg: <SvgTravlesTable />,
-    },
-  ];
+
 
   const template2 = {
     layout:
@@ -237,9 +131,9 @@ const ClientListingCompanyCategory = ({ paymentSearchList }) => {
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div>{handleSvg(rowData.Name, rowData.id)}</div>
+        <div>{handleSvg(rowData.FirstName, rowData.id)}</div>
         <div>
-          <div className="name__text">{rowData.Name}</div>
+          <div className="name__text">{rowData.FirstName}</div>
           <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -247,7 +141,7 @@ const ClientListingCompanyCategory = ({ paymentSearchList }) => {
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.Category}</div>;
+    return <div className="category__text">{rowData.category}</div>;
   };
 
   const renderdes = (rowData) => {
@@ -255,14 +149,15 @@ const ClientListingCompanyCategory = ({ paymentSearchList }) => {
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date}</div>;
+    return <div className="date__text">{rowData.DateofBirth}</div>;
   };
 
   const renderQuotes = (rowData) => {
     return <div className="quote__text">{rowData.Quotes}</div>;
   };
 
-  const handleEditAction = () => {
+  const handleEditAction = (rowData) => {
+    dispatch(getClientEditMiddleWare(rowData))
     navigate("/agent/clientedit");
   };
 
@@ -342,7 +237,7 @@ const ClientListingCompanyCategory = ({ paymentSearchList }) => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search ? paymentSearchList : TableData}
+          value={search ? searchMiddleWareData : companyData}
           paginator
           rows={5}
           selectionMode={selectionMode}

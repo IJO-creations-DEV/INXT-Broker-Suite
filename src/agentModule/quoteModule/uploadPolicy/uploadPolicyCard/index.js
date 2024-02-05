@@ -12,15 +12,7 @@ import customHistory from "../../../../routes/customHistory";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { postUploadPolicyMiddleWare } from "../store/uploadPolicyMiddleWare";
-const initialValues = {
-  PolicyNumber: "001",
-  InsuranceCompany: "Pioneer Insurance and Surety Corp (PISC)",
-  Production: new Date(),
-  Inception: new Date(),
-  IssuedDate: new Date(),
-  Expiry: new Date("2025-01-01"),
-  file: null,
-};
+
 
 
 
@@ -66,6 +58,21 @@ const UploadPolicyCard = () => {
 
   //   return errors
   // }
+  const initialValues = {
+    PolicyNumber: "001",
+    InsuranceCompany: "Pioneer Insurance and Surety Corp (PISC)",
+    Production: new Date(),
+    Inception: new Date(),
+    IssuedDate: new Date(),
+    Expiry: (() => {
+      const currentDate = new Date();
+      const oneYearLater = new Date(currentDate);
+      oneYearLater.setFullYear(currentDate.getFullYear() + 1);
+      return oneYearLater.toISOString().split('T')[0];
+    })(),
+    file: null,
+  };
+  const [expiryDateData, setExpieyDateData] = useState("")
   const handleUppendImg = (name, src) => {
     setimageURL(src.objectURL);
     console.log(name, src.objectURL, "find handleUppendImg");
@@ -76,14 +83,16 @@ const UploadPolicyCard = () => {
   console.log(imageURL, "imageURL");
 
   const formik = useFormik({
-    initialValues: initialValues,
-    // validate: customValidation,
+    initialValues:
+   { ...initialValues,
+    Expiry: new Date(initialValues.Expiry)},
     onSubmit: handleSubmit,
   });
   const handleIssuedDateChange = (e) => {
     const issuedDate = e.target.value;
     const expiryDate = new Date(issuedDate);
     expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+    setExpieyDateData(expiryDate)
     formik.setFieldValue("IssuedDate", issuedDate);
     formik.setFieldValue("Expiry", expiryDate);
   };
@@ -172,9 +181,9 @@ const UploadPolicyCard = () => {
             <DatepickerField
               label="Expiry*"
               value={formik.values.Expiry}
-              onChange={(e) => {
-                formik.setFieldValue("Expiry", e.target.value);
-              }}
+              // onChange={(e) => {
+              //   formik.setFieldValue("Expiry", e.target.value);
+              // }}
               dateFormat="yy-mm-dd"
             />
             {formik.touched.Expiry && formik.errors.Expiry && (

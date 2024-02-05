@@ -8,29 +8,29 @@ import LeadListingHomeTable from './LeadListingHomeTable';
 import { useSelector } from "react-redux";
 
 
-const LeadListingCard = () => {  
-    const { allClientList,paymentSearchList } = useSelector(({ leadReducers,agentPaymentMainReducers}) => {
-    return {
-      allClientList: leadReducers?.leadtabledata,
-      paymentSearchList: leadReducers?.paymentSearchList,
-    };
-  });
+const LeadListingCard = () => {
+    const { leadtabledata, paymentSearchList } = useSelector(({ leadReducers, agentPaymentMainReducers }) => {
+        return {
+            leadtabledata: leadReducers?.leadtabledata,
+            paymentSearchList: leadReducers?.paymentSearchList,
+        };
+    });
 
     return (
         <div className="lead__listing__card__container mt-4">
             <Card>
                 <TabView>
                     <TabPanel header="All">
-                        <LeadListingTable TableData={allClientList} paymentSearchList={paymentSearchList}/>
+                        <LeadListingTable leadtabledata={leadtabledata} paymentSearchList={paymentSearchList} />
                     </TabPanel>
                     <TabPanel header="Motor">
-                        <LeadListingMotorTable TableData={allClientList} paymentSearchList={paymentSearchList}/>
+                        <LeadListingMotorTable leadtabledata={leadtabledata} paymentSearchList={paymentSearchList} />
                     </TabPanel>
                     <TabPanel header="Travel">
-                        <LeadListingTravelTable TableData={allClientList} paymentSearchList={paymentSearchList}/>
+                        <LeadListingTravelTable leadtabledata={leadtabledata} paymentSearchList={paymentSearchList} />
                     </TabPanel>
                     <TabPanel header="Property">
-                        <LeadListingHomeTable TableData={allClientList} paymentSearchList={paymentSearchList}/>
+                        <LeadListingHomeTable leadtabledata={leadtabledata} paymentSearchList={paymentSearchList} />
                     </TabPanel>
                 </TabView>
             </Card>

@@ -26,7 +26,7 @@ import reversalMainReducers from "../module/Reversals/store/reversalReducers";
 import correctionJVMainReducers from "../module/CorrectionJV/store/correctionJVReducers";
 import insuranceCompanyReducers from "../module/GeneralMasters/InsuranceManagementMasters/InsuranceCompany/store/insuranceCompanyReducers";
 import hierarchyTableReducers from "../module/GeneralMasters/EmployeeManagementMasters/Hierarchy/store/hierarchyReducers";
-import designationMainReducers from "../module/GeneralMasters/EmployeeManagementMasters/Designation/store/designationReducers"
+import designationMainReducers from "../module/GeneralMasters/EmployeeManagementMasters/Designation/store/designationReducers";
 import organizationBranchMainReducers from "../module/GeneralMasters/OrganizationMasters/BranchMaster/store/branchReducers";
 import organizationCompanyMainReducers from "../module/GeneralMasters/OrganizationMasters/ComapanyMaster/store/companyReducers";
 import countryReducers from "../module/GeneralMasters/LocationMasters/CountryMaster/store/countryReducers";
@@ -47,8 +47,8 @@ import agentPaymentMainReducers from "../agentModule/paymentsModule/store/paymen
 // import endrosementViewMainReducers from "../agentModule/endorsementModule/endorsementDetailedView/store/endrosementViewReducers"
 // import claimDetailsMainReducers from "../agentModule/claimsModule/claimDetails/store/claimDetailsReducers";
 // import claimTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewClaimTable/store/getClaimTabelDataReducers"
-import claimSettleMainReducers from "../agentModule/claimsModule/claimSettlement/store/claimSettleReducers"
-import claimDocumentUploadMainReducers from "../agentModule/claimsModule/claimDocumentUpload/store/claimDocumentUploadReducers"
+import claimSettleMainReducers from "../agentModule/claimsModule/claimSettlement/store/claimSettleReducers";
+import claimDocumentUploadMainReducers from "../agentModule/claimsModule/claimDocumentUpload/store/claimDocumentUploadReducers";
 import endrosementViewMainReducers from "../agentModule/endorsementModule/uploadEndorsement/store/uploadEndrosmentReducers";
 import claimSettlementReducer from "../agentModule/claimsModule/settlementDetails/Store/claimSettlementReducer";
 import claimDetailsMainReducers from "../agentModule/claimsModule/claimDetails/store/claimDetailsReducers";
@@ -63,7 +63,10 @@ import renewalTabelMainReducers from "../agentModule/quoteModule/clientView/clie
 import agentExpiringMainReducers from "../agentModule/openItems/expiringPolicy/expiringPolicyCard/store/expiringReducer"
 import agentQuotependingMainReducers from "../agentModule/openItems/quotePending/quotePendingCard/store/quotePendingReducer"
 import agentRenewalrequestMainReducers from "../agentModule/openItems/renewalRequest/renewalRequestCard/store/renewalRequestReducer"
-
+import claimsMainReducers from "../agentModule/claimModule/store/claimReducers"
+import policyMainReducers from "../agentModule/policyModule/store/policyReducers"
+import quotationMainReducers from "../agentModule/quotationModule/store/quotationReducers"
+import agentCoverageDetailsReducers from "../agentModule/quoteModule/coverageDetails/store/coverageDetailsReducer";
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -121,8 +124,12 @@ const reducers = {
   agentExpiringMainReducers,
   agentQuotependingMainReducers,
   agentRenewalrequestMainReducers,
-  designationMainReducers
-  // openitemTabelMainReducers
+  designationMainReducers,
+  // openitemTabelMainReducers,
+  agentCoverageDetailsReducers,
+  claimsMainReducers,
+  policyMainReducers,
+  quotationMainReducers,
 
 };
 

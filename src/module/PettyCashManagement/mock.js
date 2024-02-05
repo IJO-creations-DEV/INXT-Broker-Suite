@@ -50,7 +50,7 @@ export const SubAccount = [
 ];
 export const CurrencyType = [
   { CurrencyType: "PHP" },
-  { CurrencyType: "US" },
+  // { CurrencyType: "US" },
   { CurrencyType: "USD" },
   { CurrencyType: "AD" },
 ];

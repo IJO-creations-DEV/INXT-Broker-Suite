@@ -25,10 +25,11 @@ const ClientListingCard = () => {
             />
           </div>
         </div>
-
+        <div className="card__container__outer">
         <Card style={{ borderRadius: "20px" }}>
           <PolicyTable />
         </Card>
+        </div>
       </div>
     </div>
   );

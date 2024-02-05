@@ -16,6 +16,7 @@ import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import { useSelector, useDispatch } from "react-redux";
 import { getQuotependingSearchDataMiddleWare } from "../quotePendingCard/store/quotePendingMiddleware";
+import { Avatar } from "primereact/avatar";
 
 const QuotePendingCard = () => {
   const [search, setSearch] = useState("");
@@ -219,20 +220,42 @@ const QuotePendingCard = () => {
     border: " none",
   };
 
-  const renderName = (rowData) => {
+  const handleSvg = (type, index) => {
+    const colors = [
+      "#D4635D",
+      "#67D07A",
+      "#D4635D",
+      "#874EFF",
+      "#EDC63B",
+      "#A36EFF",
+      "#5DCB67",
+      "#6366F1",
+      "#D8BFD8",
+      "#FFA07A",
+    ];
+
+    const backgroundColor =
+      colors[parseInt(index) % colors.length] || "#CCCCCC";
+    console.log(parseInt(index) % colors.length, "find");
+
     return (
-      <div className="assured__container">
-        <div>
-          <SvgProfileC />
-        </div>
-        <div>
-          <div className="Name__text">{rowData.Name}</div>
-          <div className="Name__sub___text">Client ID :{rowData.Actions} </div>
-        </div>
-      </div>
+      <Avatar
+        label={type.charAt(0)}
+        size="xlarge"
+        shape="circle"
+        style={{ backgroundColor: backgroundColor, color: "#fff" }}
+      />
     );
   };
 
+  const renderName = (rowData) => {
+    return (
+      <div className="name__box__container">
+        <div>{handleSvg(rowData.Name, rowData.id)}</div>
+        <div className="name__text">{rowData.Name}</div>
+      </div>
+    );
+  };
   const renderLeadId = (rowData) => {
     return (
       <div className="policy__number__container">

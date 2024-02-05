@@ -53,16 +53,19 @@ import endrosementViewMainReducers from "../agentModule/endorsementModule/upload
 import claimSettlementReducer from "../agentModule/claimsModule/settlementDetails/Store/claimSettlementReducer";
 import claimDetailsMainReducers from "../agentModule/claimsModule/claimDetails/store/claimDetailsReducers";
 import claimTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewClaimTable/store/getClaimTabelDataReducers";
-import policyDetailedViewMainReducers from "../agentModule/quoteModule/policyDetailedView/store/policyDetailedReducer";
-import clientsReducers from "../agentModule/quoteModule/clientListing/store/clientsReducer";
-import leadReducers from "../agentModule/leadModule/Store/leadReducer";
-import agentQuoteMainReducers from "../agentModule/quoteModule/quoteListing/quoteListingCard/store/quoteReducer";
-import endorsementTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewEndorsementTable/store/getEndorsementTabelDataReducers";
-import policyTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewPolicyTable/store/getPolicyTabelDataReducers";
-import renewalTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewRenewaleTable/store/getRenewalTabelDataReducers";
-import agentExpiringMainReducers from "../agentModule/openItems/expiringPolicy/expiringPolicyCard/store/expiringReducer";
-import agentQuotependingMainReducers from "../agentModule/openItems/quotePending/quotePendingCard/store/quotePendingReducer";
-import agentRenewalrequestMainReducers from "../agentModule/openItems/renewalRequest/renewalRequestCard/store/renewalRequestReducer";
+import policyDetailedViewMainReducers from "../agentModule/quoteModule/policyDetailedView/store/policyDetailedReducer"
+import clientsReducers from "../agentModule/quoteModule/clientListing/store/clientsReducer"
+import leadReducers from "../agentModule/leadModule/Store/leadReducer"
+import agentQuoteMainReducers from "../agentModule/quoteModule/quoteListing/quoteListingCard/store/quoteReducer"
+import endorsementTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewEndorsementTable/store/getEndorsementTabelDataReducers"
+import policyTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewPolicyTable/store/getPolicyTabelDataReducers"
+import renewalTabelMainReducers from "../agentModule/quoteModule/clientView/clientViewCard/ClientListingViewRenewaleTable/store/getRenewalTabelDataReducers"
+import agentExpiringMainReducers from "../agentModule/openItems/expiringPolicy/expiringPolicyCard/store/expiringReducer"
+import agentQuotependingMainReducers from "../agentModule/openItems/quotePending/quotePendingCard/store/quotePendingReducer"
+import agentRenewalrequestMainReducers from "../agentModule/openItems/renewalRequest/renewalRequestCard/store/renewalRequestReducer"
+import claimsMainReducers from "../agentModule/claimModule/store/claimReducers"
+import policyMainReducers from "../agentModule/policyModule/store/policyReducers"
+import quotationMainReducers from "../agentModule/quotationModule/store/quotationReducers"
 import agentCoverageDetailsReducers from "../agentModule/quoteModule/coverageDetails/store/coverageDetailsReducer";
 const reducers = {
   journalVoucherMainReducers,
@@ -124,6 +127,10 @@ const reducers = {
   designationMainReducers,
   // openitemTabelMainReducers,
   agentCoverageDetailsReducers,
+  claimsMainReducers,
+  policyMainReducers,
+  quotationMainReducers,
+
 };
 
 export default reducers;

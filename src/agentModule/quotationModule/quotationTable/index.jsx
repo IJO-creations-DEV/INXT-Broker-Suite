@@ -12,69 +12,26 @@ import "../../quotationModule/index.scss";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getClaimTabelSearchList } from "./store/getClaimTabelDataMiddleWare";
 import SvgMotorTable from "../../../assets/agentIcon/SvgMotorTable";
+import { quotationSearchListDataMiddleWare } from "../store/quotationMiddleWare";
+import { useDispatch, useSelector } from "react-redux";
 
 const LeadListingAllTable = () => {
-  //   const { claimListData, loading, claimSearchListData } = useSelector(
-  //     ({ claimTabelMainReducers }) => {
-  //       return {
-  //         loading: claimTabelMainReducers?.loading,
-  //         claimListData: claimTabelMainReducers?.claimListData,
-  //         claimSearchListData: claimTabelMainReducers?.claimSearchListData,
-  //       };
-  //     }
-  //   );
-  //   console.log(claimListData, "claimListData");
+  const { quotationListData, loading, quotationListSearchData } = useSelector(
+    ({ quotationMainReducers }) => {
+      return {
+        loading: quotationMainReducers?.loading,
+        quotationListData: quotationMainReducers?.quotationListData,
+        quotationListSearchData: quotationMainReducers?.quotationListSearchData,
+      };
+    }
+  );
+  console.log(quotationListData, "quotationListData");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
 
   const navigate = useNavigate();
 
-  const TableData = [
-    {
-      id: "1",
-      QuoteId: "QI001",
-      LeadName: "Carson Darrin",
-      PolicyType: "PC",
-      GrossPremium: "4000.00",
-      Date: "01 JAN 2024",
-      Status: "Draft",
-      Actions: <SvgArrow />,
-    },
-    {
-      id: "2",
-      QuoteId: "QI002",
-      LeadName: "Carson Darrin",
-      PolicyType: "CV",
-      GrossPremium: "5000.00",
-      Date: "01 JAN 2024",
-      Status: "Completed",
-      Actions: <SvgArrow />,
-    },
-    {
-      id: "3",
-      QuoteId: "QI003",
-      LeadName: "Carson Darrin",
-      PolicyType: "PC",
-      GrossPremium: "9000.00",
-      Date: "01 JAN 2024",
 
-      Status: "Completed",
-      Actions: <SvgArrow />,
-    },
-    {
-      id: "4",
-      QuoteId: "QI004",
-
-      LeadName: "Carson Darrin",
-      PolicyType: "CV",
-      GrossPremium: "5000.00",
-      Date: "01 JAN 2024",
-      expiryDate: "01 JAN 2025",
-
-      Status: "Draft",
-      Actions: <SvgArrow />,
-    },
-  ];
 
   const template2 = {
     layout:
@@ -109,168 +66,7 @@ const LeadListingAllTable = () => {
     },
   };
 
-  //   const template2 = {
-  //     layout:
-  //       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
-  //     RowsPerPageDropdown: (options) => {
-  //       const dropdownOptions = [
-  //         { label: 5, value: 5 },
-  //         { label: 10, value: 10 },
-  //         { label: 20, value: 20 },
-  //         { label: 120, value: 120 },
-  //       ];
 
-  //     const renderViewEditButton = (rowData) => {
-
-  //         return (
-  //             <div className="btn__container__view__edit">
-  //                 <div>
-  //                     <Button
-  //                         icon={<SvgArrow />}
-  //                         className="view__btn"
-  //                         // onClick={() => handleView(rowData)}
-  //                     />
-  //                 </div>
-
-  //             </div>
-  //         );
-  //     };
-
-  //     const renderclaimNumber = (rowData) => {
-  //         return (
-  //             <div className="name__box__container">
-  //                 <div>{rowData.Svg}</div>
-  //                 <div>
-  //                     <div className="name__text">{rowData.claimNumber}</div>
-  //                     {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
-  //                 </div>
-  //             </div>
-  //         )
-  //     }
-
-  //     const renderClientName = (rowData) => {
-  //         return (
-  //             <div className="category__text">
-  //                 {rowData.ClientName}
-  //             </div>
-  //         )
-  //     }
-
-  //     const renderDate = (rowData) => {
-  //         return (
-  //             <div className="date__text">
-  //                 {rowData.Date}
-  //             </div>
-  //         )
-  //     }
-
-  // const renderStatus = (rowData) => {
-  //   return (
-  //       // <div className="quote__text" style={{backgroundColor:'#FEF2E1',color:'#C1622A',borderRadius:"25px",height:'25px',alignItems:'center',justifyContent:'center',display:'flex',width:'100px'}}>
-  //       //     {rowData.Status}
-  //       // </div>
-  //       <div
-  //       className={
-  //           rowData.Status === "Processing"
-  //             ? "company__status__type__green"
-  //             : rowData.Status === "Completed"
-  //             ? "company__status__type__blue"
-  //             : "client__view__type__red"
-  //         }
-  //         >
-  //           {rowData.Status}
-  //         </div>
-  //   )
-  // }
-
-  //     // const handleView = () => {
-  //     //     navigate("/agent/leadedit")
-  //     // }
-
-  //     const ViewheaderStyle = {
-
-  //         textalign: "center",
-  //         fontSize: 16,
-  //         fontFamily: 'Poppins',
-  //         fontWeight: 500,
-  //         color: "#000",
-  //         border: " none",
-  //         // display: "grid",
-  //         // alignItem: "center",
-  //     };
-
-  //     const headerStyle = {
-  //         textalign: "center",
-  //         fontSize: 16,
-  //         fontFamily: 'Poppins',
-  //         fontWeight: 500,
-  //         color: "#000",
-  //         border: " none",
-  //     };
-
-  //     const rendercheckedHeader = (value) => {
-  //         return (
-  //             selectedProducts.length === 0
-  //                 ? value
-  //                 : selectedProducts.length === 1
-  //                     ? <div className="header__btn__container"><div className="header__delete__btn">Delete</div><div className="header__edit__btn">Edit</div></div>
-  //                     : <div className="header__delete__btn">Delete</div>
-  //         )
-  //     }
-
-  //     const renderUncheckedHeader = (value) =>{
-  //         return(
-  //             selectedProducts.length == 0 && value
-  //         )
-  //     }
-
-  //     return (
-  //         <div>
-  //             <div class="grid">
-  //                 <div class="col-12 md:col-9 lg:col-9">
-  //                     <span className="p-input-icon-left" style={{width:'100%'}}>
-  //                         <i className="pi pi-search" />
-  //                         {/* <SvgSearch/> */}
-  //                         <InputText placeholder="Search" style={{ width: "100%",padding: "1rem 2.75rem",borderRadius:"10px" }}/>
-  //                     </span>
-  //                 </div>
-  //                 <div class="col-12 md:col-3 lg:col-3">
-  //                 <Dropdown   optionLabel="name" className="feat_searchby_container"
-  //                 placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/>
-  //                 </div>
-  //             </div>
-  //             <div  className="lead__table__container">
-  //                 <DataTable
-  //                     value={TableData}
-  //                     paginator
-  //                     rows={5}
-  //                     selectionMode={selectionMode}
-  //                     selection={selectedProducts}
-  //                     rowsPerPageOptions={[5, 10, 25, 50]}
-  //                     currentPageReportTemplate="{first} - {last} of {totalRecords}"
-  //                     paginatorTemplate={template2}
-  //                     className="corrections__table__main"
-  //                     onSelectionChange={(e) => setSelectedProducts(e.value)}
-  //                     dataKey="id"
-  //                     tableStyle={{ minWidth: '50rem' }}
-
-  //  scrollable={true}
-  //  scrollHeight="60vh"
-  //                 >
-
-  //                     <Column body={renderclaimNumber} header={
-  //                         rendercheckedHeader("claimNumber")
-  //                     } headerStyle={headerStyle}></Column>
-  //                     <Column body={renderClientName} header={renderUncheckedHeader("ClientName")} headerStyle={headerStyle}></Column>
-  //                     <Column body={renderDate} header={renderUncheckedHeader("Date")} headerStyle={headerStyle}></Column>
-  //                     <Column body={renderStatus} header={renderUncheckedHeader("Status")} headerStyle={headerStyle}></Column>
-  //                     <Column body={renderViewEditButton} header={renderUncheckedHeader("Actions")}   headerStyle={{ ...ViewheaderStyle, textAlign: 'center' }}></Column>
-  //                 </DataTable>
-  //             </div>
-  //         </div>
-  //       );
-  //     },
-  //   };
 
   const renderViewEditButton = (rowData) => {
     return (
@@ -335,6 +131,7 @@ const LeadListingAllTable = () => {
     );
   };
   const [search, setSearch] = useState("");
+  const dispatch = useDispatch()
   //   const dispatch = useDispatch();
   // useEffect(() => {
   //   if (search?.length > 0) {
@@ -342,22 +139,22 @@ const LeadListingAllTable = () => {
   //   }
   // }, [search])
 
-  const [globalFilter, setGlobalFilter] = useState("policy Number");
+  const [globalFilter, setGlobalFilter] = useState("Quote Id");
   const cities = [
-    { name: "Policy Number", code: "policy Number" },
-    { name: "ClientID", code: "ClientID" },
+    { name: "Quote Id", code: "Quote Id" },
+    { name: "Lead Name", code: "Lead Name" },
   ];
 
-  //   useEffect(() => {
-  //     if (globalFilter && search) {
-  //       dispatch(
-  //         getClaimTabelSearchList({
-  //           field: globalFilter,
-  //           value: search,
-  //         })
-  //       );
-  //     }
-  //   }, [search]);
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        quotationSearchListDataMiddleWare({
+          field: globalFilter,
+          value: search,
+        })
+      );
+    }
+  }, [search]);
   const handleView = (rowData) => {
     console.log(rowData, "find rowData");
     if (rowData?.Status === "Draft") {
@@ -438,8 +235,7 @@ const LeadListingAllTable = () => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          //   value={search ? claimSearchListData : claimListData}
-          value={TableData}
+          value={search ? quotationListSearchData : quotationListData}
           paginator
           rows={5}
           selectionMode={selectionMode}

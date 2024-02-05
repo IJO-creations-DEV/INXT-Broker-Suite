@@ -400,8 +400,10 @@ export const PATCH_INSURANCE_VEHICLE_DATA =
 //lead (Agent Module)
 
 export const POST_CREATELEAD_DATA = "leadcreatedata/POST_CREATELEAD_DATA";
+export const GET_LEAD_LIST_DATA="leadtabledata/GET_LEAD_LIST_DATA"
 export const GET_LEADTABLE_DATA = "leadtabledata/GET_LEADTABLE_DATA";
 export const PATCH_LEADEDIT_DATA = "leadeditdata/PATCH_LEADEDIT_DATA";
+export const GET_LEAD_EDIT_DATA="leadeditdata/GET_LEAD_EDIT_DATA"
 export const GET_PAYMENTTABLE_DATA = "paymenttabledata/GET_PAYMENTTABLE_DATA";
 export const GET_PAYMENTTABLE_PENDING_DATA = "paymenttabledata/GET_PAYMENTTABLE_PENDING_DATA";
 export const GET_PAYMENTTABLE_REWING_DATA = "paymenttabledata/GET_PAYMENTTABLE_REWING_DATA"
@@ -456,3 +458,10 @@ export const GET_RENEWALREQUESTTABLE_DATA = "renewalrequest/GET_RENEWALREQUESTTA
 export const GET_EDIT_REQUEST = "editrequest/GET_EDIT_REQUEST"
 export const POST_UPDATE_REQUEST_VOUCHER = "updaterequest/POST_UPDATE_REQUEST_VOUCHER"
 export const PATCH_UPDATE_COMPANYDATA = "patchupdatedata/PATCH_UPDATE_COMPANYDATA"
+
+export const CLIAM_LIST_DATA="claims/CLIAM_LIST_DATA"
+export const CLAIM_SEARCH_DATA="claims/CLAIM_SEARCH_DATA"
+export const POLICY_LIST_DATA="policy/POLICY_LIST_DATA"
+export const POLICY_SEARCH_DATA="policy/POLICY_SEARCH_DATA"
+export const QUOTATION_LIST_DATA="quotation/QUOTATION_LIST_DATA"
+export const QUOTATION_SEARCH_DATA="quotation/QUOTATION_SEARCH_DATA"

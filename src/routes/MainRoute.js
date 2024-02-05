@@ -982,13 +982,17 @@ const Maincomponent = () => {
           <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
           <Route path="/agent/editprofile" element={<AgentEditProfile />} />
           {/* // Lead Creation, edit lead & Lead listing */}
-          <Route path="/agent/createlead" element={<LeadCreation />} />
+          <Route path="/agent/createlead" element={<LeadCreation flow="create" action="post"/>} />
           <Route path="/agent/leadlisting" element={<LeadListing />} />
-          <Route path="/agent/leadedit" element={<LeadEdit flow="lead" />} />
+          <Route path="/agent/leadedit" element={<LeadCreation flow="lead" action="edit" />} />
           <Route
             path="/agent/clientedit"
-            element={<LeadEdit flow="client" />}
+            element={<LeadCreation flow="client" action="edit"/>}
           />
+          {/* <Route
+            path="/agent/leadcreate"
+            element={<LeadEdit flow="create" action="create"/>}
+          /> */}
           {/* // Quote Creation, Policy conversion & Client listing */}
           <Route
             path="/agent/createquote/policydetails/createquote/:id"

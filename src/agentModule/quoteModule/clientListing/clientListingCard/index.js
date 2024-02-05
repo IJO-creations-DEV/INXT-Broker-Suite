@@ -1,5 +1,5 @@
 import { Card } from "primereact/card";
-import React from "react";
+import React, { useEffect } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import ClientListingAllCategory from "./ClientListingAllCategory";
 import ClientListingIndividualCategory from "./ClientListingIndividualCategory";
@@ -8,25 +8,26 @@ import { useSelector } from "react-redux";
 
 
 const ClientListingCard = () => {
-  const { allClientList,paymentSearchList } = useSelector(({ clientsReducers,agentPaymentMainReducers}) => {
+  const { clientListTable,paymentSearchList } = useSelector(({ clientsReducers,agentPaymentMainReducers}) => {
     return {
-      allClientList: clientsReducers?.clientListTable,
+      clientListTable: clientsReducers?.clientListTable,
       paymentSearchList: clientsReducers?.paymentSearchList,
     };
   });
-  console.log(allClientList,"allClientList");
+  console.log(clientListTable,"clientListTable");
+  
   return (
     <div className="lead__listing__card__container mt-4">
       <Card>
         <TabView>
           <TabPanel header="All">
-            <ClientListingAllCategory TableData={allClientList} paymentSearchList={paymentSearchList}/>
+            <ClientListingAllCategory data={"All"} clientListTable={clientListTable} paymentSearchList={paymentSearchList}/>
           </TabPanel>
           <TabPanel header="Individual">
-            <ClientListingIndividualCategory TableData={allClientList} paymentSearchList={paymentSearchList}/>
+            <ClientListingIndividualCategory  data={"Individual"} clientListTable={clientListTable} paymentSearchList={paymentSearchList}/>
           </TabPanel>
           <TabPanel header="Company">
-            <ClientListingCompanyCategory TableData={allClientList} paymentSearchList={paymentSearchList}/>
+            <ClientListingCompanyCategory data={"Company"}  clientListTable={clientListTable} paymentSearchList={paymentSearchList}/>
           </TabPanel>
         </TabView>
       </Card>

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_CLIENTS_LIST, GET_CLIENTS_SEARCH_LIST ,GET_PAYMENT_SEARCH} from "../../../../redux/agentActionTypes";
+import { GET_CLIENTS_LIST, GET_CLIENTS_SEARCH_LIST, GET_CLIENT_EDIT_DATA, GET_PAYMENT_SEARCH, PATCH_CLIENTEDIT_DATA } from "../../../../redux/agentActionTypes";
 
 
 
@@ -39,23 +39,23 @@ export const getClientTableSearchListMiddleware = createAsyncThunk(
     },)
 export const getPaymentSearchDataMiddleWare = createAsyncThunk(
     GET_PAYMENT_SEARCH,
-    async ({ field, value }, { rejectWithValue, getState }) => {
-        console.log(field, value, "data find");
+    async ({ field, value, status }, { rejectWithValue, getState }) => {
+        console.log(field, value, status, "data find");
         const { clientsReducers } = getState();
         const { clientListTable } = clientsReducers;
-        console.log(clientsReducers,"clientsReducers");
-        
+        console.log(clientsReducers, "clientsReducers");
+
         function filterPaymentsByField(data, field, value) {
             const lowercasedValue = value.toLowerCase();
             const outputData = data.filter(item => {
 
-                if (field === 'Name') {
-                    return item.Name.toLowerCase().includes(lowercasedValue);
+                if (field === 'Name' ) {
+                    return item.FirstName.toLowerCase().includes(lowercasedValue);
                 } else if (field === 'ClientID') {
                     return item.LeadID.toLowerCase().includes(lowercasedValue);
                 }
                 return (
-                    (item.Name.toLowerCase().includes(lowercasedValue) ||
+                    (item.FirstName.toLowerCase().includes(lowercasedValue) ||
                         item.LeadID.toLowerCase().includes(lowercasedValue))
 
                 );
@@ -73,3 +73,56 @@ export const getPaymentSearchDataMiddleWare = createAsyncThunk(
         }
     }
 );
+
+
+export const getClientEditMiddleWare = createAsyncThunk(
+    GET_CLIENT_EDIT_DATA,
+    async (payload, { rejectWithValue }) => {
+        try {
+            return payload
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    })
+
+export const patchClientEditMiddleWare = createAsyncThunk(
+    PATCH_CLIENTEDIT_DATA,
+    async (payload, { rejectWithValue, getState }) => {
+        console.log(payload, "find edit load");
+        const category = payload.type === 'individual' ? 'Individual' : 'Company';
+        const randomQuotesNumber = Math.floor(Math.random() * 10);
+        const data = {
+            id: payload?.id,
+            CompanyName: payload?.CompanyName,
+            TaxNumber: payload?.TaxNumber,
+            FirstName: payload?.FirstName,
+            LastName: payload?.LastName,
+            PreferredName: payload?.PreferredName,
+            EmailID: payload?.EmailID,
+            ContactNumber: payload?.ContactNumber,
+            HouseNo: payload?.HouseNo,
+            Barangay: payload?.Barangay,
+            Country: payload?.Country,
+            Province: payload?.Province,
+            City: payload?.City,
+            Quotes: randomQuotesNumber,
+            ZIPCode: payload?.ZIPCode,
+            DateofBirth: payload?.DateofBirth.toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "2-digit",
+                year: "numeric",
+            }),
+            category: category,
+            gender: "Male",
+            ProductDescription: "Motor Comprensive"
+        }
+
+        try {
+            // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error?.response.data.error.message);
+        }
+    }
+);
+

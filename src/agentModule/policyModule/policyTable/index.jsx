@@ -12,42 +12,53 @@ import "../../policyModule/index.scss";
 import SvgDot from "../../../assets/agentIcon/SvgDot";
 import { Dialog } from "primereact/dialog";
 import { Menu } from "primereact/menu";
+import { useDispatch, useSelector } from "react-redux";
+import { policyListSerachDataMiddleWare } from "../store/policyMiddleWare";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getPolicyTabelSearchList } from "./store/getPolicyTabelDataMiddleWare"
 
 const LeadListingAllTable = ({ action }) => {
-  //   const { policyListData, loading, policySearchListData } = useSelector(
-  //     ({ policyTabelMainReducers }) => {
-  //       return {
-  //         loading: policyTabelMainReducers?.loading,
-  //         policyListData: policyTabelMainReducers?.policyListData,
-  //         policySearchListData: policyTabelMainReducers?.policySearchListData,
-  //       };
-  //     }
-  //   );
+  const { policyListData, loading, policyListSearchData } = useSelector(
+    ({ policyMainReducers }) => {
+      return {
+        loading: policyMainReducers?.loading,
+        policyListData: policyMainReducers?.policyListData,
+        policyListSearchData: policyMainReducers?.policyListSearchData,
+      };
+    }
+  );
+  console.log(policyListData, "policyListData");
   const menu = useRef(null);
   //   const dispatch = useDispatch();
-  const [navAction, setNavAction] = useState(null);
   const [displayDialog, setDisplayDialog] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("")
   const [selectionMode, setSelectionMode] = useState("multiple");
 
   const [disableOption, setdisableOption] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("policy Number");
-  const cities = [{ name: "Policy Number", code: "policy Number" }];
+  const cities = [
+    { name: "Policy Number", code: "policy Number" },
+    {name:"Claim ID",code:"Claim ID"}
 
-  //   useEffect(() => {
-  //     if (globalFilter && search) {
-  //       dispatch(
-  //         getPolicyTabelSearchList({
-  //           field: globalFilter,
-  //           value: search,
-  //         })
-  //       );
-  //     }
-  //   }, [search]);
+  ];
+  
+const [navAction, setNavAction] = useState(null);
+
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (globalFilter && search) {
+      dispatch(
+        policyListSerachDataMiddleWare({
+          field: globalFilter,
+          value: search,
+        })
+      );
+    }
+  }, [search]);
 
   const categories = [
     { name: "Personal Details Change", key: "personaldetail" },
@@ -139,6 +150,7 @@ const LeadListingAllTable = ({ action }) => {
       rowData.Payment === "Pending" || rowData.Payment === "Reviewing"
     );
   };
+  
 
   // const handleMenuClick = (menuItem) => {
   //   console.log(menuItem,"find menuItem")
@@ -175,149 +187,10 @@ const LeadListingAllTable = ({ action }) => {
     if (menuItem == "endrosement") {
       setDisplayDialog(true);
     }
+
   };
 
-  const TableData = [
-    {
-      id: "1",
-      ClientId: "CL001",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0123",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "7000.00",
-      Payment: "Pending",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "2",
-      ClientId: "CL002",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0122",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "5000.00",
-      Payment: "Completed",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "3",
-      ClientId: "CL006",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0156",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "8000.00",
-      Payment: "Reviewing",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "4",
-      ClientId: "CL009",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0123",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "7000.00",
-      Payment: "Pending",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "5",
-      ClientId: "CL001",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0323",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "5000.00",
-      Payment: "Completed",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "6",
-      ClientId: "CL003",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0473",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "1000.00",
-      Payment: "Completed",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "7",
-      ClientId: "CL001",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0123",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "7000.00",
-      Payment: "Completed",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "8",
-      ClientId: "CL001",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0423",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "8000.00",
-      Payment: "Pending",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "9",
-      PolicyNumber: "Policy0123",
-      GrossPremium: "3000.00",
-      ExpiryDate: "01 JAN 2024",
-      Payment: "Pending",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "10",
-      ClientId: "CL004",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0578",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "8000.00",
-      Payment: "Pending",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-    {
-      id: "11",
-      ClientId: "CL001",
-      ClientName: "Carson Darrin",
-      PolicyNumber: "Policy0125",
-      PolicyIssued: "12/12/2024",
-      PolicyExpiry: "12/12/2024",
-      ProductDescription: "Motor Comprensive",
-      GrossPremium: "2000.00",
-      Payment: "Pending",
-      Actions: <SvgDot />,
-      Svg: <SvgMotorTable />,
-    },
-  ];
+
   const onCategoryChange = (e) => {
     let _selectedCategories = [...selectedCategories];
 
@@ -452,8 +325,8 @@ const LeadListingAllTable = ({ action }) => {
           rowData.Payment === "Pending"
             ? "company__status__type__green"
             : rowData.Payment === "Completed"
-            ? "company__status__type__blue"
-            : "company__status__type__red"
+              ? "company__status__type__blue"
+              : "company__status__type__red"
         }
       >
         {rowData.Payment}
@@ -512,8 +385,7 @@ const LeadListingAllTable = ({ action }) => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          //   value={search ? policySearchListData : policyListData}
-          value={TableData}
+          value={search ? policyListSearchData : policyListData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -527,6 +399,17 @@ const LeadListingAllTable = ({ action }) => {
           scrollable={true}
           scrollHeight="50vh"
         >
+          <Column
+            body={renderClientId}
+            header="CLient Id"
+            headerStyle={headerStyle}
+          ></Column>
+          <Column
+            body={renderClientName}
+            header="Client Name"
+            headerStyle={headerStyle}
+          ></Column>
+
           <Column
             body={renderPolicyNumber}
             header="Policy Number"

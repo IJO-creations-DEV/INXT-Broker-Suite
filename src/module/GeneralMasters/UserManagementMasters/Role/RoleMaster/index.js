@@ -26,6 +26,7 @@ const RoleMaster = () => {
       roleSearchList: roleMainReducers?.roleSearchList,
     };
   });
+  console.log(roleTableList,"find1243")
   const [search, setSearch] = useState("")
   const navigate = useNavigate();
   const dispatch = useDispatch()

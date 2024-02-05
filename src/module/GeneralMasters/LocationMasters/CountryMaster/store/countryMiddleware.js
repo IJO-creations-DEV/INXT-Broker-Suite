@@ -68,7 +68,7 @@ export const postAddCountryMiddleware = createAsyncThunk(
       "ISOCode": payload.ISOCode,
       Description: payload?.Description,
       "PhoneCode": payload.PhoneCode,
-      "Modifiedby": payload.ModifiedBy,
+      "Modifiedby": payload.Modifiedby,
       "ModifiedOn": payload.ModifiedOn
     }
     console.log(dataTable, "dataTable")

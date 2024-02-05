@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Card } from "primereact/card";
@@ -18,6 +18,7 @@ import { postEndromentMiddleWare } from "./store/uploadEndrosementMiddleWare";
 const UploadEndorsement = () => {
   const [imageURL, setimageURL] = useState();
   const toastRef = useRef(null);
+  const [expiryDateData, setExpieyDateData] = useState("")
 
   const navigate = useNavigate();
   const fileUploadRef = useRef(null);
@@ -25,12 +26,28 @@ const UploadEndorsement = () => {
   const initialValues = {
     policyNumber: "001",
     endrosementNumber: "013",
-    production: "20/10/2023",
-    inception: "25/01/2024",
-    issuedDate: "29/01/2024",
-    expiry: "01/02/2024",
+    production: new Date(),
+    inception: new Date(),
+    issuedDate:new Date(),
+    expiry: (() => {
+      const currentDate = new Date();
+      const oneYearLater = new Date(currentDate);
+      oneYearLater.setFullYear(currentDate.getFullYear() + 1);
+      return oneYearLater.toISOString().split('T')[0];
+    })(),
     file: null
   }
+
+ 
+  const handleIssuedDateChange = (e) => {
+    const issuedDate = e.target.value;
+    const expiryDate = new Date(issuedDate);
+    expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+    setExpieyDateData(expiryDate)
+    formik.setFieldValue("IssuedDate", issuedDate);
+    formik.setFieldValue("Expiry", expiryDate);
+  };
+ 
 
   const customValidation = (values) => {
     const errors = {};
@@ -70,12 +87,12 @@ const UploadEndorsement = () => {
     }, 2000);
   }
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues:{...initialValues,expiry:new Date(initialValues.expiry)} ,
     validate: customValidation,
     onSubmit: handleSubmit,
   });
 
-
+ 
   const handleUppendImg = (name, src) => {
     setimageURL(src.objectURL);
     console.log(name, src.objectURL, "find handleUppendImg");
@@ -86,6 +103,8 @@ const UploadEndorsement = () => {
   };
 
   console.log(imageURL, "imageURL");
+
+ 
   return (
     <div className="upload__endorsement__container">
       <div className="upload__endorsement__container__title">Clients</div>
@@ -130,23 +149,25 @@ const UploadEndorsement = () => {
             </div>
             <div className="col-12 md:col-6 lg:col-6">
 
+
+
               <DatepickerField
                 label="Production"
-                // value={
-                //   formik.values.production
-                //     ? new Date(formik.values.production)
-                //     : null
-                // }
-                // onChange={(e) => {
-                //   formik.handleChange("production")(
-                //     e.value.toISOString().split("T")[0]
-                //   );
-                // }}
-                value={formik.values.production}
-              
+                value={
+                  formik.values.production
+                    ? new Date(formik.values.production)
+                    : null
+                }
                 onChange={(e) => {
-                  formik.setFieldValue("production", e.target.value);
+                  formik.handleChange("production")(
+                    e.value.toISOString().split("T")[0]
+                  );
                 }}
+                // value={formik.values.production}
+              
+                // onChange={(e) => {
+                //   formik.setFieldValue("production", e.target.value);
+                // }}
                 dateFormat="yy-mm-dd"
               />
               {formik.touched.production && formik.errors.production && (
@@ -178,18 +199,14 @@ const UploadEndorsement = () => {
               )}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
-              {/* <InputTextField
-                label="Issued Date"
-                value="12/12/2023"
-                disabled={true}
-              /> */}
+           
               <DatepickerField
                 label="Issued Date"
                 value={formik.values.issuedDate}
-              
-                onChange={(e) => {
-                  formik.setFieldValue("issuedDate", e.target.value);
-                }}
+                onChange={handleIssuedDateChange}
+                // onChange={(e) => {
+                //   formik.setFieldValue("issuedDate", e.target.value);
+                // }}
 
                 dateFormat="yy-mm-dd"
               />
@@ -200,19 +217,16 @@ const UploadEndorsement = () => {
               )}
             </div>
             <div className="col-12 md:col-6 lg:col-6">
-              {/* <InputTextField
-                label="Expiry"
-                value="12/12/2023"
-                disabled={true}
-              /> */}
+             
               <DatepickerField
                 label="Expiry"
                 value={formik.values.expiry}
               
-                onChange={(e) => {
-                  formik.setFieldValue("expiry", e.target.value);
-                }}
-                // value={
+                // onChange={(e) => {
+                //   handleIssuedDateChange()
+                //   formik.setFieldValue("expiry", e.target.value);
+                // }}
+                // // value={
                 //   formik.values.expiry
                 //     ? new Date(formik.values.expiry)
                 //     : null

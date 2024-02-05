@@ -7,24 +7,24 @@ const initialState = {
   userList: [
     {
       id: 1,
-      userName: "john15",
+      userName: "JOHN12",
       employeeCode: "100021",
-      assignedRole: "Agent-Motor ",
+      assignedRole: "AGENT_MOTOR ",
       email: "contactus@broker.com",
       phoneNumber: "+67-654859632",
-      modifiedBy: "Johnson",
+      modifiedBy: "JOHNSON",
       modifiedOn: "12/12/23",
       status: "",
       action: ""
     },
     {
       id: 2,
-      userName: "noel24",
+      userName: "NOEL123",
       employeeCode: "100023",
-      assignedRole: "Agent-Motor ",
+      assignedRole: "AGENT_MOTOR ",
       email: "contactus@broker.com",
       phoneNumber: "+67-654859632",
-      modifiedBy: "Johnson",
+      modifiedBy: "JOHNSON",
       modifiedOn: "2/1/24",
       status: "",
       action: ""

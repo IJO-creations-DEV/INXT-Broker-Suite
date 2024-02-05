@@ -163,8 +163,8 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              // value={action === "view" ? getViewData.rankCode : formik.values.rankCode}
-              value = {formik.values.rankCode}
+              value={action === "view" ? getViewData.rankCode : formik.values.rankCode}
+             
               onChange={formik.handleChange("rankCode")}
               // error={action === "view" ? "" : formik.errors.rankCode}
               label="Rank Code"
@@ -177,8 +177,8 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              // value={action === "view" ? getViewData.rankName : formik.values.rankName}
-              value={formik.values.rankName}
+              value={action === "view" ? getViewData.rankName : formik.values.rankName}
+              
               onChange={formik.handleChange("rankName")}
               // error={action === "view" ? "" : formik.errors.rankName}
               label="Rank Name"
@@ -192,8 +192,8 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-6">
             <InputField
               disabled={action === "view" ? true : false}
-              // value={action === "view" ? getViewData.description : formik.values.description}
-              value= {formik.values.description}
+              value={action === "view" ? getViewData.description : formik.values.description}
+             
               onChange={formik.handleChange("description")}
               // error={action === "view" ? "" : formik.errors.basis}
               label="Description"
@@ -206,8 +206,8 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              // value={action === "view" ? getViewData.levelNumber : formik.values.levelNumber}
-              value = {formik.values.levelNumber}
+              value={action === "view" ? getViewData.levelNumber : formik.values.levelNumber}
+              
               onChange={formik.handleChange("levelNumber")}
               // error={action === "view" ? "" : formik.errors.levelNumber}
               label="Level Number"

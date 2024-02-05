@@ -8,10 +8,10 @@ const initialState = {
     {
       id: 1,
       rankCode: "RK001 ",
-      rankName: "Rank 1 ",
+      rankName: "RANk 1 ",
       levelNumber: "L4",
-      description: "Test Purpose",
-      modifiedBy: "Johnson",
+      description: "TEST PURPOSE",
+      modifiedBy: "JOHNSON",
       modifiedOn: "12/12/23",
       status: "",
       action: ""
@@ -19,10 +19,10 @@ const initialState = {
     {
       id: 2,
       rankCode: "RK002 ",
-      rankName: "Rank 2 ",
+      rankName: "RANk 2 ",
       levelNumber: "L3",
-      description: "Test Purpose",
-      modifiedBy: "Johnson",
+      description: "TEST PURPOSE",
+      modifiedBy: "JOHNSON",
       modifiedOn: "2/1/24",
       status: "",
       action: ""
@@ -30,10 +30,10 @@ const initialState = {
     {
       id: 3,
       rankCode: "RK003 ",
-      rankName: "Rank 3 ",
-      description: "Test Purpose",
+      rankName: "RANK 3 ",
+      description: "TEST PURPOSE",
       levelNumber: "L2",
-      modifiedBy: "Johnson",
+      modifiedBy: "JOHNSON",
       modifiedOn: "2/1/24",
       status: "",
       action: ""
@@ -41,10 +41,10 @@ const initialState = {
     {
       id: 4,
       rankCode: "RK004",
-      rankName: "Rank 4 ",
+      rankName: "RANK 4 ",
       levelNumber: "L2",
-      description: "Test Purpose",
-      modifiedBy: "Johnson",
+      description: "TEST PURPOSE",
+      modifiedBy: "JOHNSON",
       modifiedOn: "2/1/24",
       status: "",
       action: ""

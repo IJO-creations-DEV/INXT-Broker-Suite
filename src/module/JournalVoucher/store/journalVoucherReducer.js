@@ -15,26 +15,26 @@ const initialState = {
       mainAccount: "main0123",
       subAccount: "sub0123",
       branchCode: "branch012",
-      currencyCode: "cu123",
+      currencyCode: "US",
       foreignAmount: "500",
       localAmount: '600',
       entryType: "Credit",
       departmentCode: "departmentCode",
       departmentDescription: "departmentDescription",
-      Remarks: "qwerty"
+      Remarks: "Policy credit voucher"
     },
     {
       id: 2,
       mainAccount: "main0123",
       subAccount: "sub0123",
-      branchCode: "branch88",
-      currencyCode: "cu77",
+      branchCode: "branch013",
       foreignAmount: "500",
       localAmount: '600',
       entryType: "Debit",
       departmentCode: "departmentCode",
       departmentDescription: "departmentDescription",
-      Remarks: "qwerty"
+      Remarks: "Policy credited",
+      currencyCode: "US",
     }
   ],
 

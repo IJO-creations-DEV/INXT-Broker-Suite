@@ -75,7 +75,7 @@ const TableData = ({ newDataTable, editID }) => {
     );
   };
   const headerStyle = {
-    textAlign: "end",
+    // textAlign: "end",
   };
 
   const codeOptions = [

@@ -1,5 +1,5 @@
 import { InputText } from "primereact/inputtext";
-import React, { useState, useRef,useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Checkbox } from "primereact/checkbox";
@@ -15,41 +15,39 @@ import { Menu } from "primereact/menu";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getPolicyTabelSearchList } from "./store/getPolicyTabelDataMiddleWare"
 
-const LeadListingAllTable = ({action}) => {
-//   const { policyListData, loading, policySearchListData } = useSelector(
-//     ({ policyTabelMainReducers }) => {
-//       return {
-//         loading: policyTabelMainReducers?.loading,
-//         policyListData: policyTabelMainReducers?.policyListData,
-//         policySearchListData: policyTabelMainReducers?.policySearchListData,
-//       };
-//     }
-//   );
+const LeadListingAllTable = ({ action }) => {
+  //   const { policyListData, loading, policySearchListData } = useSelector(
+  //     ({ policyTabelMainReducers }) => {
+  //       return {
+  //         loading: policyTabelMainReducers?.loading,
+  //         policyListData: policyTabelMainReducers?.policyListData,
+  //         policySearchListData: policyTabelMainReducers?.policySearchListData,
+  //       };
+  //     }
+  //   );
   const menu = useRef(null);
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
+  const [navAction, setNavAction] = useState(null);
   const [displayDialog, setDisplayDialog] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [search,setSearch]=useState("")
+  const [search, setSearch] = useState("");
   const [selectionMode, setSelectionMode] = useState("multiple");
-  
+
   const [disableOption, setdisableOption] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("policy Number");
-  const cities = [
-    { name: "Policy Number", code: "policy Number" },
-   
-  ];
+  const cities = [{ name: "Policy Number", code: "policy Number" }];
 
-//   useEffect(() => {
-//     if (globalFilter && search) {
-//       dispatch(
-//         getPolicyTabelSearchList({
-//           field: globalFilter,
-//           value: search,
-//         })
-//       );
-//     }
-//   }, [search]);
+  //   useEffect(() => {
+  //     if (globalFilter && search) {
+  //       dispatch(
+  //         getPolicyTabelSearchList({
+  //           field: globalFilter,
+  //           value: search,
+  //         })
+  //       );
+  //     }
+  //   }, [search]);
 
   const categories = [
     { name: "Personal Details Change", key: "personaldetail" },
@@ -136,37 +134,58 @@ const LeadListingAllTable = ({action}) => {
 
   const handleMenuToggle = (event, menuRef, rowData) => {
     menuRef.current.toggle(event);
+    setNavAction(rowData.Payment);
     setdisableOption(
       rowData.Payment === "Pending" || rowData.Payment === "Reviewing"
     );
   };
 
+  // const handleMenuClick = (menuItem) => {
+  //   console.log(menuItem,"find menuItem")
+  //   if (menuItem == "view") {
+  //     navigate("/agent/policydetailedview");
+  //   }
+  //   if (menuItem == "claim") {
+  //     navigate("/agent/claimrequest/claimdetails");
+  //   }
+  //   if (menuItem == "renewal"){
+  //     navigate("/agent/createquote/policydetails/quotedetails/:${123}")
+  //   }
+  //   if (menuItem == "endrosement") {
+  //     setDisplayDialog(true);
+  //   }
+
+  // };
   const handleMenuClick = (menuItem) => {
-    console.log(menuItem,"find menuItem")
     if (menuItem == "view") {
-      navigate("/agent/policydetailedview");
+      if (navAction === "Pending") {
+        navigate("/agent/policydetailedview");
+      } else if (navAction === "Reviewing") {
+        navigate("/agent/policy/paymentapproval");
+      } else if (navAction === "Completed") {
+        navigate("/agent/policydetailedviewonly");
+      }
     }
     if (menuItem == "claim") {
       navigate("/agent/claimrequest/claimdetails");
     }
-    if (menuItem == "renewal"){
-      navigate("/agent/createquote/policydetails/quotedetails/:${123}")
+    if (menuItem == "renewal") {
+      navigate(`/agent/renewalquote/coveragedetails/coveragedetail/${123}`);
     }
     if (menuItem == "endrosement") {
       setDisplayDialog(true);
     }
-  
   };
 
   const TableData = [
     {
       id: "1",
-      ClientId:"CL001",
-      ClientName:"Carson Darrin",
+      ClientId: "CL001",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0123",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "7000.00",
       Payment: "Pending",
       Actions: <SvgDot />,
@@ -174,12 +193,12 @@ const LeadListingAllTable = ({action}) => {
     },
     {
       id: "2",
-      ClientId:"CL002",
-      ClientName:"Carson Darrin",
+      ClientId: "CL002",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0122",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "5000.00",
       Payment: "Completed",
       Actions: <SvgDot />,
@@ -187,12 +206,12 @@ const LeadListingAllTable = ({action}) => {
     },
     {
       id: "3",
-      ClientId:"CL006",
-      ClientName:"Carson Darrin",
+      ClientId: "CL006",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0156",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "8000.00",
       Payment: "Reviewing",
       Actions: <SvgDot />,
@@ -200,12 +219,12 @@ const LeadListingAllTable = ({action}) => {
     },
     {
       id: "4",
-      ClientId:"CL009",
-      ClientName:"Carson Darrin",
+      ClientId: "CL009",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0123",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "7000.00",
       Payment: "Pending",
       Actions: <SvgDot />,
@@ -213,12 +232,12 @@ const LeadListingAllTable = ({action}) => {
     },
     {
       id: "5",
-      ClientId:"CL001",
-      ClientName:"Carson Darrin",
+      ClientId: "CL001",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0323",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "5000.00",
       Payment: "Completed",
       Actions: <SvgDot />,
@@ -226,12 +245,12 @@ const LeadListingAllTable = ({action}) => {
     },
     {
       id: "6",
-      ClientId:"CL003",
-      ClientName:"Carson Darrin",
+      ClientId: "CL003",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0473",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "1000.00",
       Payment: "Completed",
       Actions: <SvgDot />,
@@ -239,26 +258,26 @@ const LeadListingAllTable = ({action}) => {
     },
     {
       id: "7",
-      ClientId:"CL001",
-      ClientName:"Carson Darrin",
+      ClientId: "CL001",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0123",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "7000.00",
       Payment: "Completed",
       Actions: <SvgDot />,
       Svg: <SvgMotorTable />,
     },
     {
-        id:"8",
-        ClientId:"CL001",
-        ClientName:"Carson Darrin",
-        PolicyNumber: "Policy0423",
-        PolicyIssued:"12/12/2024",
-        PolicyExpiry:"12/12/2024",
-        ProductDescription:"Motor Comprensive",
-        GrossPremium: "8000.00",
+      id: "8",
+      ClientId: "CL001",
+      ClientName: "Carson Darrin",
+      PolicyNumber: "Policy0423",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
+      GrossPremium: "8000.00",
       Payment: "Pending",
       Actions: <SvgDot />,
       Svg: <SvgMotorTable />,
@@ -274,12 +293,12 @@ const LeadListingAllTable = ({action}) => {
     },
     {
       id: "10",
-      ClientId:"CL004",
-      ClientName:"Carson Darrin",
+      ClientId: "CL004",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0578",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "8000.00",
       Payment: "Pending",
       Actions: <SvgDot />,
@@ -287,12 +306,12 @@ const LeadListingAllTable = ({action}) => {
     },
     {
       id: "11",
-      ClientId:"CL001",
-      ClientName:"Carson Darrin",
+      ClientId: "CL001",
+      ClientName: "Carson Darrin",
       PolicyNumber: "Policy0125",
-      PolicyIssued:"12/12/2024",
-      PolicyExpiry:"12/12/2024",
-      ProductDescription:"Motor Comprensive",
+      PolicyIssued: "12/12/2024",
+      PolicyExpiry: "12/12/2024",
+      ProductDescription: "Motor Comprensive",
       GrossPremium: "2000.00",
       Payment: "Pending",
       Actions: <SvgDot />,
@@ -384,21 +403,21 @@ const LeadListingAllTable = ({action}) => {
       </div>
     );
   };
-const renderDes =(rowData)=>{
-  return <div className="category__text">{rowData.ProductDescription}</div>;
-}
-const renderClientId =(rowData)=>{
+  const renderDes = (rowData) => {
+    return <div className="category__text">{rowData.ProductDescription}</div>;
+  };
+  const renderClientId = (rowData) => {
     return <div className="category__text">{rowData.ClientId}</div>;
-  }
-  const renderClientName =(rowData)=>{
+  };
+  const renderClientName = (rowData) => {
     return <div className="category__text">{rowData.ClientName}</div>;
-  }
-//   const renderDes =(rowData)=>{
-//     return <div className="category__text">{rowData.ProductDescription}</div>;
-//   }
-//   const renderDes =(rowData)=>{
-//     return <div className="category__text">{rowData.ProductDescription}</div>;
-//   }
+  };
+  //   const renderDes =(rowData)=>{
+  //     return <div className="category__text">{rowData.ProductDescription}</div>;
+  //   }
+  //   const renderDes =(rowData)=>{
+  //     return <div className="category__text">{rowData.ProductDescription}</div>;
+  //   }
   const renderPolicyNumber = (rowData) => {
     return (
       <div className="name__box__container">
@@ -479,7 +498,7 @@ const renderClientId =(rowData)=>{
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
-        <Dropdown
+          <Dropdown
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.value)}
             options={cities}
@@ -493,8 +512,8 @@ const renderClientId =(rowData)=>{
       </div>
       <div className="lead__table__container">
         <DataTable
-        //   value={search ? policySearchListData : policyListData}
-        value={TableData}
+          //   value={search ? policySearchListData : policyListData}
+          value={TableData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -513,18 +532,17 @@ const renderClientId =(rowData)=>{
             header="Policy Number"
             headerStyle={headerStyle}
           ></Column>
-              <Column
+          <Column
             body={renderClientId}
             header="Client Id"
             headerStyle={headerStyle}
           ></Column>
-            <Column
+          <Column
             body={renderClientName}
             header="Client Name"
             headerStyle={headerStyle}
           ></Column>
-            
-          
+
           <Column
             body={renderGrossPremium}
             header="GrossPremium"

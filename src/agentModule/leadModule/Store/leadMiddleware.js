@@ -35,7 +35,8 @@ export const postCreateleadMiddleware = createAsyncThunk(
   POST_CREATELEAD_DATA,
   async (payload, { rejectWithValue, getState }) => {
     console.log(payload, "find add datas in midd");
-    const category = payload.type === 'individual' ? 'Individual' : 'Company';
+    const category = payload.category === 'Individual' ? 'Individual' : 'Company';
+    const type = payload.Type === "Motor" ? 'Motor' : payload.Type === "Travel" ? "Travel" : 'Property';
     const randomQuotesNumber = Math.floor(Math.random() * 10);
 
     const data = {
@@ -61,7 +62,8 @@ export const postCreateleadMiddleware = createAsyncThunk(
       }),
       Quotes: randomQuotesNumber,
       category: category,
-      gender: "Male"
+      gender: "Male",
+      Type:type
     }
 
     try {
@@ -77,6 +79,9 @@ export const patchLeadEditMiddleWare = createAsyncThunk(
   PATCH_LEADEDIT_DATA,
   async (payload, { rejectWithValue, getState }) => {
     console.log(payload, "find edit load");
+    const category = payload.category === 'Individual' ? 'Individual' : 'Company';
+    const type = payload.Type === "Motor" ? 'Motor' : payload.Type === "Travel" ? "Travel" : 'Property';
+    console.log(type, "type");
     const data = {
       id: payload?.id,
       CompanyName: payload?.CompanyName,
@@ -99,8 +104,9 @@ export const patchLeadEditMiddleWare = createAsyncThunk(
         day: "2-digit",
         year: "numeric",
       }),
-      category: "Individual",
-      gender: "Male"
+      category: category,
+      gender: "Male",
+      Type: type,
     }
 
     try {

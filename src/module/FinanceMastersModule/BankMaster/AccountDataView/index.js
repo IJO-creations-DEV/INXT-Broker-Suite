@@ -25,15 +25,18 @@ import SvgTable from "../../../../assets/icons/SvgTable";
 import {
   getAccountDetailsView,
   getPatchAccountDetailsView,
+  getSeachAddAccountDetails,
 } from "../store/bankMasterMiddleware";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const { AccountDetailsList, loading } = useSelector(
+  const [search, setSearch] = useState("")
+  const { AccountDetailsList, loading,searchAccountDetails } = useSelector(
     ({ bankMasterReducer }) => {
       return {
         loading: bankMasterReducer?.loading,
         AccountDetailsList: bankMasterReducer?.AccountDetailsList,
+        searchAccountDetails:bankMasterReducer?.searchAccountDetails
         // const [products, setProducts] = useState([]);
 
         // const handleView=()=>{
@@ -154,6 +157,12 @@ const Index = () => {
   const handlePolicy = () => {
     navigate("/master/finance/bank/accountdataview/addaccountdetail");
   };
+  useEffect(() => {
+    if (search?.length > 0) {
+      dispatch(getSeachAddAccountDetails(search))
+    }
+    
+  }, [search])
 
   return (
     <div className="overall__accountdataview__container">
@@ -191,6 +200,8 @@ const Index = () => {
               <InputText
                 placeholder="Search By Account Number"
                 className="searchinput_left"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </span>
           </div>
@@ -202,7 +213,7 @@ const Index = () => {
 
         <div>
           <DataTable
-            value={AccountDetailsList}
+            value={search ? searchAccountDetails : AccountDetailsList}
             tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
             paginator
             rows={5}

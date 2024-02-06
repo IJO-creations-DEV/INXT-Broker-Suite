@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "primereact/button";
 import "./index.scss";
 
-const RequestApproval = () => {
+const RequestApproval = ({ flow }) => {
   const params = useParams();
   const { id } = params;
   const navigate = useNavigate();
@@ -13,7 +13,11 @@ const RequestApproval = () => {
     navigate("/agent/claimrequest/claimdetails");
   };
   const handleSubmit = () => {
-    navigate("/agent/claimrequest/adjustersubmission");
+    if (flow === "quotation") {
+      navigate("/agent/quotedetailedit");
+    } else {
+      navigate("/agent/claimrequest/adjustersubmission");
+    }
   };
   const handleClientViewNavigation = () => {
     navigate(`/agent/clientview/${123}`);

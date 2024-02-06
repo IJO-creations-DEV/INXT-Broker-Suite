@@ -48,8 +48,8 @@ const UploadVehiclePhotos = () => {
     fileFourth: null,
     fileFifth: null,
   };
- 
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
     // if (!values.file) {
     //   alert("please select file")
@@ -57,21 +57,26 @@ const UploadVehiclePhotos = () => {
     // }
 
     navigate("/agent/coveragedetailedview");
-  }
+  };
   const formik = useFormik({
     initialValues: formInitialValue,
-    
+
     onSubmit: handleSubmit,
   });
+  const handleLeadNavigation = () => {
+    navigate("/agent/leadlisting");
+  };
   return (
     <div className="upload__vehicle__container">
       <div className="customer__info__main__title">Leads</div>
       <div className="customer__info__back__btn mt-3">
         <div className="customer__info__back__btn__title">
-          <span className="cursor-poiter icon__container">
-            <SvgLeftArrow />
-          </span>
-          Lead ID: 12345678
+          <div onClick={handleLeadNavigation} className="cursor-pointer arrow__outer">
+            <span className="icon__container">
+              <SvgLeftArrow />
+            </span>
+            Lead ID : 12345678
+          </div>
         </div>
         <div className="customer__info__quote__title">Quote ID : 12345678</div>
       </div>
@@ -118,11 +123,11 @@ const UploadVehiclePhotos = () => {
                 <img src={imageURLLeft} alt="Image" className="image__view" />
               </div>
             )}
-              {formik.touched.fileOne && formik.errors.fileOne && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.fileOne}
-                </div>
-              )}
+            {formik.touched.fileOne && formik.errors.fileOne && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.fileOne}
+              </div>
+            )}
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <div className="upload__label">Vehicle Right Side Photo</div>
@@ -161,11 +166,11 @@ const UploadVehiclePhotos = () => {
                 <img src={imageURLRight} alt="Image" className="image__view" />
               </div>
             )}
-              {formik.touched.fileTwo && formik.errors.fileTwo && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.fileTwo}
-                </div>
-              )}
+            {formik.touched.fileTwo && formik.errors.fileTwo && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.fileTwo}
+              </div>
+            )}
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <div className="upload__label">Vehicle Front Side Photo</div>
@@ -204,11 +209,11 @@ const UploadVehiclePhotos = () => {
                 <img src={imageURLFront} alt="Image" className="image__view" />
               </div>
             )}
-              {formik.touched.fileThree && formik.errors.fileThree && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.fileThree}
-                </div>
-              )}
+            {formik.touched.fileThree && formik.errors.fileThree && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.fileThree}
+              </div>
+            )}
           </div>
           <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
             <div className="upload__label">Vehicle Rear Side Photo</div>
@@ -247,11 +252,11 @@ const UploadVehiclePhotos = () => {
                 <img src={imageURLRear} alt="Image" className="image__view" />
               </div>
             )}
-              {formik.touched.fileFourth && formik.errors.fileFourth && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.fileFourth}
-                </div>
-              )}
+            {formik.touched.fileFourth && formik.errors.fileFourth && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.fileFourth}
+              </div>
+            )}
           </div>
           <div class="col-12 mt-2">
             <div className="upload__label">
@@ -296,11 +301,11 @@ const UploadVehiclePhotos = () => {
                 />
               </div>
             )}
-              {formik.touched.fileFifth && formik.errors.fileFifth && (
-                <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                  {formik.errors.fileFifth}
-                </div>
-              )}
+            {formik.touched.fileFifth && formik.errors.fileFifth && (
+              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                {formik.errors.fileFifth}
+              </div>
+            )}
           </div>
         </div>
         <div class="grid m-0">
@@ -312,10 +317,7 @@ const UploadVehiclePhotos = () => {
                 </Button>
               </div>
               <div className="next__btn__container">
-                <Button
-                  className="next__btn"
-                  onClick={formik.handleSubmit}
-                >
+                <Button className="next__btn" onClick={formik.handleSubmit}>
                   Next
                 </Button>
               </div>

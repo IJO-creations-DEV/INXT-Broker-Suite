@@ -35,13 +35,13 @@ const TransactionCodeSetupTable = ({ action }) => {
 
   const item = [
     {
-      label: show ? "ARIANS INSURANCE BROKERS INC" : showView && mainUserViewData.branchCode,
+      label: show ? "Branch1" : showView && mainUserViewData.branchCode,
       value: show ? "NY" : showView && mainUserViewData.branchCode,
     },
   ];
   const item1 = [
     {
-      label: show ? "ARIANS INSURANCE BROKERS INC" : showView && mainUserViewData.departmentCode,
+      label: show ? "1002" : showView && mainUserViewData.departmentCode,
       value: show ? "NY" : showView && mainUserViewData.departmentCode,
     },
   ];

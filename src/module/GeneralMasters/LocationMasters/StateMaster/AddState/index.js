@@ -83,7 +83,7 @@ function AddState({ action }) {
       id: getStateListById?.id,
       StateCode: getStateListById?.StateCode,
       StateName: getStateListById?.StateName,
-      Description: "Description",
+      Description:getStateListById?.Description,
       Country: Country,
       Modifiedby: getStateListById?.Modifiedby,
       ModifiedOn: getStateListById?.ModifiedOn

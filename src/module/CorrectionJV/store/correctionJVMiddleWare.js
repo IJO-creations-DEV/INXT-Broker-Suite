@@ -70,6 +70,7 @@ export const patchCorrectionJVEdit = createAsyncThunk(
     async (payload, { rejectWithValue, getState }) => {
         console.log(payload, "payload");
         const data = {
+            id: payload?.id,
             mainAccount: payload?.mainAccount || "",
             mainAccountDescription: payload?.mainAccountDescription || "",
             entryType: payload?.entryType || "",
@@ -82,14 +83,18 @@ export const patchCorrectionJVEdit = createAsyncThunk(
             currencyCode: payload?.currencyCode || "",
             currencyDescription: payload?.currencyDescription || "",
             foreignAmount: payload?.foreignAmount || "",
+            remarks: "-",
+            localAmount: "00",
         }
         try {
-console.log(data,"data");
+            console.log(data, "data");
             return data;
         } catch (error) {
             return rejectWithValue(error?.response?.data?.error?.message || "An error occurred");
         }
     }
 );
+
+
 
 

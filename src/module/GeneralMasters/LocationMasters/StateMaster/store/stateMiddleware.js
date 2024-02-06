@@ -45,7 +45,7 @@ export const postAddStateMiddleware = createAsyncThunk(
         StateCode: payload?.StateCode,
         StateName: payload?.StateName,
         Country: payload?.Country,
-        Modifiedby: payload?.ModifiedBy,
+        Modifiedby: payload?.Modifiedby,
         ModifiedOn: payload?.ModifiedOn
       }
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);

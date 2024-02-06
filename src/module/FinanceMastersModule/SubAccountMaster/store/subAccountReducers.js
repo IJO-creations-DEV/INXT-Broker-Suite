@@ -132,14 +132,11 @@ const subAccaountReducers = createSlice({
         builder.addCase(postSubAccount.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(
-            postSubAccount.fulfilled, (state, action) => {
-                state.loading = false;
-                const newItem2 = { ...action.payload, id: nextId++ };
-                state.subAccountList = [...state.subAccountList, newItem2];
-                console.log(state.subAccountList, "kkk")
-            }
-        );
+        builder.addCase(postSubAccount.fulfilled, (state, action) => {
+            console.log(action.payload, 'find action.payload')
+            state.loading = false;
+            state.subAccountList = [...state.subAccountList, action.payload];
+        });
         builder.addCase(
             postSubAccount.rejected, (state, action) => {
                 state.loading = false;

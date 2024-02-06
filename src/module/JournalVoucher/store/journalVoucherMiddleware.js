@@ -36,7 +36,7 @@ export const getJournalVoucherSearchList = createAsyncThunk(
         }
         try {
 
-    
+
             const filteredReceipts = filterReceiptsByField(journalVoucherList, field, value);
 
             return filteredReceipts;
@@ -173,7 +173,9 @@ export const postAddJournalVoucher = createAsyncThunk(
             branchCode: payload?.branchCode,
             currencyCode: payload?.currencyCode,
             foreignAmount: payload?.foreignAmount,
-            entryType: payload?.entryType
+            entryType: payload?.entryType,
+            Remarks: "qwerty",
+            localAmount: '200'
 
         };
         try {

@@ -22,6 +22,7 @@ import {
   getTaxationView,
   getpatchTaxationEdit,
 } from "./store/taxationMiddleWare";
+import SvgTable from "../../../assets/icons/SvgTable";
 
 const TaxationMaster = () => {
   const navigate = useNavigate();
@@ -130,6 +131,11 @@ const TaxationMaster = () => {
     dispatch(getpatchTaxationEdit(rowData));
     navigate("/master/finance/taxation/taxationedit");
   };
+  const emptyTableIcon = (
+    <div className="empty-table-icon">
+      <SvgTable />
+    </div>
+  );
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -142,20 +148,19 @@ const TaxationMaster = () => {
       ];
 
       return (
-        <React.Fragment>
-          <span
-            className="mx-1"
-            style={{ color: "var(--text-color)", userSelect: "none" }}
-          >
-            Row count :{" "}
-          </span>
-          <Dropdown
-            value={options.value}
-            className="pagedropdown_container"
-            options={dropdownOptions}
-            onChange={options.onChange}
-          />
-        </React.Fragment>
+        <div className="table__selector">
+          <React.Fragment>
+            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+              Row count :{" "}
+            </span>
+            <Dropdown
+              value={options.value}
+              className="pagedropdown_container"
+              options={dropdownOptions}
+              onChange={options.onChange}
+            />
+          </React.Fragment>
+        </div>
       );
     },
   };
@@ -200,6 +205,7 @@ const TaxationMaster = () => {
                   classNames="input__sub__account__taxation"
                   placeholder="Search By Sub Account Code"
                   value={search}
+
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
@@ -216,18 +222,28 @@ const TaxationMaster = () => {
           >
             <div className="card">
               <DataTable
+                // value={search ? taxationSearchList : taxationList}
+                // style={{ overflowY: "auto", maxWidth: "100%" }}
+                // responsive={true}
+                // className="table__view__taxation"
+                // paginator
+                // paginatorLeft
+                // rows={5}
+                // rowsPerPageOptions={[5, 10, 25, 50]}
+                // currentPageReportTemplate="{first} - {last} of {totalRecords}"
+                // paginatorTemplate={template2}
+                // onPage={onPageChange}
+                // onPageChange={onPageChange}
                 value={search ? taxationSearchList : taxationList}
-                style={{ overflowY: "auto", maxWidth: "100%" }}
-                responsive={true}
-                className="table__view__taxation"
                 paginator
-                paginatorLeft
                 rows={5}
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
+                className="reversal__table__main"
+                emptyMessage={emptyTableIcon}
+                scrollable={true}
+                scrollHeight="40vh"
               >
                 <Column
                   field="taxCode"
@@ -241,7 +257,7 @@ const TaxationMaster = () => {
                   header="Tax Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-                  //   sortable
+                //   sortable
                 ></Column>
                 <Column
                   field="taxRate"

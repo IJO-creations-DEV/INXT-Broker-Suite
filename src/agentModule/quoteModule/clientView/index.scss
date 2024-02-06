@@ -1,4 +1,11 @@
 .client__listing__card__container {
+  .arrow__outer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: max-content;
+    margin: 16px 0px;
+  }
   border-radius: 20px;
 
   .carson__style {

@@ -178,9 +178,7 @@ const AddEmployee = ({ action }) => {
     if (!values.idNumber) {
       errors.idNumber = "Id number is required";
     }
-    if (!values.addressLine1) {
-      errors.addressLine1 = "Address is required";
-    }
+  
     if (!values.city) {
       errors.city = "City is required";
     }

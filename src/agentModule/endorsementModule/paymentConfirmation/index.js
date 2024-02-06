@@ -21,7 +21,9 @@ const PaymentConfirmation = () => {
         onClick={handleClientViewNavigation}
       >
         <SvgLeftArrow />
-        <div className="left__arrow__text">Client ID : 12345678</div>
+        <div className="left__arrow__text">
+          Carson Darrin / Client ID : 12345678
+        </div>
       </div>
       <Card className="mt-4">
         <div className="table__header">Payment Confirmation</div>

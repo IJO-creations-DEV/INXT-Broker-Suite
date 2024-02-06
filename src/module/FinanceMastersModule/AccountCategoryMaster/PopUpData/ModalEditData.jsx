@@ -38,7 +38,7 @@ const ModalEditData = ({
   const setFormikValues = () => {
     const categoryCode = AccountCategoryDetailEdit?.accountCategoryCode;
     const categoryName = AccountCategoryDetailEdit?.accountCategoryName;
-    const description = "Account Category description";
+    const description = AccountCategoryDetailEdit?.description;
     const id = AccountCategoryDetailEdit?.id;
 
     const updatedValues = {

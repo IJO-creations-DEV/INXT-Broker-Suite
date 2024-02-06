@@ -143,16 +143,19 @@ const TableData = ({ navigate }) => {
           header="Signatories Code"
           className="fieldvalue_container"
           sortable
+          body={(rowData) => rowData.signatoriesCode.toUpperCase()}
         ></Column>
         <Column
           field="signatoryName"
           header="Signatory Name"
           className="fieldvalue_container"
+          body={(rowData) => rowData.signatoryName.toUpperCase()}
         ></Column>
         <Column
           field="modifiedby"
           header="Modified by"
           className="fieldvalue_container"
+          body={(rowData) => rowData.modifiedby.toUpperCase()}
         ></Column>
         <Column
           field="modifiedOn"

@@ -72,7 +72,7 @@ const LeadCreationCard = ({ flow, action }) => {
           navigate(`/agent/clientlisting`);
         }, 2000);
       }
-      else {
+      if (flow === "lead") {
         dispatch(patchLeadEditMiddleWare(values));
         toastRef.current.showToast();
         setTimeout(() => {
@@ -189,6 +189,7 @@ const LeadCreationCard = ({ flow, action }) => {
       DateofBirth: new Date(getEditLeadData?.DateofBirth),
       category: getEditLeadData?.category,
       gender: getEditLeadData?.gender,
+      Type: getEditLeadData?.Type
     };
     if (CountryData) {
       setCountryDataOption([{ label: CountryData, value: CountryData }])

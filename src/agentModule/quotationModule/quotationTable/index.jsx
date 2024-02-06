@@ -89,7 +89,7 @@ const LeadListingAllTable = () => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.claimNumber}</div>
+          <div className="name__text">{rowData.claimNumber.toUpperCase()}</div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
         </div>
       </div>
@@ -97,21 +97,21 @@ const LeadListingAllTable = () => {
   };
 
   const renderQuoteId = (rowData) => {
-    return <div className="category__text">{rowData.QuoteId}</div>;
+    return <div className="category__text">{rowData.QuoteId.toUpperCase()}</div>;
   };
   const renderPolicyType = (rowData) => {
     console.log(rowData, "find rowData");
-    return <div className="category__text">{rowData.PolicyType}</div>;
+    return <div className="category__text">{rowData.PolicyType.toUpperCase()}</div>;
   };
   const renderLeadName = (rowData) => {
-    return <div className="category__text">{rowData.LeadName}</div>;
+    return <div className="category__text">{rowData.LeadName.toUpperCase()}</div>;
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date}</div>;
+    return <div className="date__text">{rowData.Date.toUpperCase()}</div>;
   };
   const renderGrossPremium = (rowData) => {
-    return <div className="date__text">{rowData.GrossPremium}</div>;
+    return <div className="date__text">{rowData.GrossPremium.toUpperCase()}</div>;
   };
 
   const renderStatus = (rowData) => {
@@ -126,7 +126,7 @@ const LeadListingAllTable = () => {
             : "company__status__type__blue"
         }
       >
-        {rowData.Status}
+        {rowData.Status.toUpperCase()}
       </div>
     );
   };

@@ -140,12 +140,14 @@ const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
           field="accountCategoryCode"
           header="Account Category Code"
           className="fieldvalue_container"
+          body={(rowData) => rowData.accountCategoryCode.toUpperCase()}
           sortable
         ></Column>
         <Column
           field="accountCategoryName"
           header="Account Category Name"
           className="fieldvalue_container"
+          body={(rowData) => rowData.accountCategoryName.toUpperCase()}
         ></Column>
         <Column
           field="status"

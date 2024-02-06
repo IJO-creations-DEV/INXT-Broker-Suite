@@ -191,6 +191,7 @@ const UserGroupAccess = () => {
             header="User Role"
             headerStyle={headerStyle}
             className="fieldvalue_container"
+            body={(rowData) => rowData.UserRole.toUpperCase()}
           ></Column>
           <Column
             field="MinimumTransaction"

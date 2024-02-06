@@ -188,9 +188,9 @@ const DepartMentList = ({ action }) => {
 
         >
 
-          <Column field="DepartmentCode" header="Department Code" headerStyle={headerStyle}></Column>
-          <Column field="DepartmentName" header="Department Name" headerStyle={headerStyle}></Column>
-          <Column field="Status" header="Status" headerStyle={headerStyle}></Column>
+          <Column field="DepartmentCode" body={(rowData) => rowData.DepartmentCode.toUpperCase()} header="Department Code" headerStyle={headerStyle}></Column>
+          <Column field="DepartmentName" body={(rowData) => rowData.DepartmentName.toUpperCase()} header="Department Name" headerStyle={headerStyle}></Column>
+          <Column field="Status" body={(rowData) => rowData.Status.toUpperCase()} header="Status" headerStyle={headerStyle}></Column>
           <Column
             body={(columnData) => (
               <div className="action_icons">

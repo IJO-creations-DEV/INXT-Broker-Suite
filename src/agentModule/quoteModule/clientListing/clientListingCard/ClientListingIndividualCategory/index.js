@@ -244,7 +244,7 @@ const ClientListingIndividualCategory = ({data, clientListTable, paymentSearchLi
       <div className="name__box__container">
         <div>{handleSvg(rowData.FirstName, rowData.id)}</div>
         <div>
-          <div className="name__text">{rowData.FirstName}</div>
+          <div className="name__text">{rowData.FirstName.toUpperCase()}</div>
           <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -252,11 +252,11 @@ const ClientListingIndividualCategory = ({data, clientListTable, paymentSearchLi
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.category}</div>;
+    return <div className="category__text">{rowData.category.toUpperCase()}</div>;
   };
 
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+    return <div className="category__text">{rowData.ProductDescription.toUpperCase()}</div>;
   };
   const renderDate = (rowData) => {
     return <div className="date__text">{rowData.DateofBirth}</div>;

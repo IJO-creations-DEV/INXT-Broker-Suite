@@ -140,17 +140,20 @@ const TableData = ({ navigate }) => {
           header="Line of Business Code"
           className="fieldvalue_container"
           sortable
+          body={(rowData) => rowData.businessCode.toUpperCase()}
         ></Column>
         <Column
           field="LOBName"
           header="LOB Name"
           className="fieldvalue_container"
+          body={(rowData) => rowData.LOBName.toUpperCase()}
         ></Column>
 
         <Column
           field="modifiedby"
           header="Modified by"
           className="fieldvalue_container"
+          body={(rowData) => rowData.modifiedby.toUpperCase()}
         ></Column>
         <Column
           field="modifiedOn"

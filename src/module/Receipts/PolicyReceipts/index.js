@@ -38,6 +38,7 @@ const PolicyReceipts = () => {
       to: "/accounts/receipts",
     },
   ];
+  
 
   const search = [
     { name: "Name", value: "name" },
@@ -110,7 +111,6 @@ const PolicyReceipts = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: "10px 0",
     color: "#000",
     border: "none",
     textalign: "center",
@@ -121,7 +121,6 @@ const PolicyReceipts = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: "10px 0",
     color: "#000",
     border: "none",
     textalign: "center",
@@ -252,7 +251,9 @@ const PolicyReceipts = () => {
               header="Receipt Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-            ></Column>
+            >
+              
+            </Column>
             <Column
               field="transactionCode"
               header="Transaction Code"
@@ -265,6 +266,7 @@ const PolicyReceipts = () => {
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              
             ></Column>
             <Column
               sortable
@@ -272,7 +274,10 @@ const PolicyReceipts = () => {
               header="Name"
               headerStyle={headerStyle1}
               className="fieldvalue_container"
-            ></Column>
+              body={(rowData) => rowData.name.toUpperCase()}
+            >
+              
+            </Column>
             <Column
               sortable
               field="customerCode"

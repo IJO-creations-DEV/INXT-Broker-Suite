@@ -191,21 +191,21 @@ function AddCompany({ action }) {
     if (!values.LicenseNumber) {
       errors.LicenseNumber = "This field is required";
     }
-  
+
     if (!values.EmailID) {
       errors.EmailID = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.EmailID)) {
       errors.EmailID = "Invalid email address";
     }
 
-   
+
     if (!values.Websitelink) {
       errors.Websitelink = "This field is required";
     }
     if (!values.Description) {
       errors.Description = "This field is required";
     }
-    
+
     if (!values.PinCode) {
       errors.PinCode = "This field is required";
     }
@@ -218,7 +218,7 @@ function AddCompany({ action }) {
     if (!values.Country) {
       errors.Country = "This field is required";
     }
-   
+
     if (!values.PhoneNumber) {
       errors.PhoneNumber = "Phone Number is required";
     } else if (!/^\d{10}$/.test(values.PhoneNumber)) {
@@ -355,6 +355,7 @@ function AddCompany({ action }) {
               }
 
               onChange={formik.handleChange("CompanyName")}
+
               disabled={action === "view" ? true : false}
             />
             {formik.touched.CompanyName && formik.errors.CompanyName && (
@@ -390,13 +391,16 @@ function AddCompany({ action }) {
               label="Email ID"
               placeholder={"Enter"}
               value={
-                action == "add"
+                action === "add"
                   ? formik.values.EmailID
-                  : action == "edit"
+                  : action === "edit"
                     ? formik.values.EmailID
                     : companyView.EmailID
               }
-              onChange={formik.handleChange("EmailID")}
+              onChange={(e) => {
+                const inputValue = typeof e === 'string' ? e.toLowerCase() : e;
+                formik.handleChange("EmailID")(inputValue);
+              }}
               disabled={action === "view" ? true : false}
             />
             {formik.touched.EmailID && formik.errors.EmailID && (
@@ -405,13 +409,14 @@ function AddCompany({ action }) {
               </div>
             )}
           </div>
+
         </div>
 
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-3 lg-col-3">
             <label className="uploadtext_container">Logo</label>
 
-            <span className="p-input-icon-right" style={{width:"100%"}}>
+            <span className="p-input-icon-right" style={{ width: "100%" }}>
               <i>
                 {
                   <>

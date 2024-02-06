@@ -339,18 +339,21 @@ function ViewAccountDetail() {
               header="Cheque Book Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.VoucherNumber.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
               header="Cheque Leaf Beginning"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
             ></Column>
             <Column
               field="CustomerCode"
               header="Cheque Leaf End"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.CustomerCode.toUpperCase()}
             ></Column>
             <Column
               field="VoucheDate"

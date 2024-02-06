@@ -154,31 +154,31 @@ const PaidListTabelData = () => {
   const renderType = (rowData) => {
     return (
       <div className="name__box__container">
-        <div className="name__text">{rowData.type}</div>
+        <div className="name__text">{rowData.type.toUpperCase()}</div>
       </div>
     );
   };
 
   const renderName = (rowData) => {
-    return <div className="category__text">{rowData.name}</div>;
+    return <div className="category__text">{rowData.name.toUpperCase()}</div>;
   };
   const renderClientId = (rowData) => {
-    return <div className="category__text">{rowData.clintid}</div>;
+    return <div className="category__text">{rowData.clintid.toUpperCase()}</div>;
   };
   const renderPolicyNo = (rowData) => {
-    return <div className="category__text">{rowData.policyNo}</div>;
+    return <div className="category__text">{rowData.policyNo.toUpperCase()}</div>;
   };
   const renderGrossPremium = (rowData) => {
-    return <div className="category__text">{rowData.grosspremium}</div>;
+    return <div className="category__text">{rowData.grosspremium.toUpperCase()}</div>;
   };
   const renderPolicyIssued = (rowData) => {
-    return <div className="category__text">{rowData.policyIssued}</div>;
+    return <div className="category__text">{rowData.policyIssued.toUpperCase()}</div>;
   };
   const renderPolicyExpired = (rowData) => {
-    return <div className="category__text">{rowData.policyExpird}</div>;
+    return <div className="category__text">{rowData.policyExpird.toUpperCase()}</div>;
   };
   const renderStatus = (rowData) => {
-    return <div className="status__text">{rowData.status}</div>;
+    return <div className="status__text">{rowData.status.toUpperCase()}</div>;
   };
 
   const handleView = () => {

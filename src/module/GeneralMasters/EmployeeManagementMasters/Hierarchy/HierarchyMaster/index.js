@@ -221,24 +221,29 @@ const HierarchyMaster = () => {
                   header="Rank Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.rankCode.toUpperCase()}
+
                 ></Column>
                 <Column
                   field="rankName"
                   header="Rank Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.rankName.toUpperCase()}
                 ></Column>
                 <Column
                   field="levelNumber"
                   header="Level Number"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.levelNumber.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedBy"
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.modifiedBy.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

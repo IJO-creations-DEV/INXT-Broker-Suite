@@ -367,6 +367,7 @@ const SubAccountMaster = () => {
                   header="Sub Account Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.subAccountCode.toUpperCase()}
                   sortable
                 ></Column>
                 <Column
@@ -374,6 +375,7 @@ const SubAccountMaster = () => {
                   header="Description"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.description.toUpperCase()}
                 ></Column>
 
                 <Column

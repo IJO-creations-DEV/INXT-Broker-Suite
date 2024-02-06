@@ -176,6 +176,7 @@ const TableData = ({ navigate }) => {
           header="Company Name"
           className="fieldvalue_container"
           headerStyle={headerstyle}
+          body={(rowData) => rowData.insuranceCompanyName.toUpperCase()}
         ></Column>
         <Column
           field="email"
@@ -194,6 +195,7 @@ const TableData = ({ navigate }) => {
           header="Modified by"
           headerStyle={headerstyle}
           className="fieldvalue_container"
+          body={(rowData) => rowData.modifiedby.toUpperCase()}
         ></Column>
         <Column
           field="modifiedOn"

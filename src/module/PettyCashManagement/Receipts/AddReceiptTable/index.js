@@ -201,6 +201,7 @@ display: "flex"
               header="Transaction Code"
               headerStyle={headerStyle}
 className="fieldvalue_container"
+body={(rowData) => rowData.TransactionCode.toUpperCase()}
             ></Column>
             <Column
               field="RequestNumber"
@@ -208,6 +209,7 @@ className="fieldvalue_container"
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              body={(rowData) => rowData.RequestNumber.toUpperCase()}
             ></Column>
             <Column
               field="Date"
@@ -228,6 +230,7 @@ className="fieldvalue_container"
               header="Remarks"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Remarks.toUpperCase()}
             ></Column>
           </DataTable>
         </div>

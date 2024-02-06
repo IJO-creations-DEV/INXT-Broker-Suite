@@ -344,6 +344,7 @@ const BankMaster = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.bankCode.toUpperCase()}
             ></Column>
             <Column
               field="bankName"
@@ -351,6 +352,7 @@ const BankMaster = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.bankName.toUpperCase()}
             ></Column>
             <Column
               field="bankBranch"
@@ -358,12 +360,14 @@ const BankMaster = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.bankBranch.toUpperCase()}
             ></Column>
             <Column
               field="ifscCode"
               header="IFSC Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.ifscCode.toUpperCase()}
             ></Column>
             <Column
               field="email"

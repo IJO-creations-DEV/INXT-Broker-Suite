@@ -19,10 +19,10 @@ import { getClientEditMiddleWare, getPaymentSearchDataMiddleWare } from "../../s
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import { Avatar } from "primereact/avatar";
 
-const ClientListingCompanyCategory = ({data, clientListTable, paymentSearchList }) => {
+const ClientListingCompanyCategory = ({ data, clientListTable, paymentSearchList }) => {
   console.log(clientListTable?.company);
   const companyData = clientListTable?.filter(item => item.category === "Company");
-  const searchMiddleWareData=paymentSearchList?.filter(val=>val?.category==="Company");
+  const searchMiddleWareData = paymentSearchList?.filter(val => val?.category === "Company");
 
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
@@ -133,7 +133,7 @@ const ClientListingCompanyCategory = ({data, clientListTable, paymentSearchList 
       <div className="name__box__container">
         <div>{handleSvg(rowData.FirstName, rowData.id)}</div>
         <div>
-          <div className="name__text">{rowData.FirstName}</div>
+          <div className="name__text">{rowData.FirstName.toUpperCase()}</div>
           <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -141,11 +141,11 @@ const ClientListingCompanyCategory = ({data, clientListTable, paymentSearchList 
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.category}</div>;
+    return <div className="category__text">{rowData.category.toUpperCase()}</div>;
   };
 
   const renderdes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+    return <div className="category__text">{rowData.ProductDescription.toUpperCase()}</div>;
   };
 
   const renderDate = (rowData) => {

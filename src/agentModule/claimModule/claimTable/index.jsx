@@ -88,7 +88,7 @@ const LeadListingAllTable = () => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.claimNumber}</div>
+          <div className="name__text">{rowData.claimNumber.toUpperCase()}</div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
         </div>
       </div>
@@ -96,20 +96,20 @@ const LeadListingAllTable = () => {
   };
 
   const renderClientName = (rowData) => {
-    return <div className="category__text">{rowData.ClientName}</div>;
+    return <div className="category__text">{rowData.ClientName.toUpperCase()}</div>;
   };
   const renderpolicyNumber = (rowData) => {
-    return <div className="category__text">{rowData.policyNumber}</div>;
+    return <div className="category__text">{rowData.policyNumber.toUpperCase()}</div>;
   };
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+    return <div className="category__text">{rowData.ProductDescription.toUpperCase()}</div>;
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date}</div>;
+    return <div className="date__text">{rowData.Date.toUpperCase()}</div>;
   };
   const renderExpiryDate = (rowData) => {
-    return <div className="date__text">{rowData.expiryDate}</div>;
+    return <div className="date__text">{rowData.expiryDate.toUpperCase()}</div>;
   };
 
   const renderStatus = (rowData) => {
@@ -123,7 +123,7 @@ const LeadListingAllTable = () => {
               : "client__view__type__red"
         }
       >
-        {rowData.Status}
+        {rowData.Status.toUpperCase()}
       </div>
     );
   };

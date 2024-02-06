@@ -208,7 +208,7 @@ const LeadListingTravelTable = ({ leadtabledata, paymentSearchList }) => {
       <div className="name__box__container">
         <div><SvgTravlesTable /></div>
         <div>
-          <div className="name__text">{rowData.FirstName}</div>
+          <div className="name__text">{rowData.FirstName.toUpperCase()}</div>
           <div className="lead__id__text">Lead Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -216,15 +216,15 @@ const LeadListingTravelTable = ({ leadtabledata, paymentSearchList }) => {
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.category}</div>;
+    return <div className="category__text">{rowData.category.toUpperCase()}</div>;
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.DateofBirth}</div>;
+    return <div className="date__text">{rowData.DateofBirth.toUpperCase()}</div>;
   };
 
   const renderQuotes = (rowData) => {
-    return <div className="quote__text">{rowData.Quotes}</div>;
+    return <div className="quote__text">{rowData.Quotes.toUpperCase()}</div>;
   };
 
   const handleView = () => {

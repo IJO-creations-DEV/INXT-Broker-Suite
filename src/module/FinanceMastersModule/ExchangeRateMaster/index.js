@@ -240,12 +240,14 @@ const Index = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.CurrencyCode.toUpperCase()}
             ></Column>
             <Column
               field="ToCurrencyCode"
               header="To Currency Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.ToCurrencyCode.toUpperCase()}
             ></Column>
             <Column
               field="ExchangeRate"

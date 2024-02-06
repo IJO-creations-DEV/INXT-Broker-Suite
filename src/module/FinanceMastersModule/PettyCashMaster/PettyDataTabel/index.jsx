@@ -128,6 +128,7 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
                     field="pettycashcode"
                     header="Petty Cash Code"
                     className="fieldvalue_container"
+                    body={(rowData) => rowData.pettycashcode.toUpperCase()}
 
 
                 ></Column>
@@ -135,6 +136,7 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
                     field="pettycashname"
                     header="Petty Cash Name"
                     className="fieldvalue_container"
+                    body={(rowData) => rowData.pettycashname.toUpperCase()}
 
                 ></Column>
 
@@ -142,6 +144,7 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
                     field="pettycashsize"
                     header="Petty Cash Size"
                     className="fieldvalue_container"
+                    body={(rowData) => rowData.pettycashsize.toUpperCase()}
 
 
                 ></Column>
@@ -149,6 +152,7 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
                     field="minicashbox"
                     header="Minimum Cash Box"
                     className="fieldvalue_container"
+                    body={(rowData) => rowData.minicashbox.toUpperCase()}
 
 
                 ></Column>

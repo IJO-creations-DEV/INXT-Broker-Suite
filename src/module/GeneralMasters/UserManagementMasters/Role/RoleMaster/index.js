@@ -26,7 +26,7 @@ const RoleMaster = () => {
       roleSearchList: roleMainReducers?.roleSearchList,
     };
   });
-  console.log(roleTableList,"find1243")
+  console.log(roleTableList, "find1243")
   const [search, setSearch] = useState("")
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -186,7 +186,7 @@ const RoleMaster = () => {
           </div>
           <div className="col-12 ">
             <div className="main__tabel__title__hierarchy pl-2">
-            Role List
+              Role List
             </div>
           </div>
           <div
@@ -213,12 +213,14 @@ const RoleMaster = () => {
                   header="Role Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.roleCode.toUpperCase()}
                 ></Column>
                 <Column
                   field="roleName"
                   header="Role Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.roleName.toUpperCase()}
                 ></Column>
 
                 <Column
@@ -226,6 +228,7 @@ const RoleMaster = () => {
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.modifiedBy.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

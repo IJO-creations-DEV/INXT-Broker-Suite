@@ -357,6 +357,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
                     sortable
+                    body={(rowData) => rowData.commissionCode.toUpperCase()}
 
                 ></Column>
                 <Column
@@ -365,6 +366,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
                     sortable
+                    body={(rowData) => rowData.product.toUpperCase()}
                 ></Column>
 
                 <Column
@@ -372,6 +374,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     header="Covers"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    body={(rowData) => rowData.selectCover.toUpperCase()}
 
                 ></Column>
                 <Column

@@ -225,18 +225,21 @@ const TransactionCodeMasterTable = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionCode.toUpperCase()}
             ></Column>
             <Column
               field="TransactionName"
               header="Transaction Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionName.toUpperCase()}
             ></Column>
             <Column
               field="TransactionBasis"
               header="Transaction Basis"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionBasis.toUpperCase()}
             ></Column>
             <Column
               field="BranchCode"
@@ -244,18 +247,21 @@ const TransactionCodeMasterTable = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.BranchCode.toUpperCase()}
             ></Column>
             <Column
               field="DepartmentCode"
               header="Department Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.DepartmentCode.toUpperCase()}
             ></Column>
             <Column
               body={(columnData) => <ToggleButton id={columnData.id} />}
               header="Status"
               headerStyle={{ textAlign: 'center', ...headerStyle }}
               className="fieldvalue_container"
+
             ></Column>
             <Column
               body={renderViewButton}

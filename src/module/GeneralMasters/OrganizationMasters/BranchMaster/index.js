@@ -236,6 +236,7 @@ const Index = () => {
               header="Branch Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.CompanyName.toUpperCase()}
             ></Column>
             <Column
               field="Country"

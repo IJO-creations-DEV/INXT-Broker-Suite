@@ -209,18 +209,21 @@ const RequestTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              body={(rowData) => rowData.RequesterName.toUpperCase()}
             ></Column>
             <Column
               field="RequestDate"
               header="Requester Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.RequestDate.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
             ></Column>
             <Column
               field="Date"
@@ -228,6 +231,7 @@ const RequestTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              
             ></Column>
             <Column
               field="TotalAmount"

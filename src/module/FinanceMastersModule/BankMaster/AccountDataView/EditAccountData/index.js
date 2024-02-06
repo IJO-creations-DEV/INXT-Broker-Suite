@@ -405,18 +405,21 @@ function EditAccountDetail({ action }) {
               header="Cheque Book Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.chequeBookNo.toUpperCase()}
             ></Column>
             <Column
               field="chequeLeafBegining"
               header="Cheque Leaf Beginning"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.chequeLeafBegining.toUpperCase()}
             ></Column>
             <Column
               field="chequeLeafEnd"
               header="Cheque Leaf End"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.chequeLeafEnd.toUpperCase()}
             ></Column>
             <Column
               body={renderToggleButton}

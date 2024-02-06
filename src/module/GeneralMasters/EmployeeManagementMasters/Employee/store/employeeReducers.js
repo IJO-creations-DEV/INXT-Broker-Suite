@@ -12,7 +12,7 @@ const initialState = {
       middleName: "PETERSON",
       lastName: "WATSON",
       employeeType: "AGENT",
-      designation: "Sales AGENT",
+      designation: "SALES AGENT",
       reportingto: "JOHN Doe",
       branchCode: "BRANCH0123",
       departmentCode: "DEPART123",
@@ -31,11 +31,11 @@ const initialState = {
     {
       id: 2,
       employeeCode: "100022 ",
-      firstName: "Rina Bautista ",
+      firstName: "RINA BAUTISTA",
       middleName: "PETERSON",
       lastName: "WATSON",
       employeeType: "AGENT",
-      designation: "Sales AGENT",
+      designation: "SALES AGENT",
       reportingto: "JOHN Doe",
       branchCode: "Branch0123",
       departmentCode: "Depart123",
@@ -81,7 +81,7 @@ const initialState = {
 
   ],
   employeeEditData: {},
-  employeeSeachDetailList:[],
+  employeeSeachDetailList: [],
   employeeViewData: {}
 };
 let nextId1 = 4

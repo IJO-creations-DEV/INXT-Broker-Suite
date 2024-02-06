@@ -250,6 +250,7 @@ const TaxationMaster = () => {
                   header="Tax Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.taxCode.toUpperCase()}
                   sortable
                 ></Column>
                 <Column
@@ -257,6 +258,7 @@ const TaxationMaster = () => {
                   header="Tax Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.taxName.toUpperCase()}
                 //   sortable
                 ></Column>
                 <Column
@@ -264,6 +266,7 @@ const TaxationMaster = () => {
                   header="Tax Rate"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.taxRate.toUpperCase()}
                   sortable
                 ></Column>
                 <Column

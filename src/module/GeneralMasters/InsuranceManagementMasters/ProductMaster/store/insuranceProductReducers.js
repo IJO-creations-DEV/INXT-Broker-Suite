@@ -11,7 +11,7 @@ const initialState = {
   InsuranceProductList: [
     {
       id: 1,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 0,
       productCode: "1001",
@@ -23,7 +23,7 @@ const initialState = {
     },
     {
       id: 2,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 1,
       productCode: "1002",
@@ -35,7 +35,7 @@ const initialState = {
     },
     {
       id: 3,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 0,
       productCode: "1003",
@@ -47,7 +47,7 @@ const initialState = {
     },
     {
       id: 4,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 1,
       productCode: "2001",
@@ -59,7 +59,7 @@ const initialState = {
     },
     {
       id: 5,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 0,
       productCode: "2002",
@@ -71,7 +71,7 @@ const initialState = {
     },
     {
       id: 6,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 1,
       productCode: "2003",
@@ -83,7 +83,7 @@ const initialState = {
     },
     {
       id: 7,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 0,
       productCode: "2004",
@@ -95,7 +95,7 @@ const initialState = {
     },
     {
       id: 8,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 1,
       productCode: "2005",
@@ -107,7 +107,7 @@ const initialState = {
     },
     {
       id: 9,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 0,
       productCode: "2006",
@@ -119,7 +119,7 @@ const initialState = {
     },
     {
       id: 10,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       Status: 0,
       productCode: "2007",

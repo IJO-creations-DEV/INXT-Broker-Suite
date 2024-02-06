@@ -172,6 +172,7 @@ const TransactionCodeSetupTable = () => {
             header="Accounting Period start"
             headerStyle={headerStyle}
             className="fieldvalue_container"
+            
           ></Column>
           <Column
             field="AccountingPeriodEnd"

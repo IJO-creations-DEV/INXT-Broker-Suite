@@ -58,85 +58,85 @@ const initialState = {
             effectiveTo: '4/23/2023',
             action: <SvgIconeye />
         },
-        {
-            id: "5",
-            taxCode: "Tax1315",
-            taxName: "Value Added Tax",
-            taxRate: "18%",
-            basis: "VAT",
-            remarks: "VAT remarks",
-            taxationDescription: "ghi",
-            effectiveFrom: '5/24/2023',
-            effectiveTo: '5/23/2023',
-            action: <SvgIconeye />
-        },
-        {
-            id: "6",
-            taxCode: "Tax1618",
-            taxName: "Customs Duty",
-            taxRate: "8%",
-            basis: "customs",
-            remarks: "customs remarks",
-            taxationDescription: "jkl",
-            effectiveFrom: '6/24/2023',
-            effectiveTo: '6/23/2023',
-            action: <SvgIconeye />
-        },
-        {
-            id: "7",
-            taxCode: "Tax1921",
-            taxName: "Service Tax",
-            taxRate: "25%",
-            basis: "service",
-            remarks: "service remarks",
-            taxationDescription: "mno",
-            effectiveFrom: '7/24/2023',
-            effectiveTo: '7/23/2023',
-            action: <SvgIconeye />
-        },
-        {
-            id: "8",
-            taxCode: "Tax2224",
-            taxName: "Estate Tax",
-            taxRate: "20%",
-            basis: "estate",
-            remarks: "estate remarks",
-            taxationDescription: "pqr",
-            effectiveFrom: '8/24/2023',
-            effectiveTo: '8/23/2023',
-            action: <SvgIconeye />
-        },
-        {
-            id: "9",
-            taxCode: "Tax2527",
-            taxName: "Environmental Tax",
-            taxRate: "3%",
-            basis: "environmental",
-            remarks: "environmental remarks",
-            taxationDescription: "stu",
-            effectiveFrom: '9/24/2023',
-            effectiveTo: '9/23/2023',
-            action: <SvgIconeye />
-        },
-        {
-            id: "10",
-            taxCode: "Tax2830",
-            taxName: "Luxury Tax",
-            taxRate: "10%",
-            basis: "luxury",
-            remarks: "luxury remarks",
-            taxationDescription: "vwx",
-            effectiveFrom: '10/24/2023',
-            effectiveTo: '10/23/2023',
-            action: <SvgIconeye />
-        }
+        // {
+        //     id: "5",
+        //     taxCode: "Tax1315",
+        //     taxName: "Value Added Tax",
+        //     taxRate: "18%",
+        //     basis: "VAT",
+        //     remarks: "VAT remarks",
+        //     taxationDescription: "ghi",
+        //     effectiveFrom: '5/24/2023',
+        //     effectiveTo: '5/23/2023',
+        //     action: <SvgIconeye />
+        // },
+        // {
+        //     id: "6",
+        //     taxCode: "Tax1618",
+        //     taxName: "Customs Duty",
+        //     taxRate: "8%",
+        //     basis: "customs",
+        //     remarks: "customs remarks",
+        //     taxationDescription: "jkl",
+        //     effectiveFrom: '6/24/2023',
+        //     effectiveTo: '6/23/2023',
+        //     action: <SvgIconeye />
+        // },
+        // {
+        //     id: "7",
+        //     taxCode: "Tax1921",
+        //     taxName: "Service Tax",
+        //     taxRate: "25%",
+        //     basis: "service",
+        //     remarks: "service remarks",
+        //     taxationDescription: "mno",
+        //     effectiveFrom: '7/24/2023',
+        //     effectiveTo: '7/23/2023',
+        //     action: <SvgIconeye />
+        // },
+        // {
+        //     id: "8",
+        //     taxCode: "Tax2224",
+        //     taxName: "Estate Tax",
+        //     taxRate: "20%",
+        //     basis: "estate",
+        //     remarks: "estate remarks",
+        //     taxationDescription: "pqr",
+        //     effectiveFrom: '8/24/2023',
+        //     effectiveTo: '8/23/2023',
+        //     action: <SvgIconeye />
+        // },
+        // {
+        //     id: "9",
+        //     taxCode: "Tax2527",
+        //     taxName: "Environmental Tax",
+        //     taxRate: "3%",
+        //     basis: "environmental",
+        //     remarks: "environmental remarks",
+        //     taxationDescription: "stu",
+        //     effectiveFrom: '9/24/2023',
+        //     effectiveTo: '9/23/2023',
+        //     action: <SvgIconeye />
+        // },
+        // {
+        //     id: "10",
+        //     taxCode: "Tax2830",
+        //     taxName: "Luxury Tax",
+        //     taxRate: "10%",
+        //     basis: "luxury",
+        //     remarks: "luxury remarks",
+        //     taxationDescription: "vwx",
+        //     effectiveFrom: '10/24/2023',
+        //     effectiveTo: '10/23/2023',
+        //     action: <SvgIconeye />
+        // }
 
 
     ],
 
 
 };
-let nextId = 3
+// let nextId = 3
 const taxationReducers = createSlice({
     name: "commission",
     initialState,

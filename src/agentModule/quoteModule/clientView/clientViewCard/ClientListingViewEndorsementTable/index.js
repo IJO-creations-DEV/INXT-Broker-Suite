@@ -212,7 +212,7 @@ const LeadListingAllTable = () => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.PolicyNumber}</div>
+          <div className="name__text">{rowData.PolicyNumber.toUpperCase()}</div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
         </div>
       </div>
@@ -220,17 +220,17 @@ const LeadListingAllTable = () => {
   };
 
   const renderEndorsementID = (rowData) => {
-    return <div className="category__text">{rowData.EndorsementID}</div>;
+    return <div className="category__text">{rowData.EndorsementID.toUpperCase()}</div>;
   };
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+    return <div className="category__text">{rowData.ProductDescription.toUpperCase()}</div>;
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date}</div>;
+    return <div className="date__text">{rowData.Date.toUpperCase()}</div>;
   };
   const renderExpiryDate = (rowData) => {
-    return <div className="date__text">{rowData.expiryDate}</div>;
+    return <div className="date__text">{rowData.expiryDate.toUpperCase()}</div>;
   };
 
   const renderStatus = (rowData) => {
@@ -244,7 +244,7 @@ const LeadListingAllTable = () => {
             : "client__view__type__red"
         }
       >
-        {rowData.Status}
+        {rowData.Status.toUpperCase()}
       </div>
     );
   };
@@ -261,7 +261,7 @@ const LeadListingAllTable = () => {
             : "endorsement__payment__type"
         }
       >
-        {rowData.payment}
+        {rowData.payment.toUpperCase()}
       </div>
     );
   };
@@ -377,7 +377,7 @@ const LeadListingAllTable = () => {
           scrollable={true}
           scrollHeight="60vh"
         >
-          <Column header="Type" field="Type" headerStyle={headerStyle}></Column>
+          <Column header="Type" field="Type" headerStyle={headerStyle}  body={(rowData) => rowData.Type.toUpperCase()}></Column>
           <Column
             body={renderPolicyNumber}
             header={rendercheckedHeader("Policy Number")}

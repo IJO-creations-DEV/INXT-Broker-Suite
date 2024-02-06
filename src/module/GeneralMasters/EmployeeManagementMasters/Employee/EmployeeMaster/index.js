@@ -215,24 +215,28 @@ const EmployeeMaster = () => {
                   header="Employee Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.employeeCode.toUpperCase()}
                 ></Column>
                 <Column
                   field="employeeType"
                   header="Employee Type"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.employeeType.toUpperCase()}
                 ></Column>
                 <Column
                   field="firstName"
                   header="Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.firstName.toUpperCase()}
                 ></Column>
                 <Column
                   field="designation"
                   header="Designation"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.designation.toUpperCase()}
                 ></Column>
 
                 <Column
@@ -240,6 +244,7 @@ const EmployeeMaster = () => {
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.modifiedBy.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

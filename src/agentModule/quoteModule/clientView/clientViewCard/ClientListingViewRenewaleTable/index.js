@@ -338,7 +338,7 @@ const Index = () => {
       <div className="name__box__container">
         <div>{rowData.Svg}</div>
         <div>
-          <div className="name__text">{rowData.PolicyNumber}</div>
+          <div className="name__text">{rowData.PolicyNumber.toUpperCase()}</div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
         </div>
       </div>
@@ -346,14 +346,14 @@ const Index = () => {
   };
 
   const renderGrossPremium = (rowData) => {
-    return <div className="category__text">{rowData.GrossPremium}</div>;
+    return <div className="category__text">{rowData.GrossPremium.toUpperCase()}</div>;
   };
 
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+    return <div className="category__text">{rowData.ProductDescription.toUpperCase()}</div>;
   };
   const renderExpiryDate = (rowData) => {
-    return <div className="date__text">{rowData.ExpiryDate}</div>;
+    return <div className="date__text">{rowData.ExpiryDate.toUpperCase()}</div>;
   };
 
   const renderPayment = (rowData) => {
@@ -367,7 +367,7 @@ const Index = () => {
             : "company__status__type__red"
         }
       >
-        {rowData.Payment}
+        {rowData.Payment.toUpperCase()}
       </div>
     );
   };
@@ -382,7 +382,7 @@ const Index = () => {
             : "company__status__type__red"
         }
       >
-        {rowData.Status}
+        {rowData.Status.toUpperCase()}
       </div>
     );
   };

@@ -215,18 +215,21 @@ const UserMaster = () => {
                   header="User Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.userName.toUpperCase()}
                 ></Column>
                 <Column
                   field="employeeCode"
                   header="Employee Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.employeeCode.toUpperCase()}
                 ></Column>
                 <Column
                   field="assignedRole"
                   header="Assigned Role"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.assignedRole.toUpperCase()}
                 ></Column>
                 <Column
                   field="email"
@@ -246,6 +249,7 @@ const UserMaster = () => {
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.modifiedBy.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

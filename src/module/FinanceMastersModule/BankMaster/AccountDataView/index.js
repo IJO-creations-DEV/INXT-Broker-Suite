@@ -238,18 +238,21 @@ const Index = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.AccountName.toUpperCase()}
             ></Column>
             <Column
               field="AccountType"
               header="Account Type"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.AccountType.toUpperCase()}
             ></Column>
             <Column
               field="MainAccount"
               header="Main Account"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.MainAccount.toUpperCase()}
             ></Column>
 
             <Column

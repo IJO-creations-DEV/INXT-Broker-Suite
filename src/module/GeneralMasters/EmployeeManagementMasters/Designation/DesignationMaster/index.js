@@ -228,24 +228,28 @@ const DesignationMaster = () => {
                   header="Designation Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.designationCode.toUpperCase()}
                 ></Column>
                 <Column
                   field="designationName"
                   header="Designation Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.designationName.toUpperCase()}
                 ></Column>
                 <Column
                   field="departmentCode"
                   header="Department Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.departmentCode.toUpperCase()}
                 ></Column>
                 <Column
                   field="ModifiedBy"
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.ModifiedBy.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

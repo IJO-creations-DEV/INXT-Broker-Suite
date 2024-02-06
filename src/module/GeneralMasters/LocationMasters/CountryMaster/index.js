@@ -227,10 +227,10 @@ const Country = () => {
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
 
-            <Column field="CountryName" header="Country Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="ISOCode" header="ISO Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="PhoneCode" header="Phone Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="Modifiedby" header="Modified by" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="CountryName" body={(rowData) => rowData.CountryName.toUpperCase()} header="Country Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="ISOCode" body={(rowData) => rowData.ISOCode.toUpperCase()} header="ISO Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="PhoneCode" body={(rowData) => rowData.PhoneCode.toUpperCase()} header="Phone Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column field="Modifiedby" body={(rowData) => rowData.Modifiedby.toUpperCase()} header="Modified by" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             <Column field="ModifiedOn" header="Modified On" headerStyle={headerStyle} className='fieldvalue_container'></Column>
             {/* <Column field="name" header="Phone" headerStyle={headerStyle}  className='fieldvalue_container'></Column> */}
             <Column body={(rowData) => <ToggleButton id={rowData.id} />} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>

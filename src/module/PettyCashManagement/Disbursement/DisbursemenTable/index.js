@@ -188,12 +188,14 @@ const DisbursementTable = () => {
               header="Petty cash Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.PettyCashCode.toUpperCase()}
             ></Column>
             <Column
               field="TransactionCode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionCode.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
@@ -201,6 +203,7 @@ const DisbursementTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
             ></Column>
             <Column
               field="Date"
@@ -208,6 +211,7 @@ const DisbursementTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              
             ></Column>
             <Column
               field="View"

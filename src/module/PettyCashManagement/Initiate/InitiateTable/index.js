@@ -204,12 +204,14 @@ const InitiateTable = () => {
               header="Petty cash code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Pettycashcode.toUpperCase()}
             ></Column>
             <Column
               field="Pettycashsize"
               header="Petty cash size"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Pettycashsize.toUpperCase()}
               sortable
             ></Column>
             <Column
@@ -217,6 +219,7 @@ const InitiateTable = () => {
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
               sortable
             ></Column>
             <Column
@@ -230,12 +233,14 @@ const InitiateTable = () => {
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Branchcode.toUpperCase()}
             ></Column>
             <Column
               field="Departmentcode"
               header="Department code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Departmentcode.toUpperCase()}
             ></Column>
             <Column
               field="TransactionDate"

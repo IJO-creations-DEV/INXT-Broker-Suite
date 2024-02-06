@@ -145,21 +145,25 @@ const TableData = ({ navigate }) => {
           field="vehicleName"
           header="Vehicle Name"
           className="fieldvalue_container"
+          body={(rowData) => rowData.vehicleName.toUpperCase()}
         ></Column>
         <Column
           field="vehicleVariant"
           header="Vehicle Variant"
           className="fieldvalue_container"
+          body={(rowData) => rowData.vehicleVariant.toUpperCase()}
         ></Column>
         <Column
           field="vehicleModel"
           header="Vehicle Model"
           className="fieldvalue_container"
+          body={(rowData) => rowData.vehicleModel.toUpperCase()}
         ></Column>
         <Column
           field="vehicleBrand"
           header="Vehicle Brand"
           className="fieldvalue_container"
+          body={(rowData) => rowData.vehicleBrand.toUpperCase()}
         ></Column>
 
         <Column

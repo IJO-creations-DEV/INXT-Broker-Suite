@@ -199,6 +199,7 @@ const PettyCashReceiptsTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              body={(rowData) => rowData.ReceiptNo.toUpperCase()}
             ></Column>
             <Column
               field="RequesterName"
@@ -206,36 +207,42 @@ const PettyCashReceiptsTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              body={(rowData) => rowData.RequesterName.toUpperCase()}
             ></Column>
             <Column
               field="Branchcode"
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Branchcode.toUpperCase()}
             ></Column>
             <Column
               field="Transactioncode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Transactioncode.toUpperCase()}
             ></Column>
             <Column
               field="BankCode"
               header="Bank Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.BankCode.toUpperCase()}
             ></Column>
             <Column
               field="SubAccount"
               header="Sub Account"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.SubAccount.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              // body={(rowData) => rowData.TransactionNumber.toUpperCase()}
               sortable
             ></Column>
             <Column

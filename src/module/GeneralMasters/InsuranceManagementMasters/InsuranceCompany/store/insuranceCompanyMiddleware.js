@@ -27,7 +27,7 @@ export const postInsuranceCompanyMiddleWare = createAsyncThunk(
   async (payload, { rejectWithValue, getState }) => {
     const bodyTableData = {
       id: payload?.id,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       insuranceCompanyCode: payload?.insuranceCompanyCode,
       insuranceCompanyName: payload?.insuranceCompanyName,
@@ -58,7 +58,7 @@ export const patchInsuranceCompanyMiddleWare = createAsyncThunk(
     const { InsuranceCompanyList } = insuranceCompanyReducers;
     const data={
       id: payload?.id,
-      modifiedby: "Name",
+      modifiedby: "John",
       modifiedOn: "12/12/2023",
       insuranceCompanyCode: payload?.insuranceCompanyCode,
       insuranceCompanyName: payload?.insuranceCompanyName,

@@ -36,12 +36,14 @@ const ReceiptListTable = ({ AddReceiptTable }) => {
             header="Transaction Code"
             headerStyle={headerStyle}
             sortable
+            body={(rowData) => rowData.TransactionCode.toUpperCase()}
           ></Column>
           <Column
             field="RequestNumber"
             header="Request Number"
             headerStyle={headerStyle}
             sortable
+            body={(rowData) => rowData.RequestNumber.toUpperCase()}
           ></Column>
           <Column
             field="Date"
@@ -60,6 +62,7 @@ const ReceiptListTable = ({ AddReceiptTable }) => {
             header="Remarks"
             headerStyle={headerStyle}
             sortable
+            body={(rowData) => rowData.Remarks.toUpperCase()}
           ></Column>
         </DataTable>
       </div>

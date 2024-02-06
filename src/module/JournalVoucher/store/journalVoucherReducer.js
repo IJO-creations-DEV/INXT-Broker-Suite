@@ -42,7 +42,7 @@ const initialState = {
     {
       id: 1,
       transationCode: "Trans0102",
-      transactionNumber: 1145,
+      transactionNumber: "1145",
       totalDebit: "totalDebit",
       transationDescription: "transation123",
       date: '10/10/2023',
@@ -50,7 +50,7 @@ const initialState = {
     {
       id: 2,
       transationCode: "Trans022",
-      transactionNumber: 1245,
+      transactionNumber: "1245",
       totalDebit: "payload?.totalDebit",
       transationDescription: "transation89",
       date: '10/10/2023',

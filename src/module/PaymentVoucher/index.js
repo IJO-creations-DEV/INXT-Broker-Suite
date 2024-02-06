@@ -230,6 +230,7 @@ const Index = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
             ></Column>
             <Column
               field="CustomerCode"
@@ -237,6 +238,7 @@ const Index = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.CustomerCode.toUpperCase()}
             ></Column>
             <Column
               field="VoucheDate"

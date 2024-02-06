@@ -132,6 +132,7 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
                     header="Transaction Code"
                     className="fieldvalue_container"
                     headerStyle={headerStyle}
+                    body={(rowData) => rowData.transationCode.toUpperCase()}
 
                 ></Column>
                 <Column

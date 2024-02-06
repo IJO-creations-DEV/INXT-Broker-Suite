@@ -30,6 +30,10 @@ const AgentNavBar = () => {
   const handleNotificationNavigation = () => {
     navigate("/agent/notification");
   };
+
+  const handleProfile =()=>{
+    navigate("/agent/viewprofile")
+  }
   const items = [
     {
       label: (
@@ -172,13 +176,13 @@ const AgentNavBar = () => {
                 fontSize: "16px",
                 color: "#111927",
               }}
-            >
+           onClick={handleProfile} >
               Profile
             </div>
           ),
           icon: (
             <div className="mr-3">
-              <SvgProfile />
+              <SvgProfile onClick={handleProfile}/>
             </div>
           ),
         },

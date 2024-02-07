@@ -154,12 +154,12 @@ const CoverageDetailsCard = ({ action, flow }) => {
           <div className="col-12 md:col-12 lg:col-12">
             <InputTextField
               label="Loss and Damage coverage"
-              value={formik.values.LossandDamagecoverage}
-              // value={
-              //   action == "coveragecreate"
-              //     ? formik.values.LossandDamagecoverage
-              //     : "1,00,000.00"
-              // }
+              // value={formik.values.LossandDamagecoverage}
+              value={
+                action == "coveragecreate"
+                  ? formik.values.LossandDamagecoverage
+                  : "1,00,000.00"
+              }
               onChange={formik.handleChange("LossandDamagecoverage")}
             />
             {formik.touched.LossandDamagecoverage &&
@@ -212,13 +212,13 @@ const CoverageDetailsCard = ({ action, flow }) => {
           <div className="col-12 md:col-6 lg:col-6">
             <InputTextField
               label="Acts of Nature Rate"
-              // // value={formik.values.ActsofNatureRate}
-              // value={
-              //   action == "coveragecreate"
-              //     ? formik.values.ActsofNatureRate
-              //     : "0.5%"
-              // }
-              value={formik.values.ActsofNatureRate}
+              // value={formik.values.ActsofNatureRate}
+              value={
+                action == "coveragecreate"
+                  ? formik.values.ActsofNatureRate
+                  : "0.5%"
+              }
+              // value={formik.values.ActsofNatureRate}
               onChange={formik.handleChange("ActsofNatureRate")}
             />
             {formik.touched.ActsofNatureRate &&

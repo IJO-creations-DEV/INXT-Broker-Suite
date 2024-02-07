@@ -88,9 +88,10 @@ const ViewCommissionPopup = ({ showViewPopup, setShowViewPopup, handleUpdate }) 
         <Dialog
             header="Add Level Wise Commission Sharing "
             visible={showViewPopup}
-            className="commission__modal__container"
+            className="commission__modal__container master__flow__common__dialog__container"
             onHide={() => setShowViewPopup(false)}
             dismissableMask={true}
+            style={{ boxShadow: "none" }} 
         >
             <div className="form__container">
                 <div className="grid m-0">

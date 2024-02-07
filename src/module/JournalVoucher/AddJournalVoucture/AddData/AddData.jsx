@@ -156,9 +156,10 @@ const AddData = ({ visible, setVisible, handleUpdate }) => {
         <Dialog
             header="Add Journal Voucher"
             visible={visible}
-            className="jv__Edit__modal__container"
+            className="jv__Edit__modal__container master__flow__common__dialog__container"
             onHide={() => setVisible(false)}
             dismissableMask={true}
+            style={{ boxShadow: "none" }} 
         >
 
             <div className="grid">

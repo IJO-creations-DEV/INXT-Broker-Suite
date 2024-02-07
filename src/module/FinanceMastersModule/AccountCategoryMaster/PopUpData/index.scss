@@ -1,5 +1,6 @@
 .account__category__jv__Edit__modal__container {
   width: 60%;
+
   .p-dialog-header .p-dialog-header-icon {
     color: #6366f1 !important;
   }
@@ -8,6 +9,7 @@
     .modal__header__align {
       margin-bottom: 1rem;
       justify-content: space-between;
+
       .modal__title {
         color: #111927;
         font-family: 'Inter', sans-serif;
@@ -17,6 +19,7 @@
         line-height: normal;
       }
     }
+
     .input__label__corrections {
       color: #111927 !important;
       font-family: 'Inter', sans-serif;
@@ -45,6 +48,7 @@
       height: 45px;
       width: 153px;
       font-family: 'Inter', sans-serif;
+
       .p-button-label {
         font-weight: 500 !important;
         font-size: 18px !important;
@@ -111,4 +115,13 @@
     //   }
     // }
   }
+}
+
+.master__flow__common__dialog__container.p-dialog .p-dialog-content {
+  background: #ffffff;
+  color: #4b5563;
+  padding: 0 1.5rem 1rem 1.5rem !important;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top: 0 none
 }

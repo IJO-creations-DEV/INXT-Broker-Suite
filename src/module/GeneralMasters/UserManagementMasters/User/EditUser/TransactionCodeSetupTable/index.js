@@ -277,9 +277,10 @@ const TransactionCodeSetupTable = ({ action }) => {
       <Dialog
         header="Add Branch & Department"
         visible={show}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw" ,boxShadow:"none"}}
         onHide={() => setShow(false)}
-        className="dialogue_style"
+        className="dialogue_style master__flow__common__dialog__container"
+       
       >
         <div className="grid mt-1">
 
@@ -334,9 +335,10 @@ const TransactionCodeSetupTable = ({ action }) => {
       <Dialog
         header="View Branch & Department"
         visible={showView}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw",boxShadow:"none" }}
         onHide={() => setShowView(false)}
-        className="dialogue_style"
+        className="dialogue_style master__flow__common__dialog__container"
+        
       >
         <div className="grid mt-1">
 

@@ -423,8 +423,9 @@ const BankMaster = () => {
       <Dialog
         header="Bank Details"
         visible={visible}
-        style={{ width: "60vw" }}
+        style={{ width: "60vw",boxShadow:"none" }}
         onHide={() => setVisible(false)}
+        className="master__flow__common__dialog__container"
       >
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">
@@ -566,8 +567,10 @@ const BankMaster = () => {
       <Dialog
         header="Bank Details"
         visible={visibleview}
-        style={{ width: "60vw" }}
+        style={{ width: "60vw",boxShadow:"none" }}
         onHide={() => setVisibleview(false)}
+        className="master__flow__common__dialog__container"
+       
       >
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">

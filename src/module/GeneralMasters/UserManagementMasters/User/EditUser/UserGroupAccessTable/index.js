@@ -235,8 +235,10 @@ const UserGroupAccess = () => {
       <Dialog
         header="Add User Group Access"
         visible={show}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw" ,boxShadow:"none"}}
         onHide={() => setShow(false)}
+        className="master__flow__common__dialog__container"
+       
       >
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">
@@ -294,8 +296,9 @@ const UserGroupAccess = () => {
       <Dialog
         header=" User Group Access"
         visible={showView}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw",boxShadow:"none" }}
         onHide={() => setShowView(false)}
+        className="master__flow__common__dialog__container"
       >
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">

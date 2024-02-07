@@ -24,6 +24,7 @@ import {
 } from "../../mock";
 import { useDispatch, useSelector } from "react-redux";
 import { postAddReplenishMiddleware } from "../store/pettyCashReplenishMiddleware";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const initialValue = {
   PettycashCode: "",
@@ -239,15 +240,15 @@ const AddReplenish = () => {
       {/* <CustomToast ref={toastRef} /> */}
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
-          <div
-            className="pettycash__title"
-            onClick={() => {
-              handleBack();
-            }}
-          >
-            <SvgBackArrow />
-            Add Replenish
-          </div>
+         
+          <div>
+          <span onClick={handleBack}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+          Add Replenish
+          </label>
+        </div>
           <div className="mt-3">
             <BreadCrumb
               model={items}

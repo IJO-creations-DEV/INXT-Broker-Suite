@@ -14,6 +14,7 @@ import ToggleButton from "../../../../components/ToggleButton";
 import { useFormik } from "formik";
 import { getTransactioncodeListsearch, getTrascationcodeDetailsView, getpatchTrascationcodeDetailsEdit, patchTrascationcodeDetailsEdit } from "../store/transactionCodeMasterMiddleware";
 import { useDispatch, useSelector } from "react-redux";
+import SvgEditicons from "../../../../assets/icons/SvgEditicons";
 
 const TransactionCodeMasterTable = () => {
   const { TransactioncodeListsearch, TransactioncodeList, loading } = useSelector(({ transactionCodeMasterReducer }) => {
@@ -78,7 +79,7 @@ const TransactionCodeMasterTable = () => {
           onClick={() => handleView(rowData)}
         />
         <Button
-          icon={<SvgEditIcon />}
+          icon={<SvgEditicons />}
           className="eye__btn"
           onClick={() => handleEdit(rowData)}
         />

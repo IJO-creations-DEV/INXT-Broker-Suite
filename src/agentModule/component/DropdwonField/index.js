@@ -3,7 +3,14 @@ import React, { useState } from "react";
 import "./index.scss";
 import SvgDownArrow from "../../../assets/agentIcon/SvgDownArrow";
 
-const DropdownField = ({ value, onChange, options, label, disabled,optionLabel }) => {
+const DropdownField = ({
+  value,
+  onChange,
+  options,
+  label,
+  disabled,
+  optionLabel,
+}) => {
   const [focused, setFocused] = useState(false);
 
   const handleFocus = () => {
@@ -13,9 +20,14 @@ const DropdownField = ({ value, onChange, options, label, disabled,optionLabel }
   const handleBlur = () => {
     setFocused(false);
   };
-console.log("first",options)
+  console.log("first", options);
   return (
-    <div style={{ position: "relative" }} className="dropdown__container">
+    <div
+      style={{ position: "relative" }}
+      className={`dropdown__container ${
+        focused ? "dropdown__container__changed" : ""
+      }`}
+    >
       <Dropdown
         value={value}
         options={options}
@@ -30,7 +42,7 @@ console.log("first",options)
       />
       <label
         htmlFor="dropdown"
-        className={`label ${focused || value !=="" ? "focused" : ""}`}
+        className={`label ${focused || value !== "" ? "focused" : ""}`}
       >
         {label}
       </label>

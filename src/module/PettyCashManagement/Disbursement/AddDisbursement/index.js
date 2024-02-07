@@ -27,6 +27,7 @@ import { Column } from "primereact/column";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../../components/LabelWrapper";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const initialValue = {
   PettyCashCode: "",
@@ -221,15 +222,15 @@ const AddDisbursement = () => {
       {/* <CustomToast ref={toastRef} /> */}
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
-          <div
-            className="pettycash__title"
-            onClick={() => {
-              handleBack();
-            }}
-          >
-            <SvgBackArrow />
-            Add Disbursement
-          </div>
+        
+             <div>
+          <span onClick={handleBack}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+          Add Disbursement
+          </label>
+        </div>
           <div className="mt-3">
             <BreadCrumb
               model={items}

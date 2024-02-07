@@ -338,11 +338,12 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
       </DataTable>
 
       <Dialog
-        header="Add Journal Voucher"
+        header="Edit Journal Voucher"
         visible={visibleEdit}
-        className="jv__Edit__container"
+        className="jv__Edit__container master__flow__common__dialog__container"
         onHide={() => setVisibleEdit(false)}
         dismissableMask={true}
+        style={{ boxShadow: "none" }} 
       >
         <div className="form__container">
           <div className="grid m-0">

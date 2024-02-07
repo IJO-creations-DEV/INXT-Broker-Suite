@@ -185,7 +185,7 @@ const PettyCashReplenishTable = () => {
           </div>
           <div className="sub__title">Replenish history</div>
         </div>
-        <div className="card">
+        <div className="card tabel__card__header">
           <DataTable
             value={search ? ReplenishSearch : ReplenishList}
             tableStyle={{

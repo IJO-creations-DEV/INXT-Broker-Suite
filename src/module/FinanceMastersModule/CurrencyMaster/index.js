@@ -24,6 +24,7 @@ import SvgEditicon from "../../../assets/icons/SvgEdit";
 import { TieredMenu } from 'primereact/tieredmenu';
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrencyDetailEdit, getCurrencyDetailView, getCurrencySearchList } from "./store/currencyMasterMiddlewar";
+import SvgEditicons from "../../../assets/icons/SvgEditicons";
 
 const CurrencyMaster = () => {
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const CurrencyMaster = () => {
           onClick={() => handleView(rowData)}
         />
         <Button
-          icon={<SvgEditicon />}
+          icon={<SvgEditicons />}
           className="eye__btn"
           onClick={() => handleEdit(rowData)}
         />

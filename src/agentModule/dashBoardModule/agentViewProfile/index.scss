@@ -8,6 +8,7 @@
     font-family: Poppins;
     line-height: 24px;
     color: #111927;
+    width: max-content;
   }
   .agent__profile__detail__container {
     display: flex;
@@ -21,14 +22,13 @@
       color: #111927;
       line-height: 51px;
     }
-    .agent__profile__id{
-        font-size: 16px;
-        font-weight: 500;
-        font-family: Poppins;
-        line-height: 24px;
-        color: #111927;
+    .agent__profile__id {
+      font-size: 16px;
+      font-weight: 500;
+      font-family: Poppins;
+      line-height: 24px;
+      color: #111927;
     }
- 
   }
   .profile__container__btn {
     display: flex;
@@ -53,6 +53,50 @@
       overflow: hidden;
       position: relative;
       gap: 10px !important;
+    }
+  }
+  .back__button__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+  }
+  .back__text__container {
+    .p-button {
+      color: #111927;
+      background: #ffffff;
+      border: 1px solid #ffffff;
+      padding: 8px 16px 8px 16px;
+      font-size: 1rem;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+        box-shadow 0.2s;
+      border-radius: 6px;
+    }
+    .p-button-label {
+      font-size: 16px;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 24px;
+      color: #111927;
+    }
+  }
+  .next__text__container {
+    .p-button {
+      color: #ffffff;
+      background: #6366f1;
+      border: 1px solid #6366f1;
+      padding: 8px 16px 8px 16px;
+      font-size: 1rem;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+        box-shadow 0.2s;
+      border-radius: 6px;
+    }
+    .p-button-label {
+      font-size: 16px;
+      font-weight: 400;
+      font-family: Poppins;
+      line-height: 24px;
+      color: #ffffff;
     }
   }
 }

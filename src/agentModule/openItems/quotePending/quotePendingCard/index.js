@@ -40,7 +40,7 @@ const QuotePendingCard = () => {
   // const [globalFilter, setGlobalFilter] = useState("policy Number");
   const policy = [
     { name: "Name", code: "Name" },
-    { name: "Policy Number", code: "policy Number" },
+    { name: "Quote ID", code: "Quote ID" },
   ];
 
   const handleMenuToggle = (event, menuRef, rowData) => {

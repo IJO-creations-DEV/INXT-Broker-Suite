@@ -20,6 +20,7 @@ import {
   postAddRequestMiddleware,
   postEditRequestMiddleware,
 } from "../store/pettyCashRequestMiddleware";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const initialValue = {
   Narration: "",
@@ -161,15 +162,16 @@ const AddRequestTable = () => {
 
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
-          <div
-            className="pettycash__title"
-            onClick={() => {
-              handleBack();
-            }}
-          >
-            <SvgBackArrow />
-            Add Request
-          </div>
+         
+           <div>
+          <span onClick={handleBack}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+          Add Request
+          </label>
+        </div>
+          
           <div className="mt-3">
             <BreadCrumb
               model={items}

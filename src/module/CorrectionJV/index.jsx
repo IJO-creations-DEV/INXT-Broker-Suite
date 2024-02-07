@@ -15,6 +15,7 @@ import CustomToast from "../../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import { postCorrectionJVData } from "./store/correctionJVMiddleWare";
 import { Navigate, useNavigate } from "react-router-dom";
+import SvgBackicon from "../../assets/icons/SvgBackicon";
 
 const Reversals = () => {
   const toastRef = useRef(null);
@@ -144,11 +145,20 @@ const Reversals = () => {
       <div className="grid m-0 top__container">
         <div className="col-12 p-0"></div>
         <div className="col-12 p-0">
-          <div className="correction__title__reversal">
+          {/* <div className="correction__title__reversal">
             <span onClick={() => setStep(step - 1)}>
               {step !== 0 && <ArrowLeftIcon />}
             </span>{" "}
             Corrections JV Details
+          </div> */}
+          <div className="correction__title__reversal">
+            <span onClick={() => setStep(step - 1)}>
+
+              {step !== 0 && <SvgBackicon />}
+            </span>
+            <label className={step !== 0?"label_header":""}>
+              Corrections JV Details
+            </label>
           </div>
         </div>
         <div className="col-12 p-0">

@@ -232,6 +232,18 @@ const QuoteListingCard = () => {
     border: " none",
   };
 
+  const headeraction = {
+    textalign: "center",
+    fontSize: 16,
+    fontFamily: "Poppins",
+    fontWeight: 500,
+    color: "#000",
+    border: " none",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItem: 'center'
+  };
+
   const checkboxheaderStyle = {
     textalign: "center",
     fontSize: 16,
@@ -402,7 +414,7 @@ const QuoteListingCard = () => {
               body={(rowData) => (
                 <Checkbox
                   checked={selectedProducts.includes(rowData)}
-                  onChange={() => {}}
+                  onChange={() => { }}
                 />
               )}
               headerStyle={checkboxheaderStyle}
@@ -430,7 +442,8 @@ const QuoteListingCard = () => {
             <Column
               body={renderStatus}
               header={renderUncheckedHeader("Status")}
-              headerStyle={headerStyle}
+              headerStyle={headeraction}
+              style={{ textAlign: 'center' }}
             ></Column>
             <Column
               body={renderViewEditButton}

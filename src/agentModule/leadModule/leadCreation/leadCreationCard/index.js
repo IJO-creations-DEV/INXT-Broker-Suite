@@ -8,7 +8,10 @@ import DatepickerField from "../../../component/datePicker";
 import CustomToast from "../../../../components/Toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { patchLeadEditMiddleWare, postCreateleadMiddleware } from "../../Store/leadMiddleware";
+import {
+  patchLeadEditMiddleWare,
+  postCreateleadMiddleware,
+} from "../../Store/leadMiddleware";
 import { useFormik } from "formik";
 import { CountryOptions, CityOptions, StateOptions } from "../mock";
 import countriesData from "../mock";
@@ -28,21 +31,24 @@ const initialValue = {
   Province: "",
   City: "",
   ZIPCode: "",
-  DateofBirth: new Date(),
+  DateofBirth: "",
   category: "Individual",
-  gender: "Male"
+  gender: "Male",
+  Quotes: "01",
+  LeadID: "877",
 };
 
 const LeadCreationCard = ({ flow, action }) => {
   console.log(flow, action, "datata");
-  const { loading, leadtabledata, getEditLeadData, getClientEditData } = useSelector(({ leadReducers, clientsReducers }) => {
-    return {
-      loading: leadReducers?.loading,
-      leadtabledata: leadReducers?.leadtabledata,
-      getEditLeadData: leadReducers?.getEditLeadData,
-      getClientEditData: clientsReducers?.getClientEditData
-    };
-  });
+  const { loading, leadtabledata, getEditLeadData, getClientEditData } =
+    useSelector(({ leadReducers, clientsReducers }) => {
+      return {
+        loading: leadReducers?.loading,
+        leadtabledata: leadReducers?.leadtabledata,
+        getEditLeadData: leadReducers?.getEditLeadData,
+        getClientEditData: clientsReducers?.getClientEditData,
+      };
+    });
   console.log(getClientEditData, "getClientEditData");
   // const [ingredient, setIngredient] = useState("");
   const [show, setShow] = useState(false);
@@ -64,9 +70,8 @@ const LeadCreationCard = ({ flow, action }) => {
       }, 2000);
     }
     if (action === "edit") {
-
       if (flow === "client") {
-        dispatch(patchClientEditMiddleWare(values))
+        dispatch(patchClientEditMiddleWare(values));
         toastRef.current.showToast();
         setTimeout(() => {
           navigate(`/agent/clientlisting`);
@@ -82,7 +87,7 @@ const LeadCreationCard = ({ flow, action }) => {
     }
   };
   const customValidation = (values) => {
-    const errors = {}
+    const errors = {};
     if (values.category === "Company") {
       if (!values.CompanyName) {
         errors.CompanyName = "This field is required";
@@ -101,10 +106,15 @@ const LeadCreationCard = ({ flow, action }) => {
       errors.LastName = "This field is required";
     }
     if (!values.EmailID) {
-      errors.EmailID = "This field is required";
+      errors.EmailID = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.EmailID)) {
+      errors.EmailID = "Invalid email address";
     }
+
     if (!values.ContactNumber) {
-      errors.ContactNumber = "This field is required";
+      errors.ContactNumber = "Contact Number is required";
+    } else if (!/^\d{10}$/.test(values.ContactNumber)) {
+      errors.ContactNumber = "Invalid phone number (10 digits)";
     }
     if (!values.HouseNo) {
       errors.HouseNo = "This field is required";
@@ -134,8 +144,8 @@ const LeadCreationCard = ({ flow, action }) => {
     if (!values.gender) {
       errors.gender = "This field is required";
     }
-    return errors
-  }
+    return errors;
+  };
 
   const handleSaveLead = () => {
     toastRef.current.showToast();
@@ -151,26 +161,25 @@ const LeadCreationCard = ({ flow, action }) => {
       handleclick(values);
     },
   });
-  const City = countriesData.city.map(city => ({
+  const City = countriesData.city.map((city) => ({
     label: city,
   }));
 
-  const State = countriesData.state.map(state => ({
+  const State = countriesData.state.map((state) => ({
     label: state,
   }));
 
-
-  const Country = countriesData.countries.map(country => ({
+  const Country = countriesData.countries.map((country) => ({
     label: country,
   }));
 
-  const [countryDataOption, setCountryDataOption] = useState([])
-  const [cityDataOption, setCityDataOption] = useState([])
-  const [stateDataOption, setStateDataOption] = useState([])
+  const [countryDataOption, setCountryDataOption] = useState([]);
+  const [cityDataOption, setCityDataOption] = useState([]);
+  const [stateDataOption, setStateDataOption] = useState([]);
   const setFormikValues = () => {
     const CountryData = getEditLeadData?.Country;
     const StateData = getEditLeadData?.Province;
-    const CityData = getEditLeadData?.City
+    const CityData = getEditLeadData?.City;
     const updatedValues = {
       id: getEditLeadData?.id,
       TaxNumber: getEditLeadData?.TaxNumber,
@@ -189,18 +198,18 @@ const LeadCreationCard = ({ flow, action }) => {
       DateofBirth: new Date(getEditLeadData?.DateofBirth),
       category: getEditLeadData?.category,
       gender: getEditLeadData?.gender,
-      Type: getEditLeadData?.Type
+      Type: getEditLeadData?.Type,
     };
     if (CountryData) {
-      setCountryDataOption([{ label: CountryData, value: CountryData }])
+      setCountryDataOption([{ label: CountryData, value: CountryData }]);
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     if (CityData) {
-      setCityDataOption([{ label: CityData, value: CityData }])
+      setCityDataOption([{ label: CityData, value: CityData }]);
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     if (StateData) {
-      setStateDataOption([{ label: StateData, value: StateData }])
+      setStateDataOption([{ label: StateData, value: StateData }]);
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     formik.setValues({ ...formik.values, ...updatedValues });
@@ -209,7 +218,7 @@ const LeadCreationCard = ({ flow, action }) => {
   const setFormikValuesClient = () => {
     const CountryData = getClientEditData?.Country;
     const StateData = getClientEditData?.Province;
-    const CityData = getClientEditData?.City
+    const CityData = getClientEditData?.City;
     const updatedValues = {
       id: getClientEditData?.id,
       TaxNumber: getClientEditData?.TaxNumber,
@@ -228,18 +237,17 @@ const LeadCreationCard = ({ flow, action }) => {
       DateofBirth: new Date(getClientEditData?.DateofBirth),
       category: getClientEditData?.category,
       gender: getClientEditData?.gender,
-
     };
     if (CountryData) {
-      setCountryDataOption([{ label: CountryData, value: CountryData }])
+      setCountryDataOption([{ label: CountryData, value: CountryData }]);
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     if (CityData) {
-      setCityDataOption([{ label: CityData, value: CityData }])
+      setCityDataOption([{ label: CityData, value: CityData }]);
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     if (StateData) {
-      setStateDataOption([{ label: StateData, value: StateData }])
+      setStateDataOption([{ label: StateData, value: StateData }]);
       formik.setValues({ ...formik.values, ...updatedValues });
     }
     formik.setValues({ ...formik.values, ...updatedValues });
@@ -251,7 +259,7 @@ const LeadCreationCard = ({ flow, action }) => {
       setFormikValues();
     }
     if (flow === "client") {
-      setFormikValuesClient()
+      setFormikValuesClient();
     }
   }, [getEditLeadData, getClientEditData]);
 
@@ -259,23 +267,29 @@ const LeadCreationCard = ({ flow, action }) => {
     <div className="card_overall_container mt-4">
       <CustomToast ref={toastRef} message="Lead Created Successfully" />
       {/* <form onSubmit={formik.handleSubmit}> */}
-      <Card title={action === "post" ? "Create Lead" : flow === "client" ? "Edit Client" : "Edit Lead"}>
-        {action === "post" ?
+      <Card
+        title={
+          action === "post"
+            ? "Create Lead"
+            : flow === "client"
+            ? "Edit Client"
+            : "Edit Lead"
+        }
+      >
+        {action === "post" ? (
           <div>
             <div className="subheadinglabel_txt mt-3">Select Category</div>
             <div className="flex flex-wrap gap-3 mt-3">
-
               <div className="flex align-items-center">
                 <RadioButton
                   inputId="individual"
                   name="category"
                   value="Individual"
                   onChange={() => {
-                    formik.setFieldValue("category", "Individual")
-                    setShow(false)
+                    formik.setFieldValue("category", "Individual");
+                    setShow(false);
                   }}
                   checked={formik.values.category === "Individual"}
-
                 />
                 <label htmlFor="ingredient1" className="labeltxt_container">
                   Individual
@@ -288,7 +302,7 @@ const LeadCreationCard = ({ flow, action }) => {
                   value="Company"
                   onChange={() => {
                     formik.setFieldValue("category", "Company");
-                    setShow(true)
+                    setShow(true);
                   }}
                   checked={formik.values.category === "Company"}
                 />
@@ -297,9 +311,17 @@ const LeadCreationCard = ({ flow, action }) => {
                 </label>
               </div>
             </div>
-          </div> : <div>
-            Category : <span className="category__style">{flow === "client" ? getClientEditData?.category : getEditLeadData?.category}</span>
-          </div>}
+          </div>
+        ) : (
+          <div>
+            Category :{" "}
+            <span className="category__style">
+              {flow === "client"
+                ? getClientEditData?.category
+                : getEditLeadData?.category}
+            </span>
+          </div>
+        )}
         {show === true ? (
           <div class="grid mt-2">
             <div class="col-12 md:col-6 lg:col-6">
@@ -307,7 +329,6 @@ const LeadCreationCard = ({ flow, action }) => {
                 label="Company Name*"
                 value={formik.values.CompanyName}
                 onChange={formik.handleChange("CompanyName")}
-
               />
               {formik.touched.CompanyName && formik.errors.CompanyName && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -320,7 +341,6 @@ const LeadCreationCard = ({ flow, action }) => {
                 label="Tax Information Number*"
                 value={formik.values.TaxNumber}
                 onChange={formik.handleChange("TaxNumber")}
-
               />
               {formik.touched.TaxNumber && formik.errors.TaxNumber && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -337,7 +357,6 @@ const LeadCreationCard = ({ flow, action }) => {
               label="First Name*"
               value={formik.values.FirstName}
               onChange={formik.handleChange("FirstName")}
-
             />
             {formik.touched.FirstName && formik.errors.FirstName && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -350,7 +369,6 @@ const LeadCreationCard = ({ flow, action }) => {
               label="Last Name*"
               value={formik.values.LastName}
               onChange={formik.handleChange("LastName")}
-
             />
             {formik.touched.LastName && formik.errors.LastName && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -366,7 +384,6 @@ const LeadCreationCard = ({ flow, action }) => {
               label="Preferred Name*"
               value={formik.values.PreferredName}
               onChange={formik.handleChange("PreferredName")}
-
             />
             {formik.touched.PreferredName && formik.errors.PreferredName && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -380,10 +397,9 @@ const LeadCreationCard = ({ flow, action }) => {
               label="Date of Birth*"
               value={formik.values.DateofBirth}
               onChange={(date) => {
-                console.log(date, "date")
+                console.log(date, "date");
                 return formik.setFieldValue("DateofBirth", date.target.value);
               }}
-
             />
 
             {/* <DatepickerField
@@ -453,7 +469,6 @@ const LeadCreationCard = ({ flow, action }) => {
               label="Email ID*"
               value={formik.values.EmailID}
               onChange={formik.handleChange("EmailID")}
-
             />
             {formik.touched.EmailID && formik.errors.EmailID && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -466,7 +481,6 @@ const LeadCreationCard = ({ flow, action }) => {
               label="Contact Number*"
               value={formik.values.ContactNumber}
               onChange={formik.handleChange("ContactNumber")}
-
             />
             {formik.touched.ContactNumber && formik.errors.ContactNumber && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -481,7 +495,6 @@ const LeadCreationCard = ({ flow, action }) => {
               label="House No / Unit No / Street*"
               value={formik.values.HouseNo}
               onChange={formik.handleChange("HouseNo")}
-
             />
             {formik.touched.HouseNo && formik.errors.HouseNo && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -494,7 +507,6 @@ const LeadCreationCard = ({ flow, action }) => {
               label="Barangay / Subd*"
               value={formik.values.Barangay}
               onChange={formik.handleChange("Barangay")}
-
             />
             {formik.touched.Barangay && formik.errors.Barangay && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -516,7 +528,6 @@ const LeadCreationCard = ({ flow, action }) => {
                 formik.setFieldValue("Country", e.value);
               }}
               optionLabel="label"
-
             />
             {formik.touched.Country && formik.errors.Country && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -534,7 +545,6 @@ const LeadCreationCard = ({ flow, action }) => {
                 formik.setFieldValue("Province", e.value);
               }}
               optionLabel="label"
-
             />
             {formik.touched.Province && formik.errors.Province && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -555,7 +565,6 @@ const LeadCreationCard = ({ flow, action }) => {
                 formik.setFieldValue("City", e.value);
               }}
               optionLabel="label"
-
             />
             {formik.touched.City && formik.errors.City && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">
@@ -568,7 +577,6 @@ const LeadCreationCard = ({ flow, action }) => {
               label="ZIP Code*"
               value={formik.values.ZIPCode}
               onChange={formik.handleChange("ZIPCode")}
-
             />
             {formik.touched.ZIPCode && formik.errors.ZIPCode && (
               <div style={{ fontSize: 12, color: "red" }} className="mt-3">

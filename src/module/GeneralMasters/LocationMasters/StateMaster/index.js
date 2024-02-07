@@ -25,6 +25,7 @@ import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchStateMiddleware, getStateListByIdMiddleware } from "./store/stateMiddleware";
 import { useFormik } from "formik";
+import SvgEditicons from "../../../../assets/icons/SvgEditicons";
 
 const State = () => {
   const menu = useRef(null);
@@ -238,7 +239,7 @@ const State = () => {
                 <div className="action_icons">
 
                   <SvgEyeIcon onClick={() => handleView(rowData)} />
-                  <SvgEditicon onClick={() => handleEdit(rowData)} />
+                  <SvgEditicons onClick={() => handleEdit(rowData)} />
                 </div>
               )}
               header="Action"

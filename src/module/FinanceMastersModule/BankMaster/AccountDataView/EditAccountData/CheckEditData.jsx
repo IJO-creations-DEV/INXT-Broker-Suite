@@ -81,8 +81,10 @@ const CheckEditData = ({  visible, visibleEdit, setVisible, setVisibleEdit, getE
             <Dialog
                 header={"Edit Cheque book"}
                 visible={visibleEdit}
-                style={{ width: "50vw" }}
+                style={{ width: "50vw",boxShadow:"none" }}
                 onHide={() => setVisibleEdit(false)}
+                className='master__flow__common__dialog__container'
+                
             >
                 <div className="grid">
                     <div className="sm-col-12 col-12 md:col-6 lg-col-6">
@@ -141,8 +143,10 @@ const CheckEditData = ({  visible, visibleEdit, setVisible, setVisibleEdit, getE
             <Dialog
                 header={"Add Cheque book"}
                 visible={visible}
-                style={{ width: "50vw" }}
+                style={{ width: "50vw",boxShadow:"none" }}
                 onHide={() => setVisible(false)}
+                className='master__flow__common__dialog__container'
+               
             >
                 <div className="grid">
                     <div className="sm-col-12 col-12 md:col-6 lg-col-6">

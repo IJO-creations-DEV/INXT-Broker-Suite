@@ -157,13 +157,13 @@ const Index = () => {
         </div>
       </div>
 
-      <Card
+      <Card className="mt-3"
 
       //   className="overallcard_container"
       >
         {/* <div className="searchiput_container"> */}
 
-        <div className="header_search_container">
+        <div className="header_search_container ">
           <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 0 }}>
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>

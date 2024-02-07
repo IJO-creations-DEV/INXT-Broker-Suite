@@ -33,6 +33,7 @@ import { useDispatch, useSelector } from "react-redux";
 import EditCommissionPopup from "../EditCommission/EditCommissionPopup";
 import ViewCommissionPopup from "../ViewCommission/ViewCommissionPopup";
 import { Card } from "primereact/card";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const AddCommission = () => {
   const toastRef = useRef(null);
@@ -239,12 +240,20 @@ const AddCommission = () => {
       <CustomToast ref={toastRef} message="Add Commission" />
 
       <div className="col-12 ">
-        <div className="add__sub__title">
+        <div>
+          <span onClick={handleGoBack}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+            Add Commissions
+          </label>
+        </div>
+        {/* <div className="add__sub__title">
           <div onClick={handleGoBack} className="mr-2 mt-1">
             <ArrowLeftIcon />
           </div>
           Add Commissions
-        </div>
+        </div> */}
         <div className="mt-3 mb-3">
           <BreadCrumb
             home={home}

@@ -20,22 +20,25 @@ const initialValue = {
   RepairLimit: "",
 };
 
-const Accessories = ({action}) => {
+const Accessories = ({ action, flow }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleclick = (values) => {
     dispatch(postaccessoriesMiddleware(values));
-    console.log(action,"action2")
-    {action === "accessoriescreate" ?
-    navigate("/agent/createquote/ordersummary"): navigate("/agent/createquote/ordersummaryquote")
-  }
+    console.log(action, "action2");
+    {
+      action === "accessoriescreate"
+        ? flow === "renewal"
+          ? navigate("/agent/renewalquote/ordersummary")
+          : navigate("/agent/createquote/ordersummary")
+        : navigate("/agent/createquote/ordersummaryquote");
+    }
   };
   const handleBackNavigation = () => {
     customHistory.back();
   };
   // const customValidation = (values) => {
-    
 
   //   const errors = {};
   //   if (!values.Aircon) {
@@ -77,24 +80,39 @@ const Accessories = ({action}) => {
   };
   return (
     <div className="overall__create__quote__accessories">
-      <div className="header__title">Leads</div>
-      <div onClick={handleLeadNavigation} className="left__arrow mt-3 cursor-pointer">
+      <div className="header__title">
+        {flow === "renewal" ? "Client" : "Leads"}
+      </div>
+      <div
+        onClick={handleLeadNavigation}
+        className="left__arrow mt-3 cursor-pointer"
+      >
         <SvgLeftArrow />
-        <div className="left__arrow__text">Lead ID : 12345678</div>
+        <div className="left__arrow__text">
+          {flow === "renewal"
+            ? "Carson Darrin / Client ID : 12345678"
+            : "Lead ID : 12345678"}
+        </div>
       </div>
       <form>
         <Card className="mt-4">
-          <div className="table__header">Create Quote</div>
+          <div className="table__header">
+            {flow === "renewal" ? "Renewal Details" : "Create Quote"}
+          </div>
           <div className="sub__heading mt-2 mb-2">Accessories</div>
           <div class="grid mt-2">
             <div class="col-6">
               <InputTextField
                 label="Aircon"
                 // value={formik.values.Aircon}
-                value={action === "accessoriescreate" ? formik.values.Aircon:"350.00"}
+                value={
+                  action === "accessoriescreate"
+                    ? formik.values.Aircon
+                    : "350.00"
+                }
                 onChange={formik.handleChange("Aircon")}
               />
-              
+
               {formik.touched.Aircon && formik.errors.Aircon && (
                 <div style={{ fontSize: 12, color: "red" }} className="mt-3">
                   {formik.errors.Aircon}
@@ -105,7 +123,11 @@ const Accessories = ({action}) => {
               <InputTextField
                 label="Stereo"
                 // value={formik.values.Stereo}
-                value={action === "accessoriescreate" ? formik.values.Stereo:"220.00"}
+                value={
+                  action === "accessoriescreate"
+                    ? formik.values.Stereo
+                    : "220.00"
+                }
                 onChange={formik.handleChange("Stereo")}
               />
               {formik.touched.Stereo && formik.errors.Stereo && (
@@ -121,7 +143,11 @@ const Accessories = ({action}) => {
               <InputTextField
                 label="Mag wheels"
                 // value={formik.values.Magwheels}
-                value={action === "accessoriescreate" ? formik.values.Magwheels:"150.00"}
+                value={
+                  action === "accessoriescreate"
+                    ? formik.values.Magwheels
+                    : "150.00"
+                }
                 onChange={formik.handleChange("Magwheels")}
               />
               {formik.touched.Magwheels && formik.errors.Magwheels && (
@@ -134,7 +160,11 @@ const Accessories = ({action}) => {
               <InputTextField
                 label="Others"
                 // value={formik.values.Others}
-                value={action === "accessoriescreate" ? formik.values.Others:"170.00"}
+                value={
+                  action === "accessoriescreate"
+                    ? formik.values.Others
+                    : "170.00"
+                }
                 onChange={formik.handleChange("Others")}
               />
               {formik.touched.Others && formik.errors.Others && (
@@ -150,7 +180,11 @@ const Accessories = ({action}) => {
               <InputTextField
                 label="Deductible"
                 // value={formik.values.Deductible}
-                value={action === "accessoriescreate" ? formik.values.Deductible:"550.00"}
+                value={
+                  action === "accessoriescreate"
+                    ? formik.values.Deductible
+                    : "550.00"
+                }
                 onChange={formik.handleChange("Deductible")}
               />
               {formik.touched.Deductible && formik.errors.Deductible && (
@@ -163,7 +197,11 @@ const Accessories = ({action}) => {
               <InputTextField
                 label="Towing"
                 // value={formik.values.Towing}
-                value={action === "accessoriescreate" ? formik.values.Towing:"110.00"}
+                value={
+                  action === "accessoriescreate"
+                    ? formik.values.Towing
+                    : "110.00"
+                }
                 onChange={formik.handleChange("Towing")}
               />
               {formik.touched.Towing && formik.errors.Towing && (
@@ -178,8 +216,11 @@ const Accessories = ({action}) => {
               <InputTextField
                 label="Repair Limit"
                 // value={formik.values.RepairLimit}
-                value={action === "accessoriescreate" ? formik.values.RepairLimit:"850.00"}
-                
+                value={
+                  action === "accessoriescreate"
+                    ? formik.values.RepairLimit
+                    : "850.00"
+                }
                 onChange={formik.handleChange("RepairLimit")}
               />
               {formik.touched.RepairLimit && formik.errors.RepairLimit && (

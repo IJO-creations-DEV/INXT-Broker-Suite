@@ -46,8 +46,10 @@ const RequestTable = () => {
   const isEmpty = RequestList.length === 0;
 
   const handleViewer = (columnData) => {
+    console.log("columnData",columnData)
     // dispatch(getAccountDetailsView(columnData));
-    navigate(`/accounts/pettycash/editrequestform/view/${123}`);
+    dispatch(geteditrequestMiddleware(columnData));
+    navigate(`/accounts/pettycash/editrequestform/view/${columnData?.id}`);
   };
   const handleEdit = (rowData) => {
     console.log(rowData?.id, "rowData");

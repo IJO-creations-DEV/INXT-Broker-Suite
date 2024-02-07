@@ -231,8 +231,8 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-3">
               <InputField
                 disabled={action === "view" ? true : false}
-                // value={action === "view" ? roleViewData.roleCode : formik.values.roleCode}
-                value={formik.values.roleCode}
+                value={action === "view" ? roleViewData.roleCode : formik.values.roleCode}
+                
                 onChange={formik.handleChange("roleCode")}
                 // error={formik.errors.roleCode}
                 label="Role Code"
@@ -244,8 +244,8 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-3">
               <InputField
                 disabled={action === "view" ? true : false}
-                value={formik.values.roleName}
-                // value={action === "view" ? roleViewData.roleName : formik.values.roleName}
+                
+                value={action === "view" ? roleViewData.roleName : formik.values.roleName}
                 onChange={formik.handleChange("roleName")}
                 // error={formik.errors.roleName}
                 label="Role Name"
@@ -258,8 +258,8 @@ const AddRole = ({ action }) => {
             <div className="col-12 md:col-3 lg:col-6">
               <InputField
                 disabled={action === "view" ? true : false}
-                value={formik.values.roleDescription}
-                // value={action === "view" ? roleViewData.roleDescription : formik.values.roleDescription}
+                
+                value={action === "view" ? roleViewData.roleDescription : formik.values.roleDescription}
                 onChange={formik.handleChange("roleDescription")}
                 // error={formik.errors.roleDescription}
                 label="Role Description"

@@ -57,7 +57,7 @@ export const getPettyCashSearchList = createAsyncThunk(
         console.log(pettyCashMainReducers, "pettyCashMainReducers")
         try {
             const searchResults = pettyCashList.filter(item => {
-                return item.pettycashname.toLowerCase().includes(textSearch.toLowerCase());
+                return item.pettycashcode.toLowerCase().includes(textSearch.toLowerCase());
             });
             console.log(searchResults, "searchResults")
             return searchResults;

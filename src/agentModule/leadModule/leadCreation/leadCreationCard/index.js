@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { RadioButton } from "primereact/radiobutton";
 import InputTextField from "../../../component/inputText";
@@ -7,11 +7,12 @@ import { Button } from "primereact/button";
 import DatepickerField from "../../../component/datePicker";
 import CustomToast from "../../../../components/Toast";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { postCreateleadMiddleware } from "../../Store/leadMiddleware";
+import { useDispatch, useSelector } from "react-redux";
+import { patchLeadEditMiddleWare, postCreateleadMiddleware } from "../../Store/leadMiddleware";
 import { useFormik } from "formik";
 import { CountryOptions, CityOptions, StateOptions } from "../mock";
 import countriesData from "../mock";
+import { patchClientEditMiddleWare } from "../../../quoteModule/clientListing/store/clientsMiddleware";
 
 const initialValue = {
   CompanyName: "",
@@ -27,12 +28,22 @@ const initialValue = {
   Province: "",
   City: "",
   ZIPCode: "",
-  DateofBirth: "",
+  DateofBirth: new Date(),
   category: "Individual",
   gender: "Male"
 };
 
-const LeadCreationCard = ({action}) => {
+const LeadCreationCard = ({ flow, action }) => {
+  console.log(flow, action, "datata");
+  const { loading, leadtabledata, getEditLeadData, getClientEditData } = useSelector(({ leadReducers, clientsReducers }) => {
+    return {
+      loading: leadReducers?.loading,
+      leadtabledata: leadReducers?.leadtabledata,
+      getEditLeadData: leadReducers?.getEditLeadData,
+      getClientEditData: clientsReducers?.getClientEditData
+    };
+  });
+  console.log(getClientEditData, "getClientEditData");
   // const [ingredient, setIngredient] = useState("");
   const [show, setShow] = useState(false);
   const toastRef = useRef(null);
@@ -40,23 +51,46 @@ const LeadCreationCard = ({action}) => {
   const dispatch = useDispatch();
 
   const handleclick = (values) => {
-    console.log(values,"values");
-    dispatch(postCreateleadMiddleware(values));
-    toastRef.current.showToast();
-    setTimeout(() => {
-      navigate(`/agent/createquote/policydetails/createquote/${12}`);
-    }, 2000);
+    if (action === "post") {
+      const valueWithId = {
+        ...values,
+        id: leadtabledata?.length + 1,
+      };
+      console.log(values, "values");
+      dispatch(postCreateleadMiddleware(valueWithId));
+      toastRef.current.showToast();
+      setTimeout(() => {
+        navigate(`/agent/createquote/policydetails/createquote/${12}`);
+      }, 2000);
+    }
+    if (action === "edit") {
+
+      if (flow === "client") {
+        dispatch(patchClientEditMiddleWare(values))
+        toastRef.current.showToast();
+        setTimeout(() => {
+          navigate(`/agent/clientlisting`);
+        }, 2000);
+      }
+      else {
+        dispatch(patchLeadEditMiddleWare(values));
+        toastRef.current.showToast();
+        setTimeout(() => {
+          navigate(`/agent/leadlisting`);
+        }, 2000);
+      }
+    }
   };
   const customValidation = (values) => {
     const errors = {}
     if (values.category === "Company") {
-    if (!values.CompanyName) {
-      errors.CompanyName = "This field is required";
+      if (!values.CompanyName) {
+        errors.CompanyName = "This field is required";
+      }
+      if (!values.TaxNumber) {
+        errors.TaxNumber = "This field is required";
+      }
     }
-    if (!values.TaxNumber) {
-      errors.TaxNumber = "This field is required";
-    }
-  }
     if (!values.FirstName) {
       errors.FirstName = "This field is required";
     }
@@ -130,45 +164,141 @@ const LeadCreationCard = ({action}) => {
     label: country,
   }));
 
+  const [countryDataOption, setCountryDataOption] = useState([])
+  const [cityDataOption, setCityDataOption] = useState([])
+  const [stateDataOption, setStateDataOption] = useState([])
+  const setFormikValues = () => {
+    const CountryData = getEditLeadData?.Country;
+    const StateData = getEditLeadData?.Province;
+    const CityData = getEditLeadData?.City
+    const updatedValues = {
+      id: getEditLeadData?.id,
+      TaxNumber: getEditLeadData?.TaxNumber,
+      CompanyName: getEditLeadData?.CompanyName,
+      FirstName: getEditLeadData?.FirstName,
+      LastName: getEditLeadData?.LastName,
+      PreferredName: getEditLeadData?.PreferredName,
+      EmailID: getEditLeadData?.EmailID,
+      ContactNumber: getEditLeadData?.ContactNumber,
+      HouseNo: getEditLeadData?.HouseNo,
+      Barangay: getEditLeadData?.Barangay,
+      Country: CountryData,
+      Province: StateData,
+      City: CityData,
+      ZIPCode: getEditLeadData?.ZIPCode,
+      DateofBirth: new Date(getEditLeadData?.DateofBirth),
+      category: getEditLeadData?.category,
+      gender: getEditLeadData?.gender,
+    };
+    if (CountryData) {
+      setCountryDataOption([{ label: CountryData, value: CountryData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if (CityData) {
+      setCityDataOption([{ label: CityData, value: CityData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if (StateData) {
+      setStateDataOption([{ label: StateData, value: StateData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
+
+  const setFormikValuesClient = () => {
+    const CountryData = getClientEditData?.Country;
+    const StateData = getClientEditData?.Province;
+    const CityData = getClientEditData?.City
+    const updatedValues = {
+      id: getClientEditData?.id,
+      TaxNumber: getClientEditData?.TaxNumber,
+      CompanyName: getClientEditData?.CompanyName,
+      FirstName: getClientEditData?.FirstName,
+      LastName: getClientEditData?.LastName,
+      PreferredName: getClientEditData?.PreferredName,
+      EmailID: getClientEditData?.EmailID,
+      ContactNumber: getClientEditData?.ContactNumber,
+      HouseNo: getClientEditData?.HouseNo,
+      Barangay: getClientEditData?.Barangay,
+      Country: CountryData,
+      Province: StateData,
+      City: CityData,
+      ZIPCode: getClientEditData?.ZIPCode,
+      DateofBirth: new Date(getClientEditData?.DateofBirth),
+      category: getClientEditData?.category,
+      gender: getClientEditData?.gender,
+
+    };
+    if (CountryData) {
+      setCountryDataOption([{ label: CountryData, value: CountryData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if (CityData) {
+      setCityDataOption([{ label: CityData, value: CityData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    if (StateData) {
+      setStateDataOption([{ label: StateData, value: StateData }])
+      formik.setValues({ ...formik.values, ...updatedValues });
+    }
+    formik.setValues({ ...formik.values, ...updatedValues });
+  };
+
+  console.log(formik.values.id, "idd");
+  useEffect(() => {
+    if (action === "edit") {
+      setFormikValues();
+    }
+    if (flow === "client") {
+      setFormikValuesClient()
+    }
+  }, [getEditLeadData, getClientEditData]);
+
   return (
     <div className="card_overall_container mt-4">
       <CustomToast ref={toastRef} message="Lead Created Successfully" />
       {/* <form onSubmit={formik.handleSubmit}> */}
-      <Card title="Create Lead">
-        <div className="subheadinglabel_txt mt-3">Select Category</div>
-        <div className="flex flex-wrap gap-3 mt-3">
-          <div className="flex align-items-center">
-            <RadioButton
-              inputId="individual"
-              name="category"
-              value="Individual"
-              onChange={() => {
-                formik.setFieldValue("category", "Individual")
-                setShow(false)
-              }}
-              checked={formik.values.category === "Individual"}
+      <Card title={action === "post" ? "Create Lead" : flow === "client" ? "Edit Client" : "Edit Lead"}>
+        {action === "post" ?
+          <div>
+            <div className="subheadinglabel_txt mt-3">Select Category</div>
+            <div className="flex flex-wrap gap-3 mt-3">
 
-            />
-            <label htmlFor="ingredient1" className="labeltxt_container">
-              Individual
-            </label>
-          </div>
-          <div className="flex align-items-center">
-            <RadioButton
-              inputId="company"
-              name="category"
-              value="Company"
-              onChange={() => {
-                formik.setFieldValue("category", "Company");
-                setShow(true)
-              }}
-              checked={formik.values.category === "Company"}
-            />
-            <label htmlFor="ingredient2" className="labeltxt_container">
-              Company
-            </label>
-          </div>
-        </div>
+              <div className="flex align-items-center">
+                <RadioButton
+                  inputId="individual"
+                  name="category"
+                  value="Individual"
+                  onChange={() => {
+                    formik.setFieldValue("category", "Individual")
+                    setShow(false)
+                  }}
+                  checked={formik.values.category === "Individual"}
+
+                />
+                <label htmlFor="ingredient1" className="labeltxt_container">
+                  Individual
+                </label>
+              </div>
+              <div className="flex align-items-center">
+                <RadioButton
+                  inputId="company"
+                  name="category"
+                  value="Company"
+                  onChange={() => {
+                    formik.setFieldValue("category", "Company");
+                    setShow(true)
+                  }}
+                  checked={formik.values.category === "Company"}
+                />
+                <label htmlFor="ingredient2" className="labeltxt_container">
+                  Company
+                </label>
+              </div>
+            </div>
+          </div> : <div>
+            Category : <span className="category__style">{flow === "client" ? getClientEditData?.category : getEditLeadData?.category}</span>
+          </div>}
         {show === true ? (
           <div class="grid mt-2">
             <div class="col-12 md:col-6 lg:col-6">
@@ -245,7 +375,7 @@ const LeadCreationCard = ({action}) => {
           </div>
           <div class="col-12 md:col-6 lg:col-6">
             {/* <InputTextField label="Date of Birth" />  */}
-             <DatepickerField
+            <DatepickerField
               label="Date of Birth*"
               value={formik.values.DateofBirth}
               onChange={(date) => {
@@ -255,7 +385,7 @@ const LeadCreationCard = ({action}) => {
 
             />
 
-{/* <DatepickerField
+            {/* <DatepickerField
     label="Date of Birth"
     value={formik.values.DateofBirth}
     maxDate={new Date(2005, 11, 31)}
@@ -290,7 +420,7 @@ const LeadCreationCard = ({action}) => {
 
         <div className="subheadinglabel_txt mt-3">Select Gender</div>
         <div className="flex flex-wrap gap-3  mt-3">
-          <div className="flex align-items-center">
+          <div className="flex align-items-center gap-2 checkbox_container">
             <RadioButton
               inputId="male"
               name="gender"
@@ -302,7 +432,7 @@ const LeadCreationCard = ({action}) => {
               Male
             </label>
           </div>
-          <div className="flex align-items-center">
+          <div className="flex align-items-center gap-2 checkbox_container">
             <RadioButton
               inputId="female"
               name="gender"
@@ -379,7 +509,7 @@ const LeadCreationCard = ({action}) => {
             <DropdownField
               label="Country*"
               value={formik.values.Country}
-              options={Country}
+              options={action === "post" ? Country : countryDataOption}
               onChange={(e) => {
                 console.log(e.value);
                 formik.setFieldValue("Country", e.value);
@@ -397,7 +527,7 @@ const LeadCreationCard = ({action}) => {
             <DropdownField
               label="Province*"
               value={formik.values.Province}
-              options={State}
+              options={action === "post" ? State : stateDataOption}
               onChange={(e) => {
                 console.log(e.value);
                 formik.setFieldValue("Province", e.value);
@@ -418,7 +548,7 @@ const LeadCreationCard = ({action}) => {
             <DropdownField
               label="City*"
               value={formik.values.City}
-              options={City}
+              options={action === "post" ? City : cityDataOption}
               onChange={(e) => {
                 console.log(e.value);
                 formik.setFieldValue("City", e.value);
@@ -454,12 +584,12 @@ const LeadCreationCard = ({action}) => {
             text
             className="btn_lable_container"
           /> */}
-          <div className="btn_lable_save_container">
+          <div className="btn_lable_save_container flex justify-content-end mt-2">
             <Button
               onClick={() => {
                 formik.handleSubmit();
               }}
-              label="Save & Continue"
+              label={action === "post" ? "Save & Continue" : "Update"}
             />
           </div>
         </div>

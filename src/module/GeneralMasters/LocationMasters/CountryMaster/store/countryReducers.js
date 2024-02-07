@@ -7,10 +7,10 @@ const initialState = {
   countryTableList: [
     {
       id: 1,
-      "CountryName": "Philippines",
+      "CountryName": "PHILIPPINES",
       "ISOCode": "PHL",
       "PhoneCode": "+63",
-      "Modifiedby": "John",
+      "Modifiedby": "JOHN",
       "ModifiedOn": "2024-01-12",
       Description: "Test Purpose"
     },

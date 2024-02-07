@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getClientTableMiddleware, getClientTableSearchListMiddleware,getPaymentSearchDataMiddleWare } from "./clientsMiddleware";
+import { getClientEditMiddleWare, getClientTableMiddleware, getClientTableSearchListMiddleware, getPaymentSearchDataMiddleWare, patchClientEditMiddleWare } from "./clientsMiddleware";
 
 
 const initialState = {
@@ -8,133 +8,59 @@ const initialState = {
     clientListTable: [
         {
             id: "1",
-            Name: "Sophie Clark",
-            Category: "Individual",
-            Date: "2024-01-26",
+            CompanyName: "Zealye",
+            TaxNumber: "123",
+            FirstName: "John Clark",
+            LastName: "john",
+            PreferredName: "tommy",
+            EmailID: "Daniel@gmail.com",
+            ContactNumber: "9736355562",
+            HouseNo: "21",
+            Barangay: "Philiphines",
+            Country: "Philiphines",
+            Province: "Philiphines",
+            City: "Philiphines",
+            ZIPCode: "91",
+            DateofBirth: "2024-01-26",
+            category: "Individual",
+            gender: "Male",
             Quotes: "01",
-            LeadID: "123456",
+            LeadID: "877",
             type: "motor",
-            ProductDescription:"Motor Comprensive",
+            ProductDescription: "Motor Comprensive",
             // Svg: <SvgMotorTable />,
         },
         {
             id: "2",
-            Name: "John Smith",
-            Category: "Individual",
-            Date: "2024-02-10",
-            Quotes: "02",
-            LeadID: "126",
-            type: "travel",
-            ProductDescription:"Motor Comprensive",
-            // Svg: <SvgTravlesTable />,
-        },
-        {
-            id: "3",
-            Name: "Emma Davis",
-            Category: "Individual",
-            Date: "2024-03-15",
-            Quotes: "02",
-            LeadID: "1456",
-            type: "home",
-            ProductDescription:"Motor Comprensive",
-            // Svg: <SvgHomeTable />,
-        },
-        {
-            id: "4",
-            Name: "Michael Johnson",
-            Category: "Individual",
-            Date: "2024-04-20",
-            Quotes: "03",
-            LeadID: "1236",
-            type: 'travel',
-            ProductDescription:"Motor Comprensive",
-            // Svg: <SvgTravlesTable />,
-        },
-        {
-            id: "5",
-            Name: "Olivia Turner",
-            Category: "Individual",
-            Date: "2024-05-25",
-            Quotes: "04",
-            LeadID: "1456",
-            type: 'motor',
-            ProductDescription:"Motor Comprensive",
-            // Svg: <SvgMotorTable />,
-        },
-        {
-            id: "6",
-            Name: "David Rodriguez",
-            Category: "Company",
-            Date: "2024-06-30",
-            Quotes: "05",
-            LeadID: "123116",
-            type: 'home',
-            ProductDescription:"Motor Comprensive",
-            // Svg: <SvgHomeTable />,
-        },
-        {
-            id: "7",
-            Name: "Ava Williams",
-            Category: "Company",
-            Date: "2024-07-05",
-            Quotes: "06",
-            LeadID: "123411",
-            type: 'travel',
-            ProductDescription:"Motor Comprensive",
-            // Svg: <SvgTravlesTable />,
-        },
-        {
-            id: "8",
-            Name: "Daniel Brown",
-            Category: "Company",
-            Date: "2024-08-10",
+            CompanyName: "Zealye",
+            TaxNumber: "123",
+            FirstName: "Sophie Clark",
+            LastName: "john",
+            PreferredName: "tommy",
+            EmailID: "Daniel@gmail.com",
+            ContactNumber: "9736355562",
+            HouseNo: "21",
+            Barangay: "Philiphines",
+            Country: "Philiphines",
+            Province: "Philiphines",
+            City: "Philiphines",
+            ZIPCode: "91",
+            DateofBirth: "2024-01-26",
+            category: "Company",
+            gender: "Male",
             Quotes: "01",
-            LeadID: "1234000",
-            type: 'travel',
-            ProductDescription:"Motor Comprensive",
-
-            // Svg: <SvgMotorTable />,
-        },
-        {
-            id: "9",
-            Name: "Sophia Carter",
-            Category: "Individual",
-            Date: "2024-09-15",
-            Quotes: "02",
-            LeadID: "1234555",
-            type: 'home',
-            ProductDescription:"Motor Comprensive",
-
-            // Svg: <SvgHomeTable />,
-        },
-        {
-            id: "10",
-            Name: "Ryan Walker",
-            Category: "Company",
-            Date: "2024-10-20",
-            Quotes: "03",
-            LeadID: "1234226",
-            type: 'travel',
-            ProductDescription:"Motor Comprensive",
-
+            LeadID: "877",
+            type: "motor",
+            ProductDescription: "Motor Comprensive",
             // Svg: <SvgTravlesTable />,
         },
-        {
-            id: "11",
-            Name: "Ella Adams",
-            Category: "Company",
-            Date: "2024-11-25",
-            Quotes: "04",
-            LeadID: "1234000",
-            type: 'motor',
-            ProductDescription:"Motor Comprensive"
+      
 
-            // Svg: <SvgMotorTable />,
-        },
     ],
     leadtabledata: [],
     LeadEditdata: {},
-    ClientTableSearchList:[]
+    ClientTableSearchList: [],
+    getClientEditData: {}
 };
 const clientReducer = createSlice({
     name: "clientReducer",
@@ -184,17 +110,59 @@ const clientReducer = createSlice({
         );
         builder.addCase(getPaymentSearchDataMiddleWare.pending, (state) => {
             state.loading = true;
-          });
-          builder.addCase(getPaymentSearchDataMiddleWare.fulfilled, (state, action) => {
+        });
+        builder.addCase(getPaymentSearchDataMiddleWare.fulfilled, (state, action) => {
             state.loading = false;
             state.paymentSearchList = action.payload;
-          });
-          builder.addCase(getPaymentSearchDataMiddleWare.rejected, (state, action) => {
+        });
+        builder.addCase(getPaymentSearchDataMiddleWare.rejected, (state, action) => {
             state.loading = false;
-      
+
             state.paymentSearchList = {};
             state.error = typeof action.payload === "string" ? action.payload : "";
+        });
+
+
+        builder.addCase(getClientEditMiddleWare.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(getClientEditMiddleWare.fulfilled, (state, action) => {
+            state.loading = false;
+            state.getClientEditData = action.payload;
+        });
+        builder.addCase(getClientEditMiddleWare.rejected, (state, action) => {
+            state.loading = false;
+
+            state.getClientEditData = {};
+            state.error = typeof action.payload === "string" ? action.payload : "";
+        });
+
+        builder.addCase(patchClientEditMiddleWare.pending, (state) => {
+            state.loading = true;
           });
+          builder.addCase(
+            patchClientEditMiddleWare.fulfilled,
+            (state, action) => {
+              state.loading = false;
+              const updatedIndex = state.clientListTable.findIndex(
+                (item) => item.id === action.payload.id
+              );
+              if (updatedIndex !== -1) {
+                const updatedCurrencyList = [...state.clientListTable];
+                updatedCurrencyList[updatedIndex] = action.payload;
+                state.clientListTable = updatedCurrencyList;
+              } else {
+                state.clientListTable = [...state.clientListTable, action.payload];
+              }
+            }
+          );
+          builder.addCase(
+            patchClientEditMiddleWare.rejected,
+            (state, action) => {
+              state.loading = false;
+              state.error = typeof action.payload === "string" ? action.payload : "";
+            }
+          );
     }
 
 

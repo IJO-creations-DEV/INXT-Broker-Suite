@@ -15,10 +15,13 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
+import { getLeadEditDataMiddleWare, getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const LeadListingTravelTable = ({ paymentSearchList }) => {
+const LeadListingTravelTable = ({ leadtabledata, paymentSearchList }) => {
+  const companyData = leadtabledata?.filter(item => item.Type === "Travel");
+  const searchMiddleWareData = paymentSearchList?.filter(val => val?.Type === "Travel");
+
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
@@ -205,7 +208,7 @@ const LeadListingTravelTable = ({ paymentSearchList }) => {
       <div className="name__box__container">
         <div><SvgTravlesTable /></div>
         <div>
-          <div className="name__text">{rowData.Name}</div>
+          <div className="name__text">{rowData.FirstName}</div>
           <div className="lead__id__text">Lead Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -213,11 +216,11 @@ const LeadListingTravelTable = ({ paymentSearchList }) => {
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.Category}</div>;
+    return <div className="category__text">{rowData.category}</div>;
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date}</div>;
+    return <div className="date__text">{rowData.DateofBirth}</div>;
   };
 
   const renderQuotes = (rowData) => {
@@ -228,7 +231,8 @@ const LeadListingTravelTable = ({ paymentSearchList }) => {
     navigate("/agent/quotelisting");
   };
 
-  const handleEdit = () => {
+  const handleEdit = (rowData) => {
+    dispatch(getLeadEditDataMiddleWare(rowData))
     navigate("/agent/leadedit");
   };
 
@@ -306,7 +310,7 @@ const LeadListingTravelTable = ({ paymentSearchList }) => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search ? paymentSearchList : TableData}
+          value={search ? searchMiddleWareData : companyData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -325,7 +329,7 @@ const LeadListingTravelTable = ({ paymentSearchList }) => {
             body={(rowData) => (
               <Checkbox
                 checked={selectedProducts.includes(rowData)}
-                onChange={() => {}}
+                onChange={() => { }}
               />
             )}
             headerStyle={headerStyle}

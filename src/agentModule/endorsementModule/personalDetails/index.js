@@ -27,15 +27,46 @@ const PersonalDetails = () => {
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const { state } = useLocation();
-  console.log(state, "total value");
-  const handleFormSubmit = (values) => {
-    setIsFormSubmitted(true);
-    toastRef.current.showToast();
-
-    setTimeout(() => {
-      navigate(`/agent/endorsement/paymenterror/${123}`);
-    }, 2000);
-    console.log(values, "find datas in formik");
+  console.log(state?.types, "find total value");
+  const handleFormSubmit = (values, index) => {
+    // setIsFormSubmitted(true);
+    if (index === 1) {
+      if (state?.types.length - 1 === index) {
+        console.log(state?.types.length - 1 === index, "find lenth");
+        toastRef.current.showToast();
+        setTimeout(() => {
+          navigate(`/agent/endorsement/paymenterror/${123}`);
+        }, 2000);
+      }
+      console.log(values, "find PersonalDetailsChange");
+    } else if (index === 2) {
+      if (state?.types.length - 1 === index) {
+        console.log(state?.types.length - 1 === index, "find lenth");
+        toastRef.current.showToast();
+        setTimeout(() => {
+          navigate(`/agent/endorsement/paymenterror/${123}`);
+        }, 2000);
+      }
+      console.log(values, "find MotorDetailsChange");
+    } else if (index === 3) {
+      if (state?.types.length - 1 === index) {
+        console.log(state?.types.length - 1 === index, "find lenth");
+        toastRef.current.showToast();
+        setTimeout(() => {
+          navigate(`/agent/endorsement/paymenterror/${123}`);
+        }, 2000);
+      }
+      console.log(values, "find CoverageChange");
+    } else if (index === 4) {
+      if (state?.types.length - 1 === index) {
+        console.log(state?.types.length - 1 === index, "find lenth");
+        toastRef.current.showToast();
+        setTimeout(() => {
+          navigate(`/agent/endorsement/paymenterror/${123}`);
+        }, 2000);
+      }
+      console.log(values, "find PolicyExtend");
+    }
   };
   const handleClientViewNavigation = () => {
     navigate(`/agent/clientview/${123}`);

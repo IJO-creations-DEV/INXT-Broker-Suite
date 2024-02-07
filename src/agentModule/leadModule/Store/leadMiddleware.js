@@ -3,7 +3,9 @@ import {
   POST_CREATELEAD_DATA,
   GET_LEADTABLE_DATA,
   PATCH_LEADEDIT_DATA,
-  GET_PAYMENT_SEARCH 
+  GET_PAYMENT_SEARCH,
+  GET_LEAD_EDIT_DATA,
+  GET_LEAD_LIST_DATA
 } from "../../../redux/actionTypes";
 
 export const getleadtableMiddleware = createAsyncThunk(
@@ -13,20 +15,58 @@ export const getleadtableMiddleware = createAsyncThunk(
       // Simulate an API call if needed
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       // return filteredData[0];
+
     } catch (error) {
       return rejectWithValue(error?.response?.data?.error?.message);
     }
   }
 );
+export const getLeadDataMiddleware = createAsyncThunk(
+  GET_LEAD_LIST_DATA,
+  async () => {
+    try {
+
+    } catch (error) {
+
+    }
+  })
 
 export const postCreateleadMiddleware = createAsyncThunk(
   POST_CREATELEAD_DATA,
   async (payload, { rejectWithValue, getState }) => {
     console.log(payload, "find add datas in midd");
+    const category = payload.type === 'individual' ? 'Individual' : 'Company';
+    const randomQuotesNumber = Math.floor(Math.random() * 10);
+
+    const data = {
+      id: payload?.id,
+      CompanyName: payload?.CompanyName,
+      TaxNumber: payload?.TaxNumber,
+      FirstName: payload?.FirstName,
+      LastName: payload?.LastName,
+      PreferredName: payload?.PreferredName,
+      EmailID: payload?.EmailID,
+      ContactNumber: payload?.ContactNumber,
+      HouseNo: payload?.HouseNo,
+      Barangay: payload?.Barangay,
+      Country: payload?.Country,
+      Province: payload?.Province,
+      City: payload?.City,
+      ZIPCode: payload?.ZIPCode,
+      // DateofBirth: payload?.DateofBirth,
+      DateofBirth: payload?.DateofBirth.toLocaleDateString("en-US", {
+        month: "numeric",
+        day: "2-digit",
+        year: "numeric",
+      }),
+      Quotes: randomQuotesNumber,
+      category: category,
+      gender: "Male"
+    }
 
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      return payload;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -37,28 +77,35 @@ export const patchLeadEditMiddleWare = createAsyncThunk(
   PATCH_LEADEDIT_DATA,
   async (payload, { rejectWithValue, getState }) => {
     console.log(payload, "find edit load");
-    //   const { insuranceVehicleReducers } = getState();
-    //   const { InsuranceVehicleList } = insuranceVehicleReducers;
-    //   console.log(InsuranceVehicleList, "find original data");
-    //   const updatedData = InsuranceVehicleList?.map((item) => {
-    //     if (parseInt(item.id) === parseInt(payload?.id)) {
-    //       return {
-    //         ...item,
-    //         vehicleCode: payload?.vehicleCode,
-    //         vehicleName: payload?.vehicleName,
-    //         vehicleVariant: payload?.vehicleVariant,
-    //         vehicleModel: payload?.vehicleModel,
-    //         vehicleBrand: payload?.vehicleBrand,
-    //         seatingCapacity: payload?.seatingCapacity,
-    //       };
-    //     }
-    //     return item;
-    //   });
-    //   console.log(updatedData, "find updatedData");
+    const data = {
+      id: payload?.id,
+      CompanyName: payload?.CompanyName,
+      TaxNumber: payload?.TaxNumber,
+      FirstName: payload?.FirstName,
+      LastName: payload?.LastName,
+      PreferredName: payload?.PreferredName,
+      EmailID: payload?.EmailID,
+      ContactNumber: payload?.ContactNumber,
+      HouseNo: payload?.HouseNo,
+      Barangay: payload?.Barangay,
+      Country: payload?.Country,
+      Province: payload?.Province,
+      City: payload?.City,
+      Quotes: "123",
+      ZIPCode: payload?.ZIPCode,
+      // DateofBirth: payload?.DateofBirth,
+      DateofBirth: payload?.DateofBirth.toLocaleDateString("en-US", {
+        month: "numeric",
+        day: "2-digit",
+        year: "numeric",
+      }),
+      category: "Individual",
+      gender: "Male"
+    }
 
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
-      // return updatedData;
+      return data;
     } catch (error) {
       return rejectWithValue(error?.response.data.error.message);
     }
@@ -67,36 +114,51 @@ export const patchLeadEditMiddleWare = createAsyncThunk(
 export const getPaymentSearchDataMiddleWare = createAsyncThunk(
   GET_PAYMENT_SEARCH,
   async ({ field, value }, { rejectWithValue, getState }) => {
-      console.log(field, value, "data find");
-      const { leadReducers } = getState();
-      const { leadtabledata } = leadReducers;
-      console.log(leadReducers,"leadReducers");
-      
-      function filterPaymentsByField(data, field, value) {
-          const lowercasedValue = value.toLowerCase();
-          const outputData = data.filter(item => {
+    console.log(field, value, "data find");
+    const { leadReducers } = getState();
+    const { leadtabledata } = leadReducers;
+    console.log(leadReducers, "leadReducers");
 
-              if (field === 'Name') {
-                  return item.Name.toLowerCase().includes(lowercasedValue);
-              } else if (field === 'LeadID') {
-                  return item.LeadID.toLowerCase().includes(lowercasedValue);
-              }
-              return (
-                  (item.Name.toLowerCase().includes(lowercasedValue) ||
-                      item.LeadID.toLowerCase().includes(lowercasedValue))
+    function filterPaymentsByField(data, field, value) {
+      const lowercasedValue = value.toLowerCase();
+      const outputData = data.filter(item => {
 
-              );
+        if (field === 'Name') {
+          return item.FirstName.toLowerCase().includes(lowercasedValue);
+        } else if (field === 'LeadID') {
+          return item.LeadID.toLowerCase().includes(lowercasedValue);
+        }
+        return (
+          (item.FirstName.toLowerCase().includes(lowercasedValue) ||
+            item.LeadID.toLowerCase().includes(lowercasedValue))
+
+        );
 
 
-          });
-          return outputData
-      }
-      try {
-          const filteredPayments = filterPaymentsByField(leadtabledata, field, value);
-          console.log(filteredPayments, "filteredPayments");
-          return filteredPayments;
-      } catch (error) {
-          return rejectWithValue(error?.response?.data?.error?.message);
-      }
+      });
+      return outputData
+    }
+    try {
+      const filteredPayments = filterPaymentsByField(leadtabledata, field, value);
+      console.log(filteredPayments, "filteredPayments");
+      return filteredPayments;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.error?.message);
+    }
+  }
+);
+
+
+
+export const getLeadEditDataMiddleWare = createAsyncThunk(
+  GET_LEAD_EDIT_DATA,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
+    try {
+      return payload
+
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.error?.message);
+    }
   }
 );

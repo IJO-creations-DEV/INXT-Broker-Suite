@@ -15,10 +15,13 @@ import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
+import { getLeadEditDataMiddleWare, getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const LeadListingMotorTable = ({ paymentSearchList }) => {
+const LeadListingMotorTable = ({ leadtabledata, paymentSearchList }) => {
+  const companyData = leadtabledata?.filter(item => item.Type === "Motor");
+  const searchMiddleWareData = paymentSearchList?.filter(val => val?.Type === "Motor");
+
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const navigate = useNavigate();
@@ -42,108 +45,108 @@ const LeadListingMotorTable = ({ paymentSearchList }) => {
     }
   }, [search]);
 
-  const TableData = [
-    {
-      id: "1",
-      Name: "Sophie Clark",
-      Category: "Individual",
-      Date: "2024-01-26",
-      Quotes: "01",
-      LeadID: "123456",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11001",
-    },
-    {
-      id: "2",
-      Name: "John Smith",
-      Category: "Individual",
-      Date: "2024-02-10",
-      Quotes: "02",
-      LeadID: "126",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11002",
-    },
-    {
-      id: "3",
-      Name: "Emma Davis",
-      Category: "Individual",
-      Date: "2024-03-15",
-      Quotes: "02",
-      LeadID: "1456",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11003",
-    },
-    {
-      id: "4",
-      Name: "Michael Johnson",
-      Category: "Company",
-      Date: "2024-04-20",
-      Quotes: "03",
-      LeadID: "1236",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11004",
-    },
-    {
-      id: "5",
-      Name: "Olivia Turner",
-      Category: "Individual",
-      Date: "2024-05-25",
-      Quotes: "04",
-      LeadID: "1456",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11005",
-    },
-    {
-      id: "6",
-      Name: "David Rodriguez",
-      Category: "Company",
-      Date: "2024-06-30",
-      Quotes: "05",
-      LeadID: "123116",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11006",
-    },
-    {
-      id: "7",
-      Name: "Ava Williams",
-      Category: "Individual",
-      Date: "2024-07-05",
-      Quotes: "06",
-      LeadID: "123411",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11007",
-    },
-    {
-      id: "8",
-      Name: "Daniel Brown",
-      Category: "Company",
-      Date: "2024-08-10",
-      Quotes: "01",
-      LeadID: "1234000",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11008",
-    },
-    {
-      id: "9",
-      Name: "Sophia Carter",
-      Category: "Individual",
-      Date: "2024-09-15",
-      Quotes: "02",
-      LeadID: "1234555",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11009",
-    },
-    {
-      id: "10",
-      Name: "Ryan Walker",
-      Category: "Company",
-      Date: "2024-10-20",
-      Quotes: "03",
-      LeadID: "1234226",
-      Svg: <SvgMotorTable />,
-      dateSortField: "11010",
-    },
-  ];
+  // const TableData = [
+  //   {
+  //     id: "1",
+  //     Name: "Sophie Clark",
+  //     Category: "Individual",
+  //     Date: "2024-01-26",
+  //     Quotes: "01",
+  //     LeadID: "123456",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11001",
+  //   },
+  //   {
+  //     id: "2",
+  //     Name: "John Smith",
+  //     Category: "Individual",
+  //     Date: "2024-02-10",
+  //     Quotes: "02",
+  //     LeadID: "126",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11002",
+  //   },
+  //   {
+  //     id: "3",
+  //     Name: "Emma Davis",
+  //     Category: "Individual",
+  //     Date: "2024-03-15",
+  //     Quotes: "02",
+  //     LeadID: "1456",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11003",
+  //   },
+  //   {
+  //     id: "4",
+  //     Name: "Michael Johnson",
+  //     Category: "Company",
+  //     Date: "2024-04-20",
+  //     Quotes: "03",
+  //     LeadID: "1236",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11004",
+  //   },
+  //   {
+  //     id: "5",
+  //     Name: "Olivia Turner",
+  //     Category: "Individual",
+  //     Date: "2024-05-25",
+  //     Quotes: "04",
+  //     LeadID: "1456",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11005",
+  //   },
+  //   {
+  //     id: "6",
+  //     Name: "David Rodriguez",
+  //     Category: "Company",
+  //     Date: "2024-06-30",
+  //     Quotes: "05",
+  //     LeadID: "123116",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11006",
+  //   },
+  //   {
+  //     id: "7",
+  //     Name: "Ava Williams",
+  //     Category: "Individual",
+  //     Date: "2024-07-05",
+  //     Quotes: "06",
+  //     LeadID: "123411",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11007",
+  //   },
+  //   {
+  //     id: "8",
+  //     Name: "Daniel Brown",
+  //     Category: "Company",
+  //     Date: "2024-08-10",
+  //     Quotes: "01",
+  //     LeadID: "1234000",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11008",
+  //   },
+  //   {
+  //     id: "9",
+  //     Name: "Sophia Carter",
+  //     Category: "Individual",
+  //     Date: "2024-09-15",
+  //     Quotes: "02",
+  //     LeadID: "1234555",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11009",
+  //   },
+  //   {
+  //     id: "10",
+  //     Name: "Ryan Walker",
+  //     Category: "Company",
+  //     Date: "2024-10-20",
+  //     Quotes: "03",
+  //     LeadID: "1234226",
+  //     Svg: <SvgMotorTable />,
+  //     dateSortField: "11010",
+  //   },
+  // ];
 
   const template2 = {
     layout:
@@ -206,7 +209,7 @@ const LeadListingMotorTable = ({ paymentSearchList }) => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.Name}</div>
+          <div className="name__text">{rowData.FirstName}</div>
           <div className="lead__id__text">Lead Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -214,11 +217,11 @@ const LeadListingMotorTable = ({ paymentSearchList }) => {
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.Category}</div>;
+    return <div className="category__text">{rowData.category}</div>;
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date}</div>;
+    return <div className="date__text">{rowData.DateofBirth}</div>;
   };
 
   const renderQuotes = (rowData) => {
@@ -229,7 +232,8 @@ const LeadListingMotorTable = ({ paymentSearchList }) => {
     navigate("/agent/quotelisting");
   };
 
-  const handleEdit = () => {
+  const handleEdit = (rowData) => {
+    dispatch(getLeadEditDataMiddleWare(rowData))
     navigate("/agent/leadedit");
   };
 
@@ -309,7 +313,7 @@ const LeadListingMotorTable = ({ paymentSearchList }) => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search ? paymentSearchList : TableData}
+          value={search ? searchMiddleWareData : companyData}
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -328,7 +332,7 @@ const LeadListingMotorTable = ({ paymentSearchList }) => {
             body={(rowData) => (
               <Checkbox
                 checked={selectedProducts.includes(rowData)}
-                onChange={() => {}}
+                onChange={() => { }}
               />
             )}
             headerStyle={headerStyle}

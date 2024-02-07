@@ -8,7 +8,7 @@ const initialState = {
     claimDetailsViewData:
     {
         id: 1,
-        InsuranceCompanyName: "bajaj",
+        InsuranceCompanyName: "Alpha Insurance company",
         policyNumber: "PN355",
         PolicyHolderName: "ayesha",
         HouseNo: "24",

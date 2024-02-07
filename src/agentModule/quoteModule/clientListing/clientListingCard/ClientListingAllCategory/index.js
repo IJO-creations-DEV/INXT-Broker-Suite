@@ -17,10 +17,11 @@ import { useNavigate } from "react-router-dom";
 import { Avatar } from "primereact/avatar";
 // import PaymentCard from "./paymentCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
+import { getClientEditMiddleWare, getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const ClientListingAllCategory = ({ TableData, paymentSearchList }) => {
+const ClientListingAllCategory = ({ data, clientListTable, paymentSearchList }) => {
+  console.log(data, "data");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
@@ -33,20 +34,22 @@ const ClientListingAllCategory = ({ TableData, paymentSearchList }) => {
     { name: "ClientID", code: "ClientID" },
   ];
 
+
   useEffect(() => {
     if (globalFilter && search) {
       dispatch(
         getPaymentSearchDataMiddleWare({
           field: globalFilter,
           value: search,
-          // status1: status,
+          status: data
+
         })
       );
     }
   }, [search]);
 
   // console.log(status, "status");
-  // const TableData = [
+  // const clientListTable = [
   //   {
   //     id: "1",
   //     Name: "Sophie Clark",
@@ -230,11 +233,12 @@ const ClientListingAllCategory = ({ TableData, paymentSearchList }) => {
   };
 
   const renderName = (rowData) => {
+
     return (
       <div className="name__box__container">
-        <div>{handleSvg(rowData.Name, rowData.id)}</div>
+        <div>{handleSvg(rowData.FirstName, rowData.id)}</div>
         <div>
-          <div className="name__text">{rowData.Name}</div>
+          <div className="name__text">{rowData.FirstName}</div>
           <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -242,7 +246,7 @@ const ClientListingAllCategory = ({ TableData, paymentSearchList }) => {
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.Category}</div>;
+    return <div className="category__text">{rowData.category}</div>;
   };
 
   const renderDes = (rowData) => {
@@ -250,14 +254,15 @@ const ClientListingAllCategory = ({ TableData, paymentSearchList }) => {
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date}</div>;
+    return <div className="date__text">{rowData.DateofBirth}</div>;
   };
 
   const renderQuotes = (rowData) => {
     return <div className="quote__text">{rowData.Quotes}</div>;
   };
 
-  const handleEditAction = () => {
+  const handleEditAction = (rowData) => {
+    dispatch(getClientEditMiddleWare(rowData))
     navigate("/agent/clientedit");
   };
 
@@ -345,7 +350,7 @@ const ClientListingAllCategory = ({ TableData, paymentSearchList }) => {
             placeholder="Search by"
             className="sorbyfilter__style"
             dropdownIcon={<SvgDropdownicon />}
-            // dropdownIcon={<SvgDownArrow/>}
+          // dropdownIcon={<SvgDownArrow/>}
           />
           {/* // <Dropdown   optionLabel="name" className="feat_searchby_container" */}
           {/* //         placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/> */}
@@ -353,7 +358,7 @@ const ClientListingAllCategory = ({ TableData, paymentSearchList }) => {
       </div>
       <div className="lead__table__container">
         <DataTable
-          value={search ? paymentSearchList : TableData}
+          value={search ? paymentSearchList : clientListTable}
           paginator
           rows={5}
           selectionMode={selectionMode}

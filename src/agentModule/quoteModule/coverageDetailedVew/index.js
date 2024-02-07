@@ -27,6 +27,7 @@ const LeadPreview = () => {
       };
     }
   );
+  console.log(postcustomerinfodata, "find postcustomerinfodata");
   const handleLeadNavigation = () => {
     navigate("/agent/leadlisting");
   };

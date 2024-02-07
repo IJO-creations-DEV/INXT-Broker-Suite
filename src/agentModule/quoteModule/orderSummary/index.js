@@ -27,7 +27,7 @@ const initialValue = {
   GrossPremium: "6000",
 };
 
-const OrderSummary = ({ action }) => {
+const OrderSummary = ({ action, flow }) => {
   const [discount, setDiscount] = useState(0);
   const dispatch = useDispatch();
   const toastRef = useRef(null);
@@ -74,22 +74,29 @@ const OrderSummary = ({ action }) => {
   const handleLeadNavigation = () => {
     navigate("/agent/leadlisting");
   };
+  console.log(flow, "find test");
   return (
     <div className="order__summary__container">
       <CustomToast ref={toastRef} message="Quote Created Successfully" />
-      <div className="order__summary__main__title">Leads</div>
+      <div className="order__summary__main__title">
+        {flow === "renewal" ? "Client" : "Leads"}
+      </div>
       <div
         onClick={handleLeadNavigation}
         className="order__summary__back__btn mt-3 cursor-pointer"
       >
         <SvgLeftArrow />
         <div className="order__summary__back__btn__title">
-          Lead ID : 12345678
+          {flow === "renewal"
+            ? "Carson Darrin / Client ID : 12345678"
+            : "Lead ID : 12345678"}
         </div>
       </div>
       {/* <form> */}
       <Card className="mt-4">
-        <div className="order__summary__title">Create Quote</div>
+        <div className="order__summary__title">
+          {flow === "renewal" ? "Renewal Details" : "Create Quote"}
+        </div>
         <div className="order__summary__subtitle mb-2 mt-2">Order Summary</div>
         <div class="grid mt-2 nested-grid">
           <div class="col-12 md:col-6 lg:col-6 xl:col-6">

@@ -59,7 +59,7 @@ const CoverageDetailsCard = ({ action, flow }) => {
     dispatch(postcoverageDetailsMiddleware(values));
     {
       action === "coveragedetail"
-        ? navigate(`/agent/createquote/accessories/accessorirsdetails/:${123}`)
+        ?flow==="renewal"?navigate(`/agent/renewalquote/accessories/accessorirsdetails/:${123}`): navigate(`/agent/createquote/accessories/accessorirsdetails/:${123}`)
         : navigate(`/agent/createquote/accessories/accessoriescreate/:${123}`);
     }
   };

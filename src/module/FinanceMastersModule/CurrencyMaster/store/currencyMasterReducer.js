@@ -14,7 +14,7 @@ const initialState = {
   CurrencyList: [
     {
       "id": 1,
-      "Currencycode": "IND",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-1",
       "CurrencyFormat": "RUPES",
       "SmallestUnit": "RUPES",
@@ -25,7 +25,7 @@ const initialState = {
     },
     {
       "id": 2,
-      "Currencycode": "USD",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-2",
       "CurrencyFormat": "DOLLARS",
       "SmallestUnit": "CENTS",
@@ -37,7 +37,7 @@ const initialState = {
       ,
       {
       "id": 3,
-      "Currencycode": "EUR",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-3",
       "CurrencyFormat": "EUROS",
       "SmallestUnit": "CENTIMES",
@@ -49,7 +49,7 @@ const initialState = {
       ,
       {
       "id": 4,
-      "Currencycode": "GBP",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-4",
       "CurrencyFormat": "POUNDS",
       "SmallestUnit": "PENCE",
@@ -62,7 +62,7 @@ const initialState = {
       ,
       {
       "id": 5,
-      "Currencycode": "JPY",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-5",
       "CurrencyFormat": "YEN",
       "SmallestUnit": "SEN",
@@ -74,7 +74,7 @@ const initialState = {
       ,
       {
       "id": 6,
-      "Currencycode": "AUD",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-6",
       "CurrencyFormat": "AUSTRALIAN DOLLARS",
       "SmallestUnit": "CENTS",
@@ -86,7 +86,7 @@ const initialState = {
       ,
       {
       "id": 7,
-      "Currencycode": "CAD",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-7",
       "CurrencyFormat": "CANADIAN DOLLARS",
       "SmallestUnit": "CENTS",
@@ -98,7 +98,7 @@ const initialState = {
       ,
       {
       "id": 8,
-      "Currencycode": "CHF",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-8",
       "CurrencyFormat": "SWISS FRANCS",
       "SmallestUnit": "RAPPEN",
@@ -110,7 +110,7 @@ const initialState = {
       ,
       {
       "id": 9,
-      "Currencycode": "CNY",
+      "Currencycode": "PHP",
       "ISOcode": "ISO-9",
       "CurrencyFormat": "YUAN",
       "SmallestUnit": "FEN",

@@ -398,9 +398,10 @@ const SubAccountMaster = () => {
                 <Dialog
                   header="Add Sub Account"
                   visible={visiblePopup}
-                  className="dialog_fields"
+                  className="dialog_fields master__flow__common__dialog__container"
                   onHide={() => setVisiblePopup(false)}
-                  style={{ width: "60vw" }}
+                  style={{ width: "60vw", boxShadow: "none"  }}
+               
                 >
                   <div class="grid">
                     <div class="sm-col-12  md:col-4 lg-col-4">

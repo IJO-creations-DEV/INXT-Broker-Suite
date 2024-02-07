@@ -310,9 +310,10 @@ const TableData = ({ newDataTable, editID }) => {
       <Dialog
         header="Edit Data"
         visible={visible}
-        className="corrections__jv__Edit__modal__container"
+        className="corrections__jv__Edit__modal__container master__flow__common__dialog__container"
         onHide={() => setVisible(false)}
         dismissableMask={true}
+        style={{ boxShadow: "none" }} 
       >
         <div className="form__container">
           <div className="grid m-0">

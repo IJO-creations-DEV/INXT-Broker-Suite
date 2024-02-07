@@ -31,14 +31,14 @@ const UserGroupAccess = () => {
   const [showView, setShowView] = useState(false)
 
   const item = [{
-    label:"RC0010",value:"RC0134",
-    label:"RC0012",value:"RC0012",
+    label: "RC0010", value: "RC0134",
+    label: "RC0012", value: "RC0012",
 
     // label: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123",
     // value: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123"
   }
 
-]
+  ]
   const handleClick = () => {
     setShow(!show);
   };
@@ -56,33 +56,78 @@ const UserGroupAccess = () => {
   );
 
 
+  // const template2 = {
+  //   layout:
+  //     "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+  //   RowsPerPageDropdown: (options) => {
+  //     const dropdownOptions = [
+  //       { label: "5", value: "5" },
+  //       { label: 10, value: 10 },
+  //       { label: 20, value: 20 },
+  //       { label: 120, value: 120 },
+  //     ];
+
+  //     return (
+  //       <div className="table__selector">
+  //         <React.Fragment>
+  //           <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+  //             Row count :{" "}
+  //           </span>
+  //           <Dropdown
+  //             value={options.value}
+  //             className="pagedropdown_container"
+  //             options={dropdownOptions}
+  //             onChange={options.onChange}
+  //           />
+  //         </React.Fragment>
+  //       </div>
+  //     );
+  //   },
+  // };
+  const headerStyle = {
+    // width: '10rem',
+    // backgroundColor: 'red',
+    fontSize: 16,
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 500,
+    padding: "1rem",
+    color: '#000',
+    border: 'none'
+  };
+  const headeraction = {
+    fontSize: 16,
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 500,
+    padding: "1rem",
+    color: '#000',
+    border: 'none',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItem: 'center'
+  }
+
   const template2 = {
-    layout:
-      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
-        { label: "5", value: "5" },
+        { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 },
+        { label: 120, value: 120 }
       ];
 
       return (
-        <div className="table__selector">
-          <React.Fragment>
-            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-          </React.Fragment>
+        <div className="tabel_selector">
+          <React.Fragment >
+          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
+            Row count :{' '}
+          </span>
+          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+        </React.Fragment>
         </div>
       );
     },
+
   };
   const ViewheaderStyle = {
     fontSize: 16,
@@ -124,14 +169,14 @@ const UserGroupAccess = () => {
     console.log("View clicked:", rowData);
     // navigate("/accounts/pettycash/PettyCashCodeDetails")
   };
-  const headerStyle = {
-    fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
-    fontWeight: 500,
-    padding: 6,
-    color: "#000",
-    border: "none",
-  };
+  // const headerStyle = {
+  //   fontSize: 16,
+  //   fontFamily: 'Inter, sans-serif',
+  //   fontWeight: 500,
+  //   padding: 6,
+  //   color: "#000",
+  //   border: "none",
+  // };
 
   const handleSubmit = () => {
     setShow(false);
@@ -187,20 +232,35 @@ const UserGroupAccess = () => {
           />
         </div>
         <DataTable
+          // value={mainAdditionalTableList}
+          // tableStyle={{
+          //   minWidth: "50rem",
+          //   color: "#1C2536",
+          // }}
+          // scrollable={true}
+          // scrollHeight="40vh"
+          // paginator
+          // rows={5}
+          // rowsPerPageOptions={[5, 10, 25, 50]}
+          // // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+          // currentPageReportTemplate="{first} - {last} of {totalRecords}"
+          // paginatorTemplate={template2}
+          // emptyMessage={isEmpty ? emptyTableIcon : null}
+
           value={mainAdditionalTableList}
-          tableStyle={{
-            minWidth: "50rem",
-            color: "#1C2536",
-          }}
-          scrollable={true}
-          scrollHeight="40vh"
+          style={{ overflowY: 'auto', maxWidth: '100%' }}
+          responsive={true}
+          className='table__view__Journal__Voture'
           paginator
+          paginatorLeft
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}
-          // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
           currentPageReportTemplate="{first} - {last} of {totalRecords}"
           paginatorTemplate={template2}
+          // onPage={onPageChange}
+          // onPageChange={onPageChange}
           emptyMessage={isEmpty ? emptyTableIcon : null}
+          scrollHeight="40vh"
         >
           <Column
             field="RoleCode"
@@ -235,8 +295,10 @@ const UserGroupAccess = () => {
       <Dialog
         header="Add User Group Access"
         visible={show}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw", boxShadow: "none" }}
         onHide={() => setShow(false)}
+        className="master__flow__common__dialog__container"
+
       >
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">
@@ -294,8 +356,9 @@ const UserGroupAccess = () => {
       <Dialog
         header=" User Group Access"
         visible={showView}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw", boxShadow: "none" }}
         onHide={() => setShowView(false)}
+        className="master__flow__common__dialog__container"
       >
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">

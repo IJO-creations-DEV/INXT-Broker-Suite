@@ -55,7 +55,7 @@ const AddDialog = ({visible,setVisible}) => {
             <Dialog
                 header="Add Request Item"
                 visible={visible}
-                style={{ width: "50vw" }}
+                style={{ width: "50vw",boxShadow:"none" }}
                 onHide={() => setVisible(false)}
                 headerStyle={{
                     color: "#343434",
@@ -64,7 +64,8 @@ const AddDialog = ({visible,setVisible}) => {
                     fontWeight: 500,
                     // lineHeight: "150%",
                 }}
-                className="dailog__container"
+                className="dailog__container master__flow__common__dialog__container"
+               
             >
                 
                     <div className="grid">

@@ -212,8 +212,12 @@ const DepartMentList = ({ action }) => {
 
 
       </div>
-      <Dialog header="Add Department" visible={visible} style={{ width: '40vw' }} onHide={() => setVisible(false)}
-        className='dialog__addstyle'>
+      <Dialog header="Add Department"
+       visible={visible} style={{ width: '40vw',boxShadow:"none" }}
+        onHide={() => setVisible(false)}
+        className='dialog__addstyle master__flow__common__dialog__container'
+    
+        >
         <div class='grid'>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
@@ -279,7 +283,12 @@ const DepartMentList = ({ action }) => {
 
         </div>
       </Dialog>
-      <Dialog header="Department Details" visible={visibleView} style={{ width: '40vw' }} onHide={() => setVisibleView(false)}>
+      <Dialog header="Department Details" 
+      visible={visibleView} style={{ width: '40vw' ,boxShadow:"none"}} 
+      onHide={() => setVisibleView(false)}
+      className='master__flow__common__dialog__container'
+    
+      >
         <div class='grid'>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>
@@ -316,7 +325,14 @@ const DepartMentList = ({ action }) => {
         </div>
       </Dialog>
 
-      <Dialog header="Edit Details" visible={visibleedit} style={{ width: '40vw' }} onHide={() => setVisibleEdit(false)}>
+      <Dialog 
+      header="Edit Details"
+       visible={visibleedit}
+        style={{ width: '40vw',boxShadow:"none" }} 
+        className='master__flow__common__dialog__container'
+       onHide={() => setVisibleEdit(false)}
+       
+       >
         <div class='grid'>
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">
             <div>

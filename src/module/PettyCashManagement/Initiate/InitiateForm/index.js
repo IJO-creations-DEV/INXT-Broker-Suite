@@ -26,6 +26,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../../components/LabelWrapper";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const initialValue = {
   TransactionDate: new Date(),
@@ -380,15 +381,16 @@ const InitiateForm = () => {
       <CustomToast ref={toastRef} message="Petty Cash Initiated Successfully" />
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
-          <div
-            className="pettycash__title"
-            onClick={() => {
-              handleClick();
-            }}
-          >
-            <SvgBackArrow />
-            Initiate
-          </div>
+        <div>
+          <span onClick={handleClick}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+          Add Petty Cash
+           
+          </label>
+        </div>
+          
           <div className="mt-3">
             <BreadCrumb
               model={items}

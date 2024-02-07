@@ -1,13 +1,15 @@
 .overall__add_policy_edit__container {
  
- 
-    .label_header {
-      color: #111927;
-      font-family: 'Inter', sans-serif;
-      font-size: 30px;
-      font-weight: 600;
-      margin-left: 10px;
-    }
+  .label_header {
+
+    color: #111927;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    // font-style: normal;
+    font-weight: 600;
+    margin-left: 10px;
+    // line-height: normal;
+}
     .input_style{
       display: flex;
       margin-top: 50px;

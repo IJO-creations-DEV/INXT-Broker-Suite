@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { patchReceipEditMiddleware } from "../store/receiptsMiddleware";
 import { useFormik } from "formik";
+import SvgBackicon from "../../../assets/icons/SvgBackicon";
 
 function PolicyReceipts() {
   console.log("hiiii", "receiptsTableListreceiptsTableList");
@@ -203,10 +204,18 @@ function PolicyReceipts() {
 
   return (
     <div className="overall__add_policy_edit__container">
-      <span onClick={() => navigate(-1)}>
+      {/* <span onClick={() => navigate(-1)}>
         <SvgBack />
       </span>
-      <label className="label_header">Add Receipts</label>
+      <label className="label_header">Add Receipts</label> */}
+        <div>
+          <span onClick={() => navigate(-1)}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+          Add Receipts
+          </label>
+        </div>
       <BreadCrumb
         model={items}
         home={home}

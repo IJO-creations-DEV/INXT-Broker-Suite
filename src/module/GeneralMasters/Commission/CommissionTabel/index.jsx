@@ -213,6 +213,7 @@ import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import { useDispatch } from "react-redux";
 import { getCommissionView, getPatchCommissionEditMiddleware } from "../store/commissionMiddleWare"
+import SvgEditicons from "../../../../assets/icons/SvgEditicons";
 
 const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissionEdit }) => {
     console.log(commissionList.selectCover, "commissionList")
@@ -405,7 +406,7 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     body={(columnData) => (
                         <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
                             <SvgIconeye onClick={() => handleNavigateView(columnData)} />
-                            <SvgEditicon onClick={() => handleEditNavigate(columnData)} />
+                            <SvgEditicons onClick={() => handleEditNavigate(columnData)} />
                         </div>
                     )}
                     header="Action"

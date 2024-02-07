@@ -149,7 +149,7 @@ const PettyCashCodeDetails = () => {
           </div>
         </div>
       </div>
-      <Card className="mt-4">
+      <Card className="mt-4 tabel__card__header"  >
 
         <div class="grid" style={{ flexDirection: "row-reverse" }}>
           {/* <div class="col-12 md:col-6 lg:col-3">

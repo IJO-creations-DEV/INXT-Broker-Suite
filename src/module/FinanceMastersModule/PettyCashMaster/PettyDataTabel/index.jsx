@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import { getPatchPettyCashEdit, getPettyCashView } from "../store/pettyCashMasterMiddleWare";
+import SvgEditicons from "../../../../assets/icons/SvgEditicons";
 const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
 
     const { getPettyCashEdit, loading } = useSelector(({ pettyCashMainReducers }) => {
@@ -105,7 +106,7 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                className="reversal__table__main"
+                className="table__view__Journal__Voture"
                 emptyMessage={emptyTableIcon}
                 scrollable={true}
                 scrollHeight="40vh"
@@ -176,8 +177,8 @@ const PettyDataTabel = ({ newDataTable, pettyCashList }) => {
                     body={(columnData) => (
                         <div style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
 
-                            <SvgIconeye onClick={() => handleView(columnData)} />
-                            <SvgEditicon onClick={() => handleEdit(columnData)} />
+                            <span style={{ marginRight: 5 }}> <SvgIconeye onClick={() => handleView(columnData)} /></span>
+                            <SvgEditicons onClick={() => handleEdit(columnData)} />
                         </div>
                     )}
                     header="View"

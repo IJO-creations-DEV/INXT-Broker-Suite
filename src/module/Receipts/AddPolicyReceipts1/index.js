@@ -15,6 +15,7 @@ import { Calendar } from "primereact/calendar";
 import LabelWrapper from "../../../components/LabelWrapper";
 import { useSelector, useDispatch } from "react-redux";
 import { postAddReceiptsMiddleware } from "../store/receiptsMiddleware";
+import SvgBackicon from "../../../assets/icons/SvgBackicon";
 
 function BranchAdding() {
   const [errors, setErrors] = useState("");
@@ -162,12 +163,20 @@ function BranchAdding() {
 
   return (
     <div className="overall_add_policy_receipts_container">
-      <div>
+      {/* <div>
         <span onClick={() => navigate(-1)}>
           <SvgBack />
         </span>
         <label className="label_header">Add Receipts</label>
-      </div>
+      </div> */}
+       <div>
+          <span onClick={() => navigate(-1)}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+          Add Receipts
+          </label>
+        </div>
       <BreadCrumb
         model={items}
         home={home}

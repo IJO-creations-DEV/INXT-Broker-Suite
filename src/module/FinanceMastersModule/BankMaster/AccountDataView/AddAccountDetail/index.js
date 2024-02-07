@@ -417,10 +417,12 @@ function AddAccountDetail() {
       </div>
 
       <Dialog
-        header="Add Cheque book"
+        header="Add Cheque book "
         visible={visible}
-        style={{ width: "50vw" }}
+        className="master__flow__common__dialog__container"
+        style={{ width: "50vw",boxShadow:"none" }}
         onHide={() => setVisible(false)}
+       
       >
         <div class="grid">
           <div class="sm-col-12 col-12 md:col-6 lg-col-6">

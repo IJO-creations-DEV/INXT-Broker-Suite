@@ -32,7 +32,7 @@ const PettyCashReplenish = () => {
             <BreadCrumb
               model={items}
               home={Initiate}
-              className="breadCrums"
+              // className="breadCrums"
               separatorIcon={<SvgDot color={"#000"} />}
             />
           </div>

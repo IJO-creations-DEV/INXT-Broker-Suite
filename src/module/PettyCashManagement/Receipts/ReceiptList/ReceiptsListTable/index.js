@@ -24,12 +24,13 @@ const ReceiptListTable = ({ AddReceiptTable }) => {
     textAlign: "center",
   };
   return (
-    <div className="add__receipts__table">
+    <div className="add__receipts__table  ">
       <div className="table__container">
         <DataTable
           value={AddReceiptTable}
           tableStyle={{ minWidth: "50rem" }}
           emptyMessage={isEmpty ? emptyTableIcon : null}
+
         >
           <Column
             field="TransactionCode"

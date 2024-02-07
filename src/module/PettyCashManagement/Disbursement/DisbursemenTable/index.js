@@ -140,7 +140,7 @@ const DisbursementTable = () => {
 
   return (
     <div className="disbursement__table">
-      <Card className="mt-1">
+      <Card className="mt-1 tabel__card__header">
         <div className="header_search_container grid">
           <div class="col-12 md:col-6 lg:col-10">
             <span className="p-input-icon-left" style={{ width: "100%" }}>

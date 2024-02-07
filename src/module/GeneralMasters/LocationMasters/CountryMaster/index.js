@@ -25,6 +25,7 @@ import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountryListByIdMiddleware, getSearchCountryMiddleware } from "./store/countryMiddleware";
 import { useFormik } from "formik";
+import SvgEditicons from "../../../../assets/icons/SvgEditicons";
 
 const Country = () => {
   const menu = useRef(null);
@@ -239,7 +240,7 @@ const Country = () => {
                 <div className="action_icons">
 
                   <SvgEyeIcon onClick={() => handleView(rowData)} />
-                  <SvgEditicon onClick={() => handleEdit(rowData)} />
+                  <SvgEditicons onClick={() => handleEdit(rowData)} />
                 </div>
               )}
               header="Action"

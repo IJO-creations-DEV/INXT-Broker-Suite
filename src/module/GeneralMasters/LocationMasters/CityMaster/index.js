@@ -25,6 +25,7 @@ import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import { useDispatch, useSelector } from "react-redux";
 import { getCityListByIdMiddleware, getSearchCityMiddleware } from "./store/cityMiddleware";
 import { useFormik } from "formik";
+import SvgEditicons from "../../../../assets/icons/SvgEditicons";
 
 const City = () => {
   const menu = useRef(null);
@@ -246,7 +247,7 @@ const City = () => {
                 <div className="action_icons">
 
                   <SvgEyeIcon onClick={() => handleView(rowData)} />
-                  <SvgEditicon onClick={() => handleEdit(rowData)} />
+                  <SvgEditicons onClick={() => handleEdit(rowData)} />
                 </div>
               )}
               header="Action"

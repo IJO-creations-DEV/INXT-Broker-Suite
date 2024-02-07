@@ -21,13 +21,14 @@ import { useDispatch, useSelector } from "react-redux";
 import SvgEditicon from "../../../assets/icons/SvgEdit";
 import SvgEdit from "../../../assets/icons/SvgEdits";
 import ToggleButton from "../../../components/ToggleButton";
-import SvgEditicons from "../../../assets/icons/SvgEdit";
+// import SvgEditicons from "../../../assets/icons/SvgEdit";
 import SvgTable from "../../../assets/icons/SvgTable";
 import {
   getExchangeDetailEdit,
   getExchangeDetailView,
   getExchangeSearchList,
 } from "./store/exchangeMasterMiddleware";
+import SvgEditicons from "../../../assets/icons/SvgEditicons";
 
 const Index = () => {
   const [products, setProducts] = useState([]);

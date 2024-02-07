@@ -169,8 +169,9 @@ const LeadListingAllTable = () => {
     fontWeight: 500,
     color: "#000",
     border: " none",
-    // display: "grid",
-    // alignItem: "center",
+    display: "flex",
+    alignItem: "center",
+    justifyContent:"center"
   };
 
   const headerStyle = {
@@ -278,12 +279,13 @@ const LeadListingAllTable = () => {
           <Column
             body={renderStatus}
             header={renderUncheckedHeader("Status")}
-            headerStyle={headerStyle}
+            headerStyle={ViewheaderStyle}
+            style={{textAlign:'center'}}
           ></Column>
           <Column
             body={renderViewEditButton}
             header={renderUncheckedHeader("Actions")}
-            headerStyle={{ ...ViewheaderStyle, textAlign: "center" }}
+            headerStyle={{ ...headerStyle, textAlign: "center" }}
           ></Column>
         </DataTable>
       </div>

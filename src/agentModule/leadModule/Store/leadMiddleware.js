@@ -5,7 +5,7 @@ import {
   PATCH_LEADEDIT_DATA,
   GET_PAYMENT_SEARCH,
   GET_LEAD_EDIT_DATA,
-  GET_LEAD_LIST_DATA
+  GET_LEAD_LIST_DATA,
 } from "../../../redux/actionTypes";
 
 export const getleadtableMiddleware = createAsyncThunk(
@@ -15,7 +15,6 @@ export const getleadtableMiddleware = createAsyncThunk(
       // Simulate an API call if needed
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       // return filteredData[0];
-
     } catch (error) {
       return rejectWithValue(error?.response?.data?.error?.message);
     }
@@ -25,18 +24,22 @@ export const getLeadDataMiddleware = createAsyncThunk(
   GET_LEAD_LIST_DATA,
   async () => {
     try {
-
-    } catch (error) {
-
-    }
-  })
+    } catch (error) {}
+  }
+);
 
 export const postCreateleadMiddleware = createAsyncThunk(
   POST_CREATELEAD_DATA,
   async (payload, { rejectWithValue, getState }) => {
     console.log(payload, "find add datas in midd");
-    const category = payload.category === 'Individual' ? 'Individual' : 'Company';
-    const type = payload.Type === "Motor" ? 'Motor' : payload.Type === "Travel" ? "Travel" : 'Property';
+    const category =
+      payload.category === "Individual" ? "Individual" : "Company";
+    const type =
+      payload.Type === "Motor"
+        ? "Motor"
+        : payload.Type === "Travel"
+        ? "Travel"
+        : "Property";
     const randomQuotesNumber = Math.floor(Math.random() * 10);
 
     const data = {
@@ -63,8 +66,8 @@ export const postCreateleadMiddleware = createAsyncThunk(
       Quotes: randomQuotesNumber,
       category: category,
       gender: "Male",
-      Type:type
-    }
+      Type: type,
+    };
 
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
@@ -79,8 +82,14 @@ export const patchLeadEditMiddleWare = createAsyncThunk(
   PATCH_LEADEDIT_DATA,
   async (payload, { rejectWithValue, getState }) => {
     console.log(payload, "find edit load");
-    const category = payload.category === 'Individual' ? 'Individual' : 'Company';
-    const type = payload.Type === "Motor" ? 'Motor' : payload.Type === "Travel" ? "Travel" : 'Property';
+    const category =
+      payload.category === "Individual" ? "Individual" : "Company";
+    const type =
+      payload.Type === "Motor"
+        ? "Motor"
+        : payload.Type === "Travel"
+        ? "Travel"
+        : "Property";
     console.log(type, "type");
     const data = {
       id: payload?.id,
@@ -107,7 +116,9 @@ export const patchLeadEditMiddleWare = createAsyncThunk(
       category: category,
       gender: "Male",
       Type: type,
-    }
+      Quotes: payload?.Quotes,
+      LeadID: payload?.LeadID,
+    };
 
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
@@ -127,25 +138,25 @@ export const getPaymentSearchDataMiddleWare = createAsyncThunk(
 
     function filterPaymentsByField(data, field, value) {
       const lowercasedValue = value.toLowerCase();
-      const outputData = data.filter(item => {
-
-        if (field === 'Name') {
+      const outputData = data.filter((item) => {
+        if (field === "Name") {
           return item.FirstName.toLowerCase().includes(lowercasedValue);
-        } else if (field === 'LeadID') {
+        } else if (field === "LeadID") {
           return item.LeadID.toLowerCase().includes(lowercasedValue);
         }
         return (
-          (item.FirstName.toLowerCase().includes(lowercasedValue) ||
-            item.LeadID.toLowerCase().includes(lowercasedValue))
-
+          item.FirstName.toLowerCase().includes(lowercasedValue) ||
+          item.LeadID.toLowerCase().includes(lowercasedValue)
         );
-
-
       });
-      return outputData
+      return outputData;
     }
     try {
-      const filteredPayments = filterPaymentsByField(leadtabledata, field, value);
+      const filteredPayments = filterPaymentsByField(
+        leadtabledata,
+        field,
+        value
+      );
       console.log(filteredPayments, "filteredPayments");
       return filteredPayments;
     } catch (error) {
@@ -154,15 +165,12 @@ export const getPaymentSearchDataMiddleWare = createAsyncThunk(
   }
 );
 
-
-
 export const getLeadEditDataMiddleWare = createAsyncThunk(
   GET_LEAD_EDIT_DATA,
   async (payload, { rejectWithValue }) => {
     console.log(payload, "payload");
     try {
-      return payload
-
+      return payload;
     } catch (error) {
       return rejectWithValue(error?.response?.data?.error?.message);
     }

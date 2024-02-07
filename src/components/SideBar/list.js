@@ -1,8 +1,23 @@
+import SvgAgentClientIcon from "../../assets/agentIcon/SvgAgentClientIcon";
+import SvgAgentHomeIcon from "../../assets/agentIcon/SvgAgentHomeIcon";
+import SvgAgentItemsIcon from "../../assets/agentIcon/SvgAgentItemsIcon";
+import SvgAgentLeadIcon from "../../assets/agentIcon/SvgAgentLeadIcon";
+import SvgAgentPaymentIcon from "../../assets/agentIcon/SvgAgentPaymentIcon";
+import SvgClient from "../../assets/agentIcon/SvgClient";
+import SvgLead from "../../assets/agentIcon/SvgLead";
+import SvgPaymentIcon from "../../assets/agentIcon/SvgPaymentIcon";
+import SvgPolicyIcon from "../../assets/agentIcon/SvgPolicyIcon";
+import SvgQuotationIcon from "../../assets/agentIcon/SvgQuotationIcon";
+import SvgAccountIcon from "../../assets/icons/SvgAccountIcon";
+import SvgMassterIcon from "../../assets/icons/SvgMassterIcon";
+import SvgReportsIcon from "../../assets/icons/SvgReportsIcon";
+
 export const menuList = [
 
 
   {
     name: "Master",
+    icon: <SvgMassterIcon />,
     submenu: [
       {
         id: 1,
@@ -190,44 +205,53 @@ export const menuList = [
   },
   {
     name: "Broker",
-    // icons: <SvgReportsIcon/>,
+    icon: <SvgReportsIcon/>,
     submenu: [
       {
         name: "Home",
+        icon:<SvgAgentHomeIcon color="#9DA4AE"/>,
         path: "/",
       },
       {
         name: "Leads",
+        icon:<SvgAgentLeadIcon color="#9DA4AE"/>,
         path: "/agent/leadlisting",
       },
       {
         name: "Clients",
+        icon:<SvgAgentClientIcon color="#9DA4AE"/>,
         path: "/agent/clientlisting",
       },
       {
         name: "Open Items",
+        icon:<SvgAgentItemsIcon color="#9DA4AE"/>,
         path: "/agent/openitemslistdata",
       },
       {
         name: "Payments",
+        icon:<SvgAgentPaymentIcon color="#9DA4AE"/>,
         path: "/agent/payments",
       },
       {
         name: "Claim",
+        icon:<SvgAgentItemsIcon color="#9DA4AE"/>,
         path: "/agent/claim",
       },
       {
         name: "Policy",
+        icon:<SvgPolicyIcon color="#9DA4AE"/>,
         path: "/agent/policy",
       },
       {
         name: "Quotation",
+        icon:<SvgQuotationIcon color="#9DA4AE"/>,
         path: "/agent/Quotation",
       },
     ],
   },
   {
     name: "Accounts",
+    icon: <SvgAccountIcon />,
     submenu: [
       {
         id: 1,
@@ -290,7 +314,7 @@ export const menuList = [
   },
   {
     name: "Reports",
-    // icons: <SvgReportsIcon/>,
+    icon: <SvgReportsIcon />,
     submenu: [
       {
         id: 1,

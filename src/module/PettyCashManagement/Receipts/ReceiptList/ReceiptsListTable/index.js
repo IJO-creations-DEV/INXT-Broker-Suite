@@ -16,7 +16,7 @@ const ReceiptListTable = ({ AddReceiptTable }) => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "1rem 0",
     color: "#000",
@@ -30,21 +30,22 @@ const ReceiptListTable = ({ AddReceiptTable }) => {
           value={AddReceiptTable}
           tableStyle={{ minWidth: "50rem" }}
           emptyMessage={isEmpty ? emptyTableIcon : null}
-
+          scrollable={true}
+          scrollHeight="40vh"
         >
           <Column
             field="TransactionCode"
             header="Transaction Code"
             headerStyle={headerStyle}
             sortable
-            body={(rowData) => rowData.TransactionCode.toUpperCase()}
+            body={(rowData) => rowData.TransactionCode?.toUpperCase()}
           ></Column>
           <Column
             field="RequestNumber"
             header="Request Number"
             headerStyle={headerStyle}
             sortable
-            body={(rowData) => rowData.RequestNumber.toUpperCase()}
+            body={(rowData) => rowData.RequestNumber?.toUpperCase()}
           ></Column>
           <Column
             field="Date"
@@ -63,7 +64,7 @@ const ReceiptListTable = ({ AddReceiptTable }) => {
             header="Remarks"
             headerStyle={headerStyle}
             sortable
-            body={(rowData) => rowData.Remarks.toUpperCase()}
+            body={(rowData) => rowData.Remarks?.toUpperCase()}
           ></Column>
         </DataTable>
       </div>

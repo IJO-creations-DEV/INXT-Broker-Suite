@@ -34,6 +34,7 @@ function DropDowns({
         label={label}
       >
         {required && <span className="required__label">*</span>}
+        <div className="custom__dropdown__controller__over">
         <Dropdown
           value={value}
           onChange={onChange}
@@ -50,6 +51,7 @@ function DropDowns({
             borderRadius:10
           }}
         />
+        </div>
         {error && <div className="formik__error">{error}</div>}
         
       </LabelWrapper>

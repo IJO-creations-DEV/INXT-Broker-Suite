@@ -132,6 +132,8 @@ const TableData = ({ navigate }) => {
         paginatorTemplate={template2}
         className="reversal__table__main"
         emptyMessage={emptyTableIcon}
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="policytypeCode"

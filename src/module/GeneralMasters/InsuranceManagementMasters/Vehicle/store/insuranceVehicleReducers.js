@@ -9,17 +9,17 @@ const initialState = {
   loading: false,
   error: "",
   InsuranceVehicleList: [
-    // {
-    //   id: 1,
-    //   Status: 0,
-    //   vehicleCode: "156",
-    //   vehicleName: "ANFRA",
-    //   vehicleVariant: "S Series",
-    //   vehicleModel: "TRANSFORTER",
-    //   vehicleBrand: "Kia",
-    //   seatingCapacity: 10,
-    //   action: 1,
-    // },
+    {
+      id: 1,
+      Status: 0,
+      vehicleCode: "156",
+      vehicleName: "ANFRA",
+      vehicleVariant: "S Series",
+      vehicleModel: "TRANSFORTER",
+      vehicleBrand: "Kia",
+      seatingCapacity: 10,
+      action: 1,
+    },
     {
       id: 2,
       Status: 1,

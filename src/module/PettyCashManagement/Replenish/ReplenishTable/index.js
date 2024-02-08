@@ -207,7 +207,7 @@ const PettyCashReplenishTable = () => {
               header="Petty cash code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.Pettycashcode.toUpperCase()}
+              body={(rowData) => rowData.Pettycashcode?.toUpperCase()}
             ></Column>
 
             <Column
@@ -215,28 +215,28 @@ const PettyCashReplenishTable = () => {
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.Transactioncode.toUpperCase()}
+              body={(rowData) => rowData.Transactioncode?.toUpperCase()}
             ></Column>
             <Column
               field="BankCode"
               header="Bank Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.BankCode.toUpperCase()}
+              body={(rowData) => rowData.BankCode?.toUpperCase()}
             ></Column>
             <Column
               field="SubAccount"
               header="Sub Account"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.SubAccount.toUpperCase()}
+              body={(rowData) => rowData.SubAccount?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
+              body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
               sortable
             ></Column>
             <Column

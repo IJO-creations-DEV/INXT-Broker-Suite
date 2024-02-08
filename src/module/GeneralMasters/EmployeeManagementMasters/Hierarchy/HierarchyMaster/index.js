@@ -16,7 +16,11 @@ import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
 import { useDispatch, useSelector } from "react-redux";
-import { getHierarchyPatchMiddleWare, getHierarchyViewMiddleWare, getSearchHirarchyMiddleware } from "../store/hierarchyMiddleware";
+import {
+  getHierarchyPatchMiddleWare,
+  getHierarchyViewMiddleWare,
+  getSearchHirarchyMiddleware,
+} from "../store/hierarchyMiddleware";
 
 const HierarchyMaster = () => {
   const [products, setProducts] = useState([]);
@@ -51,14 +55,18 @@ const HierarchyMaster = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
   const handleView = (rowData) => {
-    console.log(rowData,"rowData");
-    dispatch(getHierarchyViewMiddleWare(rowData))
-    navigate(`/master/generals/employeemanagement/hierarchy/view/${rowData.id}`);
+    console.log(rowData, "rowData");
+    dispatch(getHierarchyViewMiddleWare(rowData));
+    navigate(
+      `/master/generals/employeemanagement/hierarchy/view/${rowData.id}`
+    );
   };
 
   const handlEdit = (rowData) => {
-    dispatch(getHierarchyPatchMiddleWare(rowData))
-    navigate(`/master/generals/employeemanagement/hierarchy/edit/${rowData?.id}`);
+    dispatch(getHierarchyPatchMiddleWare(rowData));
+    navigate(
+      `/master/generals/employeemanagement/hierarchy/edit/${rowData?.id}`
+    );
   };
   const items = [
     { label: "Employee Management" },
@@ -153,10 +161,9 @@ const HierarchyMaster = () => {
   };
   return (
     <div className="grid overall__hierarchy__master__container">
-      
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Hierarchy Master</div>
-        <div style={{margin:"20px 0px"}}>
+        <div style={{ margin: "20px 0px" }}>
           <BreadCrumb
             home={home}
             className="breadCrums__view__reversal__hierarchy"
@@ -194,7 +201,7 @@ const HierarchyMaster = () => {
           </div>
           <div className="col-12 ">
             <div className="main__tabel__title__hierarchy p-2">
-            Hierarchy List
+              Hierarchy List
             </div>
           </div>
           <div
@@ -213,37 +220,36 @@ const HierarchyMaster = () => {
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                // onPage={onPageChange}
-                // onPageChange={onPageChange}
+                scrollable={true}
+                scrollHeight="40vh"
               >
                 <Column
                   field="rankCode"
                   header="Rank Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-                  body={(rowData) => rowData.rankCode.toUpperCase()}
-
+                  body={(rowData) => rowData.rankCode?.toUpperCase()}
                 ></Column>
                 <Column
                   field="rankName"
                   header="Rank Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-                  body={(rowData) => rowData.rankName.toUpperCase()}
+                  body={(rowData) => rowData.rankName?.toUpperCase()}
                 ></Column>
                 <Column
                   field="levelNumber"
                   header="Level Number"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-                  body={(rowData) => rowData.levelNumber.toUpperCase()}
+                  body={(rowData) => rowData.levelNumber?.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedBy"
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-                  body={(rowData) => rowData.modifiedBy.toUpperCase()}
+                  body={(rowData) => rowData.modifiedBy?.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

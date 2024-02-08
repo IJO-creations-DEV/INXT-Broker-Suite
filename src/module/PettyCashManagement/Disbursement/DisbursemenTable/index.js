@@ -52,9 +52,6 @@ const DisbursementTable = () => {
       }
     }
   }, [search]);
- 
-
- 
 
   const isEmpty = DisbursmentList.length === 0;
 
@@ -108,7 +105,7 @@ const DisbursementTable = () => {
   };
 
   const handleView = (rowData) => {
-    dispatch(getDisbursmentViewMiddleware(rowData))
+    dispatch(getDisbursmentViewMiddleware(rowData));
     // dispatch(getDisbursmentSearchMiddleware(rowData));
     console.log("View clicked:", rowData);
     navigate("/accounts/pettycash/disbursementdetailview");
@@ -135,8 +132,6 @@ const DisbursementTable = () => {
       label: "Voucher Number",
     },
   ];
-
- 
 
   return (
     <div className="disbursement__table">
@@ -188,14 +183,14 @@ const DisbursementTable = () => {
               header="Petty cash Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.PettyCashCode.toUpperCase()}
+              body={(rowData) => rowData.PettyCashCode?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionCode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.TransactionCode.toUpperCase()}
+              body={(rowData) => rowData.TransactionCode?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
@@ -203,7 +198,7 @@ const DisbursementTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
-              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
+              body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
             ></Column>
             <Column
               field="Date"
@@ -211,7 +206,6 @@ const DisbursementTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
-              
             ></Column>
             <Column
               field="View"

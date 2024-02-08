@@ -101,7 +101,6 @@ function PolicyReceipts() {
       <div className="card">
         <DataTable
           value={receiptDetailList}
-        
           tableStyle={{
             minWidth: "50rem",
             color: "#1C2536",
@@ -109,6 +108,8 @@ function PolicyReceipts() {
             overflowy: "auto",
           }}
           className="datatable_container"
+          scrollable={true}
+          scrollHeight="40vh"
         >
           <Column
             field="policies"
@@ -176,9 +177,7 @@ function PolicyReceipts() {
             header="LC Amount"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-          >
-            
-          </Column>
+          ></Column>
         </DataTable>
       </div>
 

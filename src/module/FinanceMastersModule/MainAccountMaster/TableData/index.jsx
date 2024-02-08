@@ -169,12 +169,14 @@ const TableData = ({ MainAccountList }) => {
         paginatorTemplate={template2}
         className="reversal__table__main"
         emptyMessage={emptyTableIcon}
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="mainAccountCode"
           header="Main Account Code"
           className="fieldvalue_container"
-          body={(rowData) => rowData.mainAccountCode.toUpperCase()}
+          body={(rowData) => rowData.mainAccountCode?.toUpperCase()}
           // headerStyle={headerStyle}
           sortable
         ></Column>
@@ -182,25 +184,25 @@ const TableData = ({ MainAccountList }) => {
           field="description"
           header="Description"
           className="fieldvalue_container"
-          body={(rowData) => rowData.description.toUpperCase()}
+          body={(rowData) => rowData.description?.toUpperCase()}
         ></Column>
         <Column
           field="openEntry"
           header="Open Entry"
           className="fieldvalue_container"
-          body={(rowData) => rowData.openEntry.toUpperCase()}
+          body={(rowData) => rowData.openEntry?.toUpperCase()}
         ></Column>
         <Column
           field="openEntryType"
           header="Open Entry Type"
           className="fieldvalue_container"
-          body={(rowData) => rowData.openEntryType.toUpperCase()}
+          body={(rowData) => rowData.openEntryType?.toUpperCase()}
         ></Column>
         <Column
           field="accountCategoryCode"
           header="Account Category Code"
           className="fieldvalue_container"
-          body={(rowData) => rowData.accountCategoryCode.toUpperCase()}
+          body={(rowData) => rowData.accountCategoryCode?.toUpperCase()}
         ></Column>
         <Column
           field="status"

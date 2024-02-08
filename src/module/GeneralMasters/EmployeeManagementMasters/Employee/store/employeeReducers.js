@@ -13,7 +13,7 @@ const initialState = {
       lastName: "WATSON",
       employeeType: "AGENT",
       designation: "SALES AGENT",
-      reportingto: "JOHN Doe",
+      reportingTo: "JOHN Doe",
       branchCode: "BRANCH0123",
       departmentCode: "DEPART123",
       idProofType: "DRIVING LICENCE",
@@ -36,7 +36,7 @@ const initialState = {
       lastName: "WATSON",
       employeeType: "AGENT",
       designation: "SALES AGENT",
-      reportingto: "JOHN Doe",
+      reportingTo: "JOHN Doe",
       branchCode: "Branch0123",
       departmentCode: "Depart123",
       idProofType: "DRIVING LICENCE",
@@ -59,7 +59,7 @@ const initialState = {
       lastName: "WATSON",
       employeeType: "AGENT",
       designation: "SALES AGENT",
-      reportingto: "JOHN Doe",
+      reportingTo: "JOHN Doe",
       branchCode: "BRANCH0123",
       departmentCode: "Depart123",
       idProofType: "DRIVING LICENCE",
@@ -108,12 +108,12 @@ const employeeReducer = createSlice({
     });
     builder.addCase(getEmployeeListByIdMiddleware.fulfilled, (state, action) => {
       state.loading = false;
-      state.employeeDetailList = action.payload;
+      state.employeeTableList = action.payload;
     });
     builder.addCase(getEmployeeListByIdMiddleware.rejected, (state, action) => {
       state.loading = false;
 
-      state.employeeDetailList = {};
+      state.employeeTableList = {};
       state.error = typeof action.payload === "string" ? action.payload : "";
     });
 
@@ -155,12 +155,22 @@ const employeeReducer = createSlice({
     builder.addCase(patchEmployeeEditMiddleware.pending, (state) => {
       state.loading = true;
     });
+    
     builder.addCase(
       patchEmployeeEditMiddleware.fulfilled,
       (state, action) => {
         state.loading = false;
+        const updatedIndex = state.employeeTableList.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (updatedIndex !== -1) {
+          const updatedCurrencyList = [...state.employeeTableList];
+          updatedCurrencyList[updatedIndex] = action.payload;
+          state.employeeTableList = updatedCurrencyList;
 
-        state.employeeTableList = action.payload;
+        } else {
+          state.employeeTableList = [...state.employeeTableList, action.payload];
+        }
       }
     );
     builder.addCase(

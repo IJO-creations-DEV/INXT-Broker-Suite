@@ -55,6 +55,7 @@ export const patchInsuranceVehicleMiddleWare = createAsyncThunk(
     console.log(InsuranceVehicleList, "find original data");
     const updatedData = InsuranceVehicleList?.map((item) => {
       if (parseInt(item.id) === parseInt(payload?.id)) {
+        console.log(item.id,"find id")
         return {
           ...item,
           vehicleCode: payload?.vehicleCode,

@@ -39,10 +39,11 @@ const AddCommission = () => {
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [date, setDate] = useState();
-  const { addLevelCommissionSharing, loading, commissionSearchList } =
+  const { addLevelCommissionSharing, loading, commissionSearchList,commissionList } =
     useSelector(({ commissionMianReducers }) => {
       return {
         loading: commissionMianReducers?.loading,
+        commissionList:commissionMianReducers?.commissionList,
         addLevelCommissionSharing:
           commissionMianReducers?.addLevelCommissionSharing,
         commissionSearchList: commissionMianReducers?.commissionSearchList,
@@ -112,7 +113,12 @@ const AddCommission = () => {
 
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    dispatch(postAddCommission(formik.values));
+    const data = {
+      ...values,
+      id: commissionList?.length + 1,
+    };
+    console.log(data,"data");
+    dispatch(postAddCommission(data));
     navigate("/master/generals/commission");
     // toastRef.current.showToast();
     // setTimeout(() => {
@@ -539,6 +545,8 @@ const AddCommission = () => {
             onPage={onPageChange}
             onPageChange={onPageChange}
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            scrollable={true}
+            scrollHeight="40vh"
           >
             <Column
               field="level"

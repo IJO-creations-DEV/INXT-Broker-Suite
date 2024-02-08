@@ -131,6 +131,8 @@ const TableData = ({ navigate }) => {
         paginatorTemplate={template2}
         className="reversal__table__main"
         emptyMessage={emptyTableIcon}
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="coverCode"
@@ -142,7 +144,7 @@ const TableData = ({ navigate }) => {
           field="coverName"
           header="Cover Name"
           className="fieldvalue_container"
-          body={(rowData) => rowData.coverName.toUpperCase()}
+          body={(rowData) => rowData.coverName?.toUpperCase()}
         ></Column>
         {/* <Column
           field="policyType"
@@ -153,7 +155,7 @@ const TableData = ({ navigate }) => {
           field="modifiedby"
           header="Modified by"
           className="fieldvalue_container"
-          body={(rowData) => rowData.modifiedby.toUpperCase()}
+          body={(rowData) => rowData.modifiedby?.toUpperCase()}
         ></Column>
         <Column
           field="modifiedOn"

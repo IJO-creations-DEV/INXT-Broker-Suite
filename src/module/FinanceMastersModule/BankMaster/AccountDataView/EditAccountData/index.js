@@ -25,7 +25,11 @@ import { useDispatch, useSelector } from "react-redux";
 import SvgEdit from "../../../../../assets/icons/SvgEdits";
 import { Dialog } from "primereact/dialog";
 import ToggleButton from "../../../../../components/ToggleButton";
-import { getChequeEditDataMiddleWare, postChequeDataMiddleWare, postPatchAccountDetailEdit } from "../../store/bankMasterMiddleware";
+import {
+  getChequeEditDataMiddleWare,
+  postChequeDataMiddleWare,
+  postPatchAccountDetailEdit,
+} from "../../store/bankMasterMiddleware";
 import CheckEditData from "./CheckEditData";
 
 const initialValues = {
@@ -35,23 +39,21 @@ const initialValues = {
   MainAccount: "",
   MainAccountDescription: "",
   TransactionLimit: "",
-
 };
 
 function EditAccountDetail({ action }) {
   console.log(action, "action");
   // const [visible, setVisible] = useState(false);
 
-  const { AccountPatchDetailView, loading, chequeListData, getEditChequeData } = useSelector(
-    ({ bankMasterReducer }) => {
+  const { AccountPatchDetailView, loading, chequeListData, getEditChequeData } =
+    useSelector(({ bankMasterReducer }) => {
       return {
         loading: bankMasterReducer?.loading,
         AccountPatchDetailView: bankMasterReducer?.AccountPatchDetailView,
         chequeListData: bankMasterReducer?.chequeListData,
-        getEditChequeData: bankMasterReducer?.getEditChequeData
+        getEditChequeData: bankMasterReducer?.getEditChequeData,
       };
-    }
-  );
+    });
   console.log(chequeListData, "chequeListData");
   const navigate = useNavigate();
   const [date, setDate] = useState(null);
@@ -206,11 +208,11 @@ function EditAccountDetail({ action }) {
 
   const handlesavebutton = () => {
     setVisible(false);
-    dispatch(postChequeDataMiddleWare(formik.values))
+    dispatch(postChequeDataMiddleWare(formik.values));
   };
   const handleEditbutton = () => {
-    setVisibleEdit(false)
-  }
+    setVisibleEdit(false);
+  };
   const handleNavigation = () => {
     navigate("/master/finance/bank/accountdataview");
   };
@@ -237,11 +239,10 @@ function EditAccountDetail({ action }) {
     );
   };
   const handleEditData = (data) => {
-
-    setVisibleEdit(true)
+    setVisibleEdit(true);
     console.log(data, "dataa");
-    dispatch(getChequeEditDataMiddleWare(data))
-  }
+    dispatch(getChequeEditDataMiddleWare(data));
+  };
 
   return (
     <div className="overall__editaccountdetail__container">
@@ -405,21 +406,21 @@ function EditAccountDetail({ action }) {
               header="Cheque Book Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.chequeBookNo.toUpperCase()}
+              body={(rowData) => rowData.chequeBookNo?.toUpperCase()}
             ></Column>
             <Column
               field="chequeLeafBegining"
               header="Cheque Leaf Beginning"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.chequeLeafBegining.toUpperCase()}
+              body={(rowData) => rowData.chequeLeafBegining?.toUpperCase()}
             ></Column>
             <Column
               field="chequeLeafEnd"
               header="Cheque Leaf End"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.chequeLeafEnd.toUpperCase()}
+              body={(rowData) => rowData.chequeLeafEnd?.toUpperCase()}
             ></Column>
             <Column
               body={renderToggleButton}
@@ -428,10 +429,15 @@ function EditAccountDetail({ action }) {
               className="fieldvalue_container"
             ></Column>
             <Column
-              body={(columnData) =>
-                <div onClick={() => { handleEditData(columnData) }}>
+              body={(columnData) => (
+                <div
+                  onClick={() => {
+                    handleEditData(columnData);
+                  }}
+                >
                   <SvgEdit />
-                </div>}
+                </div>
+              )}
               header="Action"
               headerStyle={headerStyle}
               className="fieldvalue_container"
@@ -464,8 +470,14 @@ function EditAccountDetail({ action }) {
           disabled={!formik.isValid}
         />
       </div>
-      <CheckEditData action={action} getEditChequeData={getEditChequeData} visible={visible} setVisible={setVisible} visibleEdit={visibleEdit} setVisibleEdit={setVisibleEdit} />
-
+      <CheckEditData
+        action={action}
+        getEditChequeData={getEditChequeData}
+        visible={visible}
+        setVisible={setVisible}
+        visibleEdit={visibleEdit}
+        setVisibleEdit={setVisibleEdit}
+      />
     </div>
   );
 }

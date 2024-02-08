@@ -17,10 +17,17 @@ import { useNavigate } from "react-router-dom";
 import { Avatar } from "primereact/avatar";
 // import PaymentCard from "./paymentCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getClientEditMiddleWare, getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
+import {
+  getClientEditMiddleWare,
+  getPaymentSearchDataMiddleWare,
+} from "../../store/clientsMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const ClientListingAllCategory = ({ data, clientListTable, paymentSearchList }) => {
+const ClientListingAllCategory = ({
+  data,
+  clientListTable,
+  paymentSearchList,
+}) => {
   console.log(data, "data");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
@@ -34,15 +41,13 @@ const ClientListingAllCategory = ({ data, clientListTable, paymentSearchList }) 
     { name: "ClientID", code: "ClientID" },
   ];
 
-
   useEffect(() => {
     if (globalFilter && search) {
       dispatch(
         getPaymentSearchDataMiddleWare({
           field: globalFilter,
           value: search,
-          status: data
-
+          status: data,
         })
       );
     }
@@ -233,12 +238,11 @@ const ClientListingAllCategory = ({ data, clientListTable, paymentSearchList }) 
   };
 
   const renderName = (rowData) => {
-
     return (
       <div className="name__box__container">
         <div>{handleSvg(rowData.FirstName, rowData.id)}</div>
         <div>
-          <div className="name__text">{rowData.FirstName.toUpperCase()}</div>
+          <div className="name__text">{rowData.FirstName?.toUpperCase()}</div>
           <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -246,11 +250,17 @@ const ClientListingAllCategory = ({ data, clientListTable, paymentSearchList }) 
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.category.toUpperCase()}</div>;
+    return (
+      <div className="category__text">{rowData.category?.toUpperCase()}</div>
+    );
   };
 
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription.toUpperCase()}</div>;
+    return (
+      <div className="category__text">
+        {rowData.ProductDescription?.toUpperCase()}
+      </div>
+    );
   };
 
   const renderDate = (rowData) => {
@@ -262,7 +272,7 @@ const ClientListingAllCategory = ({ data, clientListTable, paymentSearchList }) 
   };
 
   const handleEditAction = (rowData) => {
-    dispatch(getClientEditMiddleWare(rowData))
+    dispatch(getClientEditMiddleWare(rowData));
     navigate("/agent/clientedit");
   };
 
@@ -350,7 +360,7 @@ const ClientListingAllCategory = ({ data, clientListTable, paymentSearchList }) 
             placeholder="Search by"
             className="sorbyfilter__style"
             dropdownIcon={<SvgDropdownicon />}
-          // dropdownIcon={<SvgDownArrow/>}
+            // dropdownIcon={<SvgDownArrow/>}
           />
           {/* // <Dropdown   optionLabel="name" className="feat_searchby_container" */}
           {/* //         placeholder="Search by"  dropdownIcon={<SvgDownArrow/>}/> */}

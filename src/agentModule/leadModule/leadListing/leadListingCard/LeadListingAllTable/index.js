@@ -15,10 +15,14 @@ import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import "../../index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getLeadEditDataMiddleWare, getPaymentSearchDataMiddleWare, patchLeadEditMiddleWare } from "../../../Store/leadMiddleware";
+import {
+  getLeadEditDataMiddleWare,
+  getPaymentSearchDataMiddleWare,
+  patchLeadEditMiddleWare,
+} from "../../../Store/leadMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
-const LeadListingAllTable = ({leadtabledata, paymentSearchList }) => {
+const LeadListingAllTable = ({ leadtabledata, paymentSearchList }) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
@@ -44,7 +48,7 @@ const LeadListingAllTable = ({leadtabledata, paymentSearchList }) => {
     }
   }, [search]);
 
- const TableData = [
+  const TableData = [
     {
       id: "1",
       Name: "Sophie Clark",
@@ -160,7 +164,7 @@ const LeadListingAllTable = ({leadtabledata, paymentSearchList }) => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.FirstName.toUpperCase()}</div>
+          <div className="name__text">{rowData.FirstName?.toUpperCase()}</div>
           <div className="lead__id__text">Lead Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -168,15 +172,19 @@ const LeadListingAllTable = ({leadtabledata, paymentSearchList }) => {
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.category.toUpperCase()}</div>;
+    return (
+      <div className="category__text">{rowData.category?.toUpperCase()}</div>
+    );
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.DateofBirth.toUpperCase()}</div>;
+    return (
+      <div className="date__text">{rowData.DateofBirth?.toUpperCase()}</div>
+    );
   };
 
   const renderQuotes = (rowData) => {
-    return <div className="quote__text">{rowData.Quotes.toUpperCase()}</div>;
+    return <div className="quote__text">{rowData.Quotes?.toUpperCase()}</div>;
   };
 
   const handleView = () => {
@@ -184,7 +192,7 @@ const LeadListingAllTable = ({leadtabledata, paymentSearchList }) => {
   };
 
   const handleEdit = (rowData) => {
-    dispatch(getLeadEditDataMiddleWare(rowData))
+    dispatch(getLeadEditDataMiddleWare(rowData));
     navigate("/agent/leadedit");
   };
 
@@ -284,7 +292,7 @@ const LeadListingAllTable = ({leadtabledata, paymentSearchList }) => {
             body={(rowData) => (
               <Checkbox
                 checked={selectedProducts.includes(rowData)}
-                onChange={() => { }}
+                onChange={() => {}}
               />
             )}
             headerStyle={headerStyle}

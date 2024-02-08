@@ -35,7 +35,7 @@ const InitiateTable = () => {
     }
   );
 
-  console.log("first11", InitiateList)
+  console.log("first11", InitiateList);
   const searchs = [
     { name: "Petty Cash code", code: "Pettycashcode" },
     { name: "Transaction Number", code: "TransactionNumber" },
@@ -204,14 +204,14 @@ const InitiateTable = () => {
               header="Petty cash code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.Pettycashcode.toUpperCase()}
+              body={(rowData) => rowData.Pettycashcode?.toUpperCase()}
             ></Column>
             <Column
               field="Pettycashsize"
               header="Petty cash size"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.Pettycashsize.toUpperCase()}
+              body={(rowData) => rowData.Pettycashsize?.toUpperCase()}
               sortable
             ></Column>
             <Column
@@ -219,7 +219,7 @@ const InitiateTable = () => {
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
+              body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
               sortable
             ></Column>
             <Column
@@ -233,14 +233,14 @@ const InitiateTable = () => {
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.Branchcode.toUpperCase()}
+              body={(rowData) => rowData.Branchcode?.toUpperCase()}
             ></Column>
             <Column
               field="Departmentcode"
               header="Department code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.Departmentcode.toUpperCase()}
+              body={(rowData) => rowData.Departmentcode?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionDate"

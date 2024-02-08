@@ -183,7 +183,6 @@ const ViewCommission = () => {
 
   return (
     <div className="grid view__commission__add__container">
-      
       <div className="col-12 ">
         <div className="add__sub__title">
           <div onClick={handleGoBack} className="mr-2 mt-1">
@@ -201,205 +200,208 @@ const ViewCommission = () => {
         </div>
       </div>
       <Card className="card__container">
-      <div className="grid  p-2 ">
-        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-          <InputField
-            classNames="input__field__reversal__inactive"
-            className={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Commission Code"
-            placeholder="Enter"
-            value={commissionView.commissionCode}
-            // onChange={(e) =>
-            //   formik.setFieldValue("prttycashcode", e.target.value)
-            // }
-          />
-        </div>
-        <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
-          <InputField
-            classNames="input__field__reversal__inactive"
-            className={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Description"
-            placeholder="Enter"
-            value={commissionView.desc}
-            onChange={(e) =>
-              formik.setFieldValue("pettycashname", e.target.value)
-            }
-          />
-        </div>
-        <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-          <DropDowns
-            // disabled={step === 0 ? false : true}
-            disabled={true}
-            className={
-              step === 0
-                ? "input__field__reversal"
-                : "input__field__reversal__inactive"
-            }
-            classNames={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Product"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-            value={commissionView.product}
-            onChange={(e) =>
-              formik.setFieldValue("transactionCode", e.target.value)
-            }
-            options={productOptions}
-            optionLabel="value"
-            placeholder={"Select"}
-          />
+        <div className="grid  p-2 ">
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+            <InputField
+              classNames="input__field__reversal__inactive"
+              className={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Commission Code"
+              placeholder="Enter"
+              value={commissionView.commissionCode}
+              // onChange={(e) =>
+              //   formik.setFieldValue("prttycashcode", e.target.value)
+              // }
+            />
+          </div>
+          <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
+            <InputField
+              classNames="input__field__reversal__inactive"
+              className={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Description"
+              placeholder="Enter"
+              value={commissionView.desc}
+              onChange={(e) =>
+                formik.setFieldValue("pettycashname", e.target.value)
+              }
+            />
+          </div>
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+            <DropDowns
+              // disabled={step === 0 ? false : true}
+              disabled={true}
+              className={
+                step === 0
+                  ? "input__field__reversal"
+                  : "input__field__reversal__inactive"
+              }
+              classNames={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Product"
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={commissionView.product}
+              onChange={(e) =>
+                formik.setFieldValue("transactionCode", e.target.value)
+              }
+              options={productOptions}
+              optionLabel="value"
+              placeholder={"Select"}
+            />
 
-          {formik.touched.transactionCode && formik.errors.transactionCode && (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.transactionCode}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-          <DropDowns
-            // disabled={step === 0 ? false : true}
-            disabled={true}
-            className={
-              step === 0
-                ? "input__field__reversal"
-                : "input__field__reversal__inactive"
-            }
-            classNames={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Select Covers"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-            value={commissionView.selectCover}
-            onChange={(e) =>
-              formik.setFieldValue("transactionCode", e.target.value)
-            }
-            options={selectCoverOptions}
-            optionLabel="value"
-            placeholder={"Select"}
-          />
+            {formik.touched.transactionCode &&
+              formik.errors.transactionCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.transactionCode}
+                </div>
+              )}
+          </div>
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+            <DropDowns
+              // disabled={step === 0 ? false : true}
+              disabled={true}
+              className={
+                step === 0
+                  ? "input__field__reversal"
+                  : "input__field__reversal__inactive"
+              }
+              classNames={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Select Covers"
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={commissionView.selectCover}
+              onChange={(e) =>
+                formik.setFieldValue("transactionCode", e.target.value)
+              }
+              options={selectCoverOptions}
+              optionLabel="value"
+              placeholder={"Select"}
+            />
 
-          {formik.touched.transactionCode && formik.errors.transactionCode && (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.transactionCode}
+            {formik.touched.transactionCode &&
+              formik.errors.transactionCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.transactionCode}
+                </div>
+              )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+            <InputField
+              classNames="input__field__reversal__inactive"
+              className={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Maximum Rate"
+              placeholder="Enter"
+              value={commissionView.maxRate}
+              onChange={(e) =>
+                formik.setFieldValue("pettycashsize", e.target.value)
+              }
+            />
+          </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
+            <div class="calender_container_claim p-0">
+              <LabelWrapper
+                label="Effective From"
+                textSize={"16px"}
+                textColor={"#000"}
+                textWeight={"500"}
+                classNames="label__sub__add"
+              >
+                <Calendar
+                  value={new Date(commissionView.effectiveFrom)}
+                  onChange={(e) => setDate(e.value)}
+                  showIcon
+                  className="calender_field_claim"
+                  disabled={true}
+                  // placeholder={translate("claimstatus")["Choose Date"]}
+                />
+                <div className="calender_icon_claim">
+                  <SvgDatePicker />
+                </div>
+              </LabelWrapper>
             </div>
-          )}
-        </div>
-        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-          <InputField
-            classNames="input__field__reversal__inactive"
-            className={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Maximum Rate"
-            placeholder="Enter"
-            value={commissionView.maxRate}
-            onChange={(e) =>
-              formik.setFieldValue("pettycashsize", e.target.value)
-            }
-          />
-        </div>
-        <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
-          <div class="calender_container_claim p-0">
-            <LabelWrapper
-              label="Effective From"
-              textSize={"16px"}
-              textColor={"#000"}
-              textWeight={"500"}
-              classNames="label__sub__add"
-            >
-              <Calendar
-                value={new Date(commissionView.effectiveFrom)}
-                onChange={(e) => setDate(e.value)}
-                showIcon
-                className="calender_field_claim"
-                disabled={true}
-                // placeholder={translate("claimstatus")["Choose Date"]}
-              />
-              <div className="calender_icon_claim">
-                <SvgDatePicker />
-              </div>
-            </LabelWrapper>
+          </div>
+          <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
+            <div class="calender_container_claim p-0">
+              <LabelWrapper
+                label="Effective To"
+                textSize={"16px"}
+                textColor={"#000"}
+                textWeight={"500"}
+                classNames="label__sub__add"
+              >
+                <Calendar
+                  value={new Date(commissionView.effectiveTo)}
+                  onChange={(e) => setDate(e.value)}
+                  showIcon
+                  className="calender_field_claim"
+                  disabled={true}
+                  // placeholder={translate("claimstatus")["Choose Date"]}
+                />
+                <div className="calender_icon_claim">
+                  <SvgDatePicker />
+                </div>
+              </LabelWrapper>
+            </div>
+          </div>
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+            <DropDowns
+              // disabled={step === 0 ? false : true}
+              disabled={true}
+              className={
+                step === 0
+                  ? "input__field__reversal"
+                  : "input__field__reversal__inactive"
+              }
+              classNames={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Select Agents"
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={commissionView.selectAgent}
+              onChange={(e) =>
+                formik.setFieldValue("transactionCode", e.target.value)
+              }
+              options={selectAgentOptions}
+              optionLabel="value"
+              placeholder={"Select"}
+            />
+
+            {formik.touched.transactionCode &&
+              formik.errors.transactionCode && (
+                <div style={{ fontSize: 12, color: "red" }}>
+                  {formik.errors.transactionCode}
+                </div>
+              )}
+          </div>
+          <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
+            <div className="input__label__reversal">Modifiable</div>
+            <SelectButton
+              className="mt-2 select__switch__option"
+              value={selectSwitch}
+              onChange={(e) => setselectSwitch(e.value)}
+              options={selectSwitchoptions}
+              disabled={true}
+            />
           </div>
         </div>
-        <div className="col-12 md:col-3 lg-col-3 input__view__reversal">
-          <div class="calender_container_claim p-0">
-            <LabelWrapper
-              label="Effective To"
-              textSize={"16px"}
-              textColor={"#000"}
-              textWeight={"500"}
-              classNames="label__sub__add"
-            >
-              <Calendar
-                value={new Date(commissionView.effectiveTo)}
-                onChange={(e) => setDate(e.value)}
-                showIcon
-                className="calender_field_claim"
-                disabled={true}
-                // placeholder={translate("claimstatus")["Choose Date"]}
-              />
-              <div className="calender_icon_claim">
-                <SvgDatePicker />
-              </div>
-            </LabelWrapper>
-          </div>
-        </div>
-        <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
-          <DropDowns
-            // disabled={step === 0 ? false : true}
-            disabled={true}
-            className={
-              step === 0
-                ? "input__field__reversal"
-                : "input__field__reversal__inactive"
-            }
-            classNames={
-              step === 0
-                ? "input__label__reversal"
-                : "input__label__reversal__inactive"
-            }
-            label="Select Agents"
-            dropdownIcon={<SvgDropdown color={"#000"} />}
-            value={commissionView.selectAgent}
-            onChange={(e) =>
-              formik.setFieldValue("transactionCode", e.target.value)
-            }
-            options={selectAgentOptions}
-            optionLabel="value"
-            placeholder={"Select"}
-          />
-
-          {formik.touched.transactionCode && formik.errors.transactionCode && (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {formik.errors.transactionCode}
-            </div>
-          )}
-        </div>
-        <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal">
-          <div className="input__label__reversal">Modifiable</div>
-          <SelectButton
-            className="mt-2 select__switch__option"
-            value={selectSwitch}
-            onChange={(e) => setselectSwitch(e.value)}
-            options={selectSwitchoptions}
-            disabled={true}
-          />
-        </div>
-      </div>
       </Card>
       <div className="col-12 md:col-3 lg:col-3 xl:col-3 input__view__reversal m-1"></div>
       <div className="col-12 bottom__view p-2 m-1">
@@ -434,21 +436,23 @@ const ViewCommission = () => {
             onPage={onPageChange}
             onPageChange={onPageChange}
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            scrollable={true}
+            scrollHeight="40vh"
           >
             <Column
               field="level"
               header="Level"
-              style={{ width: "40%" ,padding:'1rem'}}
+              style={{ width: "40%", padding: "1rem" }}
             ></Column>
             <Column
               field="commissionCode"
               header="Commission Code"
-              style={{ width: "40%" ,padding:'1rem'}}
+              style={{ width: "40%", padding: "1rem" }}
             ></Column>
             <Column
               field="sharingRate"
               header="Share Rate"
-              style={{ width: "40%" ,padding:'1rem'}}
+              style={{ width: "40%", padding: "1rem" }}
             ></Column>
           </DataTable>
         </div>

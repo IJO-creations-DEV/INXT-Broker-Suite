@@ -13,19 +13,26 @@ import DropDowns from "../../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { getUserEditData, postAddUserGroupAccess } from "../../../store/transactionCodeMasterMiddleware";
+import {
+  getUserEditData,
+  postAddUserGroupAccess,
+} from "../../../store/transactionCodeMasterMiddleware";
 import SvgEditicon from "../../../../../../assets/icons/SvgEdit";
 import UserGroupAccessEditPopup from "./UserGroupAccessEditPopup";
 import SvgEditIcon from "../../../../../../assets/icons/SvgEditIcon";
 
 const UserGroupAccess = () => {
-  const { TransactioncodeListsearch, UserGroupAccessList, loading, getUserAccessData } = useSelector(({ transactionCodeMasterReducer }) => {
+  const {
+    TransactioncodeListsearch,
+    UserGroupAccessList,
+    loading,
+    getUserAccessData,
+  } = useSelector(({ transactionCodeMasterReducer }) => {
     return {
       loading: transactionCodeMasterReducer?.loading,
       UserGroupAccessList: transactionCodeMasterReducer?.UserGroupAccessList,
       // TransactioncodeListsearch: transactionCodeMasterReducer?.TransactioncodeListsearch,
-      getUserAccessData: transactionCodeMasterReducer?.getUserAccessData
-
+      getUserAccessData: transactionCodeMasterReducer?.getUserAccessData,
     };
   });
   const [products, setProducts] = useState([]);
@@ -36,10 +43,10 @@ const UserGroupAccess = () => {
     setShow(!show);
   };
   const handleEdit = (columnData) => {
-    setShowEdit(true)
-    dispatch(getUserEditData(columnData))
+    setShowEdit(true);
+    dispatch(getUserEditData(columnData));
     console.log(columnData, "columnData");
-  }
+  };
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
 
@@ -53,9 +60,8 @@ const UserGroupAccess = () => {
   );
 
   const BankAccountCode = [
-    { label: 'Trans00123', value: 'Trans00123' },
-    { label: 'Trans00124', value: 'Trans00124' },
-
+    { label: "Trans00123", value: "Trans00123" },
+    { label: "Trans00124", value: "Trans00124" },
   ];
   const template2 = {
     layout:
@@ -96,16 +102,16 @@ const UserGroupAccess = () => {
     },
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const initialValues = {
     UserRole: "",
     MinimumTransaction: "",
     MaximumTransaction: "",
-  }
+  };
   const handleSubmit = (values) => {
-    dispatch(postAddUserGroupAccess(formik.values))
-    setShow(false)
-  }
+    dispatch(postAddUserGroupAccess(formik.values));
+    setShow(false);
+  };
 
   const customValidation = (values) => {
     const errors = {};
@@ -132,13 +138,9 @@ const UserGroupAccess = () => {
     onSubmit: (values) => {
       // Handle form submission
       handleSubmit(values);
-
     },
     // onSubmit: handleSubmit
   });
-
- 
-
 
   const handleView = (rowData) => {
     console.log("View clicked:", rowData);
@@ -146,7 +148,7 @@ const UserGroupAccess = () => {
   };
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -191,21 +193,21 @@ const UserGroupAccess = () => {
             header="User Role"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-            body={(rowData) => rowData.UserRole.toUpperCase()}
+            body={(rowData) => rowData.UserRole?.toUpperCase()}
           ></Column>
           <Column
             field="MinimumTransaction"
             header="Minimum Transaction"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-          //   sortable
+            //   sortable
           ></Column>
           <Column
             field="MaximumTransaction"
             header="Maximum Transaction"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-          //   sortable
+            //   sortable
           ></Column>
           {/* <Column
             field="Edit"
@@ -216,21 +218,26 @@ const UserGroupAccess = () => {
           <Column
             field="Edit"
             body={(columnData) => (
-              <div onClick={() => handleEdit(columnData)}  style={{ display: 'flex', justifyContent: 'space-between', cursor: "pointer" }}>
-
-
-                <SvgEditIcon  />
+              <div
+                onClick={() => handleEdit(columnData)}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  cursor: "pointer",
+                }}
+              >
+                <SvgEditIcon />
               </div>
             )}
             header="Edit"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-          // header="View"
-          // className="fieldvalue_container"
-          // headerStyle={
-          //   { display: 'flex', justifyContent: 'center', alignItems: 'center' }
-          // }
-          // style={{ textAlign: 'center' }}
+            // header="View"
+            // className="fieldvalue_container"
+            // headerStyle={
+            //   { display: 'flex', justifyContent: 'center', alignItems: 'center' }
+            // }
+            // style={{ textAlign: 'center' }}
           ></Column>
         </DataTable>
       </div>
@@ -250,33 +257,28 @@ const UserGroupAccess = () => {
               textSize={"16"}
               textWeight={500}
               value={formik.values.UserRole}
-              onChange={(e) =>
-                formik.setFieldValue("UserRole", e.target.value)
-              }
-
+              onChange={(e) => formik.setFieldValue("UserRole", e.target.value)}
               options={BankAccountCode}
-
-              optionLabel='label'
-
+              optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
-            // label="User Role"
-            // placeholder="Select"
-            // textColor={"#111927"}
-            // textSize={"16"}
-            // textWeight={500}
-            // dropdownIcon={<SvgDropdown color={"#000"} />}
-            // value={formik.values.Description}
-            // options={BankAccountCode}
-            // onChange={(e) => {
-            //   console.log(e.value);
-            //   formik.setFieldValue("Description", e.value);
-            //   handleAccountcode(e.value.);
-            // }}
-            // optionLabel="Description"
-            // error={
-            //   formik.touched.BankAccountNumber &&
-            //   formik.errors.BankAccountNumber
-            // }
+              // label="User Role"
+              // placeholder="Select"
+              // textColor={"#111927"}
+              // textSize={"16"}
+              // textWeight={500}
+              // dropdownIcon={<SvgDropdown color={"#000"} />}
+              // value={formik.values.Description}
+              // options={BankAccountCode}
+              // onChange={(e) => {
+              //   console.log(e.value);
+              //   formik.setFieldValue("Description", e.value);
+              //   handleAccountcode(e.value.);
+              // }}
+              // optionLabel="Description"
+              // error={
+              //   formik.touched.BankAccountNumber &&
+              //   formik.errors.BankAccountNumber
+              // }
             />
             {formik.touched.UserRole && formik.errors.UserRole && (
               <div
@@ -331,7 +333,10 @@ const UserGroupAccess = () => {
         </div>
       </Dialog>
       <div className="col-12">
-        <UserGroupAccessEditPopup showEdit={showEdit} setShowEdit={setShowEdit} />
+        <UserGroupAccessEditPopup
+          showEdit={showEdit}
+          setShowEdit={setShowEdit}
+        />
       </div>
       {/* <Dialog
         header="Add User Group Access"

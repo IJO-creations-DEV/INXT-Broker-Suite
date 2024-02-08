@@ -315,7 +315,6 @@ function ViewAccountDetail() {
       <Card>
         <div className="cardheader_flex">
           <label className="headlist_lable">Cheque Book Details</label>
-        
         </div>
 
         <div className="tablegap_container">
@@ -339,21 +338,21 @@ function ViewAccountDetail() {
               header="Cheque Book Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.VoucherNumber.toUpperCase()}
+              body={(rowData) => rowData.VoucherNumber?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
               header="Cheque Leaf Beginning"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.TransactionNumber.toUpperCase()}
+              body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
             ></Column>
             <Column
               field="CustomerCode"
               header="Cheque Leaf End"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.CustomerCode.toUpperCase()}
+              body={(rowData) => rowData.CustomerCode?.toUpperCase()}
             ></Column>
             <Column
               field="VoucheDate"
@@ -397,7 +396,7 @@ function ViewAccountDetail() {
       <Dialog
         header="Add Cheque book"
         visible={visible}
-        style={{ width: "50vw" ,boxShadow:"none"}}
+        style={{ width: "50vw", boxShadow: "none" }}
         onHide={() => setVisible(false)}
         className="master__flow__common__dialog__container"
       >

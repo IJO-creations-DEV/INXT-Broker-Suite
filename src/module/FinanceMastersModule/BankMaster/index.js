@@ -41,7 +41,6 @@ const BankMaster = () => {
   //   { label: "Add/Edit Account", command: () => navigate("/master/finance/bank/accountdataview") }
   // ]
   const menuitems = [
-
     { label: "Edit", command: (rowData) => handleEdit(rowData) },
     { label: "View", command: (rowData) => handleView(rowData) },
     {
@@ -102,7 +101,7 @@ const BankMaster = () => {
       BankSearchList: bankMasterReducer?.BankSearchList,
     };
   });
-  useEffect(() => { }, [bankList]);
+  useEffect(() => {}, [bankList]);
   // useEffect(() => {
   //   console.log(currentDialog, "ads")
   //   if(Object.keys(currentDialog).length>0){
@@ -344,7 +343,7 @@ const BankMaster = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.bankCode.toUpperCase()}
+              body={(rowData) => rowData.bankCode?.toUpperCase()}
             ></Column>
             <Column
               field="bankName"
@@ -352,7 +351,7 @@ const BankMaster = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.bankName.toUpperCase()}
+              body={(rowData) => rowData.bankName?.toUpperCase()}
             ></Column>
             <Column
               field="bankBranch"
@@ -360,14 +359,14 @@ const BankMaster = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.bankBranch.toUpperCase()}
+              body={(rowData) => rowData.bankBranch?.toUpperCase()}
             ></Column>
             <Column
               field="ifscCode"
               header="IFSC Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.ifscCode.toUpperCase()}
+              body={(rowData) => rowData.ifscCode?.toUpperCase()}
             ></Column>
             <Column
               field="email"
@@ -391,7 +390,7 @@ const BankMaster = () => {
             <Column
               body={(rowData) => (
                 console.log(rowData, "rowDataaa"),
-                <MenuData menuitems={menuitems} rowData={rowData} />
+                (<MenuData menuitems={menuitems} rowData={rowData} />)
                 // <div className="card flex justify-content-center">
                 //   <TieredMenu
                 //     model={menuitems.map((item) => ({
@@ -411,7 +410,6 @@ const BankMaster = () => {
                 //   />
                 // </div>
               )}
-
               header="Action"
               headerStyle={headerStyle}
               className="fieldvalue_container"
@@ -423,7 +421,7 @@ const BankMaster = () => {
       <Dialog
         header="Bank Details"
         visible={visible}
-        style={{ width: "60vw",boxShadow:"none" }}
+        style={{ width: "60vw", boxShadow: "none" }}
         onHide={() => setVisible(false)}
         className="master__flow__common__dialog__container"
       >
@@ -567,10 +565,9 @@ const BankMaster = () => {
       <Dialog
         header="Bank Details"
         visible={visibleview}
-        style={{ width: "60vw",boxShadow:"none" }}
+        style={{ width: "60vw", boxShadow: "none" }}
         onHide={() => setVisibleview(false)}
         className="master__flow__common__dialog__container"
-       
       >
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">

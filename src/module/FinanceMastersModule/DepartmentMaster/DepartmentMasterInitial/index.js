@@ -136,6 +136,8 @@ const Index = () => {
             rowsPerPageOptions={[5, 10, 25, 50]}
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
+            scrollable={true}
+            scrollHeight="40vh"
           >
             <Column
               field="departmentCode"

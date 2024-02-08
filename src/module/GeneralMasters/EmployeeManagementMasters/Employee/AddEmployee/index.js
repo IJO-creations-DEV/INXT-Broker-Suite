@@ -12,10 +12,14 @@ import DropDowns from "../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../assets/icons/SvgDropdown";
 import countriesData from "./data";
 import { useDispatch, useSelector } from "react-redux";
-import { patchEmployeeEditMiddleware, postAddEmployeeMiddleware } from "../store/employeeMiddleware";
+import {
+  getEmployeEditMiddleWare,
+  patchEmployeeEditMiddleware,
+  postAddEmployeeMiddleware,
+} from "../store/employeeMiddleware";
 
 const AddEmployee = ({ action }) => {
-  console.log(action,'find action')
+  console.log(action, "find action");
   const { employeeEditData, loading, total, employeeViewData } = useSelector(
     ({ employeeReducers }) => {
       return {
@@ -24,19 +28,18 @@ const AddEmployee = ({ action }) => {
         employeeViewData: employeeReducers?.employeeViewData,
         total: employeeReducers,
       };
-
     }
   );
-  console.log(employeeEditData,'find employeeEditData');
+  console.log(employeeEditData, "find employeeEditData");
   const { id } = useParams();
   console.log(id, "find id");
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState("");
   useEffect(() => {
-    if(action==='view'){
+    if (action === "view") {
       setFormikValues();
-    }else if(action==='edit'){
+    } else if (action === "edit") {
       setFormikValues();
     }
   }, [employeeEditData?.id]);
@@ -51,124 +54,117 @@ const AddEmployee = ({ action }) => {
     { label: "Employee", url: "/master/generals/employeemanagement/employee" },
     ,
     {
-      label: `${action === "add"
-        ? "Add Employee"
-        : action === "edit"
+      label: `${
+        action === "add"
+          ? "Add Employee"
+          : action === "edit"
           ? "Edit Employee Details"
           : "View Employee Details"
-        }`,
+      }`,
     },
   ];
   const home = { label: "Master" };
 
-
   const item = [
     {
       label: action === "add" ? "Em0012" : employeeEditData?.employeeType,
-      label: action === "add" ? "Em0012" : employeeEditData?.employeeType
+      label: action === "add" ? "Em0012" : employeeEditData?.employeeType,
     },
     {
       label: action === "add" ? "Em0013" : employeeEditData?.employeeType,
-      label: action === "add" ? "Em0013" : employeeEditData?.employeeType
+      label: action === "add" ? "Em0013" : employeeEditData?.employeeType,
     },
     {
       label: action === "add" ? "Em0014" : employeeEditData?.employeeType,
-      label: action === "add" ? "Em0014" : employeeEditData?.employeeType
+      label: action === "add" ? "Em0014" : employeeEditData?.employeeType,
     },
-
   ];
   const item1 = [
     {
       label: action === "add" ? "Level 1 Agent" : employeeEditData?.designation,
-      label: action === "add" ? "Level 1 Agent" : employeeEditData?.designation
+      label: action === "add" ? "Level 1 Agent" : employeeEditData?.designation,
     },
     {
       label: action === "add" ? "Level 2 Agent" : employeeEditData?.designation,
-      label: action === "add" ? "Level 2 Agent" : employeeEditData?.designation
+      label: action === "add" ? "Level 2 Agent" : employeeEditData?.designation,
     },
     {
       label: action === "add" ? "Level 3 Agent" : employeeEditData?.designation,
-      label: action === "add" ? "Level 3 Agent" : employeeEditData?.designation
+      label: action === "add" ? "Level 3 Agent" : employeeEditData?.designation,
     },
-
   ];
- 
+
   const item2 = [
     {
       label: action === "add" ? "John Doe" : employeeEditData?.reportingTo,
-      label: action === "add" ? "John Doe" : employeeEditData?.reportingTo
+      label: action === "add" ? "John Doe" : employeeEditData?.reportingTo,
     },
     {
       label: action === "add" ? "Sudarshan" : employeeEditData?.reportingTo,
-      label: action === "add" ? "Sudarshan" : employeeEditData?.reportingTo
+      label: action === "add" ? "Sudarshan" : employeeEditData?.reportingTo,
     },
     {
       label: action === "add" ? "Uttam" : employeeEditData?.reportingTo,
-      label: action === "add" ? "Uttam" : employeeEditData?.reportingTo
+      label: action === "add" ? "Uttam" : employeeEditData?.reportingTo,
     },
-
   ];
   const item3 = [
     {
       label: action === "add" ? "Branch0123" : employeeEditData?.branchCode,
-      label: action === "add" ? "Branch0123" : employeeEditData?.branchCode
+      label: action === "add" ? "Branch0123" : employeeEditData?.branchCode,
     },
     {
       label: action === "add" ? "Branch0128" : employeeEditData?.branchCode,
-      label: action === "add" ? "Branch0128" : employeeEditData?.branchCode
+      label: action === "add" ? "Branch0128" : employeeEditData?.branchCode,
     },
     {
       label: action === "add" ? "Branch0148" : employeeEditData?.branchCode,
-      label: action === "add" ? "Branch0148" : employeeEditData?.branchCode
+      label: action === "add" ? "Branch0148" : employeeEditData?.branchCode,
     },
-
   ];
   const item4 = [
     {
       label: action === "add" ? "Depart123" : employeeEditData?.departmentCode,
-      label: action === "add" ? "Depart123" : employeeEditData?.departmentCode
+      label: action === "add" ? "Depart123" : employeeEditData?.departmentCode,
     },
     {
       label: action === "add" ? "Depart163" : employeeEditData?.departmentCode,
-      label: action === "add" ? "Depart163" : employeeEditData?.departmentCode
+      label: action === "add" ? "Depart163" : employeeEditData?.departmentCode,
     },
     {
       label: action === "add" ? "Depart190" : employeeEditData?.departmentCode,
-      label: action === "add" ? "Depart190" : employeeEditData?.departmentCode
+      label: action === "add" ? "Depart190" : employeeEditData?.departmentCode,
     },
-
   ];
- 
+
   const item5 = [
     {
-      label: action === "add" ? "Driving License" : employeeEditData?.idProofType,
-      label: action === "add" ? "Driving License" : employeeEditData?.idProofType
+      label:
+        action === "add" ? "Driving License" : employeeEditData?.idProofType,
+      label:
+        action === "add" ? "Driving License" : employeeEditData?.idProofType,
     },
     {
       label: action === "add" ? "Aadhar" : employeeEditData?.idProofType,
-      label: action === "add" ? "Aadhar" : employeeEditData?.idProofType
+      label: action === "add" ? "Aadhar" : employeeEditData?.idProofType,
     },
     {
       label: action === "add" ? "Pan" : employeeEditData?.idProofType,
-      label: action === "add" ? "Pan" : employeeEditData?.idProofType
+      label: action === "add" ? "Pan" : employeeEditData?.idProofType,
     },
-
   ];
- 
 
-  const City = countriesData.city.map(city => ({
-
+  const City = countriesData.city.map((city) => ({
     label: action === "add" ? city : employeeEditData.city,
     value: action === "add" ? city : employeeEditData.city,
   }));
 
-  const State = countriesData.state.map(state => ({
+  const State = countriesData.state.map((state) => ({
     label: action === "add" ? state : employeeEditData.state,
     value: action === "add" ? state : employeeEditData.state,
   }));
 
-
-  const Country = countriesData.countries.map(country => ({
+  const Country = countriesData.countries.map((country) => ({
     label: action === "add" ? country : employeeEditData.country,
     value: action === "add" ? country : employeeEditData.country,
   }));
@@ -247,23 +243,29 @@ const AddEmployee = ({ action }) => {
   };
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 1);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    console.log(values,"values");
+    console.log(values, "values");
 
     if (action === "add") {
-      dispatch(postAddEmployeeMiddleware(formik.values))
+      dispatch(postAddEmployeeMiddleware(formik.values));
     }
     if (action === "edit") {
-      dispatch(patchEmployeeEditMiddleware(values))
+      dispatch(patchEmployeeEditMiddleware(values));
     }
-    toastRef.current.showToast();
-
-    setTimeout(() => {
-      setVisiblePopup(false);
-      navigate("/master/generals/employeemanagement/employee")
-      formik.resetForm()
-    }, 3000);
+    if (action === "add") {
+      toastRef.current.showToast();
+      setTimeout(() => {
+        setVisiblePopup(false);
+        navigate("/master/generals/employeemanagement/employee");
+        dispatch(getEmployeEditMiddleWare({}));
+        formik.resetForm();
+      }, 3000);
+    } else {
+      navigate("/master/generals/employeemanagement/employee");
+      dispatch(getEmployeEditMiddleWare({}));
+      formik.resetForm();
+    }
   };
 
   const [cityDataOption, setCityDataOption] = useState([]);
@@ -300,7 +302,7 @@ const AddEmployee = ({ action }) => {
     };
     console.log(updatedValues, "updatedValues");
     if (cityData) {
-      setCityDataOption([{ label: cityData, value: cityData }])
+      setCityDataOption([{ label: cityData, value: cityData }]);
     }
     if (stateData) {
       formik.setValues({ ...formik.values, ...updatedValues });
@@ -316,13 +318,15 @@ const AddEmployee = ({ action }) => {
   const formik = useFormik({
     initialValues: initialValue,
     validate,
-    onSubmit: (values) => { handleSubmit(values) },
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
   });
 
-  const handleBackNavigation=()=>{
-    formik.resetForm()
-    navigate(-1)
-  }
+  const handleBackNavigation = () => {
+    formik.resetForm();
+    navigate(-1);
+  };
   return (
     <div className="grid add__employee_container">
       <div className="add_backbut_container">
@@ -333,7 +337,7 @@ const AddEmployee = ({ action }) => {
             display: "flex",
           }}
         >
-          <span onClick={() =>handleBackNavigation()}>
+          <span onClick={() => handleBackNavigation()}>
             <SvgBack />
           </span>
         </div>
@@ -341,8 +345,8 @@ const AddEmployee = ({ action }) => {
           {action === "add"
             ? "Add Employee"
             : action === "edit"
-              ? "Edit Employee"
-              : "View Employee"}
+            ? "Edit Employee"
+            : "View Employee"}
         </div>
       </div>
       <div className="col-12 mb-2">
@@ -368,12 +372,11 @@ const AddEmployee = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-            {formik.touched.employeeCode &&
-              formik.errors.employeeCode && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.employeeCode}
-                </div>
-              )}
+            {formik.touched.employeeCode && formik.errors.employeeCode && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.employeeCode}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
@@ -386,12 +389,11 @@ const AddEmployee = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-            {formik.touched.firstName &&
-              formik.errors.firstName && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.firstName}
-                </div>
-              )}
+            {formik.touched.firstName && formik.errors.firstName && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.firstName}
+              </div>
+            )}
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
@@ -405,12 +407,11 @@ const AddEmployee = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-            {formik.touched.middleName &&
-              formik.errors.middleName && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.middleName}
-                </div>
-              )}
+            {formik.touched.middleName && formik.errors.middleName && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.middleName}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
@@ -423,12 +424,11 @@ const AddEmployee = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-            {formik.touched.lastName &&
-              formik.errors.lastName && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.lastName}
-                </div>
-              )}
+            {formik.touched.lastName && formik.errors.lastName && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.lastName}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
@@ -445,18 +445,17 @@ const AddEmployee = ({ action }) => {
               options={item}
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.employeeType &&
-              formik.errors.employeeType && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.employeeType}
-                </div>
-              )}
+            {formik.touched.employeeType && formik.errors.employeeType && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.employeeType}
+              </div>
+            )}
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={ formik.values.designation}
+              value={formik.values.designation}
               onChange={formik.handleChange("designation")}
               // error={formik.errors.designation}
               className="dropdown__add__sub"
@@ -468,12 +467,11 @@ const AddEmployee = ({ action }) => {
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.designation &&
-              formik.errors.designation && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.designation}
-                </div>
-              )}
+            {formik.touched.designation && formik.errors.designation && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.designation}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
@@ -490,12 +488,11 @@ const AddEmployee = ({ action }) => {
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.reportingTo &&
-              formik.errors.reportingTo && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.reportingTo}
-                </div>
-              )}
+            {formik.touched.reportingTo && formik.errors.reportingTo && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.reportingTo}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
@@ -512,12 +509,11 @@ const AddEmployee = ({ action }) => {
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.branchCode &&
-              formik.errors.branchCode && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.branchCode}
-                </div>
-              )}
+            {formik.touched.branchCode && formik.errors.branchCode && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.branchCode}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
@@ -534,17 +530,16 @@ const AddEmployee = ({ action }) => {
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.departmentCode &&
-              formik.errors.departmentCode && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.departmentCode}
-                </div>
-              )}
+            {formik.touched.departmentCode && formik.errors.departmentCode && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.departmentCode}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
               disabled={action === "view" ? true : false}
-              value={ formik.values.idProofType}
+              value={formik.values.idProofType}
               onChange={formik.handleChange("idProofType")}
               // error={formik.errors.idProofType}
               className="dropdown__add__sub"
@@ -556,12 +551,11 @@ const AddEmployee = ({ action }) => {
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.idProofType &&
-              formik.errors.idProofType && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.idProofType}
-                </div>
-              )}
+            {formik.touched.idProofType && formik.errors.idProofType && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.idProofType}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
@@ -574,12 +568,11 @@ const AddEmployee = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-            {formik.touched.idNumber &&
-              formik.errors.idNumber && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.idNumber}
-                </div>
-              )}
+            {formik.touched.idNumber && formik.errors.idNumber && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.idNumber}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
@@ -592,12 +585,11 @@ const AddEmployee = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-            {formik.touched.addressLine1 &&
-              formik.errors.addressLine1 && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.addressLine1}
-                </div>
-              )}
+            {formik.touched.addressLine1 && formik.errors.addressLine1 && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.addressLine1}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
@@ -610,12 +602,11 @@ const AddEmployee = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-            {formik.touched.addressLine2 &&
-              formik.errors.addressLine2 && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.addressLine2}
-                </div>
-              )}
+            {formik.touched.addressLine2 && formik.errors.addressLine2 && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.addressLine2}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
@@ -628,12 +619,11 @@ const AddEmployee = ({ action }) => {
               className="label__sub__add"
               placeholder="Enter"
             />
-            {formik.touched.addressLine3 &&
-              formik.errors.addressLine3 && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.addressLine3}
-                </div>
-              )}
+            {formik.touched.addressLine3 && formik.errors.addressLine3 && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.addressLine3}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
@@ -648,20 +638,19 @@ const AddEmployee = ({ action }) => {
                 action == "add"
                   ? City
                   : action == "edit"
-                    ? cityDataOption
-                    : City
+                  ? cityDataOption
+                  : City
               }
               optionValue={"label"}
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
 
-            {formik.touched.city &&
-              formik.errors.city && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.city}
-                </div>
-              )}
+            {formik.touched.city && formik.errors.city && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.city}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <DropDowns
@@ -673,24 +662,22 @@ const AddEmployee = ({ action }) => {
               label="State"
               classNames="label__sub__add"
               placeholder={"Select"}
-
               options={
                 action == "add"
                   ? State
                   : action == "edit"
-                    ? stateDataOption
-                    : State
+                  ? stateDataOption
+                  : State
               }
               optionValue={"label"}
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.state &&
-              formik.errors.state && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.state}
-                </div>
-              )}
+            {formik.touched.state && formik.errors.state && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.state}
+              </div>
+            )}
           </div>
 
           <div className="col-12 md:col-3 lg:col-3">
@@ -706,19 +693,18 @@ const AddEmployee = ({ action }) => {
                 action == "add"
                   ? Country
                   : action == "edit"
-                    ? countryDataOption
-                    : Country
+                  ? countryDataOption
+                  : Country
               }
               optionValue={"label"}
               optionLabel="label"
               dropdownIcon={<SvgDropdown color={"#000"} />}
             />
-            {formik.touched.country &&
-              formik.errors.country && (
-                <div style={{ fontSize: 12, color: "red" }}>
-                  {formik.errors.country}
-                </div>
-              )}
+            {formik.touched.country && formik.errors.country && (
+              <div style={{ fontSize: 12, color: "red" }}>
+                {formik.errors.country}
+              </div>
+            )}
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField

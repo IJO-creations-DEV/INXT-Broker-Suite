@@ -30,13 +30,13 @@ import {
 
 const Index = () => {
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState("")
-  const { AccountDetailsList, loading,searchAccountDetails } = useSelector(
+  const [search, setSearch] = useState("");
+  const { AccountDetailsList, loading, searchAccountDetails } = useSelector(
     ({ bankMasterReducer }) => {
       return {
         loading: bankMasterReducer?.loading,
         AccountDetailsList: bankMasterReducer?.AccountDetailsList,
-        searchAccountDetails:bankMasterReducer?.searchAccountDetails
+        searchAccountDetails: bankMasterReducer?.searchAccountDetails,
         // const [products, setProducts] = useState([]);
 
         // const handleView=()=>{
@@ -159,10 +159,9 @@ const Index = () => {
   };
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getSeachAddAccountDetails(search))
+      dispatch(getSeachAddAccountDetails(search));
     }
-    
-  }, [search])
+  }, [search]);
 
   return (
     <div className="overall__accountdataview__container">
@@ -238,21 +237,21 @@ const Index = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.AccountName.toUpperCase()}
+              body={(rowData) => rowData.AccountName?.toUpperCase()}
             ></Column>
             <Column
               field="AccountType"
               header="Account Type"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.AccountType.toUpperCase()}
+              body={(rowData) => rowData.AccountType?.toUpperCase()}
             ></Column>
             <Column
               field="MainAccount"
               header="Main Account"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.MainAccount.toUpperCase()}
+              body={(rowData) => rowData.MainAccount?.toUpperCase()}
             ></Column>
 
             <Column

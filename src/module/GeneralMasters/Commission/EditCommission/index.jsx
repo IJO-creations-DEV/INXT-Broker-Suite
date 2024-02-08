@@ -251,7 +251,7 @@ const EditCommission = () => {
       );
     },
   };
-  const handleNavigateView = () => { };
+  const handleNavigateView = () => {};
   const handleEditNavigate = (rowData) => {
     setVisiblePopup(true);
     dispatch(getEditCommissionPopup(rowData));
@@ -322,7 +322,6 @@ const EditCommission = () => {
                   : "input__label__reversal__inactive"
               }
               label="Description"
-              
               placeholder="Enter"
               value={formik.values.desc}
               onChange={(e) => formik.setFieldValue("desc", e.target.value)}
@@ -562,6 +561,8 @@ const EditCommission = () => {
             onPage={onPageChange}
             onPageChange={onPageChange}
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            scrollable={true}
+            scrollHeight="40vh"
           >
             <Column
               field="level"
@@ -572,7 +573,7 @@ const EditCommission = () => {
               field="commissionCode"
               header="Commission Code"
               className="fieldvalue_container"
-            // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
+              // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
             ></Column>
             <Column
               field="sharingRate"

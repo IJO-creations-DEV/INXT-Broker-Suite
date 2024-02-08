@@ -13,36 +13,38 @@ import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useDispatch, useSelector } from "react-redux";
-import { getReceiptSearchMiddleware, getViewReceiptMiddleware } from "../store/pettyCashReceiptsMiddleware";
+import {
+  getReceiptSearchMiddleware,
+  getViewReceiptMiddleware,
+} from "../store/pettyCashReceiptsMiddleware";
 
 const PettyCashReceiptsTable = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [filterData, setFilterData] = useState(null);
-  const [search, setSearch] = useState("")
-  const [globalFilter, setGlobalFilter] = useState("ReceiptNo")
+  const [search, setSearch] = useState("");
+  const [globalFilter, setGlobalFilter] = useState("ReceiptNo");
 
   const { ReceiptList, loading, ReceiptSearch } = useSelector(
     ({ pettyCashReceiptsReducer }) => {
       return {
         loading: pettyCashReceiptsReducer?.loading,
         ReceiptList: pettyCashReceiptsReducer?.ReceiptList,
-        ReceiptSearch: pettyCashReceiptsReducer?.ReceiptSearch
+        ReceiptSearch: pettyCashReceiptsReducer?.ReceiptSearch,
       };
     }
   );
 
   const searchs = [
-    { name: 'Receipt No', code: 'ReceiptNo' },
-    { name: 'Requester Name', code: 'RequesterName' },
-    { name: 'Branch Code', code: 'Branchcode' },
-    { name: 'Transaction code', code: 'Transactioncode' },
-    { name: 'Bank Code', code: 'BankCode' },
-    { name: 'SubAccount', code: 'SubAccount' },
-    { name: 'Transaction Number', code: 'TransactionNumber' },
-    { name: 'Date', code: 'Date' },
-  ]
-
+    { name: "Receipt No", code: "ReceiptNo" },
+    { name: "Requester Name", code: "RequesterName" },
+    { name: "Branch Code", code: "Branchcode" },
+    { name: "Transaction code", code: "Transactioncode" },
+    { name: "Bank Code", code: "BankCode" },
+    { name: "SubAccount", code: "SubAccount" },
+    { name: "Transaction Number", code: "TransactionNumber" },
+    { name: "Date", code: "Date" },
+  ];
 
   const isEmpty = ReceiptList?.length === 0;
 
@@ -102,7 +104,7 @@ const PettyCashReceiptsTable = () => {
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -128,18 +130,18 @@ const PettyCashReceiptsTable = () => {
   ];
 
   useEffect(() => {
-
-    console.log(globalFilter, "as")
+    console.log(globalFilter, "as");
     if (globalFilter?.length > 0) {
       if (search?.length > 0) {
-        dispatch(getReceiptSearchMiddleware({
-          field: globalFilter,
-          value: search
-        }))
-
+        dispatch(
+          getReceiptSearchMiddleware({
+            field: globalFilter,
+            value: search,
+          })
+        );
       }
     }
-  }, [search])
+  }, [search]);
 
   return (
     <div className="petty__cash__receipts__table">
@@ -158,7 +160,11 @@ const PettyCashReceiptsTable = () => {
           </div>
           <div class="col-12 md:col-6 lg:col-2 search__container">
             <Dropdown
-              value={search} onChange={(e) => setGlobalFilter(e.value)} options={searchs} optionLabel="name" optionValue="code"
+              value={search}
+              onChange={(e) => setGlobalFilter(e.value)}
+              options={searchs}
+              optionLabel="name"
+              optionValue="code"
               placeholder="Search by"
               className="sorbyfilter_container"
               dropdownIcon={<SvgDropdownicon />}
@@ -177,7 +183,7 @@ const PettyCashReceiptsTable = () => {
         </div>
         <div className="card">
           <DataTable
-            value={search ? ReceiptSearch :ReceiptList}
+            value={search ? ReceiptSearch : ReceiptList}
             tableStyle={{
               minWidth: "50rem",
               color: "#1C2536",
@@ -199,7 +205,7 @@ const PettyCashReceiptsTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
-              body={(rowData) => rowData.ReceiptNo.toUpperCase()}
+              body={(rowData) => rowData.ReceiptNo?.toUpperCase()}
             ></Column>
             <Column
               field="RequesterName"
@@ -207,42 +213,42 @@ const PettyCashReceiptsTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
-              body={(rowData) => rowData.RequesterName.toUpperCase()}
+              body={(rowData) => rowData.RequesterName?.toUpperCase()}
             ></Column>
             <Column
               field="Branchcode"
               header="Branch code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.Branchcode.toUpperCase()}
+              body={(rowData) => rowData.Branchcode?.toUpperCase()}
             ></Column>
             <Column
               field="Transactioncode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.Transactioncode.toUpperCase()}
+              body={(rowData) => rowData.Transactioncode?.toUpperCase()}
             ></Column>
             <Column
               field="BankCode"
               header="Bank Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.BankCode.toUpperCase()}
+              body={(rowData) => rowData.BankCode?.toUpperCase()}
             ></Column>
             <Column
               field="SubAccount"
               header="Sub Account"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              body={(rowData) => rowData.SubAccount.toUpperCase()}
+              body={(rowData) => rowData.SubAccount?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              // body={(rowData) => rowData.TransactionNumber.toUpperCase()}
+              // body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
               sortable
             ></Column>
             <Column

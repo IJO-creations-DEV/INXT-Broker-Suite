@@ -49,15 +49,15 @@ const TableData = ({ navigate }) => {
       return (
         <div className="table__selector">
           {/* <React.Fragment> */}
-            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
+          <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+            Row count :{" "}
+          </span>
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
           {/* </React.Fragment> */}
         </div>
       );
@@ -134,26 +134,28 @@ const TableData = ({ navigate }) => {
         paginatorTemplate={template2}
         className="reversal__table__main"
         emptyMessage={emptyTableIcon}
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="businessCode"
           header="Line of Business Code"
           className="fieldvalue_container"
           sortable
-          body={(rowData) => rowData.businessCode.toUpperCase()}
+          body={(rowData) => rowData.businessCode?.toUpperCase()}
         ></Column>
         <Column
           field="LOBName"
           header="LOB Name"
           className="fieldvalue_container"
-          body={(rowData) => rowData.LOBName.toUpperCase()}
+          body={(rowData) => rowData.LOBName?.toUpperCase()}
         ></Column>
 
         <Column
           field="modifiedby"
           header="Modified by"
           className="fieldvalue_container"
-          body={(rowData) => rowData.modifiedby.toUpperCase()}
+          body={(rowData) => rowData.modifiedby?.toUpperCase()}
         ></Column>
         <Column
           field="modifiedOn"

@@ -85,7 +85,7 @@ const LeadListingAllTable = () => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.claimNumber.toUpperCase()}</div>
+          <div className="name__text">{rowData.claimNumber?.toUpperCase()}</div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
         </div>
       </div>
@@ -94,27 +94,27 @@ const LeadListingAllTable = () => {
 
   const renderQuoteId = (rowData) => {
     return (
-      <div className="category__text">{rowData.QuoteId.toUpperCase()}</div>
+      <div className="category__text">{rowData.QuoteId?.toUpperCase()}</div>
     );
   };
   const renderPolicyType = (rowData) => {
     console.log(rowData, "find rowData");
     return (
-      <div className="category__text">{rowData.PolicyType.toUpperCase()}</div>
+      <div className="category__text">{rowData.PolicyType?.toUpperCase()}</div>
     );
   };
   const renderLeadName = (rowData) => {
     return (
-      <div className="category__text">{rowData.LeadName.toUpperCase()}</div>
+      <div className="category__text">{rowData.LeadName?.toUpperCase()}</div>
     );
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date.toUpperCase()}</div>;
+    return <div className="date__text">{rowData.Date?.toUpperCase()}</div>;
   };
   const renderGrossPremium = (rowData) => {
     return (
-      <div className="date__text">{rowData.GrossPremium.toUpperCase()}</div>
+      <div className="date__text">{rowData.GrossPremium?.toUpperCase()}</div>
     );
   };
 
@@ -130,7 +130,7 @@ const LeadListingAllTable = () => {
             : "company__status__type__blue"
         }
       >
-        {rowData.Status.toUpperCase()}
+        {rowData.Status?.toUpperCase()}
       </div>
     );
   };
@@ -295,13 +295,12 @@ const LeadListingAllTable = () => {
             body={renderStatus}
             header={renderUncheckedHeader("Status")}
             headerStyle={headeraction}
-            style={{textAlign:"center"}}
+            style={{ textAlign: "center" }}
           ></Column>
           <Column
             body={renderViewEditButton}
             header={renderUncheckedHeader("Actions")}
-             headerStyle={{ ...ViewheaderStyle, textAlign: "center" }}
-            
+            headerStyle={{ ...ViewheaderStyle, textAlign: "center" }}
           ></Column>
         </DataTable>
       </div>

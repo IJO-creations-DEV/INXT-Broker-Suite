@@ -38,7 +38,6 @@ const PolicyReceipts = () => {
       to: "/accounts/receipts",
     },
   ];
-  
 
   const search = [
     { name: "Name", value: "name" },
@@ -251,9 +250,7 @@ const PolicyReceipts = () => {
               header="Receipt Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-            >
-              
-            </Column>
+            ></Column>
             <Column
               field="transactionCode"
               header="Transaction Code"
@@ -266,7 +263,6 @@ const PolicyReceipts = () => {
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
-              
             ></Column>
             <Column
               sortable
@@ -274,10 +270,8 @@ const PolicyReceipts = () => {
               header="Name"
               headerStyle={headerStyle1}
               className="fieldvalue_container"
-              body={(rowData) => rowData.name.toUpperCase()}
-            >
-              
-            </Column>
+              body={(rowData) => rowData.name?.toUpperCase()}
+            ></Column>
             <Column
               sortable
               field="customerCode"

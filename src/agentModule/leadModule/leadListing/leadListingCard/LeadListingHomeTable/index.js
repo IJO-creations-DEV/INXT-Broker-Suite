@@ -15,25 +15,28 @@ import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getLeadEditDataMiddleWare, getPaymentSearchDataMiddleWare } from "../../../Store/leadMiddleware";
+import {
+  getLeadEditDataMiddleWare,
+  getPaymentSearchDataMiddleWare,
+} from "../../../Store/leadMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 
 const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
-  const companyData = leadtabledata?.filter(item => item.Type === "Property");
-  const searchMiddleWareData = paymentSearchList?.filter(val => val?.Type === "Property");
-
+  const companyData = leadtabledata?.filter((item) => item.Type === "Property");
+  const searchMiddleWareData = paymentSearchList?.filter(
+    (val) => val?.Type === "Property"
+  );
 
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
-  const [status, setStatus] = useState("")
-  const [search, setSearch] = useState("")
+  const [status, setStatus] = useState("");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cities = [
     { name: "Name", code: "Name" },
     { name: "LeadID", code: "LeadID" },
-
   ];
 
   useEffect(() => {
@@ -57,7 +60,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "01",
       LeadID: "123456",
       Svg: <SvgHomeTable />,
-      dateSortField: "11001"
+      dateSortField: "11001",
     },
     {
       id: "2",
@@ -67,7 +70,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "02",
       LeadID: "126",
       Svg: <SvgHomeTable />,
-      dateSortField: "11002"
+      dateSortField: "11002",
     },
     {
       id: "3",
@@ -77,7 +80,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "02",
       LeadID: "1456",
       Svg: <SvgHomeTable />,
-      dateSortField: "11003"
+      dateSortField: "11003",
     },
     {
       id: "4",
@@ -87,7 +90,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "03",
       LeadID: "1236",
       Svg: <SvgHomeTable />,
-      dateSortField: "11004"
+      dateSortField: "11004",
     },
     {
       id: "5",
@@ -97,7 +100,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "04",
       LeadID: "1456",
       Svg: <SvgHomeTable />,
-      dateSortField: "11005"
+      dateSortField: "11005",
     },
     {
       id: "6",
@@ -107,7 +110,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "05",
       LeadID: "123116",
       Svg: <SvgHomeTable />,
-      dateSortField: "11006"
+      dateSortField: "11006",
     },
     {
       id: "7",
@@ -117,7 +120,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "06",
       LeadID: "123411",
       Svg: <SvgHomeTable />,
-      dateSortField: "11007"
+      dateSortField: "11007",
     },
     {
       id: "8",
@@ -127,7 +130,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "01",
       LeadID: "1234000",
       Svg: <SvgHomeTable />,
-      dateSortField: "11008"
+      dateSortField: "11008",
     },
     {
       id: "9",
@@ -137,7 +140,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "02",
       LeadID: "1234555",
       Svg: <SvgHomeTable />,
-      dateSortField: "11009"
+      dateSortField: "11009",
     },
     {
       id: "10",
@@ -147,9 +150,8 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
       Quotes: "03",
       LeadID: "1234226",
       Svg: <SvgHomeTable />,
-      dateSortField: "11010"
+      dateSortField: "11010",
     },
-
   ];
 
   const template2 = {
@@ -209,7 +211,9 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
   const renderName = (rowData) => {
     return (
       <div className="name__box__container">
-        <div><SvgHomeTable /></div>
+        <div>
+          <SvgHomeTable />
+        </div>
         <div>
           <div className="name__text">{rowData.FirstName?.toUpperCase()}</div>
           <div className="lead__id__text">Lead Id :{rowData.LeadID} </div>
@@ -219,15 +223,19 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.category.toUpperCase()}</div>;
+    return (
+      <div className="category__text">{rowData.category?.toUpperCase()}</div>
+    );
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.DateofBirth.toUpperCase()}</div>;
+    return (
+      <div className="date__text">{rowData.DateofBirth?.toUpperCase()}</div>
+    );
   };
 
   const renderQuotes = (rowData) => {
-    return <div className="quote__text">{rowData.Quotes.toUpperCase()}</div>;
+    return <div className="quote__text">{rowData.Quotes?.toUpperCase()}</div>;
   };
 
   const handleView = () => {
@@ -235,7 +243,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
   };
 
   const handleEdit = (rowData) => {
-    dispatch(getLeadEditDataMiddleWare(rowData))
+    dispatch(getLeadEditDataMiddleWare(rowData));
     navigate("/agent/leadedit");
   };
 
@@ -285,7 +293,16 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
             {/* <SvgSearch/> */}
-            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} style={{ width: "100%", padding: "1rem 2.75rem", borderRadius: "10px" }} />
+            <InputText
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "1rem 2.75rem",
+                borderRadius: "10px",
+              }}
+            />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
@@ -300,7 +317,6 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
             className="sorbyfilter__style"
             dropdownIcon={<SvgDownArrow />}
           />
-
         </div>
       </div>
       <div className="lead__table__container">
@@ -324,7 +340,7 @@ const LeadListingHomeTable = ({ leadtabledata, paymentSearchList }) => {
             body={(rowData) => (
               <Checkbox
                 checked={selectedProducts.includes(rowData)}
-                onChange={() => { }}
+                onChange={() => {}}
               />
             )}
             headerStyle={headerStyle}

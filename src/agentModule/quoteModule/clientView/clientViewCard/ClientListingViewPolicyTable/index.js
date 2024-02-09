@@ -323,7 +323,11 @@ const LeadListingAllTable = ({ action }) => {
     );
   };
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription.toUpperCase()}</div>;
+    return (
+      <div className="category__text">
+        {rowData.ProductDescription?.toUpperCase()}
+      </div>
+    );
   };
   const renderPolicyNumber = (rowData) => {
     return (
@@ -332,7 +336,9 @@ const LeadListingAllTable = ({ action }) => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.PolicyNumber.toUpperCase()}</div>
+          <div className="name__text">
+            {rowData.PolicyNumber?.toUpperCase()}
+          </div>
         </div>
       </div>
     );
@@ -343,10 +349,12 @@ const LeadListingAllTable = ({ action }) => {
   };
 
   const renderExpiryDate = (rowData) => {
-    return <div className="date__text">{rowData.ExpiryDate.toUpperCase()}</div>;
+    return (
+      <div className="date__text">{rowData.ExpiryDate?.toUpperCase()}</div>
+    );
   };
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date.toUpperCase()}</div>;
+    return <div className="date__text">{rowData.Date?.toUpperCase()}</div>;
   };
 
   const renderPayment = (rowData) => {
@@ -360,7 +368,7 @@ const LeadListingAllTable = ({ action }) => {
             : "company__status__type__red"
         }
       >
-        {rowData.Payment.toUpperCase()}
+        {rowData.Payment?.toUpperCase()}
       </div>
     );
   };
@@ -434,7 +442,6 @@ const LeadListingAllTable = ({ action }) => {
             body={renderPolicyNumber}
             header="Policy Number"
             headerStyle={headerStyle}
-            
           ></Column>
           <Column
             body={renderGrossPremium}

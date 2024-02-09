@@ -125,8 +125,8 @@ const commissionReducers = createSlice({
             postAddCommission.fulfilled,
             (state, action) => {
                 state.loading = false;
-                const newItem = { ...action.payload, id: nextId++ };
-                state.commissionList = [...state.commissionList, newItem];
+                // const newItem = { ...action.payload, id: nextId++ };
+                state.commissionList = [...state.commissionList, action.payload];
             }
         );
         builder.addCase(

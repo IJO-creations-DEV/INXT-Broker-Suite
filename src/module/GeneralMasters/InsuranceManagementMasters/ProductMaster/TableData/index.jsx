@@ -133,6 +133,8 @@ const TableData = ({ navigate }) => {
         paginatorTemplate={template2}
         className="reversal__table__main"
         emptyMessage={emptyTableIcon}
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="productCode"
@@ -144,25 +146,25 @@ const TableData = ({ navigate }) => {
           field="productName"
           header="Product Name"
           className="fieldvalue_container"
-          body={(rowData) => rowData.productName.toUpperCase()}
+          body={(rowData) => rowData.productName?.toUpperCase()}
         ></Column>
         <Column
           field="lineofBusiness"
           header="Line of Business"
           className="fieldvalue_container"
-          body={(rowData) => rowData.lineofBusiness.toUpperCase()}
+          body={(rowData) => rowData.lineofBusiness?.toUpperCase()}
         ></Column>
         <Column
           field="commissionCode"
           header="Commission Code"
           className="fieldvalue_container"
-          body={(rowData) => rowData.commissionCode.toUpperCase()}
+          body={(rowData) => rowData.commissionCode?.toUpperCase()}
         ></Column>
         <Column
           field="modifiedby"
           header="Modified by"
           className="fieldvalue_container"
-          body={(rowData) => rowData.modifiedby.toUpperCase()}
+          body={(rowData) => rowData.modifiedby?.toUpperCase()}
         ></Column>
         <Column
           field="modifiedOn"

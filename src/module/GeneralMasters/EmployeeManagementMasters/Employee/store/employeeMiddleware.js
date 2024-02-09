@@ -25,6 +25,7 @@ export const getEmployeeListMiddleware = createAsyncThunk(
 export const getEmployeeListByIdMiddleware = createAsyncThunk(
   GET_EMPLOYEE_BY_ID,
   async (payload, { rejectWithValue }) => {
+    
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;
@@ -36,14 +37,16 @@ export const getEmployeeListByIdMiddleware = createAsyncThunk(
 export const postAddEmployeeMiddleware = createAsyncThunk(
   POST_ADD_EMPLOYEE,
   async (payload, { rejectWithValue }) => {
+    
     const data = {
+      id:payload?.id,
       employeeCode: payload?.employeeCode,
       firstName: payload?.firstName,
       middleName: payload?.middleName,
       lastName: payload?.lastName,
       employeeType: payload?.employeeType,
       designation: payload?.designation,
-      reportingto: payload?.reportingto,
+      reportingTo: payload?.reportingTo,
       branchCode: payload?.branchCode,
       departmentCode: payload?.departmentCode,
       idProofType: payload?.idProofType,
@@ -57,6 +60,7 @@ export const postAddEmployeeMiddleware = createAsyncThunk(
       modifiedBy: payload?.modifiedBy,
       modifiedOn: payload?.modifiedOn,
     }
+    
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return data;
@@ -68,14 +72,16 @@ export const postAddEmployeeMiddleware = createAsyncThunk(
 export const patchEmployeeEditMiddleware = createAsyncThunk(
   PATCH_EMPLOYEE_EDIT,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"find payloadddd")
     const data = {
+      id:payload?.id,
       employeeCode: payload?.employeeCode,
       firstName: payload?.firstName,
       middleName: payload?.middleName,
       lastName: payload?.lastName,
       employeeType: payload?.employeeType,
       designation: payload?.designation,
-      reportingto: payload?.reportingto,
+      reportingTo: payload?.reportingTo,
       branchCode: payload?.branchCode,
       departmentCode: payload?.departmentCode,
       idProofType: payload?.idProofType,
@@ -144,6 +150,7 @@ export const getEmployeViewMiddleWare = createAsyncThunk(
 export const getEmployeEditMiddleWare = createAsyncThunk(
   GET_EDIT_EMPLOYEE,
   async (payload, { rejectWithValue }) => {
+    console.log(payload,"find edit payload");
     try {
       // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
       return payload;

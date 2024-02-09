@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import SvgEditIcon from "../../../../../../assets/icons/SvgEditIcon";
 import UserGroupAccessEditPopup from "../../../TransactionCodeMasterEdit/TransactionCodeMasterEditTableview/UserGroupAccessEdit/UserGroupAccessEditPopup";
+import { findAllByTestId } from "@testing-library/react";
 
 const UserGroupAccess = () => {
   const { TransactioncodeListsearch, UserGroupAccessList, loading } = useSelector(({ transactionCodeMasterReducer }) => {
@@ -88,9 +89,9 @@ const UserGroupAccess = () => {
     console.log("View clicked:", rowData);
     // navigate("/accounts/pettycash/PettyCashCodeDetails")
   };
-  const [showEdit, setShowEdit] = useState([])
+  const [showEdit, setShowEditData] = useState(false)
   const handleEdit = (columnData) => {
-    setShowEdit(true)
+    setShowEditData(true)
     dispatch(getUserEditData(columnData))
     console.log(columnData, "columnData");
   }
@@ -214,13 +215,14 @@ const UserGroupAccess = () => {
         </DataTable>
       </div>
       <div className="col-12">
-        <UserGroupAccessEditPopup showEdit={showEdit} setShowEdit={setShowEdit} />
+        <UserGroupAccessEditPopup showEdit={showEdit} setShowEditData={setShowEditData} />
       </div>
       <Dialog
         header="Add User Group Access"
         visible={show}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw" ,boxShadow:"none"}}
         onHide={() => setShow(false)}
+        className="master__flow__common__dialog__container"
       >
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">

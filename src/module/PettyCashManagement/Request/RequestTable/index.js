@@ -13,7 +13,10 @@ import "./index.scss";
 import { TieredMenu } from "primereact/tieredmenu";
 import SvgDropdownicon from "../../../../assets/icons/SvgDropdownicon";
 import { useDispatch, useSelector } from "react-redux";
-import { getRequestSearchMiddleware, geteditrequestMiddleware } from "../store/pettyCashRequestMiddleware";
+import {
+  getRequestSearchMiddleware,
+  geteditrequestMiddleware,
+} from "../store/pettyCashRequestMiddleware";
 import SvgIconeye from "../../../../assets/icons/SvgIconeye";
 import SvgEdit from "../../../../assets/icons/SvgEdits";
 
@@ -32,7 +35,7 @@ const RequestTable = () => {
       };
     }
   );
-  console.log("first9", RequestList)
+  console.log("first9", RequestList);
   const searchs = [
     { name: "Receipt No", code: "ReceiptNo" },
     { name: "Request Number", code: "RequestNumber" },
@@ -46,7 +49,7 @@ const RequestTable = () => {
   const isEmpty = RequestList.length === 0;
 
   const handleViewer = (columnData) => {
-    console.log("columnData",columnData)
+    console.log("columnData", columnData);
     // dispatch(getAccountDetailsView(columnData));
     dispatch(geteditrequestMiddleware(columnData));
     navigate(`/accounts/pettycash/editrequestform/view/${columnData?.id}`);
@@ -209,18 +212,21 @@ const RequestTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              body={(rowData) => rowData.RequesterName?.toUpperCase()}
             ></Column>
             <Column
               field="RequestDate"
               header="Requester Date"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.RequestDate?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
             ></Column>
             <Column
               field="Date"

@@ -49,7 +49,7 @@ export const getPaymentSearchDataMiddleWare = createAsyncThunk(
             const lowercasedValue = value.toLowerCase();
             const outputData = data.filter(item => {
 
-                if (field === 'Name' ) {
+                if (field === 'Name') {
                     return item.FirstName.toLowerCase().includes(lowercasedValue);
                 } else if (field === 'ClientID') {
                     return item.LeadID.toLowerCase().includes(lowercasedValue);
@@ -89,7 +89,8 @@ export const patchClientEditMiddleWare = createAsyncThunk(
     PATCH_CLIENTEDIT_DATA,
     async (payload, { rejectWithValue, getState }) => {
         console.log(payload, "find edit load");
-        const category = payload.type === 'individual' ? 'Individual' : 'Company';
+        const category = payload.category === 'Individual' ? 'Individual' : 'Company';
+        console.log(category, "category");
         const randomQuotesNumber = Math.floor(Math.random() * 10);
         const data = {
             id: payload?.id,
@@ -118,6 +119,7 @@ export const patchClientEditMiddleWare = createAsyncThunk(
         }
 
         try {
+            console.log(data, "jhhjj");
             // const { data } = await getRequest(APIROUTES.DASHBOARD.GET_DETAILS);
             return data;
         } catch (error) {

@@ -14,7 +14,7 @@ const ClientListingCard = () => {
       const Initiate = { label: "Home" };
       
     return (
-        <div className="claim__table__container mt-4">
+        <div className="claim__table__container__quotation mt-4">
              <div class="grid mt-3">
         <div class="col-12 md:col-6 lg:col-6">
           <label className="leadlisting__overal__container__title">Quotation</label>

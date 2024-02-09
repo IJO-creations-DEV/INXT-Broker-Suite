@@ -47,7 +47,7 @@ const SubAccountMaster = () => {
     setSelectedOption1(e.value);
   };
 
-  const handleClick = () => { };
+  const handleClick = () => {};
 
   const { subAccountList, loading, subAccountSearchList } = useSelector(
     ({ subAccountMainReducers }) => {
@@ -339,18 +339,6 @@ const SubAccountMaster = () => {
           >
             <div className="card">
               <DataTable
-                // value={search ? subAccountSearchList : subAccountList}
-                // style={{ overflowY: "auto", maxWidth: "100%" }}
-                // responsive={true}
-                // className="table__view__taxation"
-                // paginator
-                // paginatorLeft
-                // rows={5}
-                // rowsPerPageOptions={[5, 10, 25, 50]}
-                // currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                // paginatorTemplate={template2}
-                // onPage={onPageChange}
-                // onPageChange={onPageChange}
                 value={search ? subAccountSearchList : subAccountList}
                 paginator
                 rows={5}
@@ -367,6 +355,7 @@ const SubAccountMaster = () => {
                   header="Sub Account Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.subAccountCode?.toUpperCase()}
                   sortable
                 ></Column>
                 <Column
@@ -374,6 +363,7 @@ const SubAccountMaster = () => {
                   header="Description"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.description?.toUpperCase()}
                 ></Column>
 
                 <Column
@@ -396,9 +386,9 @@ const SubAccountMaster = () => {
                 <Dialog
                   header="Add Sub Account"
                   visible={visiblePopup}
-                  className="dialog_fields"
+                  className="dialog_fields master__flow__common__dialog__container"
                   onHide={() => setVisiblePopup(false)}
-                  style={{ width: "60vw" }}
+                  style={{ width: "60vw", boxShadow: "none" }}
                 >
                   <div class="grid">
                     <div class="sm-col-12  md:col-4 lg-col-4">

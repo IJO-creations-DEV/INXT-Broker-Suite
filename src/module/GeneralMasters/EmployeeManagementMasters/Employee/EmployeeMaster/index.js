@@ -21,7 +21,7 @@ import { getEmployeEditMiddleWare, getEmployeViewMiddleWare, getSearchEmployeeMi
 const EmployeeMaster = () => {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("/master/generals/employeemanagement/employee/add/1");
+    navigate(`/master/generals/employeemanagement/employee/add/${123}`);
   };
   const handleNavigateedit = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
@@ -42,13 +42,14 @@ const EmployeeMaster = () => {
 
   const handleView = (rowData) => {
     console.log(rowData, "rowData");
-    dispatch(getEmployeViewMiddleWare(rowData))
-    navigate(`/master/generals/employeemanagement/employee/view/2`);
+    // dispatch(getEmployeViewMiddleWare(rowData))
+    dispatch(getEmployeEditMiddleWare(rowData))
+    navigate(`/master/generals/employeemanagement/employee/view/${123}`);
   };
 
   const handlEdit = (rowData) => {
     dispatch(getEmployeEditMiddleWare(rowData))
-    navigate("/master/generals/employeemanagement/employee/edit/3");
+    navigate(`/master/generals/employeemanagement/employee/edit/${123}`);
   };
   const items = [
     { label: "Employee Management" },
@@ -201,38 +202,43 @@ const EmployeeMaster = () => {
                 style={{ overflowY: "auto", maxWidth: "100%" }}
                 responsive={true}
                 className="table__view__hierarchy"
+               
                 paginator
                 paginatorLeft
                 rows={5}
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-                onPage={onPageChange}
-                onPageChange={onPageChange}
+                scrollable={true}
+                scrollHeight="40vh"
               >
                 <Column
                   field="employeeCode"
                   header="Employee Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.employeeCode?.toUpperCase()}
                 ></Column>
                 <Column
                   field="employeeType"
                   header="Employee Type"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.employeeType?.toUpperCase()}
                 ></Column>
                 <Column
                   field="firstName"
                   header="Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.firstName?.toUpperCase()}
                 ></Column>
                 <Column
                   field="designation"
                   header="Designation"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.designation?.toUpperCase()}
                 ></Column>
 
                 <Column
@@ -240,6 +246,7 @@ const EmployeeMaster = () => {
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.modifiedBy?.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

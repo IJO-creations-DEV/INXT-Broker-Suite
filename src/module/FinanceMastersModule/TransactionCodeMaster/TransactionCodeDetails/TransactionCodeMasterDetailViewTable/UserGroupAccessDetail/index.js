@@ -8,13 +8,17 @@ import SvgTable from "../../../../../../assets/icons/SvgTable";
 import { useSelector } from "react-redux";
 
 const UserGroupAccessDetail = () => {
-  const { TransactioncodeListsearch, UserGroupAccessList, loading, getUserAccessData } = useSelector(({ transactionCodeMasterReducer }) => {
+  const {
+    TransactioncodeListsearch,
+    UserGroupAccessList,
+    loading,
+    getUserAccessData,
+  } = useSelector(({ transactionCodeMasterReducer }) => {
     return {
       loading: transactionCodeMasterReducer?.loading,
       UserGroupAccessList: transactionCodeMasterReducer?.UserGroupAccessList,
       // TransactioncodeListsearch: transactionCodeMasterReducer?.TransactioncodeListsearch,
-      getUserAccessData: transactionCodeMasterReducer?.getUserAccessData
-
+      getUserAccessData: transactionCodeMasterReducer?.getUserAccessData,
     };
   });
   const [products, setProducts] = useState([]);
@@ -28,13 +32,13 @@ const UserGroupAccessDetail = () => {
 
   const emptyTableIcon = (
     <div>
-    <div className="empty-table-icon">
-      <SvgTable/>
-    </div>
-    <div className="no__data__found">No data entered</div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found">No data entered</div>
     </div>
   );
-  
+
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -76,7 +80,7 @@ const UserGroupAccessDetail = () => {
 
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -94,12 +98,6 @@ const UserGroupAccessDetail = () => {
           }}
           scrollable={true}
           scrollHeight="40vh"
-        //   paginator
-        //   rows={5}
-        //   rowsPerPageOptions={[5, 10, 25, 50]}
-        //   // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-        //   currentPageReportTemplate="{first} - {last} of {totalRecords}"
-        //   paginatorTemplate={template2}
           emptyMessage={isEmpty ? emptyTableIcon : null}
         >
           <Column

@@ -220,7 +220,7 @@ const ReceiptList = () => {
           </div>
         </div>
       </Card>
-      <Card className="mt-3">
+      <Card className="mt-3 tabel__border__header">
         <ReceiptListTable AddReceiptTable={AddReceiptTable}/>
       </Card>
     </div>

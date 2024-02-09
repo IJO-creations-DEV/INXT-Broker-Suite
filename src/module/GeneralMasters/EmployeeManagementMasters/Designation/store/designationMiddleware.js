@@ -81,7 +81,7 @@ export const getSearchDesignationMiddleware = createAsyncThunk(
     try {
       if (textSearch.trim() !== "") {
         const searchResults = designationDetailList.filter(item => {
-          return item.designationName.toLowerCase().includes(textSearch.toLowerCase())
+          return item.designationCode.toLowerCase().includes(textSearch.toLowerCase())
         });
         console.log(searchResults, "searchResults")
         return searchResults;

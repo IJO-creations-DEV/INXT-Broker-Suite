@@ -3,7 +3,7 @@
   padding: 20px 0;
   background: #fff;
   filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08));
-  border-radius: 6px;
+  border-radius: 20px;
   .switch__action__input__active {
     width: 70px;
     border: 1px solid #48c99e;
@@ -22,7 +22,7 @@
 
       flex-direction: row-reverse;
       color: #008836;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 10px;
       font-style: normal;
       font-weight: 500;
@@ -32,9 +32,6 @@
       justify-content: center;
       height: 100%;
     }
-    
-   
-    
   }
   .empty-table-icon {
     display: flex;
@@ -45,7 +42,7 @@
   }
   .no__data__found {
     color: #b1b1b1;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -61,13 +58,13 @@
     .p-inputswitch-slider {
       background: #f2dedc !important;
     }
-   
+
     .p-inputswitch-slider::before {
       left: 0 !important;
       background: #f36156;
       content: "\00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 Inactive";
       color: #ef0000;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 10px;
       font-style: normal;
       font-weight: 500;
@@ -85,7 +82,7 @@
     .searchinput__field {
       width: 100%;
       color: #111927;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -94,14 +91,14 @@
     }
     .searchinput__field::placeholder {
       color: #b1b1b1;
-      font-family:'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 16px;
       font-weight: 400;
     }
   }
   .table__title {
     color: #111927;
-    font-family:'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -129,7 +126,7 @@
           //   justify-content: center;
           .p-column-title {
             color: #111927;
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
             font-size: 16px;
             font-style: normal;
             font-weight: 500;
@@ -142,7 +139,7 @@
       tr {
         td {
           color: #111927;
-          font-family: 'Inter', sans-serif;
+          font-family: "Inter", sans-serif;
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
@@ -169,7 +166,7 @@
       justify-content: flex-end;
       span {
         color: #1c2536 !important;
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;

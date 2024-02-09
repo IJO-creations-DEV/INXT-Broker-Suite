@@ -16,7 +16,7 @@ import { useFormik } from "formik";
 import { getUserEditData, patchUserRoleAccess, postAddUserGroupAccess } from "../../../../store/transactionCodeMasterMiddleware";
 import SvgEditicon from "../../../../../../../assets/icons/SvgEdit";
 
-const UserGroupAccessEditPopup = ({ showEdit, setShowEdit }) => {
+const UserGroupAccessEditPopup = ({ showEdit, setShowEditData }) => {
     const { TransactioncodeListsearch, UserGroupAccessList, loading, getUserAccessData } = useSelector(({ transactionCodeMasterReducer }) => {
         return {
             loading: transactionCodeMasterReducer?.loading,
@@ -36,7 +36,7 @@ const UserGroupAccessEditPopup = ({ showEdit, setShowEdit }) => {
     }
     const handleSubmit = (value) => {
         dispatch(patchUserRoleAccess(value))
-        setShowEdit(false)
+        setShowEditData(false)
         // setShow(false)
     }
 
@@ -105,10 +105,11 @@ const UserGroupAccessEditPopup = ({ showEdit, setShowEdit }) => {
 
 
             <Dialog
-                header="Add User Group Access"
+                header="Edit User Group Access"
                 visible={showEdit}
-                style={{ width: "50vw" }}
-                onHide={() => setShowEdit(false)}
+                style={{ width: "50vw",boxShadow:"none" }}
+                onHide={() => setShowEditData(false)}
+                className="master__flow__common__dialog__container"
             >
                 <div className="grid mt-1">
                     <div className=" col-12 md:col-6 lg-col-6 ">

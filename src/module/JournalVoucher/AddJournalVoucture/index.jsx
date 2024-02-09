@@ -29,6 +29,7 @@ import AddDataTabel from "./AddDataTabel";
 import EditData from "./EditData";
 import { useDispatch, useSelector } from "react-redux";
 import { postTCJournalVoucher } from "../store/journalVoucherMiddleware";
+import SvgBackicon from "../../../assets/icons/SvgBackicon";
 
 const AddJournalVocture = () => {
   const navigate = useNavigate();
@@ -207,11 +208,19 @@ const AddJournalVocture = () => {
       <CustomToast ref={printRef} message="Successfully Printed" />
       <div className="col-12"></div>
       <div className="col-12 mb-2">
-        <div className="add__sub__title__JV" onClick={handleGoback}>
+        {/* <div className="add__sub__title__JV" onClick={handleGoback}>
           <span className="mr-2">
             <ArrowLeftIcon />
           </span>{" "}
+          Add Journal Voucheraaaa
+        </div> */}
+          <div>
+          <span onClick={handleGoback}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
           Add Journal Voucher
+          </label>
         </div>
         <div className="mt-4">
           <BreadCrumb

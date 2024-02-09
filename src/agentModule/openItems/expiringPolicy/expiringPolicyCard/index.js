@@ -241,9 +241,9 @@ const ExpiringPolicyCard = () => {
       <div className="name__box__container">
         <div>{handleSvg(rowData.AssuredName, rowData.id)}</div>
         <div>
-          <div className="name__text">{rowData.AssuredName}</div>
+          <div className="name__text">{rowData.AssuredName?.toUpperCase()}</div>
           <div className="assuredname__sub___text">
-            Client ID :{rowData.Actions}{" "}
+            Client ID :{rowData.Actions?.toUpperCase()}{" "}
           </div>
         </div>
       </div>
@@ -257,7 +257,9 @@ const ExpiringPolicyCard = () => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="policy__number__text">{rowData.PolicyNumber}</div>
+          <div className="policy__number__text">
+            {rowData.PolicyNumber?.toUpperCase()}
+          </div>
         </div>
       </div>
     );
@@ -265,7 +267,7 @@ const ExpiringPolicyCard = () => {
   const renderGross = (rowData) => {
     return (
       <div className="expiry__data__container">
-        <div className="expiry__data__text">{rowData.gross}</div>
+        <div className="expiry__data__text">{rowData.gross?.toUpperCase()}</div>
       </div>
     );
   };
@@ -273,7 +275,9 @@ const ExpiringPolicyCard = () => {
   const renderIssuedDate = (rowData) => {
     return (
       <div className="expiry__data__container">
-        <div className="expiry__data__text">{rowData.policyIssued}</div>
+        <div className="expiry__data__text">
+          {rowData.policyIssued?.toUpperCase()}
+        </div>
       </div>
     );
   };
@@ -281,7 +285,9 @@ const ExpiringPolicyCard = () => {
   const renderExpiryDate = (rowData) => {
     return (
       <div className="expiry__data__container">
-        <div className="expiry__data__text">{rowData.ExpiryDate}</div>
+        <div className="expiry__data__text">
+          {rowData.ExpiryDate?.toUpperCase()}
+        </div>
       </div>
     );
   };
@@ -289,7 +295,7 @@ const ExpiringPolicyCard = () => {
   const renderExpiry = (rowData) => {
     return (
       <div className="days__count__container">
-        <div className="days__count__text">{rowData.Expiry}</div>
+        <div className="days__count__text">{rowData.Expiry?.toUpperCase()}</div>
       </div>
     );
   };

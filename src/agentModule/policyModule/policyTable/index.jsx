@@ -32,7 +32,7 @@ const LeadListingAllTable = ({ action }) => {
   //   const dispatch = useDispatch();
   const [displayDialog, setDisplayDialog] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const [selectionMode, setSelectionMode] = useState("multiple");
 
   const [disableOption, setdisableOption] = useState(false);
@@ -40,14 +40,12 @@ const LeadListingAllTable = ({ action }) => {
   const [globalFilter, setGlobalFilter] = useState("policy Number");
   const cities = [
     { name: "Policy Number", code: "policy Number" },
-    {name:"Claim ID",code:"Claim ID"}
-
+    { name: "Claim ID", code: "Claim ID" },
   ];
-  
-const [navAction, setNavAction] = useState(null);
 
+  const [navAction, setNavAction] = useState(null);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (globalFilter && search) {
@@ -150,7 +148,6 @@ const [navAction, setNavAction] = useState(null);
       rowData.Payment === "Pending" || rowData.Payment === "Reviewing"
     );
   };
-  
 
   // const handleMenuClick = (menuItem) => {
   //   console.log(menuItem,"find menuItem")
@@ -187,9 +184,7 @@ const [navAction, setNavAction] = useState(null);
     if (menuItem == "endrosement") {
       setDisplayDialog(true);
     }
-
   };
-
 
   const onCategoryChange = (e) => {
     let _selectedCategories = [...selectedCategories];
@@ -277,13 +272,21 @@ const [navAction, setNavAction] = useState(null);
     );
   };
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+    return (
+      <div className="category__text">
+        {rowData.ProductDescription?.toUpperCase()}
+      </div>
+    );
   };
   const renderClientId = (rowData) => {
-    return <div className="category__text">{rowData.ClientId}</div>;
+    return (
+      <div className="category__text">{rowData.ClientId?.toUpperCase()}</div>
+    );
   };
   const renderClientName = (rowData) => {
-    return <div className="category__text">{rowData.ClientName}</div>;
+    return (
+      <div className="category__text">{rowData.ClientName?.toUpperCase()}</div>
+    );
   };
   //   const renderDes =(rowData)=>{
   //     return <div className="category__text">{rowData.ProductDescription}</div>;
@@ -298,24 +301,36 @@ const [navAction, setNavAction] = useState(null);
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.PolicyNumber}</div>
+          <div className="name__text">
+            {rowData.PolicyNumber?.toUpperCase()}
+          </div>
         </div>
       </div>
     );
   };
 
   const renderGrossPremium = (rowData) => {
-    return <div className="category__text">{rowData.GrossPremium}</div>;
+    return (
+      <div className="category__text">
+        {rowData.GrossPremium?.toUpperCase()}
+      </div>
+    );
   };
 
   const renderExpiryDate = (rowData) => {
-    return <div className="date__text">{rowData.ExpiryDate}</div>;
+    return (
+      <div className="date__text">{rowData.ExpiryDate?.toUpperCase()}</div>
+    );
   };
   const renderPolicyIssued = (rowData) => {
-    return <div className="date__text">{rowData.PolicyIssued}</div>;
+    return (
+      <div className="date__text">{rowData.PolicyIssued?.toUpperCase()}</div>
+    );
   };
   const renderPolicyExpiry = (rowData) => {
-    return <div className="date__text">{rowData.PolicyExpiry}</div>;
+    return (
+      <div className="date__text">{rowData.PolicyExpiry?.toUpperCase()}</div>
+    );
   };
 
   const renderPayment = (rowData) => {
@@ -325,11 +340,11 @@ const [navAction, setNavAction] = useState(null);
           rowData.Payment === "Pending"
             ? "company__status__type__green"
             : rowData.Payment === "Completed"
-              ? "company__status__type__blue"
-              : "company__status__type__red"
+            ? "company__status__type__blue"
+            : "company__status__type__red"
         }
       >
-        {rowData.Payment}
+        {rowData.Payment?.toUpperCase()}
       </div>
     );
   };
@@ -400,24 +415,13 @@ const [navAction, setNavAction] = useState(null);
           scrollHeight="50vh"
         >
           <Column
-            body={renderClientId}
-            header="CLient Id"
-            headerStyle={headerStyle}
-          ></Column>
-          <Column
-            body={renderClientName}
-            header="Client Name"
-            headerStyle={headerStyle}
-          ></Column>
-
-          <Column
             body={renderPolicyNumber}
             header="Policy Number"
             headerStyle={headerStyle}
           ></Column>
           <Column
             body={renderClientId}
-            header="Client Id"
+            header="CLient Id"
             headerStyle={headerStyle}
           ></Column>
           <Column

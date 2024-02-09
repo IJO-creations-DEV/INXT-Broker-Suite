@@ -12,22 +12,29 @@ import "./index.scss";
 import SvgEditIcon from "../../../../assets/icons/SvgEdit";
 import ToggleButton from "../../../../components/ToggleButton";
 import { useFormik } from "formik";
-import { getTransactioncodeListsearch, getTrascationcodeDetailsView, getpatchTrascationcodeDetailsEdit, patchTrascationcodeDetailsEdit } from "../store/transactionCodeMasterMiddleware";
+import {
+  getTransactioncodeListsearch,
+  getTrascationcodeDetailsView,
+  getpatchTrascationcodeDetailsEdit,
+  patchTrascationcodeDetailsEdit,
+} from "../store/transactionCodeMasterMiddleware";
 import { useDispatch, useSelector } from "react-redux";
+import SvgEditicons from "../../../../assets/icons/SvgEditicons";
 
 const TransactionCodeMasterTable = () => {
-  const { TransactioncodeListsearch, TransactioncodeList, loading } = useSelector(({ transactionCodeMasterReducer }) => {
-    return {
-      loading: transactionCodeMasterReducer?.loading,
-      TransactioncodeList: transactionCodeMasterReducer?.TransactioncodeList,
-      TransactioncodeListsearch: transactionCodeMasterReducer?.TransactioncodeListsearch,
-      // addJournalVoucher: journalVoucherReducers?.addJournalVoucher
-
-    };
-  });
-  console.log(TransactioncodeList, "TransactioncodeList")
+  const { TransactioncodeListsearch, TransactioncodeList, loading } =
+    useSelector(({ transactionCodeMasterReducer }) => {
+      return {
+        loading: transactionCodeMasterReducer?.loading,
+        TransactioncodeList: transactionCodeMasterReducer?.TransactioncodeList,
+        TransactioncodeListsearch:
+          transactionCodeMasterReducer?.TransactioncodeListsearch,
+        // addJournalVoucher: journalVoucherReducers?.addJournalVoucher
+      };
+    });
+  console.log(TransactioncodeList, "TransactioncodeList");
   const [products, setProducts] = useState([{ TransactionCode: "100101" }]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
@@ -78,7 +85,7 @@ const TransactionCodeMasterTable = () => {
           onClick={() => handleView(rowData)}
         />
         <Button
-          icon={<SvgEditIcon />}
+          icon={<SvgEditicons />}
           className="eye__btn"
           onClick={() => handleEdit(rowData)}
         />
@@ -96,19 +103,19 @@ const TransactionCodeMasterTable = () => {
   const [selectedRows, setSelectedRows] = useState([]);
 
   const handleView = (rowData) => {
-    dispatch(getTrascationcodeDetailsView(rowData))
-    navigate(`/master/finance/transactioncode/transactioncodedetails`)
+    dispatch(getTrascationcodeDetailsView(rowData));
+    navigate(`/master/finance/transactioncode/transactioncodedetails`);
   };
 
   const handleEdit = (rowData) => {
-    console.log(rowData, "rowData")
+    console.log(rowData, "rowData");
     dispatch(getpatchTrascationcodeDetailsEdit(rowData));
     navigate(`/master/finance/transactioncode/transactioncodeedit`);
-  }
+  };
 
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -117,7 +124,7 @@ const TransactionCodeMasterTable = () => {
 
   const ViewheaderStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -125,19 +132,18 @@ const TransactionCodeMasterTable = () => {
     display: "flex",
     justifyContent: "center",
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
     console.log(values.search, "searchData");
     dispatch(getTransactioncodeListsearch({ textSearch: values.search }));
-  }
-
+  };
 
   const formik = useFormik({
     initialValues: { search: "" },
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
   });
   const handlecheck = (rowData) => {
-    console.log(rowData, "rowData")
+    console.log(rowData, "rowData");
     const selectedIndex = selectedRows.findIndex(
       (row) => row.id === rowData.id
     );
@@ -151,22 +157,22 @@ const TransactionCodeMasterTable = () => {
 
     setSelectedRows(updatedSelectedRows);
     console.log(updatedSelectedRows, "selected rows");
-
   };
 
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getTransactioncodeListsearch(search))
-
+      dispatch(getTransactioncodeListsearch(search));
     }
-  }, [search])
-
+  }, [search]);
 
   return (
     <div className="transactioncode__master__table">
       <Card className="mt-4">
         <div className="header__search__container grid">
-          <form onSubmit={formik.handleSubmit} class="col-12 md:col-12 lg:col-12">
+          <form
+            onSubmit={formik.handleSubmit}
+            class="col-12 md:col-12 lg:col-12"
+          >
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
               <InputText
@@ -197,7 +203,7 @@ const TransactionCodeMasterTable = () => {
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
             emptyMessage={isEmpty ? emptyTableIcon : null}
-          // selectionMode="checkbox"
+            // selectionMode="checkbox"
           >
             {/* <Column
               header={<input type="checkbox" />}
@@ -218,25 +224,27 @@ const TransactionCodeMasterTable = () => {
               style={{textAlign:'center'}}
             ></Column> */}
 
-
             <Column
               field="TransactionCode"
               header="Transaction Code"
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionCode?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionName"
               header="Transaction Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionName?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionBasis"
               header="Transaction Basis"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionBasis?.toUpperCase()}
             ></Column>
             <Column
               field="BranchCode"
@@ -244,17 +252,19 @@ const TransactionCodeMasterTable = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.BranchCode?.toUpperCase()}
             ></Column>
             <Column
               field="DepartmentCode"
               header="Department Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.DepartmentCode?.toUpperCase()}
             ></Column>
             <Column
               body={(columnData) => <ToggleButton id={columnData.id} />}
               header="Status"
-              headerStyle={{ textAlign: 'center', ...headerStyle }}
+              headerStyle={{ textAlign: "center", ...headerStyle }}
               className="fieldvalue_container"
             ></Column>
             <Column

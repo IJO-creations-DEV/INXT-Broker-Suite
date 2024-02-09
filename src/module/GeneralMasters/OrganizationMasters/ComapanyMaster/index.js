@@ -41,8 +41,10 @@ const Index = () => {
     );
   };
   const handleEdit = (columnData) => {
-    dispatch(getCompanyEditData(columnData))
-    navigate(`/master/generals/organization/companymaster/edit/${columnData?.id}`);
+    dispatch(getCompanyEditData(columnData));
+    navigate(
+      `/master/generals/organization/companymaster/edit/${columnData?.id}`
+    );
   };
   const handlePolicy = (id) => {
     navigate(`/master/generals/organization/companymaster/add/${id}`);
@@ -111,7 +113,7 @@ const Index = () => {
   };
 
   const headerStyle = {
-    width: '26%',
+    width: "26%",
     // backgroundColor: 'red',
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
@@ -231,6 +233,7 @@ const Index = () => {
               header="Company Name"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.CompanyName?.toUpperCase()}
             ></Column>
             <Column
               field="LicenseNumber"

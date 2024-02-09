@@ -73,7 +73,7 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
 
   const handleEdit = (rowData) => {
     setEditID(rowData?.id);
-    console.log("first10",rowData?.id)
+    console.log("first10", rowData?.id);
     setVisibleEdit(true);
   };
 
@@ -181,7 +181,6 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
   const [deptt, setDeptData] = useState([]);
 
   const setFormikValues = () => {
-   
     const targetInvoice = journalVoucherPostTabelData.find(
       (item) => item.id === EditID
     );
@@ -273,7 +272,8 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
         onPage={onPageChange}
         onPageChange={onPageChange}
         emptyMessage={isEmpty ? emptyTableIcon : null}
-        // onRowClick={(event) => handleNavigate(event.data)}
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="mainAccount"
@@ -338,11 +338,12 @@ const AddDataTabel = ({ newDataTable, journalVoucherPostTabelData }) => {
       </DataTable>
 
       <Dialog
-        header="Add Journal Voucher"
+        header="Edit Journal Voucher"
         visible={visibleEdit}
-        className="jv__Edit__container"
+        className="jv__Edit__container master__flow__common__dialog__container"
         onHide={() => setVisibleEdit(false)}
         dismissableMask={true}
+        style={{ boxShadow: "none" }}
       >
         <div className="form__container">
           <div className="grid m-0">

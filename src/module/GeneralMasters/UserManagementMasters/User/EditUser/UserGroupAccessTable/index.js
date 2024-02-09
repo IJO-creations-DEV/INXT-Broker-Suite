@@ -13,36 +13,46 @@ import DropDowns from "../../../../../../components/DropDowns";
 import SvgDropdown from "../../../../../../assets/icons/SvgDropdown";
 import SvgEyeIcon from "../../../../../../assets/icons/SvgEyeIcon";
 import { useDispatch, useSelector } from "react-redux";
-import { getAdditionalRoleViewMiddleWare, postAdditionalRoleViewMiddleWare } from "../../store/userMiddleware";
+import {
+  getAdditionalRoleViewMiddleWare,
+  postAdditionalRoleViewMiddleWare,
+} from "../../store/userMiddleware";
 import { useFormik } from "formik";
 
 const UserGroupAccess = () => {
-  const { loading, mainAdditionalTableList, searchList, mainAdditionalViewData } = useSelector(({ userReducers }) => {
+  const {
+    loading,
+    mainAdditionalTableList,
+    searchList,
+    mainAdditionalViewData,
+  } = useSelector(({ userReducers }) => {
     return {
       loading: userReducers?.loading,
       mainAdditionalTableList: userReducers?.mainAdditionalTableList,
       searchList: userReducers?.userSearchList,
-      mainAdditionalViewData: userReducers?.mainAdditionalViewData
+      mainAdditionalViewData: userReducers?.mainAdditionalViewData,
     };
   });
   console.log(mainAdditionalViewData, "mainAdditionalViewData");
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
-  const [showView, setShowView] = useState(false)
+  const [showView, setShowView] = useState(false);
 
-  const item = [{
-    label:"RC0010",value:"RC0134",
-    label:"RC0012",value:"RC0012",
+  const item = [
+    {
+      label: "RC0010",
+      value: "RC0134",
+      label: "RC0012",
+      value: "RC0012",
 
-    // label: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123",
-    // value: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123"
-  }
-
-]
+      // label: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123",
+      // value: mainAdditionalViewData ? mainAdditionalViewData.RoleCode : formik.values.RoleCode&& "role123"
+    },
+  ];
   const handleClick = () => {
     setShow(!show);
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const isEmpty = products.length === 0;
 
@@ -55,22 +65,74 @@ const UserGroupAccess = () => {
     </div>
   );
 
+  // const template2 = {
+  //   layout:
+  //     "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
+  //   RowsPerPageDropdown: (options) => {
+  //     const dropdownOptions = [
+  //       { label: "5", value: "5" },
+  //       { label: 10, value: 10 },
+  //       { label: 20, value: 20 },
+  //       { label: 120, value: 120 },
+  //     ];
+
+  //     return (
+  //       <div className="table__selector">
+  //         <React.Fragment>
+  //           <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+  //             Row count :{" "}
+  //           </span>
+  //           <Dropdown
+  //             value={options.value}
+  //             className="pagedropdown_container"
+  //             options={dropdownOptions}
+  //             onChange={options.onChange}
+  //           />
+  //         </React.Fragment>
+  //       </div>
+  //     );
+  //   },
+  // };
+  const headerStyle = {
+    // width: '10rem',
+    // backgroundColor: 'red',
+    fontSize: 16,
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    padding: "1rem",
+    color: "#000",
+    border: "none",
+  };
+  const headeraction = {
+    fontSize: 16,
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    padding: "1rem",
+    color: "#000",
+    border: "none",
+    display: "flex",
+    justifyContent: "center",
+    alignItem: "center",
+  };
 
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
-        { label: "5", value: "5" },
+        { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
         { label: 120, value: 120 },
       ];
 
       return (
-        <div className="table__selector">
+        <div className="tabel_selector">
           <React.Fragment>
-            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+            <span
+              className="mx-1"
+              style={{ color: "var(--text-color)", userSelect: "none" }}
+            >
               Row count :{" "}
             </span>
             <Dropdown
@@ -95,8 +157,6 @@ const UserGroupAccess = () => {
     justifyContent: "center",
   };
 
-
-
   const renderViewButton = (rowData) => {
     console.log(rowData, "rowDatarowData");
     return (
@@ -115,28 +175,24 @@ const UserGroupAccess = () => {
     );
   };
 
-
-
-
   const handleView = (rowData) => {
-    dispatch(getAdditionalRoleViewMiddleWare(rowData))
-    setShowView(true)
+    dispatch(getAdditionalRoleViewMiddleWare(rowData));
+    setShowView(true);
     console.log("View clicked:", rowData);
     // navigate("/accounts/pettycash/PettyCashCodeDetails")
   };
-  const headerStyle = {
-    fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
-    fontWeight: 500,
-    padding: 6,
-    color: "#000",
-    border: "none",
-  };
+  // const headerStyle = {
+  //   fontSize: 16,
+  //   fontFamily: 'Inter, sans-serif',
+  //   fontWeight: 500,
+  //   padding: 6,
+  //   color: "#000",
+  //   border: "none",
+  // };
 
   const handleSubmit = () => {
     setShow(false);
-    dispatch(postAdditionalRoleViewMiddleWare(formik.values))
-
+    dispatch(postAdditionalRoleViewMiddleWare(formik.values));
   };
 
   const customValidation = (values) => {
@@ -170,7 +226,7 @@ const UserGroupAccess = () => {
     //    handleSubmit(values);
 
     // },
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
   });
   return (
     <div className="transactioncode__master__table_UserGroupAccess">
@@ -188,19 +244,18 @@ const UserGroupAccess = () => {
         </div>
         <DataTable
           value={mainAdditionalTableList}
-          tableStyle={{
-            minWidth: "50rem",
-            color: "#1C2536",
-          }}
-          scrollable={true}
-          scrollHeight="40vh"
+          style={{ overflowY: "auto", maxWidth: "100%" }}
+          responsive={true}
+          className="table__view__Journal__Voture"
           paginator
+          paginatorLeft
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}
-          // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
           currentPageReportTemplate="{first} - {last} of {totalRecords}"
           paginatorTemplate={template2}
           emptyMessage={isEmpty ? emptyTableIcon : null}
+          scrollable={true}
+          scrollHeight="40vh"
         >
           <Column
             field="RoleCode"
@@ -213,14 +268,14 @@ const UserGroupAccess = () => {
             header="Role name"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-          //   sortable
+            //   sortable
           ></Column>
           <Column
             field="ActiveHours"
             header="Active Hours"
             headerStyle={headerStyle}
             className="fieldvalue_container"
-          //   sortable
+            //   sortable
           ></Column>
           <Column
             field="action"
@@ -228,15 +283,16 @@ const UserGroupAccess = () => {
             header="Action"
             headerStyle={ViewheaderStyle}
             className="fieldvalue_container"
-            style={{ display: 'flex', justifyContent: 'center' }}
+            style={{ display: "flex", justifyContent: "center" }}
           ></Column>
         </DataTable>
       </div>
       <Dialog
         header="Add User Group Access"
         visible={show}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw", boxShadow: "none" }}
         onHide={() => setShow(false)}
+        className="master__flow__common__dialog__container"
       >
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">
@@ -265,7 +321,6 @@ const UserGroupAccess = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-
             />
           </div>
           <div className=" col-12 md:col-6 lg-col-6 ">
@@ -279,7 +334,6 @@ const UserGroupAccess = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-
             />
           </div>
         </div>
@@ -294,8 +348,9 @@ const UserGroupAccess = () => {
       <Dialog
         header=" User Group Access"
         visible={showView}
-        style={{ width: "50vw" }}
+        style={{ width: "50vw", boxShadow: "none" }}
         onHide={() => setShowView(false)}
+        className="master__flow__common__dialog__container"
       >
         <div className="grid mt-1">
           <div className=" col-12 md:col-6 lg-col-6 ">
@@ -322,7 +377,6 @@ const UserGroupAccess = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-
             />
           </div>
           <div className=" col-12 md:col-6 lg-col-6 ">
@@ -335,13 +389,12 @@ const UserGroupAccess = () => {
               textColor={"#111927"}
               textSize={"16"}
               textWeight={500}
-
             />
           </div>
         </div>
       </Dialog>
       {/* </Card> */}
-    </div >
+    </div>
   );
 };
 

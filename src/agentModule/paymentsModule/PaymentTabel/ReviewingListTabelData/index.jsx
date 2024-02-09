@@ -1,4 +1,3 @@
-
 import { InputText } from "primereact/inputtext";
 import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
@@ -24,7 +23,8 @@ const ReviewingListTabelData = () => {
       return {
         loading: agentPaymentMainReducers?.loading,
         paymentSearchList: agentPaymentMainReducers?.paymentSearchList,
-        paymentRewiwingtabledata: agentPaymentMainReducers?.paymentRewiwingtabledata,
+        paymentRewiwingtabledata:
+          agentPaymentMainReducers?.paymentRewiwingtabledata,
       };
     }
   );
@@ -193,31 +193,51 @@ const ReviewingListTabelData = () => {
   const renderType = (rowData) => {
     return (
       <div className="name__box__container">
-        <div className="name__text">{rowData.type}</div>
+        <div className="name__text">{rowData.type?.toUpperCase()}</div>
       </div>
     );
   };
 
   const renderName = (rowData) => {
-    return <div className="category__text">{rowData.name}</div>;
+    return <div className="category__text">{rowData.name?.toUpperCase()}</div>;
   };
   const renderClientId = (rowData) => {
-    return <div className="category__text">{rowData.clintid}</div>;
+    return (
+      <div className="category__text">{rowData.clintid?.toUpperCase()}</div>
+    );
   };
   const renderPolicyNo = (rowData) => {
-    return <div className="category__text">{rowData.policyNo}</div>;
+    return (
+      <div className="category__text">{rowData.policyNo?.toUpperCase()}</div>
+    );
   };
   const renderGrossPremium = (rowData) => {
-    return <div className="category__text">{rowData.grosspremium}</div>;
+    return (
+      <div className="category__text">
+        {rowData.grosspremium?.toUpperCase()}
+      </div>
+    );
   };
   const renderPolicyIssued = (rowData) => {
-    return <div className="category__text">{rowData.policyIssued}</div>;
+    return (
+      <div className="category__text">
+        {rowData.policyIssued?.toUpperCase()}
+      </div>
+    );
   };
   const renderPolicyExpired = (rowData) => {
-    return <div className="category__text">{rowData.policyExpird}</div>;
+    return (
+      <div className="category__text">
+        {rowData.policyExpird?.toUpperCase()}
+      </div>
+    );
   };
   const renderStatus = (rowData) => {
-    return <div className="status__text__reviewing">{rowData.status}</div>;
+    return (
+      <div className="status__text__reviewing">
+        {rowData.status?.toUpperCase()}
+      </div>
+    );
   };
 
   const handleView = () => {
@@ -273,7 +293,16 @@ const ReviewingListTabelData = () => {
         <div class="col-12 md:col-9 lg:col-9">
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
-            <InputText placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} style={{ width: "100%", padding: "1rem 2.75rem", borderRadius: "10px" }} />
+            <InputText
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "1rem 2.75rem",
+                borderRadius: "10px",
+              }}
+            />
           </span>
         </div>
         <div class="col-12 md:col-3 lg:col-3">
@@ -286,7 +315,6 @@ const ReviewingListTabelData = () => {
             placeholder="Search by"
             className="sorbyfilter__style"
             dropdownIcon={<SvgDropdownicon />}
-
           />
         </div>
       </div>
@@ -362,4 +390,3 @@ const ReviewingListTabelData = () => {
 };
 
 export default ReviewingListTabelData;
-

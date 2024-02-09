@@ -21,6 +21,7 @@ import {
 } from "../../mock";
 import { useDispatch, useSelector } from "react-redux";
 import { postAddReceiptMiddleware } from "../store/pettyCashReceiptsMiddleware";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const initialValue = {
   ReceiptNumber: "",
@@ -246,7 +247,7 @@ const AddReceipts = () => {
       {/* <CustomToast ref={toastRef} /> */}
       <div className="grid  m-0">
         <div className="col-12 md:col-6 lg:col-6">
-          <div
+          {/* <div
             className="pettycash__title"
             onClick={() => {
               handleBack();
@@ -254,7 +255,15 @@ const AddReceipts = () => {
           >
             <SvgBackArrow />
             Add Receipt
-          </div>
+          </div> */}
+          <div>
+          <span onClick={handleBack}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+          Add Receipt
+          </label>
+        </div>
           <div className="mt-3">
             <BreadCrumb
               model={items}

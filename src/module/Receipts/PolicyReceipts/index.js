@@ -110,7 +110,6 @@ const PolicyReceipts = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: "10px 0",
     color: "#000",
     border: "none",
     textalign: "center",
@@ -121,7 +120,6 @@ const PolicyReceipts = () => {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
-    padding: "10px 0",
     color: "#000",
     border: "none",
     textalign: "center",
@@ -177,7 +175,7 @@ const PolicyReceipts = () => {
   return (
     // <Suspense fallback={<div>Loading...</div>}>
     // {stylesLoaded &&
-    <div className="overall__policyreceipts__container">
+    <div className="overall__policyreceipts__container mt-1">
       <div className="overallfilter_container">
         <div>
           <label className="label_header">Receipts</label>
@@ -196,8 +194,8 @@ const PolicyReceipts = () => {
         </div>
       </div>
 
-      <Card>
-        <div className="header_search_container">
+      <Card className="mt-3">
+        <div className="header_search_container ">
           <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: "0" }}>
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
@@ -272,6 +270,7 @@ const PolicyReceipts = () => {
               header="Name"
               headerStyle={headerStyle1}
               className="fieldvalue_container"
+              body={(rowData) => rowData.name?.toUpperCase()}
             ></Column>
             <Column
               sortable

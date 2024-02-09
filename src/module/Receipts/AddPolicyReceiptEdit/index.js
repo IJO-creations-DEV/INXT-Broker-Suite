@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { patchReceipEditMiddleware } from "../store/receiptsMiddleware";
 import { useFormik } from "formik";
+import SvgBackicon from "../../../assets/icons/SvgBackicon";
 
 function PolicyReceipts() {
   console.log("hiiii", "receiptsTableListreceiptsTableList");
@@ -159,8 +160,8 @@ function PolicyReceipts() {
   });
 
   const handleClick = () => {
-    console.log("totalFCfirst",totalFC)
-    navigate("/accounts/receipts/paymentdetails",{ state: { totalFC } });
+    console.log("totalFCfirst", totalFC);
+    navigate("/accounts/receipts/paymentdetails", { state: { totalFC } });
   };
   const template2 = {
     layout:
@@ -203,10 +204,16 @@ function PolicyReceipts() {
 
   return (
     <div className="overall__add_policy_edit__container">
-      <span onClick={() => navigate(-1)}>
+      {/* <span onClick={() => navigate(-1)}>
         <SvgBack />
       </span>
-      <label className="label_header">Add Receipts</label>
+      <label className="label_header">Add Receipts</label> */}
+      <div>
+        <span onClick={() => navigate(-1)}>
+          <SvgBackicon />
+        </span>
+        <label className="label_header">Add Receipts</label>
+      </div>
       <BreadCrumb
         model={items}
         home={home}
@@ -236,8 +243,8 @@ function PolicyReceipts() {
             paginatorTemplate={template2}
             className="datatable_container"
             selectionMode="checkbox"
-            // selection={selectedRows}
-            // onSelectionChange={(e) => setSelectedRows(e.value)}
+            scrollable={true}
+            scrollHeight="40vh"
           >
             <Column
               selectionMode="multiple"

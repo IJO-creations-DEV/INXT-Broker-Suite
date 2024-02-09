@@ -3,28 +3,32 @@ import "./index.scss";
 import { BreadCrumb } from "primereact/breadcrumb";
 import NavBar from "../../../../components/NavBar";
 import { useNavigate } from "react-router-dom";
-import SvgDot from "../../../../assets/icons/SvgDot"
+import SvgDot from "../../../../assets/icons/SvgDot";
 import SvgFilters from "../../../../assets/icons/SvgFilters";
 import SvgAdd from "../../../../assets/icons/SvgAdd";
-import { Card } from 'primereact/card';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { Card } from "primereact/card";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
-import { ProductService } from './mock';
-import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
+import { ProductService } from "./mock";
+import { Button } from "primereact/button";
+import { Dropdown } from "primereact/dropdown";
 import SvgUpload from "../../../../assets/icons/SvgUpload";
 import SvgMenudots from "../../../../assets/icons/SvgMenudots";
-import { TieredMenu } from 'primereact/tieredmenu';
-import { Dialog } from 'primereact/dialog';
+import { TieredMenu } from "primereact/tieredmenu";
+import { Dialog } from "primereact/dialog";
 import InputField from "../../../../components/InputField";
 import ToggleButton from "../../../../components/ToggleButton";
 import SvgTable from "../../../../assets/icons/SvgTable";
 import SvgEyeIcon from "../../../../assets/icons/SvgEyeIcon";
 import SvgEditicon from "../../../../assets/icons/SvgEdit";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchStateMiddleware, getStateListByIdMiddleware } from "./store/stateMiddleware";
+import {
+  getSearchStateMiddleware,
+  getStateListByIdMiddleware,
+} from "./store/stateMiddleware";
 import { useFormik } from "formik";
+import SvgEditicons from "../../../../assets/icons/SvgEditicons";
 
 const State = () => {
   const menu = useRef(null);
@@ -32,19 +36,17 @@ const State = () => {
   const [visible, setVisible] = useState(false);
   const [visibleview, setVisibleview] = useState(false);
 
-
   const { stateTableList, getSearchState, loading } = useSelector(
     ({ stateReducers }) => {
       return {
         loading: stateReducers?.loading,
         stateTableList: stateReducers?.stateTableList,
-        getSearchState: stateReducers?.getSearchState
+        getSearchState: stateReducers?.getSearchState,
       };
     }
   );
 
   console.log(stateTableList, "stateTableList");
-
 
   // const [products, setProducts] = useState([]);
   // useEffect(() => {
@@ -53,17 +55,17 @@ const State = () => {
 
   const handleEdit = (rowData) => {
     dispatch(getStateListByIdMiddleware(rowData));
-    navigate(`/master/generals/location/state/edit`)
-  }
+    navigate(`/master/generals/location/state/edit`);
+  };
 
   const handleView = (rowData) => {
     dispatch(getStateListByIdMiddleware(rowData));
-    navigate(`/master/generals/location/state/view`)
-  }
+    navigate(`/master/generals/location/state/view`);
+  };
   const handleadd = (rowData) => {
     // dispatch(getStateListByIdMiddleware(rowData));
-    navigate(`/master/generals/location/state/add`)
-  }
+    navigate(`/master/generals/location/state/add`);
+  };
 
   const handleSubmit = (values) => {
     console.log(values.search, "getSearchStateMiddleware");
@@ -90,58 +92,58 @@ const State = () => {
     </div>
   );
   const template2 = {
-    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 }
+        { label: 120, value: 120 },
       ];
 
       return (
-        <React.Fragment >
-          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-            Row count :{' '}
+        <React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Row count :{" "}
           </span>
-          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
         </React.Fragment>
       );
     },
-
   };
-
-
-
-
 
   const headerStyle = {
     // width: '10rem',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "1rem",
-    color: '#000',
-    border: 'none',
+    color: "#000",
+    border: "none",
   };
   const headeraction = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "1rem",
-    color: '#000',
-    border: 'none',
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItem: 'center'
-  }
+    color: "#000",
+    border: "none",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItem: "center",
+  };
 
-  const items = [
-    { label: "Location" },
-    { label: "State" },
-
-  ];
+  const items = [{ label: "Location" }, { label: "State" }];
   const renderToggleButton = () => {
     return (
       <div>
@@ -154,46 +156,47 @@ const State = () => {
 
   const navigate = useNavigate();
 
-
-
-
   return (
-    <div className='overall__state__container'>
-
+    <div className="overall__state__container">
       <div className="overallfilter_container">
-        <div >
-          <label className='label_header'>State</label>
+        <div>
+          <label className="label_header">State</label>
           <BreadCrumb
             model={items}
             home={home}
-            className='breadcrumbs_container'
-            separatorIcon={<SvgDot color={"#000"} />} />
+            className="breadcrumbs_container"
+            separatorIcon={<SvgDot color={"#000"} />}
+          />
         </div>
         <div className="filterbutton_container">
-
-          <Button type="button" label="Upload" className="uploadbutton_container" icon={<SvgUpload />} outlined />
-
-          <Button type="button" label="Add" className="addbutton_container" icon={<SvgAdd />}
-            onClick={handleadd}
+          <Button
+            type="button"
+            label="Upload"
+            className="uploadbutton_container"
+            icon={<SvgUpload />}
+            outlined
           />
 
-
+          <Button
+            type="button"
+            label="Add"
+            className="addbutton_container"
+            icon={<SvgAdd />}
+            onClick={handleadd}
+          />
         </div>
       </div>
 
-
-      <Card
-        className="overallcard_container"
-      >
+      <Card className="overallcard_container">
         {/* <div className="searchiput_container"> */}
-
 
         <div className="header_search_container">
           <div class="col-12 md:col-12 lg:col-12">
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
               <i className="pi pi-search" />
-              <InputText placeholder="Search By State Name"
+              <InputText
+                placeholder="Search By State Name"
                 className="searchinput_left"
                 value={formik.values.search}
                 onChange={formik.handleChange("search")}
@@ -201,8 +204,6 @@ const State = () => {
             </span>
           </div>
           {/* </div> */}
-
-
         </div>
         <div className="subheading_conatiner">State List</div>
 
@@ -210,14 +211,13 @@ const State = () => {
 
         <div className="card">
           <DataTable
-
             value={
-              formik.values.search !== ""
-                ? getSearchState
-                : stateTableList
+              formik.values.search !== "" ? getSearchState : stateTableList
             }
-            tableStyle={{ minWidth: '50rem', color: '#1C2536' }}
-            paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
+            tableStyle={{ minWidth: "50rem", color: "#1C2536" }}
+            paginator
+            rows={5}
+            rowsPerPageOptions={[5, 10, 25, 50]}
             // paginatorTemplate="RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             currentPageReportTemplate="{first} - {last} of {totalRecords}"
             paginatorTemplate={template2}
@@ -225,45 +225,79 @@ const State = () => {
             scrollHeight="40vh"
             emptyMessage={isEmpty ? emptyTableIcon : null}
           >
-
-            <Column field="StateCode" header="State Code" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="StateName" header="State Name" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="Country" header="Country" sortable headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="Modifiedby" header="Modified by" headerStyle={headerStyle} className='fieldvalue_container'></Column>
-            <Column field="ModifiedOn" header="Modified On" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column
+              field="StateCode"
+              body={(rowData) => rowData.StateCode?.toUpperCase()}
+              header="State Code"
+              sortable
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="StateName"
+              body={(rowData) => rowData.StateName?.toUpperCase()}
+              header="State Name"
+              sortable
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="Country"
+              body={(rowData) => rowData.Country?.toUpperCase()}
+              header="Country"
+              sortable
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="Modifiedby"
+              body={(rowData) => rowData.Modifiedby?.toUpperCase()}
+              header="Modified by"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
+            <Column
+              field="ModifiedOn"
+              header="Modified On"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
             {/* <Column field="name" header="Phone" headerStyle={headerStyle}  className='fieldvalue_container'></Column> */}
-            <Column body={(columnData) => <ToggleButton id={columnData.id} />} header="Status" headerStyle={headerStyle} className='fieldvalue_container'></Column>
+            <Column
+              body={(columnData) => <ToggleButton id={columnData.id} />}
+              header="Status"
+              headerStyle={headerStyle}
+              className="fieldvalue_container"
+            ></Column>
             <Column
               body={(rowData) => (
                 <div className="action_icons">
-
                   <SvgEyeIcon onClick={() => handleView(rowData)} />
-                  <SvgEditicon onClick={() => handleEdit(rowData)} />
+                  <SvgEditicons onClick={() => handleEdit(rowData)} />
                 </div>
               )}
               header="Action"
               headerStyle={headeraction}
               className="fieldvalue_container"
             ></Column>
-
           </DataTable>
-
-
         </div>
-
       </Card>
 
-
-      <Dialog header="Bank Details" visible={visible} style={{ width: '60vw' }} onHide={() => setVisible(false)}>
-
+      <Dialog
+        header="Bank Details"
+        visible={visible}
+        style={{ width: "60vw" }}
+        onHide={() => setVisible(false)}
+      >
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">
             <InputField
               classNames="field__container"
               label="Bank Code"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-6">
@@ -271,8 +305,8 @@ const State = () => {
               classNames="field__container"
               label="Bank Name"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-3 lg:col-3">
@@ -280,8 +314,8 @@ const State = () => {
               classNames="field__container"
               label="Bank Branch"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
         </div>
@@ -292,8 +326,8 @@ const State = () => {
               classNames="field__container"
               label="IFSC Code"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -301,8 +335,8 @@ const State = () => {
               classNames="field__container"
               label="Address Line 1"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -310,8 +344,8 @@ const State = () => {
               classNames="field__container"
               label="Address Line 2"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -319,8 +353,8 @@ const State = () => {
               classNames="field__container"
               label="Address Line 3"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
         </div>
@@ -331,8 +365,8 @@ const State = () => {
               classNames="field__container"
               label="City"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -340,8 +374,8 @@ const State = () => {
               classNames="field__container"
               label="State"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -349,8 +383,8 @@ const State = () => {
               classNames="field__container"
               label="Country"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -358,8 +392,8 @@ const State = () => {
               classNames="field__container"
               label="Phone Number"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
         </div>
@@ -370,8 +404,8 @@ const State = () => {
               classNames="field__container"
               label="Fax"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -379,28 +413,34 @@ const State = () => {
               classNames="field__container"
               label="Email ID"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button label="Update" className="dialog_updatebutton_view" onClick={() => setVisible(false)} />
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            label="Update"
+            className="dialog_updatebutton_view"
+            onClick={() => setVisible(false)}
+          />
         </div>
-
-
       </Dialog>
 
-      <Dialog header="Bank Details" visible={visibleview} style={{ width: '60vw' }} onHide={() => setVisibleview(false)}>
-
+      <Dialog
+        header="Bank Details"
+        visible={visibleview}
+        style={{ width: "60vw" }}
+        onHide={() => setVisibleview(false)}
+      >
         <div class="grid">
           <div class="col-12 md:col-3 lg:col-3">
             <InputField
               classNames="field__container"
               label="Bank Code"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-6">
@@ -408,8 +448,8 @@ const State = () => {
               classNames="field__container"
               label="Bank Name"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-3 lg:col-3">
@@ -417,8 +457,8 @@ const State = () => {
               classNames="field__container"
               label="Bank Branch"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
         </div>
@@ -429,8 +469,8 @@ const State = () => {
               classNames="field__container"
               label="IFSC Code"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -438,8 +478,8 @@ const State = () => {
               classNames="field__container"
               label="Address Line 1"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -447,8 +487,8 @@ const State = () => {
               classNames="field__container"
               label="Address Line 2"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -456,8 +496,8 @@ const State = () => {
               classNames="field__container"
               label="Address Line 3"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
         </div>
@@ -468,8 +508,8 @@ const State = () => {
               classNames="field__container"
               label="City"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -477,8 +517,8 @@ const State = () => {
               classNames="field__container"
               label="State"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -486,8 +526,8 @@ const State = () => {
               classNames="field__container"
               label="Country"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -495,8 +535,8 @@ const State = () => {
               classNames="field__container"
               label="Phone Number"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
         </div>
@@ -507,8 +547,8 @@ const State = () => {
               classNames="field__container"
               label="Fax"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
           <div class="col-12 md:col-6 lg:col-3">
@@ -516,16 +556,12 @@ const State = () => {
               classNames="field__container"
               label="Email ID"
               placeholder={"Enter"}
-            // value={formik.values.EmailID}
-            // onChange={formik.handleChange("EmailID")}
+              // value={formik.values.EmailID}
+              // onChange={formik.handleChange("EmailID")}
             />
           </div>
         </div>
-
-
-
       </Dialog>
-
     </div>
   );
 };

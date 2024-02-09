@@ -17,6 +17,7 @@ import {
   pettyCashMaster,
   postAddPettyCash,
 } from "../store/pettyCashMasterMiddleWare";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const AddPettyCash = () => {
   const { pettyCashList, loading } = useSelector(
@@ -113,11 +114,14 @@ const AddPettyCash = () => {
         <CustomToast ref={toastRef} message="Add Petty Cash" />
       </div>
       <div className="col-12 mb-2">
-        <div className="add__sub__title mr-2">
-          <div onClick={handleGoBack} className="mr-2 mt-1">
-            <ArrowLeftIcon />
-          </div>
+        <div>
+          <span onClick={handleGoBack}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
           Add Petty Cash
+           
+          </label>
         </div>
         <div className="mt-3">
           <BreadCrumb

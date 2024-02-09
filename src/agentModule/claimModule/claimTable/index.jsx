@@ -8,13 +8,12 @@ import SvgArrow from "../../../assets/icons/SvgArrow";
 import { Dropdown } from "primereact/dropdown";
 import SvgDownArrow from "../../../assets/agentIcon/SvgDownArrow";
 import { useNavigate } from "react-router-dom";
-import "../../claimModule/index.scss"
+import "../../claimModule/index.scss";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getClaimTabelSearchList } from "./store/getClaimTabelDataMiddleWare";
 import SvgMotorTable from "../../../assets/agentIcon/SvgMotorTable";
 import { useDispatch, useSelector } from "react-redux";
 import { claimListSearchDataDatMiddleWare } from "../store/claimMiddleWare";
-
 
 const LeadListingAllTable = () => {
   const { claimsTabelList, loading, claimSeachData } = useSelector(
@@ -65,8 +64,6 @@ const LeadListingAllTable = () => {
     },
   };
 
-
-
   const renderViewEditButton = (rowData) => {
     return (
       <div className="btn__container__view__edit">
@@ -88,7 +85,9 @@ const LeadListingAllTable = () => {
           <SvgMotorTable />
         </div>
         <div>
-          <div className="name__text">{rowData.claimNumber}</div>
+          <div className="name__text">
+            {rowData.claimNumber?.toUpperCase()}
+          </div>
           {/* <div className="lead__id__text">Lead Id :{rowData.LeadID} </div> */}
         </div>
       </div>
@@ -96,20 +95,34 @@ const LeadListingAllTable = () => {
   };
 
   const renderClientName = (rowData) => {
-    return <div className="category__text">{rowData.ClientName}</div>;
+    return (
+      <div className="category__text">
+        {rowData.ClientName?.toUpperCase()}
+      </div>
+    );
   };
   const renderpolicyNumber = (rowData) => {
-    return <div className="category__text">{rowData.policyNumber}</div>;
+    return (
+      <div className="category__text">
+        {rowData.policyNumber?.toUpperCase()}
+      </div>
+    );
   };
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+    return (
+      <div className="category__text">
+        {rowData.ProductDescription?.toUpperCase()}
+      </div>
+    );
   };
 
   const renderDate = (rowData) => {
-    return <div className="date__text">{rowData.Date}</div>;
+    return <div className="date__text">{rowData.Date?.toUpperCase()}</div>;
   };
   const renderExpiryDate = (rowData) => {
-    return <div className="date__text">{rowData.expiryDate}</div>;
+    return (
+      <div className="date__text">{rowData.expiryDate?.toUpperCase()}</div>
+    );
   };
 
   const renderStatus = (rowData) => {
@@ -119,11 +132,11 @@ const LeadListingAllTable = () => {
           rowData.Status === "Processing"
             ? "company__status__type__green"
             : rowData.Status === "Completed"
-              ? "company__status__type__blue"
-              : "client__view__type__red"
+            ? "company__status__type__blue"
+            : "client__view__type__red"
         }
       >
-        {rowData.Status}
+        {rowData.Status?.toUpperCase()}
       </div>
     );
   };
@@ -134,7 +147,7 @@ const LeadListingAllTable = () => {
   //     dispatch(getClaimTabelSearchList(search))
   //   }
   // }, [search])
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [globalFilter, setGlobalFilter] = useState("Claim Number");
   const cities = [
     { name: "Policy Number", code: "Policy Number" },
@@ -169,8 +182,9 @@ const LeadListingAllTable = () => {
     fontWeight: 500,
     color: "#000",
     border: " none",
-    // display: "grid",
-    // alignItem: "center",
+    display: "flex",
+    alignItem: "center",
+    justifyContent: "center",
   };
 
   const headerStyle = {
@@ -234,7 +248,6 @@ const LeadListingAllTable = () => {
       <div className="lead__table__container">
         <DataTable
           value={search ? claimSeachData : claimsTabelList}
-
           paginator
           rows={5}
           selectionMode={selectionMode}
@@ -247,7 +260,6 @@ const LeadListingAllTable = () => {
           dataKey="id"
           tableStyle={{ minWidth: "50rem" }}
         >
-
           <Column
             body={renderclaimNumber}
             header={rendercheckedHeader("Claim Number")}
@@ -258,7 +270,6 @@ const LeadListingAllTable = () => {
             header={renderUncheckedHeader("Client Name")}
             headerStyle={headerStyle}
           ></Column>
-
 
           <Column
             body={renderpolicyNumber}
@@ -278,12 +289,13 @@ const LeadListingAllTable = () => {
           <Column
             body={renderStatus}
             header={renderUncheckedHeader("Status")}
-            headerStyle={headerStyle}
+            headerStyle={ViewheaderStyle}
+            style={{ textAlign: "center" }}
           ></Column>
           <Column
             body={renderViewEditButton}
             header={renderUncheckedHeader("Actions")}
-            headerStyle={{ ...ViewheaderStyle, textAlign: "center" }}
+            headerStyle={{ ...headerStyle, textAlign: "center" }}
           ></Column>
         </DataTable>
       </div>

@@ -21,13 +21,14 @@ import { useDispatch, useSelector } from "react-redux";
 import SvgEditicon from "../../../assets/icons/SvgEdit";
 import SvgEdit from "../../../assets/icons/SvgEdits";
 import ToggleButton from "../../../components/ToggleButton";
-import SvgEditicons from "../../../assets/icons/SvgEdit";
+// import SvgEditicons from "../../../assets/icons/SvgEdit";
 import SvgTable from "../../../assets/icons/SvgTable";
 import {
   getExchangeDetailEdit,
   getExchangeDetailView,
   getExchangeSearchList,
 } from "./store/exchangeMasterMiddleware";
+import SvgEditicons from "../../../assets/icons/SvgEditicons";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
@@ -240,12 +241,14 @@ const Index = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.CurrencyCode?.toUpperCase()}
             ></Column>
             <Column
               field="ToCurrencyCode"
               header="To Currency Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.ToCurrencyCode?.toUpperCase()}
             ></Column>
             <Column
               field="ExchangeRate"

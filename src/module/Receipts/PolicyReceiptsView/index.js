@@ -108,6 +108,8 @@ function PolicyReceipts() {
             overflowy: "auto",
           }}
           className="datatable_container"
+          scrollable={true}
+          scrollHeight="40vh"
         >
           <Column
             field="policies"

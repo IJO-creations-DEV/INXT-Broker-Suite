@@ -16,7 +16,11 @@ import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchUserMiddleware, getUserEditDataMiddleWare, getUserViewDataMiddleWare } from "../store/userMiddleware";
+import {
+  getSearchUserMiddleware,
+  getUserEditDataMiddleWare,
+  getUserViewDataMiddleWare,
+} from "../store/userMiddleware";
 
 const UserMaster = () => {
   const [search, setSearch] = useState("");
@@ -44,13 +48,13 @@ const UserMaster = () => {
 
   const handleView = (rowData) => {
     console.log(rowData, "rowData");
-    dispatch(getUserViewDataMiddleWare(rowData))
+    dispatch(getUserViewDataMiddleWare(rowData));
     navigate(`/master/generals/usermanagement/user/view/${rowData?.id}`);
   };
 
   const handlEdit = (rowData) => {
     console.log(rowData, "gg");
-    dispatch(getUserEditDataMiddleWare(rowData))
+    dispatch(getUserEditDataMiddleWare(rowData));
     navigate(`/master/generals/usermanagement/user/edit/${rowData?.id}`);
   };
   const items = [
@@ -69,16 +73,17 @@ const UserMaster = () => {
     padding: "1rem",
     color: "#000",
     border: "none",
-   width:"16%"
+    width: "16%",
   };
   const ViewheaderStyle = {
     fontSize: 16,
     fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "1rem",
-    color: "#000",textAlign:'center',
+    color: "#000",
+    textAlign: "center",
     border: "none",
-    textAlign:'center'
+    textAlign: "center",
     // marginLeft:"6px"
     //  display: "flex",
     //  justifyContent: "center",alignItem:"center",
@@ -149,7 +154,6 @@ const UserMaster = () => {
   };
   return (
     <div className="grid overall__user__master__container">
-
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">User</div>
         <div className="mt-3">
@@ -207,26 +211,29 @@ const UserMaster = () => {
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 currentPageReportTemplate="{first} - {last} of {totalRecords}"
                 paginatorTemplate={template2}
-              // onPage={onPageChange}
-              // onPageChange={onPageChange}
+                scrollable={true}
+                scrollHeight="40vh"
               >
                 <Column
                   field="userName"
                   header="User Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.userName?.toUpperCase()}
                 ></Column>
                 <Column
                   field="employeeCode"
                   header="Employee Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.employeeCode?.toUpperCase()}
                 ></Column>
                 <Column
                   field="assignedRole"
                   header="Assigned Role"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.assignedRole?.toUpperCase()}
                 ></Column>
                 <Column
                   field="email"
@@ -246,6 +253,7 @@ const UserMaster = () => {
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.modifiedBy?.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

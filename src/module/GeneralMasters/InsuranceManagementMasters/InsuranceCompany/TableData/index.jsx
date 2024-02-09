@@ -12,7 +12,11 @@ import { InputSwitch } from "primereact/inputswitch";
 import ToggleButton from "../../../../../components/ToggleButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { getInsurancePatchData, getInsuranceViewMiddleWare, getSearchInsuranceCompanyMiddleware } from "../store/insuranceCompanyMiddleware";
+import {
+  getInsurancePatchData,
+  getInsuranceViewMiddleWare,
+  getSearchInsuranceCompanyMiddleware,
+} from "../store/insuranceCompanyMiddleware";
 
 const TableData = ({ navigate }) => {
   const dispatch = useDispatch();
@@ -28,25 +32,25 @@ const TableData = ({ navigate }) => {
   console.log(InsuranceCompanyList, "InsuranceCompanyList");
   const headeraction = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "1rem",
-    color: '#000',
-    border: 'none',
+    color: "#000",
+    border: "none",
     // display:'flex',
     // justifyContent:'space-around',
     // alignItem:'center'
-  }
+  };
 
   const headerstyle = {
     // width: '10rem',
     // backgroundColor: 'red',
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: "1rem",
-    color: '#000',
-    border: 'none',
+    color: "#000",
+    border: "none",
   };
   const emptyTableIcon = (
     <div>
@@ -69,7 +73,6 @@ const TableData = ({ navigate }) => {
 
       return (
         <div className="table__selector">
-
           <span style={{ color: "var(--text-color)", userSelect: "none" }}>
             Row count :{" "}
           </span>
@@ -79,7 +82,6 @@ const TableData = ({ navigate }) => {
             options={dropdownOptions}
             onChange={options.onChange}
           />
-
         </div>
       );
     },
@@ -103,15 +105,15 @@ const TableData = ({ navigate }) => {
   };
 
   const handleView = (rowData) => {
-    console.log(rowData,"find");
-    dispatch(getInsuranceViewMiddleWare(rowData))
+    console.log(rowData, "find");
+    dispatch(getInsuranceViewMiddleWare(rowData));
     navigate(
       `/master/generals/insurancemanagement/insurancecompany/view/${rowData?.id}`
     );
   };
   const handleEdit = (rowData) => {
     console.log(rowData, "rowData");
-    dispatch(getInsurancePatchData(rowData))
+    dispatch(getInsurancePatchData(rowData));
     navigate(
       `/master/generals/insurancemanagement/insurancecompany/edit/${rowData?.id}`
     );
@@ -163,6 +165,8 @@ const TableData = ({ navigate }) => {
         paginatorTemplate={template2}
         className="reversal__table__main"
         emptyMessage={emptyTableIcon}
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="insuranceCompanyCode"
@@ -176,6 +180,7 @@ const TableData = ({ navigate }) => {
           header="Company Name"
           className="fieldvalue_container"
           headerStyle={headerstyle}
+          body={(rowData) => rowData.insuranceCompanyName?.toUpperCase()}
         ></Column>
         <Column
           field="email"
@@ -194,6 +199,7 @@ const TableData = ({ navigate }) => {
           header="Modified by"
           headerStyle={headerstyle}
           className="fieldvalue_container"
+          body={(rowData) => rowData.modifiedby?.toUpperCase()}
         ></Column>
         <Column
           field="modifiedOn"

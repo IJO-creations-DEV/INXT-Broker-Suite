@@ -1,4 +1,4 @@
-import React, { useState,useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "primereact/button";
 import SvgAdd from "../../../assets/icons/SvgAdd";
 import "../CurrencyMaster/index.scss";
@@ -21,22 +21,29 @@ import SvgEyeIcon from "../../../assets/icons/SvgEyeIcon";
 import ToggleButton from "../../../components/ToggleButton";
 import SvgEditicon from "../../../assets/icons/SvgEdit";
 // import { useNavigation } from '';
-import { TieredMenu } from 'primereact/tieredmenu';
+import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrencyDetailEdit, getCurrencyDetailView, getCurrencySearchList } from "./store/currencyMasterMiddlewar";
+import {
+  getCurrencyDetailEdit,
+  getCurrencyDetailView,
+  getCurrencySearchList,
+} from "./store/currencyMasterMiddlewar";
+import SvgEditicons from "../../../assets/icons/SvgEditicons";
 
 const CurrencyMaster = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
-  const { CurrencyList, loading,CurrencySearchList } = useSelector(({ currencyMasterReducer }) => {
-    return {
-      loading: currencyMasterReducer?.loading,
-      CurrencyList: currencyMasterReducer?.CurrencyList,
-      CurrencySearchList: currencyMasterReducer?.CurrencySearchList,
-    };
-  });
+  const { CurrencyList, loading, CurrencySearchList } = useSelector(
+    ({ currencyMasterReducer }) => {
+      return {
+        loading: currencyMasterReducer?.loading,
+        CurrencyList: currencyMasterReducer?.CurrencyList,
+        CurrencySearchList: currencyMasterReducer?.CurrencySearchList,
+      };
+    }
+  );
   const isEmpty = CurrencyList.length === 0;
 
   const emptyTableIcon = (
@@ -47,39 +54,46 @@ const CurrencyMaster = () => {
   const menu = useRef(null);
   const menuitems = [
     {
-      label: 'Name',
+      label: "Name",
     },
     {
-      label: 'Date',
+      label: "Date",
     },
     {
-      label: 'Voucher Number',
+      label: "Voucher Number",
     },
   ];
   const template2 = {
-    layout: 'RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+    layout:
+      "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
       const dropdownOptions = [
         { label: 5, value: 5 },
         { label: 10, value: 10 },
         { label: 20, value: 20 },
-        { label: 120, value: 120 }
+        { label: 120, value: 120 },
       ];
 
       return (
-        <React.Fragment >
-          <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }} >
-            Row count :{' '}
+        <React.Fragment>
+          <span
+            className="mx-1"
+            style={{ color: "var(--text-color)", userSelect: "none" }}
+          >
+            Row count :{" "}
           </span>
-          <Dropdown value={options.value} className="pagedropdown_container" options={dropdownOptions} onChange={options.onChange} />
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
         </React.Fragment>
       );
     },
-
   };
 
   const renderViewButton = (rowData) => {
-   
     return (
       <div className="center-content">
         <Button
@@ -88,7 +102,7 @@ const CurrencyMaster = () => {
           onClick={() => handleView(rowData)}
         />
         <Button
-          icon={<SvgEditicon />}
+          icon={<SvgEditicons />}
           className="eye__btn"
           onClick={() => handleEdit(rowData)}
         />
@@ -105,7 +119,7 @@ const CurrencyMaster = () => {
   };
 
   const handleView = (rowData) => {
-     dispatch(getCurrencyDetailView(rowData));
+    dispatch(getCurrencyDetailView(rowData));
     navigate("/master/finance/currency/viewcurrency");
   };
 
@@ -115,7 +129,7 @@ const CurrencyMaster = () => {
   };
   const headerStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -123,14 +137,14 @@ const CurrencyMaster = () => {
   };
   const ViewheaderStyle = {
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
     border: "none",
     display: "flex",
     justifyContent: "center",
-    width:"8rem"
+    width: "8rem",
   };
 
   const handleNavigate = () => {
@@ -144,9 +158,9 @@ const CurrencyMaster = () => {
 
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getCurrencySearchList(search))
+      dispatch(getCurrencySearchList(search));
     }
-  }, [search])
+  }, [search]);
 
   return (
     <div className="grid  container__currency">
@@ -186,8 +200,8 @@ const CurrencyMaster = () => {
           <div className="col-12 search__filter__view">
             <div className="col-12 md:col-12 lg:col-12">
               <div className="searchIcon__view__input mt-2">
-                <span className="pl-3" style={{color:'gray'}}>
-                <i className="pi pi-search" />
+                <span className="pl-3" style={{ color: "gray" }}>
+                  <i className="pi pi-search" />
                 </span>
                 <InputText
                   style={{ width: "100%" }}
@@ -199,7 +213,7 @@ const CurrencyMaster = () => {
               </div>
             </div>
             <div className="col-12 md:col-2 lg:col-2">
-            {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
+              {/* <TieredMenu model={menuitems} popup ref={menu} breakpoint="767px" />
             <Button label="Search by" outlined icon={<SvgDropdownicon />}
               className="sorbyfilter_container"
               onClick={(e) => menu.current.toggle(e)}
@@ -215,7 +229,7 @@ const CurrencyMaster = () => {
           >
             <div className="card">
               <DataTable
-                value={search ? CurrencySearchList :CurrencyList}
+                value={search ? CurrencySearchList : CurrencyList}
                 tableStyle={{
                   minWidth: "50rem",
                   color: "#1C2536",
@@ -236,12 +250,14 @@ const CurrencyMaster = () => {
                   sortable
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.Currencycode?.toUpperCase()}
                 ></Column>
                 <Column
                   field="CurrencyName"
                   header="Currency Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.CurrencyName?.toUpperCase()}
                   //   sortable
                 ></Column>
                 <Column
@@ -250,6 +266,7 @@ const CurrencyMaster = () => {
                   sortable
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.ISOcode?.toUpperCase()}
                   //   sortable
                 ></Column>
                 <Column
@@ -257,21 +274,24 @@ const CurrencyMaster = () => {
                   header="Currency Format"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.CurrencyFormat?.toUpperCase()}
                 ></Column>
                 <Column
                   field="SmallestUnit"
                   header="Smallest Unit"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.SmallestUnit?.toUpperCase()}
                 ></Column>
                 <Column
                   field="UnitDescription"
                   header="Unit Description"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.UnitDescription?.toUpperCase()}
                 ></Column>
                 <Column
-                 body={(columnData) => <ToggleButton id={columnData.id} />}
+                  body={(columnData) => <ToggleButton id={columnData.id} />}
                   header="Status"
                   headerStyle={{ textAlign: "center", ...headerStyle }}
                   className="fieldvalue_container"

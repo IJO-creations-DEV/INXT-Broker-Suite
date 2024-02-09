@@ -982,12 +982,18 @@ const Maincomponent = () => {
           <Route path="/agent/viewprofile" element={<AgentViewProfile />} />
           <Route path="/agent/editprofile" element={<AgentEditProfile />} />
           {/* // Lead Creation, edit lead & Lead listing */}
-          <Route path="/agent/createlead" element={<LeadCreation flow="create" action="post"/>} />
+          <Route
+            path="/agent/createlead"
+            element={<LeadCreation flow="create" action="post" />}
+          />
           <Route path="/agent/leadlisting" element={<LeadListing />} />
-          <Route path="/agent/leadedit" element={<LeadCreation flow="lead" action="edit" />} />
+          <Route
+            path="/agent/leadedit"
+            element={<LeadCreation flow="lead" action="edit" />}
+          />
           <Route
             path="/agent/clientedit"
-            element={<LeadCreation flow="client" action="edit"/>}
+            element={<LeadCreation flow="client" action="edit" />}
           />
           {/* <Route
             path="/agent/leadcreate"
@@ -1023,15 +1029,23 @@ const Maincomponent = () => {
           />
           <Route
             path="/agent/createquote/accessories/accessoriescreate/:id"
-            element={<Accessories action="accessoriescreate" />}
+            element={<Accessories action="accessoriescreate" flow="normal" />}
           />
           <Route
             path="/agent/createquote/accessories/accessorirsdetails/:id"
-            element={<Accessories action="accessorirsdetails" />}
+            element={<Accessories action="accessorirsdetails" flow="normal" />}
+          />
+          <Route
+            path="/agent/renewalquote/accessories/accessorirsdetails/:id"
+            element={<Accessories action="accessoriescreate" flow="renewal" />}
           />
           <Route
             path="/agent/createquote/ordersummary"
-            element={<OrderSummary action="post" />}
+            element={<OrderSummary action="post" flow="normal" />}
+          />
+          <Route
+            path="/agent/renewalquote/ordersummary"
+            element={<OrderSummary action="post" flow="renewal" />}
           />
           <Route
             path="/agent/createquote/ordersummaryquote"

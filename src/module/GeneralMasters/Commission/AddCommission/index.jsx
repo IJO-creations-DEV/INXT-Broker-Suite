@@ -33,15 +33,17 @@ import { useDispatch, useSelector } from "react-redux";
 import EditCommissionPopup from "../EditCommission/EditCommissionPopup";
 import ViewCommissionPopup from "../ViewCommission/ViewCommissionPopup";
 import { Card } from "primereact/card";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const AddCommission = () => {
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [date, setDate] = useState();
-  const { addLevelCommissionSharing, loading, commissionSearchList } =
+  const { addLevelCommissionSharing, loading, commissionSearchList,commissionList } =
     useSelector(({ commissionMianReducers }) => {
       return {
         loading: commissionMianReducers?.loading,
+        commissionList:commissionMianReducers?.commissionList,
         addLevelCommissionSharing:
           commissionMianReducers?.addLevelCommissionSharing,
         commissionSearchList: commissionMianReducers?.commissionSearchList,
@@ -111,7 +113,12 @@ const AddCommission = () => {
 
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    dispatch(postAddCommission(formik.values));
+    const data = {
+      ...values,
+      id: commissionList?.length + 1,
+    };
+    console.log(data,"data");
+    dispatch(postAddCommission(data));
     navigate("/master/generals/commission");
     // toastRef.current.showToast();
     // setTimeout(() => {
@@ -239,12 +246,20 @@ const AddCommission = () => {
       <CustomToast ref={toastRef} message="Add Commission" />
 
       <div className="col-12 ">
-        <div className="add__sub__title">
+        <div>
+          <span onClick={handleGoBack}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+            Add Commissions
+          </label>
+        </div>
+        {/* <div className="add__sub__title">
           <div onClick={handleGoBack} className="mr-2 mt-1">
             <ArrowLeftIcon />
           </div>
           Add Commissions
-        </div>
+        </div> */}
         <div className="mt-3 mb-3">
           <BreadCrumb
             home={home}
@@ -530,6 +545,8 @@ const AddCommission = () => {
             onPage={onPageChange}
             onPageChange={onPageChange}
             emptyMessage={isEmpty ? emptyTableIcon : null}
+            scrollable={true}
+            scrollHeight="40vh"
           >
             <Column
               field="level"

@@ -185,7 +185,7 @@ const PettyCashReplenishTable = () => {
           </div>
           <div className="sub__title">Replenish history</div>
         </div>
-        <div className="card">
+        <div className="card tabel__card__header">
           <DataTable
             value={search ? ReplenishSearch : ReplenishList}
             tableStyle={{
@@ -207,6 +207,7 @@ const PettyCashReplenishTable = () => {
               header="Petty cash code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Pettycashcode?.toUpperCase()}
             ></Column>
 
             <Column
@@ -214,24 +215,28 @@ const PettyCashReplenishTable = () => {
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Transactioncode?.toUpperCase()}
             ></Column>
             <Column
               field="BankCode"
               header="Bank Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.BankCode?.toUpperCase()}
             ></Column>
             <Column
               field="SubAccount"
               header="Sub Account"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.SubAccount?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
               header="Transaction Number"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
               sortable
             ></Column>
             <Column

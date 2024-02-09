@@ -15,6 +15,7 @@ import TransactionCodeMasterViewTable from "./TransactionCodeMasterViewTable";
 import NavBar from "../../../../components/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { postAddTransaction } from "../store/transactionCodeMasterMiddleware";
+import SvgBackicon from "../../../../assets/icons/SvgBackicon";
 
 const initialValue = {
   TransactionCode: "",
@@ -152,7 +153,20 @@ const TransactionCodeMasterView = () => {
       <CustomToast ref={toastRef} message="Save Successfully" />
       <div className="grid  m-0">
         <div className="col-12 md:col-12 lg:col-12">
-          <div
+        <div>
+          <span onClick={handleClick}>
+            <SvgBackicon />
+          </span>
+          <label className="label_header">
+          Add Transaction Code
+            {/* {action === "add"
+            ? "Add Country"
+            : action === "edit"
+              ? "Edit Country"
+              : "Country Details"} */}
+          </label>
+        </div>
+          {/* <div
             className="Transaction__Code__Master__title"
             onClick={() => {
               handleClick();
@@ -160,7 +174,7 @@ const TransactionCodeMasterView = () => {
           >
             <SvgBackArrow />
             Add Transaction Code
-          </div>
+          </div> */}
           <div className="mt-3">
             <BreadCrumb
               model={items}

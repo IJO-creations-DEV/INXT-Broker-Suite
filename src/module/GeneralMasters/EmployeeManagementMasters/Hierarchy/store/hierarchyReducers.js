@@ -8,7 +8,7 @@ const initialState = {
     {
       id: 1,
       rankCode: "RK001 ",
-      rankName: "RANk 1 ",
+      rankName: "RANK 1 ",
       levelNumber: "L4",
       description: "TEST PURPOSE",
       modifiedBy: "JOHNSON",
@@ -19,7 +19,7 @@ const initialState = {
     {
       id: 2,
       rankCode: "RK002 ",
-      rankName: "RANk 2 ",
+      rankName: "RANK 2 ",
       levelNumber: "L3",
       description: "TEST PURPOSE",
       modifiedBy: "JOHNSON",

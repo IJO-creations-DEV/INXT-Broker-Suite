@@ -205,7 +205,6 @@ const TaxationMaster = () => {
                   classNames="input__sub__account__taxation"
                   placeholder="Search By Sub Account Code"
                   value={search}
-
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
@@ -222,18 +221,6 @@ const TaxationMaster = () => {
           >
             <div className="card">
               <DataTable
-                // value={search ? taxationSearchList : taxationList}
-                // style={{ overflowY: "auto", maxWidth: "100%" }}
-                // responsive={true}
-                // className="table__view__taxation"
-                // paginator
-                // paginatorLeft
-                // rows={5}
-                // rowsPerPageOptions={[5, 10, 25, 50]}
-                // currentPageReportTemplate="{first} - {last} of {totalRecords}"
-                // paginatorTemplate={template2}
-                // onPage={onPageChange}
-                // onPageChange={onPageChange}
                 value={search ? taxationSearchList : taxationList}
                 paginator
                 rows={5}
@@ -250,6 +237,7 @@ const TaxationMaster = () => {
                   header="Tax Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.taxCode?.toUpperCase()}
                   sortable
                 ></Column>
                 <Column
@@ -257,13 +245,15 @@ const TaxationMaster = () => {
                   header="Tax Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
-                //   sortable
+                  body={(rowData) => rowData.taxName?.toUpperCase()}
+                  //   sortable
                 ></Column>
                 <Column
                   field="taxRate"
                   header="Tax Rate"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.taxRate?.toUpperCase()}
                   sortable
                 ></Column>
                 <Column

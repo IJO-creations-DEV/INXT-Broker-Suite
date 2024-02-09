@@ -16,20 +16,26 @@ import SvgEditIcon from "../../../../../assets/icons/SvgEditIcon";
 import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
 import { useDispatch, useSelector } from "react-redux";
-import { getPatchRoleEditMiddleware, getSearchRoleMiddleware, getViewRoleEditMiddleware } from "../store/roleMiddleware";
+import {
+  getPatchRoleEditMiddleware,
+  getSearchRoleMiddleware,
+  getViewRoleEditMiddleware,
+} from "../store/roleMiddleware";
 
 const RoleMaster = () => {
-  const { loading, roleTableList, roleSearchList } = useSelector(({ roleMainReducers }) => {
-    return {
-      loading: roleMainReducers?.loading,
-      roleTableList: roleMainReducers?.roleTableList,
-      roleSearchList: roleMainReducers?.roleSearchList,
-    };
-  });
-  console.log(roleTableList,"find1243")
-  const [search, setSearch] = useState("")
+  const { loading, roleTableList, roleSearchList } = useSelector(
+    ({ roleMainReducers }) => {
+      return {
+        loading: roleMainReducers?.loading,
+        roleTableList: roleMainReducers?.roleTableList,
+        roleSearchList: roleMainReducers?.roleSearchList,
+      };
+    }
+  );
+  console.log(roleTableList, "find1243");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleNavigate = () => {
     navigate("/master/generals/usermanagement/role/add/1");
   };
@@ -37,16 +43,14 @@ const RoleMaster = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
   const handleView = (rowData) => {
-    dispatch(getViewRoleEditMiddleware(rowData))
+    dispatch(getViewRoleEditMiddleware(rowData));
     navigate("/master/generals/usermanagement/role/view/2");
   };
 
   const handlEdit = (rowData) => {
-    dispatch(getPatchRoleEditMiddleware(rowData))
+    dispatch(getPatchRoleEditMiddleware(rowData));
     navigate("/master/generals/usermanagement/role/edit/3");
   };
-
-
 
   useEffect(() => {
     if (search?.length > 0) {
@@ -145,7 +149,6 @@ const RoleMaster = () => {
   };
   return (
     <div className="grid overall__role__master__container">
-
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Role Master</div>
         <div className="mt-3">
@@ -185,9 +188,7 @@ const RoleMaster = () => {
             </div>
           </div>
           <div className="col-12 ">
-            <div className="main__tabel__title__hierarchy pl-2">
-            Role List
-            </div>
+            <div className="main__tabel__title__hierarchy pl-2">Role List</div>
           </div>
           <div
             className="col-12 md:col-12 lg-col-12"
@@ -207,18 +208,22 @@ const RoleMaster = () => {
                 paginatorTemplate={template2}
                 onPage={onPageChange}
                 onPageChange={onPageChange}
+                scrollable={true}
+                scrollHeight="40vh"
               >
                 <Column
                   field="roleCode"
                   header="Role Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.roleCode?.toUpperCase()}
                 ></Column>
                 <Column
                   field="roleName"
                   header="Role Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.roleName?.toUpperCase()}
                 ></Column>
 
                 <Column
@@ -226,6 +231,7 @@ const RoleMaster = () => {
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.modifiedBy?.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

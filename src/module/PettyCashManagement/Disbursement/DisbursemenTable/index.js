@@ -52,9 +52,6 @@ const DisbursementTable = () => {
       }
     }
   }, [search]);
- 
-
- 
 
   const isEmpty = DisbursmentList.length === 0;
 
@@ -108,7 +105,7 @@ const DisbursementTable = () => {
   };
 
   const handleView = (rowData) => {
-    dispatch(getDisbursmentViewMiddleware(rowData))
+    dispatch(getDisbursmentViewMiddleware(rowData));
     // dispatch(getDisbursmentSearchMiddleware(rowData));
     console.log("View clicked:", rowData);
     navigate("/accounts/pettycash/disbursementdetailview");
@@ -136,11 +133,9 @@ const DisbursementTable = () => {
     },
   ];
 
- 
-
   return (
     <div className="disbursement__table">
-      <Card className="mt-1">
+      <Card className="mt-1 tabel__card__header">
         <div className="header_search_container grid">
           <div class="col-12 md:col-6 lg:col-10">
             <span className="p-input-icon-left" style={{ width: "100%" }}>
@@ -188,12 +183,14 @@ const DisbursementTable = () => {
               header="Petty cash Code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.PettyCashCode?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionCode"
               header="Transaction code"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionCode?.toUpperCase()}
             ></Column>
             <Column
               field="TransactionNumber"
@@ -201,6 +198,7 @@ const DisbursementTable = () => {
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
             ></Column>
             <Column
               field="Date"

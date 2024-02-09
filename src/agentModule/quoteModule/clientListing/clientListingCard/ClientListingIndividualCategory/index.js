@@ -15,13 +15,24 @@ import SvgDownArrow from "../../../../../assets/agentIcon/SvgDownArrow";
 import { Dropdown } from "primereact/dropdown";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getClientEditMiddleWare, getPaymentSearchDataMiddleWare } from "../../store/clientsMiddleware";
+import {
+  getClientEditMiddleWare,
+  getPaymentSearchDataMiddleWare,
+} from "../../store/clientsMiddleware";
 import SvgDropdownicon from "../../../../../assets/icons/SvgDropdownicon";
 import { Avatar } from "primereact/avatar";
 
-const ClientListingIndividualCategory = ({data, clientListTable, paymentSearchList }) => {
-  const individualData = clientListTable?.filter(item => item.category === "Individual");
-  const searchMiddleWareData=paymentSearchList?.filter(val=>val?.category==="Individual")
+const ClientListingIndividualCategory = ({
+  data,
+  clientListTable,
+  paymentSearchList,
+}) => {
+  const individualData = clientListTable?.filter(
+    (item) => item.category === "Individual"
+  );
+  const searchMiddleWareData = paymentSearchList?.filter(
+    (val) => val?.category === "Individual"
+  );
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectionMode, setSelectionMode] = useState("multiple");
   const [globalFilter, setGlobalFilter] = useState("Name");
@@ -244,7 +255,7 @@ const ClientListingIndividualCategory = ({data, clientListTable, paymentSearchLi
       <div className="name__box__container">
         <div>{handleSvg(rowData.FirstName, rowData.id)}</div>
         <div>
-          <div className="name__text">{rowData.FirstName}</div>
+          <div className="name__text">{rowData.FirstName?.toUpperCase()}</div>
           <div className="lead__id__text">Client Id :{rowData.LeadID} </div>
         </div>
       </div>
@@ -252,11 +263,17 @@ const ClientListingIndividualCategory = ({data, clientListTable, paymentSearchLi
   };
 
   const renderCategory = (rowData) => {
-    return <div className="category__text">{rowData.category}</div>;
+    return (
+      <div className="category__text">{rowData.category?.toUpperCase()}</div>
+    );
   };
 
   const renderDes = (rowData) => {
-    return <div className="category__text">{rowData.ProductDescription}</div>;
+    return (
+      <div className="category__text">
+        {rowData.ProductDescription?.toUpperCase()}
+      </div>
+    );
   };
   const renderDate = (rowData) => {
     return <div className="date__text">{rowData.DateofBirth}</div>;
@@ -267,7 +284,7 @@ const ClientListingIndividualCategory = ({data, clientListTable, paymentSearchLi
   };
 
   const handleEditAction = (rowData) => {
-    dispatch(getClientEditMiddleWare(rowData))
+    dispatch(getClientEditMiddleWare(rowData));
     navigate("/agent/clientedit");
   };
 

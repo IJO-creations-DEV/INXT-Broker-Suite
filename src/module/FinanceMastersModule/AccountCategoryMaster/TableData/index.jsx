@@ -16,16 +16,16 @@ import { getAccountCategorySearchList } from "../store/accountCategoryMeddleware
 const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState('');
-  const { AccountCategoryList, loading, AccountCategorySearchList } = useSelector(
-    ({ accountCategoryReducer }) => {
+  const [search, setSearch] = useState("");
+  const { AccountCategoryList, loading, AccountCategorySearchList } =
+    useSelector(({ accountCategoryReducer }) => {
       return {
         loading: accountCategoryReducer?.loading,
         AccountCategoryList: accountCategoryReducer?.AccountCategoryList,
-        AccountCategorySearchList: accountCategoryReducer?.AccountCategorySearchList,
+        AccountCategorySearchList:
+          accountCategoryReducer?.AccountCategorySearchList,
       };
-    }
-  );
+    });
   console.log(AccountCategoryList, "find AccountCategoryList");
   const emptyTableIcon = (
     <div>
@@ -104,9 +104,9 @@ const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
 
   useEffect(() => {
     if (search?.length > 0) {
-      dispatch(getAccountCategorySearchList(search))
+      dispatch(getAccountCategorySearchList(search));
     }
-  }, [search])
+  }, [search]);
 
   return (
     <div className="master__account__table__container">
@@ -135,17 +135,21 @@ const TableData = ({ handleViewAction, handleEditAction, EmptyTable }) => {
         paginatorTemplate={template2}
         className="reversal__table__main"
         emptyMessage={emptyTableIcon}
+        scrollable={true}
+        scrollHeight="40vh"
       >
         <Column
           field="accountCategoryCode"
           header="Account Category Code"
           className="fieldvalue_container"
+          body={(rowData) => rowData.accountCategoryCode?.toUpperCase()}
           sortable
         ></Column>
         <Column
           field="accountCategoryName"
           header="Account Category Name"
           className="fieldvalue_container"
+          body={(rowData) => rowData.accountCategoryName?.toUpperCase()}
         ></Column>
         <Column
           field="status"

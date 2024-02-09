@@ -17,11 +17,15 @@ import ToggleButton from "../../../../../components/ToggleButton";
 import Productdata from "./mock";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { getDesignationPatchData, getDesignationViewData, getSearchDesignationMiddleware } from "../store/designationMiddleware";
+import {
+  getDesignationPatchData,
+  getDesignationViewData,
+  getSearchDesignationMiddleware,
+} from "../store/designationMiddleware";
 
 const DesignationMaster = () => {
   const navigate = useNavigate();
-  const { designationDetailList, loading,  designationSearchList } = useSelector(
+  const { designationDetailList, loading, designationSearchList } = useSelector(
     ({ designationMainReducers }) => {
       return {
         loading: designationMainReducers?.loading,
@@ -38,12 +42,12 @@ const DesignationMaster = () => {
     // navigate('/master/finance/hierarchy/hierarchydetails')
   };
   const handleView = (rowData) => {
-    dispatch(getDesignationViewData(rowData))
+    dispatch(getDesignationViewData(rowData));
     navigate("/master/generals/employeemanagement/designation/view/2");
   };
 
   const handlEdit = (rowData) => {
-    dispatch(getDesignationPatchData(rowData))
+    dispatch(getDesignationPatchData(rowData));
     navigate("/master/generals/employeemanagement/designation/edit/3");
   };
   const items = [
@@ -73,7 +77,7 @@ const DesignationMaster = () => {
     display: "flex",
     justifyContent: "center",
   };
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -82,9 +86,8 @@ const DesignationMaster = () => {
     setFirst(event.first);
     setRowsPerPage(event.rows);
   };
-  const [search, setSearch]=useState()
+  const [search, setSearch] = useState();
 
-  
   const handleSubmit = (values) => {
     console.log(values.search, "getSearchDesignationMiddleware");
     dispatch(getSearchDesignationMiddleware({ textSearch: values.search }));
@@ -93,10 +96,12 @@ const DesignationMaster = () => {
     initialValues: { search: "" },
     onSubmit: handleSubmit,
   });
-  
+
   useEffect(() => {
     if (formik.values.search !== "") {
-      dispatch(getSearchDesignationMiddleware({ textSearch: formik.values.search }));
+      dispatch(
+        getSearchDesignationMiddleware({ textSearch: formik.values.search })
+      );
     }
   }, [formik.values.search]);
 
@@ -138,17 +143,15 @@ const DesignationMaster = () => {
 
       return (
         <div className="table__selector">
-          
-            <span style={{ color: "var(--text-color)", userSelect: "none" }}>
-              Row count :{" "}
-            </span>
-            <Dropdown
-              value={options.value}
-              className="pagedropdown_container"
-              options={dropdownOptions}
-              onChange={options.onChange}
-            />
-         
+          <span style={{ color: "var(--text-color)", userSelect: "none" }}>
+            Row count :{" "}
+          </span>
+          <Dropdown
+            value={options.value}
+            className="pagedropdown_container"
+            options={dropdownOptions}
+            onChange={options.onChange}
+          />
         </div>
       );
     },
@@ -156,10 +159,9 @@ const DesignationMaster = () => {
 
   return (
     <div className="grid overall__designation__master__container">
-     
       <div className="col-12 md:col-6 lg:col-6 mb-1">
         <div className="add__icon__title__hierarchy">Designation</div>
-        <div style={{margin:"20px 0px"}}>
+        <div style={{ margin: "20px 0px" }}>
           <BreadCrumb
             home={home}
             className="breadCrums__view__reversal__hierarchy"
@@ -222,30 +224,36 @@ const DesignationMaster = () => {
                 paginatorTemplate={template2}
                 onPage={onPageChange}
                 onPageChange={onPageChange}
+                scrollable={true}
+                scrollHeight="40vh"
               >
                 <Column
                   field="designationCode"
                   header="Designation Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.designationCode?.toUpperCase()}
                 ></Column>
                 <Column
                   field="designationName"
                   header="Designation Name"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.designationName?.toUpperCase()}
                 ></Column>
                 <Column
                   field="departmentCode"
                   header="Department Code"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.departmentCode?.toUpperCase()}
                 ></Column>
                 <Column
                   field="ModifiedBy"
                   header="Modified By"
                   headerStyle={headerStyle}
                   className="fieldvalue_container"
+                  body={(rowData) => rowData.ModifiedBy?.toUpperCase()}
                 ></Column>
                 <Column
                   field="modifiedOn"

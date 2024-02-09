@@ -6,28 +6,12 @@ import SidebarItemCollapse from "./SideBarItemCollapse";
 import SidebarItem from "./SideBarItem";
 import SvgLogo from "../../assets/icons/SvgLogo";
 import SvgFinalLogo from "../../assets/icons/SvgFinalLogo";
-import findNamesByPath from "../../utility/findSidBarNames";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const NewSideBar = () => {
   const location = useLocation();
-  const [findPath, setPath] = useState("");
-  const [selectedList, setSelectedList] = useState([]);
-  const [openSubMenu, setOpenSubMenu] = useState("Master");
-
-  useEffect(() => {
-    setPath(location?.path);
-    console.log("pathname", location?.path);
-    // setOpenSubMenu("")
-    const selectedPaths = findNamesByPath(menuList, location?.path);
-    setSelectedList([...selectedPaths]);
-    // console.log(selectedPaths[0] == menuList[0].name, "tesed data");
-    // setOpenSubMenu("Master")
-  }, [location]);
-  console.log(selectedList[0], "find selected list");
-
-  console.log(openSubMenu, findPath, "sub meny");
-
+  const currentPathname = location.pathname;
+  console.log(currentPathname, "find currentPathname");
   return (
     // <div>
     //     {menuList?.map((individalMenu) => (
@@ -46,9 +30,17 @@ const NewSideBar = () => {
         </div>
         {menuList.map((individalMenu, index) =>
           individalMenu.submenu ? (
-            <SidebarItemCollapse item={individalMenu} key={index}  />
+            <SidebarItemCollapse
+              item={individalMenu}
+              key={index}
+              currentPathname={currentPathname}
+            />
           ) : (
-            <SidebarItem item={individalMenu} key={index} />
+            <SidebarItem
+              item={individalMenu}
+              key={index}
+              currentPathname={currentPathname}
+            />
           )
         )}
       </ul>

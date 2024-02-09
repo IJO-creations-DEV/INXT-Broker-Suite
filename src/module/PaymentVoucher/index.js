@@ -158,12 +158,13 @@ const Index = () => {
       </div>
 
       <Card
+        className="mt-3"
 
-      //   className="overallcard_container"
+        //   className="overallcard_container"
       >
         {/* <div className="searchiput_container"> */}
 
-        <div className="header_search_container">
+        <div className="header_search_container ">
           <div class="col-12 md:col-6 lg:col-10" style={{ paddingLeft: 0 }}>
             {/* <div class="text-center p-3 border-round-sm bg-primary font-bold"> */}
             <span className="p-input-icon-left" style={{ width: "100%" }}>
@@ -230,6 +231,7 @@ const Index = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionNumber?.toUpperCase()}
             ></Column>
             <Column
               field="CustomerCode"
@@ -237,6 +239,7 @@ const Index = () => {
               sortable
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.CustomerCode?.toUpperCase()}
             ></Column>
             <Column
               field="VoucheDate"

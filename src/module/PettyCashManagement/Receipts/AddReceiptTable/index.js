@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 const AddReceiptsTable = () => {
   const [visible, setVisible] = useState(false);
   const [totalAmounts, setTotalAmounts] = useState(0);
-  
+
   const toastRef = useRef(null);
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -29,17 +29,17 @@ const AddReceiptsTable = () => {
     }
   };
 
-  const headaction ={
-    justifyContent: 'center',
-// textalign: center,
-fontSize: 16,
-fontFamily: 'Inter, sans-serif',
-fontWeight: 500,
-padding: 6,
-color: "#000",
-border:" none",
-display: "flex"
-  }
+  const headaction = {
+    justifyContent: "center",
+    // textalign: center,
+    fontSize: 16,
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 500,
+    padding: 6,
+    color: "#000",
+    border: " none",
+    display: "flex",
+  };
   const [selectedRows, setSelectedRows] = useState([]);
   const { AddReceiptTable, loading } = useSelector(
     ({ pettyCashReceiptsReducer }) => {
@@ -49,7 +49,7 @@ display: "flex"
       };
     }
   );
-  console.log(AddReceiptTable.Amount,"AddReceiptTable")
+  console.log(AddReceiptTable.Amount, "AddReceiptTable");
   const totalAmount = selectedRows.reduce((total, item) => {
     const Amount = parseFloat(item.Amount);
     return !isNaN(Amount) ? total + Amount : total;
@@ -64,7 +64,10 @@ display: "flex"
   );
 
   const items = [
-    { label: "Petty Cash",command: () => navigate( "/accounts/pettycash/receipts" )},
+    {
+      label: "Petty Cash",
+      command: () => navigate("/accounts/pettycash/receipts"),
+    },
     {
       label: "Add Receipt",
       to: "/accounts/pettycash/addreceiptstable",
@@ -77,7 +80,7 @@ display: "flex"
     const clickedAmount = parseInt(rowData.Amount);
     setTotalAmounts((prevTotalAmounts) => prevTotalAmounts + clickedAmount);
   };
-  
+
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const handleBack = () => {
@@ -87,7 +90,7 @@ display: "flex"
   const headerStyle = {
     // width: "10rem",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: "Inter, sans-serif",
     fontWeight: 500,
     padding: 6,
     color: "#000",
@@ -189,18 +192,19 @@ display: "flex"
 
             /> */}
 
-<Column
+            <Column
               selectionMode="multiple"
               // selectedItem
               headerStyle={headaction}
-              style={{textAlign:'center'}}
+              style={{ textAlign: "center" }}
             ></Column>
 
             <Column
               field="TransactionCode"
               header="Transaction Code"
               headerStyle={headerStyle}
-className="fieldvalue_container"
+              className="fieldvalue_container"
+              body={(rowData) => rowData.TransactionCode?.toUpperCase()}
             ></Column>
             <Column
               field="RequestNumber"
@@ -208,6 +212,7 @@ className="fieldvalue_container"
               headerStyle={headerStyle}
               className="fieldvalue_container"
               sortable
+              body={(rowData) => rowData.RequestNumber?.toUpperCase()}
             ></Column>
             <Column
               field="Date"
@@ -228,6 +233,7 @@ className="fieldvalue_container"
               header="Remarks"
               headerStyle={headerStyle}
               className="fieldvalue_container"
+              body={(rowData) => rowData.Remarks?.toUpperCase()}
             ></Column>
           </DataTable>
         </div>
@@ -261,7 +267,7 @@ className="fieldvalue_container"
       <div className="grid  mt-4">
         <div className="col-12 md:col-12 lg:col-12">
           <div className="btn__container">
-          <Button
+            <Button
               label="Approve"
               className="add__btn"
               disabled={selectedRows.length === 0}

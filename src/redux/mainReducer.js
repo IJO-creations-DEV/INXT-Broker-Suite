@@ -67,6 +67,7 @@ import claimsMainReducers from "../agentModule/claimModule/store/claimReducers"
 import policyMainReducers from "../agentModule/policyModule/store/policyReducers"
 import quotationMainReducers from "../agentModule/quotationModule/store/quotationReducers"
 import agentCoverageDetailsReducers from "../agentModule/quoteModule/coverageDetails/store/coverageDetailsReducer";
+import profileReducers from "../agentModule/dashBoardModule/agentViewProfile/agentProfileCard/store/profileReducers"
 const reducers = {
   journalVoucherMainReducers,
   paymentVoucherReducers,
@@ -130,6 +131,8 @@ const reducers = {
   claimsMainReducers,
   policyMainReducers,
   quotationMainReducers,
+  profileReducers
+  // openitemTabelMainReducers
 
 };
 

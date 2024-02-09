@@ -33,9 +33,9 @@ export const menuList = [
                 name: "Company",
                 path: "/master/generals/organization/companymaster",
                 includes: [
-                  "master/generals/organization/companymaster/add/id",
-                  "master/generals/organization/companymaster/edit/id",
-                  "master/generals/organization/companymaster/view/id"
+                  "master/generals/organization/companymaster/add/:id",
+                  "master/generals/organization/companymaster/edit/:id",
+                  "master/generals/organization/companymaster/view/:id"
                 ]
 
               },
@@ -45,9 +45,9 @@ export const menuList = [
                 name: "Branch",
                 path: "/master/generals/organization/branchmaster",
                 includes: [
-                  'master/generals/organization/branchmaster/add/id',
-                  'master/generals/organization/branchmaster/edit/id',
-                  'master/generals/organization/branchmaster/view/id'
+                  'master/generals/organization/branchmaster/add/:id',
+                  'master/generals/organization/branchmaster/edit/:id',
+                  'master/generals/organization/branchmaster/view/:id'
                 ]
               },
             ],
@@ -62,9 +62,9 @@ export const menuList = [
                 name: "Insurance Company",
                 path: "/master/generals/insurancemanagement/insurancecompany",
                 includes: [
-                  "master/generals/insurancemanagement/insurancecompany/add/id",
-                  "master/generals/insurancemanagement/insurancecompany/edit/id",
-                  'master/generals/insurancemanagement/insurancecompany/view/id'
+                  "master/generals/insurancemanagement/insurancecompany/add/:id",
+                  "master/generals/insurancemanagement/insurancecompany/edit/:id",
+                  'master/generals/insurancemanagement/insurancecompany/view/:id'
                 ]
 
               },
@@ -73,9 +73,9 @@ export const menuList = [
                 name: "Line of Business",
                 path: "/master/generals/insurancemanagement/lineofbusiness",
                 includes: [
-                  'master/generals/insurancemanagement/lineofbusiness/add/id',
-                  'master/generals/insurancemanagement/lineofbusiness/edit/id',
-                  'master/generals/insurancemanagement/lineofbusiness/view/id'
+                  'master/generals/insurancemanagement/lineofbusiness/add/:id',
+                  'master/generals/insurancemanagement/lineofbusiness/edit/:id',
+                  'master/generals/insurancemanagement/lineofbusiness/view/:id'
                 ]
               },
               {
@@ -83,9 +83,9 @@ export const menuList = [
                 name: "Product",
                 path: "/master/generals/insurancemanagement/productmaster",
                 includes: [
-                  'master/generals/insurancemanagement/productmaster/add/id',
-                  'master/generals/insurancemanagement/productmaster/edit/id',
-                  'master/generals/insurancemanagement/productmaster/view/id'
+                  'master/generals/insurancemanagement/productmaster/add/:id',
+                  'master/generals/insurancemanagement/productmaster/edit/:id',
+                  'master/generals/insurancemanagement/productmaster/view/:id'
                 ]
               },
               // {
@@ -99,9 +99,9 @@ export const menuList = [
                 path: "/master/generals/insurancemanagement/cover",
                 includes: [
                   'master/generals/insurancemanagement/cover',
-                  'master/generals/insurancemanagement/productmaster/add/id',
-                  'master/generals/insurancemanagement/productmaster/edit/id',
-                  'master/generals/insurancemanagement/productmaster/view/id'
+                  'master/generals/insurancemanagement/productmaster/add/:id',
+                  'master/generals/insurancemanagement/productmaster/edit/:id',
+                  'master/generals/insurancemanagement/productmaster/view/:id'
                 ]
               },
               {
@@ -109,9 +109,9 @@ export const menuList = [
                 name: "Signatories",
                 path: "/master/generals/insurancemanagement/signatories",
                 includes: [
-                  'master/generals/insurancemanagement/signatories/add/id',
-                  'master/generals/insurancemanagement/signatories/edit/id',
-                  'master/generals/insurancemanagement/signatories/view/id'
+                  'master/generals/insurancemanagement/signatories/add/:id',
+                  'master/generals/insurancemanagement/signatories/edit/:id',
+                  'master/generals/insurancemanagement/signatories/view/:id'
                 ]
               },
               {
@@ -119,9 +119,9 @@ export const menuList = [
                 name: "Vehicle",
                 path: "/master/generals/insurancemanagement/vehicle",
                 includes: [
-                  ' master/generals/insurancemanagement/vehicle/add/id',
-                  'master/generals/insurancemanagement/vehicle/edit/id',
-                  'master/generals/insurancemanagement/vehicle/view/id'
+                  ' master/generals/insurancemanagement/vehicle/add/:id',
+                  'master/generals/insurancemanagement/vehicle/edit/:id',
+                  'master/generals/insurancemanagement/vehicle/view/:id'
                 ]
               },
             ],
@@ -171,7 +171,7 @@ export const menuList = [
             includes: [
               'master/generals/commission/addcommission',
               'master/generals/commission/editcommission',
-              'master/generals/commission/viewcommission/id'
+              'master/generals/commission/viewcommission/:id'
             ]
           },
           {
@@ -185,8 +185,8 @@ export const menuList = [
                 path: "/master/generals/employeemanagement/hierarchy",
                 includes: [
                   'master/generals/employeemanagement/hierarchy/add',
-                  'master/generals/employeemanagement/hierarchy/edit/id',
-                  'master/generals/employeemanagement/hierarchy/view/id'
+                  'master/generals/employeemanagement/hierarchy/edit/:id',
+                  'master/generals/employeemanagement/hierarchy/view/:id'
                 ]
               },
               {
@@ -194,9 +194,9 @@ export const menuList = [
                 name: "Designation",
                 path: "/master/generals/employeemanagement/designation",
                 includes: [
-                  'master/generals/employeemanagement/designation/add/id',
-                  'master/generals/employeemanagement/designation/edit/id',
-                  'master/generals/employeemanagement/designation/view/id'
+                  'master/generals/employeemanagement/designation/add/:id',
+                  'master/generals/employeemanagement/designation/edit/:id',
+                  'master/generals/employeemanagement/designation/view/:id'
                 ]
               },
               {
@@ -204,9 +204,9 @@ export const menuList = [
                 name: "Employee",
                 path: "/master/generals/employeemanagement/employee",
                 includes: [
-                  'master/generals/employeemanagement/employee/add/id',
-                  'master/generals/employeemanagement/employee/edit/id',
-                  ' master/generals/employeemanagement/employee/view/id'
+                  'master/generals/employeemanagement/employee/add/:id',
+                  'master/generals/employeemanagement/employee/edit/:id',
+                  ' master/generals/employeemanagement/employee/view/:id'
                 ]
               },
             ],
@@ -222,8 +222,8 @@ export const menuList = [
                 path: "/master/generals/usermanagement/user",
                 includes: [
                   'master/generals/usermanagement/user/add',
-                  'master/generals/usermanagement/user/edit/id',
-                  'master/generals/usermanagement/user/view/id'
+                  'master/generals/usermanagement/user/edit/:id',
+                  'master/generals/usermanagement/user/view/:id'
                 ]
               },
               {
@@ -231,9 +231,9 @@ export const menuList = [
                 name: "Role",
                 path: "/master/generals/usermanagement/role",
                 includes: [
-                  'master/generals/usermanagement/role/add/id',
-                  'master/generals/usermanagement/role/edit/id',
-                  'master/generals/usermanagement/role/view/id'
+                  'master/generals/usermanagement/role/add/:id',
+                  'master/generals/usermanagement/role/edit/:id',
+                  'master/generals/usermanagement/role/view/:id'
                 ]
               },
             ],
@@ -325,8 +325,8 @@ export const menuList = [
             path: "/master/finance/pettycash",
             includes: [
               'master/finance/pettycash/addpettycash',
-              'master/finance/pettycash/editpettycash/id',
-              'master/finance/pettycash/pettycashdetail/id'
+              'master/finance/pettycash/editpettycash/:id',
+              'master/finance/pettycash/pettycashdetail/:id'
             ]
           },
         ],
@@ -348,12 +348,12 @@ export const menuList = [
         path: "/agent/leadlisting",
         includes: [
           'agent/createlead',
-          'createquote/policydetails/createquote/id',
-          'createquote/coveragedetails/coveragecreate/id',
-          'createquote/accessories/accessoriescreate/id',
+          'createquote/policydetails/createquote/:id',
+          'createquote/coveragedetails/coveragecreate/:id',
+          'createquote/accessories/accessoriescreate/:id',
           'agent/createquote/ordersummary',
           'agent/quotedetailview',
-          'agent/convertpolicy/customerinfo/view/id',
+          'agent/convertpolicy/customerinfo/view/:id',
           'agent/convertpolicy/uploadvehiclephotos',
           'agent/coveragedetailedview',
           'agent/policyapproval',
@@ -366,29 +366,29 @@ export const menuList = [
         path: "/agent/clientlisting",
         includes: [
           'agent/clientedit',
-          'policy:agent/clientview/id',
+          'policy:agent/clientview/:id',
           'agent/policydetailedview',
           'agent/policydetailedviewonly',
           'agent/claimrequest/claimdetails',
           'agent/claimrequest/sendmail',
-          'agent/claimrequest/requestapproval/id',
+          'agent/claimrequest/requestapproval/:id',
           'agent/claimrequest/adjustersubmission',
           'agent/claimrequest/settlementapproval',
-          ' agent/claimrequest/settlementdetails/id',
-          'agent/claimdetailedview/id',
-          'agent/renewalquote/coveragedetails/coveragedetail/id',
-          'agent/createquote/accessories/accessorirsdetails/id',
+          ' agent/claimrequest/settlementdetails/:id',
+          'agent/claimdetailedview/:id',
+          'agent/renewalquote/coveragedetails/coveragedetail/:id',
+          'agent/createquote/accessories/accessorirsdetails/:id',
           'agent/createquote/ordersummaryquote',
           'agent/quotedetailview',
           'agent/endorsement/paymentconfirmation',
           'agent/policy/paymentoptions',
-          'agent/endorsement/paymenterror/id',
+          'agent/endorsement/paymenterror/:id',
           'agent/uploadendorsement',
-          'agent/endorsementdetailedview/123',
+          'agent/endorsementdetailedview/:id',
           'agent/endorsement/paymentconfirmation',
           'agent/endorsement/personaldetails',
           'agent/uploadendorsement',
-          'agent/endorsementdetailedview/123',
+          'agent/endorsementdetailedview/:id',
           'agent/endorsement/paymentconfirmation'
         ]
       },
@@ -404,9 +404,9 @@ export const menuList = [
           'agent/policydetailedview',
           'agent/policy/paymentapproval',
           'agent/openitems/quotepending',
-          'agent/convertpolicy/customerinfo/edit/id',
+          'agent/convertpolicy/customerinfo/edit/:id',
           'agent/openitems/renewalrequest',
-          'agent/renewal/waiting/id'
+          'agent/renewal/waiting/:id'
         ]
       },
       {
@@ -419,11 +419,11 @@ export const menuList = [
         icon: <SvgAgentItemsIcon color="#9DA4AE" />,
         path: "/agent/claim",
         includes: [
-          'agent/claimrequest/requestapproval/id',
+          'agent/claimrequest/requestapproval/:id',
           'agent/claimrequest/adjustersubmission',
           'agent/claimrequest/settlementapproval',
-          'agent/claimrequest/settlementdetails/id',
-          'agent/claimdetailedview/id'
+          'agent/claimrequest/settlementdetails/:id',
+          'agent/claimdetailedview/:id'
         ]
       },
       {
@@ -458,7 +458,7 @@ export const menuList = [
         path: "/accounts/paymentvoucher",
         includes: [
           'accounts/paymentvoucher/createvoucher',
-          'accounts/paymentvoucher/detailview/id'
+          'accounts/paymentvoucher/detailview/:id'
         ]
       },
       {
@@ -479,10 +479,10 @@ export const menuList = [
             name: "Request",
             path: "/accounts/pettycash/pettycashrequest",
             includes: [
-              'accounts/pettycash/addrequest/add/id',
+              'accounts/pettycash/addrequest/add/:id',
               'accounts/pettycash/addrequesttable',
-              'accounts/pettycash/editrequestform/edit/id',
-              'accounts/pettycash/editrequestform/view/id'
+              'accounts/pettycash/editrequestform/edit/:id',
+              'accounts/pettycash/editrequestform/view/:id'
             ]
           },
           {
@@ -521,7 +521,7 @@ export const menuList = [
         path: "/accounts/journalvoucher",
         includes: [
           'accounts/journalvoucher/addjournalvoucture',
-          'accounts/journalvoucher/detailsjournalvocture/id'
+          'accounts/journalvoucher/detailsjournalvocture/:id'
         ]
       },
       {

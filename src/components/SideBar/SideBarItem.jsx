@@ -7,7 +7,8 @@ const SidebarItem = ({ item, isActive}) => {
   const handleItemClick = (path) => {
     console.log("first",item.path, path);
     Navigate(path);
-    
+    // setPath(path);
+    // setOpenSubMenu("");
   };
   console.log( isActive, "item");
   return (

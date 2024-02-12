@@ -105,14 +105,19 @@ const LeadCreationCard = ({ flow, action }) => {
     if (!values.LastName) {
       errors.LastName = "This field is required";
     }
+    // if (!values.EmailID) {
+    //   errors.EmailID = "This field is required";
+    // }
     if (!values.EmailID) {
       errors.EmailID = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.EmailID)) {
       errors.EmailID = "Invalid email address";
     }
-
+    // if (!values.ContactNumber) {
+    //   errors.ContactNumber = "This field is required";
+    // }
     if (!values.ContactNumber) {
-      errors.ContactNumber = "Contact Number is required";
+      errors.ContactNumber = "Phone Number is required";
     } else if (!/^\d{10}$/.test(values.ContactNumber)) {
       errors.ContactNumber = "Invalid phone number (10 digits)";
     }

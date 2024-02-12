@@ -15,6 +15,7 @@ const findNamesByPath = (logs, path, result = [], currentNames = []) => {
         // Pop the last name to backtrack when moving up to the parent level
         currentNames.pop();
     });
+    console.log("result", result)
     return result;
 };
 

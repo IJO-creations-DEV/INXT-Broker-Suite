@@ -7,97 +7,15 @@ import SvgAdd from "../../assets/icons/SvgAdd";
 import SvgDownarrows from "../../assets/agentIcon/SvgDownarrows";
 import SvgUparrows from "../../assets/agentIcon/SvgUparrows";
 
-const SidebarItemCollapse = ({ item, currentPathname }) => {
+const SidebarItemCollapse = ({ item, currentPathname, pathArrayData }) => {
   const [isCollapsed, setCollapsed] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  console.log("find isActive", isActive);
   const handleToggleCollapse = () => {
     setCollapsed(!isCollapsed);
   };
 
-  const findMainMenu = item;
-  console.log(item?.name, "find findMainMenu", currentPathname);
-
   useEffect(() => {
-    // this condition for main menu
-    if (item?.name.includes("Broker") && currentPathname.includes("agent")) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Master") &&
-      currentPathname.includes("master")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Accounts") &&
-      currentPathname.includes("accounts")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Reports") &&
-      currentPathname.includes("reports")
-    ) {
-      setCollapsed(true);
-    }
-
-    // this condition home action active
-    //  else {
-    //   if (item?.name.includes("Broker") && currentPathname.includes("/")) {
-    //     setCollapsed(true);
-    //   }
-    // }
-    // this condition for sub menu
-    if (
-      item?.name.includes("Generals") &&
-      currentPathname.includes("generals")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Finance") &&
-      currentPathname.includes("finance")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Petty Cash") &&
-      currentPathname.includes("pettycash")
-    ) {
-      setCollapsed(true);
-    }
-
-    // this condition for child menu
-    if (
-      item?.name.includes("Organization") &&
-      currentPathname.includes("organization")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Insurance Management") &&
-      currentPathname.includes("insurancemanagement")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Location") &&
-      currentPathname.includes("location")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Employee Management") &&
-      currentPathname.includes("employeemanagement")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("User Management") &&
-      currentPathname.includes("usermanagement")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Operational Reports") &&
-      currentPathname.includes("operationalreports")
-    ) {
-      setCollapsed(true);
-    } else if (
-      item?.name.includes("Financial Reports") &&
-      currentPathname.includes("Financialreports")
-    ) {
+    if (Array.isArray(pathArrayData) && pathArrayData.includes(item?.name)) {
       setCollapsed(true);
     }
   }, [currentPathname]);
@@ -116,7 +34,7 @@ const SidebarItemCollapse = ({ item, currentPathname }) => {
                 isCollapsed ? "collapsed" : ""
               }`}
             >
-              {item.name}
+              {item?.name}
             </span>
           </div>
           <div className="divcontent__sidebar">
@@ -135,6 +53,7 @@ const SidebarItemCollapse = ({ item, currentPathname }) => {
                 key={index}
                 isActive={true}
                 currentPathname={currentPathname}
+                pathArrayData={pathArrayData}
               />
             ) : (
               <SidebarItem
@@ -142,6 +61,7 @@ const SidebarItemCollapse = ({ item, currentPathname }) => {
                 key={index}
                 isActive={true}
                 currentPathname={currentPathname}
+                pathArrayData={pathArrayData}
               />
             )
           )}

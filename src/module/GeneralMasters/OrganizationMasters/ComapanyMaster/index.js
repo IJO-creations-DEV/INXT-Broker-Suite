@@ -47,7 +47,7 @@ const Index = () => {
     );
   };
   const handlePolicy = (id) => {
-    navigate(`/master/generals/organization/companymaster/add/${id}`);
+    navigate(`/master/generals/organization/companymaster/add/${123}`);
   };
 
   console.log("first", companyTableList);

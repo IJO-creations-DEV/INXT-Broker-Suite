@@ -39,23 +39,27 @@ const AddCommission = () => {
   const toastRef = useRef(null);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [date, setDate] = useState();
-  const { addLevelCommissionSharing, loading, commissionSearchList,commissionList } =
-    useSelector(({ commissionMianReducers }) => {
-      return {
-        loading: commissionMianReducers?.loading,
-        commissionList:commissionMianReducers?.commissionList,
-        addLevelCommissionSharing:
-          commissionMianReducers?.addLevelCommissionSharing,
-        commissionSearchList: commissionMianReducers?.commissionSearchList,
-      };
-    });
+  const {
+    addLevelCommissionSharing,
+    loading,
+    commissionSearchList,
+    commissionList,
+  } = useSelector(({ commissionMianReducers }) => {
+    return {
+      loading: commissionMianReducers?.loading,
+      commissionList: commissionMianReducers?.commissionList,
+      addLevelCommissionSharing:
+        commissionMianReducers?.addLevelCommissionSharing,
+      commissionSearchList: commissionMianReducers?.commissionSearchList,
+    };
+  });
   console.log(addLevelCommissionSharing, "addLevelCommissionSharing");
 
   const items = [
-    { label: "Commission", url: "/master/generals/Commission" },
+    { label: "Commission", url: "/master/generals/commission" },
     {
       label: "Add Commissions",
-      url: "/master/generals/Commission/addcommission",
+      url: "/master/generals/commission/addcommission",
     },
   ];
   const home = { label: "Master" };
@@ -106,7 +110,8 @@ const AddCommission = () => {
   const selectCover = [
     { label: "Option 1", value: "Insurance" },
     { label: "Option 2", value: "SelectCover 1" },
-  ]; const selectAgent = [
+  ];
+  const selectAgent = [
     { label: "Option 1", value: "Agent" },
     { label: "Option 2", value: "SelectAgent 1" },
   ];
@@ -117,16 +122,16 @@ const AddCommission = () => {
       ...values,
       id: commissionList?.length + 1,
     };
-    console.log(data,"data");
+    console.log(data, "data");
     dispatch(postAddCommission(data));
     navigate("/master/generals/commission");
     // toastRef.current.showToast();
     // setTimeout(() => {
-    //   navigate("/master/generals/Commission");
+    //   navigate("/master/generals/commission");
     // }, 2000);
   };
   const handleGoBack = () => {
-    navigate("/master/generals/Commission");
+    navigate("/master/generals/commission");
   };
   const formik = useFormik({
     initialValues: {
@@ -250,9 +255,7 @@ const AddCommission = () => {
           <span onClick={handleGoBack}>
             <SvgBackicon />
           </span>
-          <label className="label_header">
-            Add Commissions
-          </label>
+          <label className="label_header">Add Commissions</label>
         </div>
         {/* <div className="add__sub__title">
           <div onClick={handleGoBack} className="mr-2 mt-1">
@@ -557,7 +560,7 @@ const AddCommission = () => {
               field="commissionCode"
               header="Commission Code"
               headerStyle={headerStyle}
-            // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
+              // style={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}
             ></Column>
             <Column
               field="sharingRate"

@@ -18,7 +18,7 @@ const SettlementApproval = () => {
     }, 2000);
   };
   const handleSubmit = () => {
-    navigate(`/agent/claimrequest/settlementdetails/${id}`);
+    navigate(`/agent/claimrequest/settlementdetails/${123}`);
   };
   return (
     <div className="claimsettlement__approval__overall">

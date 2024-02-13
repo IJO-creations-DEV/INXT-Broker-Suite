@@ -38,8 +38,8 @@ const PolicyDetailsCard = ({ action, flow }) => {
     dispatch(postPolicyDetailsMiddleware(values));
     {
       action === "quotedetails"
-        ? navigate(`/agent/createquote/coveragedetails/coveragedetail/:${123}`)
-        : navigate(`/agent/createquote/coveragedetails/coveragecreate/:${123}`);
+        ? navigate(`/agent/createquote/coveragedetails/coveragedetail/${123}`)
+        : navigate(`/agent/createquote/coveragedetails/coveragecreate/${123}`);
     }
   };
   // const customValidation = (values) => {

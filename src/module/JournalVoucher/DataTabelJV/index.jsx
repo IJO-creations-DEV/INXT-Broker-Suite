@@ -41,8 +41,6 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
     display: "flex",
   };
 
-  const [first, setFirst] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const dispatch = useDispatch();
   const handleView = (rowData) => {
     console.log(rowData.id, "rowdata");
@@ -51,10 +49,6 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
     navigate(`/accounts/journalvoucher/detailsjournalvocture/${rowData.id}`);
   };
 
-  const onPageChange = (event) => {
-    setFirst(event.first);
-    setRowsPerPage(event.rows);
-  };
   const isEmpty = journalVoucherList.length === 0;
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -115,10 +109,7 @@ const DataTabelJV = ({ handleEdit, journalVoucherList }) => {
         rowsPerPageOptions={[5, 10, 25, 50]}
         currentPageReportTemplate="{first} - {last} of {totalRecords}"
         paginatorTemplate={template2}
-        onPage={onPageChange}
-        onPageChange={onPageChange}
         emptyMessage={isEmpty ? emptyTableIcon : null}
-        // onRowClick={(event) => handleNavigate(event.data)}
         scrollable={true}
         scrollHeight="40vh"
       >

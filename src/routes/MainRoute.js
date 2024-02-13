@@ -1255,35 +1255,35 @@ const Maincomponent = () => {
           {/* Finacial master */}
 
           <Route
-            path="/reports/Financialreports/soapremiumreceivable"
+            path="/reports/financialreports/soapremiumreceivable"
             element={<SoaPremiumReceivable />}
           />
           <Route
-            path="/reports/Financialreports/collectionreport"
+            path="/reports/financialreports/collectionreport"
             element={<Collectionreport />}
           />
           <Route
-            path="/reports/Financialreports/payables"
+            path="/reports/financialreports/payables"
             element={<Payables />}
           />
           <Route
-            path="/reports/Financialreports/journal"
+            path="/reports/financialreports/journal"
             element={<Journal />}
           />
           <Route
-            path="/reports/Financialreports/trailbalance"
+            path="/reports/financialreports/trailbalance"
             element={<TrailBalance />}
           />
           <Route
-            path="/reports/Financialreports/payables"
+            path="/reports/financialreports/payables"
             element={<Payables />}
           />
           <Route
-            path="/reports/Financialreports/journal"
+            path="/reports/financialreports/journal"
             element={<Journal />}
           />
           <Route
-            path="/reports/Financialreports/trailbalance"
+            path="/reports/financialreports/trailbalance"
             element={<TrailBalance />}
           />
           <Route

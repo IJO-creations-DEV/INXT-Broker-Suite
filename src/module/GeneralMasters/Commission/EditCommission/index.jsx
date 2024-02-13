@@ -57,7 +57,7 @@ const EditCommission = () => {
   const [selectSwitch, setselectSwitch] = useState(selectSwitchoptions[0]);
   const [date, setDate] = useState(new Date());
   const items = [
-    { label: "Commission", url: "/master/generals/Commission" },
+    { label: "Commission", url: "/master/generals/commission" },
     {
       label: "Edit Commissions",
       url: "/master/generals/commission/editcommission",
@@ -112,7 +112,7 @@ const EditCommission = () => {
   const handleSubmit = (value) => {
     console.log(value, "value");
     dispatch(patchCommissionEdit(value));
-    navigate("/master/generals/Commission");
+    navigate("/master/generals/commission");
   };
   const [productOptionData, setProductOptionData] = useState([]);
   const [selectedCoverOption, setSelectedCoverOption] = useState([]);
@@ -176,11 +176,11 @@ const EditCommission = () => {
   // const handleSubmit = (values) => {
   //     toastRef.current.showToast();
   //     setTimeout(() => {
-  //         navigate("/master/generals/Commission");
+  //         navigate("/master/generals/commission");
   //     }, 2000);
   // };
   const handleGoBack = () => {
-    navigate("/master/generals/Commission");
+    navigate("/master/generals/commission");
   };
   // const formik = useFormik({
   //     initialValues: {

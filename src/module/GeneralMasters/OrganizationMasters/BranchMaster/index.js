@@ -37,7 +37,7 @@ const Index = () => {
   console.log(branchTableList, "branchTableList");
 
   const handlePolicy = (id) => {
-    navigate(`/master/generals/organization/branchmaster/add/${id}`);
+    navigate(`/master/generals/organization/branchmaster/add/${123}`);
   };
   const dispatch = useDispatch();
   const handleSubmit = (values) => {

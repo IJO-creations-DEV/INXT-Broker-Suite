@@ -1,24 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const SidebarItem = ({ item, isActive, currentPathname }) => {
+const SidebarItem = ({ item, isActive, currentPathname, pathArrayData }) => {
   const Navigate = useNavigate();
 
   const handleItemClick = (path) => {
     Navigate(path);
   };
-  const findPath = item?.includes;
-  console.log(item?.includes, "find item main", currentPathname);
 
-  console.log(isActive, "item");
-  // const isClaimRequestPath = findPath.some((path) =>
-  //   currentPathname.includes(path)
-  // );
   const isPathIncluded =
-    Array.isArray(findPath) && findPath.includes(currentPathname);
-
-  console.log(isPathIncluded, "find item main 2");
-  // console.log(isClaimRequestPath, "find isClaimRequestPath");
+    Array.isArray(pathArrayData) && pathArrayData.includes(item?.name);
+  console.log(isPathIncluded, "find isPathIncluded in text color", item?.name);
 
   return (
     <li>
@@ -29,7 +21,7 @@ const SidebarItem = ({ item, isActive, currentPathname }) => {
           onClick={() => handleItemClick(item.path)}
           style={{ color: isPathIncluded ? "white" : "inherit" }}
         >
-          {item.name}
+          {item?.name}
         </span>
       </div>
     </li>

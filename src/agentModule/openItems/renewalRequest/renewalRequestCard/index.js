@@ -45,7 +45,7 @@ const RenewalRequestCard = () => {
   ];
 
   const handleMenuToggle = (event, menuRef, rowData) => {
-    navigate("/agent/renewal/waiting/id");
+    navigate(`/agent/renewal/waiting/${123}`);
   };
   const handleMenuClick = (menuItem) => {
     if (menuItem == "renewal") {

@@ -12,8 +12,6 @@ const ViewDataTabel = ({
   newDataTable,
   journalVoucherPostTabelData,
 }) => {
-  const [first, setFirst] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   console.log(newDataTable, "find newDataTable");
   let newProduct;
   let updatedProductData;
@@ -46,10 +44,7 @@ const ViewDataTabel = ({
   } else {
     updatedProductData = Productdata;
   }
-  const onPageChange = (event) => {
-    setFirst(event.first);
-    setRowsPerPage(event.rows);
-  };
+
   const isEmpty = journalVoucherPostTabelData.length === 0;
   const emptyTableIcon = (
     <div className="empty-table-icon">
@@ -99,8 +94,6 @@ const ViewDataTabel = ({
         rowsPerPageOptions={[5, 10, 25, 50]}
         currentPageReportTemplate="{first} - {last} of {totalRecords}"
         paginatorTemplate={template2}
-        onPage={onPageChange}
-        onPageChange={onPageChange}
         emptyMessage={isEmpty ? emptyTableIcon : null}
         scrollable={true}
         scrollHeight="40vh"

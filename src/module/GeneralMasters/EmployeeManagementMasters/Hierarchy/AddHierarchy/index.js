@@ -21,17 +21,16 @@ const AddHierarchy = ({ action }) => {
   const { id } = useParams();
   console.log(id, "find actions");
 
-  const { hierarchyListDetails, loading, total, getViewData, getPatchData } = useSelector(
-    ({ hierarchyTableReducers }) => {
+  const { hierarchyListDetails, loading, total, getViewData, getPatchData } =
+    useSelector(({ hierarchyTableReducers }) => {
       return {
         loading: hierarchyTableReducers?.loading,
         hierarchyListDetails: hierarchyTableReducers?.hierarchListDetails,
         total: hierarchyTableReducers,
         getViewData: hierarchyTableReducers?.getViewData,
-        getPatchData: hierarchyTableReducers?.getPatchData
+        getPatchData: hierarchyTableReducers?.getPatchData,
       };
-    }
-  );
+    });
   console.log(getViewData, "find getViewData");
   const navigate = useNavigate();
   const toastRef = useRef(null);
@@ -49,12 +48,13 @@ const AddHierarchy = ({ action }) => {
     { label: "Employee Management" },
 
     {
-      label: `${action === "add"
-        ? "Add Hierarchy"
-        : action === "edit"
+      label: `${
+        action === "add"
+          ? "Add Hierarchy"
+          : action === "edit"
           ? "Edit Hierarchy"
           : "View Hierarchy"
-        }`,
+      }`,
     },
   ];
   const home = { label: "Master" };
@@ -92,14 +92,13 @@ const AddHierarchy = ({ action }) => {
       dispatch(postAddHirarchyMiddleware(values));
     } else {
       dispatch(patchHirarchyEditMiddleware(values));
-
     }
     toastRef.current.showToast();
 
     setTimeout(() => {
       setVisiblePopup(false);
     }, 3000);
-    navigate("/master/generals/employeemanagement/hierarchy/");
+    navigate("/master/generals/employeemanagement/hierarchy");
   };
   console.log(hierarchyListDetails, "hierarcy details");
   const setFormikValues = () => {
@@ -123,9 +122,7 @@ const AddHierarchy = ({ action }) => {
   useEffect(() => {
     if (action === "view" || action === "edit") {
       setFormikValues();
-      
     }
-    
   }, [getPatchData]);
   return (
     <div className="grid add__hierarchy__container">
@@ -145,8 +142,8 @@ const AddHierarchy = ({ action }) => {
           {action === "add"
             ? "Add Hierarchy"
             : action === "edit"
-              ? "Edit Hierarchy"
-              : "View Hierarchy"}
+            ? "Edit Hierarchy"
+            : "View Hierarchy"}
         </div>
       </div>
       <div className="col-12 mb-2 mt-2">
@@ -156,15 +153,17 @@ const AddHierarchy = ({ action }) => {
           model={items}
           separatorIcon={<SvgDot color={"#000"} />}
         />
-
       </div>
       <div className="col-12 m-0 ">
         <div className="grid add__account__sub__container p-3">
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "view" ? getViewData.rankCode : formik.values.rankCode}
-             
+              value={
+                action === "view"
+                  ? getViewData.rankCode
+                  : formik.values.rankCode
+              }
               onChange={formik.handleChange("rankCode")}
               // error={action === "view" ? "" : formik.errors.rankCode}
               label="Rank Code"
@@ -177,8 +176,11 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "view" ? getViewData.rankName : formik.values.rankName}
-              
+              value={
+                action === "view"
+                  ? getViewData.rankName
+                  : formik.values.rankName
+              }
               onChange={formik.handleChange("rankName")}
               // error={action === "view" ? "" : formik.errors.rankName}
               label="Rank Name"
@@ -192,22 +194,28 @@ const AddHierarchy = ({ action }) => {
           <div className="col-12 md:col-3 lg:col-6">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "view" ? getViewData.description : formik.values.description}
-             
+              value={
+                action === "view"
+                  ? getViewData.description
+                  : formik.values.description
+              }
               onChange={formik.handleChange("description")}
               // error={action === "view" ? "" : formik.errors.basis}
               label="Description"
               classNames="dropdown__add__sub"
               className="label__sub__add"
               placeholder="Enter"
-               error={formik.touched.description && formik.errors.description}
+              error={formik.touched.description && formik.errors.description}
             />
           </div>
           <div className="col-12 md:col-3 lg:col-3">
             <InputField
               disabled={action === "view" ? true : false}
-              value={action === "view" ? getViewData.levelNumber : formik.values.levelNumber}
-              
+              value={
+                action === "view"
+                  ? getViewData.levelNumber
+                  : formik.values.levelNumber
+              }
               onChange={formik.handleChange("levelNumber")}
               // error={action === "view" ? "" : formik.errors.levelNumber}
               label="Level Number"

@@ -43,7 +43,7 @@ const ViewCommission = () => {
 
   const [selectSwitch, setselectSwitch] = useState(selectSwitchoptions[0]);
   const items = [
-    { label: "Commission", url: "/master/generals/Commission" },
+    { label: "Commission", url: "/master/generals/commission" },
     {
       label: "View Commissions",
       url: "/master/generals/commission/viewcommission",

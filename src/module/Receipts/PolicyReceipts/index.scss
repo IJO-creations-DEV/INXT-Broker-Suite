@@ -1,8 +1,7 @@
 .overall__policyreceipts__container {
- 
   .label_header {
     color: #111927;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 30px;
     font-weight: 600;
   }
@@ -20,7 +19,7 @@
   .addtext {
     color: #fff;
 
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 18px;
     font-weight: 500;
   }
@@ -36,7 +35,7 @@
   .breadcrumbs_container {
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     border: 1px solid #fff !important;
     border-radius: 6px !important;
     padding: 1rem 0rem !important;
@@ -46,7 +45,7 @@
     border-radius: 60px;
     // width: 100px !important;
     height: 38px;
-    gap:10px;
+    gap: 10px;
     display: flex;
     padding: 0px 25px;
     justify-content: center;
@@ -60,19 +59,18 @@
   .listlable_text {
     color: #111927;
     margin-bottom: 40px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 18px;
     font-weight: 600;
   }
   .p-breadcrumb .p-breadcrumb-list li:last-child .p-menuitem-text {
-    color: #B1B1B1;
-}
+    color: #b1b1b1;
+  }
   .filterbutton_container {
     display: flex;
     align-items: center;
     margin: 16px 0px;
     gap: 20px;
-   
   }
   // .addicon{
   //   gap:30px;
@@ -109,44 +107,41 @@
     background-color: #fafafa;
   }
   .p-dropdown .p-dropdown-label.p-placeholder {
-    color: #6366F1;
+    color: #6366f1;
     text-align: center;
-}
-.sorbyfilter_container{
-  // flex-direction: row-reverse;
-  // gap:10px;
-  height: 46px;
-  border-color: #d1d5db;
-  // width: 85%;
-  // margin-left: 8px;
-  font-family: 'Inter', sans-serif;
-font-size: 16px !important;
-// padding: 10px;
-font-weight: 500 !important;
-  width:100%;
-  color: #6366F1;
-  margin: 0px !important;
-  border-radius: 10px;
-}
+  }
+  .sorbyfilter_container {
+    // flex-direction: row-reverse;
+    // gap:10px;
+    height: 46px;
+    border-color: #d1d5db;
+    // width: 85%;
+    // margin-left: 8px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    // padding: 10px;
+    font-weight: 500;
+    width: 100%;
+    color: #6366f1;
+    margin: 0px !important;
+    border-radius: 10px;
+  }
   .header_search_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-  
   }
   .p-card .p-card-content {
-     padding:0; 
-}
+    padding: 0;
+  }
   .fieldvalue_container {
     font-size: 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
-  
   }
   .fieldvalue_containers {
     font-size: 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
     cursor: pointer;
     align-items: center;

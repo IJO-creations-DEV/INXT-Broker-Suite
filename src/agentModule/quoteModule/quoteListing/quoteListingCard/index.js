@@ -239,9 +239,9 @@ const QuoteListingCard = () => {
     fontWeight: 500,
     color: "#000",
     border: " none",
-    display: 'flex',
-    justifyContent: 'center',
-    alignItem: 'center'
+    // display: "flex",
+    justifyContent: "center",
+    alignItem: "center",
   };
 
   const checkboxheaderStyle = {
@@ -414,7 +414,7 @@ const QuoteListingCard = () => {
               body={(rowData) => (
                 <Checkbox
                   checked={selectedProducts.includes(rowData)}
-                  onChange={() => { }}
+                  onChange={() => {}}
                 />
               )}
               headerStyle={checkboxheaderStyle}
@@ -443,7 +443,7 @@ const QuoteListingCard = () => {
               body={renderStatus}
               header={renderUncheckedHeader("Status")}
               headerStyle={headeraction}
-              style={{ textAlign: 'center' }}
+              style={{ textAlign: "center" }}
             ></Column>
             <Column
               body={renderViewEditButton}

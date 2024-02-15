@@ -274,10 +274,7 @@ const Maincomponent = () => {
             path="/accounts/receipts/addreceipts"
             element={<AddPolicyReceipts1 />}
           />
-          <Route
-            path="/accounts/receipts/policyreceipts"
-            element={<PolicyReceipts />}
-          />
+        
 
           {/* Payment Vouchers */}
 

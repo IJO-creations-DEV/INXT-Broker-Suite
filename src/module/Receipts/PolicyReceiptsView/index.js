@@ -33,7 +33,7 @@ function PolicyReceipts() {
   const items = [
     {
       label: "Receipts",
-      command: () => navigate("/accounts/receipts/policyreceipts"),
+      command: () => navigate("/accounts/receipts"),
     },
     {
       label: "Receipt Detail View",

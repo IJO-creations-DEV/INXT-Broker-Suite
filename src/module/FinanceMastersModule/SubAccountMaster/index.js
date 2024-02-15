@@ -330,7 +330,7 @@ const SubAccountMaster = () => {
           </div>
           <div className="col-12 ">
             <div className="main__tabel__title__taxation p-2">
-              Main Account List
+              Sub Account List
             </div>
           </div>
           <div

@@ -363,7 +363,13 @@ export const menuList = [
         name: "Home",
         icon: <SvgAgentHomeIcon color="#9DA4AE" />,
         path: "/",
-        includes: ["/"],
+        includes: [
+          "/",
+          "/agent/notification",
+          "/agent/viewprofile",
+          "/agent/openitems",
+          "/agent/openitems/upcomingevents",
+        ],
       },
       {
         name: "Leads",
@@ -389,6 +395,7 @@ export const menuList = [
           "/agent/quotelisting",
           "/agent/convertpolicy/customerinfo/edit/",
           "/agent/editquote/policydetails/quotedetails/",
+          "/agent/quotedetailedit",
         ],
       },
       {
@@ -428,6 +435,9 @@ export const menuList = [
           "/agent/endorsementdetailedview/",
           "/agent/endorsement/rejected/",
           "/agent/createquote/coveragedetails/coveragedetail/",
+          "/agent/claimrejected",
+          "/agent/claimdocumentupload",
+          "/agent/endorsementdetailedviewonly/",
         ],
       },
       {
@@ -476,11 +486,13 @@ export const menuList = [
       {
         id: 1,
         name: "Receipts",
-        path: "/accounts/receipts/policyreceipts",
+        path: "/accounts/receipts",
         includes: [
-          "/accounts/receipts/policyreceipts",
           "/accounts/receipts/addreceipts",
           "/accounts/receipts/receiptdetailview",
+          "/accounts/receipts/addreceiptedit",
+          "/accounts/receipts/paymentdetails",
+          "/accounts/receipts",
         ],
       },
       {

@@ -127,9 +127,8 @@ const AddUser = ({ action }) => {
   minDate.setDate(minDate.getDate() + 1);
 
   const handleSubmit = (value) => {
-    console.log("find edit");
     if (action === "edit") {
-      dispatch(patchUserEditMiddleware(value));
+      // dispatch(patchUserEditMiddleware(value));
       toastRef.current.showToast();
 
       setTimeout(() => {

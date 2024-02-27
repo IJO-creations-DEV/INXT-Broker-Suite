@@ -7,9 +7,7 @@ import DropDowns from "../../../../components/DropDowns";
 import { Button } from "primereact/button";
 import SvgDropdown from "../../../../assets/icons/SvgDropdown";
 import NavBar from "../../../../components/NavBar";
-
 import { useFormik } from "formik";
-
 import ArrowLeftIcon from "../../../../assets/icons/ArrowLeftIcon";
 import CustomToast from "../../../../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -90,7 +88,7 @@ const SoaPremiumReceivable = () => {
 
         console.log(values, "find values");
         toastRef.current.showToast();
-        const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FReports%2FReceivables%5FDetails%5FAgent%20All%28SOA%29%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FReports&ga=1.pdf";
+        const pdfUrl = "https://drive.google.com/file/d/1SYLHiyoAogD7zHziMa3neAbza8aaoGnk/view?usp=sharing";
         const link = document.createElement("a");
         link.href = pdfUrl;
         link.download = "document.pdf"; // specify the filename

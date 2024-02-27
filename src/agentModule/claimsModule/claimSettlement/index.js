@@ -31,7 +31,7 @@ const ClaimSettlement = () => {
   };
   const handleAcknowledgmentsubmit = () => {
     const pdfUrl =
-      "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FClaims%20Acknowledgement%20letter%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+      "https://drive.google.com/file/d/1TdQzluASqjcFtWXyU-9DN4Tb9wvx1GZS/view?usp=drive_link";
     const link = document.createElement("a");
     link.href = pdfUrl;
     link.download = "document.pdf";
@@ -42,7 +42,7 @@ const ClaimSettlement = () => {
 
   const handleClaimsDischargeVouchersubmit = () => {
     const pdfUrl =
-      "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FDISCHARGE%20VOUCHER%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+      "https://drive.google.com/file/d/1POZmcwTzm8hg3kAPloDRjWJk9CCeRCE2/view?usp=sharing";
     const link = document.createElement("a");
     link.href = pdfUrl;
     link.download = "document.pdf";
@@ -53,7 +53,7 @@ const ClaimSettlement = () => {
 
   const handleClaimsDatasheetubmit = () => {
     const pdfUrl =
-      "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FCLAIMS%20DATA%20SHEET%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+      "https://drive.google.com/file/d/1DfrEf3kSo2msh9rBUyEbgxwqUPIOgNtB/view?usp=sharing";
     const link = document.createElement("a");
     link.href = pdfUrl;
     link.download = "document.pdf";

@@ -49,7 +49,7 @@ const PolicyDetailedViewCard = ({ action }) => {
   });
 
   const handlePolicySubmit = () =>{
-    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FPolicy%20Schedule%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const pdfUrl = "https://drive.google.com/file/d/1vGQQmRiSLyf5Tsu1VfYa6IOmFrXK_0gp/view";
     const link = document.createElement("a");
     link.href = pdfUrl;
     link.download = "document.pdf"; // specify the filename
@@ -59,7 +59,7 @@ const PolicyDetailedViewCard = ({ action }) => {
   }
 
   const handleInvoiceSubmit = () =>{
-    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FBilling%20Statement%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const pdfUrl = "https://drive.google.com/file/d/18LjJnT_J0jgpn9wKG1EKDsipYxIS6W7X/view";
     const link = document.createElement("a");
     link.href = pdfUrl;
     link.download = "document.pdf"; // specify the filename

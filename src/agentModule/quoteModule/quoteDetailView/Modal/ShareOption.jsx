@@ -18,7 +18,7 @@ const ShareOption = ({ modalVisible, setModalVisible }) => {
   };
 
   const handleSubmit = () =>{
-    const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FQuotation%20Template%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs&ga=1";
+    const pdfUrl = "https://drive.google.com/file/d/1a7_OObS-Ia-Km7pZhc3KyAldMJIXaH6f/view";
     const link = document.createElement("a");
     link.href = pdfUrl;
     link.download = "document.pdf"; // specify the filename

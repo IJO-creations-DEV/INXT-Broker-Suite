@@ -92,7 +92,7 @@ const TrailBalance = () => {
 
         console.log(values, "find values");
         toastRef.current.showToast();
-        const pdfUrl = "https://zealeyeai-my.sharepoint.com/personal/infra_zealeye_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FReports%2FAcct%5FTrialBalance%2Epdf&parent=%2Fpersonal%2Finfra%5Fzealeye%5Fcom%2FDocuments%2FBroker%20Docs%2FReports&ga=1.pdf";
+        const pdfUrl = "https://drive.google.com/file/d/1Dsv_e9Ktz8MUao6sCIlquX80N4mRpADs/view?usp=sharing";
         const link = document.createElement("a");
         link.href = pdfUrl;
         link.download = "document.pdf"; // specify the filename

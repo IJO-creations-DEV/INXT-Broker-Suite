@@ -21,9 +21,11 @@ const PersonalDetails = () => {
   });
 
   console.log(personalDetails, "personalDetails");
+
   const handleButtonClick = () => {
     setIsFormSubmitted(true);
   };
+
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const { state } = useLocation();
@@ -31,6 +33,7 @@ const PersonalDetails = () => {
   const handleFormSubmit = (values, index) => {
     // setIsFormSubmitted(true);
     if (index === 1) {
+      
       if (state?.types.length - 1 === index) {
         console.log(state?.types.length - 1 === index, "find lenth");
         toastRef.current.showToast();
@@ -38,7 +41,7 @@ const PersonalDetails = () => {
           navigate(`/agent/endorsement/paymenterror/${123}`);
         }, 2000);
       }
-      console.log(values, "find PersonalDetailsChange");
+      console.log(values,index, "find PersonalDetailsChange");
     } else if (index === 2) {
       if (state?.types.length - 1 === index) {
         console.log(state?.types.length - 1 === index, "find lenth");

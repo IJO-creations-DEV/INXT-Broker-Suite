@@ -17,11 +17,19 @@ import { TieredMenu } from "primereact/tieredmenu";
 import SvgIconeye from "../../assets/icons/SvgIconeye";
 import SvgDropdown from "../../assets/icons/SvgDropdown";
 import SvgDropdownicon from "../../assets/icons/SvgDropdownicon";
+import DropDowns from "../../components/DropDowns";
 import { useDispatch, useSelector } from "react-redux";
+import LabelWrapper from "../../components/LabelWrapper";
+import { Calendar } from "primereact/calendar";
+import { useFormik } from "formik";
+import { Dialog } from "primereact/dialog";
 import { getPaymentVocherListBySearchMiddleware } from "./store/paymentVocherMiddleware";
 
 const Index = () => {
   const [products, setProducts] = useState([]);
+  const [value, setValue] = useState('');
+  const [visible, setVisible] = useState(false);
+  const [visiblePopup, setVisiblePopup] = useState(false)
   const dispatch = useDispatch();
   const { paymentVocherList, loading, paymentVocherSearchList } = useSelector(
     ({ paymentVoucherReducers }) => {
@@ -36,7 +44,35 @@ const Index = () => {
   const handleView = (columnData) => {
     navigate(`/accounts/paymentvoucher/detailview/${columnData?.id}`);
   };
+  const item1 = [
+    { name: "101", code: "101" },
+    { name: "102", code: "102" },
+    { name: "103", code: "103" },
+  ];
+ 
+  const item2= [
+    { name: "CC001", code: "CC001" },
+    { name: "CC002", code: "CC002" },
+    { name: "CC003", code: "CC003" },
+  ];
+ 
+  const item3 = [
+    { name: "Trans011", code: "Trans011" },
+    { name: "Trans012", code: "Trans012" },
+    { name: "Trans013", code: "Trans013" },
+  ];
+ 
 
+  const item4 = [
+    { name: "6784938272", code: "6784938272" },
+    { name: "8967534256", code: "8967534256" },
+    { name: "9856435678", code: "9856435678" },
+  ];
+  const initialValue = {
+    receiptDate: new Date(),
+   
+  };
+ const minDate = new Date();
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -47,7 +83,7 @@ const Index = () => {
         { label: 20, value: 20 },
         { label: 120, value: 120 },
       ];
-
+     
       return (
         <React.Fragment>
           <span
@@ -134,10 +170,20 @@ const Index = () => {
   const handlePolicy = () => {
     navigate("/accounts/paymentvoucher/createvoucher");
   };
-
+  const handleModal = (rowData) => {
+    console.log("View clicked:", rowData);
+    
+    setVisiblePopup(true);
+  };
+  const formik = useFormik({
+    initialValues: initialValue,
+    // validate,
+    // onSubmit: handleSubmit,
+  });
   return (
     <div className="overall__paymentvoucher__container">
       <div className="overallfilter_container">
+
         <div>
           <label className="label_header">Payment Voucher</label>
           <BreadCrumb
@@ -147,6 +193,13 @@ const Index = () => {
             separatorIcon={<SvgDot color={"#000"} />}
           />
         </div>
+        <div className="bulk__text" >
+        <div className="filter_bulk_button_container">
+          <div className="bulk_button_container" onClick={handleModal}>
+
+            <p className="addtext">Bulk Print</p>
+          </div>
+        </div>
         <div className="filterbutton_container">
           {/* <SvgFilters/> */}
 
@@ -155,6 +208,7 @@ const Index = () => {
             <p className="addtext">Create</p>
           </div>
         </div>
+      </div>
       </div>
 
       <Card
@@ -270,6 +324,200 @@ const Index = () => {
           </DataTable>
         </div>
       </Card>
+      <div className="col-12">
+        
+        <Dialog
+          
+          visible={visiblePopup}
+          className="dialog_fields"
+          onHide={() => {
+            setVisiblePopup(false);
+            
+          }}
+        >
+          <div class="grid">
+            
+          
+            <div class="sm-col-12  md:col-6 lg-col-6">
+
+              <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Division Code From"
+                options={item1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+
+            </div>
+            <div class="sm-col-12  md:col-6 lg-col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Division Code To"
+                options={item1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="OR Number From"
+                options={item2}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="OR Number To"
+                options={item2}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Customer Code From"
+                options={item3}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Customer Code To"
+                options={item3}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Cashier ID From"
+                options={item4}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Cashier ID To"
+                options={item4}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+            {/* <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Date From"
+                options={item1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              /> */}
+                <LabelWrapper className="calenderlable__container">
+              Date From
+            </LabelWrapper> 
+            
+            <Calendar
+              classNames="calender__container"
+              showIcon
+              value={formik.values.receiptDate}
+              minDate={minDate}
+              onChange={(e) => {
+                formik.setFieldValue("receiptDate", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+             
+            />
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+            {/* <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Date To"
+                options={item1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              /> */}
+                <LabelWrapper className="calenderlable__container">
+              Date From
+            </LabelWrapper> 
+            
+            <Calendar
+              classNames="calender__container"
+              showIcon
+              value={formik.values.receiptDate}
+              minDate={minDate}
+              onChange={(e) => {
+                formik.setFieldValue("receiptDate", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+             
+            />
+            </div>
+          </div>
+
+          <div className="update_btn">
+           
+           <div class="cursor-pointer" onClick={() => setVisiblePopup(false)}>
+             <div className="update_btnlabel">Generate</div>
+           </div>
+         </div>
+        </Dialog>{" "}
+      </div>
     </div>
   );
 };

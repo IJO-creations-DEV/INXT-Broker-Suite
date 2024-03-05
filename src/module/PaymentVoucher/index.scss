@@ -82,6 +82,29 @@ gap:10px
     color: #fff;
     gap: 4px;
   }
+  .filter_bulk_button_container{
+    display: flex;
+    align-items: center;
+    margin: 16px 0px;
+    gap: 20px;
+  }
+  .bulk__text{
+    gap:10;
+    display:flex
+  }
+  .bulk_button_container{
+    background-color: #6366f1;
+    border-radius: 60px;
+    // width: 100px !important;
+    height: 38px;
+    gap: 10px;
+    display: flex;
+    padding: 0px 25px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+  }
   .filterbutton_container{
     display: flex;
     // justify-content:center;

@@ -12,14 +12,25 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { data } from "./mock";
 import { Button } from "primereact/button";
+import { useFormik } from "formik";
 import { Dropdown } from "primereact/dropdown";
 import SvgEye from "../../../assets/icons/SvgEye";
 import { TieredMenu } from "primereact/tieredmenu";
 import { useDispatch, useSelector } from "react-redux";
 import SvgDropdownicon from "../../../assets/icons/SvgDropdownicon";
+import InputField from "../../../components/InputField";
 import { getReceiptsListBySearchMiddleware } from "../store/receiptsMiddleware";
+import { Dialog } from "primereact/dialog";
+import DropDowns from "../../../components/DropDowns";
+import SvgDropdown from "../../../assets/icons/SvgDropdown";
+import { Calendar } from "primereact/calendar";
+import LabelWrapper from "../../../components/LabelWrapper";
 
 const PolicyReceipts = () => {
+  
+  const [value, setValue] = useState('');
+  const [visiblePopup, setVisiblePopup] = useState(false)
+  
   // const [products, setProducts] = useState([]);
   // const [stylesLoaded, setStylesLoaded] = useState(false);
 
@@ -38,7 +49,38 @@ const PolicyReceipts = () => {
       to: "/accounts/receipts",
     },
   ];
+  const item1 = [
+    { name: "101", code: "101" },
+    { name: "102", code: "102" },
+    { name: "103", code: "103" },
+  ];
+ 
+  const item2= [
+    { name: "CC001", code: "CC001" },
+    { name: "CC002", code: "CC002" },
+    { name: "CC003", code: "CC003" },
+  ];
+ 
+  const item3 = [
+    { name: "Trans011", code: "Trans011" },
+    { name: "Trans012", code: "Trans012" },
+    { name: "Trans013", code: "Trans013" },
+  ];
+ 
 
+  const item4 = [
+    { name: "6784938272", code: "6784938272" },
+    { name: "8967534256", code: "8967534256" },
+    { name: "9856435678", code: "9856435678" },
+  ];
+  const initialValue = {
+    receiptDate: new Date(),
+   
+  };
+ const minDate = new Date();
+ 
+//  let myCalendar = Calendar();
+  minDate.setDate(minDate.getDate() + 1);
   const search = [
     { name: "Name", value: "name" },
     { name: "Customer Code", value: "customerCode" },
@@ -134,6 +176,7 @@ const PolicyReceipts = () => {
   const home = { label: "Accounts " };
 
   const navigate = useNavigate();
+  
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
   const [globalFilter, setGlobalFilter] = useState();
@@ -172,6 +215,19 @@ const PolicyReceipts = () => {
   const handleEditClick = () => {
     navigate("/accounts/receipts/otherreceiptsview");
   };
+
+  const handleModal = (rowData) => {
+    console.log("View clicked:", rowData);
+    
+    setVisiblePopup(true);
+  };
+ 
+  
+  const formik = useFormik({
+    initialValues: initialValue,
+    // validate,
+    // onSubmit: handleSubmit,
+  });
   return (
     // <Suspense fallback={<div>Loading...</div>}>
     // {stylesLoaded &&
@@ -186,12 +242,20 @@ const PolicyReceipts = () => {
             separatorIcon={<SvgDot color={"#000"} />}
           />
         </div>
+        <div className="bulk__texts">
+        <div className="filter_bulk_button_container">
+          <div className="bulk_button_container" onClick={handleModal}>
+
+            <p className="addtext">Bulk Print</p>
+          </div>
+        </div>
         <div className="filterbutton_container">
           <div className="addbutton_container" onClick={handlePolicy}>
             <SvgAdd className="addicon" />
             <p className="addtext">Receipt</p>
           </div>
         </div>
+      </div>
       </div>
 
       <Card className="mt-3">
@@ -303,6 +367,201 @@ const PolicyReceipts = () => {
           </DataTable>
         </div>
       </Card>
+      <div className="col-12">
+        <Dialog
+          
+          visible={visiblePopup}
+          className="dialog_fields"
+          onHide={() => {
+            setVisiblePopup(false);
+           
+          }}
+        >
+          <div class="grid">
+            
+          
+            <div class="sm-col-12  md:col-6 lg-col-6">
+
+              <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Division Code From"
+                options={item1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+
+            </div>
+            <div class="sm-col-12  md:col-6 lg-col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Division Code To"
+                options={item1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="OR Number From"
+                options={item2}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="OR Number To"
+                options={item2}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Customer Code From"
+                options={item3}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Customer Code To"
+                options={item3}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Cashier ID From"
+                options={item4}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+            <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Cashier ID To"
+                options={item4}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+            {/* <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Date From"
+                options={item1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              /> */}
+               <LabelWrapper className="calenderlable__container">
+              Date From
+            </LabelWrapper> 
+            
+            <Calendar
+              classNames="calender__container"
+              showIcon
+              value={formik.values.receiptDate}
+              minDate={minDate}
+              onChange={(e) => {
+                formik.setFieldValue("receiptDate", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+             
+            />
+            
+            
+            </div>
+            <div class="col-12 md:col-6 lg:col-6">
+            {/* <DropDowns
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+
+                className="dropdown__container"
+                label="Date To"
+                options={item1}
+                optionLabel="name"
+                placeholder={"Select"}
+                dropdownIcon={<SvgDropdown color={"#000"} />}
+              /> */}
+                <LabelWrapper className="calenderlable__container">
+              Date To
+            </LabelWrapper> 
+            
+            <Calendar
+              classNames="calender__container"
+              showIcon
+              value={formik.values.receiptDate}
+              minDate={minDate}
+              onChange={(e) => {
+                formik.setFieldValue("receiptDate", e.target.value);
+              }}
+              dateFormat="yy-mm-dd"
+             
+            />
+            </div>
+          </div>
+
+          <div className="update_btn">
+           
+            <div class="cursor-pointer" onClick={() => setVisiblePopup(false)}>
+              <div className="update_btnlabel">Generate</div>
+            </div>
+          </div>
+        </Dialog>{" "}
+      </div>
     </div>
     // }
     // </Suspense>

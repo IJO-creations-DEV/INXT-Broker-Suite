@@ -1,11 +1,14 @@
 import { Card } from "primereact/card";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DropdownField from "../../../component/DropdwonField";
 import InputTextField from "../../../component/inputText";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Dialog } from 'primereact/dialog';
 import {
   AccountCodes,
   InsuranceCompanyOptions,
@@ -14,9 +17,16 @@ import {
   ModelYears,
   VehicleBrands,
   VehicleColors,
-  VehicleModels,
+  VehicleModels, PolicyTypes,
+  InstallmentType,
+  PremiumCurrency,
+  InsurancePolicycontainer,
+  pesoTypes
 } from "../mock";
 import { postPolicyDetailsMiddleware } from "../store/policyDetailsMiddleware";
+import { Checkbox } from "primereact/checkbox";
+import DialogList from "./DialogList";
+import SvgTable from "../../../../assets/icons/SvgTable";
 
 const PolicyDetailsCard = ({ action, flow }) => {
   console.log(action, "action");
@@ -31,7 +41,8 @@ const PolicyDetailsCard = ({ action, flow }) => {
     VehicleModel: "",
     ModelVariant: "",
     VehicleColor: "",
-    SeatingCapacity: "",
+    SeatingCapacity: "", PaymentType: "", InstallmentType: "",
+
   };
   const handleclick = (values) => {
     console.log(action, "action");
@@ -44,32 +55,32 @@ const PolicyDetailsCard = ({ action, flow }) => {
   };
   // const customValidation = (values) => {
   //   const errors = {}
-  //   if (!values.InsuranceCompanyName) {
-  //     errors.InsuranceCompanyName = "This field is required";
+  //   if (!values.PaymentType) {
+  //     errors.PaymentType = "This field is required";
   //   }
-  //   if (!values.InsurancePolicyType) {
-  //     errors.InsurancePolicyType = "This field is required";
-  //   }
-
-  //   if (!values.VehicleBrand) {
-  //     errors.VehicleBrand = "This field is required";
-  //   }
-  //   if (!values.ModelYear) {
-  //     errors.ModelYear = "This field is required";
-  //   }
-  //   if (!values.VehicleModel) {
-  //     errors.VehicleModel = "This field is required";
-  //   }
-  //   if (!values.ModelVariant) {
-  //     errors.ModelVariant = "This field is required";
-  //   }
-  //   if (!values.VehicleColor) {
-  //     errors.VehicleColor = "This field is required";
+  //   if (!values.InstallmentType) {
+  //     errors.InstallmentType = "This field is required";
   //   }
 
-  //   if (!values.SeatingCapacity) {
-  //     errors.SeatingCapacity = "This field is required";
-  //   }
+  //   // if (!values.VehicleBrand) {
+  //   //   errors.VehicleBrand = "This field is required";
+  //   // }
+  //   // if (!values.ModelYear) {
+  //   //   errors.ModelYear = "This field is required";
+  //   // }
+  //   // if (!values.VehicleModel) {
+  //   //   errors.VehicleModel = "This field is required";
+  //   // }
+  //   // if (!values.ModelVariant) {
+  //   //   errors.ModelVariant = "This field is required";
+  //   // }
+  //   // if (!values.VehicleColor) {
+  //   //   errors.VehicleColor = "This field is required";
+  //   // }
+
+  //   // if (!values.SeatingCapacity) {
+  //   //   errors.SeatingCapacity = "This field is required";
+  //   // }
 
   //   return errors
   // }
@@ -114,37 +125,99 @@ const PolicyDetailsCard = ({ action, flow }) => {
       formik.setFieldValue("VehicleColor", VehicleColors[0].value);
     }
   }, []);
+  {/* //changes */ }
+  const [checked, setChecked] = useState(false);
+  const [paychecked, setPayChecked] = useState(false);
+  console.log(formik.values.PaymentType, "check")
+  const [products, setProducts] = useState([]);
+  const [visible, setVisible] = useState(false);
+
+
+  const { TableList, loading } = useSelector(
+    ({ policydetailreducer }) => {
+      return {
+        loading: policydetailreducer?.loading,
+        TableList: policydetailreducer?.TableList,
+        // getSearchCountry: countryReducers?.getSearchCountry,
+      };
+    }
+  );
+  console.log("checkget", TableList)
+
+  const isEmpty = TableList.length === 0;
+
+  const emptyTableIcon = (
+    <div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found" style={{textAlign:'center'}}>No data entered</div>
+    </div>
+  );
+  const Handleinsurance = () => {
+    setVisible(true)
+  }
+
   return (
     <div className="policy__details__card__container mt-4">
-      <form onSubmit={formik.handleSubmit}>
+      
         <Card>
           <div className="policy__details__card__container__title">
             {action === "quotedetails" ? "Edit Quote" : "Create Quote"}
           </div>
-          <div className="policy__details__card__container__sub__title mt-2 mb-2">
-            Policy Details
-          </div>
-
-          <div className="grid mt-2">
-            <div className="col-12 md:col-12 lg:col-12">
-              <DropdownField
-                label="Insurance Company Name"
-                value={formik.values.InsuranceCompanyName}
-                options={InsuranceCompanyOptions}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("InsuranceCompanyName", e.value);
-                }}
-                optionLabel="label"
-              />
-              {formik.touched.InsuranceCompanyName &&
-                formik.errors.InsuranceCompanyName && (
-                  <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                    {formik.errors.InsuranceCompanyName}
-                  </div>
-                )}
+          {/* //changes */}
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div className="policy__details__card__container__sub__title mt-2 mb-2">
+              Policy Details
+            </div>
+            <div className="flex align-items-center">
+              <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
+              <label className="ml-2">Co-Insurance</label>
             </div>
           </div>
+          {checked &&
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ paddingTop: 24, paddingBottom: 28, fontSize: 20, fontWeight: '400', fontFamily: 'Poppins' }}>Participant details</div>
+                <Button style={{ marginTop: 24, marginBottom: 24 }} onClick={Handleinsurance}>
+                  Add Insurance company
+                </Button>
+
+              </div>
+
+              <div className="card" style={{ marginBottom: 24 }}>
+                <DataTable value={TableList} tableStyle={{ minWidth: '50rem' }} scrollable={true}
+                  scrollHeight="26vh"
+                  emptyMessage={isEmpty ? emptyTableIcon : null}
+                >
+                  <Column header="Participant Name" field="ParticipantName" style={{ paddingLeft: 20 }}></Column>
+                  <Column header="SI Currency" field="SumInsuredcurrency" style={{ paddingLeft: 20 }}></Column>
+                  <Column header="Premium currency" field="Premiumcurrencys" style={{ paddingLeft: 20 }}></Column>
+                  <Column header="Share percentage" field="Sharepercentage" style={{ paddingLeft: 20 }}></Column>
+                </DataTable>
+              </div>
+
+            </div>
+          }
+
+          {!checked &&
+            <div className="grid mt-2">
+              <div className="col-12 md:col-12 lg:col-12">
+                <DropdownField
+                  label="Insurance Company Name"
+                  value={formik.values.InsuranceCompanyName}
+                  options={InsuranceCompanyOptions}
+                  onChange={(e) => {
+                    console.log(e.value);
+                    formik.setFieldValue("InsuranceCompanyName", e.value);
+                  }}
+                  optionLabel="label"
+                />
+
+              </div>
+            </div>
+          }
+
 
           <div className="grid mt-2">
             <div className="col-12 md:col-6 lg:col-6">
@@ -183,6 +256,58 @@ const PolicyDetailsCard = ({ action, flow }) => {
               )}
             </div>
           </div>
+          <div className="grid mt-2">
+            <div className="col-12 md:col-6 lg:col-6">
+              <DropdownField
+                label="Payment Type*"
+                value={formik.values.PaymentType}
+                options={PolicyTypes}
+                onChange={(e) => {
+                  console.log(e.value);
+                  formik.setFieldValue("PaymentType", e.value);
+                }}
+                optionLabel="label"
+              />
+              {formik.touched.PaymentType &&
+                formik.errors.PaymentType && (
+                  <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                    {formik.errors.PaymentType}
+                  </div>
+                )}
+            </div>
+            {formik.values.PaymentType === "Credit" && <div className="col-12 md:col-6 lg:col-6">
+              <div className="flex align-items-center" style={{ alignItems: 'center', display: 'flex', height: 64 }}>
+                <Checkbox onChange={e => setPayChecked(e.checked)} checked={paychecked}></Checkbox>
+                <label className="ml-2">Pay in Installments</label>
+              </div>
+            </div>}
+
+          </div>
+
+          {paychecked &&
+            <div className="grid mt-2">
+              <div className="col-12 md:col-6 lg:col-6">
+                <DropdownField
+                  label="Installment Type*"
+                  value={formik.values.InstallmentType}
+                  options={InstallmentType}
+                  onChange={(e) => {
+                    console.log(e.value);
+                    formik.setFieldValue("InstallmentType", e.value);
+                  }}
+                  optionLabel="label"
+                />
+                {formik.touched.InstallmentType &&
+                  formik.errors.InstallmentType && (
+                    <div style={{ fontSize: 12, color: "red" }} className="mt-3">
+                      {formik.errors.InstallmentType}
+                    </div>
+                  )}
+              </div>
+            </div>
+          }
+
+
 
           <div className="policy__details__card__sub__title mt-2">
             Insurance Vehicle Details
@@ -312,7 +437,8 @@ const PolicyDetailsCard = ({ action, flow }) => {
             </div>
           </div>
         </Card>
-      </form>
+    
+      <DialogList setVisible={setVisible} visible={visible} />
     </div>
   );
 };

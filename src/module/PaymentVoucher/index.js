@@ -27,9 +27,17 @@ import { getPaymentVocherListBySearchMiddleware } from "./store/paymentVocherMid
 
 const Index = () => {
   const [products, setProducts] = useState([]);
+  const [visiblePopup, setVisiblePopup] = useState(false)
+  const [cashierto, setCashierto] = useState("")
+  const [cashier, setCashier] = useState("")
+  const [division, setDivision] = useState("")
+  const [number, setNumber] = useState("")
+  const [code, setCode] = useState("")
+  const [numberto, setNumberTo] = useState("")
+  const [custom, setCustom] = useState("")
   const [value, setValue] = useState('');
   const [visible, setVisible] = useState(false);
-  const [visiblePopup, setVisiblePopup] = useState(false)
+
   const dispatch = useDispatch();
   const { paymentVocherList, loading, paymentVocherSearchList } = useSelector(
     ({ paymentVoucherReducers }) => {
@@ -49,19 +57,19 @@ const Index = () => {
     { name: "102", code: "102" },
     { name: "103", code: "103" },
   ];
- 
-  const item2= [
+
+  const item2 = [
     { name: "CC001", code: "CC001" },
     { name: "CC002", code: "CC002" },
     { name: "CC003", code: "CC003" },
   ];
- 
+
   const item3 = [
     { name: "Trans011", code: "Trans011" },
     { name: "Trans012", code: "Trans012" },
     { name: "Trans013", code: "Trans013" },
   ];
- 
+
 
   const item4 = [
     { name: "6784938272", code: "6784938272" },
@@ -70,9 +78,9 @@ const Index = () => {
   ];
   const initialValue = {
     receiptDate: new Date(),
-   
+
   };
- const minDate = new Date();
+  const minDate = new Date();
   const template2 = {
     layout:
       "RowsPerPageDropdown  FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink",
@@ -83,7 +91,7 @@ const Index = () => {
         { label: 20, value: 20 },
         { label: 120, value: 120 },
       ];
-     
+
       return (
         <React.Fragment>
           <span
@@ -172,7 +180,7 @@ const Index = () => {
   };
   const handleModal = (rowData) => {
     console.log("View clicked:", rowData);
-    
+
     setVisiblePopup(true);
   };
   const formik = useFormik({
@@ -194,27 +202,27 @@ const Index = () => {
           />
         </div>
         <div className="bulk__text" >
-        <div className="filter_bulk_button_container">
-          <div className="bulk_button_container" onClick={handleModal}>
+          <div className="filter_bulk_button_container">
+            <div className="bulk_button_container" onClick={handleModal}>
 
-            <p className="addtext">Bulk Print</p>
+              <p className="addtext">Bulk Print</p>
+            </div>
+          </div>
+          <div className="filterbutton_container">
+            {/* <SvgFilters/> */}
+
+            <div className="addbutton_container" onClick={handlePolicy}>
+              <SvgAdd />
+              <p className="addtext">Create</p>
+            </div>
           </div>
         </div>
-        <div className="filterbutton_container">
-          {/* <SvgFilters/> */}
-
-          <div className="addbutton_container" onClick={handlePolicy}>
-            <SvgAdd />
-            <p className="addtext">Create</p>
-          </div>
-        </div>
-      </div>
       </div>
 
       <Card
         className="mt-3"
 
-        //   className="overallcard_container"
+      //   className="overallcard_container"
       >
         {/* <div className="searchiput_container"> */}
 
@@ -325,19 +333,19 @@ const Index = () => {
         </div>
       </Card>
       <div className="col-12">
-        
+
         <Dialog
-          
+
           visible={visiblePopup}
           className="dialog_fields"
           onHide={() => {
             setVisiblePopup(false);
-            
+
           }}
         >
           <div class="grid">
-            
-          
+
+
             <div class="sm-col-12  md:col-6 lg-col-6">
 
               <DropDowns
@@ -354,9 +362,9 @@ const Index = () => {
 
             </div>
             <div class="sm-col-12  md:col-6 lg-col-6">
-            <DropDowns
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+              <DropDowns
+                value={division}
+                onChange={(e) => setDivision(e.target.value)}
 
                 className="dropdown__container"
                 label="Division Code To"
@@ -369,9 +377,9 @@ const Index = () => {
           </div>
           <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
-            <DropDowns
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+              <DropDowns
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
 
                 className="dropdown__container"
                 label="OR Number From"
@@ -382,9 +390,9 @@ const Index = () => {
               />
             </div>
             <div class="col-12 md:col-6 lg:col-6">
-            <DropDowns
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+              <DropDowns
+                value={numberto}
+                onChange={(e) => setNumberTo(e.target.value)}
 
                 className="dropdown__container"
                 label="OR Number To"
@@ -397,9 +405,9 @@ const Index = () => {
           </div>
           <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
-            <DropDowns
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+              <DropDowns
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
 
                 className="dropdown__container"
                 label="Customer Code From"
@@ -410,9 +418,9 @@ const Index = () => {
               />
             </div>
             <div class="col-12 md:col-6 lg:col-6">
-            <DropDowns
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+              <DropDowns
+                value={custom}
+                onChange={(e) => setCustom(e.target.value)}
 
                 className="dropdown__container"
                 label="Customer Code To"
@@ -425,9 +433,9 @@ const Index = () => {
           </div>
           <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
-            <DropDowns
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+              <DropDowns
+                value={cashier}
+                onChange={(e) => setCashier(e.target.value)}
 
                 className="dropdown__container"
                 label="Cashier ID From"
@@ -438,9 +446,9 @@ const Index = () => {
               />
             </div>
             <div class="col-12 md:col-6 lg:col-6">
-            <DropDowns
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+              <DropDowns
+                value={cashierto}
+                onChange={(e) => setCashierto(e.target.value)}
 
                 className="dropdown__container"
                 label="Cashier ID To"
@@ -453,7 +461,7 @@ const Index = () => {
           </div>
           <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
-            {/* <DropDowns
+              {/* <DropDowns
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
 
@@ -464,24 +472,24 @@ const Index = () => {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               /> */}
-                <LabelWrapper className="calenderlable__container">
-              Date From
-            </LabelWrapper> 
-            
-            <Calendar
-              classNames="calender__container"
-              showIcon
-              value={formik.values.receiptDate}
-              minDate={minDate}
-              onChange={(e) => {
-                formik.setFieldValue("receiptDate", e.target.value);
-              }}
-              dateFormat="yy-mm-dd"
-             
-            />
+              <LabelWrapper className="calenderlable__container">
+                Date From
+              </LabelWrapper>
+
+              <Calendar
+                classNames="calender__container"
+                showIcon
+                value={formik.values.receiptDate}
+                minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("receiptDate", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+
+              />
             </div>
             <div class="col-12 md:col-6 lg:col-6">
-            {/* <DropDowns
+              {/* <DropDowns
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
 
@@ -492,30 +500,30 @@ const Index = () => {
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               /> */}
-                <LabelWrapper className="calenderlable__container">
-              Date From
-            </LabelWrapper> 
-            
-            <Calendar
-              classNames="calender__container"
-              showIcon
-              value={formik.values.receiptDate}
-              minDate={minDate}
-              onChange={(e) => {
-                formik.setFieldValue("receiptDate", e.target.value);
-              }}
-              dateFormat="yy-mm-dd"
-             
-            />
+              <LabelWrapper className="calenderlable__container">
+                Date From
+              </LabelWrapper>
+
+              <Calendar
+                classNames="calender__container"
+                showIcon
+                value={formik.values.receiptDate}
+                minDate={minDate}
+                onChange={(e) => {
+                  formik.setFieldValue("receiptDate", e.target.value);
+                }}
+                dateFormat="yy-mm-dd"
+
+              />
             </div>
           </div>
 
           <div className="update_btn">
-           
-           <div class="cursor-pointer" onClick={() => setVisiblePopup(false)}>
-             <div className="update_btnlabel">Generate</div>
-           </div>
-         </div>
+
+            <div class="cursor-pointer" onClick={() => setVisiblePopup(false)}>
+              <div className="update_btnlabel">Generate</div>
+            </div>
+          </div>
         </Dialog>{" "}
       </div>
     </div>

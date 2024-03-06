@@ -5,7 +5,7 @@ import {
   PATCH_LEADEDIT_DATA,
   GET_PAYMENT_SEARCH,
   GET_LEAD_EDIT_DATA,
-  GET_LEAD_LIST_DATA,
+  GET_LEAD_LIST_DATA,GET_LEAD_COMPANY_DATA
 } from "../../../redux/actionTypes";
 
 export const getleadtableMiddleware = createAsyncThunk(
@@ -24,7 +24,7 @@ export const getLeadDataMiddleware = createAsyncThunk(
   GET_LEAD_LIST_DATA,
   async () => {
     try {
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
@@ -38,8 +38,8 @@ export const postCreateleadMiddleware = createAsyncThunk(
       payload.Type === "Motor"
         ? "Motor"
         : payload.Type === "Travel"
-        ? "Travel"
-        : "Property";
+          ? "Travel"
+          : "Property";
     const randomQuotesNumber = Math.floor(Math.random() * 10);
 
     const data = {
@@ -88,8 +88,8 @@ export const patchLeadEditMiddleWare = createAsyncThunk(
       payload.Type === "Motor"
         ? "Motor"
         : payload.Type === "Travel"
-        ? "Travel"
-        : "Property";
+          ? "Travel"
+          : "Property";
     console.log(type, "type");
     const data = {
       id: payload?.id,
@@ -176,3 +176,15 @@ export const getLeadEditDataMiddleWare = createAsyncThunk(
     }
   }
 );
+
+export const getleadcompanydataMiddleware = createAsyncThunk(
+  GET_LEAD_COMPANY_DATA,
+  async (payload, { rejectWithValue }) => {
+    console.log(payload, "payload");
+    try {
+      return payload;
+    } catch (error) {
+      return rejectWithValue(error?.response?.data?.error?.message);
+    }
+  }
+);  

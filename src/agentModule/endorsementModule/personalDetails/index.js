@@ -30,21 +30,20 @@ const PersonalDetails = () => {
   const toastRef = useRef(null);
   const { state } = useLocation();
   console.log(state?.types, "find total value");
+  console.log(state?.types[state?.types.length - 1], 'find main length')
   const handleFormSubmit = (values, index) => {
-    // setIsFormSubmitted(true);
+
     if (index === 1) {
-      
-      if (state?.types.length - 1 === index) {
-        console.log(state?.types.length - 1 === index, "find lenth");
+
+      if (parseInt(state?.types[state?.types.length - 1]) === index) {
         toastRef.current.showToast();
         setTimeout(() => {
           navigate(`/agent/endorsement/paymenterror/${123}`);
         }, 2000);
       }
-      console.log(values,index, "find PersonalDetailsChange");
+      console.log(values, index, "find PersonalDetailsChange");
     } else if (index === 2) {
-      if (state?.types.length - 1 === index) {
-        console.log(state?.types.length - 1 === index, "find lenth");
+      if (parseInt(state?.types[state?.types.length - 1]) === index) {
         toastRef.current.showToast();
         setTimeout(() => {
           navigate(`/agent/endorsement/paymenterror/${123}`);
@@ -52,8 +51,7 @@ const PersonalDetails = () => {
       }
       console.log(values, "find MotorDetailsChange");
     } else if (index === 3) {
-      if (state?.types.length - 1 === index) {
-        console.log(state?.types.length - 1 === index, "find lenth");
+      if (parseInt(state?.types[state?.types.length - 1]) === index) {
         toastRef.current.showToast();
         setTimeout(() => {
           navigate(`/agent/endorsement/paymenterror/${123}`);
@@ -61,8 +59,7 @@ const PersonalDetails = () => {
       }
       console.log(values, "find CoverageChange");
     } else if (index === 4) {
-      if (state?.types.length - 1 === index) {
-        console.log(state?.types.length - 1 === index, "find lenth");
+      if (parseInt(state?.types[state?.types.length - 1]) === index) {
         toastRef.current.showToast();
         setTimeout(() => {
           navigate(`/agent/endorsement/paymenterror/${123}`);
@@ -131,8 +128,8 @@ const PersonalDetails = () => {
                   className="next__btn"
                   onClick={handleButtonClick}
 
-                  // onClick={()=>handleclick()}
-                  // onClick={()=>{ formik.handleSubmit()}}
+                // onClick={()=>handleclick()}
+                // onClick={()=>{ formik.handleSubmit()}}
                 >
                   Send to insurance Company
                 </Button>

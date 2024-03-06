@@ -81,4 +81,21 @@
       }
     }
   }
+  .heading__details_add {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+  }
+  .heading__details_text {
+    font-size: 12;
+    padding: 30;
+    color: red;
+  }
+  .heading__details_upload {
+    background-color: #6366f1;
+    display: flex;
+    gap: 14px;
+    padding: 30 !important;
+  }
 }

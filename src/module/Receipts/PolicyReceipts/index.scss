@@ -23,6 +23,7 @@
     font-size: 18px;
     font-weight: 500;
   }
+  
   .dropdown__container {
     width: 100%;
     height: 44px;
@@ -53,6 +54,37 @@
     cursor: pointer;
     color: #fff;
   }
+  .calender__container{
+    border-radius: 30px;
+    background-color: #fff !important;
+    margin-top: 10px;
+}
+.calenderlable__container{
+  color: #000;
+  margin-bottom: 8px;
+font-family: 'Inter', sans-serif;
+font-size: 16px;
+
+font-weight: 500;
+
+}
+  .bulk_button_container{
+    background-color: #6366f1;
+    border-radius: 60px;
+    // width: 100px !important;
+    height: 38px;
+    gap: 10px;
+    display: flex;
+    padding: 0px 25px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+  }
+  .bulk__texts{
+    gap:10px;
+    display:flex
+  }
   .listlable_textcontainer {
     margin: 20px 0px;
   }
@@ -67,6 +99,12 @@
     color: #b1b1b1;
   }
   .filterbutton_container {
+    display: flex;
+    align-items: center;
+    margin: 16px 0px;
+    gap: 20px;
+  }
+  .filter_bulk_button_container{
     display: flex;
     align-items: center;
     margin: 16px 0px;
@@ -154,4 +192,37 @@
     border-width: 0 0 1px 0;
     padding: 1rem !important;
   }
+}
+
+.dialog_fields{
+  .calender__container{
+    border-radius: 30px;
+    background-color: #fff !important;
+    margin-top: 10px;
+}
+.calenderlable__container{
+  color: #000;
+  margin-bottom: 8px;
+font-family: 'Inter', sans-serif;
+font-size: 16px;
+
+font-weight: 500;
+
+}
+.p-button {
+  color: #6366f1;
+    background: transparent; 
+  border: 1px solid #d1d5db;
+  border-left: none;
+  padding: 0 !important;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 0 !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+.update_btnlabel{
+  background-color: red;
+  padding: 10px !important;
+}
 }

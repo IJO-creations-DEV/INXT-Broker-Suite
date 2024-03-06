@@ -12,6 +12,9 @@ import customHistory from "../../../../routes/customHistory";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { postUploadPolicyMiddleWare } from "../store/uploadPolicyMiddleWare";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import SvgTable from "../../../../assets/icons/SvgTable";
 
 
 
@@ -81,7 +84,7 @@ const UploadPolicyCard = () => {
     customHistory.back();
   };
   console.log(imageURL, "imageURL");
-
+ 
   const formik = useFormik({
     initialValues:
    { ...initialValues,
@@ -96,7 +99,26 @@ const UploadPolicyCard = () => {
     formik.setFieldValue("IssuedDate", issuedDate);
     formik.setFieldValue("Expiry", expiryDate);
   };
+  const { TableList, loading } = useSelector(
+    ({ policydetailreducer }) => {
+      return {
+        loading: policydetailreducer?.loading,
+        TableList: policydetailreducer?.TableList,
+        // getSearchCountry: countryReducers?.getSearchCountry,
+      };
+    }
+  );
+  const isEmpty = TableList.length === 0;
 
+  const emptyTableIcon = (
+    <div>
+      <div className="empty-table-icon">
+        <SvgTable />
+      </div>
+      <div className="no__data__found" style={{textAlign:'center'}}>No data entered</div>
+    </div>
+  );
+  console.log("checkget", TableList)
   return (
     <div className="upload__policy__card__container mt-4">
       <CustomToast ref={toastRef} message="Policy Converted Successfully" />
@@ -104,17 +126,24 @@ const UploadPolicyCard = () => {
         <div className="upload__policy__card__container__title">
           Upload Policy
         </div>
-        <div className="grid mt-2">
-          <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Insurance Company"
-              value={formik.values.InsuranceCompany}
-              onChange={formik.handleChange("InsuranceCompany")} />
-            {formik.touched.InsuranceCompany && formik.errors.InsuranceCompany && (
-              <div style={{ fontSize: 12, color: "red" }} className="mt-3">
-                {formik.errors.InsuranceCompany}
+
+        <div className="card" style={{ marginBottom: 24,marginTop:24 }}>
+                <DataTable value={TableList} tableStyle={{ minWidth: '50rem' }} scrollable={true}
+                  scrollHeight="26vh"
+                   emptyMessage={isEmpty ? emptyTableIcon : null}
+                >
+                  <Column header="Participant Name" field="ParticipantName" style={{ paddingLeft: 20}}></Column>
+                  <Column header="SI Currency" field="SumInsuredcurrency" style={{ paddingLeft: 20}}></Column>
+                  <Column header="Premium currency" field="Premiumcurrencys" style={{ paddingLeft: 20}}></Column>
+                  <Column header="Share percentage" field="Sharepercentage" style={{ paddingLeft: 20}}></Column>
+                  <Column header="Sum Insured" field="Sharepercentage" style={{ paddingLeft: 20}}></Column>
+                  <Column header="Premium" field="Sharepercentage" style={{ paddingLeft: 20}}></Column>
+                </DataTable>
               </div>
-            )}
-          </div>
+
+
+        <div className="grid mt-2">
+          
           <div className="col-12 md:col-6 lg:col-6">
             <InputTextField label="Policy Number*"
               value={formik.values.PolicyNumber}

@@ -21,7 +21,7 @@ const PolicyDetails = ({ action, flow }) => {
         <SvgLeftArrow />
         <div className="policy__container__back__btn__title">
           {flow === "lead" ? "Lead ID" : " Carson Darrin / Client ID"} :
-          12345678
+          1234567
         </div>
       </div>
       <PolicyDetailsCard action={action} flow={flow} />

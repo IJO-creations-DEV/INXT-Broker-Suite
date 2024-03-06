@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { postCreateleadMiddleware, patchLeadEditMiddleWare, getleadtableMiddleware, getPaymentSearchDataMiddleWare, getLeadDataMiddleware, getLeadEditDataMiddleWare } from "./leadMiddleware";
+import { postCreateleadMiddleware, patchLeadEditMiddleWare,
+  getleadcompanydataMiddleware, getleadtableMiddleware, getPaymentSearchDataMiddleWare, getLeadDataMiddleware, getLeadEditDataMiddleWare } from "./leadMiddleware";
 import SvgMotorTable from "../../../assets/agentIcon/SvgMotorTable";
 import SvgHomeTable from "../../../assets/agentIcon/SvgHomeTable";
 import SvgTravlesTable from "../../../assets/agentIcon/SvgTravlesTable";
@@ -153,8 +154,10 @@ const initialState = {
   ],
   createleaddata: {},
   LeadEditdata: {},
-  getEditLeadData: {}
+  getEditLeadData: {},
+  leadcompanydata: {}
 };
+
 const leadReducer = createSlice({
   name: "leadReducer",
   initialState,
@@ -175,6 +178,28 @@ const leadReducer = createSlice({
 
     builder.addCase(
       getLeadDataMiddleware.rejected,
+      (state, action) => {
+        state.loading = false;
+        state.error = typeof action.payload === "string" ? action.payload : "";
+      }
+    );
+
+
+    //getcompany
+    builder.addCase(getleadcompanydataMiddleware.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      getleadcompanydataMiddleware.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.leadcompanydata = action.payload
+
+      }
+    );
+
+    builder.addCase(
+      getleadcompanydataMiddleware.rejected,
       (state, action) => {
         state.loading = false;
         state.error = typeof action.payload === "string" ? action.payload : "";

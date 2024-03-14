@@ -30,6 +30,7 @@ import {
   patchCommissionEdit,
 } from "../store/commissionMiddleWare";
 import { Card } from "primereact/card";
+import AddCommissionPopup from "../AddCommission/AddCommissionPopup";
 
 const EditCommission = () => {
   const {
@@ -595,6 +596,9 @@ const EditCommission = () => {
             ></Column>
           </DataTable>
         </div>
+      </div>
+      <div className="col-12">
+        <AddCommissionPopup visible={visible} setVisible={setVisible} />
       </div>
       <div className="col-12">
         <EditCommissionPopup

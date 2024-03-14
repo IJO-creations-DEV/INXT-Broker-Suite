@@ -28,9 +28,10 @@ const Login = () => {
 
     if (!values.EmailAddress) {
       errors.EmailAddress = "Email Address is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.EmailAddress)) {
-      errors.EmailAddress = "Invalid email address";
-    }
+    } 
+    // else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.EmailAddress)) {
+    //   errors.EmailAddress = "Invalid email address";
+    // }
 
     if (!values.Password) {
       errors.Password = "Password is required";
@@ -48,8 +49,8 @@ const Login = () => {
   const handleSubmit = (values) => {
     console.log(values, "values");
     if (
-      values.EmailAddress === "broker@zealeye.com" &&
-      values.Password === "test@123"
+      values.EmailAddress === "ITADMIN" &&
+      values.Password === "Test@123"
     ) {
       Cookies.set(TOKEN,"token");
       toastRef.current.showToast();

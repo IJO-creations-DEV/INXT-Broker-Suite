@@ -13,8 +13,8 @@ import { useDispatch } from "react-redux";
 const AddCommissionPopup = ({ visible, setVisible, handleUpdate }) => {
 
     const codeOptionsMain = [
-        { label: "Option 1", value: "Main00123" },
-        { label: "Option 2", value: "Main00124" },
+        { label: "Option 1", value: "CL001" },
+        { label: "Option 2", value: "CL002" },
     ];
 
 

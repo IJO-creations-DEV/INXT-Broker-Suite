@@ -81,13 +81,13 @@ const initialState = {
             id: 1,
             level: "11",
             commissionCode: "CC123",
-            sharingRate: "S123",
+            sharingRate: "10",
         },
         {
             id: 2,
             level: "11",
             commissionCode: "CC123",
-            sharingRate: "S123",
+            sharingRate: "15",
         }
     ],
     commissionPopupView: {}

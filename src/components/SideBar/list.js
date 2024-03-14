@@ -356,7 +356,7 @@ export const menuList = [
     ],
   },
   {
-    name: "Broker",
+    name: "Operations",
     icon: <SvgReportsIcon />,
     submenu: [
       {
@@ -372,7 +372,7 @@ export const menuList = [
         ],
       },
       {
-        name: "Leads",
+        name: "Leads/Prospects",
         icon: <SvgAgentLeadIcon color="#9DA4AE" />,
         path: "/agent/leadlisting",
         includes: [
@@ -441,6 +441,24 @@ export const menuList = [
         ],
       },
       {
+        name: "Quotation",
+        icon: <SvgQuotationIcon color="#9DA4AE" />,
+        path: "/agent/Quotation",
+        includes: ["/agent/Quotation"],
+      },
+      {
+        name: "Policy",
+        icon: <SvgPolicyIcon color="#9DA4AE" />,
+        path: "/agent/policy",
+        includes: ["/agent/policy"],
+      },
+      {
+        name: "Claims",
+        icon: <SvgAgentItemsIcon color="#9DA4AE" />,
+        path: "/agent/claim",
+        includes: ["/agent/claim"],
+      },
+      {
         name: "Open Items",
         icon: <SvgAgentItemsIcon color="#9DA4AE" />,
         path: "/agent/openitemslistdata",
@@ -459,24 +477,9 @@ export const menuList = [
         path: "/agent/payments",
         includes: ["/agent/payments"],
       },
-      {
-        name: "Claim",
-        icon: <SvgAgentItemsIcon color="#9DA4AE" />,
-        path: "/agent/claim",
-        includes: ["/agent/claim"],
-      },
-      {
-        name: "Policy",
-        icon: <SvgPolicyIcon color="#9DA4AE" />,
-        path: "/agent/policy",
-        includes: ["/agent/policy"],
-      },
-      {
-        name: "Quotation",
-        icon: <SvgQuotationIcon color="#9DA4AE" />,
-        path: "/agent/Quotation",
-        includes: ["/agent/Quotation"],
-      },
+      
+     
+      
     ],
   },
   {

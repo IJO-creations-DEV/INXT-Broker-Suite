@@ -104,16 +104,18 @@ const AddCommission = () => {
     return errors;
   };
   const productOption = [
-    { label: "Option 1", value: "product 1" },
-    { label: "Option 2", value: "product 1" },
+    { label: "Option 1", value: "Motor" },
+    { label: "Option 2", value: "Fire" },
   ];
   const selectCover = [
-    { label: "Option 1", value: "Insurance" },
-    { label: "Option 2", value: "SelectCover 1" },
+    { label: "Option 1", value: "CTPL" },
+    { label: "Option 2", value: "Comprehensive" },
   ];
   const selectAgent = [
-    { label: "Option 1", value: "Agent" },
-    { label: "Option 2", value: "SelectAgent 1" },
+    { label: "Option 1", value: "Juan" },
+    { label: "Option 2", value: "Marquez" },
+    { label: "Option 3", value: "Nicole" },
+    { label: "Option 4", value: "Cortez" },
   ];
 
   const dispatch = useDispatch();

@@ -206,6 +206,7 @@ const EditCommission = () => {
     setVisible(true);
   };
   const [products, setProducts] = useState(data);
+  const [showEditPopup, setShowEditPopup] = useState(false);
   const [first, setFirst] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const handleNavigate = () => {
@@ -255,6 +256,7 @@ const EditCommission = () => {
   const handleEditNavigate = (rowData) => {
     setVisiblePopup(true);
     dispatch(getEditCommissionPopup(rowData));
+    setShowEditPopup(true);
   };
 
   const renderEditButton = (rowData) => {
@@ -596,8 +598,10 @@ const EditCommission = () => {
       </div>
       <div className="col-12">
         <EditCommissionPopup
-          visiblePopup={visiblePopup}
-          setVisiblePopup={setVisiblePopup}
+          // visiblePopup={visiblePopup}
+          // setVisiblePopup={setVisiblePopup}
+          showEditPopup={showEditPopup}
+          setShowEditPopup={setShowEditPopup}
         />
       </div>
 

@@ -8,6 +8,11 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
 import customHistory from "../../../routes/customHistory";
 import { useDispatch, useSelector } from "react-redux";
+import leftimage from "../../../assets/images/carimage1.png"
+import rightimage from '../../../assets/images/rightimage.png'
+import dashimage from '../../../assets/images/dashboardphoto.png'
+import frontimage from '../../../assets/images/front.png'
+import backimage from '../../../assets/images/frontright.png'
 
 const LeadPreview = () => {
   const navigate = useNavigate();
@@ -183,7 +188,7 @@ const LeadPreview = () => {
               </div>
               <div className="image__text mt-2">
                 <img
-                  src="https://i.ibb.co/YLm4Wtc/carimage1.png"
+                  src={leftimage}
                   alt="idimage"
                   className="image__size"
                 />
@@ -195,7 +200,7 @@ const LeadPreview = () => {
               </div>
               <div className="image__text mt-2">
                 <img
-                  src="https://i.ibb.co/NpQCSqg/rightimage.png"
+                  src={rightimage}
                   alt="idimage"
                   className="image__size"
                 />
@@ -209,7 +214,7 @@ const LeadPreview = () => {
               </div>
               <div className="image__text mt-2">
                 <img
-                  src="https://i.ibb.co/qYTp1Ss/front.png"
+                  src={frontimage}
                   alt="idimage"
                   className="image__size"
                 />
@@ -219,7 +224,7 @@ const LeadPreview = () => {
               <div className="vehicle__left__text">Vehicle Rear Side Photo</div>
               <div className="image__text mt-2">
                 <img
-                  src="https://i.ibb.co/CtQ3Qr1/frontright.png"
+                  src={backimage}
                   alt="idimage"
                   className="image__size"
                 />
@@ -234,7 +239,7 @@ const LeadPreview = () => {
             <div class="col-12">
               <div className="image__texts mt-2">
                 <img
-                  src="https://i.ibb.co/ZH7j1K3/dashboardphoto.png"
+                  src={dashimage}
                   alt="idimage"
                   className="image__size"
                 />

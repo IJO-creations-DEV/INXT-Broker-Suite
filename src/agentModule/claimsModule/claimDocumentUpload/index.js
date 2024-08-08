@@ -8,6 +8,7 @@ import InputTextField from "../../component/inputText";
 import DatepickerField from "../../component/datePicker";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import document from '../../../assets/images/document.png'
 const ClaimDocumentUpload = () => {
   const { claimDocumentUploadData, loading } = useSelector(
     ({ claimDocumentUploadMainReducers }) => {
@@ -165,11 +166,11 @@ const ClaimDocumentUpload = () => {
 
           <div className="uploaddoc__conatiner">
             <img
-              src="https://i.ibb.co/0Qv0kzR/document.png"
+              src={document}
               className="claimtitle__img__container"
             />
             <img
-              src="https://i.ibb.co/0Qv0kzR/document.png"
+              src={document}
               className="claimtitle__img__container"
             />
           </div>

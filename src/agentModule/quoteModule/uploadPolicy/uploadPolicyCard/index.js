@@ -19,7 +19,8 @@ import SvgTable from "../../../../assets/icons/SvgTable";
 
 
 
-const UploadPolicyCard = () => {
+const UploadPolicyCard = ({ state }) => {
+  console.log(state,"axx")
   const [imageURL, setimageURL] = useState();
   const toastRef = useRef(null);
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const UploadPolicyCard = () => {
     console.log("122", value)
     dispatch(postUploadPolicyMiddleWare(value));
     setTimeout(() => {
-      navigate("/agent/policydetailedview");
+      navigate("/agent/policydetailedview", { state: state });
     }, 2000);
   };
   // const minDate = new Date();
@@ -84,11 +85,13 @@ const UploadPolicyCard = () => {
     customHistory.back();
   };
   console.log(imageURL, "imageURL");
- 
+
   const formik = useFormik({
     initialValues:
-   { ...initialValues,
-    Expiry: new Date(initialValues.Expiry)},
+    {
+      ...initialValues,
+      Expiry: new Date(initialValues.Expiry)
+    },
     onSubmit: handleSubmit,
   });
   const handleIssuedDateChange = (e) => {
@@ -115,7 +118,7 @@ const UploadPolicyCard = () => {
       <div className="empty-table-icon">
         <SvgTable />
       </div>
-      <div className="no__data__found" style={{textAlign:'center'}}>No data entered</div>
+      <div className="no__data__found" style={{ textAlign: 'center' }}>No data entered</div>
     </div>
   );
   console.log("checkget", TableList)
@@ -127,23 +130,23 @@ const UploadPolicyCard = () => {
           Upload Policy
         </div>
 
-        <div className="card" style={{ marginBottom: 24,marginTop:24 }}>
-                <DataTable value={TableList} tableStyle={{ minWidth: '50rem' }} scrollable={true}
-                  scrollHeight="26vh"
-                   emptyMessage={isEmpty ? emptyTableIcon : null}
-                >
-                  <Column header="Participant Name" field="ParticipantName" style={{ paddingLeft: 20}}></Column>
-                  <Column header="SI Currency" field="SumInsuredcurrency" style={{ paddingLeft: 20}}></Column>
-                  <Column header="Premium currency" field="Premiumcurrencys" style={{ paddingLeft: 20}}></Column>
-                  <Column header="Share percentage" field="Sharepercentage" style={{ paddingLeft: 20}}></Column>
-                  <Column header="Sum Insured" field="Sharepercentage" style={{ paddingLeft: 20}}></Column>
-                  <Column header="Premium" field="Sharepercentage" style={{ paddingLeft: 20}}></Column>
-                </DataTable>
-              </div>
+        <div className="card" style={{ marginBottom: 24, marginTop: 24 }}>
+          <DataTable value={TableList} tableStyle={{ minWidth: '50rem' }} scrollable={true}
+            scrollHeight="26vh"
+            emptyMessage={isEmpty ? emptyTableIcon : null}
+          >
+            <Column header="Participant Name" field="ParticipantName" style={{ paddingLeft: 20 }}></Column>
+            <Column header="SI Currency" field="SumInsuredcurrency" style={{ paddingLeft: 20 }}></Column>
+            <Column header="Premium currency" field="Premiumcurrencys" style={{ paddingLeft: 20 }}></Column>
+            <Column header="Share percentage" field="Sharepercentage" style={{ paddingLeft: 20 }}></Column>
+            <Column header="Sum Insured" field="Sharepercentage" style={{ paddingLeft: 20 }}></Column>
+            <Column header="Premium" field="Sharepercentage" style={{ paddingLeft: 20 }}></Column>
+          </DataTable>
+        </div>
 
 
         <div className="grid mt-2">
-          
+
           <div className="col-12 md:col-6 lg:col-6">
             <InputTextField label="Policy Number*"
               value={formik.values.PolicyNumber}

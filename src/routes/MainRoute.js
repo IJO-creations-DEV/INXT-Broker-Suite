@@ -227,6 +227,7 @@ import EditRequestForm from "../module/PettyCashManagement/Request/EditRequest";
 import ClaimModule from "../agentModule/claimModule";
 import PolicyModule from "../agentModule/policyModule";
 import QuotationModule from "../agentModule/quotationModule";
+import PolicyAccountingView from "../agentModule/quoteModule/policyAccountingView";
 
 const Maincomponent = () => {
   return (
@@ -274,7 +275,7 @@ const Maincomponent = () => {
             path="/accounts/receipts/addreceipts"
             element={<AddPolicyReceipts1 />}
           />
-        
+
 
           {/* Payment Vouchers */}
 
@@ -1096,6 +1097,8 @@ const Maincomponent = () => {
             path="/agent/policydetailedview"
             element={<PolicyDetailedView action="edit" />}
           />
+
+          <Route path="/agent/policydetailedview/accountview" element={<PolicyAccountingView />} />
           <Route
             path="/agent/policydetailedviewonly"
             element={<PolicyDetailedView action="view" />}

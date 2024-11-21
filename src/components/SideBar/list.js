@@ -407,6 +407,7 @@ export const menuList = [
           "/agent/clientedit",
           "/agent/clientview/",
           "/agent/policydetailedview",
+          "/agent/policydetailedview/accountview",
           "/agent/policydetailedviewonly",
           "/agent/claimrequest/claimdetails",
           "/agent/claimrequest/sendmail",

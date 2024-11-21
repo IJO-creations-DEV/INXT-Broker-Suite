@@ -8,15 +8,17 @@ import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Button } from "primereact/button";
 import DropdownField from "../../component/DropdwonField";
 import CustomToast from "../../../components/Toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import customHistory from "../../../routes/customHistory";
 import { useFormik } from "formik";
 import { AuthorizedSignatureOptions } from "./mock";
 import { postOrderSummaryMiddleware } from "./store/orderSummaryMiddleware";
 import { useDispatch } from "react-redux";
+import CardComponent from "../../../components/Cardcomponent";
+import { Accordion, AccordionTab } from "primereact/accordion";
 
 const initialValue = {
-  NETpremium: "1,100.00",
+  NETpremium: "100,000.00",
   ValueAddedTax: "1,500.00",
   Others: "1,300.00",
   AuthorizedSignature: "",
@@ -24,15 +26,18 @@ const initialValue = {
   LocalGovtTax: "1,100.00",
   Discount: "000.00",
   NCD: "600",
-  GrossPremium: "6000",
+  GrossPremium: "104,900.00",
 };
 
 const OrderSummary = ({ action, flow }) => {
+
   const [discount, setDiscount] = useState(0);
   const dispatch = useDispatch();
   const toastRef = useRef(null);
   const navigate = useNavigate();
+  const { state } = useLocation();
 
+  console.log(state, "ades")
   const handleclick = (values) => {
     console.log(values, "valuesleo");
     dispatch(postOrderSummaryMiddleware(values));
@@ -41,10 +46,10 @@ const OrderSummary = ({ action, flow }) => {
       console.log(action, "find ");
       if (action === "post") {
         // navigate("/agent/quotedetailedit");
-        navigate("/agent/quotedetailview");
+        navigate("/agent/quotedetailview", { state: state });
       }
       if (action === "view") {
-        navigate("/agent/quotedetailview");
+        navigate("/agent/quotedetailview", { state: state });
       }
     }, 2000);
   };
@@ -178,9 +183,11 @@ const OrderSummary = ({ action, flow }) => {
             />
           </div>
 
-          <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-0">
-            <div class="grid m-0">
-              <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+
+
+          <div class="col-12 md:col-6 lg:col-6 xl:col-6">
+            <div class="grid">
+              <div class="col-12 md:col-12 lg:col-12 xl:col-12">
                 <CalculaitionTextInputs
                   label="Documentary Stamp Tax"
                   value={formik.values.DocumentaryStampTax}
@@ -190,10 +197,9 @@ const OrderSummary = ({ action, flow }) => {
                     formik.errors.DocumentaryStampTax
                   }
                 />
+
               </div>
-            </div>
-            <div class="grid m-0">
-              <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+              <div class="col-12 md:col-12 lg:col-12 xl:col-12 mt-2">
                 <CalculaitionTextInputs
                   label="Local Gov’t Tax"
                   value={formik.values.LocalGovtTax}
@@ -203,9 +209,7 @@ const OrderSummary = ({ action, flow }) => {
                   }
                 />
               </div>
-            </div>
-            <div class="grid m-0">
-              <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+              <div class="col-12 md:col-12 lg:col-12 xl:col-12 mt-2">
                 <CalculaitionTextInputs
                   label="Discount"
                   value={formik.values.Discount}
@@ -213,19 +217,7 @@ const OrderSummary = ({ action, flow }) => {
                   error={formik.touched.Discount && formik.errors.Discount}
                 />
               </div>
-            </div>
-            {/* <div class="grid m-0">
-              <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
-                <CalculaitionTextInputs
-                  label="NCD (10%)"
-                  value={formik.values.NCD}
-                  onChange={formik.handleChange("NCD")}
-                  error={formik.touched.NCD && formik.errors.NCD}
-                />
-              </div>
-            </div> */}
-            <div class="grid m-0">
-              <div class="col-12 md:col-6 lg:col-6 xl:col-6 mt-2">
+              <div class="col-12 md:col-12 lg:col-12 xl:col-12 mt-2">
                 <CalculaitionTextInputs
                   label="Gross Premium"
                   value={formik.values.GrossPremium}
@@ -237,6 +229,128 @@ const OrderSummary = ({ action, flow }) => {
               </div>
             </div>
           </div>
+          {state?.coInsurance && <div class="col-12 md:col-6 lg:col-6 xl:col-6">
+            <Accordion activeIndex={0} style={{
+              maxWidth: '100%'
+            }} >
+              <AccordionTab className="iconData" style={{
+                maxWidth: '100%'
+              }} header={
+                <div
+                  className="mb-2 mt-2"
+                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                >
+                  <div style={{
+                    fontSize: '14px', color: 'black'
+                  }}>Co Insurance Summary</div>
+                  <div style={{ fontSize: "10px", color: "#6c737f" }}>
+                    ▼
+                  </div>
+                </div>
+              }>
+                <div style={{
+                  borderRadius: "10px", border: '1px solid #d1d5db'
+                }} >
+                  <div style={{ display: "flex", marginBottom: "8px", paddingBottom: "4px", borderBottom: '1px solid #d1d5db', height: '32px', alignItems: 'center', padding: '0 12px' }}>
+                    <div style={{
+                      width: '20%', textAlign: 'left', fontSize: 16
+                    }}>Comp code</div>
+                    <div style={{
+                      width: '50%', textAlign: 'left', fontSize: 16
+                    }}>Name</div>
+                    <div style={{
+                      width: '10%', fontSize: 16
+                    }}>%</div>
+                    <div style={{
+                      width: '20%', fontSize: 16, textAlign: 'end'
+                    }}>Premium</div>
+
+                  </div>
+
+                  {/* Rows */}
+                  <div style={{ display: "flex", marginBottom: "8px", padding: '0 12px' }}>
+
+                    <div style={{
+                      width: '20%', textAlign: 'left', fontSize: 14, color: '#6c737f'
+                    }}>CO-INS-1</div>
+                    <div style={{
+                      width: '50%', textAlign: 'left', fontSize: 14, color: '#6c737f'
+                    }}>Apex Assurance</div>
+                    <div style={{
+                      width: '10%', fontSize: 14,
+                      color: '#6366f1'
+                    }}>30</div>
+                    <div style={{
+                      width: '20%', fontSize: 16, textAlign: 'end'
+                    }}>
+                      18,000.00
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", marginBottom: "8px", padding: '0 12px' }}>
+
+                    <div style={{
+                      width: '20%', textAlign: 'left', fontSize: 14, color: '#6c737f'
+                    }}>CO-INS-2</div>
+                    <div style={{
+                      width: '50%', textAlign: 'left', fontSize: 14, color: '#6c737f'
+                    }}>Liberty Shield Insurance</div>
+                    <div style={{
+                      width: '10%', fontSize: 14, color: '#6366f1'
+
+                    }}>30</div>
+                    <div style={{
+                      width: '20%', fontSize: 16, textAlign: 'end'
+                    }}>
+                      27,000.00
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", marginBottom: "8px", padding: '0 12px' }}>
+
+                    <div style={{
+                      width: '20%', textAlign: 'left', fontSize: 14, color: '#6c737f'
+                    }}>CO-INS-3</div>
+                    <div style={{
+                      width: '50%', textAlign: 'left', fontSize: 14, color: '#6c737f'
+                    }}>Sentinel Underwriters</div>
+                    <div style={{
+                      width: '10%', fontSize: 14, color: '#6366f1'
+
+                    }}>10</div>
+                    <div style={{
+                      width: '20%', fontSize: 16, textAlign: 'end'
+                    }}>
+                      9,000.00
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div
+                    style={{
+                      padding: "12px",
+                      borderTop: "1px solid #d1d5db",
+                      display: 'flex'
+                    }}
+                  >
+                    <div style={{
+                      width: '20%', textAlign: 'left', fontSize: 14
+                    }} />
+                    <div style={{
+                      width: '50%', textAlign: 'left', fontSize: 14, color: '#6c737f'
+                    }}>Total</div>
+                    <div style={{
+                      width: '10%', fontSize: 14, color: '#6366f1'
+
+                    }}>70</div>
+                    <div style={{
+                      width: '20%', fontSize: 16, textAlign: 'end'
+
+                    }}>54,000.00</div>
+                  </div>
+                </div>
+              </AccordionTab>
+            </Accordion>
+          </div>
+          }
         </div>
         <div class="grid m-0">
           <div className="col-12 p-0">

@@ -5,11 +5,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import SvgRightarrow from "../../../../assets/agentIcon/SvgRightArrow";
 
-const PolicyApprovalCard = () => {
+const PolicyApprovalCard = ({ state }) => {
   const navigate = useNavigate();
 
   const handleclick = () => {
-    navigate("/agent/uploadpolicy");
+    navigate("/agent/uploadpolicy", { state: state });
   };
   const handleEdit = () => {
     navigate(`/agent/convertpolicy/customerinfo/edit/${123}`);

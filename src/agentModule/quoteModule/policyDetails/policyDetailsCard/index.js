@@ -52,8 +52,8 @@ const PolicyDetailsCard = ({ action, flow, }) => {
     dispatch(postPolicyDetailsMiddleware(values));
     {
       action === "quotedetails"
-        ? navigate(`/agent/createquote/coveragedetails/coveragedetail/${123}`)
-        : navigate(`/agent/createquote/coveragedetails/coveragecreate/${123}`);
+        ? navigate(`/agent/createquote/coveragedetails/coveragedetail/${123}`, { state: { coInsurance: checked, installemtType: formik.values?.InstallmentType } })
+        : navigate(`/agent/createquote/coveragedetails/coveragecreate/${123}`, { state: { coInsurance: checked, installemtType: formik.values?.InstallmentType } });
     }
   };
   // const customValidation = (values) => {
@@ -174,7 +174,7 @@ const PolicyDetailsCard = ({ action, flow, }) => {
           </div>
           {category === "Company" &&
             <div className="card flex flex-wrap justify-content-spacebetween gap-13">
-              <Button label="Upload" icon={<SvgUploadArrowIcon />} style={{ gap: '8px',padding:10 }} />
+              <Button label="Upload" icon={<SvgUploadArrowIcon />} style={{ gap: '8px', padding: 10 }} />
             </div>
 
 
@@ -191,6 +191,23 @@ const PolicyDetailsCard = ({ action, flow, }) => {
             <label className="ml-2">Co-Insurance</label>
           </div>
         </div>
+        <div className="grid mt-2">
+          <div className="col-12 md:col-12 lg:col-12">
+            <DropdownField
+              label="Insurance Company Name"
+              value={formik.values.InsuranceCompanyName}
+              options={InsuranceCompanyOptions}
+              onChange={(e) => {
+                console.log(e.value);
+                formik.setFieldValue("InsuranceCompanyName", e.value);
+              }}
+              optionLabel="label"
+            />
+
+          </div>
+        </div>
+
+
         {checked &&
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -216,23 +233,6 @@ const PolicyDetailsCard = ({ action, flow, }) => {
           </div>
         }
 
-        {!checked &&
-          <div className="grid mt-2">
-            <div className="col-12 md:col-12 lg:col-12">
-              <DropdownField
-                label="Insurance Company Name"
-                value={formik.values.InsuranceCompanyName}
-                options={InsuranceCompanyOptions}
-                onChange={(e) => {
-                  console.log(e.value);
-                  formik.setFieldValue("InsuranceCompanyName", e.value);
-                }}
-                optionLabel="label"
-              />
-
-            </div>
-          </div>
-        }
 
 
         <div className="grid mt-2">

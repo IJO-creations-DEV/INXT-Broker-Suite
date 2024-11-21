@@ -2,11 +2,12 @@ import React from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import PolicyDetailedViewCard from "./policyDetailViewCard";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PolicyDetailedView = ({ action }) => {
   const navigate = useNavigate();
-
+  const { state } = useLocation();
+  console.log(state, "axx")
   const handleClientViewNavigation = () => {
     navigate(`/agent/clientview/${123}`);
   };
@@ -23,7 +24,7 @@ const PolicyDetailedView = ({ action }) => {
           Carson Darrin / Client ID : 12345678
         </div>
       </div>
-      <PolicyDetailedViewCard action={action} />
+      <PolicyDetailedViewCard action={action} state={state} />
     </div>
   );
 };

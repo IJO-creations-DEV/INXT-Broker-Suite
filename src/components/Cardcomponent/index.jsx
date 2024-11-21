@@ -14,6 +14,7 @@ const CardComponent = ({
   label,
   textSize,
   textWeight,
+  header, padding
 }) => {
   let cardStyle = {
     padding: "10px",
@@ -32,6 +33,9 @@ const CardComponent = ({
   if (textColor) {
     cardStyle.color = textColor;
   }
+  if (padding) {
+    cardStyle.padding = padding
+  }
   const combinedClassName = ` ${disabled ? "disabled" : ""} ${className}`;
 
   return (
@@ -41,7 +45,7 @@ const CardComponent = ({
       textColor={textColor}
       label={label}
     >
-      <Card className={combinedClassName} style={cardStyle} onClick={onClick}>
+      <Card className={combinedClassName} style={cardStyle} onClick={onClick} header={header}>
         {children}
       </Card>
     </LabelWrapper>

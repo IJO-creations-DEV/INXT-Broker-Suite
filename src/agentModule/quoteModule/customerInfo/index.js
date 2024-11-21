@@ -7,7 +7,7 @@ import DropdownField from "../../component/DropdwonField";
 import { Button } from "primereact/button";
 import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
 import { FileUpload } from "primereact/fileupload";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import customHistory from "../../../routes/customHistory";
 import { useFormik } from "formik";
 import {
@@ -21,6 +21,7 @@ const CustomerInfo = ({ action }) => {
   console.log(action, "find action in customer info");
   const [imageURL, setimageURL] = useState("");
   const navigate = useNavigate();
+  const { state } = useLocation()
 
   const dispatch = useDispatch();
   const initialValues = {
@@ -60,10 +61,10 @@ const CustomerInfo = ({ action }) => {
     // }
     if (action === "edit") {
       dispatch(patchinformationMiddleWare(values));
-      navigate("/agent/convertpolicy/uploadvehiclephotos");
+      navigate("/agent/convertpolicy/uploadvehiclephotos", { state: state });
     } else {
       dispatch(postinformationMiddleWare(values));
-      navigate("/agent/convertpolicy/uploadvehiclephotos");
+      navigate("/agent/convertpolicy/uploadvehiclephotos", { state: state });
     }
   };
 
@@ -270,14 +271,14 @@ const CustomerInfo = ({ action }) => {
                         "the data"
                       );
                     }}
-                    // uploadHandler={(e) => {
-                    //   formik.setFieldValue("file", e.files[0]);
-                    //   handleUppendImg(
-                    //     e.options.props.name,
-                    //     e.files[0],
-                    //     "the data"
-                    //   );
-                    // }}
+                  // uploadHandler={(e) => {
+                  //   formik.setFieldValue("file", e.files[0]);
+                  //   handleUppendImg(
+                  //     e.options.props.name,
+                  //     e.files[0],
+                  //     "the data"
+                  //   );
+                  // }}
                   />
                   <div className="icon_click_option">
                     <SvgImageUpload />

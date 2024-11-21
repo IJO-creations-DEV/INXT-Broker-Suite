@@ -30,7 +30,7 @@ const QuoteDetailView = () => {
           <label className="policy_text">Policy Details</label>
           <div className="quote_details">
             <label className="insurance_text">Insurance Company</label>
-            <label className="alpha_text">Alpha Insurance Company</label>
+            <label className="alpha_text">SecureGuard Insurance</label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Insurance Policy Type</label>
@@ -47,7 +47,7 @@ const QuoteDetailView = () => {
           <label className="policy_text">Policy Details</label>
           <div className="quote_details">
             <label className="insurance_text">Insurance Company</label>
-            <label className="alpha_text">Alpha Insurance Company</label>
+            <label className="alpha_text">SecureGuard Insurance</label>
           </div>
           <div className="quote_details">
             <label className="insurance_text">Insurance Policy Type</label>

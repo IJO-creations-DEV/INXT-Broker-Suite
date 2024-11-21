@@ -126,7 +126,7 @@ function Bankdetailselection() {
     if (actionToast != null) {
       toastRef.current.showToast();
       {
-        setTimeout(() => {}, 3000);
+        setTimeout(() => { }, 3000);
       }
     }
   }, [actionToast]);
@@ -134,6 +134,26 @@ function Bankdetailselection() {
     const patchID = selectedProducts?.id;
     dispatch(patchpaymentStatusByIdMiddleware(patchID));
     setSelectedProducts([]);
+    if (selectedProducts?.status == 'Approved') {
+      const pdfUrl = "https://drive.google.com/file/d/1TWI31WRwI6ppYxCqYe8uEC183tJyzBUt/view?usp=sharing";
+      const openInNewTab = () => {
+        const newTab = window.open(pdfUrl, "_blank");
+
+        // Trigger download after opening
+        if (newTab) {
+          const link = newTab.document.createElement("a");
+          link.href = pdfUrl;
+          link.download = "document.pdf"; // Specify the filename
+          newTab.document.body.appendChild(link);
+          link.click();
+          newTab.document.body.removeChild(link);
+        }
+      };
+
+      // Download the PDF
+      openInNewTab();
+
+    }
     setactionToast(
       selectedProducts?.status === "Pending" ? "Approved" : "Printed"
     );
@@ -227,7 +247,7 @@ function Bankdetailselection() {
             <Column
               selectionMode="single"
               selectedItem
-              headerStyle={{ width: "4rem" ,border:"0px solid #000"}}
+              headerStyle={{ width: "4rem", border: "0px solid #000" }}
               style={{ textAlign: "center" }}
             ></Column>
           )}

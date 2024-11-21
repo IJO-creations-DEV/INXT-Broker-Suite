@@ -4,7 +4,7 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import SvgRightarrow from "../../../assets/agentIcon/SvgRightArrow";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
 import customHistory from "../../../routes/customHistory";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +16,9 @@ import backimage from '../../../assets/images/frontright.png'
 
 const LeadPreview = () => {
   const navigate = useNavigate();
-
+  const { state } = useLocation()
   const handleclick = () => {
-    navigate("/agent/policyapproval");
+    navigate("/agent/policyapproval", { state: state });
   };
   const handleBackNavigation = () => {
     customHistory.back();
@@ -59,7 +59,7 @@ const LeadPreview = () => {
           <label className="policy__text">Policy Details</label>
           <div className="quote__details">
             <label className="insurance__text">Insurance Company</label>
-            <label className="alpha__text">Alpha Insurance Company</label>
+            <label className="alpha__text">SecureGuard Insurance</label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">Insurance Policy Type</label>
@@ -251,14 +251,14 @@ const LeadPreview = () => {
           <label className="policy__text">Coverage details</label>
           <div className="quote__details">
             <label className="insurance__text">Total Sum Insured</label>
-            <label className="alpha__text">5,00,000.00</label>
+            <label className="alpha__text">3,25,000.00</label>
           </div>
         </div>
         <div className="sub__title">
           <label className="policy__text">Payment Details</label>
           <div className="quote__details">
             <label className="insurance__text">NET Premium</label>
-            <label className="alpha__text">5000.00</label>
+            <label className="alpha__text">100,000.00</label>
           </div>
           <div className="quote__details">
             <label className="insurance__text">DST</label>
@@ -282,7 +282,7 @@ const LeadPreview = () => {
           </div>
           <div className="quote__details">
             <label className="gross__text">Gross premium</label>
-            <label className="gross__count">6500.00</label>
+            <label className="gross__count">104,900.00</label>
           </div>
         </div>
       </Card>

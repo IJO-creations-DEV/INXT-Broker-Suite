@@ -60,7 +60,7 @@ const DialogList = ({ setVisible, visible }) => {
 
   return (
     <div>
-      <Dialog header="Header" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+      <Dialog header="Co-Insurance Company Details" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
         <div className="grid mt-2">
           <div className="col-12 md:col-12 lg:col-12">
             <DropdownField

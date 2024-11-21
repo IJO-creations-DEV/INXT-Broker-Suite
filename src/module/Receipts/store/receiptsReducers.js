@@ -59,7 +59,21 @@ const initialState = {
       fcAmount: "00.00",
       lcAmount: "00.00"
     },
-
+    {
+      id: 3,
+      policies: "Motor",
+      netPremium: "100000.00",
+      paid: "00.00",
+      unPaid: "100000.00",
+      discounts: "0.00",
+      dst: "1000.00",
+      lgt: "1100.00",
+      vat: "700.00",
+      ewt: "600.00",
+      other: "00.00",
+      fcAmount: "00.00",
+      lcAmount: "00.00"
+    },
   ],
   receiptDetailList: [
     {
@@ -87,6 +101,22 @@ const initialState = {
       lgt: "200.00",
       vat: "200.00",
       ewt: "200.00",
+      fcAmount: "00.00",
+      lcAmount: "00.00"
+    },
+    {
+      id: 3,
+      policies: "Motor",
+      netPremium: "100000.00",
+      paid: "00.00",
+      unPaid: "100000.00",
+      discounts: "0.00",
+      dst: "1000.00",
+      lgt: "1100.00",
+      vat: "700.00",
+      ewt: "600.00",
+      other: "00.00",
+
       fcAmount: "00.00",
       lcAmount: "00.00"
     },

@@ -59,25 +59,30 @@ function PolicyReceipts() {
   console.log(totalUnPaid, "totalUnPaid");
 
   const totalFC = selectedRows.reduce((total, item) => {
+    console.log(item, "Fc amount list")
     const fcAmount = parseFloat(item.fcAmount);
-    return !isNaN(fcAmount) ? total + fcAmount : total;
+    console.log(fcAmount, "Fc amount")
+    return isNaN(fcAmount) ? total + fcAmount : total;
   }, 0);
-  console.log(totalFC, "totalUnPaid");
+  console.log(totalFC, "totalfcUnPaid");
 
   const totall = selectedRows.reduce((total, item) => {
+    console.log(item, "itemsss")
     const dst = parseFloat(item.dst);
     const vat = parseFloat(item.vat);
     const lgt = parseFloat(item.lgt);
     const other = parseFloat(item.other);
+    console.log(dst, vat, lgt, other, "itemsss list")
     const subTotalAll = dst + lgt + vat + other;
+    console.log(subTotalAll, "itemsss sum")
     return !isNaN(subTotalAll) ? total + subTotalAll : total;
   }, 0);
   console.log(totall, "totall");
 
-  useEffect(() => {
-    console.log(total, "Total");
-  }, [total]);
-  console.log(total, "find patchReceipEditMiddleware");
+  // useEffect(() => {
+  //   console.log(total, "Total");
+  // }, [total]);
+  // console.log(total, "find patchReceipEditMiddleware");
 
   const navigate = useNavigate();
   const items = [
@@ -161,7 +166,7 @@ function PolicyReceipts() {
 
   const handleClick = () => {
     console.log("totalFCfirst", totalFC);
-    navigate("/accounts/receipts/paymentdetails", { state: { totalFC } });
+    navigate("/accounts/receipts/paymentdetails", { state: { totalFC: totalUnPaid } });
   };
   const template2 = {
     layout:

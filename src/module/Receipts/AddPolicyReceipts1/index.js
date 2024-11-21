@@ -120,11 +120,9 @@ function BranchAdding() {
   };
 
   const generateRandomTransaction = () => {
-    const transactions = ["Transaction1", "Transaction2", "Transaction3"];
-    const randomIndex = Math.floor(Math.random() * transactions.length);
-    return { name: transactions[randomIndex] };
+    const randomCode = Math.floor(100000 + Math.random() * 900000); // Generates a 6-digit code
+    return { code: randomCode.toString() };
   };
-
   const generateRandomAmount = () => {
     return (Math.random() * 1000).toFixed(2);
   };
@@ -147,7 +145,7 @@ function BranchAdding() {
       // name: dataa.name,
       // amount: dataa.amount
     };
-    console.log("first99",valueWithId)
+    console.log("first99", valueWithId)
 
     dispatch(postAddReceiptsMiddleware(valueWithId));
 
@@ -169,14 +167,14 @@ function BranchAdding() {
         </span>
         <label className="label_header">Add Receipts</label>
       </div> */}
-       <div>
-          <span onClick={() => navigate(-1)}>
-            <SvgBackicon />
-          </span>
-          <label className="label_header">
+      <div>
+        <span onClick={() => navigate(-1)}>
+          <SvgBackicon />
+        </span>
+        <label className="label_header">
           Add Receipts
-          </label>
-        </div>
+        </label>
+      </div>
       <BreadCrumb
         model={items}
         home={home}

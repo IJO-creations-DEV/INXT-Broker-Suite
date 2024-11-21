@@ -2,10 +2,11 @@ import React from "react";
 import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import UploadPolicyCard from "./uploadPolicyCard";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const UploadPolicy = () => {
   const navigate = useNavigate();
+  const { state } = useLocation()
   const handleLeadListNavigation = () => {
     navigate("/agent/quotelisting");
   };
@@ -30,7 +31,7 @@ const UploadPolicy = () => {
           </div>
         </div>
       </div>
-      <UploadPolicyCard />
+      <UploadPolicyCard state={state} />
     </div>
   );
 };

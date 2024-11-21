@@ -2,10 +2,11 @@ import React from "react";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import "./index.scss";
 import PolicyApprovalCard from "./policyApprovalCard";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PolicyApproval = () => {
   const navigate = useNavigate();
+  const { state } = useLocation()
   const handleLeadNavigation = () => {
     navigate("/agent/leadlisting");
   };
@@ -30,7 +31,7 @@ const PolicyApproval = () => {
           </div>
         </div>
       </div>
-      <PolicyApprovalCard />
+      <PolicyApprovalCard state={state} />
     </div>
   );
 };

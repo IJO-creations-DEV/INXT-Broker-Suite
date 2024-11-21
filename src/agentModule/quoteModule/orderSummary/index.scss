@@ -1,4 +1,21 @@
 .order__summary__container {
+  .myCard {
+    border: 1px solid #d1d5db;
+    margin: 0;
+    padding: 0;
+
+    .p-card-body {
+      padding: 16px !important;
+      margin: 0;
+    }
+  }
+
+  .iconData {
+    svg.p-icon{
+      display: none;
+    }
+  }
+
   .p-card {
     background: #ffffff;
     color: #111927;
@@ -7,10 +24,12 @@
     background-color: #fff !important;
     filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.08)) !important;
     margin-top: 10px;
+
     .p-card-body {
       padding: 24px;
     }
   }
+
   .order__summary__main__title {
     font-size: 34px;
     font-weight: 600;
@@ -18,11 +37,13 @@
     line-height: 51px;
     color: #111927;
   }
+
   .order__summary__back__btn {
     display: flex;
     align-items: center;
     gap: 10px;
     width: max-content;
+
     .order__summary__back__btn__title {
       font-size: 16px;
       font-weight: 400;
@@ -31,6 +52,7 @@
       color: #111927;
     }
   }
+
   .order__summary__title {
     color: #111927;
     font-family: Poppins;
@@ -39,6 +61,7 @@
     font-weight: 600;
     line-height: normal;
   }
+
   .order__summary__subtitle {
     color: #111927;
     font-family: Poppins;
@@ -47,12 +70,14 @@
     font-weight: 400;
     line-height: normal;
   }
+
   .discount__dynamic__card {
     border-radius: 10px;
     background: #eeefff;
     padding: 10px;
     display: grid;
     gap: 8px;
+
     .discount__dynamic__card__title {
       color: #111927;
       font-family: Poppins;
@@ -61,6 +86,7 @@
       font-weight: 400;
       line-height: normal;
     }
+
     .discount__dynamic__card__subtitle {
       color: #111927;
       font-family: Poppins;
@@ -69,6 +95,7 @@
       font-weight: 400;
       line-height: normal;
     }
+
     .discount__dynamic__card__bottom {
       display: flex;
       justify-content: space-between;
@@ -84,11 +111,13 @@
       }
     }
   }
+
   .discount__action__container {
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
   }
+
   .back__next__btn__container {
     display: flex;
     justify-content: flex-end;
@@ -96,6 +125,7 @@
     gap: 24px;
     margin-top: 24px;
   }
+
   .back__btn__container {
     .p-button {
       color: #111927;
@@ -113,6 +143,7 @@
       color: #111927;
     }
   }
+
   .next__btn__container {
     .p-button {
       color: #ffffff;

@@ -73,7 +73,7 @@ function PolicyReceipts() {
     // const formErrors = validate(formik.values);
     // setErrors(formErrors);
     // console.log(formErrors, "iiiii");
-    
+
     // navigate('')
     setProducts("Print");
     if (products == "Print") {
@@ -82,10 +82,28 @@ function PolicyReceipts() {
       // navigate("/accounts/receipts")
       //  ,2000 }
       toastRef.current.showToast();
+      const pdfUrl = "https://drive.google.com/file/d/1Kq9P6EqPbzhDWvKI0o5JD1XbojzJ1VrN/view?usp=sharing";
+      const openInNewTab = () => {
+        const newTab = window.open(pdfUrl, "_blank");
+
+        // Trigger download after opening
+        if (newTab) {
+            const link = newTab.document.createElement("a");
+            link.href = pdfUrl;
+            link.download = "document.pdf"; // Specify the filename
+            newTab.document.body.appendChild(link);
+            link.click();
+            newTab.document.body.removeChild(link);
+        }
+      };
+
+      // Download the PDF
+      openInNewTab();
+
       setTimeout(() => {
         navigate("/accounts/receipts");
       }, 2000);
-    }else{
+    } else {
       toastRef.current.showToast();
       dispatch(getPaymentDetails(formik.values));
     }

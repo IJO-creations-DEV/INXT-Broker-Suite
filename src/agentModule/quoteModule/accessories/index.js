@@ -3,7 +3,7 @@ import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import customHistory from "../../../routes/customHistory";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
@@ -23,16 +23,17 @@ const initialValue = {
 const Accessories = ({ action, flow }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const { state } = useLocation();
+  console.log(state, "satewwe")
   const handleclick = (values) => {
     dispatch(postaccessoriesMiddleware(values));
     console.log(action, "action2");
     {
       action === "accessoriescreate"
         ? flow === "renewal"
-          ? navigate("/agent/renewalquote/ordersummary")
-          : navigate("/agent/createquote/ordersummary")
-        : navigate("/agent/createquote/ordersummaryquote");
+          ? navigate("/agent/renewalquote/ordersummary", { state })
+          : navigate("/agent/createquote/ordersummary", { state })
+        : navigate("/agent/createquote/ordersummaryquote", { state });
     }
   };
   const handleBackNavigation = () => {

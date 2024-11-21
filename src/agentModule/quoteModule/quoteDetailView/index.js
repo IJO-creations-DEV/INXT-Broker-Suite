@@ -4,13 +4,14 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import SvgRightarrow from "../../../assets/agentIcon/SvgRightArrow";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ShareOption from "./Modal/ShareOption";
 
 const QuoteDetailView = ({ action }) => {
   console.log(action, "find action");
   const navigate = useNavigate();
+  const { state } = useLocation()
   const [modalVisible, setModalVisible] = useState(false);
 
   const { PolicyDetails, loading } = useSelector(({ policyDetailsReducer }) => {
@@ -49,10 +50,10 @@ const QuoteDetailView = ({ action }) => {
   const handleclick = () => {
     console.log(action, "find initial logic");
     if (action == "view") {
-      navigate(`/agent/convertpolicy/customerinfo/view/${12}`);
+      navigate(`/agent/convertpolicy/customerinfo/view/${12}`, { state: state });
     }
     if (action == "edit") {
-      navigate(`/agent/convertpolicy/customerinfo/edit/${12}`);
+      navigate(`/agent/convertpolicy/customerinfo/edit/${12}`, { state: state });
     }
   };
   const handleLeadNavigation = () => {
@@ -80,7 +81,7 @@ const QuoteDetailView = ({ action }) => {
             <label className="insurance_text">Insurance Company</label>
             <label className="alpha_text">
               {/* {PolicyDetails.InsuranceCompanyName} */}
-              Alpha Insurance Company
+              SecureGuard Insurance
             </label>
           </div>
           <div className="quote_details">
@@ -172,7 +173,7 @@ const QuoteDetailView = ({ action }) => {
           <div className="quote_details">
             <label className="insurance_text">Total Sum Insured</label>
             <label className="alpha_text">
-              5,00,000.00
+              3,25,000.00
               {/* {CoverageDetails.TotalSumInsured} */}
             </label>
           </div>
@@ -182,7 +183,7 @@ const QuoteDetailView = ({ action }) => {
           <div className="quote_details">
             <label className="insurance_text">NET Premium</label>
             <label className="alpha_text">
-              5000.00
+              100,000.00
               {/* {OrderSummary.NETpremium} */}
             </label>
           </div>
@@ -225,7 +226,7 @@ const QuoteDetailView = ({ action }) => {
             <label className="gross_text">Gross premium</label>
             <label className="gross_count">
               {/* {OrderSummary.GrossPremium} */}
-              6500.00
+              104,900.00
             </label>
           </div>
         </div>

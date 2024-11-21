@@ -3,10 +3,12 @@ import "./index.scss";
 import SvgLeftArrow from "../../../assets/agentIcon/SvgLeftArrow";
 import CoverageDetailsCard from "./coverageDetailsCard";
 import { act } from "react-dom/test-utils";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CoverageDeatails = ({ action, flow }) => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  console.log(state, "batista")
   const handleLeadNavigation = () => {
     if (flow === "renewal") {
       navigate("/agent/clientlisting");
@@ -30,7 +32,7 @@ const CoverageDeatails = ({ action, flow }) => {
             : "Lead ID : 12345678"}
         </div>
       </div>
-      <CoverageDetailsCard action={action} flow={flow} />
+      <CoverageDetailsCard action={action} flow={flow} coInsurance={state?.coInsurance} installmentType={state?.installemtType} />
     </div>
   );
 };

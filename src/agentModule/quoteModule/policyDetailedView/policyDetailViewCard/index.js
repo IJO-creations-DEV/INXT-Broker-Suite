@@ -21,7 +21,7 @@ const handleSubmit = () => {
   // navigate("/agent/convertpolicy/uploadvehiclephotos");
 };
 
-const PolicyDetailedViewCard = ({ action }) => {
+const PolicyDetailedViewCard = ({ action, state }) => {
   const navigate = useNavigate();
 
   const handleclick = () => {
@@ -30,6 +30,9 @@ const PolicyDetailedViewCard = ({ action }) => {
   const handlePayLater = () => {
     navigate(`/agent/clientview/${123}`);
   };
+  const handleAccountingSubmit = () => {
+    navigate(`/agent/policydetailedview/accountview`, { state: state });
+  }
 
   const { policydetailedlist, loading } = useSelector(
     ({ policyDetailedViewMainReducers }) => {
@@ -48,7 +51,7 @@ const PolicyDetailedViewCard = ({ action }) => {
     },
   });
 
-  const handlePolicySubmit = () =>{
+  const handlePolicySubmit = () => {
     const pdfUrl = "https://drive.google.com/file/d/1vGQQmRiSLyf5Tsu1VfYa6IOmFrXK_0gp/view";
     const link = document.createElement("a");
     link.href = pdfUrl;
@@ -58,7 +61,7 @@ const PolicyDetailedViewCard = ({ action }) => {
     document.body.removeChild(link);
   }
 
-  const handleInvoiceSubmit = () =>{
+  const handleInvoiceSubmit = () => {
     const pdfUrl = "https://drive.google.com/file/d/18LjJnT_J0jgpn9wKG1EKDsipYxIS6W7X/view";
     const link = document.createElement("a");
     link.href = pdfUrl;
@@ -79,7 +82,7 @@ const PolicyDetailedViewCard = ({ action }) => {
           <div className="col-12">
             <InputTextField
               label="Insurance Company"
-              value="Alpha Insurance company"
+              value="SecureGuard Insurance"
             />
           </div>
           <div className="col-12 md:col-6 lg:col-6">
@@ -99,7 +102,7 @@ const PolicyDetailedViewCard = ({ action }) => {
             <InputTextField
               label="Production"
               value={formik.values.Production}
-              // onChange={formik.handleChange("Production")}
+            // onChange={formik.handleChange("Production")}
             />
             {/* <DatepickerField
               label="Production"
@@ -114,7 +117,7 @@ const PolicyDetailedViewCard = ({ action }) => {
             <InputTextField
               label="Inception"
               value={formik.values.Inception}
-              // onChange={formik.handleChange("Inception")}
+            // onChange={formik.handleChange("Inception")}
             />
             {/* <DatepickerField
               label="Inception"
@@ -132,7 +135,7 @@ const PolicyDetailedViewCard = ({ action }) => {
             <InputTextField
               label="Issue Date"
               value={formik.values.IssueDate}
-              // onChange={formik.handleChange("IssueDate")}
+            // onChange={formik.handleChange("IssueDate")}
             />
             {/* <DatepickerField
               label="Issue Date"
@@ -147,7 +150,7 @@ const PolicyDetailedViewCard = ({ action }) => {
             <InputTextField
               label="Expiry"
               value={formik.values.Expiry}
-              // onChange={formik.handleChange("Expiry")}
+            // onChange={formik.handleChange("Expiry")}
             />
 
             {/* <DatepickerField
@@ -160,17 +163,17 @@ const PolicyDetailedViewCard = ({ action }) => {
             /> */}
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Total Coverage" value="1,00,000.00" />
+            <InputTextField label="Total Coverage" value="3,25,000.00" />
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <InputTextField label="Gross Premium" value="6,500.00" />
+            <InputTextField label="Gross Premium" value="104,900.00" />
           </div>
         </div>
 
         <div className="policy__detail__view__title mt-2">Documents</div>
         <div className="grid mt-2">
           <div className="col-12 md:col-6 lg:col-6">
-            <div onClick={()=>handlePolicySubmit()} className="policy__detail__view__box">
+            <div onClick={() => handlePolicySubmit()} className="policy__detail__view__box">
               <div className="grid mt-2">
                 <div className="col-12 md:col-6 lg:col-6">
                   <div className="policy__detail__view__box__title">Policy</div>
@@ -187,12 +190,29 @@ const PolicyDetailedViewCard = ({ action }) => {
             </div>
           </div>
           <div className="col-12 md:col-6 lg:col-6">
-            <div onClick={()=>handleInvoiceSubmit()} className="policy__detail__view__box">
+            <div onClick={() => handleInvoiceSubmit()} className="policy__detail__view__box">
               <div className="grid mt-2">
                 <div className="col-12 md:col-6 lg:col-6">
                   <div className="policy__detail__view__box__title">
                     Invoice
                   </div>
+                </div>
+                <div className="col-12 md:col-6 lg:col-6">
+                  <div className="policy__detail__view__box__container">
+                    <div className="policy__detail__view__box__sub__title">
+                      View
+                    </div>
+                    <SvgBlueArrow />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 md:col-6 lg:col-6">
+            <div onClick={() => handleAccountingSubmit()} className="policy__detail__view__box">
+              <div className="grid mt-2">
+                <div className="col-12 md:col-6 lg:col-6">
+                  <div className="policy__detail__view__box__title">Premium Accounting Entries</div>
                 </div>
                 <div className="col-12 md:col-6 lg:col-6">
                   <div className="policy__detail__view__box__container">

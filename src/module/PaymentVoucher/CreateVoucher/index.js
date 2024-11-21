@@ -19,6 +19,7 @@ import { Toast } from "primereact/toast";
 
 import { useDispatch, useSelector } from "react-redux";
 import { postpaymentVocherCreateDataMiddleware } from "../store/paymentVocherMiddleware";
+import { InsurancePolicycontainer } from "../../../agentModule/quoteModule/policyDetails/mock";
 const initialValues = {
   VoucherDate: new Date(),
   DepartmentCode: "",
@@ -49,6 +50,8 @@ function Createvoucher() {
   const PayeeType = [
     { name: "Customer", code: "NY" },
     { name: "Owner", code: "RM" },
+    { name: "Insurer", code: "INS" },
+
   ];
   const Criteria = [
     { name: "Specific", code: "NY" },
@@ -89,6 +92,7 @@ function Createvoucher() {
       };
     }
   );
+
   const handleSubmit = (value) => {
     const valueWithId = {
       ...value,
@@ -133,7 +137,9 @@ function Createvoucher() {
     validate: customValidation,
     onSubmit: handleSubmit,
   });
-  console.log("first", formik.values.Criteria?.name);
+  console.log("first", formik?.values?.Criteria?.name);
+  console.log(formik?.values?.PayeeType, "asd")
+
   return (
     <div className="overall__createvoucher__container">
       <div>
@@ -260,15 +266,15 @@ function Createvoucher() {
         </div>
         <div className="grid">
           {formik.values.Criteria === "" ||
-          formik.values.Criteria?.name === "Specific" ? (
+            formik.values.Criteria?.name === "Specific" ? (
             <div className="col-3 md:col-3 lg-col-3">
               <DropDowns
                 className="dropdown__container"
                 label="Customer Code"
                 value={formik.values.CustomerCode}
                 onChange={(e) => formik.setFieldValue("CustomerCode", e.value)}
-                options={CustomerCode}
-                optionLabel="name"
+                options={formik?.values?.PayeeType?.code == 'INS' ? InsurancePolicycontainer : CustomerCode}
+                optionLabel={formik?.values?.PayeeType?.code == 'INS' ? "label" : "name"}
                 placeholder={"Select"}
                 dropdownIcon={<SvgDropdown color={"#000"} />}
               />

@@ -5,7 +5,7 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import SvgImageUpload from "../../../assets/icons/SvgImageUpload";
 import { FileUpload } from "primereact/fileupload";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import customHistory from "../../../routes/customHistory";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
@@ -18,7 +18,8 @@ const UploadVehiclePhotos = () => {
   const [imageURLInterior, setimageURLInterior] = useState(null);
 
   const navigate = useNavigate();
-
+  const { state } = useLocation();
+  console.log(state, "state value")
   const handleclick = () => {
     navigate("/agent/coveragedetailedview");
   };
@@ -56,7 +57,7 @@ const UploadVehiclePhotos = () => {
     //   return;
     // }
 
-    navigate("/agent/coveragedetailedview");
+    navigate("/agent/coveragedetailedview", { state: state });
   };
   const formik = useFormik({
     initialValues: formInitialValue,

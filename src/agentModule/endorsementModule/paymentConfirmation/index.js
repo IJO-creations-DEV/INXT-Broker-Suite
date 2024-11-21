@@ -34,7 +34,7 @@ const PaymentConfirmation = () => {
 
         <div className="premium__header mt-3">
           <label className="net__premium">NET Premium</label>
-          <label className="premium__id">5000.00</label>
+          <label className="premium__id">100,000.00</label>
         </div>
         <div className="premium__header mt-3">
           <label className="net__premium">DST</label>
@@ -59,7 +59,7 @@ const PaymentConfirmation = () => {
         <hr className="one_line_divider mt-5"></hr>
         <div className="premium__header mt-5">
           <label className="gross__premium">Gross premium</label>
-          <label className="gross__id">6500.00</label>
+          <label className="gross__id">104,900.00</label>
         </div>
         <div className="button_component">
           <Button

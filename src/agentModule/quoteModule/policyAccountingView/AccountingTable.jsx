@@ -183,6 +183,22 @@ const AccountingTable = ({ type }) => {
                     // sortable
                     sortField="dateSortField"
                 ></Column>
+                {type == "Quarterly" &&
+                    <Column
+                        field="docDt"
+                        header={renderUncheckedHeader("Document Date")}
+                        headerStyle={headerStyle}
+                    ></Column>
+
+                }
+                {type == "Quarterly" &&
+                    <Column
+                        field="dueDt"
+                        header={renderUncheckedHeader("Due Date")}
+                        headerStyle={headerStyle}
+                    ></Column>
+
+                }
                 <Column
                     body={renderAmount}
                     header={renderUncheckedHeader("Amount")}

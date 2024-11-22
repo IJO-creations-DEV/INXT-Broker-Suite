@@ -16,9 +16,9 @@ export const InsurancePolicyTypes = [
 ];
 
 export const InsurancePolicycontainer = [
-  { label: "Apex Assurance", value: "Apex Assurance" },
-  { label: "Liberty Shield Insurance ", value: "Liberty Shield Insurance " },
-  { label: "Sentinel Underwriters ", value: "Sentinel Underwriters" },
+  { label: "Apex Assurance", value: "Apex Assurance", sumInsured: "65000" },
+  { label: "Liberty Shield Insurance", value: "Liberty Shield Insurance", sumInsured: "97500" },
+  { label: "Sentinel Underwriters ", value: "Sentinel Underwriters", sumInsured: "32500" },
 
 
 ];

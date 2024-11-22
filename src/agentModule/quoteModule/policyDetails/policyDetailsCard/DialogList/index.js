@@ -10,7 +10,7 @@ import {
 } from "../../mock";
 
 import { useDispatch, useSelector } from "react-redux";
-import { postModleDetailsMiddleware} from '../../store/policyDetailsMiddleware'
+import { postModleDetailsMiddleware } from '../../store/policyDetailsMiddleware'
 import { useFormik } from 'formik';
 const DialogList = ({ setVisible, visible }) => {
   const [products, setProducts] = useState([]);
@@ -31,6 +31,30 @@ const DialogList = ({ setVisible, visible }) => {
     }
   );
   const dispatch = useDispatch();
+  const getSumInsured = (name) => {
+    if (name == "Apex Assurance") {
+      return "65000"
+    }
+     if (name == "Liberty Shield Insurance") {
+      return "97500"
+    }
+    else {
+      return "32500"
+    }
+  }
+
+  const getPremium = (name) => {
+    console.log(name,"name")
+    if (name == "Apex Assurance") {
+      return "18000"
+    }
+   if (name == "Liberty Shield Insurance") {
+      return "27000"
+    }
+    else {
+      return "9000"
+    }
+  }
   const handleclick = (values) => {
 
     console.log(values, "action");
@@ -38,8 +62,11 @@ const DialogList = ({ setVisible, visible }) => {
     formik.resetForm()
     const valueWithId = {
       ...values,
+      sumInsured: getSumInsured(values?.ParticipantName),
+      premium: getPremium(values?.ParticipantName),
       id: TableList?.length + 1,
     };
+    console.log(valueWithId, "action with valuesP")
     dispatch(postModleDetailsMiddleware(valueWithId));
     // {
     //   action === "quotedetails"

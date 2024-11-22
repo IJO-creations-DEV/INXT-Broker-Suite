@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  POST_POLICY_DETAILS, POST_ADD_MODLE,GET_MODLE_DETAILS
+  POST_POLICY_DETAILS, POST_ADD_MODLE, GET_MODLE_DETAILS
 } from "../../../../redux/agentActionTypes";
 
 export const postPolicyDetailsMiddleware = createAsyncThunk(
@@ -23,11 +23,13 @@ export const postModleDetailsMiddleware = createAsyncThunk(
     console.log(payload, "postAddCountryMiddleware");
 
     const dataTable = {
-      id:payload?.id,
+      id: payload?.id,
       ParticipantName: payload?.ParticipantName,
-    SumInsuredcurrency: payload?.SumInsuredcurrency,
-    Premiumcurrencys: payload?.Premiumcurrencys,
-    Sharepercentage: payload?.Sharepercentage
+      SumInsuredcurrency: payload?.SumInsuredcurrency,
+      Premiumcurrencys: payload?.Premiumcurrencys,
+      Sharepercentage: payload?.Sharepercentage,
+      premium: payload?.premium,
+      sumInsured: payload?.sumInsured
     }
     console.log(dataTable, "dataTable")
     try {

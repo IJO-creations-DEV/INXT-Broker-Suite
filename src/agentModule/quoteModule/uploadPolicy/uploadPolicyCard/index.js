@@ -20,7 +20,7 @@ import SvgTable from "../../../../assets/icons/SvgTable";
 
 
 const UploadPolicyCard = ({ state }) => {
-  console.log(state,"axx")
+  console.log(state, "axx")
   const [imageURL, setimageURL] = useState();
   const toastRef = useRef(null);
   const navigate = useNavigate();
@@ -139,8 +139,14 @@ const UploadPolicyCard = ({ state }) => {
             <Column header="SI Currency" field="SumInsuredcurrency" style={{ paddingLeft: 20 }}></Column>
             <Column header="Premium currency" field="Premiumcurrencys" style={{ paddingLeft: 20 }}></Column>
             <Column header="Share percentage" field="Sharepercentage" style={{ paddingLeft: 20 }}></Column>
-            <Column header="Sum Insured" field="Sharepercentage" style={{ paddingLeft: 20 }}></Column>
-            <Column header="Premium" field="Sharepercentage" style={{ paddingLeft: 20 }}></Column>
+            {/* premium
+: 
+"9000"
+sumInsured
+: 
+"32500" */}
+            <Column header="Sum Insured" field="sumInsured" style={{ paddingLeft: 20 }}></Column>
+            <Column header="Premium" field="premium" style={{ paddingLeft: 20 }}></Column>
           </DataTable>
         </div>
 

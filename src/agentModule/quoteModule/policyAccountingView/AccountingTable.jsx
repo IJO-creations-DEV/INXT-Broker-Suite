@@ -170,19 +170,6 @@ const AccountingTable = ({ type }) => {
                     header={rendercheckedHeader("Code")}
                     headerStyle={headerStyle}
                 ></Column>
-                <Column
-                    field="mainAcc"
-                    header={renderUncheckedHeader("Main Account")}
-                    headerStyle={headerStyle}
-                ></Column>
-                <Column
-                    // body={renderDate}
-                    field="drCr"
-                    header={renderUncheckedHeader("Dr/Cr")}
-                    headerStyle={headerStyle}
-                    // sortable
-                    sortField="dateSortField"
-                ></Column>
                 {type == "Quarterly" &&
                     <Column
                         field="docDt"
@@ -199,6 +186,20 @@ const AccountingTable = ({ type }) => {
                     ></Column>
 
                 }
+                <Column
+                    field="mainAcc"
+                    header={renderUncheckedHeader("Main Account")}
+                    headerStyle={headerStyle}
+                ></Column>
+                <Column
+                    // body={renderDate}
+                    field="drCr"
+                    header={renderUncheckedHeader("Dr/Cr")}
+                    headerStyle={headerStyle}
+                    // sortable
+                    sortField="dateSortField"
+                ></Column>
+
                 <Column
                     body={renderAmount}
                     header={renderUncheckedHeader("Amount")}

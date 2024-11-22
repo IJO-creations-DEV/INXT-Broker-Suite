@@ -279,7 +279,7 @@ const OrderSummary = ({ action, flow }) => {
                     <div style={{
                       width: '10%', fontSize: 14,
                       color: '#6366f1'
-                    }}>30</div>
+                    }}>20</div>
                     <div style={{
                       width: '20%', fontSize: 16, textAlign: 'end'
                     }}>
@@ -340,7 +340,7 @@ const OrderSummary = ({ action, flow }) => {
                     <div style={{
                       width: '10%', fontSize: 14, color: '#6366f1'
 
-                    }}>70</div>
+                    }}>60</div>
                     <div style={{
                       width: '20%', fontSize: 16, textAlign: 'end'
 

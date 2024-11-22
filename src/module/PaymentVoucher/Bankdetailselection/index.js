@@ -135,7 +135,7 @@ function Bankdetailselection() {
     dispatch(patchpaymentStatusByIdMiddleware(patchID));
     setSelectedProducts([]);
     if (selectedProducts?.status == 'Approved') {
-      const pdfUrl = "https://drive.google.com/file/d/1TWI31WRwI6ppYxCqYe8uEC183tJyzBUt/view?usp=sharing";
+      const pdfUrl = "https://drive.google.com/file/d/1xW048fNszD5YJeQNmWAmhqQy8Ey2KG0M/view?usp=sharing";
       const openInNewTab = () => {
         const newTab = window.open(pdfUrl, "_blank");
 

@@ -11,12 +11,12 @@ import './index.scss'
 const AccountingTable = ({ type }) => {
     const navigate = useNavigate()
     const data = [
-        { custCode: "CUST-001", mainAcc: "Premium Receivable", drCr: "Dr", amount: 100000 },
-        { custCode: "SGUARD", mainAcc: "Premium Payable", drCr: "Cr", amount: 36000 },
-        { custCode: "CO-INS-1", mainAcc: "Premium Payable", drCr: "Cr", amount: 18000 },
-        { custCode: "CO-INS-2", mainAcc: "Premium Payable", drCr: "Cr", amount: 27000 },
-        { custCode: "CO-INS-3", mainAcc: "Premium Payable", drCr: "Cr", amount: 9000 },
-        { custCode: "BROK-001", mainAcc: "Commition Income", drCr: "Cr", amount: 10000 },
+        { custCode: "CUST-001", mainAcc: "Premium Receivable", drCr: "Dr", amount: 100000, "docDt": "1-Jan-25", "dueDt": "1-Jan-25", },
+        { custCode: "SGUARD", mainAcc: "Premium Payable", drCr: "Cr", amount: 36000, "docDt": "1-Jan-25", "dueDt": "1-Jan-25", },
+        { custCode: "CO-INS-1", mainAcc: "Premium Payable", drCr: "Cr", amount: 18000, "docDt": "1-Jan-25", "dueDt": "1-Jan-25", },
+        { custCode: "CO-INS-2", mainAcc: "Premium Payable", drCr: "Cr", amount: 27000, "docDt": "1-Jan-25", "dueDt": "1-Jan-25", },
+        { custCode: "CO-INS-3", mainAcc: "Premium Payable", drCr: "Cr", amount: 9000, "docDt": "1-Jan-25", "dueDt": "1-Jan-25", },
+        { custCode: "BROK-001", mainAcc: "Commition Income", drCr: "Cr", amount: 10000, "docDt": "1-Jan-25", "dueDt": "1-Jan-25", },
     ];
     const data1 = [
         { "custCode": "CUST-001", "docDt": "1-Jan-25", "dueDt": "1-Jan-25", "mainAcc": "Premium Receivable", "drCr": "Dr", "amount": 29000 },
@@ -170,22 +170,20 @@ const AccountingTable = ({ type }) => {
                     header={rendercheckedHeader("Code")}
                     headerStyle={headerStyle}
                 ></Column>
-                {type == "Quarterly" &&
-                    <Column
-                        field="docDt"
-                        header={renderUncheckedHeader("Document Date")}
-                        headerStyle={headerStyle}
-                    ></Column>
+                <Column
+                    field="docDt"
+                    header={renderUncheckedHeader("Document Date")}
+                    headerStyle={headerStyle}
+                ></Column>
 
-                }
-                {type == "Quarterly" &&
-                    <Column
-                        field="dueDt"
-                        header={renderUncheckedHeader("Due Date")}
-                        headerStyle={headerStyle}
-                    ></Column>
 
-                }
+                <Column
+                    field="dueDt"
+                    header={renderUncheckedHeader("Due Date")}
+                    headerStyle={headerStyle}
+                ></Column>
+
+
                 <Column
                     field="mainAcc"
                     header={renderUncheckedHeader("Main Account")}

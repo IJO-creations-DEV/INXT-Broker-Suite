@@ -13,7 +13,6 @@ import {
   postCreateleadMiddleware,
 } from "../../Store/leadMiddleware";
 import { useFormik } from "formik";
-import { CountryOptions, CityOptions, StateOptions } from "../mock";
 import countriesData from "../mock";
 import { patchClientEditMiddleWare } from "../../../quoteModule/clientListing/store/clientsMiddleware";
 

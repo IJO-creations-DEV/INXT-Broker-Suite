@@ -376,6 +376,7 @@ export const menuList = [
         icon: <SvgAgentLeadIcon color="#9DA4AE" />,
         path: "/agent/leadlisting",
         includes: [
+          "/agent/createlead/employee-benefit",
           "/agent/leadlisting",
           "/agent/createlead",
           "/createquote/policydetails/createquote/",
@@ -439,25 +440,37 @@ export const menuList = [
           "/agent/claimrejected",
           "/agent/claimdocumentupload",
           "/agent/endorsementdetailedviewonly/",
+          "/agent/employee-benefit/client-policy-details",
         ],
       },
       {
         name: "Quotation",
         icon: <SvgQuotationIcon color="#9DA4AE" />,
         path: "/agent/Quotation",
-        includes: ["/agent/Quotation"],
+        includes: ["/agent/Quotation",
+          "/agent/employee-benefit/create-quote",
+          "/agent/employee-benefit/create-quote-employeebulkupload",
+          "/agent/employee-benefit/create-quote-Coverage-details",
+          "/agent/employee-benefit/create-quote-order-summary",
+          "/agent/employee-benefit/create-quote-quote-details",
+
+        ],
       },
       {
         name: "Policy",
         icon: <SvgPolicyIcon color="#9DA4AE" />,
         path: "/agent/policy",
-        includes: ["/agent/policy"],
+        includes: ["/agent/policy",
+          "/agent/employee-benefit/policy-waiting-for-policy",
+          "/agent/employee-benefit/policy-upload-policy"
+        ],
       },
       {
         name: "Claims",
         icon: <SvgAgentItemsIcon color="#9DA4AE" />,
         path: "/agent/claim",
-        includes: ["/agent/claim"],
+        includes: ["/agent/claim",
+        ],
       },
       {
         name: "Open Items",
@@ -477,10 +490,7 @@ export const menuList = [
         icon: <SvgAgentPaymentIcon color="#9DA4AE" />,
         path: "/agent/payments",
         includes: ["/agent/payments"],
-      },
-      
-     
-      
+      },      
     ],
   },
   {

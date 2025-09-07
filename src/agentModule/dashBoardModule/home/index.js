@@ -18,6 +18,7 @@ import NavBar from "../../../components/NavBar";
 import SvgFrame from "../../../assets/agentIcon/SvgFrame";
 import { InputText } from "primereact/inputtext";
 import { getClientTableSearchListMiddleware } from "../../quoteModule/clientListing/store/clientsMiddleware";
+import EmployeeBenefitIcon from "../../EmployeeFlow/EmployeeBenefitIcon";
 
 const Dashboard = () => {
   const clientdata = [
@@ -34,7 +35,18 @@ const Dashboard = () => {
   const [visible, setVisible] = useState(false);
   const [existclient, setexistclient] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedQuoteType, setSelectedQuoteType] = useState("");
   const navigate = useNavigate();
+  const handleClickMotor = () => {
+  setSelectedQuoteType("Motor");
+  setVisible(true);
+};
+
+const handleClickEmpBenefit = () => {
+  setSelectedQuoteType("EmployeeBenefit");
+  setVisible(true);
+};
+
 
   const { userDetails, commissionList } = useSelector(({ homeReducers }) => {
     return {
@@ -122,6 +134,32 @@ const Dashboard = () => {
       ),
       value: "Property",
     },
+    {
+      label: (
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          onClick={() => {
+            handleClickEmpBenefit();
+          }}
+        >
+          <div>
+            <EmployeeBenefitIcon />
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter var",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#111927",
+              width: "100%",
+            }}
+          >
+            Employee Benefit
+          </div>
+        </div>
+      ),
+      value: "EmployeeBenefit",
+    },
   ];
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
@@ -130,13 +168,26 @@ const Dashboard = () => {
       dispatch(getClientTableSearchListMiddleware(search));
     }
   }, [search]);
-  const handleClickMotor = () => {
-    setVisible(true);
-  };
+  // const handleClickMotor = () => {
+  //   setVisible(true);
+  // };
+  // const handleClickEmpBenefit = () => {
+  //   setVisible(true);
+  // };
+
+  // const handleclick = () => {
+  //   navigate("/agent/createlead");
+  // };
 
   const handleclick = () => {
+  if (selectedQuoteType === "Motor") {
     navigate("/agent/createlead");
-  };
+  } else if (selectedQuoteType === "EmployeeBenefit") {
+    // navigate("/agent/employeebenefit/createlead"); 
+    navigate("/agent/createlead/employee-benefit"); 
+  }
+};
+
   const handleclientid = () => {
     navigate(`/agent/createquote/policydetails/createquote/${123}`);
   };
@@ -155,6 +206,16 @@ const Dashboard = () => {
               options={dropdownOptions}
               // onChange={(e) => setSelectedOption(e.value)}
               placeholder="Create Quote"
+              onChange={(e) => {
+                const value = e.value;
+                setSelectedOption(value);
+
+                if (value === "Motor") {
+                  handleClickMotor();
+                } else if (value === "EmployeeBenefit") {
+                  handleClickEmpBenefit();
+                }
+              }}
               dropdownIcon={<SvgAdd />}
             />
           </div>

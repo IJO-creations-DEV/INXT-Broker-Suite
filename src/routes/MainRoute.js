@@ -227,7 +227,16 @@ import EditRequestForm from "../module/PettyCashManagement/Request/EditRequest";
 import ClaimModule from "../agentModule/claimModule";
 import PolicyModule from "../agentModule/policyModule";
 import QuotationModule from "../agentModule/quotationModule";
-import PolicyAccountingView from "../agentModule/quoteModule/policyAccountingView";
+import PolicyAccountingView from "../agentModule/quoteModule/policyAccountingView"; 
+import EmployeeLeadCreation from "../agentModule/EmployeeFlow/EmployeeLeadCreation";
+import CQPolicyAndRiskDetails from "../agentModule/EmployeeFlow/CQPolicyAndRiskDetails";
+import CQEmployeeBulkUpload from "../agentModule/EmployeeFlow/CQEmployeeBulkUpload";
+import CQcoverageDetails from "../agentModule/EmployeeFlow/CQcoverageDetails";
+import CQOrderSummary from "../agentModule/EmployeeFlow/CQorderSummary";
+import CQquoteDetails from "../agentModule/EmployeeFlow/CQquoteDetails";
+import PCwaitingForPolicy from "../agentModule/EmployeeFlow/PCwaitinForPolicy";
+import PCuploadPolicy from "../agentModule/EmployeeFlow/PCuploadPolicy";
+import PCpolicyDetails from "../agentModule/EmployeeFlow/PCpolicydetails";
 
 const Maincomponent = () => {
   return (
@@ -1321,6 +1330,43 @@ const Maincomponent = () => {
           <Route
             path="/agent/renewal/waiting/:id"
             element={<PolicyRenewalWaiting />}
+          />
+
+          <Route
+            path="/agent/createlead/employee-benefit"
+            element={<EmployeeLeadCreation flow="create" action="post" />}
+          />
+          <Route
+            path="/agent/employee-benefit/create-quote"
+            element={<CQPolicyAndRiskDetails />}
+          />
+          <Route
+            path="/agent/employee-benefit/create-quote-employeebulkupload"
+            element={<CQEmployeeBulkUpload />}
+          />
+          <Route
+            path="/agent/employee-benefit/create-quote-Coverage-details"
+            element={<CQcoverageDetails />}
+          />
+          <Route
+            path="/agent/employee-benefit/create-quote-order-summary"
+            element={<CQOrderSummary />}
+          />
+          <Route
+            path="/agent/employee-benefit/create-quote-quote-details"
+            element={<CQquoteDetails />}
+          />
+          <Route
+            path="/agent/employee-benefit/policy-waiting-for-policy"
+            element={<PCwaitingForPolicy />}
+          />
+          <Route
+            path="/agent/employee-benefit/policy-upload-policy"
+            element={<PCuploadPolicy />}
+          />
+          <Route
+            path="/agent/employee-benefit/client-policy-details"
+            element={<PCpolicyDetails />}
           />
 
           {/* //Reports */}

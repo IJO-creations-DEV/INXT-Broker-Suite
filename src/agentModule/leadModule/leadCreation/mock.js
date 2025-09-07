@@ -1,3 +1,6 @@
+import mock from './mock';
+
+
 const data = {
  countries:[
 "PHILIPPINES"

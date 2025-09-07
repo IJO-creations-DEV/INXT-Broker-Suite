@@ -89,6 +89,7 @@ const LeadListing = () => {
       ),
       value: "Property",
     },
+    
   ];
 
   const handleClickMotor = () => {

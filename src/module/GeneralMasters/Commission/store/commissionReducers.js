@@ -14,6 +14,7 @@ const initialState = {
         {
             id: 1,
             commissionCode: "COMM001 ",
+            insuranceCompany: "PIONEER INSURANCE AND SURETY CORP (PISC)",
             desc: "decriptionCommission0123",
             maxRate: "123",
             selectCover: "CTPL",
@@ -29,6 +30,7 @@ const initialState = {
         {
             id: 2,
             commissionCode: "COMM002",
+            insuranceCompany: "MALAYAN INSURANCE COMPANY,INC",
             desc: "decriptionCommission0123",
             maxRate: "123",
             selectCover: "COMPREHENSIVE",
@@ -44,6 +46,7 @@ const initialState = {
         {
             id: 3,
             commissionCode: "COMM003",
+            insuranceCompany: "COOPERATIVE INSURANCE SYSTEM OF THE PJILLIPINES LIFE",
             desc: "decriptionCommission0123",
             maxRate: "123",
             selectCover: "EXCESS BIPD ",
@@ -59,6 +62,7 @@ const initialState = {
         {
             id: 4,
             commissionCode: "COMM004",
+            insuranceCompany: "PIONEER INSURANCE AND SURETY CORP (PISC)",
             desc: "decriptionCommission0123",
             maxRate: "123",
             selectCover: "OD AND THEFT",

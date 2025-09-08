@@ -78,6 +78,9 @@ const AddCommission = () => {
     if (!values.commissionCode) {
       errors.commissionCode = "commission code is required";
     }
+       if (!values.insuranceCompany) {
+      errors.insuranceCompany = "Insurance Company is required";
+    }
 
     if (!values.desc) {
       errors.desc = "This field is required";
@@ -106,6 +109,13 @@ const AddCommission = () => {
   const productOption = [
     { label: "Option 1", value: "Motor" },
     { label: "Option 2", value: "Fire" },
+    
+  ];
+  const insuranceCompany= [
+    { label: "Option 1", value: "PIONEER INSURANCE AND SURETY CORP (PISC)" },
+    { label: "Option 2", value: "MALAYAN INSURANCE COMPANY,INC" },
+     { label: "Option 3", value: "COOPERATIVE INSURANCE SYSTEM OF THE PJILLIPINES LIFE" },
+  
   ];
   const selectCover = [
     { label: "Option 1", value: "CTPL" },
@@ -140,6 +150,7 @@ const AddCommission = () => {
       commissionCode: "",
       desc: "",
       // pettycashname: "",
+      insuranceCompany: "",
       product: "",
       selectCover: "",
       maxRate: "",
@@ -299,7 +310,39 @@ const AddCommission = () => {
                 {formik.errors.commissionCode}
               </div>
             )}
-          </div>
+      
+                  </div>
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+            <DropDowns
+              // disabled={step === 0 ? false : true}
+              className={
+                step === 0
+                  ? "input__field__reversal"
+                  : "input__field__reversal__inactive"
+              }
+              classNames={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Insurance Company"
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.insuranceCompany}
+              onChange={(e) => formik.setFieldValue("insuranceCompany", e.target.value)}
+              options={insuranceCompany}
+              optionLabel="value"
+              placeholder={"Select"}
+            />
+
+            {formik.touched.insuranceCompany && formik.errors.insuranceCompany && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                className="formik__errror__JV"
+              >
+                {formik.errors.insuranceCompany}
+              </div>
+            )}
+                </div>
           <div className="col-12 md:col-6 lg:col-6 xl:col-6 input__view__reversal">
             <InputField
               classNames="input__field__reversal__inactive"
@@ -321,6 +364,7 @@ const AddCommission = () => {
                 {formik.errors.desc}
               </div>
             )}
+            
           </div>
           <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
             <DropDowns

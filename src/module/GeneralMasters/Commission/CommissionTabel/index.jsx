@@ -163,6 +163,16 @@ const CommissionTabel = ({ handleEdit, newDataTable, commissionList, getCommissi
                     body={(rowData) => rowData.commissionCode?.toUpperCase()}
 
                 ></Column>
+                    <Column
+                    field="insuranceCompany"
+                    header="Insurance Company"
+                    className="fieldvalue_container"
+                    headerStyle={headerStyle}
+                    sortable
+                    body={(rowData) => rowData.insuranceCompany?.toUpperCase()}
+
+                ></Column>
+
                 <Column
                     field="product"
                     header="Product"

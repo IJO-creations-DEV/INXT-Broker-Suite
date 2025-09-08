@@ -115,16 +115,19 @@ const EditCommission = () => {
     dispatch(patchCommissionEdit(value));
     navigate("/master/generals/commission");
   };
+  const [insuranceCompanyOptionData, setinsuranceCompanyOptionData] = useState([]);
   const [productOptionData, setProductOptionData] = useState([]);
   const [selectedCoverOption, setSelectedCoverOption] = useState([]);
   const [selectAgentDataOption, setSelectAgentDataOption] = useState([]);
   const setFormikValues = () => {
+     const insuranceCompanyData = getCommissionEdit?.insuranceCompany;
     const productData = getCommissionEdit?.product;
     const selectCoversData = getCommissionEdit?.selectCover;
     const selectAgentData = getCommissionEdit?.selectAgent;
     const updatedValues = {
       id: getCommissionEdit?.id,
       commissionCode: getCommissionEdit?.commissionCode,
+      insuranceCompany: getCommissionEdit?.insuranceCompany,
       product: productData,
       desc: getCommissionEdit?.desc,
       selectCover: selectCoversData,
@@ -133,6 +136,10 @@ const EditCommission = () => {
       maxRate: getCommissionEdit?.maxRate,
       selectAgent: selectAgentData,
     };
+        if (insuranceCompanyData) {
+      formik.setValues({ ...formik.values, ...updatedValues });
+      setinsuranceCompanyOptionData([{ label: insuranceCompanyData, value: insuranceCompanyData }]);
+    }
     if (productData) {
       formik.setValues({ ...formik.values, ...updatedValues });
       setProductOptionData([{ label: productData, value: productData }]);
@@ -155,6 +162,7 @@ const EditCommission = () => {
   const formik = useFormik({
     initialValues: {
       commissionCode: "",
+      insuranceCompany: "",
       desc: "",
       product: "",
       selectCover: "",
@@ -313,6 +321,37 @@ const EditCommission = () => {
                 className="formik__errror__JV"
               >
                 {formik.errors.commissionCode}
+              </div>
+            )}
+                   </div>
+          <div className="col-12 md:col-6 lg:col-3 xl:col-3 input__view__reversal">
+            <DropDowns
+              // disabled={step === 0 ? false : true}
+              className={
+                step === 0
+                  ? "input__field__reversal"
+                  : "input__field__reversal__inactive"
+              }
+              classNames={
+                step === 0
+                  ? "input__label__reversal"
+                  : "input__label__reversal__inactive"
+              }
+              label="Insurance Company"
+              dropdownIcon={<SvgDropdown color={"#000"} />}
+              value={formik.values.insuranceCompany}
+              onChange={(e) => formik.setFieldValue("insuranceCompany", e.target.value)}
+              options={insuranceCompanyOptionData}
+              optionLabel="value"
+              placeholder={"Select"}
+            />
+
+            {formik.touched.product && formik.errors.product && (
+              <div
+                style={{ fontSize: 12, color: "red" }}
+                className="formik__errror__JV"
+              >
+                {formik.errors.product}
               </div>
             )}
           </div>

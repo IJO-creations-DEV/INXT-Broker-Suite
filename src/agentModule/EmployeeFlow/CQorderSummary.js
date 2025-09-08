@@ -24,6 +24,7 @@ const initialValue = {
   AuthorizedSignature: "",
   DocumentaryStampTax: "1,000.00",
   LocalGovtTax: "1,100.00",
+  Commission: "12000.00",
   Discount: "000.00",
   NCD: "600",
   GrossPremium: "104,900.00",
@@ -209,6 +210,14 @@ const CQOrderSummary = ({ action, flow }) => {
                   }
                 />
               </div>
+              <div class="col-12 md:col-12 lg:col-12 xl:col-12 mt-2">
+                <CalculaitionTextInputs
+                  label="Commission 10%"
+                  value={formik.values.Commission}
+                  onChange={formik.handleChange("commission")}
+                  error={formik.touched.Commission && formik.errors.Commission}
+                />
+                   </div>
               <div class="col-12 md:col-12 lg:col-12 xl:col-12 mt-2">
                 <CalculaitionTextInputs
                   label="Discount"

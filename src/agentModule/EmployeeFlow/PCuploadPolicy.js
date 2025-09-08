@@ -65,7 +65,6 @@ const PCuploadPolicy = ({ state }) => {
   // }
   const initialValues = {
     PolicyNumber: "001",
-    InsuranceCompany: "Pioneer Insurance and Surety Corp (PISC)",
     Production: new Date(),
     Inception: new Date(),
     IssuedDate: new Date(),

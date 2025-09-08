@@ -272,8 +272,8 @@ export const CountryOptions = [
 
 
   export const covers = [
-    { label: "Medical Expenses", value: "10,000" },
     { label: "Employer’s Liability (Annual Limit)", value: "Employer’s Liability (Annual Limit)" },
+    { label: "Medical Expenses", value: "Medical Expenses" },
     { label: "Any One Occurrence Limit – Employers", value: "Any One Occurrence Limit – Employers" },
     { label: "PA (Personal Accident)", value: "PA (Personal Accident)" },
   ];

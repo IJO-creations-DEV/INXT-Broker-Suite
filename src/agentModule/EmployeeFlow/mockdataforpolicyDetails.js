@@ -61,10 +61,11 @@ export const AccountCodes = [
 ];
 
 export const VehicleBrands = [
-  { label: "Management", value: "Management" },
-  { label: "Underwritters", value: "Underwritters" },
-  { label: "Claims Adjusters", value: "Claims Adjusters" },
-  { label: "Accounts", value: "Accounts" },
+  { label: "Top Management/C-Suite", value: "Top Management/C-Suite" },
+  { label: "Senior Managment", value: "Senior Managment" },
+  { label: "Middle Managment", value: "Middle Managment" },
+  { label: "Junior/Staff Level", value: "Junior/Staff Level" },
+  { label: "Field/Operations Staff", value: "Field/Operations Staff" },
 ];
 
 export const ModelYears = [

@@ -173,7 +173,8 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
           <div className="col-12 md:col-6 lg:col-6">
             <DropdownField
               label="Select Covers"
-              value={formik.values.BodilyInjury}
+              // value={formik.values.BodilyInjury}
+               value={covers[0].value}
               options={covers}
               onChange={(e) => {
                 console.log(e.value);
@@ -205,7 +206,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
             )}
           </div>
         </div>
-
+{/* 
          <div class="col-12 mt-2">
           <InputTextField
             label="Medical Coverage"
@@ -216,11 +217,11 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
               formik.errors.LossandDamagecoverage
             }
           />
-        </div>
+        </div> */}
         <div className="grid m-0 mt-2">
           <div className="col-12 md:col-6 lg:col-6">
             <InputTextField
-              label="Medical Coverage Rate"
+              label="Medical Coverage"
               value={  formik.values.LossandDamagecoverageRate  }
               onChange={formik.handleChange("LossandDamagecoverageRate")}
             />
@@ -263,7 +264,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
         <div className="grid m-0 mt-2">
           <div className="col-12 md:col-6 lg:col-6">
             <InputTextField
-              label="Life Insurance (Sum Insured) "
+              label="Employer's Liablity Coverage "
               // value={formik.values.ActsofNatureRate}
               value={  formik.values.ActsofNatureRate }
               // value={formik.values.ActsofNatureRate}
@@ -279,7 +280,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
           <div className="col-12 md:col-6 lg:col-6">
             {isOverRide ?
               <InputTextField
-                label="Life Insurance premium"
+                label="Employer's Liablity Coverage premium"
                 // value={formik.values.LossandDamagecoverageRate}
                 value={
                   action == "coveragecreate"
@@ -289,7 +290,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
                 onChange={formik.handleChange("ActsofNaturepremium")}
               />
               : <CalculaitionTextInputs
-                label="Life Insurance premium"
+                label="Employer's Liablity Coverage premium"
                 // value={formik.values.ActsofNaturepremium}
                 // value={
                 //   action == "coveragecreate"
@@ -311,7 +312,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
         <div className="grid m-0 mt-2">
           <div className="col-12 md:col-6 lg:col-6">
             <DropdownField
-              label="AD\&D (Accidental Death & Dismemberment) SI"
+              label="Any One Occurrence Limit Coverage"
               value={formik.values.BodilyInjury}
               options={BodilyInjuryOptions}
               onChange={(e) => {
@@ -328,14 +329,14 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             {isOverRide ? <InputTextField
-              label="AD\&D Premium "
+              label="Any One Occurrence Limit Coverag Premium "
               // value={formik.values.LossandDamagecoverageRate}
               value={ formik.values.BodilyInjuryCoveragePremium
                   
               }
               onChange={formik.handleChange("BodilyInjuryCoveragePremium")}
             /> : <CalculaitionTextInputs
-              label="AD\&D Premium "
+              label="Any One Occurrence Limit Coverag Premium "
               // value={formik.values.BodilyInjuryCoveragePremium}
               value={ formik.values.BodilyInjuryCoveragePremium
                  
@@ -353,7 +354,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
         <div className="grid m-0 mt-2">
           <div className="col-12 md:col-6 lg:col-6">
             <DropdownField
-              label="Disability Income Benefit"
+              label="PA(Personal Accident) Coverage"
               value={formik.values.PropertyDamage}
               options={PropertyDamageOptions}
               onChange={(e) => {
@@ -370,7 +371,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
           </div>
           <div className="col-12 md:col-6 lg:col-6">
             {isOverRide ? <InputTextField
-              label="Disability Benefit Premium"
+              label="PA(Personal Accident) Coverage Premium"
               // value={formik.values.LossandDamagecoverageRate}
               value={
                 action == "coveragecreate"
@@ -379,7 +380,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
               }
               onChange={formik.handleChange("PropertyDamageCoveragePremium")}
             /> : <CalculaitionTextInputs
-              label="Disability Benefit Premium"
+              label="PA(Personal Accident) Coverage Premium"
               // value={formik.values.PropertyDamageCoveragePremium}
               // value={
               //   action == "coveragecreate"
@@ -397,7 +398,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
               )}
           </div>
         </div>
-        <div className="grid m-0 mt-2">
+        {/* <div className="grid m-0 mt-2">
           <div className="col-12 md:col-12 lg:col-12">
             <DropdownField
               label="Critical Illness Coverage"
@@ -416,7 +417,7 @@ const CoverageDetailsCard = ({ action, flow, coInsurance, installmentType }) => 
                 </div>
               )}
           </div>
-        </div>
+        </div> */}
 
         <div className="grid m-0 mt-2">
           <div className="col-12 md:col-6 lg:col-6">

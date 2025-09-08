@@ -115,27 +115,6 @@ const handleClickEmpBenefit = () => {
     },
     {
       label: (
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <div>
-            <SvgHome />
-          </div>
-          <div
-            style={{
-              fontFamily: "Inter var",
-              fontWeight: 400,
-              fontSize: "16px",
-              color: "#111927",
-              width: "100%",
-            }}
-          >
-            Property
-          </div>
-        </div>
-      ),
-      value: "Property",
-    },
-    {
-      label: (
         <div
           style={{ display: "flex", alignItems: "center", gap: "10px" }}
           onClick={() => {
@@ -160,6 +139,28 @@ const handleClickEmpBenefit = () => {
       ),
       value: "EmployeeBenefit",
     },
+    {
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div>
+            <SvgHome />
+          </div>
+          <div
+            style={{
+              fontFamily: "Inter var",
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#111927",
+              width: "100%",
+            }}
+          >
+            Property
+          </div>
+        </div>
+      ),
+      value: "Property",
+    },
+    
   ];
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
